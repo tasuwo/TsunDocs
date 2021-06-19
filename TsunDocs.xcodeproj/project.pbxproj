@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05379807DD47D1488C35CD2D /* Smile in Frameworks */ = {isa = PBXBuildFile; productRef = E0CD9235D774E4ADF7C9765A /* Smile */; };
 		14D63915BD27486168474BAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0382399B9AABFBDAAB2AE9B9 /* Assets.xcassets */; };
+		1BED969DBCC5B90F766D1770 /* Smile in Frameworks */ = {isa = PBXBuildFile; productRef = 58F214CC5281EB6787D7671C /* Smile */; };
 		257C7B846776EBBAA22BF68B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BEB5D15F0F23D66B0C06C5 /* ContentView.swift */; };
 		386734DFA2CE2F8208BFAE7D /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */; };
 		73B63B8116823443FA498C95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0382399B9AABFBDAAB2AE9B9 /* Assets.xcassets */; };
@@ -25,6 +27,25 @@
 		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TsunDocs (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F887EB4DB6E1DE3040F95054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		26CBBCDC2AAD7C4A199E2BC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BED969DBCC5B90F766D1770 /* Smile in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85E7B983E892C2FCC3953ACE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05379807DD47D1488C35CD2D /* Smile in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		7925802F255C1D710E794AC1 /* iOS */ = {
@@ -82,12 +103,16 @@
 			buildPhases = (
 				CE0AD2747B613D920FA6F9C5 /* Sources */,
 				3FA1341750C0E291EC792C53 /* Resources */,
+				26CBBCDC2AAD7C4A199E2BC3 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "TsunDocs (iOS)";
+			packageProductDependencies = (
+				58F214CC5281EB6787D7671C /* Smile */,
+			);
 			productName = "TsunDocs (iOS)";
 			productReference = 3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */;
 			productType = "com.apple.product-type.application";
@@ -98,12 +123,16 @@
 			buildPhases = (
 				C08696BAF5978BBC2261100C /* Sources */,
 				AE988B0E16DBEC97E7D028B3 /* Resources */,
+				85E7B983E892C2FCC3953ACE /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "TsunDocs (macOS)";
+			packageProductDependencies = (
+				E0CD9235D774E4ADF7C9765A /* Smile */,
+			);
 			productName = "TsunDocs (macOS)";
 			productReference = BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */;
 			productType = "com.apple.product-type.application";
@@ -137,6 +166,9 @@
 				en,
 			);
 			mainGroup = EB5136094B07B8560319AE2D;
+			packageReferences = (
+				209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -428,6 +460,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onmyway133/Smile";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		58F214CC5281EB6787D7671C /* Smile */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */;
+			productName = Smile;
+		};
+		E0CD9235D774E4ADF7C9765A /* Smile */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */;
+			productName = Smile;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B10FD681F47AC2A4820934BC /* Project object */;
 }

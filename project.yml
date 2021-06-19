@@ -14,6 +14,10 @@ attributes:
 configs:
   Debug: debug
   Release: release
+packages:
+  Smile:
+    url: https://github.com/onmyway133/Smile
+    from: 2.1.0
 schemes:
   TsunDocs (iOS):
     build:
@@ -73,6 +77,8 @@ targets:
     sources:
       - path: Shared
       - path: iOS
+    dependencies:
+      - package: Smile
     settings:
       base:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
@@ -100,6 +106,8 @@ targets:
     sources:
       - path: Shared
       - path: macOS
+    dependencies:
+      - package: Smile
     settings:
       base:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
