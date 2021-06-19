@@ -101,6 +101,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocs (iOS)" */;
 			buildPhases = (
+				D3138B57806C2FA5B19BA173 /* SwiftLint */,
 				CE0AD2747B613D920FA6F9C5 /* Sources */,
 				3FA1341750C0E291EC792C53 /* Resources */,
 				26CBBCDC2AAD7C4A199E2BC3 /* Frameworks */,
@@ -121,6 +122,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 809BF37F55504DFB6306E786 /* Build configuration list for PBXNativeTarget "TsunDocs (macOS)" */;
 			buildPhases = (
+				2C9D5D63BB7A0F59CDA10E4D /* SwiftLint */,
 				C08696BAF5978BBC2261100C /* Sources */,
 				AE988B0E16DBEC97E7D028B3 /* Resources */,
 				85E7B983E892C2FCC3953ACE /* Frameworks */,
@@ -196,6 +198,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C9D5D63BB7A0F59CDA10E4D /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nif [[ ${CONFIGURATION} == \"Debug\" ]]; then\n  if [[ -f \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\" ]]; then\n    \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\"\n  else\n    echo \"warning: SwiftLint is not installed. Run 'bundle exec pod install --repo-update' to install it.\"\n  fi\nfi\n";
+		};
+		D3138B57806C2FA5B19BA173 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nif [[ ${CONFIGURATION} == \"Debug\" ]]; then\n  if [[ -f \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\" ]]; then\n    \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\"\n  else\n    echo \"warning: SwiftLint is not installed. Run 'bundle exec pod install --repo-update' to install it.\"\n  fi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C08696BAF5978BBC2261100C /* Sources */ = {

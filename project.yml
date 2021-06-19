@@ -79,6 +79,11 @@ targets:
       - path: iOS
     dependencies:
       - package: Smile
+    prebuildScripts:
+      - name: SwiftLint
+        runOnlyWhenInstalling: false
+        path: scripts/run_swiftlint.sh
+        shell: /bin/sh
     settings:
       base:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
@@ -108,6 +113,11 @@ targets:
       - path: macOS
     dependencies:
       - package: Smile
+    prebuildScripts:
+      - name: SwiftLint
+        runOnlyWhenInstalling: false
+        path: scripts/run_swiftlint.sh
+        shell: /bin/sh
     settings:
       base:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
