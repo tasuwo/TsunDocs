@@ -5,6 +5,7 @@ options:
   groupOrdering:
     - order:
       - Shared
+      - Preview Content
       - iOS
       - macOS
 attributes:
@@ -76,6 +77,8 @@ targets:
     platform: iOS
     sources:
       - path: Shared
+      - path: Preview Content
+      - Preview Content/Preview Assets.xcassets
       - path: iOS
     dependencies:
       - package: Smile
@@ -101,6 +104,7 @@ targets:
         SDKROOT: iphoneos
         SWIFT_VERSION: 5.0
         TARGETED_DEVICE_FAMILY: 1,2
+        DEVELOPMENT_ASSET_PATHS: 'Preview\ Content'
       configs:
         Debug:
         Release:
@@ -110,6 +114,8 @@ targets:
     platform: macOS
     sources:
       - path: Shared
+      - path: Preview Content
+      - Preview Content/Preview Assets.xcassets
       - path: macOS
     dependencies:
       - package: Smile
@@ -137,6 +143,7 @@ targets:
         PRODUCT_NAME: TsunDocs
         SDKROOT: macosx
         SWIFT_VERSION: 5.0
+        DEVELOPMENT_ASSET_PATHS: 'Preview\ Content'
       configs:
         Debug:
         Release:
