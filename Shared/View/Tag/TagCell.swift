@@ -7,7 +7,9 @@ import SwiftUI
 struct TagCell: View {
     // MARK: - Properties
 
-    let tag: Tag
+    let tagId: UUID
+    let tagName: String
+
     @State var isSelected = false
 
     // MARK: - View
@@ -29,7 +31,7 @@ struct TagCell: View {
                     .fixedSize()
             }
 
-            Text(tag.name)
+            Text(tagName)
                 .foregroundColor(isSelected ? .white : .primary)
                 .font(.system(size: 16))
         }
@@ -62,14 +64,14 @@ struct TagCell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             VStack {
-                TagCell(tag: .init(id: UUID(), name: "タグ"), isSelected: false)
-                TagCell(tag: .init(id: UUID(), name: "my tag"), isSelected: true)
+                TagCell(tagId: UUID(), tagName: "タグ", isSelected: false)
+                TagCell(tagId: UUID(), tagName: "my tag", isSelected: true)
             }
             .preferredColorScheme(.light)
 
             VStack {
-                TagCell(tag: .init(id: UUID(), name: "タグ"), isSelected: false)
-                TagCell(tag: .init(id: UUID(), name: "my tag"), isSelected: true)
+                TagCell(tagId: UUID(), tagName: "タグ", isSelected: false)
+                TagCell(tagId: UUID(), tagName: "my tag", isSelected: true)
             }
             .preferredColorScheme(.dark)
         }

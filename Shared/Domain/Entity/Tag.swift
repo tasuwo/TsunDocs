@@ -10,3 +10,5 @@ struct Tag {
 }
 
 extension Tag: Identifiable {}
+
+extension Tag: Hashable {}
