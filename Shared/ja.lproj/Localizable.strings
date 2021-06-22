@@ -9,3 +9,7 @@
 "app_name" = "TsunDocs";
 "tab_item_title_tsundoc_list" = "マイリスト";
 "tab_item_title_settings" = "設定";
+
+"setting_view_title" = "設定";
+"setting_view_section_title_this_app" = "このアプリについて";
+"setting_view_row_app_version" = "バージョン";
