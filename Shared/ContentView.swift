@@ -2,16 +2,22 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import CompositeKit
 import SwiftUI
 
 struct ContentView: View {
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
     var body: some View {
+        let store = Store(initialState: TsundocListState(tsundocs: []),
+                          dependency: (),
+                          reducer: TsundocListReducer())
+        let viewStore = ViewStore(store: store)
+
         if idiom == .pad {
             NavigationView {
                 List {
-                    NavigationLink(destination: Text("TODO: TsundocList")) {
+                    NavigationLink(destination: TsundocList(store: viewStore)) {
                         TabItem.tsundocList.label
                     }
                     NavigationLink(destination: SettingView()) {
@@ -21,11 +27,11 @@ struct ContentView: View {
                 .navigationTitle(LocalizedStringKey("app_name"))
                 .listStyle(SidebarListStyle())
 
-                Text("TODO: TsundocList")
+                TsundocList(store: viewStore)
             }
         } else {
             TabView {
-                Text("TODO: TsundocList")
+                TsundocList(store: viewStore)
                     .tabItem { TabItem.tsundocList.view }
 
                 SettingView()
