@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  TsunDocs
+
+  Created by Tasuku Tozawa on 2021/06/22.
+  Copyright © 2021 Tasuku Tozawa. All rights reserved.
+*/
+
+"app_name" = "TsunDocs";
+"tab_item_title_tsundoc_list" = "My List";
+"tab_item_title_settings" = "Settings";
