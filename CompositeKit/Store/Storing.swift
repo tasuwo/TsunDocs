@@ -6,7 +6,7 @@ import Combine
 
 public protocol Storing {
     associatedtype State: Equatable
-    associatedtype Action: CompositKit.Action
+    associatedtype Action: CompositeKit.Action
     associatedtype Dependency
 
     var stateValue: State { get }

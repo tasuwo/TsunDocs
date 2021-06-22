@@ -3,7 +3,7 @@
 //
 
 public protocol Reducer {
-    associatedtype Action: CompositKit.Action
+    associatedtype Action: CompositeKit.Action
     associatedtype State: Equatable
     associatedtype Dependency
 

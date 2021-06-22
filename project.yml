@@ -8,7 +8,7 @@ options:
       - Preview Content
       - iOS
       - macOS
-      - CompositKit
+      - CompositeKit
 attributes:
   LastSwiftUpdateCheck: 1250
   LastUpgradeCheck: 1250
@@ -83,7 +83,7 @@ targets:
       - Preview Content/Preview Assets.xcassets
       - path: iOS
     dependencies:
-      - target: CompositKit_iOS
+      - target: CompositeKit_iOS
       - package: Smile
     prebuildScripts:
       - name: SwiftLint
@@ -121,7 +121,7 @@ targets:
       - Preview Content/Preview Assets.xcassets
       - path: macOS
     dependencies:
-      - target: CompositKit_macOS
+      - target: CompositeKit_macOS
       - package: Smile
     prebuildScripts:
       - name: SwiftLint
@@ -151,18 +151,18 @@ targets:
       configs:
         Debug:
         Release:
-  CompositKit:
+  CompositeKit:
     type: framework
     platform: [iOS, macOS]
     sources:
-      - path: CompositKit
+      - path: CompositeKit
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES
         DEVELOPMENT_TEAM: RY2377PP7S
-        INFOPLIST_FILE: CompositKit/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.CompositKit
-        PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]: net.tasuwo.CompositKit
+        INFOPLIST_FILE: CompositeKit/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.CompositeKit
+        PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]: net.tasuwo.CompositeKit
         PROVISIONING_PROFILE_SPECIFIER:
         PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]:
         SUPPORTS_MACCATALYST: NO

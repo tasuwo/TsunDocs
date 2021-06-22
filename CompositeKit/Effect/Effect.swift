@@ -5,7 +5,7 @@
 import Combine
 import Foundation
 
-public class Effect<Action: CompositKit.Action> {
+public class Effect<Action: CompositeKit.Action> {
     let id: UUID
     let upstream: AnyPublisher<Action?, Never>
     let actionAtCompleted: Action?
@@ -41,7 +41,7 @@ public class Effect<Action: CompositKit.Action> {
 }
 
 public extension Effect {
-    func map<T: CompositKit.Action>(_ transform: @escaping (Action?) -> T?) -> Effect<T> {
+    func map<T: CompositeKit.Action>(_ transform: @escaping (Action?) -> T?) -> Effect<T> {
         .init(id: id,
               publisher: upstream.map({ transform($0) }).eraseToAnyPublisher(),
               underlying: underlyingObject,
