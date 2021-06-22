@@ -31,3 +31,5 @@ extension Tsundoc {
 }
 
 extension Tsundoc: Identifiable {}
+
+extension Tsundoc: Equatable {}

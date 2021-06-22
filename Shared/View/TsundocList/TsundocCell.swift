@@ -23,36 +23,36 @@ struct TsundocCell: View {
     // MARK: - View
 
     var body: some View {
-        NavigationLink(destination: Text("dummy")) {
-            HStack {
-                VStack {
-                    TsundocThumbnail(source: tsundoc.thumbnailSource,
-                                     imageLoaderFactory: imageLoaderFactory)
-                        .padding([.top, .trailing, .bottom], 4.0)
-                    Spacer(minLength: 0)
-                }
-
-                VStack(alignment: .leading) {
-                    VStack(alignment: .leading) {
-                        Text(tsundoc.title)
-                            .lineLimit(2)
-                            .foregroundColor(.primary)
-                            .padding(.top, 4.0)
-
-                        Spacer()
-                            .frame(height: 4.0)
-
-                        if let description = tsundoc.description {
-                            Text(description)
-                                .font(.caption)
-                                .lineLimit(2)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-
-                    Spacer(minLength: 0)
-                }
+        HStack {
+            VStack {
+                TsundocThumbnail(source: tsundoc.thumbnailSource,
+                                 imageLoaderFactory: imageLoaderFactory)
+                    .padding([.top, .trailing, .bottom], 4.0)
+                Spacer(minLength: 0)
             }
+
+            VStack(alignment: .leading) {
+                VStack(alignment: .leading) {
+                    Text(tsundoc.title)
+                        .lineLimit(2)
+                        .foregroundColor(.primary)
+                        .padding(.top, 4.0)
+
+                    Spacer()
+                        .frame(height: 4.0)
+
+                    if let description = tsundoc.description {
+                        Text(description)
+                            .font(.caption)
+                            .lineLimit(2)
+                            .foregroundColor(.secondary)
+                    }
+                }
+
+                Spacer(minLength: 0)
+            }
+
+            Spacer()
         }
     }
 }
