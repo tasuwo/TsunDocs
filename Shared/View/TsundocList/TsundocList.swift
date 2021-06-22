@@ -24,7 +24,7 @@ struct TsundocList: View {
                 }
             }
             .navigationTitle("tsundoc_list_title")
-            .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .modalDismissed }), content: {
+            .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .modalDismissed })) {
                 switch store.state.modal {
                 case let .safariView(tsundoc):
                     SafariView(url: tsundoc.url)
@@ -32,7 +32,7 @@ struct TsundocList: View {
                 default:
                     EmptyView()
                 }
-            })
+            }
         }
     }
 }
