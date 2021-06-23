@@ -5,10 +5,10 @@
 import CoreData
 import Domain
 
-class CoreDataQueryService {
+public class CoreDataQueryService {
     // MARK: - Properties
 
-    var context: NSManagedObjectContext {
+    public var context: NSManagedObjectContext {
         didSet {
             observers.forEach { $0.didReplaced(context: context) }
         }
@@ -18,7 +18,7 @@ class CoreDataQueryService {
 
     // MARK: - Initializers
 
-    init(_ context: NSManagedObjectContext) {
+    public init(_ context: NSManagedObjectContext) {
         self.context = context
     }
 
