@@ -8,6 +8,7 @@ options:
       - Preview Content
       - iOS
       - macOS
+      - Persistence
       - CompositeKit
 attributes:
   LastSwiftUpdateCheck: 1250
@@ -151,6 +152,23 @@ targets:
       configs:
         Debug:
         Release:
+  Persistence:
+    type: framework
+    platform: [iOS, macOS]
+    sources:
+      - path: Persistence
+    settings:
+      base:
+        APPLICATION_EXTENSION_API_ONLY: YES
+        DEVELOPMENT_TEAM: RY2377PP7S
+        INFOPLIST_FILE: Persistence/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.Persistence
+        PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]: net.tasuwo.CompositeKit
+        PROVISIONING_PROFILE_SPECIFIER:
+        PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]:
+        SUPPORTS_MACCATALYST: NO
+        IPHONEOS_DEPLOYMENT_TARGET: 14.0
+        MACOSX_DEPLOYMENT_TARGET: 11.0
   CompositeKit:
     type: framework
     platform: [iOS, macOS]
