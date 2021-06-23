@@ -3,6 +3,7 @@
 //
 
 import CoreData
+import Domain
 
 class CoreDataQueryService {
     // MARK: - Properties

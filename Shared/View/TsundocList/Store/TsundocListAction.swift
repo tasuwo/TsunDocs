@@ -3,6 +3,7 @@
 //
 
 import CompositeKit
+import Domain
 
 enum TsundocListAction {
     case select(Tsundoc)

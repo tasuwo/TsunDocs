@@ -8,7 +8,7 @@ private class ObservedEntityBoxBase<Entity> {
     var value: CurrentValueSubject<Entity, Error> { fatalError("Abstract property called") }
 }
 
-private class ObservedEntityBox<ObservedEntity: TsunDocs.ObservedEntity>: ObservedEntityBoxBase<ObservedEntity.Entity> {
+private class ObservedEntityBox<ObservedEntity: Domain.ObservedEntity>: ObservedEntityBoxBase<ObservedEntity.Entity> {
     private let base: ObservedEntity
 
     // MARK: - ObservedEntity
@@ -22,14 +22,14 @@ private class ObservedEntityBox<ObservedEntity: TsunDocs.ObservedEntity>: Observ
     }
 }
 
-class AnyObservedEntity<Entity> {
+public class AnyObservedEntity<Entity> {
     // MARK: - Properties
 
     private let box: ObservedEntityBoxBase<Entity>
 
     // MARK: - Initializers
 
-    init<ObservedEntity: TsunDocs.ObservedEntity>(_ base: ObservedEntity) where ObservedEntity.Entity == Entity {
+    public init<ObservedEntity: Domain.ObservedEntity>(_ base: ObservedEntity) where ObservedEntity.Entity == Entity {
         self.box = ObservedEntityBox(base)
     }
 }
@@ -37,5 +37,5 @@ class AnyObservedEntity<Entity> {
 extension AnyObservedEntity: ObservedEntity {
     // MARK: - ObservedEntity
 
-    var value: CurrentValueSubject<Entity, Error> { box.value }
+    public var value: CurrentValueSubject<Entity, Error> { box.value }
 }

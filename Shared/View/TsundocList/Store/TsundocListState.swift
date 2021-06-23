@@ -3,6 +3,7 @@
 //
 
 import CompositeKit
+import Domain
 
 struct TsundocListState: Equatable {
     enum Modal: Equatable {

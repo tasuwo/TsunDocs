@@ -2,43 +2,43 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
-class WeakContainerArray<T> {
+public class WeakContainerArray<T> {
     private var containers: [WeakContainer<T>]
 
     // MARK: - Initializers
 
-    init() {
+    public init() {
         containers = []
     }
 
-    init(_ containers: [WeakContainer<T>]) {
-        self.containers = containers
+    public init(_ values: [T]) {
+        self.containers = values.map { WeakContainer($0) }
     }
 
     // MARK: - Methods
 
-    subscript(_ index: Int) -> WeakContainer<T> {
+    public subscript(_ index: Int) -> T {
         get {
             clean()
-            return containers[index]
+            return containers[index].value!
         }
         set {
             clean()
-            containers[index] = newValue
+            containers[index] = WeakContainer(newValue)
         }
     }
 
-    func append(_ value: T) {
+    public func append(_ value: T) {
         clean()
         containers.append(WeakContainer(value))
     }
 
-    func remove(_ value: T) {
+    public func remove(_ value: T) {
         clean()
         containers.removeAll(where: { $0.value as AnyObject === value as AnyObject })
     }
 
-    func forEach(_ body: (T) -> Void) {
+    public func forEach(_ body: (T) -> Void) {
         clean()
         containers
             .compactMap { $0.value }

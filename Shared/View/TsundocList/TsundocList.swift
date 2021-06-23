@@ -3,6 +3,7 @@
 //
 
 import CompositeKit
+import Domain
 import SwiftUI
 
 struct TsundocList: View {

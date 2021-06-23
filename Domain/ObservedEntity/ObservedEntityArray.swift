@@ -4,7 +4,7 @@
 
 import Combine
 
-protocol ObservedEntity {
+public protocol ObservedEntityArray {
     associatedtype Entity
-    var value: CurrentValueSubject<Entity, Error> { get }
+    var values: CurrentValueSubject<[Entity], Error> { get }
 }

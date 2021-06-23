@@ -6,8 +6,8 @@ import Combine
 import Foundation
 import UIKit
 
-class ImageLoader: ObservableObject {
-    enum Complete {
+public class ImageLoader: ObservableObject {
+    public enum Complete {
         case image(UIImage)
         case failure
         case cancelled
@@ -26,11 +26,11 @@ class ImageLoader: ObservableObject {
     private let urlSession: URLSession
     private var cancellable: AnyCancellable?
 
-    @Published var complete: Complete?
+    @Published public var complete: Complete?
 
     // MARK: - Initializers
 
-    init(urlSession: URLSession = .shared) {
+    public init(urlSession: URLSession = .shared) {
         self.urlSession = urlSession
     }
 
@@ -40,7 +40,7 @@ class ImageLoader: ObservableObject {
 
     // MARK: - Methods
 
-    func load(_ url: URL) {
+    public func load(_ url: URL) {
         cancellable?.cancel()
         cancellable = urlSession.dataTaskPublisher(for: url)
             .map { UIImage(data: $0.data) }

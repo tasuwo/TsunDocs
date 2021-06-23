@@ -4,6 +4,6 @@
 
 import CoreData
 
-protocol ViewContextObserving: AnyObject {
+public protocol ViewContextObserving: AnyObject {
     func didReplaced(context: NSManagedObjectContext)
 }
