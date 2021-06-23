@@ -19,8 +19,9 @@ struct SafariView: UIViewControllerRepresentable {
     }
 }
 
-struct WebView_Previews: PreviewProvider {
+struct SafariView_Previews: PreviewProvider {
     static var previews: some View {
+        // swiftlint:disable:next force_unwrapping
         SafariView(url: URL(string: "https://www.apple.com")!)
             .ignoresSafeArea()
     }

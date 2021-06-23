@@ -28,7 +28,11 @@ struct TsundocList: View {
             .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .modalDismissed })) {
                 switch store.state.modal {
                 case let .safariView(tsundoc):
-                    SafariView(url: tsundoc.url)
+                    #if os(iOS)
+                        SafariView(url: tsundoc.url)
+                    #elseif os(macOS)
+                        WebView(url: tsundoc.url)
+                    #endif
 
                 default:
                     EmptyView()

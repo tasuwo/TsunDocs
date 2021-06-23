@@ -4,17 +4,37 @@
 
 import Combine
 import Foundation
-import UIKit
+#if os(iOS)
+    import UIKit
+#elseif os(macOS)
+    import Cocoa
+#endif
 
 public class ImageLoader: ObservableObject {
     public enum Complete {
-        case image(UIImage)
+        #if os(iOS)
+            case image(UIImage)
+        #elseif os(macOS)
+            case image(NSImage)
+        #endif
         case failure
         case cancelled
 
-        init(_ image: UIImage?) {
-            if let image = image {
-                self = .image(image)
+        init(_ data: Data?) {
+            if let data = data {
+                #if os(iOS)
+                    if let image = UIImage(data: data) {
+                        self = .image(image)
+                    } else {
+                        self = .failure
+                    }
+                #elseif os(macOS)
+                    if let image = NSImage(data: data) {
+                        self = .image(image)
+                    } else {
+                        self = .failure
+                    }
+                #endif
             } else {
                 self = .failure
             }
@@ -43,8 +63,7 @@ public class ImageLoader: ObservableObject {
     public func load(_ url: URL) {
         cancellable?.cancel()
         cancellable = urlSession.dataTaskPublisher(for: url)
-            .map { UIImage(data: $0.data) }
-            .map { Complete($0) }
+            .map { Complete($0.data) }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] complete in
                 switch complete {

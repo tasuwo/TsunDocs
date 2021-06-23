@@ -4,6 +4,11 @@
 
 import Domain
 import SwiftUI
+#if os(iOS)
+    import UIKit
+#elseif os(macOS)
+    import Cocoa
+#endif
 
 struct AsyncImage<Placeholder: View>: View {
     // MARK: - Properties
@@ -30,8 +35,13 @@ struct AsyncImage<Placeholder: View>: View {
         Group {
             switch loader.complete {
             case let .image(image):
-                Image(uiImage: image)
-                    .resizable()
+                #if os(iOS)
+                    Image(uiImage: image)
+                        .resizable()
+                #elseif os(macOS)
+                    Image(nsImage: image)
+                        .resizable()
+                #endif
 
             case .failure, .cancelled:
                 placeholder
@@ -59,8 +69,13 @@ struct AsyncImage_Previews: PreviewProvider {
     class SuccessMock: URLProtocolMockBase {
         override class var mock_delay: TimeInterval? { 3 }
         override class var mock_handler: ((URLRequest) throws -> (HTTPURLResponse, Data?))? {
-            // swiftlint:disable:next force_unwrapping
-            return { _ in (.mock_success, UIImage(named: "320x320")!.pngData()) }
+            #if os(iOS)
+                // swiftlint:disable:next force_unwrapping
+                return { _ in (.mock_success, UIImage(named: "320x320")!.pngData()) }
+            #elseif os(macOS)
+                // swiftlint:disable:next force_unwrapping
+                return { _ in (.mock_success, NSImage(named: "320x320")!.tiffRepresentation) }
+            #endif
         }
     }
 

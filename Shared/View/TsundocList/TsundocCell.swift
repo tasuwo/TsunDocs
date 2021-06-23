@@ -64,8 +64,13 @@ struct TsundocCell_Previews: PreviewProvider {
     class SuccessMock: URLProtocolMockBase {
         override class var mock_delay: TimeInterval? { 3 }
         override class var mock_handler: ((URLRequest) throws -> (HTTPURLResponse, Data?))? {
-            // swiftlint:disable:next force_unwrapping
-            return { _ in (.mock_success, UIImage(named: "320x320")!.pngData()) }
+            #if os(iOS)
+                // swiftlint:disable:next force_unwrapping
+                return { _ in (.mock_success, UIImage(named: "320x320")!.pngData()) }
+            #elseif os(macOS)
+                // swiftlint:disable:next force_unwrapping
+                return { _ in (.mock_success, NSImage(named: "320x320")!.tiffRepresentation) }
+            #endif
         }
     }
 
