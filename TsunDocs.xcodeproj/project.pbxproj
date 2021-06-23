@@ -33,10 +33,22 @@
 		283E41C1D0B1D758FCECF8FF /* Publisher+RemoveDuplicatesByKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BF77246F537239C6619C0 /* Publisher+RemoveDuplicatesByKeyPath.swift */; };
 		297B2476314FB70052AC21C3 /* Factory+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E7CCE8DA2B65A657FD9F4F /* Factory+ImageLoader.swift */; };
 		2B39AA749F703F92E57FFEB1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B66013ECF988EBADB8B82 /* SettingView.swift */; };
+		2C487D38268363EF0023620C /* ObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D37268363EF0023620C /* ObservedEntity.swift */; };
+		2C487D39268363EF0023620C /* ObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D37268363EF0023620C /* ObservedEntity.swift */; };
+		2C487D3B2683643B0023620C /* ObservedEntityArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D3A2683643B0023620C /* ObservedEntityArray.swift */; };
+		2C487D3C2683643B0023620C /* ObservedEntityArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D3A2683643B0023620C /* ObservedEntityArray.swift */; };
 		2C487D3F268364E60023620C /* WeakContainerArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D3E268364E60023620C /* WeakContainerArray.swift */; };
 		2C487D40268364E60023620C /* WeakContainerArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D3E268364E60023620C /* WeakContainerArray.swift */; };
 		2C487D43268364FD0023620C /* WeakContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D42268364FD0023620C /* WeakContainer.swift */; };
 		2C487D44268364FD0023620C /* WeakContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D42268364FD0023620C /* WeakContainer.swift */; };
+		2C487D4A268368080023620C /* ViewContextObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D49268368080023620C /* ViewContextObserving.swift */; };
+		2C487D4B268368080023620C /* ViewContextObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D49268368080023620C /* ViewContextObserving.swift */; };
+		2C487D4D26836A820023620C /* AnyObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D4C26836A820023620C /* AnyObservedEntity.swift */; };
+		2C487D4E26836A820023620C /* AnyObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D4C26836A820023620C /* AnyObservedEntity.swift */; };
+		2C487D5026836A970023620C /* AnyObservedEntityArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D4F26836A970023620C /* AnyObservedEntityArray.swift */; };
+		2C487D5126836A970023620C /* AnyObservedEntityArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D4F26836A970023620C /* AnyObservedEntityArray.swift */; };
+		2C487D5926836CE20023620C /* CoreDataQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D5826836CE20023620C /* CoreDataQueryService.swift */; };
+		2C487D5A26836CE20023620C /* CoreDataQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C487D5826836CE20023620C /* CoreDataQueryService.swift */; };
 		33724356FFEE227EA3FE81AE /* TsundocCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184644999F656C54E44F478A /* TsundocCell.swift */; };
 		341C4B88F1E7C6A1A812725F /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66425F8652050AB32037B2 /* Factory.swift */; };
 		386734DFA2CE2F8208BFAE7D /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */; };
@@ -164,8 +176,14 @@
 		27C4D91D2246D795D8C79210 /* Contramap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contramap.swift; sourceTree = "<group>"; };
 		2A90843522DA6C6D50D6194C /* AnyReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyReducer.swift; sourceTree = "<group>"; };
 		2B8097C5C6F26D04EF44DE3B /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		2C487D37268363EF0023620C /* ObservedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedEntity.swift; sourceTree = "<group>"; };
+		2C487D3A2683643B0023620C /* ObservedEntityArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedEntityArray.swift; sourceTree = "<group>"; };
 		2C487D3E268364E60023620C /* WeakContainerArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakContainerArray.swift; sourceTree = "<group>"; };
 		2C487D42268364FD0023620C /* WeakContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakContainer.swift; sourceTree = "<group>"; };
+		2C487D49268368080023620C /* ViewContextObserving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewContextObserving.swift; sourceTree = "<group>"; };
+		2C487D4C26836A820023620C /* AnyObservedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObservedEntity.swift; sourceTree = "<group>"; };
+		2C487D4F26836A970023620C /* AnyObservedEntityArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObservedEntityArray.swift; sourceTree = "<group>"; };
+		2C487D5826836CE20023620C /* CoreDataQueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataQueryService.swift; sourceTree = "<group>"; };
 		2EB981B94FB2DCAC91392C22 /* View+OnChangeFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnChangeFrame.swift"; sourceTree = "<group>"; };
 		2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
 		30AAD67C51AA7E03591D09EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -280,6 +298,18 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		2C487D36268363D70023620C /* ObservedEntity */ = {
+			isa = PBXGroup;
+			children = (
+				2C487D4C26836A820023620C /* AnyObservedEntity.swift */,
+				2C487D4F26836A970023620C /* AnyObservedEntityArray.swift */,
+				2C487D37268363EF0023620C /* ObservedEntity.swift */,
+				2C487D3A2683643B0023620C /* ObservedEntityArray.swift */,
+				2C487D49268368080023620C /* ViewContextObserving.swift */,
+			);
+			path = ObservedEntity;
+			sourceTree = "<group>";
+		};
 		2C487D3D268364D80023620C /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +325,14 @@
 				2C487D42268364FD0023620C /* WeakContainer.swift */,
 			);
 			path = WeakContainer;
+			sourceTree = "<group>";
+		};
+		2C487D48268367DC0023620C /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2C487D5826836CE20023620C /* CoreDataQueryService.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		357E5EF6BDDF4E33ECE5D701 /* Factory */ = {
@@ -328,6 +366,7 @@
 		684915BCB50506F4F3E5FE20 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				2C487D48268367DC0023620C /* CoreData */,
 				E61549194EF0FE99CE24AC71 /* ImageLoader.swift */,
 				357E5EF6BDDF4E33ECE5D701 /* Factory */,
 			);
@@ -481,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				2C487D3D268364D80023620C /* Common */,
+				2C487D36268363D70023620C /* ObservedEntity */,
 				0121CCBB392185C39D49E4D4 /* Entity */,
 				684915BCB50506F4F3E5FE20 /* Service */,
 			);
@@ -818,23 +858,29 @@
 				EA7F1B66DEE6D28019D30AE7 /* Factory+ImageLoader.swift in Sources */,
 				341C4B88F1E7C6A1A812725F /* Factory.swift in Sources */,
 				7BB5C31DB6CDEF3AB1C82A66 /* HTTPURLResponse+Mock.swift in Sources */,
+				2C487D3C2683643B0023620C /* ObservedEntityArray.swift in Sources */,
 				7D8AC07B11EFB1F90253FCA5 /* ImageLoader.swift in Sources */,
 				A6C57315944036C7D504B828 /* SafariView.swift in Sources */,
 				27316C9D267FE87C3442A25E /* SettingView.swift in Sources */,
 				986E0B8BDE54C97CC70973CD /* TabItem.swift in Sources */,
+				2C487D39268363EF0023620C /* ObservedEntity.swift in Sources */,
 				0508107518D115A28E840FC7 /* Tag.swift in Sources */,
 				60B18567637253430CEDB0C5 /* TagCell.swift in Sources */,
 				6F7E7B25F75552BC807804F8 /* TagGrid.swift in Sources */,
+				2C487D4E26836A820023620C /* AnyObservedEntity.swift in Sources */,
 				E1B0EDC100F5373C7D39E54A /* TsunDocsApp.swift in Sources */,
+				2C487D5A26836CE20023620C /* CoreDataQueryService.swift in Sources */,
 				2C487D44268364FD0023620C /* WeakContainer.swift in Sources */,
 				C5B746EBAAE6B92910ABDABB /* Tsundoc.swift in Sources */,
 				B4FEC9E84E455A8A4B0B2FC7 /* TsundocCell.swift in Sources */,
 				43BCE8CD90E8C89D7C5C79A9 /* TsundocList.swift in Sources */,
+				2C487D5126836A970023620C /* AnyObservedEntityArray.swift in Sources */,
 				E14AC4AFA3DE7B4C0D78044C /* TsundocListAction.swift in Sources */,
 				DE92BA44C2B23DC24E2A627C /* TsundocListReducer.swift in Sources */,
 				1DEB8FD6CACA4A8697ECABF3 /* TsundocListState.swift in Sources */,
 				B9CBD5E8A725D89FC3B8441A /* TsundocThumbnail.swift in Sources */,
 				880B3DF801F4527F0CD51A1A /* TsundocThumbnailSource.swift in Sources */,
+				2C487D4B268368080023620C /* ViewContextObserving.swift in Sources */,
 				CA5A3AE5CB356BEF29797FAE /* URLProtocolMockBase.swift in Sources */,
 				770EBB5E916E6D9D9109177A /* URLSession+Mock.swift in Sources */,
 				8E7A77565220ABB9A9039A3A /* View+OnChangeFrame.swift in Sources */,
@@ -851,23 +897,29 @@
 				297B2476314FB70052AC21C3 /* Factory+ImageLoader.swift in Sources */,
 				597559F6FE14ECC1087232F5 /* Factory.swift in Sources */,
 				E7C5A44C93B11B9CA42C1E77 /* HTTPURLResponse+Mock.swift in Sources */,
+				2C487D3B2683643B0023620C /* ObservedEntityArray.swift in Sources */,
 				6A30DB9D8F2690BE5B1C2806 /* ImageLoader.swift in Sources */,
 				05E0029C23D434D283F8946B /* SafariView.swift in Sources */,
 				2B39AA749F703F92E57FFEB1 /* SettingView.swift in Sources */,
 				D6A7C33E5293BAAA7B783E09 /* TabItem.swift in Sources */,
+				2C487D38268363EF0023620C /* ObservedEntity.swift in Sources */,
 				4B47BC34DAD2A72210C55303 /* Tag.swift in Sources */,
 				F50BA54ABD9EB653131FCC04 /* TagCell.swift in Sources */,
 				16A39B7CBA6D39568C1FB626 /* TagGrid.swift in Sources */,
+				2C487D4D26836A820023620C /* AnyObservedEntity.swift in Sources */,
 				386734DFA2CE2F8208BFAE7D /* TsunDocsApp.swift in Sources */,
+				2C487D5926836CE20023620C /* CoreDataQueryService.swift in Sources */,
 				2C487D43268364FD0023620C /* WeakContainer.swift in Sources */,
 				E2C1A81A37CCCB07A7A60580 /* Tsundoc.swift in Sources */,
 				33724356FFEE227EA3FE81AE /* TsundocCell.swift in Sources */,
 				DEADE2DAAB80F2C83BE7FED0 /* TsundocList.swift in Sources */,
+				2C487D5026836A970023620C /* AnyObservedEntityArray.swift in Sources */,
 				1F104CEB1C099E4C98C521AB /* TsundocListAction.swift in Sources */,
 				091E00CE61D0B970923A6DA3 /* TsundocListReducer.swift in Sources */,
 				5517244131DB02E1881E74F6 /* TsundocListState.swift in Sources */,
 				85BDE18B62DF820D0F4EB9B0 /* TsundocThumbnail.swift in Sources */,
 				90ED16BF7466C7E2AF22FFCB /* TsundocThumbnailSource.swift in Sources */,
+				2C487D4A268368080023620C /* ViewContextObserving.swift in Sources */,
 				E8EC8508FB1A184FD9F29CA1 /* URLProtocolMockBase.swift in Sources */,
 				64D7A1E2848E11A70DA4F6D1 /* URLSession+Mock.swift in Sources */,
 				14F1C4B6B7A085023319842F /* View+OnChangeFrame.swift in Sources */,
