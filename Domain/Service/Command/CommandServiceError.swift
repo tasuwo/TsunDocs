@@ -3,6 +3,7 @@
 //
 
 public enum CommandServiceError: Error {
+    case notFound
     case duplicated
     case invalidParameter
     case internalError(Error)
