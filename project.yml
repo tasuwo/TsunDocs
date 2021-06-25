@@ -69,10 +69,12 @@ settings:
     PRODUCT_NAME: TsunDocs
   configs:
     Debug:
+      APP_GROUP: group.net.tasuwo.tsundocs
       MTL_ENABLE_DEBUG_INFO: INCLUDE_SOURCE
       SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
       SWIFT_OPTIMIZATION_LEVEL: -Onone
     Release:
+      APP_GROUP: group.net.tasuwo.tsundocs
       SWIFT_COMPILATION_MODE: wholemodule
       SWIFT_OPTIMIZATION_LEVEL: -O
 targets:
@@ -97,7 +99,6 @@ targets:
       base:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
-        CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: RY2377PP7S
         ENABLE_PREVIEWS: YES
         INFOPLIST_FILE: iOS/Info.plist
@@ -113,8 +114,14 @@ targets:
         DEVELOPMENT_ASSET_PATHS: 'Preview\ Content'
       configs:
         Debug:
+          CODE_SIGN_IDENTITY: Apple Development
+          PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.tsundocs
+          PROVISIONING_PROFILE_SPECIFIER: match Development net.tasuwo.tsundocs
         Release:
           VALIDATE_PRODUCT: YES
+          CODE_SIGN_IDENTITY: Apple Distribution
+          PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.tsundocs
+          PROVISIONING_PROFILE_SPECIFIER: match AppStore net.tasuwo.tsundocs
   TsunDocs (macOS):
     type: application
     platform: macOS
@@ -137,7 +144,6 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         CODE_SIGN_ENTITLEMENTS: macOS/macOS.entitlements
-        CODE_SIGN_STYLE: Automatic
         COMBINE_HIDPI_IMAGES: YES
         DEVELOPMENT_TEAM: RY2377PP7S
         ENABLE_HARDENED_RUNTIME: YES
@@ -154,7 +160,13 @@ targets:
         DEVELOPMENT_ASSET_PATHS: 'Preview\ Content'
       configs:
         Debug:
+          CODE_SIGN_IDENTITY: Apple Development
+          PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.tsundocs
+          PROVISIONING_PROFILE_SPECIFIER: match Development net.tasuwo.tsundocs macos
         Release:
+          CODE_SIGN_IDENTITY: Apple Distribution
+          PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.tsundocs
+          PROVISIONING_PROFILE_SPECIFIER: match AppStore net.tasuwo.tsundocs macos
   Domain:
     type: framework
     platform: [iOS, macOS]

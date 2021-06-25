@@ -1,0 +1,8 @@
+# vim: syntax=ruby
+
+app_identifier("net.tasuwo.tsundocs")
+apple_id("kamuhata.you@gmail.com")
+
+itc_team_id("117778229")
+team_id("RY2377PP7S")
+team_name("Tasuku Tozawa")

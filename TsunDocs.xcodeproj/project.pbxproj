@@ -46,15 +46,10 @@
 		283E41C1D0B1D758FCECF8FF /* Publisher+RemoveDuplicatesByKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BF77246F537239C6619C0 /* Publisher+RemoveDuplicatesByKeyPath.swift */; };
 		292F32DADE3E4285B73BC585 /* TsundocCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1CB6131A6E78E9CDC0E38 /* TsundocCommand.swift */; };
 		2AB66AC69EDC8D5FB78538E9 /* TagCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91768C3AB3EBD97E188BC1 /* TagCommandService.swift */; };
-		2C379A612684D56700642ECF /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C379A602684D56700642ECF /* DependencyContainer.swift */; };
-		2C379A622684D56700642ECF /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C379A602684D56700642ECF /* DependencyContainer.swift */; };
-		2C379A642684D73B00642ECF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C379A632684D73B00642ECF /* CoreDataStack.swift */; };
-		2C379A652684D73B00642ECF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C379A632684D73B00642ECF /* CoreDataStack.swift */; };
-		2C379A672684DA0C00642ECF /* PersistentContainerLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C379A662684DA0C00642ECF /* PersistentContainerLoader.swift */; };
-		2C379A682684DA0C00642ECF /* PersistentContainerLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C379A662684DA0C00642ECF /* PersistentContainerLoader.swift */; };
 		2C8037F6D65241A59A022D88 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EA7D645F6AAF33ACFCE34A /* Factory.swift */; };
 		2CAAC85733A99D6DF43796E9 /* ObservedTsundoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB12BE80561F7E0A9DBE4E6D /* ObservedTsundoc.swift */; };
 		2F8ACDAA8FBD616C19168248 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3226AB7E955805DCE41708A /* Domain.framework */; };
+		30000DFC71DC12569073E2BF /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318561FB8472ABA10E10327F /* DependencyContainer.swift */; };
 		33724356FFEE227EA3FE81AE /* TsundocCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184644999F656C54E44F478A /* TsundocCell.swift */; };
 		33C49557C3659D89923EDAF2 /* TagCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E0CB8B10BDC1C3597E84D /* TagCommandService.swift */; };
 		35E25A8DEF0058347C79698E /* CoreDataQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6AD0EFACF2354233A077D6 /* CoreDataQueryService.swift */; };
@@ -73,10 +68,12 @@
 		5C5EFB1319B617FC1242C7DC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64A72E45D7B51BF3FA5217D7 /* Model.xcdatamodeld */; };
 		5D5E658835C5309F3C8E0FE7 /* Effect_Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49063500A67242610D7717A2 /* Effect_Debounce.swift */; };
 		5DD5108A146C6BF0095155E7 /* ObservedTsundocArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DA4B99AC13B0BCE2948229 /* ObservedTsundocArray.swift */; };
+		60348B749E37407928C3D279 /* PersistentContainerLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7C661FABE465B3F61D5A77 /* PersistentContainerLoader.swift */; };
 		60B18567637253430CEDB0C5 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49758C07C82D727451135B8 /* TagCell.swift */; };
 		64595F3EBE7C6CEB45E8C66A /* TsundocQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F161F8607F7E91EF50F7A /* TsundocQueryService.swift */; };
 		64D7A1E2848E11A70DA4F6D1 /* URLSession+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F5D04889DB93DFFC948BE /* URLSession+Mock.swift */; };
 		6512615AEE0735D3B2023563 /* Effect_Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794C108E202071CBAC13E790 /* Effect_Delay.swift */; };
+		652C623B5E9A7B7D913C1155 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E037EB9FF1D02596DD63DC4 /* CoreDataStack.swift */; };
 		67B4D44D7C4A7981B1B7024F /* Effect_Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794C108E202071CBAC13E790 /* Effect_Delay.swift */; };
 		67F23F2E30772D2BCB85D15B /* TsundocCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB872386FC0561E7BB47AE3 /* TsundocCommandService.swift */; };
 		69F2F3A759BC3EF107CE1B96 /* AnyStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9070253312E7A2D1F48C11 /* AnyStoring.swift */; };
@@ -102,6 +99,7 @@
 		85BDE18B62DF820D0F4EB9B0 /* TsundocThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE5BDE1AFCA46143EF930B2 /* TsundocThumbnail.swift */; };
 		85D4A172D41FAC96B49A544D /* Tsundoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373F9AA9ABB042C81AD5DB3 /* Tsundoc.swift */; };
 		86449B5080FBD4B4188155FA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8640F3563CBE8F878D8D76F2 /* Localizable.strings */; };
+		8992C245C695A4D493B50493 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318561FB8472ABA10E10327F /* DependencyContainer.swift */; };
 		89EE4D01F71B798F9EF77002 /* AnyReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A90843522DA6C6D50D6194C /* AnyReducer.swift */; };
 		8A7A1FE63B557FBF054F3089 /* Storing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C964B927C59265B9DA1FAA /* Storing.swift */; };
 		8E298494757982CD9E7C1849 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D8B3B757767F0CE5FEC1B2 /* Tag.swift */; };
@@ -135,6 +133,7 @@
 		B9CBD5E8A725D89FC3B8441A /* TsundocThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE5BDE1AFCA46143EF930B2 /* TsundocThumbnail.swift */; };
 		BA2365D908C92879794FE89A /* Persistence.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BC8668BC53023AADDC2C232 /* Persistence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BBB1F82E2B57BB6F376D8558 /* ObservedEntityArray+EraseToAnyObservedEntityArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D49148E186997B65F018D27 /* ObservedEntityArray+EraseToAnyObservedEntityArray.swift */; };
+		BBE547379340985C3D068E4C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E037EB9FF1D02596DD63DC4 /* CoreDataStack.swift */; };
 		BE61F64E31533CFC3342B13D /* ObservedEntityArray+EraseToAnyObservedEntityArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D49148E186997B65F018D27 /* ObservedEntityArray+EraseToAnyObservedEntityArray.swift */; };
 		BE9CD37203831C49C3CD2111 /* CommandServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55797B837237A467F5EE7864 /* CommandServiceError.swift */; };
 		C1589E0E7568531089624F8D /* Contramap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C4D91D2246D795D8C79210 /* Contramap.swift */; };
@@ -183,6 +182,7 @@
 		F50BA54ABD9EB653131FCC04 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49758C07C82D727451135B8 /* TagCell.swift */; };
 		F58E454AA8B82F696AE6E4BD /* QueryServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8269E45DB3DF6A007C579D7C /* QueryServiceError.swift */; };
 		F5B0D049E303468591323D27 /* TsundocThumbnailSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF100B5604EF4AA7E5784FE /* TsundocThumbnailSource.swift */; };
+		F624A2F90C186E0D8B2A346A /* PersistentContainerLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7C661FABE465B3F61D5A77 /* PersistentContainerLoader.swift */; };
 		F77ED0CA15C5BC8CDA556E5B /* Factory+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC0638AD2471C70763F9D1B /* Factory+ImageLoader.swift */; };
 		F9F483A18592E38B3EE3CEDD /* AnyReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A90843522DA6C6D50D6194C /* AnyReducer.swift */; };
 		FB698AB36275A50C9DCE32AA /* Prism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903667AB7D58C504DB9CA3A0 /* Prism.swift */; };
@@ -292,16 +292,16 @@
 		27C4D91D2246D795D8C79210 /* Contramap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contramap.swift; sourceTree = "<group>"; };
 		2A90843522DA6C6D50D6194C /* AnyReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyReducer.swift; sourceTree = "<group>"; };
 		2B8097C5C6F26D04EF44DE3B /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
-		2C379A602684D56700642ECF /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
-		2C379A632684D73B00642ECF /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		2C379A662684DA0C00642ECF /* PersistentContainerLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainerLoader.swift; sourceTree = "<group>"; };
+		2CE1D04C268644CE0010FAB1 /* TsunDocs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TsunDocs.entitlements; sourceTree = "<group>"; };
+		2E037EB9FF1D02596DD63DC4 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		2E85C1D5AA923AAD880BED5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2EB981B94FB2DCAC91392C22 /* View+OnChangeFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnChangeFrame.swift"; sourceTree = "<group>"; };
 		2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
 		30AAD67C51AA7E03591D09EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		318561FB8472ABA10E10327F /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		3425C767AC7288629755D4E3 /* Tag+MapToDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+MapToDomainModel.swift"; sourceTree = "<group>"; };
 		36703B036CCADF3624EF5269 /* StoreProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProxy.swift; sourceTree = "<group>"; };
-		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; name = "TsunDocs (iOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37AD00BB2DCA41D989959A72 /* WeakContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakContainer.swift; sourceTree = "<group>"; };
 		3C17957E9629E1F1A6CB0813 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		3EFBF2205272BE3F44A11ED2 /* TsundocListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocListState.swift; sourceTree = "<group>"; };
@@ -324,6 +324,7 @@
 		76BF5FB387009A73F0B7B0CC /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		794C108E202071CBAC13E790 /* Effect_Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect_Delay.swift; sourceTree = "<group>"; };
 		7B6AD0EFACF2354233A077D6 /* CoreDataQueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataQueryService.swift; sourceTree = "<group>"; };
+		7B7C661FABE465B3F61D5A77 /* PersistentContainerLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainerLoader.swift; sourceTree = "<group>"; };
 		7C239FA42949E1D08FB8479C /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		7D49148E186997B65F018D27 /* ObservedEntityArray+EraseToAnyObservedEntityArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservedEntityArray+EraseToAnyObservedEntityArray.swift"; sourceTree = "<group>"; };
 		7D4F5D04889DB93DFFC948BE /* URLSession+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Mock.swift"; sourceTree = "<group>"; };
@@ -511,15 +512,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		2C379A5F2684D54E00642ECF /* DI */ = {
-			isa = PBXGroup;
-			children = (
-				2C379A602684D56700642ECF /* DependencyContainer.swift */,
-				2C379A632684D73B00642ECF /* CoreDataStack.swift */,
-			);
-			path = DI;
-			sourceTree = "<group>";
-		};
 		39A5706D9F80372A8BBF9D3B /* Tag */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,6 +601,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		68D458DF8311E87630386D37 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				2E037EB9FF1D02596DD63DC4 /* CoreDataStack.swift */,
+				318561FB8472ABA10E10327F /* DependencyContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
 		72953F72C742EBB12F5500A0 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -686,7 +687,7 @@
 				0382399B9AABFBDAAB2AE9B9 /* Assets.xcassets */,
 				8640F3563CBE8F878D8D76F2 /* Localizable.strings */,
 				2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */,
-				2C379A5F2684D54E00642ECF /* DI */,
+				68D458DF8311E87630386D37 /* DI */,
 				F80397B25D067D6391C77D49 /* View */,
 			);
 			path = Shared;
@@ -779,11 +780,11 @@
 		C9CE9AEF3E1957A61E51A83C /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				7B7C661FABE465B3F61D5A77 /* PersistentContainerLoader.swift */,
 				5CDCBBA1264E4868D62C6E6C /* Command */,
 				C27BD97954C66EBC16005C87 /* Query */,
 				11D41943E532F67BA0133626 /* Tag */,
 				1981D6D1CD70EA701B2198AE /* Tsundoc */,
-				2C379A662684DA0C00642ECF /* PersistentContainerLoader.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -825,7 +826,7 @@
 				76BF5FB387009A73F0B7B0CC /* Domain.framework */,
 				27C0DCB7221B326130827769 /* Persistence.framework */,
 				69F854A01A6B968EC4A5C926 /* Persistence.framework */,
-				3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */,
+				3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */,
 				BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */,
 			);
 			name = Products;
@@ -882,6 +883,7 @@
 		EB5136094B07B8560319AE2D = {
 			isa = PBXGroup;
 			children = (
+				2CE1D04C268644CE0010FAB1 /* TsunDocs.entitlements */,
 				863F87720D7E58EA37B6FB59 /* Shared */,
 				2827213614D285FF0D0B1720 /* Preview Content */,
 				7925802F255C1D710E794AC1 /* iOS */,
@@ -987,7 +989,7 @@
 			);
 			name = "TsunDocs (iOS)";
 			productName = "TsunDocs (iOS)";
-			productReference = 3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */;
+			productReference = 3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5683007F4899ABBF5A3D56D1 /* CompositeKit_iOS */ = {
@@ -1132,7 +1134,6 @@
 				TargetAttributes = {
 					31CD9A7FB8B73B41C35ADB91 = {
 						DevelopmentTeam = RY2377PP7S;
-						ProvisioningStyle = Automatic;
 					};
 					5683007F4899ABBF5A3D56D1 = {
 						DevelopmentTeam = RY2377PP7S;
@@ -1142,7 +1143,6 @@
 					};
 					B1DDE034988CEB952208D99D = {
 						DevelopmentTeam = RY2377PP7S;
-						ProvisioningStyle = Automatic;
 					};
 					CB81705E26317FD4D89ACD7E = {
 						DevelopmentTeam = RY2377PP7S;
@@ -1310,6 +1310,7 @@
 				720F44B7B4E06A1CED27A91D /* ObservedTagArray.swift in Sources */,
 				C6B01428850180A842249217 /* ObservedTsundoc.swift in Sources */,
 				5DD5108A146C6BF0095155E7 /* ObservedTsundocArray.swift in Sources */,
+				F624A2F90C186E0D8B2A346A /* PersistentContainerLoader.swift in Sources */,
 				7697BACE409CD8CB315EB8ED /* Tag+MapToDomainModel.swift in Sources */,
 				AC962A43E42BA4D6637F670D /* TagCommandService.swift in Sources */,
 				D81E6D222BBF0770DD7D0395 /* TagQueryService.swift in Sources */,
@@ -1330,6 +1331,7 @@
 				E11C17C9FD589FF9B6D9637E /* ObservedTagArray.swift in Sources */,
 				2CAAC85733A99D6DF43796E9 /* ObservedTsundoc.swift in Sources */,
 				99BA1ADE033A3DED386A822C /* ObservedTsundocArray.swift in Sources */,
+				60348B749E37407928C3D279 /* PersistentContainerLoader.swift in Sources */,
 				D3003D1A2FB476CF455FB5E7 /* Tag+MapToDomainModel.swift in Sources */,
 				33C49557C3659D89923EDAF2 /* TagCommandService.swift in Sources */,
 				E804D91BBB76CDA0637B3B3A /* TagQueryService.swift in Sources */,
@@ -1407,14 +1409,14 @@
 			files = (
 				A1127A51C51C9ED24D9C9318 /* AsyncImage.swift in Sources */,
 				F30CAFCE4BD0B986E5298D05 /* ContentView.swift in Sources */,
+				652C623B5E9A7B7D913C1155 /* CoreDataStack.swift in Sources */,
+				30000DFC71DC12569073E2BF /* DependencyContainer.swift in Sources */,
 				7BB5C31DB6CDEF3AB1C82A66 /* HTTPURLResponse+Mock.swift in Sources */,
 				986E0B8BDE54C97CC70973CD /* TabItem.swift in Sources */,
 				60B18567637253430CEDB0C5 /* TagCell.swift in Sources */,
-				2C379A682684DA0C00642ECF /* PersistentContainerLoader.swift in Sources */,
 				6F7E7B25F75552BC807804F8 /* TagGrid.swift in Sources */,
 				E1B0EDC100F5373C7D39E54A /* TsunDocsApp.swift in Sources */,
 				B4FEC9E84E455A8A4B0B2FC7 /* TsundocCell.swift in Sources */,
-				2C379A652684D73B00642ECF /* CoreDataStack.swift in Sources */,
 				43BCE8CD90E8C89D7C5C79A9 /* TsundocList.swift in Sources */,
 				E14AC4AFA3DE7B4C0D78044C /* TsundocListAction.swift in Sources */,
 				DE92BA44C2B23DC24E2A627C /* TsundocListReducer.swift in Sources */,
@@ -1423,7 +1425,6 @@
 				CA5A3AE5CB356BEF29797FAE /* URLProtocolMockBase.swift in Sources */,
 				770EBB5E916E6D9D9109177A /* URLSession+Mock.swift in Sources */,
 				8E7A77565220ABB9A9039A3A /* View+OnChangeFrame.swift in Sources */,
-				2C379A622684D56700642ECF /* DependencyContainer.swift in Sources */,
 				21F6871D6BB8CCF0E8586791 /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1434,7 +1435,8 @@
 			files = (
 				3BA28BE6D24EEEC922458995 /* AsyncImage.swift in Sources */,
 				1C4E47BD773458338D123241 /* ContentView.swift in Sources */,
-				2C379A612684D56700642ECF /* DependencyContainer.swift in Sources */,
+				BBE547379340985C3D068E4C /* CoreDataStack.swift in Sources */,
+				8992C245C695A4D493B50493 /* DependencyContainer.swift in Sources */,
 				E7C5A44C93B11B9CA42C1E77 /* HTTPURLResponse+Mock.swift in Sources */,
 				A9A3E7450B98AF06272C8EC1 /* SafariView.swift in Sources */,
 				F06C6C3E33246E2BB6B920EB /* SettingView.swift in Sources */,
@@ -1447,8 +1449,6 @@
 				1F104CEB1C099E4C98C521AB /* TsundocListAction.swift in Sources */,
 				091E00CE61D0B970923A6DA3 /* TsundocListReducer.swift in Sources */,
 				5517244131DB02E1881E74F6 /* TsundocListState.swift in Sources */,
-				2C379A672684DA0C00642ECF /* PersistentContainerLoader.swift in Sources */,
-				2C379A642684D73B00642ECF /* CoreDataStack.swift in Sources */,
 				85BDE18B62DF820D0F4EB9B0 /* TsundocThumbnail.swift in Sources */,
 				E8EC8508FB1A184FD9F29CA1 /* URLProtocolMockBase.swift in Sources */,
 				64D7A1E2848E11A70DA4F6D1 /* URLSession+Mock.swift in Sources */,
@@ -1518,6 +1518,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_GROUP = group.net.tasuwo.tsundocs;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1735,7 +1736,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "Preview\\ Content";
 				DEVELOPMENT_TEAM = RY2377PP7S;
@@ -1749,6 +1750,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
 				PRODUCT_NAME = TsunDocs;
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.tasuwo.tsundocs macos";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1759,8 +1761,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = TsunDocs.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_ASSET_PATHS = "Preview\\ Content";
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_PREVIEWS = YES;
@@ -1772,6 +1774,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
 				PRODUCT_NAME = TsunDocs;
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.tasuwo.tsundocs";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1880,8 +1883,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = TsunDocs.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				DEVELOPMENT_ASSET_PATHS = "Preview\\ Content";
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_PREVIEWS = YES;
@@ -1893,6 +1896,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
 				PRODUCT_NAME = TsunDocs;
+				PROVISIONING_PROFILE_SPECIFIER = "match Development net.tasuwo.tsundocs";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1935,6 +1939,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_GROUP = group.net.tasuwo.tsundocs;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1999,7 +2004,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "Preview\\ Content";
 				DEVELOPMENT_TEAM = RY2377PP7S;
@@ -2013,6 +2018,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
 				PRODUCT_NAME = TsunDocs;
+				PROVISIONING_PROFILE_SPECIFIER = "match Development net.tasuwo.tsundocs macos";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
