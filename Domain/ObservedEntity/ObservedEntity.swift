@@ -4,6 +4,7 @@
 
 import Combine
 
+/// @mockable
 public protocol ObservedEntity {
     associatedtype Entity
     var value: CurrentValueSubject<Entity, Error> { get }

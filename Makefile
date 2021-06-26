@@ -2,6 +2,9 @@
 init: ## ライブラリ群をインストールする
 	bundle exec pod install
 
+.PHONY: generate
+generate: mockolo_generate format ## 各種コード自動生成を実行する
+
 .PHONY: lint
 lint: swiftlint_lint ## 各種Linterを実行する
 
@@ -15,6 +18,18 @@ format: swiftformat_format ## 各種フォーマッターを実行する
 .PHONY: swiftformat_format
 swiftformat_format: init ## SwiftFormatによるフォーマットを実行する
 	Pods/SwiftFormat/CommandLineTool/swiftformat --config ./.swiftformat ./
+
+.PHONY: mockolo_generate
+mockolo_generate: ## mockoloによるモック自動生成を行う
+	cd BuildTools; \
+	./mockolo \
+		--sourcedirs ../Shared \
+		--destination ../Preview\ Content/Mocks/Protocol/Shared.ProtocolMocks.swift
+	cd BuildTools; \
+	./mockolo \
+		--sourcedirs ../Domain \
+		--destination ../Preview\ Content/Mocks/Protocol/Domain.ProtocolMocks.swift \
+		--custom-imports Domain
 
 .PHONY: help
 help: ## ヘルプを表示する

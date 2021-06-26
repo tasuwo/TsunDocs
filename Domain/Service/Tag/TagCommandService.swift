@@ -2,6 +2,7 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+/// @mockable
 public protocol TagCommandService: Transaction {
     func createTag(by command: TagCommand) -> Result<Tag.ID, CommandServiceError>
     func updateTag(having id: Tag.ID, nameTo name: String) -> Result<Void, CommandServiceError>

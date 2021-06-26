@@ -30,3 +30,6 @@ Pods/
 
 # Fastlane
 fastlane/report.xml
+
+# Mockolo
+!lib_InternalSwiftSyntaxParser.dylib
