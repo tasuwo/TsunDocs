@@ -38,3 +38,7 @@ fastlane/report.xml
 templates/*
 !templates/.gitkeep
 !templates/AutoDefaultValue.extension.swifttemplate
+
+# Carthage
+Carthage/Checkouts
+Carthage/Build/

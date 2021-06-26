@@ -1,6 +1,6 @@
 .PHONY: init
 init: ## ライブラリ群をインストールする
-	bundle exec pod install
+	bundle exec pod install && carthage update --use-xcframeworks --cache-builds --no-use-binaries --platform iOS,macOS
 
 .PHONY: generate
 generate: sourcery_generate mockolo_generate format ## 各種コード自動生成を実行する
