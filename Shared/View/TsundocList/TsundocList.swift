@@ -35,6 +35,7 @@ struct TsundocList: View {
                 case let .safariView(tsundoc):
                     #if os(iOS)
                         SafariView(url: tsundoc.url)
+                            .ignoresSafeArea()
                     #elseif os(macOS)
                         WebView(url: tsundoc.url)
                     #endif
