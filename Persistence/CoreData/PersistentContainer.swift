@@ -29,7 +29,7 @@ public class PersistentContainer {
                 notificationCenter: NotificationCenter = .default)
     {
         self.author = author
-        self._persistentContainer = .init(Self.loadContainer())
+        self._persistentContainer = .init(Self.makeContainer())
     }
 
     // MARK: - Methods
