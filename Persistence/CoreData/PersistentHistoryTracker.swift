@@ -32,7 +32,8 @@ class PersistentHistoryTracker {
                                                      attributes: nil)
         }
 
-        return url.appendingPathComponent("\(container.author.rawValue)-token.data", isDirectory: false)
+        // swiftlint:disable:next
+        return url.appendingPathComponent("\(container!.author.rawValue)-token.data", isDirectory: false)
     }()
 
     private lazy var historyQueue: OperationQueue = {
@@ -42,7 +43,7 @@ class PersistentHistoryTracker {
     }()
 
     private let notificationCenter: NotificationCenter = .default
-    private let container: PersistentContainer
+    private weak var container: PersistentContainer?
     private var cancellable: AnyCancellable?
     private var remoteChangeCancellable: AnyCancellable?
 
@@ -73,15 +74,27 @@ class PersistentHistoryTracker {
     }
 
     private func fetch() {
+        guard let container = container else { return }
         let context = container.newBackgroundContext()
         context.performAndWait {
             guard let transactions = try? PersistentHistoryFetcher.fetch(after: lastHistoryToken, with: context) else {
                 return
             }
 
-            // TODO: 必要に応じてマージ作業を行う
+            container.viewContext.perform {
+                transactions.merge(into: container.viewContext)
+            }
 
             lastHistoryToken = transactions.last?.token
+        }
+    }
+}
+
+private extension Collection where Element == NSPersistentHistoryTransaction {
+    func merge(into context: NSManagedObjectContext) {
+        forEach { transaction in
+            guard let userInfo = transaction.objectIDNotification().userInfo else { return }
+            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: userInfo, into: [context])
         }
     }
 }

@@ -24,6 +24,8 @@ public class PersistentContainer {
         _persistentContainer.eraseToAnyPublisher()
     }
 
+    private var historyTracker: PersistentHistoryTracker?
+
     // MARK: - Initializers
 
     public init(author: TransactionAuthor,
@@ -31,6 +33,7 @@ public class PersistentContainer {
     {
         self.author = author
         self._persistentContainer = .init(Self.makeContainer())
+        self.historyTracker = PersistentHistoryTracker(self)
     }
 
     // MARK: - Methods
