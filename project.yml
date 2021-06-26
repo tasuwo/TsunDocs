@@ -237,6 +237,7 @@ targets:
     dependencies:
       - target: Domain_iOS
       - target: Persistence_iOS
+      - framework: Carthage/Build/Kanna.xcframework
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: MobileShareExtension/MobileShareExtension.entitlements
