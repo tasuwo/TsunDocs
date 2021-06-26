@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  TsunDocs
+
+  Created by Tasuku Tozawa on 2021/06/27.
+  Copyright © 2021 Tasuku Tozawa. All rights reserved.
+*/
+
+"shared_url_edit_view_error_title_load_url" = "URLの読み取りに失敗しました";
+"shared_url_edit_view_error_title_save_url" = "URLの保存に失敗しました";
+
+"alert_close" = "閉じる";

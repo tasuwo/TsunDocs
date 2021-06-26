@@ -237,7 +237,9 @@ targets:
     dependencies:
       - target: Domain_iOS
       - target: Persistence_iOS
+      - target: CompositeKit_iOS
       - framework: Carthage/Build/Kanna.xcframework
+        embed: true
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: MobileShareExtension/MobileShareExtension.entitlements

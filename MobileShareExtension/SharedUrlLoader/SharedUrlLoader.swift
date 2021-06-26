@@ -11,8 +11,6 @@ class SharedUrlLoader: ObservableObject {
     private let context: NSExtensionContext
     private var cancellable: AnyCancellable?
 
-    @Published var url: URL?
-
     // MARK: - Initializers
 
     init(_ context: NSExtensionContext) {
@@ -25,12 +23,10 @@ class SharedUrlLoader: ObservableObject {
 
     // MARK: - Methods
 
-    func load() {
+    func load(_ completion: @escaping (URL?) -> Void) {
         cancellable = context
-            .resolveUrls { [weak self] urls in
-                DispatchQueue.main.async {
-                    self?.url = urls.first
-                }
+            .resolveUrls { urls in
+                completion(urls.first)
             }
     }
 }

@@ -12,6 +12,11 @@ class DependencyContainer: ObservableObject {
 
     let context: NSExtensionContext
 
+    // MARK: Shared Url
+
+    private let _sharedUrlLoader: SharedUrlLoader
+    private let _sharedUrlMetaResolver: SharedUrlMetaResolver
+
     // MARK: CoreData
 
     private let container: PersistentContainer
@@ -20,16 +25,31 @@ class DependencyContainer: ObservableObject {
 
     // MARK: Command
 
-    let tsundocCommandService: Domain.TsundocCommandService
+    private let _tsundocCommandService: Domain.TsundocCommandService
 
     // MARK: - Initializers
 
     init(_ context: NSExtensionContext) {
         self.context = context
 
+        _sharedUrlLoader = SharedUrlLoader(context)
+        _sharedUrlMetaResolver = SharedUrlMetaResolver()
+
         container = PersistentContainer(author: .shareExtension)
         commandContext = container.newBackgroundContext(on: commandQueue)
 
-        tsundocCommandService = TsundocCommandService(commandContext)
+        _tsundocCommandService = TsundocCommandService(commandContext)
     }
+}
+
+extension DependencyContainer: HasSharedUrlLoader {
+    var sharedUrlLoader: SharedUrlLoader { _sharedUrlLoader }
+}
+
+extension DependencyContainer: HasSharedUrlMetaResolver {
+    var sharedUrlMetaResolver: SharedUrlMetaResolver { _sharedUrlMetaResolver }
+}
+
+extension DependencyContainer: HasTsundocCommandService {
+    var tsundocCommandService: Domain.TsundocCommandService { _tsundocCommandService }
 }

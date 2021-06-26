@@ -3,11 +3,16 @@
 //
 
 import Combine
+import CompositeKit
 import Social
 import SwiftUI
 
 @objc(ShareRootViewController)
 class ShareRootViewController: UIViewController {
+    // MARK: - Properties
+
+    private var dependencyContainer: DependencyContainer!
+
     // MARK: - View Life-Cycle Methods
 
     override func viewDidLoad() {
@@ -17,8 +22,12 @@ class ShareRootViewController: UIViewController {
             fatalError("Failed to read extensionContext")
         }
 
-        let rootView = ContentView(container: DependencyContainer(context),
-                                   loader: SharedUrlLoader(context))
+        dependencyContainer = DependencyContainer(context)
+        let store = Store(initialState: SharedUrlEditViewState(context),
+                          dependency: dependencyContainer,
+                          reducer: SharedUrlEditViewReducer())
+        let rootView = SharedUrlEditView(store: ViewStore(store: store))
+
         let viewController = UIHostingController(rootView: rootView)
         addChild(viewController)
         view.addSubview(viewController.view)
