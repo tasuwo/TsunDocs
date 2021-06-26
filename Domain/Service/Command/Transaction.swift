@@ -3,6 +3,7 @@
 //
 
 public protocol Transaction {
+    func perform(_ block: @escaping () -> Void)
     func begin() throws
     func commit() throws
     func cancel() throws

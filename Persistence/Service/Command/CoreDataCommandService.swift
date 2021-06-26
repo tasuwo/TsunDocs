@@ -27,6 +27,10 @@ public class CoreDataCommandService {
 }
 
 extension CoreDataCommandService: Transaction {
+    public func perform(_ block: @escaping () -> Void) {
+        context.performAndWait(block)
+    }
+
     public func begin() throws {
         context.reset()
     }

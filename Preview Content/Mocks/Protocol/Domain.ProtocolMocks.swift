@@ -9,6 +9,25 @@ import Domain
 public class TagCommandServiceMock: TagCommandService {
     public init() { }
 
+    public private(set) var performCallCount = 0
+    public var performHandler: ((@escaping () -> Void) -> Void)?
+    public func perform(_ block: @escaping () -> Void) {
+        performCallCount += 1
+        if let performHandler = performHandler {
+            performHandler(block)
+        }
+    }
+
+    public private(set) var createTagCallCount = 0
+    public var createTagHandler: ((TagCommand) -> (Result<Tag.ID, CommandServiceError>))?
+    public func createTag(by command: TagCommand) -> Result<Tag.ID, CommandServiceError> {
+        createTagCallCount += 1
+        if let createTagHandler = createTagHandler {
+            return createTagHandler(command)
+        }
+        fatalError("createTagHandler returns can't have a default value thus its handler must be set")
+    }
+
     public private(set) var beginCallCount = 0
     public var beginHandler: (() throws -> Void)?
     public func begin() throws {
@@ -25,16 +44,6 @@ public class TagCommandServiceMock: TagCommandService {
         if let commitHandler = commitHandler {
             try commitHandler()
         }
-    }
-
-    public private(set) var createTagCallCount = 0
-    public var createTagHandler: ((TagCommand) -> (Result<Tag.ID, CommandServiceError>))?
-    public func createTag(by command: TagCommand) -> Result<Tag.ID, CommandServiceError> {
-        createTagCallCount += 1
-        if let createTagHandler = createTagHandler {
-            return createTagHandler(command)
-        }
-        fatalError("createTagHandler returns can't have a default value thus its handler must be set")
     }
 
     public private(set) var cancelCallCount = 0
@@ -94,6 +103,25 @@ public class TagQueryServiceMock: TagQueryService {
 public class TsundocCommandServiceMock: TsundocCommandService {
     public init() { }
 
+    public private(set) var performCallCount = 0
+    public var performHandler: ((@escaping () -> Void) -> Void)?
+    public func perform(_ block: @escaping () -> Void) {
+        performCallCount += 1
+        if let performHandler = performHandler {
+            performHandler(block)
+        }
+    }
+
+    public private(set) var createTsundocCallCount = 0
+    public var createTsundocHandler: ((TsundocCommand) -> (Result<Tsundoc.ID, CommandServiceError>))?
+    public func createTsundoc(by command: TsundocCommand) -> Result<Tsundoc.ID, CommandServiceError> {
+        createTsundocCallCount += 1
+        if let createTsundocHandler = createTsundocHandler {
+            return createTsundocHandler(command)
+        }
+        fatalError("createTsundocHandler returns can't have a default value thus its handler must be set")
+    }
+
     public private(set) var beginCallCount = 0
     public var beginHandler: (() throws -> Void)?
     public func begin() throws {
@@ -110,16 +138,6 @@ public class TsundocCommandServiceMock: TsundocCommandService {
         if let commitHandler = commitHandler {
             try commitHandler()
         }
-    }
-
-    public private(set) var createTsundocCallCount = 0
-    public var createTsundocHandler: ((TsundocCommand) -> (Result<Tsundoc.ID, CommandServiceError>))?
-    public func createTsundoc(by command: TsundocCommand) -> Result<Tsundoc.ID, CommandServiceError> {
-        createTsundocCallCount += 1
-        if let createTsundocHandler = createTsundocHandler {
-            return createTsundocHandler(command)
-        }
-        fatalError("createTsundocHandler returns can't have a default value thus its handler must be set")
     }
 
     public private(set) var cancelCallCount = 0
