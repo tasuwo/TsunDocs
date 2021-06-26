@@ -8,6 +8,7 @@ import CoreData
 public class PersistentContainer {
     public enum TransactionAuthor: String {
         case app
+        case shareExtension
     }
 
     // MARK: - Properties

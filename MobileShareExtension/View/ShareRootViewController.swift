@@ -17,7 +17,8 @@ class ShareRootViewController: UIViewController {
             fatalError("Failed to read extensionContext")
         }
 
-        let rootView = ContentView(loader: SharedUrlLoader(context))
+        let rootView = ContentView(container: DependencyContainer(context),
+                                   loader: SharedUrlLoader(context))
         let viewController = UIHostingController(rootView: rootView)
         addChild(viewController)
         view.addSubview(viewController.view)

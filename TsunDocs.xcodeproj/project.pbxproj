@@ -202,6 +202,7 @@
 		EAAC128FED71FEA5D0EA0EB5 /* CoreDataCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C14ED7496449B824AA1F9 /* CoreDataCommandService.swift */; };
 		EAB0D7765556ED57F88DA897 /* AnyObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56B664262DBD1E23EFEAF8F /* AnyObservedEntity.swift */; };
 		EC1AD6D29033C4429C420E8B /* Persistence.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69F854A01A6B968EC4A5C926 /* Persistence.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ECDE91686FB35D5F0A724900 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */; };
 		ED7A58E839DBDD4657378927 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B23168CB8DA805E3CB8F5F /* ImageLoader.swift */; };
 		EFB9D1D9CFA58D67C213DB31 /* CommandServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55797B837237A467F5EE7864 /* CommandServiceError.swift */; };
 		EFF39157E338DFCF9BB57443 /* ObservedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939312F1559214B10346C3C /* ObservedTag.swift */; };
@@ -419,6 +420,7 @@
 		B3226AB7E955805DCE41708A /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B627E584457D6A01023EFB9B /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		B9D8B3B757767F0CE5FEC1B2 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		BA4C35C0C8A9FE8563155A69 /* AnyObservedEntityArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObservedEntityArray.swift; sourceTree = "<group>"; };
 		BB9070253312E7A2D1F48C11 /* AnyStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyStoring.swift; sourceTree = "<group>"; };
 		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TsunDocs (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -595,6 +597,14 @@
 				3FE52D741C6408929139E480 /* Tsundoc+MapToDomainModel.swift */,
 			);
 			path = Mapping;
+			sourceTree = "<group>";
+		};
+		24AA9E9D34A0C1FEAA570805 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */,
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 		2827213614D285FF0D0B1720 /* Preview Content */ = {
@@ -783,6 +793,7 @@
 			children = (
 				6930039FED775CA4E010873A /* Info.plist */,
 				89CDF35FD12249BFF1CC6E68 /* MobileShareExtension.entitlements */,
+				24AA9E9D34A0C1FEAA570805 /* DI */,
 				BD66F3F7942A85E7E51DFAAA /* SharedUrlLoader */,
 				919B1B21137DDA18D9EB3C85 /* View */,
 			);
@@ -1536,6 +1547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B7B6C2C9E2DD23FDA99A9D4 /* ContentView.swift in Sources */,
+				ECDE91686FB35D5F0A724900 /* DependencyContainer.swift in Sources */,
 				33EB5D1042431FFA629B5670 /* NSExtensionContext+ResolveUrl.swift in Sources */,
 				7979F509965234D16FCF76D9 /* NSItemProvider+ResolveUrl.swift in Sources */,
 				0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */,
