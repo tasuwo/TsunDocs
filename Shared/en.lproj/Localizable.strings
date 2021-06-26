@@ -11,6 +11,7 @@
 "tab_item_title_settings" = "Settings";
 
 "tsundoc_list_title" = "My List";
+"tsundoc_list_error_title_delete" = "Failed to delete.";
 
 "setting_view_title" = "Settings";
 "setting_view_section_title_this_app" = "About This App";

@@ -23,6 +23,11 @@ struct TsundocList: View {
                             store.execute(.select(tsundoc))
                         }
                 }
+                .onDelete { offsets in
+                    withAnimation {
+                        store.execute(.onDelete(offsets))
+                    }
+                }
             }
             .navigationTitle("tsundoc_list_title")
             .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .modalDismissed })) {
@@ -38,6 +43,15 @@ struct TsundocList: View {
                     EmptyView()
                 }
             }
+            .alert(isPresented: store.bind(\.isAlertPresenting, action: { _ in .alertDismissed })) {
+                switch store.state.alert {
+                case .failedToDelete:
+                    return Alert(title: Text("tsundoc_list_error_title_delete"))
+
+                default:
+                    fatalError("Invalid Alert")
+                }
+            }
         }
         .onAppear {
             store.execute(.onAppear)
@@ -47,6 +61,14 @@ struct TsundocList: View {
 
 struct TsundocList_Previews: PreviewProvider {
     class DummyDependency: TsundocListDependency {
+        var tsundocCommandService: TsundocCommandService {
+            let service = TsundocCommandServiceMock()
+            service.beginHandler = {}
+            service.commitHandler = {}
+            service.deleteTsundocHandler = { _ in .success(()) }
+            return service
+        }
+
         var tsundocQueryService: TsundocQueryService {
             let tsundocs: [Tsundoc] = [
                 .makeDefault(title: "hoge", emojiAlias: "+1"),

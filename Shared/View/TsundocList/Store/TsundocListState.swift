@@ -6,12 +6,17 @@ import CompositeKit
 import Domain
 
 struct TsundocListState: Equatable {
+    enum Alert: Equatable {
+        case failedToDelete
+    }
+
     enum Modal: Equatable {
         case safariView(Tsundoc)
     }
 
     var tsundocs: [Tsundoc]
     var modal: Modal?
+    var alert: Alert?
 }
 
 extension TsundocListState {
@@ -23,4 +28,5 @@ extension TsundocListState {
 
 extension TsundocListState {
     var isModalPresenting: Bool { modal != nil }
+    var isAlertPresenting: Bool { alert != nil }
 }

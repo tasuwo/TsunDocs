@@ -11,6 +11,7 @@
 "tab_item_title_settings" = "設定";
 
 "tsundoc_list_title" = "マイリスト";
+"tsundoc_list_error_title_delete" = "削除に失敗しました";
 
 "setting_view_title" = "設定";
 "setting_view_section_title_this_app" = "このアプリについて";
