@@ -49,9 +49,9 @@ struct TsundocList_Previews: PreviewProvider {
     class DummyDependency: TsundocListDependency {
         var tsundocQueryService: TsundocQueryService {
             let tsundocs: [Tsundoc] = [
-                makeTsundoc(title: "hoge", emojiAlias: "+1"),
-                makeTsundoc(title: "fuga", emojiAlias: "smile"),
-                makeTsundoc(title: "piyo", emojiAlias: "ghost")
+                .makeDefault(title: "hoge", emojiAlias: "+1"),
+                .makeDefault(title: "fuga", emojiAlias: "smile"),
+                .makeDefault(title: "piyo", emojiAlias: "ghost")
             ]
             let entities = ObservedTsundocArrayMock(values: .init(tsundocs))
                 .eraseToAnyObservedEntityArray()
@@ -61,18 +61,6 @@ struct TsundocList_Previews: PreviewProvider {
             }
             return service
         }
-    }
-
-    static func makeTsundoc(title: String, emojiAlias: String?) -> Tsundoc {
-        return .init(id: UUID(),
-                     title: title,
-                     description: nil,
-                     // swiftlint:disable:next force_unwrapping
-                     url: URL(string: "https://www.apple.com")!,
-                     imageUrl: nil,
-                     emojiAlias: emojiAlias,
-                     updatedDate: Date(),
-                     createdDate: Date())
     }
 
     static var previews: some View {

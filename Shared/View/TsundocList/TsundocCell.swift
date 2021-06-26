@@ -85,48 +85,32 @@ struct TsundocCell_Previews: PreviewProvider {
     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     """
 
-    static func makeTsundoc(title: String,
-                            description: String? = nil,
-                            imageUrl: URL? = nil,
-                            emojiAlias: String? = nil) -> Tsundoc
-    {
-        return .init(id: UUID(),
-                     title: title,
-                     description: description,
-                     // swiftlint:disable:next force_unwrapping
-                     url: URL(string: "https://localhost")!,
-                     imageUrl: imageUrl,
-                     emojiAlias: emojiAlias,
-                     updatedDate: Date(),
-                     createdDate: Date())
-    }
-
     static var previews: some View {
         Group {
             NavigationView {
                 List {
-                    TsundocCell(tsundoc: makeTsundoc(title: "Title only"),
+                    TsundocCell(tsundoc: .makeDefault(title: "Title only"),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
-                    TsundocCell(tsundoc: makeTsundoc(title: "Title with description",
-                                                     description: "This is description of website."),
+                    TsundocCell(tsundoc: .makeDefault(title: "Title with description",
+                                                      description: "This is description of website."),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
-                    TsundocCell(tsundoc: makeTsundoc(title: "Emoji thumbnail",
-                                                     emojiAlias: "smile"),
+                    TsundocCell(tsundoc: .makeDefault(title: "Emoji thumbnail",
+                                                      emojiAlias: "smile"),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
-                    TsundocCell(tsundoc: makeTsundoc(title: "Success image thumbnail",
-                                                     imageUrl: URL(string: "http://localhost")),
+                    TsundocCell(tsundoc: .makeDefault(title: "Success image thumbnail",
+                                                      imageUrl: URL(string: "http://localhost")),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
-                    TsundocCell(tsundoc: makeTsundoc(title: "Failure image thumbnail",
-                                                     imageUrl: URL(string: "http://localhost")),
+                    TsundocCell(tsundoc: .makeDefault(title: "Failure image thumbnail",
+                                                      imageUrl: URL(string: "http://localhost")),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(FailureMock.self)) })
 
-                    TsundocCell(tsundoc: makeTsundoc(title: longString,
-                                                     description: longString,
-                                                     emojiAlias: "ghost"),
+                    TsundocCell(tsundoc: .makeDefault(title: longString,
+                                                      description: longString,
+                                                      emojiAlias: "ghost"),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 }
                 .navigationTitle("TsundocCell")
@@ -135,28 +119,28 @@ struct TsundocCell_Previews: PreviewProvider {
 
             NavigationView {
                 List {
-                    TsundocCell(tsundoc: makeTsundoc(title: "Title only"),
+                    TsundocCell(tsundoc: .makeDefault(title: "Title only"),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
-                    TsundocCell(tsundoc: makeTsundoc(title: "Title with description",
-                                                     description: "This is description of website."),
+                    TsundocCell(tsundoc: .makeDefault(title: "Title with description",
+                                                      description: "This is description of website."),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
-                    TsundocCell(tsundoc: makeTsundoc(title: "Emoji thumbnail",
-                                                     emojiAlias: "smile"),
+                    TsundocCell(tsundoc: .makeDefault(title: "Emoji thumbnail",
+                                                      emojiAlias: "smile"),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
-                    TsundocCell(tsundoc: makeTsundoc(title: "Success image thumbnail",
-                                                     imageUrl: URL(string: "http://localhost")),
+                    TsundocCell(tsundoc: .makeDefault(title: "Success image thumbnail",
+                                                      imageUrl: URL(string: "http://localhost")),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
-                    TsundocCell(tsundoc: makeTsundoc(title: "Failure image thumbnail",
-                                                     imageUrl: URL(string: "http://localhost")),
+                    TsundocCell(tsundoc: .makeDefault(title: "Failure image thumbnail",
+                                                      imageUrl: URL(string: "http://localhost")),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(FailureMock.self)) })
 
-                    TsundocCell(tsundoc: makeTsundoc(title: longString,
-                                                     description: longString,
-                                                     emojiAlias: "ghost"),
+                    TsundocCell(tsundoc: .makeDefault(title: longString,
+                                                      description: longString,
+                                                      emojiAlias: "ghost"),
                                 imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 }
                 .navigationTitle("TsundocCell")
