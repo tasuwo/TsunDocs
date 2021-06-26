@@ -29,6 +29,7 @@ struct TsundocThumbnail: View {
                 AsyncImage(url: url, factory: imageLoaderFactory) {
                     Color.gray.opacity(0.4)
                 }
+                .aspectRatio(contentMode: .fill)
 
             case let .emoji(emoji):
                 Color.green.opacity(0.4)
