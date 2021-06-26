@@ -6,7 +6,7 @@ import CoreData
 import Domain
 import Persistence
 
-class DependencyContainer {
+class AppDependencyContainer: ObservableObject {
     // MARK: - Properties
 
     // MARK: CoreData
@@ -17,13 +17,13 @@ class DependencyContainer {
 
     // MARK: Query
 
-    private let _tsundocQueryService: Domain.TsundocQueryService
-    private let _tagQueryService: Domain.TagQueryService
+    let tsundocQueryService: Domain.TsundocQueryService
+    let tagQueryService: Domain.TagQueryService
 
     // MARK: Command
 
-    private let _tsundocCommandService: Domain.TsundocCommandService
-    private let _tagCommandService: Domain.TagCommandService
+    let tsundocCommandService: Domain.TsundocCommandService
+    let tagCommandService: Domain.TagCommandService
 
     // MARK: - Initializers
 
@@ -31,10 +31,10 @@ class DependencyContainer {
         container = PersistentContainer(author: .app)
         commandContext = container.newBackgroundContext(on: commandQueue)
 
-        _tsundocQueryService = TsundocQueryService(container.viewContext)
-        _tagQueryService = TagQueryService(container.viewContext)
+        tsundocQueryService = TsundocQueryService(container.viewContext)
+        tagQueryService = TagQueryService(container.viewContext)
 
-        _tsundocCommandService = TsundocCommandService(commandContext)
-        _tagCommandService = TagCommandService(commandContext)
+        tsundocCommandService = TsundocCommandService(commandContext)
+        tagCommandService = TagCommandService(commandContext)
     }
 }

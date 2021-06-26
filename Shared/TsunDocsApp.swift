@@ -6,9 +6,11 @@ import SwiftUI
 
 @main
 struct TsunDocsApp: App {
+    @StateObject var container = AppDependencyContainer()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(container: SceneDependencyContainer(container))
         }
     }
 }
