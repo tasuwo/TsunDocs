@@ -27,8 +27,10 @@ class SharedUrlLoader: ObservableObject {
 
     func load() {
         cancellable = context
-            .resolveUrls { [weak self] in
-                self?.url = $0.first
+            .resolveUrls { [weak self] urls in
+                DispatchQueue.main.async {
+                    self?.url = urls.first
+                }
             }
     }
 }
