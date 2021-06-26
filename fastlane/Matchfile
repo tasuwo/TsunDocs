@@ -6,33 +6,46 @@ readonly(true)
 
 for_platform :ios do
   platform("ios")
-  type("development")
+
   app_identifier([
     "net.tasuwo.tsundocs",
+    "net.tasuwo.tsundocs.ext-mobile-share",
   ])
 
-  # for_lane :release do
-  #   type("appstore")
-  #   readonly(true)
-  #   app_identifier([
-  #     "net.tasuwo.tsundocs",
-  #   ])
-  # end
+  for_lane :update_development_pp do
+    readonly(false)
+    force(true)
+
+    type("development")
+  end
+
+  for_lane :update_appstore_pp do
+    readonly(false)
+    force(true)
+
+    type("appstore")
+  end
 end
 
 for_platform :mac do
   platform("macos")
-  type("development")
+
   app_identifier([
     "net.tasuwo.tsundocs",
   ])
 
-  # for_lane :release do
-  #   type("appstore")
-  #   readonly(true)
-  #   app_identifier([
-  #     "net.tasuwo.tsundocs",
-  #   ])
-  # end
+  for_lane :update_development_pp do
+    readonly(false)
+    force(true)
+
+    type("development")
+  end
+
+  for_lane :update_appstore_pp do
+    readonly(false)
+    force(true)
+
+    type("appstore")
+  end
 end
 

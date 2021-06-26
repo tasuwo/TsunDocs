@@ -27,3 +27,6 @@ profile
 
 # CocoaPods
 Pods/
+
+# Fastlane
+fastlane/report.xml

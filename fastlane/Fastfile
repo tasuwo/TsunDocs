@@ -1,0 +1,21 @@
+default_platform(:ios)
+
+platform :ios do
+  lane :update_development_pp do
+    match
+  end
+
+  lane :update_appstore_pp do
+    match
+  end
+end
+
+platform :mac do
+  lane :update_development_pp do
+    match
+  end
+
+  lane :update_appstore_pp do
+    match
+  end
+end
