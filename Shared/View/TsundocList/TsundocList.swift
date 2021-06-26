@@ -39,34 +39,45 @@ struct TsundocList: View {
                 }
             }
         }
+        .onAppear {
+            store.execute(.onAppear)
+        }
     }
 }
 
 struct TsundocList_Previews: PreviewProvider {
-    static func makeTsundoc(title: String,
-                            description: String? = nil,
-                            imageUrl: URL? = nil,
-                            emojiAlias: String? = nil) -> Tsundoc
-    {
+    class DummyDependency: TsundocListDependency {
+        var tsundocQueryService: TsundocQueryService {
+            let tsundocs: [Tsundoc] = [
+                makeTsundoc(title: "hoge", emojiAlias: "+1"),
+                makeTsundoc(title: "fuga", emojiAlias: "smile"),
+                makeTsundoc(title: "piyo", emojiAlias: "ghost")
+            ]
+            let entities = ObservedTsundocArrayMock(values: .init(tsundocs))
+                .eraseToAnyObservedEntityArray()
+            let service = TsundocQueryServiceMock()
+            service.queryAllTsundocsHandler = {
+                return .success(entities)
+            }
+            return service
+        }
+    }
+
+    static func makeTsundoc(title: String, emojiAlias: String?) -> Tsundoc {
         return .init(id: UUID(),
                      title: title,
-                     description: description,
+                     description: nil,
                      // swiftlint:disable:next force_unwrapping
                      url: URL(string: "https://www.apple.com")!,
-                     imageUrl: imageUrl,
+                     imageUrl: nil,
                      emojiAlias: emojiAlias,
                      updatedDate: Date(),
                      createdDate: Date())
     }
 
     static var previews: some View {
-        let tsundocs: [Tsundoc] = [
-            makeTsundoc(title: "hoge", emojiAlias: "+1"),
-            makeTsundoc(title: "fuga", emojiAlias: "smile"),
-            makeTsundoc(title: "piyo", emojiAlias: "ghost")
-        ]
-        let store = Store(initialState: TsundocListState(tsundocs: tsundocs),
-                          dependency: (),
+        let store = Store(initialState: TsundocListState(),
+                          dependency: DummyDependency(),
                           reducer: TsundocListReducer())
         let viewStore = ViewStore(store: store)
         TsundocList(store: viewStore)

@@ -6,6 +6,8 @@ import CompositeKit
 import Domain
 
 enum TsundocListAction {
+    case onAppear
+    case onUpdate([Tsundoc])
     case select(Tsundoc)
     case modalDismissed
 }
