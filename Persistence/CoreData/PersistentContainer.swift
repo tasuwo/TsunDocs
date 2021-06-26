@@ -5,12 +5,16 @@
 import Combine
 import CoreData
 
-class CoreDataStack {
+public class PersistentContainer {
+    public enum TransactionAuthor: String {
+        case app
+    }
+
     // MARK: - Properties
 
-    private static let transactionAuthor = "app"
+    let author: TransactionAuthor
 
-    var viewContext: NSManagedObjectContext {
+    public var viewContext: NSManagedObjectContext {
         return _persistentContainer.value.viewContext
     }
 
@@ -21,29 +25,33 @@ class CoreDataStack {
 
     // MARK: - Initializers
 
-    init(notificationCenter: NotificationCenter = .default) {
+    public init(author: TransactionAuthor,
+                notificationCenter: NotificationCenter = .default)
+    {
+        self.author = author
         self._persistentContainer = .init(Self.loadContainer())
     }
 
     // MARK: - Methods
 
-    func newBackgroundContext(on queue: DispatchQueue) -> NSManagedObjectContext {
+    public func newBackgroundContext(on queue: DispatchQueue = DispatchQueue.global()) -> NSManagedObjectContext {
         return queue.sync {
             let context = _persistentContainer.value.newBackgroundContext()
             context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-            context.transactionAuthor = Self.transactionAuthor
+            context.transactionAuthor = author.rawValue
             return context
         }
     }
 }
 
-extension CoreDataStack {
-    private static func loadContainer() -> NSPersistentContainer {
-        let container = PersistentContainerLoader.load()
+extension PersistentContainer {
+    private static func makeContainer() -> NSPersistentContainer {
+        let container = loadContainer()
 
         guard let description = container.persistentStoreDescriptions.first else {
             fatalError("Failed to retrieve a persistent store description.")
         }
+        description.url = containerUrl()
         description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         description.shouldMigrateStoreAutomatically = true
@@ -61,5 +69,22 @@ extension CoreDataStack {
         container.viewContext.automaticallyMergesChangesFromParent = true
 
         return container
+    }
+
+    private static func loadContainer() -> NSPersistentContainer {
+        let bundle = Bundle(for: Self.self)
+        guard let url = bundle.url(forResource: "Model", withExtension: "momd"),
+              let model = NSManagedObjectModel(contentsOf: url)
+        else {
+            fatalError("Unable to load Core Data Model")
+        }
+        return NSPersistentContainer(name: "Model", managedObjectModel: model)
+    }
+
+    private static func containerUrl() -> URL {
+        guard let containerUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.net.tasuwo.tsundocs") else {
+            fatalError("App Group Container could not be created.")
+        }
+        return containerUrl.appendingPathComponent("tsundocs.sqlite")
     }
 }

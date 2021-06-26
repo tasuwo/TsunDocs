@@ -11,7 +11,7 @@ class DependencyContainer {
 
     // MARK: CoreData
 
-    private let coreDataStack: CoreDataStack
+    private let container: PersistentContainer
     private let commandContext: NSManagedObjectContext
     private let commandQueue = DispatchQueue(label: "net.tasuwo.tsundocs.DependencyContainer.commandQueue")
 
@@ -28,11 +28,11 @@ class DependencyContainer {
     // MARK: - Initializers
 
     init() {
-        coreDataStack = CoreDataStack()
-        commandContext = coreDataStack.newBackgroundContext(on: commandQueue)
+        container = PersistentContainer(author: .app)
+        commandContext = container.newBackgroundContext(on: commandQueue)
 
-        _tsundocQueryService = TsundocQueryService(coreDataStack.viewContext)
-        _tagQueryService = TagQueryService(coreDataStack.viewContext)
+        _tsundocQueryService = TsundocQueryService(container.viewContext)
+        _tagQueryService = TagQueryService(container.viewContext)
 
         _tsundocCommandService = TsundocCommandService(commandContext)
         _tagCommandService = TagCommandService(commandContext)
