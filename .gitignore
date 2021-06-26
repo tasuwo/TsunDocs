@@ -33,3 +33,8 @@ fastlane/report.xml
 
 # Mockolo
 !lib_InternalSwiftSyntaxParser.dylib
+
+# Sourcery
+templates/*
+!templates/.gitkeep
+!templates/AutoDefaultValue.extension.swifttemplate

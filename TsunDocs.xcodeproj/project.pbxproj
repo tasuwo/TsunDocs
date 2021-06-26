@@ -47,6 +47,7 @@
 		21F6871D6BB8CCF0E8586791 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D200773E3F37AF8C959E3B /* WebView.swift */; };
 		224DCC1D0756ADBA6FF95BE2 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BF5FB387009A73F0B7B0CC /* Domain.framework */; };
 		22E5158B14C1AB55EDE4A9A9 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B23168CB8DA805E3CB8F5F /* ImageLoader.swift */; };
+		230051CAEFB67EDADB62893C /* Domain.AutoDefaultValue.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */; };
 		23C42D8002FF1EF21DCF0A18 /* TsundocQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFA5F5AD7A6E67B27FB5FF /* TsundocQueryService.swift */; };
 		24D35CC5269D32844D2AA11E /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7998AC20EE38BDAA0BA24C3 /* Store.swift */; };
 		283E41C1D0B1D758FCECF8FF /* Publisher+RemoveDuplicatesByKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BF77246F537239C6619C0 /* Publisher+RemoveDuplicatesByKeyPath.swift */; };
@@ -139,6 +140,7 @@
 		A1127A51C51C9ED24D9C9318 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED355E06E22CEA5F98651A4B /* AsyncImage.swift */; };
 		A1D71C34B0FD07C4E1692B63 /* ObservedEntity+EraseToAnyObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D990D2718732D3063B87585 /* ObservedEntity+EraseToAnyObservedEntity.swift */; };
 		A38E45990CC08592F357B7E9 /* CompositeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA913F50BBD7D9E8E9769D96 /* CompositeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A86D42C64DB0C334F77F6080 /* Domain.AutoDefaultValue.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */; };
 		A90FB126B070151C19D7F174 /* ObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9067959A9FE67AC28B9975B /* ObservedEntity.swift */; };
 		A926E9C0D9D59E512A1E5AA1 /* AnyObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56B664262DBD1E23EFEAF8F /* AnyObservedEntity.swift */; };
 		A9A3E7450B98AF06272C8EC1 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265617AD24F188BE4827D108 /* SafariView.swift */; };
@@ -367,6 +369,7 @@
 		4005A46521343EC5AAB40193 /* ObservedTsundocArrayMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedTsundocArrayMock.swift; sourceTree = "<group>"; };
 		43AC0CDB8D40FD1E728E32E0 /* CompositeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompositeKit.h; sourceTree = "<group>"; };
 		46559B24420E0CF31FCE1DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.AutoDefaultValue.generated.swift; sourceTree = "<group>"; };
 		4847F6F1FFA4B972B26E76C8 /* NSItemProvider+ResolveUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+ResolveUrl.swift"; sourceTree = "<group>"; };
 		49063500A67242610D7717A2 /* Effect_Debounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect_Debounce.swift; sourceTree = "<group>"; };
 		4E2BF77246F537239C6619C0 /* Publisher+RemoveDuplicatesByKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+RemoveDuplicatesByKeyPath.swift"; sourceTree = "<group>"; };
@@ -818,6 +821,14 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		90FA9BBF04604F13BF03A3CA /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */,
+			);
+			path = Struct;
+			sourceTree = "<group>";
+		};
 		919B1B21137DDA18D9EB3C85 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -861,6 +872,7 @@
 			children = (
 				0AF84BA0FB5367367F847128 /* Manual */,
 				2DFADEEAB84AFFA0447A9497 /* Protocol */,
+				90FA9BBF04604F13BF03A3CA /* Struct */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1615,6 +1627,7 @@
 				86BEA880D8E459AC5BED4D0C /* AppDependencyContainer.swift in Sources */,
 				A1127A51C51C9ED24D9C9318 /* AsyncImage.swift in Sources */,
 				F30CAFCE4BD0B986E5298D05 /* ContentView.swift in Sources */,
+				A86D42C64DB0C334F77F6080 /* Domain.AutoDefaultValue.generated.swift in Sources */,
 				759F4DA493E4C1B4C1B0E2AD /* Domain.ProtocolMocks.swift in Sources */,
 				7BB5C31DB6CDEF3AB1C82A66 /* HTTPURLResponse+Mock.swift in Sources */,
 				CEF56279AD7B1B39499E7514 /* ObservedTsundocArrayMock.swift in Sources */,
@@ -1648,6 +1661,7 @@
 				7EEB4817533CDE2B4AB68282 /* AppDependencyContainer.swift in Sources */,
 				3BA28BE6D24EEEC922458995 /* AsyncImage.swift in Sources */,
 				1C4E47BD773458338D123241 /* ContentView.swift in Sources */,
+				230051CAEFB67EDADB62893C /* Domain.AutoDefaultValue.generated.swift in Sources */,
 				9F9AF5890E763DAC7407E13A /* Domain.ProtocolMocks.swift in Sources */,
 				E7C5A44C93B11B9CA42C1E77 /* HTTPURLResponse+Mock.swift in Sources */,
 				12BBBC2073D762C478ED8CA2 /* ObservedTsundocArrayMock.swift in Sources */,

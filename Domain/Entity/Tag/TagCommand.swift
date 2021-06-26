@@ -4,6 +4,7 @@
 
 import Foundation
 
+// sourcery: AutoDefaultValue
 public struct TagCommand {
     // MARK: - Properties
 

@@ -1,20 +1,24 @@
 PODS:
+  - Sourcery (1.4.2)
   - SwiftFormat/CLI (0.48.5)
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
+  - Sourcery (~> 1.4.2)
   - SwiftFormat/CLI (~> 0.48.3)
   - SwiftLint (~> 0.43.1)
 
 SPEC REPOS:
   trunk:
+    - Sourcery
     - SwiftFormat
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Sourcery: 43d8addc35ca31c2ab331cfd34b02421fa53bb7f
   SwiftFormat: 8ca6006bc1afba61d79fcffc9338367e35ab06bc
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 20c1d2fa7f11181f1b899b733be4d062a31e871c
+PODFILE CHECKSUM: b3600f12ef969a051eb51bbb2c51946243cda999
 
 COCOAPODS: 1.10.1

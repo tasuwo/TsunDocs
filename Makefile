@@ -3,7 +3,7 @@ init: ## ライブラリ群をインストールする
 	bundle exec pod install
 
 .PHONY: generate
-generate: mockolo_generate format ## 各種コード自動生成を実行する
+generate: sourcery_generate mockolo_generate format ## 各種コード自動生成を実行する
 
 .PHONY: lint
 lint: swiftlint_lint ## 各種Linterを実行する
@@ -18,6 +18,20 @@ format: swiftformat_format ## 各種フォーマッターを実行する
 .PHONY: swiftformat_format
 swiftformat_format: init ## SwiftFormatによるフォーマットを実行する
 	Pods/SwiftFormat/CommandLineTool/swiftformat --config ./.swiftformat ./
+
+.PHONY: sourcery_generate
+sourcery_generate: init ## Sourceryによるモック自動生成を行う
+	if [[ ! -f "./templates/AutoDefaultValue.swifttemplate" ]] || [[ ! -f "./templates/AutoDefaultValue.extension.swifttemplate" ]]; then \
+	curl -o "./templates/AutoDefaultValue.swifttemplate" \
+		"https://raw.githubusercontent.com/tasuwo/SwiftTemplates/master/Templates/AutoDefaultValue.swifttemplate"; \
+	curl -o "./templates/AutoDefaultValue.extension.swifttemplate" \
+		"https://raw.githubusercontent.com/tasuwo/SwiftTemplates/master/Templates/AutoDefaultValue.extension.swifttemplate"; \
+	fi
+	./Pods/Sourcery/bin/sourcery \
+		--sources ./Domain \
+		--templates ./templates \
+		--output ./Preview\ Content/Mocks/Struct/Domain.AutoDefaultValue.generated.swift \
+		--args import=Domain
 
 .PHONY: mockolo_generate
 mockolo_generate: ## mockoloによるモック自動生成を行う
