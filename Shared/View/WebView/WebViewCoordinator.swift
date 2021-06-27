@@ -4,7 +4,7 @@
 
 import WebKit
 
-class WebViewCoordinator: NSObject, WKUIDelegate, WKNavigationDelegate {
+class WebViewCoordinator: NSObject, WKUIDelegate {
     // MARK: - Properties
 
     let parent: WebView
@@ -36,12 +36,28 @@ class WebViewCoordinator: NSObject, WKUIDelegate, WKNavigationDelegate {
             parent.canGoForward = newValue
         }
 
+        let titleObservation = parent.internalWebView.observe(\.title, options: [.initial, .new]) { _, change in
+            guard let newValue = change.newValue else { return }
+            parent.title = newValue
+        }
+
+        let urlObservation = parent.internalWebView.observe(\.url, options: [.initial, .new]) { _, change in
+            guard let newValue = change.newValue else { return }
+            parent.currentUrl = newValue
+        }
+
         self.observations = [
             progressObservation,
             loadingObservation,
             canGoBackObservation,
-            canGoForwardObservation
+            canGoForwardObservation,
+            titleObservation,
+            urlObservation
         ]
+    }
+
+    deinit {
+        self.observations.forEach { $0.invalidate() }
     }
 
     // MARK: - WKUIDelegate
@@ -54,12 +70,5 @@ class WebViewCoordinator: NSObject, WKUIDelegate, WKNavigationDelegate {
             return nil
         }
         return nil
-    }
-
-    // MARK: - WKNavigationDelegate
-
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.parent.title = webView.title
-        self.parent.currentUrl = webView.url
     }
 }

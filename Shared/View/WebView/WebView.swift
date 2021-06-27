@@ -41,7 +41,6 @@ extension WebView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         internalWebView.uiDelegate = context.coordinator
-        internalWebView.navigationDelegate = context.coordinator
         internalWebView.allowsBackForwardNavigationGestures = true
 
         let request = URLRequest(url: url)
@@ -81,7 +80,6 @@ extension WebView: NSViewRepresentable {
 
     func makeNSView(context: Context) -> WKWebView {
         internalWebView.uiDelegate = context.coordinator
-        internalWebView.navigationDelegate = context.coordinator
         internalWebView.allowsBackForwardNavigationGestures = true
 
         let request = URLRequest(url: url)
