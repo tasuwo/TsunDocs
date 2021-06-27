@@ -37,7 +37,7 @@ struct TsundocList: View {
                         SafariView(url: tsundoc.url)
                             .ignoresSafeArea()
                     #elseif os(macOS)
-                        WebView(url: tsundoc.url)
+                        EmptyView()
                     #endif
 
                 default:
