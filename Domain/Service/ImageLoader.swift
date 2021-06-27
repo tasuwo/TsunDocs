@@ -5,17 +5,17 @@
 import Combine
 import Foundation
 #if os(iOS)
-    import UIKit
+import UIKit
 #elseif os(macOS)
-    import Cocoa
+import Cocoa
 #endif
 
 public class ImageLoader: ObservableObject {
     public enum Complete {
         #if os(iOS)
-            case image(UIImage)
+        case image(UIImage)
         #elseif os(macOS)
-            case image(NSImage)
+        case image(NSImage)
         #endif
         case failure
         case cancelled
@@ -23,17 +23,17 @@ public class ImageLoader: ObservableObject {
         init(_ data: Data?) {
             if let data = data {
                 #if os(iOS)
-                    if let image = UIImage(data: data) {
-                        self = .image(image)
-                    } else {
-                        self = .failure
-                    }
+                if let image = UIImage(data: data) {
+                    self = .image(image)
+                } else {
+                    self = .failure
+                }
                 #elseif os(macOS)
-                    if let image = NSImage(data: data) {
-                        self = .image(image)
-                    } else {
-                        self = .failure
-                    }
+                if let image = NSImage(data: data) {
+                    self = .image(image)
+                } else {
+                    self = .failure
+                }
                 #endif
             } else {
                 self = .failure

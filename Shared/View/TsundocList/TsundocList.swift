@@ -34,10 +34,10 @@ struct TsundocList: View {
                 switch store.state.modal {
                 case let .safariView(tsundoc):
                     #if os(iOS)
-                        SafariView(url: tsundoc.url)
-                            .ignoresSafeArea()
+                    SafariView(url: tsundoc.url)
+                        .ignoresSafeArea()
                     #elseif os(macOS)
-                        EmptyView()
+                    EmptyView()
                     #endif
 
                 default:

@@ -6,9 +6,9 @@ import Combine
 import CoreData
 import Domain
 #if os(iOS)
-    import UIKit
+import UIKit
 #elseif os(macOS)
-    import Cocoa
+import Cocoa
 #endif
 
 class ObservedTsundocArray: NSObject {

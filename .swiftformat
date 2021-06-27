@@ -18,4 +18,5 @@
 --octalgrouping none
 --wrapcollections beforefirst
 --exclude Pods
+--ifdef no-indent
 
