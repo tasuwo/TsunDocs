@@ -16,3 +16,5 @@
 "setting_view_title" = "設定";
 "setting_view_section_title_this_app" = "このアプリについて";
 "setting_view_row_app_version" = "バージョン";
+
+"browse_view_title_loading" = "読み込み中...";
