@@ -9,6 +9,8 @@ struct BrowseView: View {
 
     let baseUrl: URL
 
+    @Binding var isPresenting: Bool
+
     @State var action: WebView.Action?
 
     @State var title: String?
@@ -50,8 +52,17 @@ struct BrowseView: View {
                 }
             }()
             ShareSheet(activityItems: [url])
+                .ignoresSafeArea()
         }
         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    isPresenting = false
+                } label: {
+                    Text("browse_view_button_close")
+                }
+            }
+
             ToolbarItem(placement: .navigationBarTrailing) {
                 if isLoading {
                     Button {
@@ -109,10 +120,26 @@ struct BrowseView: View {
 }
 
 struct BrowseView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            // swiftlint:disable:next force_unwrapping
-            BrowseView(baseUrl: URL(string: "https://www.apple.com")!)
+    struct Container: View {
+        @State var isPresenting = false
+
+        var body: some View {
+            Button {
+                isPresenting = true
+            } label: {
+                Text("Press me")
+            }
+            .sheet(isPresented: $isPresenting) {
+                NavigationView {
+                    // swiftlint:disable:next force_unwrapping
+                    BrowseView(baseUrl: URL(string: "https://www.apple.com")!,
+                               isPresenting: $isPresenting)
+                }
+            }
         }
+    }
+
+    static var previews: some View {
+        Container()
     }
 }
