@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,7 @@
 		0D5D5668883B19F9312FDBF6 /* PersistentHistoryTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC474DB2B9BF7C8DE5E78FA7 /* PersistentHistoryTracker.swift */; };
 		0F229B58C3FB3EB560F88BDF /* Publisher+bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B13F8D9178337ED377514C /* Publisher+bind.swift */; };
 		0F82BFCAB8F9386EF28FD221 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 76BF5FB387009A73F0B7B0CC /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		10E32694054C970EE08B63ED /* WebViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60564664ABBE179B7D642598 /* WebViewCoordinator.swift */; };
 		11B23092AC27CE254D75909D /* ViewContextObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20359867208A7C1CD2A407E /* ViewContextObserving.swift */; };
 		11C69E9FF526B026CD1ACFE5 /* TsundocQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F161F8607F7E91EF50F7A /* TsundocQueryService.swift */; };
 		12761DD7CA93A65A7C151CBD /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CE6920517D969536BA694B /* Combine.swift */; };
@@ -45,7 +46,6 @@
 		1F104CEB1C099E4C98C521AB /* TsundocListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6FAF09FFCDE1D39A6305FB /* TsundocListAction.swift */; };
 		1FB4A9F0E0D04EDB22AF4B66 /* ObservedEntity+EraseToAnyObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D990D2718732D3063B87585 /* ObservedEntity+EraseToAnyObservedEntity.swift */; };
 		20D1F432B6B22E81245C5247 /* PureReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9554D05676829A7CCBDADB /* PureReducer.swift */; };
-		21F6871D6BB8CCF0E8586791 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D200773E3F37AF8C959E3B /* WebView.swift */; };
 		224DCC1D0756ADBA6FF95BE2 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BF5FB387009A73F0B7B0CC /* Domain.framework */; };
 		22E5158B14C1AB55EDE4A9A9 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B23168CB8DA805E3CB8F5F /* ImageLoader.swift */; };
 		22F78318CF72AC30A10BB134 /* Result+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CFB028496441B4FDE1D13 /* Result+Value.swift */; };
@@ -61,7 +61,6 @@
 		2D597C2ACAB6E2316EE63A56 /* SotreBuilderDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DDF86893CB1ADC7D2AE788 /* SotreBuilderDependencies.swift */; };
 		2F8ACDAA8FBD616C19168248 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3226AB7E955805DCE41708A /* Domain.framework */; };
 		301E9BE70F920770D33C0F4C /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997614656C63362BB864AC5 /* PersistentContainer.swift */; };
-		30FCA795759AB96E97394F28 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79449573D969C281C4C06DA /* WebView.swift */; };
 		33724356FFEE227EA3FE81AE /* TsundocCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184644999F656C54E44F478A /* TsundocCell.swift */; };
 		33C49557C3659D89923EDAF2 /* TagCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E0CB8B10BDC1C3597E84D /* TagCommandService.swift */; };
 		33EB5D1042431FFA629B5670 /* NSExtensionContext+ResolveUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0553F48E031F1ADF9AC3501 /* NSExtensionContext+ResolveUrl.swift */; };
@@ -83,10 +82,12 @@
 		50A9E6B016F3A8F9F46B73EC /* SceneDependencyContainer+ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A484483DC29892DD0EB5B0 /* SceneDependencyContainer+ServiceDependencies.swift */; };
 		5517244131DB02E1881E74F6 /* TsundocListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFBF2205272BE3F44A11ED2 /* TsundocListState.swift */; };
 		55511BF9830D00D9EA4093FF /* Publisher+RemoveDuplicatesByKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BF77246F537239C6619C0 /* Publisher+RemoveDuplicatesByKeyPath.swift */; };
+		5778886C0FCF6890F327BC81 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45E0E9801334633968BF67 /* WebView.swift */; };
 		5ACC3BD9922A5FAA06FA476B /* CompositeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35799AA535128C2EE05F11B /* CompositeKit.framework */; };
 		5BE97571A82F8E01E172C8B8 /* SceneDependencyContainer+StoreBuilderDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AACC6BBD61E9D3BB9C5F5 /* SceneDependencyContainer+StoreBuilderDependencies.swift */; };
 		5C5EFB1319B617FC1242C7DC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64A72E45D7B51BF3FA5217D7 /* Model.xcdatamodeld */; };
 		5D5E658835C5309F3C8E0FE7 /* Effect_Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49063500A67242610D7717A2 /* Effect_Debounce.swift */; };
+		5D7F26D08FC345318EEE4A96 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45E0E9801334633968BF67 /* WebView.swift */; };
 		5DD5108A146C6BF0095155E7 /* ObservedTsundocArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DA4B99AC13B0BCE2948229 /* ObservedTsundocArray.swift */; };
 		60B18567637253430CEDB0C5 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49758C07C82D727451135B8 /* TagCell.swift */; };
 		64595F3EBE7C6CEB45E8C66A /* TsundocQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F161F8607F7E91EF50F7A /* TsundocQueryService.swift */; };
@@ -155,7 +156,6 @@
 		A9A3E7450B98AF06272C8EC1 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265617AD24F188BE4827D108 /* SafariView.swift */; };
 		AB3636FA8A221E72D178200E /* WeakContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AD00BB2DCA41D989959A72 /* WeakContainer.swift */; };
 		AB8BC00E06F1513505AD5131 /* ViewContextObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20359867208A7C1CD2A407E /* ViewContextObserving.swift */; };
-		ABC104BEE567F05E5EEBB356 /* WebViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408B5C6207890FAE3AA00BBD /* WebViewCoordinator.swift */; };
 		AC962A43E42BA4D6637F670D /* TagCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E0CB8B10BDC1C3597E84D /* TagCommandService.swift */; };
 		AD04E5FEE423249B852A9912 /* Kanna.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 79135336C4C9F21FCE1AA18C /* Kanna.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE417ECE2C3B6EE3C0B8CDEF /* Persistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C0DCB7221B326130827769 /* Persistence.framework */; };
@@ -205,6 +205,7 @@
 		E3FE142BBE8AAF36D7461D36 /* ObservedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939312F1559214B10346C3C /* ObservedTag.swift */; };
 		E539216C15CB18565AAAD026 /* TsundocQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFA5F5AD7A6E67B27FB5FF /* TsundocQueryService.swift */; };
 		E631C4631B91D4AAA458006D /* CompositeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA913F50BBD7D9E8E9769D96 /* CompositeKit.framework */; };
+		E71C7C89682F980BE90F4408 /* WebViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60564664ABBE179B7D642598 /* WebViewCoordinator.swift */; };
 		E756F5952F2D6AAC8D0E49A3 /* CompositeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35799AA535128C2EE05F11B /* CompositeKit.framework */; };
 		E804D91BBB76CDA0637B3B3A /* TagQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F23479C1E3AC092FAFEF3 /* TagQueryService.swift */; };
 		E9EF0FA7D29E70943444E969 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EA7D645F6AAF33ACFCE34A /* Factory.swift */; };
@@ -396,13 +397,13 @@
 		30AAD67C51AA7E03591D09EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3425C767AC7288629755D4E3 /* Tag+MapToDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+MapToDomainModel.swift"; sourceTree = "<group>"; };
 		36703B036CCADF3624EF5269 /* StoreProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProxy.swift; sourceTree = "<group>"; };
-		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "TsunDocs (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; name = "TsunDocs (iOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37AD00BB2DCA41D989959A72 /* WeakContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakContainer.swift; sourceTree = "<group>"; };
 		3C17957E9629E1F1A6CB0813 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		3EFBF2205272BE3F44A11ED2 /* TsundocListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocListState.swift; sourceTree = "<group>"; };
+		3F45E0E9801334633968BF67 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		3FE52D741C6408929139E480 /* Tsundoc+MapToDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tsundoc+MapToDomainModel.swift"; sourceTree = "<group>"; };
 		4005A46521343EC5AAB40193 /* ObservedTsundocArrayMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedTsundocArrayMock.swift; sourceTree = "<group>"; };
-		408B5C6207890FAE3AA00BBD /* WebViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewCoordinator.swift; sourceTree = "<group>"; };
 		43AC0CDB8D40FD1E728E32E0 /* CompositeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompositeKit.h; sourceTree = "<group>"; };
 		46559B24420E0CF31FCE1DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.AutoDefaultValue.generated.swift; sourceTree = "<group>"; };
@@ -415,6 +416,7 @@
 		5E2F161F8607F7E91EF50F7A /* TsundocQueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocQueryService.swift; sourceTree = "<group>"; };
 		5FD2593D51CFC4B413F4A6C6 /* AppDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyContainer.swift; sourceTree = "<group>"; };
 		5FF100B5604EF4AA7E5784FE /* TsundocThumbnailSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocThumbnailSource.swift; sourceTree = "<group>"; };
+		60564664ABBE179B7D642598 /* WebViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewCoordinator.swift; sourceTree = "<group>"; };
 		62B13F8D9178337ED377514C /* Publisher+bind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+bind.swift"; sourceTree = "<group>"; };
 		65B23168CB8DA805E3CB8F5F /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		6930039FED775CA4E010873A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -462,14 +464,13 @@
 		B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		BA4C35C0C8A9FE8563155A69 /* AnyObservedEntityArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObservedEntityArray.swift; sourceTree = "<group>"; };
 		BB9070253312E7A2D1F48C11 /* AnyStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyStoring.swift; sourceTree = "<group>"; };
-		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TsunDocs (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "TsunDocs (macOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C35799AA535128C2EE05F11B /* CompositeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CompositeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5162A4B7F4977CF7AEA8BE0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C5F35EAB0037253ACF4BECF8 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C939312F1559214B10346C3C /* ObservedTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedTag.swift; sourceTree = "<group>"; };
 		CF6FAF09FFCDE1D39A6305FB /* TsundocListAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocListAction.swift; sourceTree = "<group>"; };
 		CF81EB210494BD9A1FE99615 /* Lens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lens.swift; sourceTree = "<group>"; };
-		D3D200773E3F37AF8C959E3B /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		D4D1CB6131A6E78E9CDC0E38 /* TsundocCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocCommand.swift; sourceTree = "<group>"; };
 		D74F677B4CEBA05B55CDD8DA /* ServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDependencies.swift; sourceTree = "<group>"; };
 		D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootViewController.swift; sourceTree = "<group>"; };
@@ -484,7 +485,6 @@
 		E6DA4B99AC13B0BCE2948229 /* ObservedTsundocArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedTsundocArray.swift; sourceTree = "<group>"; };
 		E72370302737E56FD92C3E30 /* SharedUrlEditViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUrlEditViewAction.swift; sourceTree = "<group>"; };
 		E750F6114F828F3470AC2285 /* SharedUrlEditViewReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUrlEditViewReducer.swift; sourceTree = "<group>"; };
-		E79449573D969C281C4C06DA /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E7998AC20EE38BDAA0BA24C3 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		ED355E06E22CEA5F98651A4B /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		EF9554D05676829A7CCBDADB /* PureReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PureReducer.swift; sourceTree = "<group>"; };
@@ -712,15 +712,6 @@
 			path = ObservedEntity;
 			sourceTree = "<group>";
 		};
-		4865499C2DFAC52EC18488B1 /* WebView */ = {
-			isa = PBXGroup;
-			children = (
-				E79449573D969C281C4C06DA /* WebView.swift */,
-				408B5C6207890FAE3AA00BBD /* WebViewCoordinator.swift */,
-			);
-			path = WebView;
-			sourceTree = "<group>";
-		};
 		4B11A1A2CDBA5890B6875BFC /* TabItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,14 +759,6 @@
 				051C14ED7496449B824AA1F9 /* CoreDataCommandService.swift */,
 			);
 			path = Command;
-			sourceTree = "<group>";
-		};
-		624766743F7CDAF32AF08E7D /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D3D200773E3F37AF8C959E3B /* WebView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		68D458DF8311E87630386D37 /* DI */ = {
@@ -977,6 +960,15 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		A552200C01A7AC8447669DCA /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				3F45E0E9801334633968BF67 /* WebView.swift */,
+				60564664ABBE179B7D642598 /* WebViewCoordinator.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		A94A01448E7B5E2AE0729906 /* Optics */ = {
 			isa = PBXGroup;
 			children = (
@@ -992,7 +984,6 @@
 				1AB9180BF53336E2369C3393 /* ContentView.swift */,
 				F887EB4DB6E1DE3040F95054 /* Info.plist */,
 				7C239FA42949E1D08FB8479C /* macOS.entitlements */,
-				624766743F7CDAF32AF08E7D /* View */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -1131,7 +1122,6 @@
 			children = (
 				265617AD24F188BE4827D108 /* SafariView.swift */,
 				5085AAF929F99EBBB0EBD9B4 /* SettingView.swift */,
-				4865499C2DFAC52EC18488B1 /* WebView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1181,6 +1171,7 @@
 				4B11A1A2CDBA5890B6875BFC /* TabItem */,
 				BA284F8B856BAC5D4DB195AB /* Tag */,
 				5C463A261E3367ECF76CB39E /* TsundocList */,
+				A552200C01A7AC8447669DCA /* WebView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1782,7 +1773,8 @@
 				6EFF53377B9ABE40D8DFA3CB /* URLProtocolMockBase.swift in Sources */,
 				660DAF1C9258E2CF36E11EAF /* URLSession+Mock.swift in Sources */,
 				8E7A77565220ABB9A9039A3A /* View+OnChangeFrame.swift in Sources */,
-				21F6871D6BB8CCF0E8586791 /* WebView.swift in Sources */,
+				5D7F26D08FC345318EEE4A96 /* WebView.swift in Sources */,
+				E71C7C89682F980BE90F4408 /* WebViewCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1818,8 +1810,8 @@
 				D2C91207575719C9D35A8B03 /* URLProtocolMockBase.swift in Sources */,
 				269DBD668333050AF028A809 /* URLSession+Mock.swift in Sources */,
 				14F1C4B6B7A085023319842F /* View+OnChangeFrame.swift in Sources */,
-				30FCA795759AB96E97394F28 /* WebView.swift in Sources */,
-				ABC104BEE567F05E5EEBB356 /* WebViewCoordinator.swift in Sources */,
+				5778886C0FCF6890F327BC81 /* WebView.swift in Sources */,
+				10E32694054C970EE08B63ED /* WebViewCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

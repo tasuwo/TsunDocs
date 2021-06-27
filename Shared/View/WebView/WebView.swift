@@ -6,7 +6,7 @@ import Combine
 import SwiftUI
 import WebKit
 
-struct WebView: UIViewRepresentable {
+struct WebView {
     typealias Coordinator = WebViewCoordinator
 
     enum Action {
@@ -29,51 +29,102 @@ struct WebView: UIViewRepresentable {
     @Binding var canGoForward: Bool
     @Binding var isLoading: Bool
     @Binding var estimatedProgress: Double
-
-    // MARK: - UIViewRepresentable
-
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(self)
-    }
-
-    func makeUIView(context: Context) -> WKWebView {
-        internalWebView.uiDelegate = context.coordinator
-        internalWebView.navigationDelegate = context.coordinator
-        internalWebView.allowsBackForwardNavigationGestures = true
-
-        let request = URLRequest(url: url)
-        internalWebView.load(request)
-
-        return internalWebView
-    }
-
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        switch action {
-        case .goBack:
-            uiView.goBack()
-
-        case .goForward:
-            uiView.goForward()
-
-        case .reload:
-            uiView.reload()
-
-        case .stopLoading:
-            uiView.stopLoading()
-
-        case .none:
-            break
-        }
-        action = nil
-    }
-
-    static func dismantleUIView(_ uiView: WKWebView, coordinator: Coordinator) {
-        coordinator.progressObservation?.invalidate()
-        coordinator.loadingObservation?.invalidate()
-        coordinator.progressObservation = nil
-        coordinator.loadingObservation = nil
-    }
 }
+
+#if os(iOS)
+    extension WebView: UIViewRepresentable {
+        // MARK: - UIViewRepresentable
+
+        func makeCoordinator() -> Coordinator {
+            return Coordinator(self)
+        }
+
+        func makeUIView(context: Context) -> WKWebView {
+            internalWebView.uiDelegate = context.coordinator
+            internalWebView.navigationDelegate = context.coordinator
+            internalWebView.allowsBackForwardNavigationGestures = true
+
+            let request = URLRequest(url: url)
+            internalWebView.load(request)
+
+            return internalWebView
+        }
+
+        func updateUIView(_ uiView: WKWebView, context: Context) {
+            switch action {
+            case .goBack:
+                uiView.goBack()
+
+            case .goForward:
+                uiView.goForward()
+
+            case .reload:
+                uiView.reload()
+
+            case .stopLoading:
+                uiView.stopLoading()
+
+            case .none:
+                break
+            }
+            action = nil
+        }
+
+        static func dismantleUIView(_ uiView: WKWebView, coordinator: Coordinator) {
+            coordinator.progressObservation?.invalidate()
+            coordinator.loadingObservation?.invalidate()
+            coordinator.progressObservation = nil
+            coordinator.loadingObservation = nil
+        }
+    }
+
+#elseif os(macOS)
+    extension WebView: NSViewRepresentable {
+        // MARK: - NSViewRepresentable
+
+        func makeCoordinator() -> Coordinator {
+            return Coordinator(self)
+        }
+
+        func makeNSView(context: Context) -> WKWebView {
+            internalWebView.uiDelegate = context.coordinator
+            internalWebView.navigationDelegate = context.coordinator
+            internalWebView.allowsBackForwardNavigationGestures = true
+
+            let request = URLRequest(url: url)
+            internalWebView.load(request)
+
+            return internalWebView
+        }
+
+        func updateNSView(_ nsView: WKWebView, context: Context) {
+            switch action {
+            case .goBack:
+                nsView.goBack()
+
+            case .goForward:
+                nsView.goForward()
+
+            case .reload:
+                nsView.reload()
+
+            case .stopLoading:
+                nsView.stopLoading()
+
+            case .none:
+                break
+            }
+            action = nil
+        }
+
+        static func dismantleNSView(_ nsView: WKWebView, coordinator: Coordinator) {
+            coordinator.progressObservation?.invalidate()
+            coordinator.loadingObservation?.invalidate()
+            coordinator.progressObservation = nil
+            coordinator.loadingObservation = nil
+        }
+    }
+#endif
 
 struct WebView_Previews: PreviewProvider {
     struct Container: View {

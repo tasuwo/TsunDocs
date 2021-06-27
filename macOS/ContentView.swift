@@ -6,11 +6,10 @@ import CompositeKit
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var container: SceneDependencyContainer
+
     var body: some View {
-        let store = Store(initialState: TsundocListState(tsundocs: []),
-                          dependency: (),
-                          reducer: TsundocListReducer())
-        let viewStore = ViewStore(store: store)
+        let viewStore = container.buildTsundocListStore()
 
         NavigationView {
             List {
@@ -32,7 +31,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
+            ContentView(container: SceneDependencyContainer(AppDependencyContainer()))
         }
     }
 }
