@@ -34,8 +34,12 @@ struct TsundocList: View {
                 switch store.state.modal {
                 case let .safariView(tsundoc):
                     #if os(iOS)
-                    SafariView(url: tsundoc.url)
-                        .ignoresSafeArea()
+                    NavigationView {
+                        BrowseView(baseUrl: tsundoc.url,
+                                   isPresenting: store.bind(\.isModalPresenting,
+                                                            action: { _ in .modalDismissed }))
+                    }
+                    .ignoresSafeArea()
                     #elseif os(macOS)
                     EmptyView()
                     #endif
@@ -72,9 +76,12 @@ struct TsundocList_Previews: PreviewProvider {
 
         var tsundocQueryService: TsundocQueryService {
             let tsundocs: [Tsundoc] = [
-                .makeDefault(title: "hoge", emojiAlias: "+1"),
-                .makeDefault(title: "fuga", emojiAlias: "smile"),
-                .makeDefault(title: "piyo", emojiAlias: "ghost")
+                // swiftlint:disable:next force_unwrapping
+                .makeDefault(title: "hoge", url: URL(string: "https://www.apple.com")!, emojiAlias: "+1"),
+                // swiftlint:disable:next force_unwrapping
+                .makeDefault(title: "fuga", url: URL(string: "https://www.apple.com")!, emojiAlias: "smile"),
+                // swiftlint:disable:next force_unwrapping
+                .makeDefault(title: "piyo", url: URL(string: "https://www.apple.com")!, emojiAlias: "ghost")
             ]
             let entities = ObservedTsundocArrayMock(values: .init(tsundocs))
                 .eraseToAnyObservedEntityArray()
