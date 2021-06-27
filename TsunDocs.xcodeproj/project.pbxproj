@@ -141,6 +141,7 @@
 		969AC0F19212371D55A9CCAE /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CE6920517D969536BA694B /* Combine.swift */; };
 		974D517FC88A2E02ACC6623E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E90809410822573C49B43281 /* Localizable.strings */; };
 		986E0B8BDE54C97CC70973CD /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8097C5C6F26D04EF44DE3B /* TabItem.swift */; };
+		993CA6F6361CC38A4D0B1EB1 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F6B62DA5F764BD52AA146 /* ShareSheet.swift */; };
 		99BA1ADE033A3DED386A822C /* ObservedTsundocArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DA4B99AC13B0BCE2948229 /* ObservedTsundocArray.swift */; };
 		99C21EDBDD04172E93E8AF23 /* Lens.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF81EB210494BD9A1FE99615 /* Lens.swift */; };
 		9C85CAC0054AA11A81BBD183 /* Kanna.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79135336C4C9F21FCE1AA18C /* Kanna.xcframework */; };
@@ -410,6 +411,7 @@
 		4847F6F1FFA4B972B26E76C8 /* NSItemProvider+ResolveUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+ResolveUrl.swift"; sourceTree = "<group>"; };
 		49063500A67242610D7717A2 /* Effect_Debounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect_Debounce.swift; sourceTree = "<group>"; };
 		4E2BF77246F537239C6619C0 /* Publisher+RemoveDuplicatesByKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+RemoveDuplicatesByKeyPath.swift"; sourceTree = "<group>"; };
+		4F8F6B62DA5F764BD52AA146 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		5085AAF929F99EBBB0EBD9B4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		544D7B7DCC997A4E3292614E /* Domain.ProtocolMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.ProtocolMocks.swift; sourceTree = "<group>"; };
 		55797B837237A467F5EE7864 /* CommandServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandServiceError.swift; sourceTree = "<group>"; };
@@ -1122,6 +1124,7 @@
 			children = (
 				265617AD24F188BE4827D108 /* SafariView.swift */,
 				5085AAF929F99EBBB0EBD9B4 /* SettingView.swift */,
+				4F8F6B62DA5F764BD52AA146 /* ShareSheet.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1795,6 +1798,7 @@
 				943B068562036D702C9A522F /* SceneDependencyContainer.swift in Sources */,
 				B3D6455B7E36FBED921D3AE2 /* ServiceDependencies.swift in Sources */,
 				F06C6C3E33246E2BB6B920EB /* SettingView.swift in Sources */,
+				993CA6F6361CC38A4D0B1EB1 /* ShareSheet.swift in Sources */,
 				7D7ABAE7AB920A89F07DCC89 /* Shared.ProtocolMocks.swift in Sources */,
 				7B7FCCAB5F4A2DB1F00C3D19 /* SotreBuilderDependencies.swift in Sources */,
 				D6A7C33E5293BAAA7B783E09 /* TabItem.swift in Sources */,
