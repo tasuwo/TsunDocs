@@ -9,20 +9,39 @@ class WebViewCoordinator: NSObject, WKUIDelegate, WKNavigationDelegate {
 
     let parent: WebView
 
-    var progressObservation: NSKeyValueObservation?
-    var loadingObservation: NSKeyValueObservation?
+    var observations: [NSKeyValueObservation]
 
     // MARK: - Initializers
 
     init(_ parent: WebView) {
         self.parent = parent
 
-        progressObservation = parent.internalWebView.observe(\.estimatedProgress, options: .new) { _, change in
-            parent.estimatedProgress = change.newValue ?? 0
+        let progressObservation = parent.internalWebView.observe(\.estimatedProgress, options: .new) { _, change in
+            guard let newValue = change.newValue else { return }
+            parent.estimatedProgress = newValue
         }
-        loadingObservation = parent.internalWebView.observe(\.isLoading, options: .new) { _, change in
-            parent.isLoading = change.newValue ?? false
+
+        let loadingObservation = parent.internalWebView.observe(\.isLoading, options: .new) { _, change in
+            guard let newValue = change.newValue else { return }
+            parent.isLoading = newValue
         }
+
+        let canGoBackObservation = parent.internalWebView.observe(\.canGoBack, options: .new) { _, change in
+            guard let newValue = change.newValue else { return }
+            parent.canGoBack = newValue
+        }
+
+        let canGoForwardObservation = parent.internalWebView.observe(\.canGoForward, options: .new) { _, change in
+            guard let newValue = change.newValue else { return }
+            parent.canGoForward = newValue
+        }
+
+        self.observations = [
+            progressObservation,
+            loadingObservation,
+            canGoBackObservation,
+            canGoForwardObservation
+        ]
     }
 
     // MARK: - WKUIDelegate
@@ -42,7 +61,5 @@ class WebViewCoordinator: NSObject, WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.parent.title = webView.title
         self.parent.currentUrl = webView.url
-        self.parent.canGoBack = webView.canGoBack
-        self.parent.canGoForward = webView.canGoForward
     }
 }

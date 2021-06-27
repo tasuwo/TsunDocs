@@ -69,13 +69,6 @@ extension WebView: UIViewRepresentable {
         }
         action = nil
     }
-
-    static func dismantleUIView(_ uiView: WKWebView, coordinator: Coordinator) {
-        coordinator.progressObservation?.invalidate()
-        coordinator.loadingObservation?.invalidate()
-        coordinator.progressObservation = nil
-        coordinator.loadingObservation = nil
-    }
 }
 
 #elseif os(macOS)
@@ -115,13 +108,6 @@ extension WebView: NSViewRepresentable {
             break
         }
         action = nil
-    }
-
-    static func dismantleNSView(_ nsView: WKWebView, coordinator: Coordinator) {
-        coordinator.progressObservation?.invalidate()
-        coordinator.loadingObservation?.invalidate()
-        coordinator.progressObservation = nil
-        coordinator.loadingObservation = nil
     }
 }
 #endif

@@ -85,7 +85,7 @@ struct BrowseView: View {
                 } label: {
                     Image(systemName: "chevron.left")
                 }
-                .disabled(!canGoBack || isLoading)
+                .disabled(!canGoBack)
 
                 Spacer()
 
@@ -94,7 +94,7 @@ struct BrowseView: View {
                 } label: {
                     Image(systemName: "chevron.right")
                 }
-                .disabled(!canGoForward || isLoading)
+                .disabled(!canGoForward)
 
                 Spacer()
 
