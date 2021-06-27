@@ -55,7 +55,9 @@ extension PersistentContainer {
         guard let description = container.persistentStoreDescriptions.first else {
             fatalError("Failed to retrieve a persistent store description.")
         }
-        description.url = containerUrl()
+        #if os(iOS)
+            description.url = containerUrl()
+        #endif
         description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         description.shouldMigrateStoreAutomatically = true
