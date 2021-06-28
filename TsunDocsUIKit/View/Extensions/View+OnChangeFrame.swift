@@ -9,7 +9,7 @@ private struct SizePreferenceKey: PreferenceKey {
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }
 
-extension View {
+public extension View {
     func onChangeFrame(_ block: @escaping (CGSize) -> Void) -> some View {
         background(
             GeometryReader {

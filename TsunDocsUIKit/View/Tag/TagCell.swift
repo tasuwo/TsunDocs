@@ -4,17 +4,17 @@
 
 import SwiftUI
 
-struct TagCell: View {
+public struct TagCell: View {
     // MARK: - Properties
 
-    let tagId: UUID
-    let tagName: String
+    public let tagId: UUID
+    public let tagName: String
 
     @State var isSelected = false
 
     // MARK: - View
 
-    var body: some View {
+    public var body: some View {
         HStack(spacing: 0) {
             if isSelected {
                 Image(systemName: "checkmark")

@@ -2,17 +2,30 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
-import Domain
 import SwiftUI
 
-struct TagGrid: View {
-    let tags: [Tag]
-    let spacing: CGFloat = 8
+public struct TagGrid: View {
+    public struct Tag: Hashable, Identifiable {
+        public let id: UUID
+        public let name: String
+
+        public init(id: UUID, name: String) {
+            self.id = id
+            self.name = name
+        }
+    }
+
+    // MARK: - Properties
+
+    public let tags: [Tag]
+    public let spacing: CGFloat = 8
 
     @State private var availableWidth: CGFloat = 0
     @State private var cellSizes: [Tag: CGSize] = [:]
 
-    var body: some View {
+    // MARK: - View
+
+    public var body: some View {
         ZStack {
             Color.clear
                 .frame(height: 0)
