@@ -4,6 +4,7 @@
 
 import Domain
 import SwiftUI
+import TsunDocsUIKit
 
 struct TsundocThumbnail: View {
     // MARK: - Properties

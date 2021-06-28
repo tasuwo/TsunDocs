@@ -12,6 +12,7 @@ options:
       - Persistence
       - MobileShareExtension
       - MobileShareExtensionUIKit
+      - TsunDocsUIKit
       - CompositeKit
 attributes:
   LastSwiftUpdateCheck: 1250
@@ -113,6 +114,7 @@ targets:
       - target: CompositeKit_iOS
       - target: Domain_iOS
       - target: Persistence_iOS
+      - target: TsunDocsUIKit_iOS
       - target: MobileShareExtension
     prebuildScripts:
       - name: SwiftLint
@@ -158,6 +160,7 @@ targets:
     dependencies:
       - target: CompositeKit_macOS
       - target: Domain_macOS
+      - target: TsunDocsUIKit_macOS
       - target: Persistence_macOS
     prebuildScripts:
       - name: SwiftLint
@@ -265,6 +268,8 @@ targets:
     platform: iOS
     sources:
       - path: MobileShareExtensionUIKit
+    dependencies:
+      - target: TsunDocsUIKit_iOS
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES
@@ -277,6 +282,26 @@ targets:
         SUPPORTS_MACCATALYST: NO
         IPHONEOS_DEPLOYMENT_TARGET: 14.0
         MACOSX_DEPLOYMENT_TARGET: 11.0
+  TsunDocsUIKit:
+    type: framework
+    platform: [iOS, macOS]
+    sources:
+      - path: TsunDocsUIKit
+      - path: Preview Content/Mocks/Manual/URL
+      - Preview Content/Preview Assets.xcassets
+    settings:
+      base:
+        APPLICATION_EXTENSION_API_ONLY: YES
+        DEVELOPMENT_TEAM: RY2377PP7S
+        INFOPLIST_FILE: TsunDocsUIKit/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.tsundocs-uikit
+        PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]: net.tasuwo.tsundocs-uikit
+        PROVISIONING_PROFILE_SPECIFIER:
+        PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]:
+        SUPPORTS_MACCATALYST: NO
+        IPHONEOS_DEPLOYMENT_TARGET: 14.0
+        MACOSX_DEPLOYMENT_TARGET: 11.0
+        DEVELOPMENT_ASSET_PATHS: 'Preview\ Content'
   CompositeKit:
     type: framework
     platform: [iOS, macOS]

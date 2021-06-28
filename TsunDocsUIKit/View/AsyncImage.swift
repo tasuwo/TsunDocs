@@ -10,7 +10,7 @@ import UIKit
 import Cocoa
 #endif
 
-struct AsyncImage<Placeholder: View>: View {
+public struct AsyncImage<Placeholder: View>: View {
     // MARK: - Properties
 
     @StateObject private var loader: ImageLoader
@@ -20,9 +20,9 @@ struct AsyncImage<Placeholder: View>: View {
 
     // MARK: - Initializers
 
-    init(url: URL,
-         factory: Factory<ImageLoader> = .default,
-         @ViewBuilder placeholder: () -> Placeholder)
+    public init(url: URL,
+                factory: Factory<ImageLoader> = .default,
+                @ViewBuilder placeholder: () -> Placeholder)
     {
         self.url = url
         self.placeholder = placeholder()
@@ -31,7 +31,7 @@ struct AsyncImage<Placeholder: View>: View {
 
     // MARK: - View
 
-    var body: some View {
+    public var body: some View {
         Group {
             switch loader.complete {
             case let .image(image):
