@@ -268,6 +268,8 @@ targets:
     platform: iOS
     sources:
       - path: MobileShareExtensionUIKit
+      - path: Preview Content/Mocks/Manual/URL
+      - Preview Content/Preview Assets.xcassets
     dependencies:
       - target: TsunDocsUIKit_iOS
     settings:
@@ -282,6 +284,7 @@ targets:
         SUPPORTS_MACCATALYST: NO
         IPHONEOS_DEPLOYMENT_TARGET: 14.0
         MACOSX_DEPLOYMENT_TARGET: 11.0
+        DEVELOPMENT_ASSET_PATHS: 'Preview\ Content'
   TsunDocsUIKit:
     type: framework
     platform: [iOS, macOS]
@@ -289,6 +292,8 @@ targets:
       - path: TsunDocsUIKit
       - path: Preview Content/Mocks/Manual/URL
       - Preview Content/Preview Assets.xcassets
+    dependencies:
+      - target: Domain_${platform}
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES

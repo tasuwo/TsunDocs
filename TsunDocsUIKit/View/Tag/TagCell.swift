@@ -40,7 +40,7 @@ public struct TagCell: View {
         .background(GeometryReader { geometry in
             let baseView = isSelected
                 ? Color.green
-                : Color("secondary_background")
+                : Color("tag_background", bundle: Bundle.this)
             baseView
                 .clipShape(RoundedRectangle(cornerRadius: geometry.size.height / 2,
                                             style: .continuous))
@@ -52,7 +52,7 @@ public struct TagCell: View {
                 RoundedRectangle(cornerRadius: geometry.size.height / 2,
                                  style: .continuous)
                     .stroke(lineWidth: 0.5)
-                    .foregroundColor(Color("tag_separator"))
+                    .foregroundColor(Color("tag_separator", bundle: Bundle.this))
             }
         })
     }
