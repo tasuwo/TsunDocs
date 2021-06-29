@@ -71,10 +71,10 @@ struct AsyncImage_Previews: PreviewProvider {
         override class var mock_handler: ((URLRequest) throws -> (HTTPURLResponse, Data?))? {
             #if os(iOS)
             // swiftlint:disable:next force_unwrapping
-            return { _ in (.mock_success, UIImage(named: "320x320")!.pngData()) }
+            return { _ in (.mock_success, UIImage(named: "320x320", in: Bundle.this, with: nil)!.pngData()) }
             #elseif os(macOS)
             // swiftlint:disable:next force_unwrapping
-            return { _ in (.mock_success, NSImage(named: "320x320")!.tiffRepresentation) }
+            return { _ in (.mock_success, Bundle.this.image(forResource: "320x320")!.tiffRepresentation) }
             #endif
         }
     }
