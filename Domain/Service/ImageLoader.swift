@@ -11,7 +11,7 @@ import Cocoa
 #endif
 
 public class ImageLoader: ObservableObject {
-    public enum Complete {
+    public enum Complete: Equatable {
         #if os(iOS)
         case image(UIImage)
         #elseif os(macOS)

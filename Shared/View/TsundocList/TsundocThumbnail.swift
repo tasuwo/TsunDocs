@@ -9,6 +9,8 @@ import TsunDocsUIKit
 struct TsundocThumbnail: View {
     // MARK: - Properties
 
+    @State private var status: AsyncImageStatus?
+
     private let source: TsundocThumbnailSource?
     private let imageLoaderFactory: Factory<ImageLoader>
 
@@ -27,10 +29,19 @@ struct TsundocThumbnail: View {
         Group {
             switch source {
             case let .imageUrl(url):
-                AsyncImage(url: url, factory: imageLoaderFactory) {
-                    Color.gray.opacity(0.4)
+                ZStack {
+                    AsyncImage(url: url, status: $status, factory: imageLoaderFactory) {
+                        Color.gray.opacity(0.4)
+                    }
+                    .aspectRatio(contentMode: .fill)
+
+                    if status == .failed || status == .cancelled {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 16, height: 16, alignment: .center)
+                            .foregroundColor(.gray.opacity(0.7))
+                    }
                 }
-                .aspectRatio(contentMode: .fill)
 
             case let .emoji(emoji):
                 Color.green.opacity(0.4)

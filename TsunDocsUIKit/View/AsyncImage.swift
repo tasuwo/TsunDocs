@@ -10,10 +10,17 @@ import UIKit
 import Cocoa
 #endif
 
+public enum AsyncImageStatus: Equatable {
+    case loaded
+    case failed
+    case cancelled
+}
+
 public struct AsyncImage<Placeholder: View>: View {
     // MARK: - Properties
 
     @StateObject private var loader: ImageLoader
+    @Binding private var status: AsyncImageStatus?
 
     private let url: URL
     private let placeholder: Placeholder
@@ -21,10 +28,12 @@ public struct AsyncImage<Placeholder: View>: View {
     // MARK: - Initializers
 
     public init(url: URL,
+                status: Binding<AsyncImageStatus?>,
                 factory: Factory<ImageLoader> = .default,
                 @ViewBuilder placeholder: () -> Placeholder)
     {
         self.url = url
+        self._status = status
         self.placeholder = placeholder()
         _loader = StateObject(wrappedValue: factory.make())
     }
@@ -45,21 +54,33 @@ public struct AsyncImage<Placeholder: View>: View {
 
             case .failure, .cancelled:
                 placeholder
-                    .overlay(
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .frame(width: 16, height: 16, alignment: .center)
-                            .foregroundColor(.gray.opacity(0.7))
-                    )
 
             case .none:
                 placeholder
                     .overlay(ProgressView())
             }
         }
-        .onAppear(perform: {
+        .onAppear {
             loader.load(url)
-        })
+        }
+        .onChange(of: loader.complete) {
+            status = $0?.asyncImageStatus
+        }
+    }
+}
+
+private extension ImageLoader.Complete {
+    var asyncImageStatus: AsyncImageStatus {
+        switch self {
+        case .image:
+            return .loaded
+
+        case .cancelled:
+            return .cancelled
+
+        case .failure:
+            return .failed
+        }
     }
 }
 
@@ -92,12 +113,14 @@ struct AsyncImage_Previews: PreviewProvider {
                 HStack {
                     // swiftlint:disable:next force_unwrapping
                     AsyncImage(url: URL(string: "https://localhost")!,
+                               status: .constant(nil),
                                factory: .init { .init(urlSession: .makeMock(SuccessMock.self)) },
                                placeholder: { Color.gray.opacity(0.5) })
                         .frame(width: 100, height: 100, alignment: .center)
 
                     // swiftlint:disable:next force_unwrapping
                     AsyncImage(url: URL(string: "https://localhost")!,
+                               status: .constant(nil),
                                factory: .init { .init(urlSession: .makeMock(FailureMock.self)) },
                                placeholder: { Color.gray.opacity(0.5) })
                         .frame(width: 100, height: 100, alignment: .center)
@@ -105,12 +128,14 @@ struct AsyncImage_Previews: PreviewProvider {
                 HStack {
                     // swiftlint:disable:next force_unwrapping
                     AsyncImage(url: URL(string: "https://localhost")!,
+                               status: .constant(nil),
                                factory: .init { .init(urlSession: .makeMock(SuccessMock.self)) },
                                placeholder: { Color.green.opacity(0.5) })
                         .frame(width: 100, height: 100, alignment: .center)
 
                     // swiftlint:disable:next force_unwrapping
                     AsyncImage(url: URL(string: "https://localhost")!,
+                               status: .constant(nil),
                                factory: .init { .init(urlSession: .makeMock(FailureMock.self)) },
                                placeholder: { Color.green.opacity(0.5) })
                         .frame(width: 100, height: 100, alignment: .center)
