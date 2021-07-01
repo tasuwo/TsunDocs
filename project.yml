@@ -21,10 +21,6 @@ attributes:
 configs:
   Debug: debug
   Release: release
-packages:
-  Smile:
-    url: https://github.com/onmyway133/Smile
-    from: 2.1.0
 schemes:
   TsunDocs (iOS):
     build:
@@ -201,7 +197,7 @@ targets:
     sources:
       - path: Domain
     dependencies:
-      - package: Smile
+      - framework: Carthage/Build/Smile.xcframework
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES
@@ -272,6 +268,7 @@ targets:
       - Preview Content/Preview Assets.xcassets
     dependencies:
       - target: TsunDocsUIKit_iOS
+      - framework: Carthage/Build/Smile.xcframework
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES

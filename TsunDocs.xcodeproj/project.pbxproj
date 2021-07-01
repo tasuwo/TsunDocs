@@ -82,7 +82,7 @@
 		43BCE8CD90E8C89D7C5C79A9 /* TsundocList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4058A249D33AD35728B16C /* TsundocList.swift */; };
 		45756BCEFBCF6903B91DCA1D /* PersistentHistoryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC4C5F1C064735885AB29F8 /* PersistentHistoryFetcher.swift */; };
 		4651057A50AA053F3C9B3D65 /* MobileShareExtensionUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = FF0C0F2F045F52CED93EC174 /* MobileShareExtensionUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4780D20497B82AF36B96F0E8 /* Smile in Frameworks */ = {isa = PBXBuildFile; productRef = 85F027A2103F13EEA069D121 /* Smile */; };
+		49C04AA4E67D833B29C52834 /* Smile.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9170889182C4E71C98ED7BB /* Smile.xcframework */; };
 		4B115C6DFF72697FCFB0821D /* Tsundoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373F9AA9ABB042C81AD5DB3 /* Tsundoc.swift */; };
 		4BA4F909799695EA2B0A9698 /* HTTPURLResponse+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA797FDE403EA923AD92AD5 /* HTTPURLResponse+Mock.swift */; };
 		4C3545194380F17612EF0D48 /* Domain.h in Headers */ = {isa = PBXBuildFile; fileRef = 69A310A4FAE48C6777E748F9 /* Domain.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -134,11 +134,11 @@
 		7BD51D2009B8A4D026C54F34 /* HTTPURLResponse+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA797FDE403EA923AD92AD5 /* HTTPURLResponse+Mock.swift */; };
 		7D63AD387D1EAEA0139E9245 /* TsunDocsUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EFA274C8FDA48BDAC713AC /* TsunDocsUIKit.framework */; };
 		7D7ABAE7AB920A89F07DCC89 /* Shared.ProtocolMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175F8D44D9118CFFDD862FAE /* Shared.ProtocolMocks.swift */; };
+		7ECC85085B081FE29BA97E4C /* Smile.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9170889182C4E71C98ED7BB /* Smile.xcframework */; };
 		7EEB4817533CDE2B4AB68282 /* AppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD2593D51CFC4B413F4A6C6 /* AppDependencyContainer.swift */; };
 		7EFAD842B7975E81CF2DB617 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8640F3563CBE8F878D8D76F2 /* Localizable.strings */; };
 		7FF6F750D568B95C03DBD07D /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1BA76FFFA86760D991CF5A /* Transaction.swift */; };
 		830B53A0A55EC59EABFC661F /* SharedUrlEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2F4638258FE9D5B9C77E6 /* SharedUrlEditView.swift */; };
-		831645FEA18E8D7629C5324E /* Smile in Frameworks */ = {isa = PBXBuildFile; productRef = 8573CB5245D57527F115687A /* Smile */; };
 		84CA55DBACD2A24B9DBBAB71 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D8B3B757767F0CE5FEC1B2 /* Tag.swift */; };
 		856FD757D6A868265846EFED /* SharedUrlEditViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E750F6114F828F3470AC2285 /* SharedUrlEditViewReducer.swift */; };
 		85BDE18B62DF820D0F4EB9B0 /* TsundocThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE5BDE1AFCA46143EF930B2 /* TsundocThumbnail.swift */; };
@@ -227,6 +227,7 @@
 		DD36EDAF13ADBEF920FBD0D4 /* URLProtocolMockBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBA70808F3D6A7C2A4914C /* URLProtocolMockBase.swift */; };
 		DE92BA44C2B23DC24E2A627C /* TsundocListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE906AC356C938833DCB0939 /* TsundocListReducer.swift */; };
 		DEADE2DAAB80F2C83BE7FED0 /* TsundocList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4058A249D33AD35728B16C /* TsundocList.swift */; };
+		E0EA79636DA82F4E3259B0A3 /* Smile.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9170889182C4E71C98ED7BB /* Smile.xcframework */; };
 		E11C17C9FD589FF9B6D9637E /* ObservedTagArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8E721F79C535AE67943B14 /* ObservedTagArray.swift */; };
 		E14AC4AFA3DE7B4C0D78044C /* TsundocListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6FAF09FFCDE1D39A6305FB /* TsundocListAction.swift */; };
 		E1B0EDC100F5373C7D39E54A /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */; };
@@ -544,6 +545,7 @@
 		B3226AB7E955805DCE41708A /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B580E0494ED881EEE702782F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B627E584457D6A01023EFB9B /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		B9170889182C4E71C98ED7BB /* Smile.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Smile.xcframework; path = Carthage/Build/Smile.xcframework; sourceTree = "<group>"; };
 		B9D8B3B757767F0CE5FEC1B2 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		BA4C35C0C8A9FE8563155A69 /* AnyObservedEntityArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObservedEntityArray.swift; sourceTree = "<group>"; };
@@ -613,7 +615,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				831645FEA18E8D7629C5324E /* Smile in Frameworks */,
+				7ECC85085B081FE29BA97E4C /* Smile.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,7 +623,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4780D20497B82AF36B96F0E8 /* Smile in Frameworks */,
+				49C04AA4E67D833B29C52834 /* Smile.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +632,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EF68A0EA28704F15B93BFA4 /* TsunDocsUIKit.framework in Frameworks */,
+				E0EA79636DA82F4E3259B0A3 /* Smile.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,6 +936,7 @@
 			isa = PBXGroup;
 			children = (
 				79135336C4C9F21FCE1AA18C /* Kanna.xcframework */,
+				B9170889182C4E71C98ED7BB /* Smile.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1548,9 +1552,6 @@
 			dependencies = (
 			);
 			name = Domain_iOS;
-			packageProductDependencies = (
-				85F027A2103F13EEA069D121 /* Smile */,
-			);
 			productName = Domain_iOS;
 			productReference = B3226AB7E955805DCE41708A /* Domain.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1681,9 +1682,6 @@
 			dependencies = (
 			);
 			name = Domain_macOS;
-			packageProductDependencies = (
-				8573CB5245D57527F115687A /* Smile */,
-			);
 			productName = Domain_macOS;
 			productReference = 76BF5FB387009A73F0B7B0CC /* Domain.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1746,9 +1744,6 @@
 				ja,
 			);
 			mainGroup = EB5136094B07B8560319AE2D;
-			packageReferences = (
-				209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */,
-			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -2336,6 +2331,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Carthage/Build\"",
+				);
 				INFOPLIST_FILE = Domain/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -2553,6 +2552,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Carthage/Build\"",
+				);
 				INFOPLIST_FILE = MobileShareExtensionUIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -2823,6 +2826,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Carthage/Build\"",
+				);
 				INFOPLIST_FILE = MobileShareExtensionUIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -2911,6 +2918,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Carthage/Build\"",
+				);
 				INFOPLIST_FILE = Domain/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -3065,6 +3076,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Carthage/Build\"",
+				);
 				INFOPLIST_FILE = Domain/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -3096,6 +3111,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Carthage/Build\"",
+				);
 				INFOPLIST_FILE = Domain/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -3238,30 +3257,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onmyway133/Smile";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		8573CB5245D57527F115687A /* Smile */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */;
-			productName = Smile;
-		};
-		85F027A2103F13EEA069D121 /* Smile */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */;
-			productName = Smile;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		64A72E45D7B51BF3FA5217D7 /* Model.xcdatamodeld */ = {
