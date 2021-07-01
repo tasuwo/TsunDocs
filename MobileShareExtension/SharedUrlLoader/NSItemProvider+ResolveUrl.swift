@@ -4,7 +4,7 @@
 
 import Combine
 import Foundation
-import MobileCoreServices
+import UniformTypeIdentifiers
 
 extension NSItemProvider {
     func resolveUrl() -> Future<URL?, Never> {
@@ -14,8 +14,8 @@ extension NSItemProvider {
     }
 
     private func resolveUrl(_ completion: @escaping (URL?) -> Void) {
-        if hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
-            loadItem(forTypeIdentifier: kUTTypeURL as String, options: nil) { item, _ in
+        if hasItemConformingToTypeIdentifier(UTType.url.identifier) {
+            loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { item, _ in
                 guard let url = item as? URL else {
                     completion(nil)
                     return
