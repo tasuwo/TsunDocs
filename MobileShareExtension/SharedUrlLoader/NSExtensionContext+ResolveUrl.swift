@@ -14,7 +14,7 @@ extension NSExtensionContext {
         }
 
         let futures = items
-            .compactMap { $0.attachments }
+            .compactMap(\.attachments)
             .flatMap { $0 }
             .map { $0.resolveUrl().compactMap { $0 } }
 

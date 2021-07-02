@@ -41,7 +41,7 @@ public class WeakContainerArray<T> {
     public func forEach(_ body: (T) -> Void) {
         clean()
         containers
-            .compactMap { $0.value }
+            .compactMap(\.value)
             .forEach(body)
     }
 
