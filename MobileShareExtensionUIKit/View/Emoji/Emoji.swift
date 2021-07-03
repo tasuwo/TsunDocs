@@ -4,10 +4,17 @@
 
 import Domain
 
-struct Emoji: Searchable {
-    let alias: String
-    let emoji: String
-    let searchableText: String?
+public struct Emoji: Searchable {
+    public let alias: String
+    public let emoji: String
 
-    var id: String { alias }
+    // MARK: - Searchable
+
+    public let searchableText: String?
+}
+
+extension Emoji: Identifiable {
+    // MARK: - Identifiable
+
+    public var id: String { alias }
 }
