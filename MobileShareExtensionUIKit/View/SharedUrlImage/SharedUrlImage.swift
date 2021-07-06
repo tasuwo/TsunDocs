@@ -2,6 +2,7 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import CompositeKit
 import Domain
 import SwiftUI
 import TsunDocsUIKit
@@ -10,25 +11,16 @@ struct SharedUrlThumbnail: View {
     // MARK: - Properties
 
     private let thumbnailSize: CGFloat = 80
-
-    private let imageUrl: URL?
     private let imageLoaderFactory: Factory<ImageLoader>
 
-    @State private var thumbnailLoadingStatus: AsyncImageStatus?
-
-    @Binding var visibleDeleteButton: Bool
-    @Binding var emoji: String?
+    @StateObject var store: ViewStore<SharedUrlImageState, SharedUrlImageAction, SharedUrlImageDependency>
 
     // MARK: - Initializers
 
-    init(imageUrl: URL?,
-         visibleDeleteButton: Binding<Bool>,
-         emoji: Binding<String?>,
+    init(store: ViewStore<SharedUrlImageState, SharedUrlImageAction, SharedUrlImageDependency>,
          imageLoaderFactory: Factory<ImageLoader> = .default)
     {
-        self.imageUrl = imageUrl
-        self._visibleDeleteButton = visibleDeleteButton
-        self._emoji = emoji
+        self._store = StateObject(wrappedValue: store)
         self.imageLoaderFactory = imageLoaderFactory
     }
 
@@ -36,26 +28,52 @@ struct SharedUrlThumbnail: View {
 
     private var thumbnail: some View {
         Group {
-            if let imageUrl = imageUrl {
+            if let imageUrl = store.state.imageUrl {
                 ZStack {
-                    AsyncImage(url: imageUrl, status: $thumbnailLoadingStatus, factory: imageLoaderFactory) {
+                    AsyncImage(url: imageUrl,
+                               status: store.bind(\.thumbnailLoadingStatus, action: { .updatedThumbnail($0) }),
+                               factory: imageLoaderFactory) {
                         Color.gray.opacity(0.4)
                     }
                     .aspectRatio(contentMode: .fill)
 
-                    if thumbnailLoadingStatus == .failed || thumbnailLoadingStatus == .cancelled {
+                    if store.state.thumbnailLoadingStatus == .failed
+                        || store.state.thumbnailLoadingStatus == .cancelled
+                    {
                         Image(systemName: "arrow.clockwise")
                             .font(.system(size: 24))
                             .foregroundColor(.gray.opacity(0.7))
+                            .onTapGesture {
+                                // TODO: Reload
+                            }
                     }
                 }
             } else {
-                Color.gray.opacity(0.4)
-                    .overlay(
-                        Image(systemName: "face.dashed")
-                            .font(.system(size: 24))
-                            .foregroundColor(Color.gray)
-                    )
+                if let emoji = store.state.selectedEmoji {
+                    Color.green.opacity(0.4)
+                        .overlay(
+                            Text(emoji.emoji)
+                                .font(.system(size: 28))
+                        )
+                        .onTapGesture {
+                            store.execute(.didTapSelectEmoji)
+                        }
+                } else {
+                    Color.gray.opacity(0.4)
+                        .overlay(
+                            Image(systemName: "face.dashed")
+                                .font(.system(size: 24))
+                                .foregroundColor(Color.gray)
+                        )
+                        .onTapGesture {
+                            store.execute(.didTapSelectEmoji)
+                        }
+                }
+            }
+        }
+        .sheet(isPresented: store.bind(\.isSelectingEmoji, action: { .updatedEmojiSheet(isPresenting: $0) })) {
+            NavigationView {
+                EmojiList(selectedEmoji: store.bind(\.selectedEmoji, action: { .selectedEmoji($0) }))
             }
         }
     }
@@ -66,7 +84,7 @@ struct SharedUrlThumbnail: View {
                 .frame(width: thumbnailSize, height: thumbnailSize, alignment: .center)
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
 
-            if visibleDeleteButton {
+            if store.state.visibleDeleteButton {
                 Image(systemName: "xmark")
                     .font(.system(size: 12).bold())
                     .foregroundColor(.white)
@@ -75,7 +93,12 @@ struct SharedUrlThumbnail: View {
                     .clipShape(RoundedRectangle(cornerRadius: 25 / 2, style: .continuous))
                     .offset(x: -1 * (thumbnailSize / 2) + 5,
                             y: -1 * (thumbnailSize / 2) + 5)
+                    .onTapGesture {
+                        store.execute(.didTapDeleteEmoji)
+                    }
             }
+
+            // TODO: 絵文字置き換えボタンの配置
         }
     }
 }
@@ -102,21 +125,13 @@ struct SharedUrlThumbnailView_Previews: PreviewProvider {
         let imageUrl: URL?
         let imageLoaderFactory: Factory<ImageLoader>
 
-        @State var visibleDeleteButton: Bool = false
-        @State var emoji: String? = nil
-
         var body: some View {
-            VStack {
-                SharedUrlThumbnail(imageUrl: imageUrl,
-                                   visibleDeleteButton: $visibleDeleteButton,
-                                   emoji: $emoji,
-                                   imageLoaderFactory: imageLoaderFactory)
-                Button {
-                    visibleDeleteButton = !visibleDeleteButton
-                } label: {
-                    Text("Toggle delete button")
-                }
-            }
+            let store = Store(initialState: SharedUrlImageState(imageUrl: imageUrl),
+                              dependency: (),
+                              reducer: SharedUrlImageReducer())
+            let viewStore = ViewStore(store: store)
+
+            SharedUrlThumbnail(store: viewStore, imageLoaderFactory: imageLoaderFactory)
         }
     }
 

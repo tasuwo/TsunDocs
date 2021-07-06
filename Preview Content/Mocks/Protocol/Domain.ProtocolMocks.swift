@@ -6,6 +6,20 @@ import Combine
 import CoreData
 import Domain
 
+public class HasImageLoaderMock: HasImageLoader {
+    public init() { }
+    public init(imageLoader: ImageLoader) {
+        self._imageLoader = imageLoader
+    }
+
+    public private(set) var imageLoaderSetCallCount = 0
+    private var _imageLoader: ImageLoader! { didSet { imageLoaderSetCallCount += 1 } }
+    public var imageLoader: ImageLoader {
+        get { return _imageLoader }
+        set { _imageLoader = newValue }
+    }
+}
+
 public class TagCommandServiceMock: TagCommandService {
     public init() { }
 

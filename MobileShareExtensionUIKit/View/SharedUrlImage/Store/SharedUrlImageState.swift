@@ -1,0 +1,25 @@
+//
+//  Copyright © 2021 Tasuku Tozawa. All rights reserved.
+//
+
+import TsunDocsUIKit
+
+public struct SharedUrlImageState: Equatable {
+    let imageUrl: URL?
+    var thumbnailLoadingStatus: AsyncImageStatus?
+    var selectedEmoji: Emoji?
+    var isSelectingEmoji: Bool
+}
+
+public extension SharedUrlImageState {
+    init(imageUrl: URL?) {
+        self.imageUrl = imageUrl
+        self.thumbnailLoadingStatus = nil
+        self.selectedEmoji = nil
+        self.isSelectingEmoji = false
+    }
+}
+
+extension SharedUrlImageState {
+    var visibleDeleteButton: Bool { selectedEmoji != nil }
+}
