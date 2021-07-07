@@ -4,20 +4,17 @@
 
 import Kanna
 
+/// @mockable
+public protocol WebPageMetaResolvable {
+    func resolve(from url: URL) throws -> WebPageMeta
+}
+
 public struct WebPageMetaResolver {
     // MARK: - Initializers
 
     public init() {}
 
     // MARK: - Methods
-
-    public func resolve(from url: URL) throws -> WebPageMeta {
-        let doc = try Kanna.HTML(url: url, encoding: .utf8)
-
-        return WebPageMeta(title: doc.title,
-                           description: resolveDescription(doc: doc),
-                           imageUrl: resolveOgpImageUrl(doc: doc))
-    }
 
     private func resolveDescription(doc: HTMLDocument) -> String? {
         for path in doc.xpath("//meta[@name='description']") {
@@ -48,5 +45,17 @@ public struct WebPageMetaResolver {
         }
 
         return nil
+    }
+}
+
+extension WebPageMetaResolver: WebPageMetaResolvable {
+    // MARK: - WebPageMetaResolvable
+
+    public func resolve(from url: URL) throws -> WebPageMeta {
+        let doc = try Kanna.HTML(url: url, encoding: .utf8)
+
+        return WebPageMeta(title: doc.title,
+                           description: resolveDescription(doc: doc),
+                           imageUrl: resolveOgpImageUrl(doc: doc))
     }
 }

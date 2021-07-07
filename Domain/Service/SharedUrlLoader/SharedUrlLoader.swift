@@ -5,7 +5,12 @@
 import Combine
 import Foundation
 
-public class SharedUrlLoader: ObservableObject {
+/// @mockable
+public protocol SharedUrlLoadable {
+    func load(_ completion: @escaping (URL?) -> Void)
+}
+
+public class SharedUrlLoader {
     // MARK: - Properties
 
     private let context: NSExtensionContext
@@ -20,8 +25,10 @@ public class SharedUrlLoader: ObservableObject {
     deinit {
         cancellable?.cancel()
     }
+}
 
-    // MARK: - Methods
+extension SharedUrlLoader: SharedUrlLoadable {
+    // MARK: - SharedUrlLoadable
 
     public func load(_ completion: @escaping (URL?) -> Void) {
         cancellable = context
