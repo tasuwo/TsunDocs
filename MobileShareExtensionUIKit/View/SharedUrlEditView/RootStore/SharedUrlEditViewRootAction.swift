@@ -13,12 +13,28 @@ extension SharedUrlEditViewRootAction {
     static let mappingToEdit: ActionMapping<Self, SharedUrlEditViewAction> = .init(build: {
         .edit($0)
     }, get: {
-        guard case let .edit(action) = $0 else { return nil }; return action
+        switch $0 {
+        case let .edit(action):
+            return action
+        case let .image(.selectedEmoji(emoji)):
+            return .onSelectedEmoji(emoji)
+        case .image(.didTapDeleteEmoji):
+            return .onSelectedEmoji(nil)
+        default:
+            return nil
+        }
     })
 
     static let mappingToImage: ActionMapping<Self, SharedUrlImageAction> = .init(build: {
         .image($0)
     }, get: {
-        guard case let .image(action) = $0 else { return nil }; return action
+        switch $0 {
+        case let .image(action):
+            return action
+        case let .edit(.onLoad(_, meta)):
+            return .onLoadImageUrl(meta?.imageUrl)
+        default:
+            return nil
+        }
     })
 }

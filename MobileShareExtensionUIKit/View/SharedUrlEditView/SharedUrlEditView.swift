@@ -42,6 +42,8 @@ struct SharedUrlEditView: View {
                                SharedUrlEditViewRootAction.mappingToImage)
                         .viewStore())
 
+                    Text(url.absoluteString)
+                    Text(store.state.selectedEmoji?.emoji ?? "no emoji")
                     Text(store.state.sharedUrlTitle ?? "no title")
                     Text(store.state.sharedUrlDescription ?? "no description")
                     Text(store.state.sharedUrlImageUrl?.absoluteString ?? "no image url")

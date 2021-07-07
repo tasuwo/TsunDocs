@@ -15,6 +15,8 @@ struct SharedUrlEditViewState: Equatable {
     var sharedUrlDescription: String?
     var sharedUrlImageUrl: URL?
 
+    var selectedEmoji: Emoji?
+
     var alert: Alert?
 }
 

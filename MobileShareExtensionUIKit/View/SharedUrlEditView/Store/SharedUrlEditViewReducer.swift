@@ -67,6 +67,10 @@ struct SharedUrlEditViewReducer: Reducer {
             nextState.alert = .failedToLoadUrl
             return (nextState, .none)
 
+        case let .onSelectedEmoji(emoji):
+            nextState.selectedEmoji = emoji
+            return (nextState, .none)
+
         case .errorConfirmed:
             dependency.completable.cancel(with: NSError()) // TODO:
             return (nextState, .none)

@@ -6,6 +6,7 @@ import CompositeKit
 import TsunDocsUIKit
 
 public enum SharedUrlImageAction: Action {
+    case onLoadImageUrl(URL?)
     case didTapSelectEmoji
     case didTapDeleteEmoji
     case selectedEmoji(Emoji?)

@@ -5,7 +5,7 @@
 import TsunDocsUIKit
 
 public struct SharedUrlImageState: Equatable {
-    let imageUrl: URL?
+    var imageUrl: URL?
     var thumbnailLoadingStatus: AsyncImageStatus?
     var selectedEmoji: Emoji?
     var isSelectingEmoji: Bool

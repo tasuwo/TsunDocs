@@ -18,6 +18,10 @@ struct SharedUrlImageReducer: Reducer {
     func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
         var nextState = state
         switch action {
+        case let .onLoadImageUrl(url):
+            nextState.imageUrl = url
+            return (nextState, .none)
+
         case .didTapSelectEmoji:
             nextState.isSelectingEmoji = true
             return (nextState, .none)
