@@ -12,12 +12,12 @@ public class StoreProxy<
     ParentAction: CompositeKit.Action,
     ParentDependency
 > {
-    private let store: Store<ParentState, ParentAction, ParentDependency>
+    private let store: AnyStoring<ParentState, ParentAction, ParentDependency>
     private let stateMapping: StateMapping<ParentState, ChildState>
     private let actionMapping: ActionMapping<ParentAction, ChildAction>
 
     public init(
-        store: Store<ParentState, ParentAction, ParentDependency>,
+        store: AnyStoring<ParentState, ParentAction, ParentDependency>,
         stateMapping: StateMapping<ParentState, ChildState>,
         actionMapping: ActionMapping<ParentAction, ChildAction>
     ) {
@@ -61,7 +61,7 @@ public extension Store {
         Action,
         Dependency
     > {
-        return .init(store: self,
+        return .init(store: self.eraseToAnyStoring(),
                      stateMapping: stateMapping,
                      actionMapping: actionMapping)
     }

@@ -7,9 +7,29 @@ import Domain
 import SwiftUI
 
 struct SharedUrlEditView: View {
+    typealias RootStore = ViewStore<SharedUrlEditViewRootState,
+        SharedUrlEditViewRootAction,
+        SharedUrlEditViewRootDependency>
+    typealias Store = ViewStore<SharedUrlEditViewState,
+        SharedUrlEditViewAction,
+        SharedUrlEditViewDependency>
+
     // MARK: - Properties
 
-    @StateObject var store: ViewStore<SharedUrlEditViewState, SharedUrlEditViewAction, SharedUrlEditViewDependency>
+    @StateObject var rootStore: RootStore
+    @StateObject var store: Store
+
+    // MARK: - Initializers
+
+    init(_ rootStore: RootStore) {
+        self._rootStore = StateObject(wrappedValue: rootStore)
+
+        let store: Store = rootStore
+            .proxy(SharedUrlEditViewRootState.mappingToEdit,
+                   SharedUrlEditViewRootAction.mappingToEdit)
+            .viewStore()
+        self._store = StateObject(wrappedValue: store)
+    }
 
     // MARK: - View
 
@@ -17,7 +37,11 @@ struct SharedUrlEditView: View {
         VStack {
             if let url = store.state.sharedUrl {
                 VStack {
-                    Text(url.absoluteString)
+                    SharedUrlImage(store: rootStore
+                        .proxy(SharedUrlEditViewRootState.mappingToImage,
+                               SharedUrlEditViewRootAction.mappingToImage)
+                        .viewStore())
+
                     Text(store.state.sharedUrlTitle ?? "no title")
                     Text(store.state.sharedUrlDescription ?? "no description")
                     Text(store.state.sharedUrlImageUrl?.absoluteString ?? "no image url")
@@ -53,7 +77,7 @@ struct SharedUrlEditView: View {
 }
 
 struct SharedUrlEditView_Previews: PreviewProvider {
-    class Dependency: SharedUrlEditViewDependency {
+    class Dependency: SharedUrlEditViewRootDependency {
         class Complete: Completable {
             func complete() {}
             func cancel(with: Error) {}
@@ -85,11 +109,11 @@ struct SharedUrlEditView_Previews: PreviewProvider {
     }()
 
     static var previews: some View {
-        let store = Store(initialState: SharedUrlEditViewState(),
+        let store = Store(initialState: SharedUrlEditViewRootState(),
                           dependency: dependency,
-                          reducer: SharedUrlEditViewReducer())
+                          reducer: sharedUrlEditViewRootReducer)
         let viewStore = ViewStore(store: store)
 
-        SharedUrlEditView(store: viewStore)
+        SharedUrlEditView(viewStore)
     }
 }

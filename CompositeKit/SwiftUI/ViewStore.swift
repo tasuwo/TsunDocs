@@ -45,3 +45,31 @@ public class ViewStore<State: Equatable, Action: CompositeKit.Action, Dependency
         })
     }
 }
+
+public extension ViewStore {
+    func proxy<
+        ChildState: Equatable,
+        ChildAction: CompositeKit.Action,
+        ChildDependency
+    >(
+        _ stateMapping: StateMapping<State, ChildState>,
+        _ actionMapping: ActionMapping<Action, ChildAction>
+    ) -> StoreProxy<
+        ChildState,
+        ChildAction,
+        ChildDependency,
+        State,
+        Action,
+        Dependency
+    > {
+        return .init(store: store,
+                     stateMapping: stateMapping,
+                     actionMapping: actionMapping)
+    }
+}
+
+public extension Storing {
+    func viewStore() -> ViewStore<State, Action, Dependency> {
+        return ViewStore(store: self)
+    }
+}

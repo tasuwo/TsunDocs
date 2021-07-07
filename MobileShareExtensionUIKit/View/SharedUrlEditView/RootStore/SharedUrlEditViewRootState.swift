@@ -10,6 +10,13 @@ struct SharedUrlEditViewRootState: Equatable {
 }
 
 extension SharedUrlEditViewRootState {
+    init() {
+        self.edit = .init()
+        self.image = .init(imageUrl: nil)
+    }
+}
+
+extension SharedUrlEditViewRootState {
     static let mappingToEdit: StateMapping<Self, SharedUrlEditViewState> = .init(keyPath: \Self.edit)
     static let mappingToImage: StateMapping<Self, SharedUrlImageState> = .init(keyPath: \Self.image)
 }
