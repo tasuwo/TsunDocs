@@ -22,4 +22,5 @@ public extension SharedUrlImageState {
 
 extension SharedUrlImageState {
     var visibleDeleteButton: Bool { selectedEmoji != nil }
+    var visibleEmojiLoadButton: Bool { imageUrl != nil && selectedEmoji == nil }
 }

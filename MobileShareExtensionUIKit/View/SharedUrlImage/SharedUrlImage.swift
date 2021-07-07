@@ -28,36 +28,33 @@ struct SharedUrlThumbnail: View {
 
     private var thumbnail: some View {
         Group {
-            if let imageUrl = store.state.imageUrl {
-                ZStack {
-                    AsyncImage(url: imageUrl,
-                               status: store.bind(\.thumbnailLoadingStatus, action: { .updatedThumbnail($0) }),
-                               factory: imageLoaderFactory) {
-                        Color.gray.opacity(0.4)
+            if let emoji = store.state.selectedEmoji {
+                Color.green.opacity(0.4)
+                    .overlay(
+                        Text(emoji.emoji)
+                            .font(.system(size: 32))
+                    )
+                    .onTapGesture {
+                        store.execute(.didTapSelectEmoji)
                     }
-                    .aspectRatio(contentMode: .fill)
-
-                    if store.state.thumbnailLoadingStatus == .failed
-                        || store.state.thumbnailLoadingStatus == .cancelled
-                    {
-                        Image(systemName: "arrow.clockwise")
-                            .font(.system(size: 24))
-                            .foregroundColor(.gray.opacity(0.7))
-                            .onTapGesture {
-                                // TODO: Reload
-                            }
-                    }
-                }
             } else {
-                if let emoji = store.state.selectedEmoji {
-                    Color.green.opacity(0.4)
-                        .overlay(
-                            Text(emoji.emoji)
-                                .font(.system(size: 28))
-                        )
-                        .onTapGesture {
-                            store.execute(.didTapSelectEmoji)
+                if let imageUrl = store.state.imageUrl {
+                    ZStack {
+                        AsyncImage(url: imageUrl,
+                                   status: store.bind(\.thumbnailLoadingStatus, action: { .updatedThumbnail($0) }),
+                                   factory: imageLoaderFactory) {
+                            Color.gray.opacity(0.4)
                         }
+                        .aspectRatio(contentMode: .fill)
+
+                        if store.state.thumbnailLoadingStatus == .failed
+                            || store.state.thumbnailLoadingStatus == .cancelled
+                        {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 24))
+                                .foregroundColor(.gray.opacity(0.7))
+                        }
+                    }
                 } else {
                     Color.gray.opacity(0.4)
                         .overlay(
@@ -86,7 +83,7 @@ struct SharedUrlThumbnail: View {
 
             if store.state.visibleDeleteButton {
                 Image(systemName: "xmark")
-                    .font(.system(size: 12).bold())
+                    .font(.system(size: 14).bold())
                     .foregroundColor(.white)
                     .frame(width: 25, height: 25)
                     .background(Color.gray)
@@ -98,7 +95,19 @@ struct SharedUrlThumbnail: View {
                     }
             }
 
-            // TODO: 絵文字置き換えボタンの配置
+            if store.state.visibleEmojiLoadButton {
+                Image(systemName: "face.smiling")
+                    .font(.system(size: 14).bold())
+                    .foregroundColor(.white)
+                    .frame(width: 25, height: 25)
+                    .background(Color.green)
+                    .clipShape(RoundedRectangle(cornerRadius: 25 / 2, style: .continuous))
+                    .offset(x: (thumbnailSize / 2) - 6,
+                            y: (thumbnailSize / 2) - 6)
+                    .onTapGesture {
+                        store.execute(.didTapSelectEmoji)
+                    }
+            }
         }
     }
 }
