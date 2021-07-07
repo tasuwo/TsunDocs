@@ -7,7 +7,7 @@ import Domain
 import SwiftUI
 import TsunDocsUIKit
 
-struct SharedUrlThumbnail: View {
+struct SharedUrlImage: View {
     // MARK: - Properties
 
     private let thumbnailSize: CGFloat = 80
@@ -142,7 +142,7 @@ struct SharedUrlThumbnailView_Previews: PreviewProvider {
                               reducer: SharedUrlImageReducer())
             let viewStore = ViewStore(store: store)
 
-            SharedUrlThumbnail(store: viewStore, imageLoaderFactory: imageLoaderFactory)
+            SharedUrlImage(store: viewStore, imageLoaderFactory: imageLoaderFactory)
         }
     }
 
