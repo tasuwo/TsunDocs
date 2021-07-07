@@ -204,6 +204,7 @@
 		A86D42C64DB0C334F77F6080 /* Domain.AutoDefaultValue.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */; };
 		A90FB126B070151C19D7F174 /* ObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9067959A9FE67AC28B9975B /* ObservedEntity.swift */; };
 		A926E9C0D9D59E512A1E5AA1 /* AnyObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56B664262DBD1E23EFEAF8F /* AnyObservedEntity.swift */; };
+		A931EBC84A453046E52EE449 /* Environment+ImageLoaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1953AEC0000F8BB8582BA0FA /* Environment+ImageLoaderFactory.swift */; };
 		A9A3E7450B98AF06272C8EC1 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265617AD24F188BE4827D108 /* SafariView.swift */; };
 		AB3636FA8A221E72D178200E /* WeakContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AD00BB2DCA41D989959A72 /* WeakContainer.swift */; };
 		AB8BC00E06F1513505AD5131 /* ViewContextObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20359867208A7C1CD2A407E /* ViewContextObserving.swift */; };
@@ -218,6 +219,7 @@
 		B3D6455B7E36FBED921D3AE2 /* ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74F677B4CEBA05B55CDD8DA /* ServiceDependencies.swift */; };
 		B428C9B70E21C862A1491B50 /* WeakContainerArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE05EA9AD3B4E208ED7C6D52 /* WeakContainerArray.swift */; };
 		B4FEC9E84E455A8A4B0B2FC7 /* TsundocCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184644999F656C54E44F478A /* TsundocCell.swift */; };
+		B603FCDB0EB47C3FD613E5F3 /* Environment+ImageLoaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1953AEC0000F8BB8582BA0FA /* Environment+ImageLoaderFactory.swift */; };
 		B80F5432ABF3CB2732F5C78C /* CoreDataCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C14ED7496449B824AA1F9 /* CoreDataCommandService.swift */; };
 		B86393169F91F82E7FDB898F /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B627E584457D6A01023EFB9B /* Reducer.swift */; };
 		B95A63CCDD2846CC268ED7A0 /* Persistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C0DCB7221B326130827769 /* Persistence.framework */; };
@@ -488,6 +490,7 @@
 		16C3B52AB194BF07056E0FBF /* TsundocCommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocCommandService.swift; sourceTree = "<group>"; };
 		175F8D44D9118CFFDD862FAE /* Shared.ProtocolMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.ProtocolMocks.swift; sourceTree = "<group>"; };
 		184644999F656C54E44F478A /* TsundocCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocCell.swift; sourceTree = "<group>"; };
+		1953AEC0000F8BB8582BA0FA /* Environment+ImageLoaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+ImageLoaderFactory.swift"; sourceTree = "<group>"; };
 		1AB9180BF53336E2369C3393 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B7CFB028496441B4FDE1D13 /* Result+Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Value.swift"; sourceTree = "<group>"; };
 		1BD25FD78889125168D790D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1075,6 +1078,7 @@
 				78EA26B293019C47A5F3947F /* Info.plist */,
 				1CC088DED423E1AC52ECAB87 /* TsunDocsUIKit.h */,
 				BF6F8E9FD5DCE8FA987979EF /* Common */,
+				857FD51E5E9B820D95740E9F /* Environment */,
 				B02B9869F249AED50F6B5D1F /* Resources */,
 				E59BEF475365F68252D393CD /* View */,
 			);
@@ -1100,6 +1104,14 @@
 			);
 			name = URL;
 			path = "Preview Content/Mocks/Manual/URL";
+			sourceTree = "<group>";
+		};
+		857FD51E5E9B820D95740E9F /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				1953AEC0000F8BB8582BA0FA /* Environment+ImageLoaderFactory.swift */,
+			);
+			path = Environment;
 			sourceTree = "<group>";
 		};
 		861F265BC0560F80597ABAEC /* CoreData */ = {
@@ -2022,6 +2034,7 @@
 			files = (
 				13091937BDECF173E805F047 /* AsyncImage.swift in Sources */,
 				9EC8C4A76F0FCC73C4243CB7 /* Bundle.swift in Sources */,
+				A931EBC84A453046E52EE449 /* Environment+ImageLoaderFactory.swift in Sources */,
 				2A6C0B5A561CDBC1C0A33A62 /* HTTPURLResponse+Mock.swift in Sources */,
 				D7822DCA3298820D98A202FD /* TagCell.swift in Sources */,
 				9E9952DD2D741B7830E8DDD8 /* TagGrid.swift in Sources */,
@@ -2066,6 +2079,7 @@
 			files = (
 				F0444E11C4B846BB44349ABD /* AsyncImage.swift in Sources */,
 				8C1DEE084732170B3E134782 /* Bundle.swift in Sources */,
+				B603FCDB0EB47C3FD613E5F3 /* Environment+ImageLoaderFactory.swift in Sources */,
 				4BA4F909799695EA2B0A9698 /* HTTPURLResponse+Mock.swift in Sources */,
 				7189F29060A31CCF246881AB /* TagCell.swift in Sources */,
 				0E618FF5EA3EDC3DC3E0E135 /* TagGrid.swift in Sources */,

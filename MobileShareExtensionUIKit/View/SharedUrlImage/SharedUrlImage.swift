@@ -11,18 +11,9 @@ struct SharedUrlImage: View {
     // MARK: - Properties
 
     private let thumbnailSize: CGFloat = 80
-    private let imageLoaderFactory: Factory<ImageLoader>
 
+    @Environment(\.imageLoaderFactory) var imageLoaderFactory
     @StateObject var store: ViewStore<SharedUrlImageState, SharedUrlImageAction, SharedUrlImageDependency>
-
-    // MARK: - Initializers
-
-    init(store: ViewStore<SharedUrlImageState, SharedUrlImageAction, SharedUrlImageDependency>,
-         imageLoaderFactory: Factory<ImageLoader> = .default)
-    {
-        self._store = StateObject(wrappedValue: store)
-        self.imageLoaderFactory = imageLoaderFactory
-    }
 
     // MARK: - View
 
@@ -142,7 +133,8 @@ struct SharedUrlThumbnailView_Previews: PreviewProvider {
                               reducer: SharedUrlImageReducer())
             let viewStore = ViewStore(store: store)
 
-            SharedUrlImage(store: viewStore, imageLoaderFactory: imageLoaderFactory)
+            SharedUrlImage(store: viewStore)
+                .environment(\.imageLoaderFactory, imageLoaderFactory)
         }
     }
 
