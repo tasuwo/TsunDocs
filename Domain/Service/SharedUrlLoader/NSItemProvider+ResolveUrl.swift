@@ -3,7 +3,6 @@
 //
 
 import Combine
-import Foundation
 import UniformTypeIdentifiers
 
 extension NSItemProvider {

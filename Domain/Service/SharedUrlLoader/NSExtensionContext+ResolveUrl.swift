@@ -3,7 +3,6 @@
 //
 
 import Combine
-import Foundation
 
 extension NSExtensionContext {
     func resolveUrls(_ completion: @escaping ([URL]) -> Void) -> AnyCancellable? {

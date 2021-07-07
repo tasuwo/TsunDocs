@@ -5,7 +5,7 @@
 import Combine
 import Foundation
 
-class SharedUrlLoader: ObservableObject {
+public class SharedUrlLoader: ObservableObject {
     // MARK: - Properties
 
     private let context: NSExtensionContext
@@ -13,7 +13,7 @@ class SharedUrlLoader: ObservableObject {
 
     // MARK: - Initializers
 
-    init(_ context: NSExtensionContext) {
+    public init(_ context: NSExtensionContext) {
         self.context = context
     }
 
@@ -23,7 +23,7 @@ class SharedUrlLoader: ObservableObject {
 
     // MARK: - Methods
 
-    func load(_ completion: @escaping (URL?) -> Void) {
+    public func load(_ completion: @escaping (URL?) -> Void) {
         cancellable = context
             .resolveUrls { urls in
                 completion(urls.first)
