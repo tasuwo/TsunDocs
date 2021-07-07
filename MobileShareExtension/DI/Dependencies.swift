@@ -8,8 +8,8 @@ protocol HasSharedUrlLoader {
     var sharedUrlLoader: SharedUrlLoader { get }
 }
 
-protocol HasSharedUrlMetaResolver {
-    var sharedUrlMetaResolver: SharedUrlMetaResolver { get }
+protocol HasWebPageMetaResolver {
+    var webPageMetaResolver: WebPageMetaResolver { get }
 }
 
 protocol HasTsundocCommandService {

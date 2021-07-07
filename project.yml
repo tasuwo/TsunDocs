@@ -198,6 +198,7 @@ targets:
       - path: Domain
     dependencies:
       - framework: Carthage/Build/Smile.xcframework
+      - framework: Carthage/Build/Kanna.xcframework
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES
@@ -239,8 +240,6 @@ targets:
       - target: Persistence_iOS
       - target: CompositeKit_iOS
       - target: MobileShareExtensionUIKit
-      - framework: Carthage/Build/Kanna.xcframework
-        embed: true
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: MobileShareExtension/MobileShareExtension.entitlements

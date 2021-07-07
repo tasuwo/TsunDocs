@@ -15,7 +15,7 @@ class DependencyContainer: ObservableObject {
     // MARK: Shared Url
 
     private let _sharedUrlLoader: SharedUrlLoader
-    private let _sharedUrlMetaResolver: SharedUrlMetaResolver
+    private let _webPageMetaResolver: WebPageMetaResolver
 
     // MARK: CoreData
 
@@ -33,7 +33,7 @@ class DependencyContainer: ObservableObject {
         self.context = context
 
         _sharedUrlLoader = SharedUrlLoader(context)
-        _sharedUrlMetaResolver = SharedUrlMetaResolver()
+        _webPageMetaResolver = WebPageMetaResolver()
 
         container = PersistentContainer(author: .shareExtension)
         commandContext = container.newBackgroundContext(on: commandQueue)
@@ -46,8 +46,8 @@ extension DependencyContainer: HasSharedUrlLoader {
     var sharedUrlLoader: SharedUrlLoader { _sharedUrlLoader }
 }
 
-extension DependencyContainer: HasSharedUrlMetaResolver {
-    var sharedUrlMetaResolver: SharedUrlMetaResolver { _sharedUrlMetaResolver }
+extension DependencyContainer: HasWebPageMetaResolver {
+    var webPageMetaResolver: WebPageMetaResolver { _webPageMetaResolver }
 }
 
 extension DependencyContainer: HasTsundocCommandService {

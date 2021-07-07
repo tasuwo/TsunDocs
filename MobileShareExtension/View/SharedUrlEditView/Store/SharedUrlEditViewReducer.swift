@@ -6,7 +6,7 @@ import Combine
 import CompositeKit
 
 typealias SharedUrlEditViewDependency = HasSharedUrlLoader
-    & HasSharedUrlMetaResolver
+    & HasWebPageMetaResolver
     & HasTsundocCommandService
 
 struct SharedUrlEditViewReducer: Reducer {
@@ -87,7 +87,7 @@ extension SharedUrlEditViewReducer {
                             return
                         }
 
-                        let meta = try? dependency.sharedUrlMetaResolver.resolve(from: url)
+                        let meta = try? dependency.webPageMetaResolver.resolve(from: url)
                         promise(.success(.onLoad(url, meta)))
                     }
                 }

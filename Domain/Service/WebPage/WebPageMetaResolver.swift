@@ -2,22 +2,21 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
-import Domain
 import Kanna
 
-class SharedUrlMetaResolver {
-    struct SharedUrlMeta {
-        let title: String?
-        let description: String?
-        let imageUrl: URL?
-    }
+public struct WebPageMetaResolver {
+    // MARK: - Initializers
 
-    func resolve(from url: URL) throws -> SharedUrlMeta {
+    public init() {}
+
+    // MARK: - Methods
+
+    public func resolve(from url: URL) throws -> WebPageMeta {
         let doc = try Kanna.HTML(url: url, encoding: .utf8)
 
-        return SharedUrlMeta(title: doc.title,
-                             description: resolveDescription(doc: doc),
-                             imageUrl: resolveOgpImageUrl(doc: doc))
+        return WebPageMeta(title: doc.title,
+                           description: resolveDescription(doc: doc),
+                           imageUrl: resolveOgpImageUrl(doc: doc))
     }
 
     private func resolveDescription(doc: HTMLDocument) -> String? {

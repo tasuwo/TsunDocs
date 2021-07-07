@@ -3,10 +3,11 @@
 //
 
 import CompositeKit
+import Domain
 
 enum SharedUrlEditViewAction {
     case onAppear
-    case onLoad(URL, SharedUrlMetaResolver.SharedUrlMeta?)
+    case onLoad(URL, WebPageMeta?)
     case onTapButton
     case onFailedToLoadUrl
     case errorConfirmed
