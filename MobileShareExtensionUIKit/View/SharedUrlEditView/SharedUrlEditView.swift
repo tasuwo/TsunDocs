@@ -104,18 +104,32 @@ struct SharedUrlEditView_Previews: PreviewProvider {
         }
 
         dependency._webPageMetaResolver.resolveHandler = { _ in
-            return WebPageMeta(title: "My Title", description: "Web Page Description", imageUrl: nil)
+            return WebPageMeta(title: "My Title",
+                               description: "Web Page Description",
+                               imageUrl: URL(string: "https://localhost"))
         }
 
         return dependency
     }()
+
+    class SuccessMock: URLProtocolMockBase {
+        override class var mock_delay: TimeInterval? { 3 }
+        override class var mock_handler: ((URLRequest) throws -> (HTTPURLResponse, Data?))? {
+            // swiftlint:disable:next force_unwrapping
+            return { _ in (.mock_success, UIImage(named: "320x320", in: Bundle.this, with: nil)!.pngData()) }
+        }
+    }
 
     static var previews: some View {
         let store = Store(initialState: SharedUrlEditViewRootState(),
                           dependency: dependency,
                           reducer: sharedUrlEditViewRootReducer)
         let viewStore = ViewStore(store: store)
+        let imageLoaderFactory = Factory<ImageLoader> {
+            .init(urlSession: .makeMock(SuccessMock.self))
+        }
 
         SharedUrlEditView(viewStore)
+            .environment(\.imageLoaderFactory, imageLoaderFactory)
     }
 }
