@@ -19,3 +19,5 @@ protocol HasTsundocCommandService {
 protocol HasCompletable {
     var completable: Completable { get }
 }
+
+protocol HasNop {}

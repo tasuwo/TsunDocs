@@ -6,7 +6,7 @@ import Combine
 import CompositeKit
 import Domain
 
-typealias SharedUrlImageDependency = Void
+typealias SharedUrlImageDependency = HasNop
 
 struct SharedUrlImageReducer: Reducer {
     typealias Dependency = SharedUrlImageDependency

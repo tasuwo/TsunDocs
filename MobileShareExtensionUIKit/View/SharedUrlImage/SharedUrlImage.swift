@@ -131,12 +131,14 @@ struct SharedUrlThumbnailView_Previews: PreviewProvider {
     }
 
     struct Container: View {
+        class Nop: HasNop {}
+
         let imageUrl: URL?
         let imageLoaderFactory: Factory<ImageLoader>
 
         var body: some View {
             let store = Store(initialState: SharedUrlImageState(imageUrl: imageUrl),
-                              dependency: (),
+                              dependency: Nop(),
                               reducer: SharedUrlImageReducer())
             let viewStore = ViewStore(store: store)
 
