@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -545,7 +545,7 @@
 		30AAD67C51AA7E03591D09EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3425C767AC7288629755D4E3 /* Tag+MapToDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+MapToDomainModel.swift"; sourceTree = "<group>"; };
 		36703B036CCADF3624EF5269 /* StoreProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProxy.swift; sourceTree = "<group>"; };
-		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "TsunDocs (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; name = "TsunDocs (iOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37AD00BB2DCA41D989959A72 /* WeakContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakContainer.swift; sourceTree = "<group>"; };
 		3C17957E9629E1F1A6CB0813 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		3EFBF2205272BE3F44A11ED2 /* TsundocListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocListState.swift; sourceTree = "<group>"; };
@@ -630,7 +630,7 @@
 		BA4C35C0C8A9FE8563155A69 /* AnyObservedEntityArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObservedEntityArray.swift; sourceTree = "<group>"; };
 		BB9070253312E7A2D1F48C11 /* AnyStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyStoring.swift; sourceTree = "<group>"; };
 		BC3B640A2AE2A490958D8BCF /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
-		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TsunDocs (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "TsunDocs (macOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBC7EFEBB894E7ED12CC88E /* SharedUrlEditViewRootReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUrlEditViewRootReducer.swift; sourceTree = "<group>"; };
 		C35799AA535128C2EE05F11B /* CompositeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CompositeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3D92ADC603712BA89BF1D42 /* Completable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completable.swift; sourceTree = "<group>"; };
@@ -811,7 +811,6 @@
 			isa = PBXGroup;
 			children = (
 				4005A46521343EC5AAB40193 /* ObservedTsundocArrayMock.swift */,
-				8490AB23A3407374BE24B94C /* URL */,
 			);
 			path = Manual;
 			sourceTree = "<group>";
@@ -1175,7 +1174,7 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		8C5CE23B58604B05A6789586 /* TextAlert */ = {
+		8C5CE23B58604B05A6789586 /* TextEditAlert */ = {
 			isa = PBXGroup;
 			children = (
 				EEC414276A69C943575633E7 /* TextEditAlert.swift */,
@@ -1184,7 +1183,7 @@
 				D72967E9A6A9F2844C5C0627 /* TextEditAlertWrapper.swift */,
 				B384E0014DC62F08B6DF2D9F /* Store */,
 			);
-			path = TextAlert;
+			path = TextEditAlert;
 			sourceTree = "<group>";
 		};
 		90FA9BBF04604F13BF03A3CA /* Struct */ = {
@@ -1256,7 +1255,6 @@
 			isa = PBXGroup;
 			children = (
 				0AF84BA0FB5367367F847128 /* Manual */,
-				2DFADEEAB84AFFA0447A9497 /* Protocol */,
 				90FA9BBF04604F13BF03A3CA /* Struct */,
 			);
 			path = Mocks;
@@ -1450,7 +1448,7 @@
 				F0B136162E98378F1B9BAB41 /* AsyncImage.swift */,
 				C7FF7B08ECDDFE497F290709 /* Extensions */,
 				2A80D71BBCDB5A2E296FB970 /* Tag */,
-				8C5CE23B58604B05A6789586 /* TextAlert */,
+				8C5CE23B58604B05A6789586 /* TextEditAlert */,
 			);
 			path = View;
 			sourceTree = "<group>";
