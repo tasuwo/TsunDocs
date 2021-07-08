@@ -292,6 +292,7 @@ targets:
       - Preview Content/Preview Assets.xcassets
     dependencies:
       - target: Domain_${platform}
+      - target: CompositeKit_${platform}
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES
