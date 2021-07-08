@@ -4,12 +4,13 @@
 
 import SwiftUI
 
-struct TextEditAlertWrapper {
+struct TextEditAlertWrapper<Content: View> {
     typealias Coordinator = TextEditAlertCoordinator
 
     @Binding var isPresenting: Bool
 
     let text: String
+    let content: Content
     let config: TextEditAlertConfig
 }
 
@@ -20,11 +21,14 @@ extension TextEditAlertWrapper: UIViewControllerRepresentable {
         return Coordinator(config: config) { isPresenting = false }
     }
 
-    func makeUIViewController(context: Context) -> some UIViewController {
-        UIViewController()
+    func makeUIViewController(context: Context) -> UIHostingController<Content> {
+        UIHostingController(rootView: content)
     }
 
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        uiViewController.rootView = content
+        context.coordinator.update(config)
+
         if isPresenting, !uiViewController.isPresenting(context.coordinator.alertController) {
             context.coordinator.present(text: text, on: uiViewController)
         }

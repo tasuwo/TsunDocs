@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  TsunDocs
+
+  Created by Tasuku Tozawa on 2021/07/09.
+  Copyright © 2021 Tasuku Tozawa. All rights reserved.
+*/
+
+"text_edit_alert_save_action" = "保存";
+"text_edit_alert_cancel_action" = "キャンセル";

@@ -4,32 +4,9 @@
 
 import SwiftUI
 
-public struct TextEditAlert: View {
-    // MARK: - Properties
-
-    @Binding var isPresenting: Bool
-    let text: String
-    let config: TextEditAlertConfig
-
-    // MARK: - Initializers
-
-    public init(isPresenting: Binding<Bool>,
-                text: String,
-                config: TextEditAlertConfig)
-    {
-        self._isPresenting = isPresenting
-        self.text = text
-        self.config = config
-    }
-
-    // MARK: - View
-
-    public var body: some View {
-        TextEditAlertWrapper(isPresenting: $isPresenting,
-                             text: text,
-                             config: config)
-            .background(Color.clear)
-            .allowsHitTesting(false)
+public extension View {
+    func alert(isPresenting: Binding<Bool>, text: String, config: TextEditAlertConfig) -> some View {
+        TextEditAlertWrapper(isPresenting: isPresenting, text: text, content: self, config: config)
     }
 }
 
@@ -57,35 +34,31 @@ struct TextEditAlert_Previews: PreviewProvider {
         @State private var lastAction: Action?
 
         var body: some View {
-            ZStack {
-                VStack {
-                    Text(message)
-                        .padding()
-
-                    Text("Last Action is \(lastAction?.label ?? "none")")
-                        .padding()
-
-                    Button("Press Me") {
-                        isPresenting.toggle()
-                    }
+            VStack {
+                Text(message)
                     .padding()
 
-                    Button("Change Text") {
-                        message = String(UUID().uuidString.prefix(6))
-                    }
+                Text("Last Action is \(lastAction?.label ?? "none")")
                     .padding()
+
+                Button("Press Me") {
+                    isPresenting.toggle()
                 }
+                .padding()
 
-                let config = TextEditAlertConfig(title: "My Title",
-                                                 message: "My Message",
-                                                 placeholder: "Placeholder",
-                                                 validator: { $0?.count ?? 0 > 5 },
-                                                 saveAction: { lastAction = .saved($0) },
-                                                 cancelAction: { lastAction = .cancelled })
-                TextEditAlert(isPresenting: $isPresenting,
-                              text: message,
-                              config: config)
+                Button("Change Text") {
+                    message = String(UUID().uuidString.prefix(6))
+                }
+                .padding()
             }
+            .alert(isPresenting: $isPresenting,
+                   text: message,
+                   config: TextEditAlertConfig(title: "My Title",
+                                               message: "My Message",
+                                               placeholder: "Placeholder",
+                                               validator: { $0?.count ?? 0 > 5 },
+                                               saveAction: { lastAction = .saved($0) },
+                                               cancelAction: { lastAction = .cancelled }))
         }
     }
 

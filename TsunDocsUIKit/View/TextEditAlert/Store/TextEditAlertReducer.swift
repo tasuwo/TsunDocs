@@ -27,6 +27,12 @@ struct TextEditAlertReducer: Reducer {
             nextState.isInvalidated = false
             return (nextState, .none)
 
+        case let .configUpdated(title: title, message: message, placeholder: placeholder):
+            nextState.title = title
+            nextState.message = message
+            nextState.placeholder = placeholder
+            return (nextState, .none)
+
         case let .textChanged(text: text):
             nextState.text = text
             nextState.shouldReturn = dependency.validator?(text) ?? true

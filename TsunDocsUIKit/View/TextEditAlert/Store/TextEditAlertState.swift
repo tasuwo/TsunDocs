@@ -3,9 +3,9 @@
 //
 
 struct TextEditAlertState: Equatable {
-    let title: String?
-    let message: String?
-    let placeholder: String
+    var title: String?
+    var message: String?
+    var placeholder: String
     var text: String
     var shouldReturn: Bool
     var isInvalidated: Bool

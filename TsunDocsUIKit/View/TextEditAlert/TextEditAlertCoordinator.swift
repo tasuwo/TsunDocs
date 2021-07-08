@@ -14,22 +14,33 @@ class TextEditAlertCoordinator: NSObject {
         weak var store: Store?
 
         deinit {
-            completion?()
             store?.execute(.dismissed)
+            completion?()
         }
     }
 
-    private struct Dependency: TextEditAlertDependency {
+    private class Dependency: TextEditAlertDependency {
         var validator: ((String?) -> Bool)?
         var saveAction: ((String) -> Void)?
         var cancelAction: (() -> Void)?
+
+        init(validator: ((String?) -> Bool)?,
+             saveAction: ((String) -> Void)?,
+             cancelAction: (() -> Void)?)
+        {
+            self.validator = validator
+            self.saveAction = saveAction
+            self.cancelAction = cancelAction
+        }
     }
 
     // MARK: - Properties
 
     private let store: Store
     private let completion: () -> Void
+    private let dependency: Dependency
     private var subscriptions: Set<AnyCancellable> = .init()
+
     private weak var presentingAlert: AlertController?
     private weak var presentingSaveAction: UIAlertAction?
 
@@ -44,6 +55,7 @@ class TextEditAlertCoordinator: NSObject {
         let dependency = Dependency(validator: config.validator,
                                     saveAction: config.saveAction,
                                     cancelAction: config.cancelAction)
+        self.dependency = dependency
 
         self.store = .init(initialState: state,
                            dependency: dependency,
@@ -57,6 +69,15 @@ class TextEditAlertCoordinator: NSObject {
 
     // MARK: - Methods
 
+    func update(_ config: TextEditAlertConfig) {
+        dependency.validator = config.validator
+        dependency.saveAction = config.saveAction
+        dependency.cancelAction = config.cancelAction
+        store.execute(.configUpdated(title: config.title,
+                                     message: config.message,
+                                     placeholder: config.placeholder))
+    }
+
     func present(text: String,
                  on viewController: UIViewController)
     {
@@ -69,13 +90,13 @@ class TextEditAlertCoordinator: NSObject {
 
         store.execute(.textChanged(text: text))
 
-        let saveAction = UIAlertAction(title: "hoge", style: .default) { [weak self] _ in
+        let saveAction = UIAlertAction(title: "text_edit_alert_save_action".localized, style: .default) { [weak self] _ in
             self?.store.execute(.saveActionTapped)
         }
         alert.addAction(saveAction)
         saveAction.isEnabled = store.stateValue.shouldReturn
 
-        let cancelAction = UIAlertAction(title: "piyo", style: .cancel) { [weak self] _ in
+        let cancelAction = UIAlertAction(title: "text_edit_alert_cancel_action".localized, style: .cancel) { [weak self] _ in
             self?.store.execute(.cancelActionTapped)
         }
         alert.addAction(cancelAction)
@@ -117,6 +138,27 @@ extension TextEditAlertCoordinator {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 self?.presentingSaveAction?.isEnabled = state.shouldReturn
+            }
+            .store(in: &subscriptions)
+
+        store.state
+            .receive(on: DispatchQueue.main)
+            .bind(\.title) { [weak self] title in
+                self?.presentingAlert?.title = title
+            }
+            .store(in: &subscriptions)
+
+        store.state
+            .receive(on: DispatchQueue.main)
+            .bind(\.message) { [weak self] message in
+                self?.presentingAlert?.message = message
+            }
+            .store(in: &subscriptions)
+
+        store.state
+            .receive(on: DispatchQueue.main)
+            .bind(\.placeholder) { [weak self] placeholder in
+                self?.presentingAlert?.textFields?.first?.placeholder = placeholder
             }
             .store(in: &subscriptions)
     }
