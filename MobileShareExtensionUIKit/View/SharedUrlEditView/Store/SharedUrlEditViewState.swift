@@ -28,15 +28,10 @@ extension SharedUrlEditViewState {
 extension SharedUrlEditViewState {
     func command() -> TsundocCommand? {
         guard let url = sharedUrl else { return nil }
-
-        let thumbnailSource: TsundocThumbnailSource? = {
-            guard let url = sharedUrlImageUrl else { return nil }
-            return .imageUrl(url)
-        }()
-
         return TsundocCommand(title: sharedUrlTitle ?? "",
                               description: sharedUrlDescription,
                               url: url,
-                              thumbnailSource: thumbnailSource)
+                              imageUrl: sharedUrlImageUrl,
+                              emojiAlias: selectedEmoji?.alias)
     }
 }

@@ -54,13 +54,15 @@ extension TsundocCommand {
         title: String = "",
         description: String? = nil,
         url: URL = URL(string: "https://xxx.xxxx.xx")!,
-        thumbnailSource: TsundocThumbnailSource? = nil
+        imageUrl: URL? = nil,
+        emojiAlias: String? = nil
     ) -> Self {
         return .init(
             title: title,
             description: description,
             url: url,
-            thumbnailSource: thumbnailSource
+            imageUrl: imageUrl,
+            emojiAlias: emojiAlias
         )
     }
 }

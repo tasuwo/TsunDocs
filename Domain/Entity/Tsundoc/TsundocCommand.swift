@@ -11,18 +11,21 @@ public struct TsundocCommand {
     public let title: String
     public let description: String?
     public let url: URL
-    public let thumbnailSource: TsundocThumbnailSource?
+    public let imageUrl: URL?
+    public let emojiAlias: String?
 
     // MARK: - Initializers
 
     public init(title: String,
                 description: String?,
                 url: URL,
-                thumbnailSource: TsundocThumbnailSource?)
+                imageUrl: URL?,
+                emojiAlias: String?)
     {
         self.title = title
         self.description = description
         self.url = url
-        self.thumbnailSource = thumbnailSource
+        self.imageUrl = imageUrl
+        self.emojiAlias = emojiAlias
     }
 }

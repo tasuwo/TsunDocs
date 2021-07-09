@@ -28,17 +28,8 @@ extension TsundocCommandService: Domain.TsundocCommandService {
         tsundoc.title = command.title
         tsundoc.descriptionText = command.description
         tsundoc.url = command.url
-
-        switch command.thumbnailSource {
-        case let .emoji(alias):
-            tsundoc.emojiAlias = alias
-
-        case let .imageUrl(url):
-            tsundoc.imageUrl = url
-
-        case .none:
-            break
-        }
+        tsundoc.emojiAlias = command.emojiAlias
+        tsundoc.imageUrl = command.imageUrl
 
         let currentDate = Date()
         tsundoc.createdDate = currentDate
