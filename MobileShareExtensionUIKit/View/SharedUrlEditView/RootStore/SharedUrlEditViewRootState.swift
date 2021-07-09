@@ -13,7 +13,8 @@ struct SharedUrlEditViewRootState: Equatable {
                   sharedUrlDescription: sharedUrlDescription,
                   sharedUrlImageUrl: sharedUrlImageUrl,
                   selectedEmoji: selectedEmoji,
-                  alert: alert)
+                  alert: alert,
+                  isTitleEditAlertPresenting: isTitleEditAlertPresenting)
         }
         set {
             sharedUrl = newValue.sharedUrl
@@ -22,6 +23,7 @@ struct SharedUrlEditViewRootState: Equatable {
             sharedUrlImageUrl = newValue.sharedUrlImageUrl
             selectedEmoji = newValue.selectedEmoji
             alert = newValue.alert
+            isTitleEditAlertPresenting = newValue.isTitleEditAlertPresenting
         }
     }
 
@@ -51,6 +53,7 @@ struct SharedUrlEditViewRootState: Equatable {
     var sharedUrlTitle: String?
     var sharedUrlDescription: String?
     var alert: SharedUrlEditViewState.Alert?
+    var isTitleEditAlertPresenting: Bool
 
     // MARK: - SharedUrlImageState
 
@@ -60,6 +63,7 @@ struct SharedUrlEditViewRootState: Equatable {
 
 extension SharedUrlEditViewRootState {
     init() {
+        isTitleEditAlertPresenting = false
         isSelectingEmoji = false
     }
 }

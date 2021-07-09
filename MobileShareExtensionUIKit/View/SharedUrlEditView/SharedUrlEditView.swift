@@ -53,7 +53,7 @@ struct SharedUrlEditView: View {
                         .padding(.bottom)
 
                     HStack {
-                        if let title = store.state.sharedUrlTitle {
+                        if let title = store.state.sharedUrlTitle, !title.isEmpty {
                             Text(title)
                                 .font(.title2)
                         } else {
@@ -69,6 +69,9 @@ struct SharedUrlEditView: View {
                         Image(systemName: "pencil.circle.fill")
                             .foregroundColor(.cyan)
                             .font(.title2)
+                            .onTapGesture {
+                                store.execute(.onTapEditTitleButton)
+                            }
                     }
                     .padding()
 
@@ -107,6 +110,17 @@ struct SharedUrlEditView: View {
                 fatalError("Invalid Alert")
             }
         })
+        .alert(isPresenting: store.bind(\.isTitleEditAlertPresenting,
+                                        action: { _ in .alertDismissed }),
+               text: store.state.sharedUrlTitle ?? "",
+               config: .init(title: "shared_url_edit_view_title_edit_title".localized,
+                             message: "shared_url_edit_view_title_edit_message".localized,
+                             placeholder: "shared_url_edit_view_title_edit_placeholder".localized,
+                             validator: { text in
+                                 store.state.sharedUrlTitle != text && text?.count ?? 0 > 0
+                             },
+                             saveAction: { store.execute(.onSaveTitle($0)) },
+                             cancelAction: nil))
     }
 }
 

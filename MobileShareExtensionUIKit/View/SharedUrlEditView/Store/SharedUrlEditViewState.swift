@@ -18,6 +18,7 @@ struct SharedUrlEditViewState: Equatable {
     var selectedEmoji: Emoji?
 
     var alert: Alert?
+    var isTitleEditAlertPresenting: Bool = false
 }
 
 extension SharedUrlEditViewState {

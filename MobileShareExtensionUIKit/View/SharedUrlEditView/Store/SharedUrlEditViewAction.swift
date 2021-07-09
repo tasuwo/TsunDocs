@@ -9,6 +9,8 @@ enum SharedUrlEditViewAction: Action {
     case onAppear
     case onLoad(URL, WebPageMeta?)
     case onTapSaveButton
+    case onTapEditTitleButton
+    case onSaveTitle(String)
     case onFailedToLoadUrl
     case onSelectedEmoji(Emoji?)
     case errorConfirmed

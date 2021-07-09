@@ -63,6 +63,14 @@ struct SharedUrlEditViewReducer: Reducer {
 
             return (nextState, .none)
 
+        case .onTapEditTitleButton:
+            nextState.isTitleEditAlertPresenting = true
+            return (nextState, .none)
+
+        case let .onSaveTitle(title):
+            nextState.sharedUrlTitle = title
+            return (nextState, .none)
+
         case .onFailedToLoadUrl:
             nextState.alert = .failedToLoadUrl
             return (nextState, .none)
@@ -77,6 +85,7 @@ struct SharedUrlEditViewReducer: Reducer {
 
         case .alertDismissed:
             nextState.alert = nil
+            nextState.isTitleEditAlertPresenting = false
             return (nextState, .none)
         }
     }
