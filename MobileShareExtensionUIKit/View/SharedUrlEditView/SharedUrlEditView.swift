@@ -48,13 +48,15 @@ public struct SharedUrlEditView: View {
                         .fixedSize()
 
                     Text(url.absoluteString)
+                        .lineLimit(2)
                         .foregroundColor(.gray)
                         .font(.caption)
-                        .padding(.bottom)
+                        .padding([.leading, .trailing, .bottom])
 
                     HStack {
                         if let title = store.state.sharedUrlTitle, !title.isEmpty {
                             Text(title)
+                                .lineLimit(3)
                                 .font(.title2)
                         } else {
                             Text("shared_url_edit_view_no_title", bundle: Bundle.this)
