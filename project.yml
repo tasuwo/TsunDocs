@@ -112,6 +112,8 @@ targets:
       - target: Persistence_iOS
       - target: TsunDocsUIKit_iOS
       - target: MobileShareExtension
+      - framework: Carthage/Build/Smile.xcframework
+      - framework: Carthage/Build/Kanna.xcframework
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -158,6 +160,8 @@ targets:
       - target: Domain_macOS
       - target: TsunDocsUIKit_macOS
       - target: Persistence_macOS
+      - framework: Carthage/Build/Smile.xcframework
+      - framework: Carthage/Build/Kanna.xcframework
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -240,6 +244,7 @@ targets:
       - target: Persistence_iOS
       - target: CompositeKit_iOS
       - target: MobileShareExtensionUIKit
+        embed: true
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: MobileShareExtension/MobileShareExtension.entitlements
