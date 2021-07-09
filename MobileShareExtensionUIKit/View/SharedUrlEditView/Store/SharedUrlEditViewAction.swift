@@ -8,7 +8,7 @@ import Domain
 enum SharedUrlEditViewAction: Action {
     case onAppear
     case onLoad(URL, WebPageMeta?)
-    case onTapButton
+    case onTapSaveButton
     case onFailedToLoadUrl
     case onSelectedEmoji(Emoji?)
     case errorConfirmed

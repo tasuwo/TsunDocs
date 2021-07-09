@@ -7,3 +7,10 @@
 */
 
 "emoji_list_title" = "絵文字を選択";
+
+"shared_url_edit_view_no_title" = "タイトルなし";
+"shared_url_edit_view_save_button" = "保存";
+"shared_url_edit_view_error_title_load_url" = "URLの読み取りに失敗しました";
+"shared_url_edit_view_error_title_save_url" = "URLの保存に失敗しました";
+
+"alert_close" = "閉じる";

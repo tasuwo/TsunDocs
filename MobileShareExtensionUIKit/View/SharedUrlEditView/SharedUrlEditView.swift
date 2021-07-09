@@ -5,6 +5,7 @@
 import CompositeKit
 import Domain
 import SwiftUI
+import TsunDocsUIKit
 
 struct SharedUrlEditView: View {
     typealias RootStore = ViewStore<SharedUrlEditViewRootState,
@@ -42,14 +43,45 @@ struct SharedUrlEditView: View {
                                SharedUrlEditViewRootAction.mappingToImage)
                         .viewStore())
 
+                    Spacer()
+                        .frame(height: 16)
+                        .fixedSize()
+
                     Text(url.absoluteString)
-                    Text(store.state.selectedEmoji?.emoji ?? "no emoji")
-                    Text(store.state.sharedUrlTitle ?? "no title")
-                    Text(store.state.sharedUrlDescription ?? "no description")
-                    Text(store.state.sharedUrlImageUrl?.absoluteString ?? "no image url")
-                    Button("保存") {
-                        store.execute(.onTapButton)
+                        .foregroundColor(.gray)
+                        .font(.caption)
+                        .padding(.bottom)
+
+                    HStack {
+                        if let title = store.state.sharedUrlTitle {
+                            Text(title)
+                                .font(.title2)
+                        } else {
+                            Text("shared_url_edit_view_no_title", bundle: Bundle.this)
+                                .foregroundColor(.gray)
+                                .font(.title2)
+                        }
+
+                        Spacer()
+                            .frame(width: 16)
+                            .fixedSize()
+
+                        Image(systemName: "pencil.circle.fill")
+                            .foregroundColor(.cyan)
+                            .font(.title2)
                     }
+                    .padding()
+
+                    Button {
+                        store.execute(.onTapSaveButton)
+                    } label: {
+                        HStack {
+                            Image(systemName: "checkmark")
+                            Text("shared_url_edit_view_save_button", bundle: Bundle.this)
+                        }
+                    }
+                    .buttonStyle(PrimaryButtonStyle())
+                    .padding()
                 }
             } else {
                 ProgressView()
@@ -63,13 +95,13 @@ struct SharedUrlEditView: View {
             switch store.state.alert {
             case .failedToLoadUrl:
                 return Alert(title: Text(""),
-                             message: Text("shared_url_edit_view_error_title_load_url"),
-                             dismissButton: .default(Text("alert_close"), action: { store.execute(.errorConfirmed) }))
+                             message: Text("shared_url_edit_view_error_title_load_url", bundle: Bundle.this),
+                             dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.errorConfirmed) }))
 
             case .failedToSaveSharedUrl:
                 return Alert(title: Text(""),
-                             message: Text("shared_url_edit_view_error_title_save_url"),
-                             dismissButton: .default(Text("alert_close"), action: { store.execute(.errorConfirmed) }))
+                             message: Text("shared_url_edit_view_error_title_save_url", bundle: Bundle.this),
+                             dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.errorConfirmed) }))
 
             default:
                 fatalError("Invalid Alert")

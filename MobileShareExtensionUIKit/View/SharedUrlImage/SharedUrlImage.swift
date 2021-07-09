@@ -91,7 +91,7 @@ struct SharedUrlImage: View {
                     .font(.system(size: 14).bold())
                     .foregroundColor(.white)
                     .frame(width: 25, height: 25)
-                    .background(Color.green)
+                    .background(Color.cyan)
                     .clipShape(RoundedRectangle(cornerRadius: 25 / 2, style: .continuous))
                     .offset(x: (thumbnailSize / 2) - 6,
                             y: (thumbnailSize / 2) - 6)

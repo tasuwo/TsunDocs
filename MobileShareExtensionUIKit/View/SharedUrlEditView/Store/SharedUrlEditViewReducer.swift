@@ -32,7 +32,7 @@ struct SharedUrlEditViewReducer: Reducer {
             nextState.sharedUrlImageUrl = meta?.imageUrl
             return (nextState, .none)
 
-        case .onTapButton:
+        case .onTapSaveButton:
             guard let command = state.command() else {
                 return (nextState, .none)
             }

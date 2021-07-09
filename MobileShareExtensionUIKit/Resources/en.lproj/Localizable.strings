@@ -7,3 +7,10 @@
 */
 
 "emoji_list_title" = "Select Emoji";
+
+"shared_url_edit_view_no_title" = "No Title";
+"shared_url_edit_view_save_button" = "Save";
+"shared_url_edit_view_error_title_load_url" = "Failed to read url.";
+"shared_url_edit_view_error_title_save_url" = "Failed to save url.";
+
+"alert_close" = "Close";
