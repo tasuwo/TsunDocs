@@ -42,12 +42,12 @@ public struct Tsundoc {
 
 public extension Tsundoc {
     var thumbnailSource: TsundocThumbnailSource? {
-        if let imageUrl = imageUrl {
-            return .imageUrl(imageUrl)
-        } else if let emojiAlias = emojiAlias,
-                  Smile.isEmoji(character: Smile.replaceAlias(string: ":\(emojiAlias):"))
+        if let emojiAlias = emojiAlias,
+           Smile.isEmoji(character: Smile.replaceAlias(string: ":\(emojiAlias):"))
         {
             return .emoji(Smile.replaceAlias(string: ":\(emojiAlias):"))
+        } else if let imageUrl = imageUrl {
+            return .imageUrl(imageUrl)
         } else {
             return nil
         }
