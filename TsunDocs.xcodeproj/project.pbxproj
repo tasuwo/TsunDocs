@@ -115,6 +115,7 @@
 		4DC6F516546501F3590058CE /* TagQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702DBF5A2F3CB92719E98136 /* TagQueryService.swift */; };
 		4DEBBAB683C5B223AD5EA6C0 /* TsunDocsUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CC088DED423E1AC52ECAB87 /* TsunDocsUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4DEE975219F002397B471F33 /* ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74F677B4CEBA05B55CDD8DA /* ServiceDependencies.swift */; };
+		4E002D81A63433638137BB48 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6436A0AD8019C62E212225DB /* PrimaryButtonStyle.swift */; };
 		501B24E8A6A2C02493D0D9E3 /* URLProtocolMockBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBA70808F3D6A7C2A4914C /* URLProtocolMockBase.swift */; };
 		505707C1B17737FABA4F7D9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51C3DABAB6E2E48C9F39FFE /* Preview Assets.xcassets */; };
 		50A9E6B016F3A8F9F46B73EC /* SceneDependencyContainer+ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A484483DC29892DD0EB5B0 /* SceneDependencyContainer+ServiceDependencies.swift */; };
@@ -193,6 +194,7 @@
 		915676EBE0626BCA3AF014E3 /* SharedUrlEditViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94744D703C86FC606C9A09C9 /* SharedUrlEditViewState.swift */; };
 		930DA4FB151D1C20E712544C /* SceneDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B41D230914A93D29427F68 /* SceneDependencyContainer.swift */; };
 		943B068562036D702C9A522F /* SceneDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B41D230914A93D29427F68 /* SceneDependencyContainer.swift */; };
+		94868C1877570DE8ED12AD3F /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6436A0AD8019C62E212225DB /* PrimaryButtonStyle.swift */; };
 		94C6A756361B02E1DD7555B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B580E0494ED881EEE702782F /* Assets.xcassets */; };
 		94D14D78F0E031B555F86D98 /* Result+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CFB028496441B4FDE1D13 /* Result+Value.swift */; };
 		95B1A4A25B2A1E9101D6CC1D /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997614656C63362BB864AC5 /* PersistentContainer.swift */; };
@@ -576,6 +578,7 @@
 		6057E2DEEFF5AEAB53559B5E /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		628FBCE946424E947347B449 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62B13F8D9178337ED377514C /* Publisher+bind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+bind.swift"; sourceTree = "<group>"; };
+		6436A0AD8019C62E212225DB /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		6930039FED775CA4E010873A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		69A310A4FAE48C6777E748F9 /* Domain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Domain.h; sourceTree = "<group>"; };
 		69F854A01A6B968EC4A5C926 /* Persistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Persistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -821,6 +824,14 @@
 				8490AB23A3407374BE24B94C /* URL */,
 			);
 			path = Manual;
+			sourceTree = "<group>";
+		};
+		0CAA3728E457F6AA4E751196 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				6436A0AD8019C62E212225DB /* PrimaryButtonStyle.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 		11D41943E532F67BA0133626 /* Tag */ = {
@@ -1457,6 +1468,7 @@
 			isa = PBXGroup;
 			children = (
 				F0B136162E98378F1B9BAB41 /* AsyncImage.swift */,
+				0CAA3728E457F6AA4E751196 /* Button */,
 				C7FF7B08ECDDFE497F290709 /* Extensions */,
 				2A80D71BBCDB5A2E296FB970 /* Tag */,
 				B7DF87AB7B71C5A1EA70411A /* TextEditAlert */,
@@ -2111,6 +2123,7 @@
 				9EC8C4A76F0FCC73C4243CB7 /* Bundle.swift in Sources */,
 				A931EBC84A453046E52EE449 /* Environment+ImageLoaderFactory.swift in Sources */,
 				2A6C0B5A561CDBC1C0A33A62 /* HTTPURLResponse+Mock.swift in Sources */,
+				4E002D81A63433638137BB48 /* PrimaryButtonStyle.swift in Sources */,
 				849B6525A3EF9C393282CB23 /* String+LocalizedString.swift in Sources */,
 				D7822DCA3298820D98A202FD /* TagCell.swift in Sources */,
 				9E9952DD2D741B7830E8DDD8 /* TagGrid.swift in Sources */,
@@ -2164,6 +2177,7 @@
 				8C1DEE084732170B3E134782 /* Bundle.swift in Sources */,
 				B603FCDB0EB47C3FD613E5F3 /* Environment+ImageLoaderFactory.swift in Sources */,
 				4BA4F909799695EA2B0A9698 /* HTTPURLResponse+Mock.swift in Sources */,
+				94868C1877570DE8ED12AD3F /* PrimaryButtonStyle.swift in Sources */,
 				D47FCF64BBBB069A6E6FE114 /* String+LocalizedString.swift in Sources */,
 				7189F29060A31CCF246881AB /* TagCell.swift in Sources */,
 				0E618FF5EA3EDC3DC3E0E135 /* TagGrid.swift in Sources */,
