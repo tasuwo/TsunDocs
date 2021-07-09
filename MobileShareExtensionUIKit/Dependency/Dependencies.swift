@@ -4,20 +4,20 @@
 
 import Domain
 
-protocol HasSharedUrlLoader {
+public protocol HasSharedUrlLoader {
     var sharedUrlLoader: SharedUrlLoadable { get }
 }
 
-protocol HasWebPageMetaResolver {
+public protocol HasWebPageMetaResolver {
     var webPageMetaResolver: WebPageMetaResolvable { get }
 }
 
-protocol HasTsundocCommandService {
+public protocol HasTsundocCommandService {
     var tsundocCommandService: TsundocCommandService { get }
 }
 
-protocol HasCompletable {
+public protocol HasCompletable {
     var completable: Completable { get }
 }
 
-protocol HasNop {}
+public protocol HasNop {}

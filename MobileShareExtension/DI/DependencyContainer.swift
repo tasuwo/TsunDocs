@@ -5,6 +5,7 @@
 import CoreData
 import Domain
 import Foundation
+import MobileShareExtensionUIKit
 import Persistence
 
 class DependencyContainer: ObservableObject {
@@ -43,13 +44,20 @@ class DependencyContainer: ObservableObject {
 }
 
 extension DependencyContainer: HasSharedUrlLoader {
-    var sharedUrlLoader: SharedUrlLoader { _sharedUrlLoader }
+    var sharedUrlLoader: SharedUrlLoadable { _sharedUrlLoader }
 }
 
 extension DependencyContainer: HasWebPageMetaResolver {
-    var webPageMetaResolver: WebPageMetaResolver { _webPageMetaResolver }
+    var webPageMetaResolver: WebPageMetaResolvable { _webPageMetaResolver }
 }
 
 extension DependencyContainer: HasTsundocCommandService {
     var tsundocCommandService: Domain.TsundocCommandService { _tsundocCommandService }
 }
+
+extension DependencyContainer: HasCompletable {
+    var completable: Completable { context }
+}
+
+extension DependencyContainer: HasNop {}
+

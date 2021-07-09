@@ -6,16 +6,16 @@ import Combine
 import CompositeKit
 import Domain
 
-typealias SharedUrlImageDependency = HasNop
+public typealias SharedUrlImageDependency = HasNop
 
-struct SharedUrlImageReducer: Reducer {
-    typealias Dependency = SharedUrlImageDependency
-    typealias State = SharedUrlImageState
-    typealias Action = SharedUrlImageAction
+public struct SharedUrlImageReducer: Reducer {
+    public typealias Dependency = SharedUrlImageDependency
+    public typealias State = SharedUrlImageState
+    public typealias Action = SharedUrlImageAction
 
     // MARK: - Reducer
 
-    func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
+    public func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
         var nextState = state
         switch action {
         case let .onLoadImageUrl(url):

@@ -4,12 +4,12 @@
 
 import CompositeKit
 
-enum SharedUrlEditViewRootAction: Action {
+public enum SharedUrlEditViewRootAction: Action {
     case edit(SharedUrlEditViewAction)
     case image(SharedUrlImageAction)
 }
 
-extension SharedUrlEditViewRootAction {
+public extension SharedUrlEditViewRootAction {
     static let mappingToEdit: ActionMapping<Self, SharedUrlEditViewAction> = .init(build: {
         .edit($0)
     }, get: {

@@ -7,8 +7,8 @@ import Domain
 import SwiftUI
 import TsunDocsUIKit
 
-struct SharedUrlEditView: View {
-    typealias RootStore = ViewStore<SharedUrlEditViewRootState,
+public struct SharedUrlEditView: View {
+    public typealias RootStore = ViewStore<SharedUrlEditViewRootState,
         SharedUrlEditViewRootAction,
         SharedUrlEditViewRootDependency>
     typealias Store = ViewStore<SharedUrlEditViewState,
@@ -22,7 +22,7 @@ struct SharedUrlEditView: View {
 
     // MARK: - Initializers
 
-    init(_ rootStore: RootStore) {
+    public init(_ rootStore: RootStore) {
         self._rootStore = StateObject(wrappedValue: rootStore)
 
         let store: Store = rootStore
@@ -34,7 +34,7 @@ struct SharedUrlEditView: View {
 
     // MARK: - View
 
-    var body: some View {
+    public var body: some View {
         VStack {
             if let url = store.state.sharedUrl {
                 VStack {

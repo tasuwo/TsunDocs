@@ -4,13 +4,13 @@
 
 import CompositeKit
 
-typealias SharedUrlEditViewRootDependency = SharedUrlEditViewDependency
+public typealias SharedUrlEditViewRootDependency = SharedUrlEditViewDependency
     & SharedUrlImageDependency
 
 private typealias RootState = SharedUrlEditViewRootState
 private typealias RootAction = SharedUrlEditViewRootAction
 
-let sharedUrlEditViewRootReducer = combine(
+public let sharedUrlEditViewRootReducer = combine(
     contramap(RootAction.mappingToEdit, RootState.mappingToEdit, { $0 as SharedUrlEditViewRootDependency })(SharedUrlEditViewReducer()),
     contramap(RootAction.mappingToImage, RootState.mappingToImage, { $0 })(SharedUrlImageReducer())
 )

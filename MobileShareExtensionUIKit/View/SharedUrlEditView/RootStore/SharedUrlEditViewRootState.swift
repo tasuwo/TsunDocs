@@ -5,7 +5,7 @@
 import CompositeKit
 import TsunDocsUIKit
 
-struct SharedUrlEditViewRootState: Equatable {
+public struct SharedUrlEditViewRootState: Equatable {
     var editViewState: SharedUrlEditViewState {
         get {
             .init(sharedUrl: sharedUrl,
@@ -61,14 +61,14 @@ struct SharedUrlEditViewRootState: Equatable {
     var isSelectingEmoji: Bool
 }
 
-extension SharedUrlEditViewRootState {
+public extension SharedUrlEditViewRootState {
     init() {
         isTitleEditAlertPresenting = false
         isSelectingEmoji = false
     }
 }
 
-extension SharedUrlEditViewRootState {
+public extension SharedUrlEditViewRootState {
     static let mappingToEdit: StateMapping<Self, SharedUrlEditViewState> = .init(keyPath: \Self.editViewState)
     static let mappingToImage: StateMapping<Self, SharedUrlImageState> = .init(keyPath: \Self.imageState)
 }

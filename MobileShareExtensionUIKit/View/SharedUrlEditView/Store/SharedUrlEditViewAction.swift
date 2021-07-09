@@ -5,7 +5,7 @@
 import CompositeKit
 import Domain
 
-enum SharedUrlEditViewAction: Action {
+public enum SharedUrlEditViewAction: Action {
     case onAppear
     case onLoad(URL, WebPageMeta?)
     case onTapSaveButton

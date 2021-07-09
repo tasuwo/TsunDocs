@@ -4,6 +4,7 @@
 
 import Combine
 import CompositeKit
+import MobileShareExtensionUIKit
 import Social
 import SwiftUI
 
@@ -23,10 +24,10 @@ class ShareRootViewController: UIViewController {
         }
 
         dependencyContainer = DependencyContainer(context)
-        let store = Store(initialState: SharedUrlEditViewState(context),
+        let store = Store(initialState: SharedUrlEditViewRootState(),
                           dependency: dependencyContainer,
-                          reducer: SharedUrlEditViewReducer())
-        let rootView = SharedUrlEditView(store: ViewStore(store: store))
+                          reducer: sharedUrlEditViewRootReducer)
+        let rootView = SharedUrlEditView(ViewStore(store: store))
 
         let viewController = UIHostingController(rootView: rootView)
         addChild(viewController)

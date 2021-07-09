@@ -4,8 +4,8 @@
 
 import Domain
 
-struct SharedUrlEditViewState: Equatable {
-    enum Alert: Equatable {
+public struct SharedUrlEditViewState: Equatable {
+    public enum Alert: Equatable {
         case failedToLoadUrl
         case failedToSaveSharedUrl
     }

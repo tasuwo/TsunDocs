@@ -6,19 +6,19 @@ import Combine
 import CompositeKit
 import Domain
 
-typealias SharedUrlEditViewDependency = HasSharedUrlLoader
+public typealias SharedUrlEditViewDependency = HasSharedUrlLoader
     & HasWebPageMetaResolver
     & HasTsundocCommandService
     & HasCompletable
 
-struct SharedUrlEditViewReducer: Reducer {
-    typealias Dependency = SharedUrlEditViewDependency
-    typealias State = SharedUrlEditViewState
-    typealias Action = SharedUrlEditViewAction
+public struct SharedUrlEditViewReducer: Reducer {
+    public typealias Dependency = SharedUrlEditViewDependency
+    public typealias State = SharedUrlEditViewState
+    public typealias Action = SharedUrlEditViewAction
 
     // MARK: - Reducer
 
-    func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
+    public func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
         var nextState = state
 
         switch action {
