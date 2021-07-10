@@ -6,10 +6,10 @@ import Combine
 import CompositeKit
 import Domain
 
-typealias TagControlDependency = HasTagCommandService
+public typealias TagControlDependency = HasTagCommandService
     & HasTagQueryService
 
-struct TagControlReducer: Reducer {
+public struct TagControlReducer: Reducer {
     public typealias Dependency = TagControlDependency
     public typealias State = TagControlState
     public typealias Action = TagControlAction
@@ -28,10 +28,6 @@ struct TagControlReducer: Reducer {
 
         case .didTapAddButton:
             nextState.isTagAdditionAlertPresenting = true
-            return (nextState, .none)
-
-        case .didTapDoneButton:
-            // TODO:
             return (nextState, .none)
 
         case let .didSaveTag(tagName):

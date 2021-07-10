@@ -4,7 +4,7 @@
 
 import Domain
 
-struct TagControlState: Equatable {
+public struct TagControlState: Equatable {
     enum Alert {
         case failedToAddTag
     }

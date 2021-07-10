@@ -13,30 +13,15 @@ struct TagSelectionView: View {
         TagSelectionViewAction,
         TagSelectionViewDependency
     >
-    typealias ControlStore = ViewStore<
-        TagControlState,
-        TagControlAction,
-        TagControlDependency
-    >
-    typealias SelectionStore = ViewStore<
-        TagMultiSelectionViewState,
-        TagMultiSelectionViewAction,
-        TagMultiSelectionViewDependency
-    >
 
     @ObservedObject var store: Store
-    @ObservedObject var controlStore: ControlStore
+    private let onDone: ([Tag]) -> Void
 
     // MARK: - Initializers
 
-    init(store: Store) {
+    init(store: Store, onDone: @escaping ([Tag]) -> Void) {
         _store = ObservedObject(wrappedValue: store)
-        _controlStore = ObservedObject(wrappedValue:
-            store
-                .proxy(TagSelectionViewState.mappingToControl,
-                       TagSelectionViewAction.mappingToControl)
-                .viewStore()
-        )
+        self.onDone = onDone
     }
 
     // MARK: - View
@@ -50,33 +35,33 @@ struct TagSelectionView: View {
                     .viewStore()
             )
             .onAppear {
-                controlStore.execute(.onAppear)
+                store.execute(.control(.onAppear))
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        controlStore.execute(.didTapAddButton)
+                        store.execute(.control(.didTapAddButton))
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        controlStore.execute(.didTapDoneButton)
+                        onDone(store.state.selectedTags)
                     } label: {
                         Text("Done")
                     }
                 }
             }
         }
-        .alert(isPresenting: controlStore.bind(\.isTagAdditionAlertPresenting,
-                                               action: { _ in .alertDismissed }),
+        .alert(isPresenting: store.bind(\.controlState.isTagAdditionAlertPresenting,
+                                        action: { _ in .control(.alertDismissed) }),
                text: "",
                config: .init(title: "Add New Tag",
                              message: "Enter",
                              placeholder: "Tag Name",
                              validator: { $0?.count ?? 0 > 0 },
-                             saveAction: { controlStore.execute(.didSaveTag($0)) },
+                             saveAction: { store.execute(.control(.didSaveTag($0))) },
                              cancelAction: nil))
     }
 }
@@ -146,11 +131,6 @@ struct TagSelectionView_Previews: PreviewProvider {
         @State var isPresenting: Bool = false
 
         var body: some View {
-            let store = Store(initialState: TagSelectionViewState(),
-                              dependency: Dependency(),
-                              reducer: tagSelectionViewReducer)
-            let viewStore = ViewStore(store: store)
-
             VStack {
                 Button {
                     isPresenting = true
@@ -158,7 +138,12 @@ struct TagSelectionView_Previews: PreviewProvider {
                     Text("Select tag")
                 }
                 .sheet(isPresented: $isPresenting) {
-                    TagSelectionView(store: viewStore)
+                    let store = Store(initialState: TagSelectionViewState(),
+                                      dependency: Dependency(),
+                                      reducer: tagSelectionViewReducer)
+                    let viewStore = ViewStore(store: store)
+                    TagSelectionView(store: viewStore,
+                                     onDone: { _ in isPresenting = false })
                 }
             }
         }

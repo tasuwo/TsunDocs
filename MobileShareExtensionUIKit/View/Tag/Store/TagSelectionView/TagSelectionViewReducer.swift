@@ -5,12 +5,12 @@
 import CompositeKit
 import TsunDocsUIKit
 
-typealias TagSelectionViewDependency = TagControlDependency
+public typealias TagSelectionViewDependency = TagControlDependency
 
 private typealias RootState = TagSelectionViewState
 private typealias RootAction = TagSelectionViewAction
 
-let tagSelectionViewReducer = combine(
+public let tagSelectionViewReducer = combine(
     contramap(RootAction.mappingToMultiSelection,
               RootState.mappingToMultiSelection,
               { $0 as TagSelectionViewDependency })(tagMultiSelectionReducer),

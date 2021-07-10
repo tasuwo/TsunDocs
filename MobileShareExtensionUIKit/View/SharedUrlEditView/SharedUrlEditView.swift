@@ -8,28 +8,25 @@ import SwiftUI
 import TsunDocsUIKit
 
 public struct SharedUrlEditView: View {
-    public typealias RootStore = ViewStore<SharedUrlEditViewRootState,
+    public typealias RootStore = ViewStore<
+        SharedUrlEditViewRootState,
         SharedUrlEditViewRootAction,
-        SharedUrlEditViewRootDependency>
-    typealias Store = ViewStore<SharedUrlEditViewState,
-        SharedUrlEditViewAction,
-        SharedUrlEditViewDependency>
+        SharedUrlEditViewRootDependency
+    >
 
     // MARK: - Properties
 
-    @ObservedObject var rootStore: RootStore
-    @ObservedObject var store: Store
+    @ObservedObject var store: RootStore
+    // TODO: DI方法を検討する
+    private let tagSelectionViewDependency: TagSelectionViewDependency
 
     // MARK: - Initializers
 
-    public init(_ rootStore: RootStore) {
-        self._rootStore = ObservedObject(wrappedValue: rootStore)
-
-        let store: Store = rootStore
-            .proxy(SharedUrlEditViewRootState.mappingToEdit,
-                   SharedUrlEditViewRootAction.mappingToEdit)
-            .viewStore()
+    public init(_ store: RootStore,
+                tagSelectionViewDependency: TagSelectionViewDependency)
+    {
         self._store = ObservedObject(wrappedValue: store)
+        self.tagSelectionViewDependency = tagSelectionViewDependency
     }
 
     // MARK: - View
@@ -40,7 +37,7 @@ public struct SharedUrlEditView: View {
                 VStack {
                     HStack(alignment: .top) {
                         VStack {
-                            SharedUrlImage(store: rootStore
+                            SharedUrlImage(store: store
                                 .proxy(SharedUrlEditViewRootState.mappingToImage,
                                        SharedUrlEditViewRootAction.mappingToImage)
                                 .viewStore())
@@ -50,8 +47,8 @@ public struct SharedUrlEditView: View {
                             HStack {
                                 if let title = store.state.sharedUrlTitle, !title.isEmpty {
                                     Text(title)
-                                        .lineLimit(5)
-                                        .font(.title3)
+                                        .lineLimit(3)
+                                        .font(.body)
                                 } else {
                                     Text("shared_url_edit_view_no_title", bundle: Bundle.this)
                                         .foregroundColor(.gray)
@@ -63,7 +60,7 @@ public struct SharedUrlEditView: View {
                                     .font(.system(size: 24))
                             }
                             .onTapGesture {
-                                store.execute(.onTapEditTitleButton)
+                                store.execute(.edit(.onTapEditTitleButton))
                             }
 
                             Text(url.absoluteString)
@@ -76,8 +73,16 @@ public struct SharedUrlEditView: View {
                         Spacer()
                     }
 
+                    Image(systemName: "tag.circle.fill")
+                        .foregroundColor(.cyan)
+                        .font(.system(size: 24))
+                        .onTapGesture {
+                            store.execute(.edit(.onTapEditTagButton))
+                        }
+                        .padding()
+
                     Button {
-                        store.execute(.onTapSaveButton)
+                        store.execute(.edit(.onTapSaveButton))
                     } label: {
                         HStack {
                             Image(systemName: "checkmark")
@@ -94,26 +99,35 @@ public struct SharedUrlEditView: View {
             }
         }
         .onAppear {
-            store.execute(.onAppear)
+            store.execute(.edit(.onAppear))
         }
-        .alert(isPresented: store.bind(\.isAlertPresenting, action: { _ in .alertDismissed }), content: {
-            switch store.state.alert {
-            case .failedToLoadUrl:
-                return Alert(title: Text(""),
-                             message: Text("shared_url_edit_view_error_title_load_url", bundle: Bundle.this),
-                             dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.errorConfirmed) }))
+        .alert(isPresented: store.bind(\.isAlertPresenting,
+                                       action: { _ in .edit(.alertDismissed) }), content: {
+                switch store.state.alert {
+                case .failedToLoadUrl:
+                    return Alert(title: Text(""),
+                                 message: Text("shared_url_edit_view_error_title_load_url", bundle: Bundle.this),
+                                 dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.edit(.errorConfirmed)) }))
 
-            case .failedToSaveSharedUrl:
-                return Alert(title: Text(""),
-                             message: Text("shared_url_edit_view_error_title_save_url", bundle: Bundle.this),
-                             dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.errorConfirmed) }))
+                case .failedToSaveSharedUrl:
+                    return Alert(title: Text(""),
+                                 message: Text("shared_url_edit_view_error_title_save_url", bundle: Bundle.this),
+                                 dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.edit(.errorConfirmed)) }))
 
-            default:
-                fatalError("Invalid Alert")
-            }
-        })
+                default:
+                    fatalError("Invalid Alert")
+                }
+            })
+        .sheet(isPresented: store.bind(\.isTagEditSheetPresenting,
+                                       action: { _ in .edit(.alertDismissed) })) {
+            let store = Store(initialState: TagSelectionViewState(),
+                              dependency: tagSelectionViewDependency,
+                              reducer: tagSelectionViewReducer)
+            let viewStore = ViewStore(store: store)
+            TagSelectionView(store: viewStore, onDone: { _ in /* TODO: */ })
+        }
         .alert(isPresenting: store.bind(\.isTitleEditAlertPresenting,
-                                        action: { _ in .alertDismissed }),
+                                        action: { _ in .edit(.alertDismissed) }),
                text: store.state.sharedUrlTitle ?? "",
                config: .init(title: "shared_url_edit_view_title_edit_title".localized,
                              message: "shared_url_edit_view_title_edit_message".localized,
@@ -121,13 +135,15 @@ public struct SharedUrlEditView: View {
                              validator: { text in
                                  store.state.sharedUrlTitle != text && text?.count ?? 0 > 0
                              },
-                             saveAction: { store.execute(.onSaveTitle($0)) },
+                             saveAction: { store.execute(.edit(.onSaveTitle($0))) },
                              cancelAction: nil))
     }
 }
 
 struct SharedUrlEditView_Previews: PreviewProvider {
-    class Dependency: SharedUrlEditViewRootDependency {
+    class Dependency: SharedUrlEditViewRootDependency & TagSelectionViewDependency {
+        // MARK: SharedUrlEditViewRootDependency
+
         class Complete: Completable {
             func complete() {}
             func cancel(with: Error) {}
@@ -142,6 +158,64 @@ struct SharedUrlEditView_Previews: PreviewProvider {
         var _webPageMetaResolver = WebPageMetaResolvableMock()
         var _tsundocCommandService = TsundocCommandServiceMock()
         var _completable = Complete()
+
+        // MARK: TagSelectionViewDependency
+
+        var tags: AnyObservedEntityArray<Tag> = {
+            let tags: [Tag] = [
+                .init(id: UUID(), name: "This"),
+                .init(id: UUID(), name: "is"),
+                .init(id: UUID(), name: "Flexible"),
+                .init(id: UUID(), name: "Gird"),
+                .init(id: UUID(), name: "Layout"),
+                .init(id: UUID(), name: "for"),
+                .init(id: UUID(), name: "Tags."),
+                .init(id: UUID(), name: "This"),
+                .init(id: UUID(), name: "Layout"),
+                .init(id: UUID(), name: "allows"),
+                .init(id: UUID(), name: "displaying"),
+                .init(id: UUID(), name: "very"),
+                .init(id: UUID(), name: "long"),
+                .init(id: UUID(), name: "tag"),
+                .init(id: UUID(), name: "names"),
+                .init(id: UUID(), name: "like"),
+                .init(id: UUID(), name: "Too Too Too Too Long Tag"),
+                .init(id: UUID(), name: "or"),
+                .init(id: UUID(), name: "Toooooooooooooo Loooooooooooooooooooooooong Tag."),
+                .init(id: UUID(), name: "All"),
+                .init(id: UUID(), name: "cell"),
+                .init(id: UUID(), name: "sizes"),
+                .init(id: UUID(), name: "are"),
+                .init(id: UUID(), name: "flexible")
+            ]
+            return ObservedTagArrayMock(values: .init(tags))
+                .eraseToAnyObservedEntityArray()
+        }()
+
+        var tagCommandService: TagCommandService {
+            let service = TagCommandServiceMock()
+            service.performHandler = { $0() }
+            service.beginHandler = {}
+            service.commitHandler = {}
+            service.createTagHandler = { [unowned self] _ in
+                let id = UUID()
+                let newTag = Tag(id: id, name: String(UUID().uuidString.prefix(5)))
+
+                let values = self.tags.values.value
+                self.tags.values.send(values + [newTag])
+
+                return .success(id)
+            }
+            return service
+        }
+
+        var tagQueryService: TagQueryService {
+            let service = TagQueryServiceMock()
+            service.queryAllTagsHandler = { [unowned self] in
+                .success(self.tags)
+            }
+            return service
+        }
     }
 
     class SuccessMock: URLProtocolMockBase {
@@ -158,36 +232,35 @@ struct SharedUrlEditView_Previews: PreviewProvider {
         }
 
         Group {
-            SharedUrlEditView(makeStore(sharedUrl: URL(string: "https://apple.com"),
-                                        title: "My Title",
-                                        description: "Web Page Description",
-                                        imageUrl: URL(string: "https://localhost")))
+            let dependency01 = makeDependency(sharedUrl: URL(string: "https://apple.com"),
+                                              title: "My Title",
+                                              description: "Web Page Description",
+                                              imageUrl: URL(string: "https://localhost"))
+            SharedUrlEditView(makeStore(dependency: dependency01),
+                              tagSelectionViewDependency: dependency01)
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
 
-            SharedUrlEditView(makeStore(sharedUrl: URL(string: "https://apple.com/"),
-                                        title: nil,
-                                        description: nil,
-                                        imageUrl: nil))
+            let dependency02 = makeDependency(sharedUrl: URL(string: "https://apple.com/"),
+                                              title: nil,
+                                              description: nil,
+                                              imageUrl: nil)
+            SharedUrlEditView(makeStore(dependency: dependency02),
+                              tagSelectionViewDependency: dependency02)
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
 
-            SharedUrlEditView(makeStore(sharedUrl: URL(string: "https://apple.com/\(String(repeating: "long/", count: 100))"),
-                                        title: String(repeating: "Title ", count: 100),
-                                        description: String(repeating: "Description ", count: 100),
-                                        imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))")))
+            let dependency03 = makeDependency(sharedUrl: URL(string: "https://apple.com/\(String(repeating: "long/", count: 100))"),
+                                              title: String(repeating: "Title ", count: 100),
+                                              description: String(repeating: "Description ", count: 100),
+                                              imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))"))
+            SharedUrlEditView(makeStore(dependency: dependency03),
+                              tagSelectionViewDependency: dependency03)
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
         }
     }
 
-    static func makeStore(sharedUrl: URL?,
-                          title: String?,
-                          description: String?,
-                          imageUrl: URL?) -> SharedUrlEditView.RootStore
-    {
+    static func makeStore(dependency: Dependency) -> SharedUrlEditView.RootStore {
         let store = Store(initialState: SharedUrlEditViewRootState(),
-                          dependency: makeDependency(sharedUrl: sharedUrl,
-                                                     title: title,
-                                                     description: description,
-                                                     imageUrl: imageUrl),
+                          dependency: dependency,
                           reducer: sharedUrlEditViewRootReducer)
         let viewStore = ViewStore(store: store)
         return viewStore

@@ -5,11 +5,10 @@
 import CompositeKit
 import Domain
 
-enum TagControlAction: Action {
+public enum TagControlAction: Action {
     case onAppear
     case tagsUpdated([Tag])
     case didTapAddButton
-    case didTapDoneButton
     case didSaveTag(String)
     case alertDismissed
 }

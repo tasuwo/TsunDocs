@@ -6,9 +6,15 @@ import CompositeKit
 import Domain
 import TsunDocsUIKit
 
-struct TagSelectionViewState: Equatable {
+public struct TagSelectionViewState: Equatable {
     var multiSelectionState: TagMultiSelectionViewState = .init(tags: [])
     var controlState: TagControlState = .init()
+}
+
+extension TagSelectionViewState {
+    var selectedTags: [Tag] {
+        multiSelectionState.tags.filter { multiSelectionState.selectedIds.contains($0.id) }
+    }
 }
 
 extension TagSelectionViewState {

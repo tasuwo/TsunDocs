@@ -5,7 +5,7 @@
 import CompositeKit
 import TsunDocsUIKit
 
-enum TagSelectionViewAction: Action {
+public enum TagSelectionViewAction: Action {
     case multiSelection(TagMultiSelectionViewAction)
     case control(TagControlAction)
 }
