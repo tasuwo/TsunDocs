@@ -54,7 +54,7 @@ public struct EmojiList: View {
             }
             .padding(.all, Self.spacing)
         }
-        .searchable(text: $engine.input)
+        .searchable(text: $engine.input, placement: .navigationBarDrawer(displayMode: .always))
         .navigationTitle(Text("emoji_list_title", bundle: Bundle.this))
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: engine.output) { query in
