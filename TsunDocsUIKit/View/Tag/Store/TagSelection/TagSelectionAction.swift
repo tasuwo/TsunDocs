@@ -5,8 +5,6 @@
 import CompositeKit
 import Domain
 
-public enum TagSelectionViewAction: Action {
+public enum TagSelectionAction: Action {
     case selected(Tag.ID)
-    case deselected(Tag.ID)
-    case queryUpdated(String)
 }

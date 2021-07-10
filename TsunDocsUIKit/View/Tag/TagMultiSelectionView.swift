@@ -7,21 +7,42 @@ import Domain
 import SwiftUI
 
 public struct TagSelectionView: View {
+    typealias Store = ViewStore<TagMultiSelectionViewState, TagMultiSelectionViewAction, TagMultiSelectionViewDependency>
+    typealias FilterStore = ViewStore<TagFilterState, TagFilterAction, TagFilterDependency>
+
     @Environment(\.presentationMode) var presentationMode
 
+    @StateObject var store: Store
+    @StateObject var filterStore: FilterStore
     @ObservedObject var engine: TextEngine = .init(debounceFor: 0.3)
-    @StateObject var store: ViewStore<TagSelectionViewState, TagSelectionViewAction, TagSelectionViewDependency>
+
+    // MARK: - Initializers
+
+    init(store: Store) {
+        _store = StateObject(wrappedValue: store)
+
+        let filterStore: FilterStore = store
+            .proxy(TagMultiSelectionViewState.mappingToFilter,
+                   TagMultiSelectionViewAction.mappingToFilter)
+            .viewStore()
+        _filterStore = StateObject(wrappedValue: filterStore)
+    }
 
     // MARK: - View
 
     public var body: some View {
-        TagGrid(tags: store.state.tags.orderedFilteredEntities())
-            .searchable(text: $engine.input, placement: .navigationBarDrawer(displayMode: .always))
-            .navigationTitle(Text("tag_selection_view_title", bundle: Bundle.this))
-            .navigationBarTitleDisplayMode(.inline)
-            .onChange(of: engine.output) { query in
-                store.execute(.queryUpdated(query), animation: .default)
-            }
+        TagGrid(
+            store: store
+                .proxy(TagMultiSelectionViewState.mappingToSelection,
+                       TagMultiSelectionViewAction.mappingToSelection)
+                .viewStore()
+        )
+        .searchable(text: $engine.input, placement: .navigationBarDrawer(displayMode: .always))
+        .navigationTitle(Text("tag_selection_view_title", bundle: Bundle.this))
+        .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: engine.output) { query in
+            filterStore.execute(.queryUpdated(query), animation: .default)
+        }
     }
 }
 
@@ -54,35 +75,24 @@ struct TagSelectionView_Previews: PreviewProvider {
             .init(id: UUID(), name: "flexible")
         ]
 
-        @State var selectedTag: Tag?
         @State var isPresenting: Bool = false
 
-        var selectedTagName: String {
-            guard let tag = selectedTag else {
-                return "No tags selected."
-            }
-            return tag.name
-        }
-
         var body: some View {
-            let store = Store(initialState: TagSelectionViewState(tags: tags),
+            let store = Store(initialState: TagMultiSelectionViewState(tags: tags),
                               dependency: (),
-                              reducer: TagSelectionViewReducer())
+                              reducer: tagMultiSelectionReducer)
             let viewStore = ViewStore(store: store)
 
             VStack {
-                Text(selectedTagName)
-                    .sheet(isPresented: $isPresenting) {
-                        NavigationView {
-                            TagSelectionView(store: viewStore)
-                        }
-                    }
-                    .padding()
-
                 Button {
                     isPresenting = true
                 } label: {
                     Text("Select tag")
+                }
+                .sheet(isPresented: $isPresenting) {
+                    NavigationView {
+                        TagSelectionView(store: viewStore)
+                    }
                 }
             }
         }

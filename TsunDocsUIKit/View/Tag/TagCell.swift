@@ -9,8 +9,7 @@ public struct TagCell: View {
 
     public let tagId: UUID
     public let tagName: String
-
-    @State var isSelected = false
+    public var isSelected: Bool = false
 
     // MARK: - View
 
