@@ -16,7 +16,7 @@ struct SharedUrlImage: View {
     static let padding: CGFloat = 32 / 2 - 6
 
     @Environment(\.imageLoaderFactory) var imageLoaderFactory
-    @StateObject var store: ViewStore<SharedUrlImageState, SharedUrlImageAction, SharedUrlImageDependency>
+    @ObservedObject var store: ViewStore<SharedUrlImageState, SharedUrlImageAction, SharedUrlImageDependency>
 
     // MARK: - View
 

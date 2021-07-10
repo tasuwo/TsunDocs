@@ -12,20 +12,21 @@ public struct TagMultiSelectionView: View {
         TagMultiSelectionViewDependency>
     typealias FilterStore = ViewStore<TagFilterState, TagFilterAction, TagFilterDependency>
 
-    @StateObject var store: Store
-    @StateObject var filterStore: FilterStore
+    @ObservedObject var store: Store
+    @ObservedObject var filterStore: FilterStore
+
     @StateObject var engine: TextEngine = .init(debounceFor: 0.3)
 
     // MARK: - Initializers
 
     public init(store: Store) {
-        _store = StateObject(wrappedValue: store)
+        _store = ObservedObject(wrappedValue: store)
 
         let filterStore: FilterStore = store
             .proxy(TagMultiSelectionViewState.mappingToFilter,
                    TagMultiSelectionViewAction.mappingToFilter)
             .viewStore()
-        _filterStore = StateObject(wrappedValue: filterStore)
+        _filterStore = ObservedObject(wrappedValue: filterStore)
     }
 
     // MARK: - View

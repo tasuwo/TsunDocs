@@ -17,19 +17,19 @@ public struct SharedUrlEditView: View {
 
     // MARK: - Properties
 
-    @StateObject var rootStore: RootStore
-    @StateObject var store: Store
+    @ObservedObject var rootStore: RootStore
+    @ObservedObject var store: Store
 
     // MARK: - Initializers
 
     public init(_ rootStore: RootStore) {
-        self._rootStore = StateObject(wrappedValue: rootStore)
+        self._rootStore = ObservedObject(wrappedValue: rootStore)
 
         let store: Store = rootStore
             .proxy(SharedUrlEditViewRootState.mappingToEdit,
                    SharedUrlEditViewRootAction.mappingToEdit)
             .viewStore()
-        self._store = StateObject(wrappedValue: store)
+        self._store = ObservedObject(wrappedValue: store)
     }
 
     // MARK: - View

@@ -11,7 +11,7 @@ public struct TagGrid: View {
 
     public let spacing: CGFloat = 8
 
-    @StateObject var store: ViewStore<TagSelectionState, TagSelectionAction, TagSelectionDependency>
+    @ObservedObject var store: ViewStore<TagSelectionState, TagSelectionAction, TagSelectionDependency>
 
     @State private var availableWidth: CGFloat = 0
     @State private var cellSizes: [Tag: CGSize] = [:]

@@ -24,24 +24,17 @@ struct TagSelectionView: View {
         TagMultiSelectionViewDependency
     >
 
-    @StateObject var store: Store
-    @StateObject var controlStore: ControlStore
-    @StateObject var selectionStore: SelectionStore
+    @ObservedObject var store: Store
+    @ObservedObject var controlStore: ControlStore
 
     // MARK: - Initializers
 
     init(store: Store) {
-        _store = StateObject(wrappedValue: store)
-        _controlStore = StateObject(wrappedValue:
+        _store = ObservedObject(wrappedValue: store)
+        _controlStore = ObservedObject(wrappedValue:
             store
                 .proxy(TagSelectionViewState.mappingToControl,
                        TagSelectionViewAction.mappingToControl)
-                .viewStore()
-        )
-        _selectionStore = StateObject(wrappedValue:
-            store
-                .proxy(TagSelectionViewState.mappingToMultiSelection,
-                       TagSelectionViewAction.mappingToMultiSelection)
                 .viewStore()
         )
     }
@@ -50,26 +43,31 @@ struct TagSelectionView: View {
 
     var body: some View {
         NavigationView {
-            TagMultiSelectionView(store: selectionStore)
-                .onAppear {
-                    controlStore.execute(.onAppear)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            controlStore.execute(.didTapAddButton)
-                        } label: {
-                            Image(systemName: "plus")
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            controlStore.execute(.didTapDoneButton)
-                        } label: {
-                            Text("Done")
-                        }
+            TagMultiSelectionView(store:
+                store
+                    .proxy(TagSelectionViewState.mappingToMultiSelection,
+                           TagSelectionViewAction.mappingToMultiSelection)
+                    .viewStore()
+            )
+            .onAppear {
+                controlStore.execute(.onAppear)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        controlStore.execute(.didTapAddButton)
+                    } label: {
+                        Image(systemName: "plus")
                     }
                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        controlStore.execute(.didTapDoneButton)
+                    } label: {
+                        Text("Done")
+                    }
+                }
+            }
         }
         .alert(isPresenting: controlStore.bind(\.isTagAdditionAlertPresenting,
                                                action: { _ in .alertDismissed }),
