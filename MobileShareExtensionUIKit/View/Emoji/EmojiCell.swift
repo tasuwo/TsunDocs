@@ -3,21 +3,24 @@
 //
 
 import SwiftUI
+import TsunDocsUIKit
 
 struct EmojiCell: View {
     let emoji: Emoji
 
     var body: some View {
         VStack {
-            RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .stroke(Color.gray, lineWidth: 0.5)
-                .foregroundColor(.clear)
+            Color("emoji_background", bundle: Bundle.tsunDocsUiKit)
                 .aspectRatio(1, contentMode: .fill)
                 .overlay(
-                    Text(emoji.emoji)
-                        .font(.system(size: 45))
-                        .aspectRatio(1, contentMode: .fill)
+                    GeometryReader { proxy in
+                        Text(emoji.emoji)
+                            .font(.system(size: proxy.size.width * 2 / 3))
+                            .position(x: proxy.frame(in: .local).midX,
+                                      y: proxy.frame(in: .local).midY)
+                    }
                 )
+                .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
 
             Text(emoji.alias)
                 .font(.caption2)
