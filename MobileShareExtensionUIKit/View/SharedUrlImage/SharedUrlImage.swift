@@ -35,7 +35,8 @@ struct SharedUrlImage: View {
                 if let imageUrl = store.state.imageUrl {
                     ZStack {
                         AsyncImage(url: imageUrl,
-                                   status: store.bind(\.thumbnailLoadingStatus, action: { .updatedThumbnail($0) }),
+                                   status: store.bind(\.thumbnailLoadingStatus,
+                                                      action: { .updatedThumbnail($0) }),
                                    factory: imageLoaderFactory) {
                             Color.gray.opacity(0.4)
                         }
@@ -70,6 +71,8 @@ struct SharedUrlImage: View {
         }
     }
 
+    // MARK: - View
+
     var body: some View {
         ZStack {
             thumbnail
@@ -78,16 +81,7 @@ struct SharedUrlImage: View {
                 .padding(.all, Self.padding)
 
             if store.state.visibleDeleteButton {
-                Image(systemName: "xmark")
-                    .font(.system(size: Self.badgeSymbolSize).bold())
-                    .foregroundColor(.white)
-                    .frame(width: Self.badgeSize, height: Self.badgeSize)
-                    .background(Color.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous)
-                            .stroke(Color(uiColor: UIColor.systemBackground), lineWidth: 3)
-                    )
+                makeBadge(systemName: "xmark", backgroundColor: .gray)
                     .offset(x: -1 * (Self.thumbnailSize / 2) + 5,
                             y: -1 * (Self.thumbnailSize / 2) + 5)
                     .onTapGesture {
@@ -96,32 +90,14 @@ struct SharedUrlImage: View {
             }
 
             if store.state.visibleEmojiLoadButton {
-                Image(systemName: "face.smiling")
-                    .font(.system(size: Self.badgeSymbolSize).bold())
-                    .foregroundColor(.white)
-                    .frame(width: Self.badgeSize, height: Self.badgeSize)
-                    .background(Color.cyan)
-                    .clipShape(RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous)
-                            .stroke(Color(uiColor: UIColor.systemBackground), lineWidth: 3)
-                    )
+                makeBadge(systemName: "face.smiling", backgroundColor: .cyan)
                     .offset(x: (Self.thumbnailSize / 2) - 6,
                             y: (Self.thumbnailSize / 2) - 6)
                     .onTapGesture {
                         store.execute(.didTapSelectEmoji)
                     }
             } else if !store.state.visibleDeleteButton {
-                Image(systemName: "plus")
-                    .font(.system(size: Self.badgeSymbolSize).bold())
-                    .foregroundColor(.white)
-                    .frame(width: Self.badgeSize, height: Self.badgeSize)
-                    .background(Color.cyan)
-                    .clipShape(RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous)
-                            .stroke(Color(uiColor: UIColor.systemBackground), lineWidth: 3)
-                    )
+                makeBadge(systemName: "plus", backgroundColor: .cyan)
                     .offset(x: (Self.thumbnailSize / 2) - 6,
                             y: (Self.thumbnailSize / 2) - 6)
                     .onTapGesture {
@@ -129,6 +105,21 @@ struct SharedUrlImage: View {
                     }
             }
         }
+    }
+
+    // MARK: - Methods
+
+    private func makeBadge(systemName: String, backgroundColor: Color) -> some View {
+        Image(systemName: systemName)
+            .font(.system(size: Self.badgeSymbolSize).bold())
+            .foregroundColor(.white)
+            .frame(width: Self.badgeSize, height: Self.badgeSize)
+            .background(backgroundColor)
+            .clipShape(RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous)
+                    .stroke(Color(uiColor: UIColor.systemBackground), lineWidth: 3)
+            )
     }
 }
 
