@@ -310,9 +310,11 @@
 		EE7F6284E9CC11EB84E7BD98 /* SharedUrlEditViewRootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F220C7A27995E093E77928 /* SharedUrlEditViewRootState.swift */; };
 		EFB9D1D9CFA58D67C213DB31 /* CommandServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55797B837237A467F5EE7864 /* CommandServiceError.swift */; };
 		EFF39157E338DFCF9BB57443 /* ObservedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939312F1559214B10346C3C /* ObservedTag.swift */; };
+		EFFD0763D75E06F807153F7C /* TagSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D6FB734D17FD932CF5D0C /* TagSelectionView.swift */; };
 		F0444E11C4B846BB44349ABD /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B136162E98378F1B9BAB41 /* AsyncImage.swift */; };
 		F06C6C3E33246E2BB6B920EB /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085AAF929F99EBBB0EBD9B4 /* SettingView.swift */; };
 		F15A7DF0F95AD080613AA969 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51C3DABAB6E2E48C9F39FFE /* Preview Assets.xcassets */; };
+		F1A9B0A31CAE403E589750EE /* TagSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D6FB734D17FD932CF5D0C /* TagSelectionView.swift */; };
 		F30CAFCE4BD0B986E5298D05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9180BF53336E2369C3393 /* ContentView.swift */; };
 		F3B231BBB0AA9E672A69B659 /* Tsundoc+MapToDomainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE52D741C6408929139E480 /* Tsundoc+MapToDomainModel.swift */; };
 		F58E454AA8B82F696AE6E4BD /* QueryServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8269E45DB3DF6A007C579D7C /* QueryServiceError.swift */; };
@@ -639,6 +641,7 @@
 		A552925980793202724394C8 /* ObservedEntityArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedEntityArray.swift; sourceTree = "<group>"; };
 		A7EA7D645F6AAF33ACFCE34A /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		A9067959A9FE67AC28B9975B /* ObservedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedEntity.swift; sourceTree = "<group>"; };
+		A96D6FB734D17FD932CF5D0C /* TagSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectionView.swift; sourceTree = "<group>"; };
 		A997614656C63362BB864AC5 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		AAA797FDE403EA923AD92AD5 /* HTTPURLResponse+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Mock.swift"; sourceTree = "<group>"; };
 		AD01E9205F3BDD6034F953C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -921,6 +924,7 @@
 			children = (
 				81B0815B50A1D9F0ABC55347 /* TagCell.swift */,
 				CC4A4AFD726808016F4F15D7 /* TagGrid.swift */,
+				A96D6FB734D17FD932CF5D0C /* TagSelectionView.swift */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -2131,6 +2135,7 @@
 				849B6525A3EF9C393282CB23 /* String+LocalizedString.swift in Sources */,
 				D7822DCA3298820D98A202FD /* TagCell.swift in Sources */,
 				9E9952DD2D741B7830E8DDD8 /* TagGrid.swift in Sources */,
+				F1A9B0A31CAE403E589750EE /* TagSelectionView.swift in Sources */,
 				09E8933A516DD5D8100A336D /* TextEditAlert.swift in Sources */,
 				F80985D39420872EBABF9EA4 /* TextEditAlertAction.swift in Sources */,
 				3DD82D8A657E556BFEE5AE73 /* TextEditAlertConfig.swift in Sources */,
@@ -2186,6 +2191,7 @@
 				D47FCF64BBBB069A6E6FE114 /* String+LocalizedString.swift in Sources */,
 				7189F29060A31CCF246881AB /* TagCell.swift in Sources */,
 				0E618FF5EA3EDC3DC3E0E135 /* TagGrid.swift in Sources */,
+				EFFD0763D75E06F807153F7C /* TagSelectionView.swift in Sources */,
 				E4F8C50BC5681F6B6D5F29F8 /* TextEditAlert.swift in Sources */,
 				A6FF9F02CC26EF83575F081A /* TextEditAlertAction.swift in Sources */,
 				85F6412BD64B6786383C055C /* TextEditAlertConfig.swift in Sources */,

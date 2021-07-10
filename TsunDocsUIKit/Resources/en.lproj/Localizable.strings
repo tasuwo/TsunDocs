@@ -8,3 +8,5 @@
 
 "text_edit_alert_save_action" = "Save";
 "text_edit_alert_cancel_action" = "Cancel";
+
+"tag_selection_view_title" = "Select Tag";
