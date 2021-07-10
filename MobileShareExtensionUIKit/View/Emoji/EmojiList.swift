@@ -46,7 +46,9 @@ public struct EmojiList: View {
                     EmojiCell(emoji: emoji)
                         .onTapGesture {
                             selectedEmoji = emoji
-                            presentationMode.wrappedValue.dismiss()
+                            withAnimation {
+                                presentationMode.wrappedValue.dismiss()
+                            }
                         }
                 }
             }

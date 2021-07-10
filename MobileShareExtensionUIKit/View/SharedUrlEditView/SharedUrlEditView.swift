@@ -38,44 +38,43 @@ public struct SharedUrlEditView: View {
         VStack {
             if let url = store.state.sharedUrl {
                 VStack {
-                    SharedUrlImage(store: rootStore
-                        .proxy(SharedUrlEditViewRootState.mappingToImage,
-                               SharedUrlEditViewRootAction.mappingToImage)
-                        .viewStore())
-
-                    Spacer()
-                        .frame(height: 16)
-                        .fixedSize()
-
-                    Text(url.absoluteString)
-                        .lineLimit(2)
-                        .foregroundColor(.gray)
-                        .font(.caption)
-                        .padding([.leading, .trailing, .bottom])
-
-                    HStack {
-                        if let title = store.state.sharedUrlTitle, !title.isEmpty {
-                            Text(title)
-                                .lineLimit(3)
-                                .font(.title2)
-                        } else {
-                            Text("shared_url_edit_view_no_title", bundle: Bundle.this)
-                                .foregroundColor(.gray)
-                                .font(.title2)
+                    HStack(alignment: .top) {
+                        VStack {
+                            SharedUrlImage(store: rootStore
+                                .proxy(SharedUrlEditViewRootState.mappingToImage,
+                                       SharedUrlEditViewRootAction.mappingToImage)
+                                .viewStore())
                         }
 
-                        Spacer()
-                            .frame(width: 16)
-                            .fixedSize()
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                if let title = store.state.sharedUrlTitle, !title.isEmpty {
+                                    Text(title)
+                                        .lineLimit(5)
+                                        .font(.title3)
+                                } else {
+                                    Text("shared_url_edit_view_no_title", bundle: Bundle.this)
+                                        .foregroundColor(.gray)
+                                        .font(.title3)
+                                }
 
-                        Image(systemName: "pencil.circle.fill")
-                            .foregroundColor(.cyan)
-                            .font(.title2)
+                                Image(systemName: "pencil.circle.fill")
+                                    .foregroundColor(.cyan)
+                                    .font(.system(size: 24))
+                            }
                             .onTapGesture {
                                 store.execute(.onTapEditTitleButton)
                             }
+
+                            Text(url.absoluteString)
+                                .lineLimit(2)
+                                .foregroundColor(.gray)
+                                .font(.caption)
+                        }
+                        .padding([.top, .bottom], SharedUrlImage.padding)
+
+                        Spacer()
                     }
-                    .padding()
 
                     Button {
                         store.execute(.onTapSaveButton)
@@ -88,6 +87,7 @@ public struct SharedUrlEditView: View {
                     .buttonStyle(PrimaryButtonStyle())
                     .padding()
                 }
+                .padding(8)
             } else {
                 ProgressView()
                     .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
@@ -144,22 +144,6 @@ struct SharedUrlEditView_Previews: PreviewProvider {
         var _completable = Complete()
     }
 
-    static let dependency: Dependency = {
-        let dependency = Dependency()
-
-        dependency._sharedUrlLoader.loadHandler = { completion in
-            completion(URL(string: "https://apple.com"))
-        }
-
-        dependency._webPageMetaResolver.resolveHandler = { _ in
-            return WebPageMeta(title: "My Title",
-                               description: "Web Page Description",
-                               imageUrl: URL(string: "https://localhost"))
-        }
-
-        return dependency
-    }()
-
     class SuccessMock: URLProtocolMockBase {
         override class var mock_delay: TimeInterval? { 3 }
         override class var mock_handler: ((URLRequest) throws -> (HTTPURLResponse, Data?))? {
@@ -169,15 +153,61 @@ struct SharedUrlEditView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        let store = Store(initialState: SharedUrlEditViewRootState(),
-                          dependency: dependency,
-                          reducer: sharedUrlEditViewRootReducer)
-        let viewStore = ViewStore(store: store)
         let imageLoaderFactory = Factory<ImageLoader> {
             .init(urlSession: .makeMock(SuccessMock.self))
         }
 
-        SharedUrlEditView(viewStore)
-            .environment(\.imageLoaderFactory, imageLoaderFactory)
+        Group {
+            SharedUrlEditView(makeStore(sharedUrl: URL(string: "https://apple.com"),
+                                        title: "My Title",
+                                        description: "Web Page Description",
+                                        imageUrl: URL(string: "https://localhost")))
+                .environment(\.imageLoaderFactory, imageLoaderFactory)
+
+            SharedUrlEditView(makeStore(sharedUrl: URL(string: "https://apple.com/"),
+                                        title: nil,
+                                        description: nil,
+                                        imageUrl: nil))
+                .environment(\.imageLoaderFactory, imageLoaderFactory)
+
+            SharedUrlEditView(makeStore(sharedUrl: URL(string: "https://apple.com/\(String(repeating: "long/", count: 100))"),
+                                        title: String(repeating: "Title ", count: 100),
+                                        description: String(repeating: "Description ", count: 100),
+                                        imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))")))
+                .environment(\.imageLoaderFactory, imageLoaderFactory)
+        }
+    }
+
+    static func makeStore(sharedUrl: URL?,
+                          title: String?,
+                          description: String?,
+                          imageUrl: URL?) -> SharedUrlEditView.RootStore
+    {
+        let store = Store(initialState: SharedUrlEditViewRootState(),
+                          dependency: makeDependency(sharedUrl: sharedUrl,
+                                                     title: title,
+                                                     description: description,
+                                                     imageUrl: imageUrl),
+                          reducer: sharedUrlEditViewRootReducer)
+        let viewStore = ViewStore(store: store)
+        return viewStore
+    }
+
+    static func makeDependency(sharedUrl: URL?,
+                               title: String?,
+                               description: String?,
+                               imageUrl: URL?) -> Dependency
+    {
+        let dependency = Dependency()
+
+        dependency._sharedUrlLoader.loadHandler = { completion in
+            completion(sharedUrl)
+        }
+
+        dependency._webPageMetaResolver.resolveHandler = { _ in
+            return WebPageMeta(title: title, description: description, imageUrl: imageUrl)
+        }
+
+        return dependency
     }
 }

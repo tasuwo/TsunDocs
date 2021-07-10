@@ -10,7 +10,10 @@ import TsunDocsUIKit
 struct SharedUrlImage: View {
     // MARK: - Properties
 
-    private let thumbnailSize: CGFloat = 80
+    static let thumbnailSize: CGFloat = 88
+    static let badgeSize: CGFloat = 32
+    static let badgeSymbolSize: CGFloat = 18
+    static let padding: CGFloat = 32 / 2 - 6
 
     @Environment(\.imageLoaderFactory) var imageLoaderFactory
     @StateObject var store: ViewStore<SharedUrlImageState, SharedUrlImageAction, SharedUrlImageDependency>
@@ -20,10 +23,10 @@ struct SharedUrlImage: View {
     private var thumbnail: some View {
         Group {
             if let emoji = store.state.selectedEmoji {
-                Color.green.opacity(0.4)
+                Color.cyan
                     .overlay(
                         Text(emoji.emoji)
-                            .font(.system(size: 32))
+                            .font(.system(size: 40))
                     )
                     .onTapGesture {
                         store.execute(.didTapSelectEmoji)
@@ -59,7 +62,8 @@ struct SharedUrlImage: View {
                 }
             }
         }
-        .sheet(isPresented: store.bind(\.isSelectingEmoji, action: { .updatedEmojiSheet(isPresenting: $0) })) {
+        .sheet(isPresented: store.bind(\.isSelectingEmoji,
+                                       action: { .updatedEmojiSheet(isPresenting: $0) })) {
             NavigationView {
                 EmojiList(selectedEmoji: store.bind(\.selectedEmoji, action: { .selectedEmoji($0) }))
             }
@@ -69,18 +73,23 @@ struct SharedUrlImage: View {
     var body: some View {
         ZStack {
             thumbnail
-                .frame(width: thumbnailSize, height: thumbnailSize, alignment: .center)
+                .frame(width: Self.thumbnailSize, height: Self.thumbnailSize, alignment: .center)
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .padding(.all, Self.padding)
 
             if store.state.visibleDeleteButton {
                 Image(systemName: "xmark")
-                    .font(.system(size: 14).bold())
+                    .font(.system(size: Self.badgeSymbolSize).bold())
                     .foregroundColor(.white)
-                    .frame(width: 25, height: 25)
+                    .frame(width: Self.badgeSize, height: Self.badgeSize)
                     .background(Color.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 25 / 2, style: .continuous))
-                    .offset(x: -1 * (thumbnailSize / 2) + 5,
-                            y: -1 * (thumbnailSize / 2) + 5)
+                    .clipShape(RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous)
+                            .stroke(Color(uiColor: UIColor.systemBackground), lineWidth: 3)
+                    )
+                    .offset(x: -1 * (Self.thumbnailSize / 2) + 5,
+                            y: -1 * (Self.thumbnailSize / 2) + 5)
                     .onTapGesture {
                         store.execute(.didTapDeleteEmoji)
                     }
@@ -88,13 +97,33 @@ struct SharedUrlImage: View {
 
             if store.state.visibleEmojiLoadButton {
                 Image(systemName: "face.smiling")
-                    .font(.system(size: 14).bold())
+                    .font(.system(size: Self.badgeSymbolSize).bold())
                     .foregroundColor(.white)
-                    .frame(width: 25, height: 25)
+                    .frame(width: Self.badgeSize, height: Self.badgeSize)
                     .background(Color.cyan)
-                    .clipShape(RoundedRectangle(cornerRadius: 25 / 2, style: .continuous))
-                    .offset(x: (thumbnailSize / 2) - 6,
-                            y: (thumbnailSize / 2) - 6)
+                    .clipShape(RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous)
+                            .stroke(Color(uiColor: UIColor.systemBackground), lineWidth: 3)
+                    )
+                    .offset(x: (Self.thumbnailSize / 2) - 6,
+                            y: (Self.thumbnailSize / 2) - 6)
+                    .onTapGesture {
+                        store.execute(.didTapSelectEmoji)
+                    }
+            } else if !store.state.visibleDeleteButton {
+                Image(systemName: "plus")
+                    .font(.system(size: Self.badgeSymbolSize).bold())
+                    .foregroundColor(.white)
+                    .frame(width: Self.badgeSize, height: Self.badgeSize)
+                    .background(Color.cyan)
+                    .clipShape(RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous)
+                            .stroke(Color(uiColor: UIColor.systemBackground), lineWidth: 3)
+                    )
+                    .offset(x: (Self.thumbnailSize / 2) - 6,
+                            y: (Self.thumbnailSize / 2) - 6)
                     .onTapGesture {
                         store.execute(.didTapSelectEmoji)
                     }

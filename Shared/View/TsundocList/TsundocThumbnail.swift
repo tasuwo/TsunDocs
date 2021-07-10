@@ -44,10 +44,10 @@ struct TsundocThumbnail: View {
                 }
 
             case let .emoji(emoji):
-                Color.green.opacity(0.4)
+                Color.cyan
                     .overlay(
                         Text(emoji)
-                            .font(.system(size: 28))
+                            .font(.system(size: 40))
                     )
 
             case .none:
