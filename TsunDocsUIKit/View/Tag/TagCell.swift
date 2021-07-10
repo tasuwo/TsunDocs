@@ -9,33 +9,58 @@ public struct TagCell: View {
 
     public let tagId: UUID
     public let tagName: String
-    public var isSelected: Bool = false
+    public let isSelected: Bool
+    public let size: TagCellSize
+
+    @ScaledMetric private var padding: CGFloat
+
+    var checkmark: some View {
+        Image(systemName: "checkmark")
+            .font(size.font)
+            .aspectRatio(contentMode: .fit)
+    }
+
+    // MARK: - Initializers
+
+    public init(tagId: UUID,
+                tagName: String,
+                isSelected: Bool = false,
+                size: TagCellSize = .normal)
+    {
+        self.tagId = tagId
+        self.tagName = tagName
+        self.isSelected = isSelected
+        self.size = size
+        self._padding = ScaledMetric(wrappedValue: size.padding)
+    }
 
     // MARK: - View
 
     public var body: some View {
         HStack(spacing: 0) {
             if isSelected {
-                Image(systemName: "checkmark")
-                    .aspectRatio(contentMode: .fit)
-                    .padding(.trailing, 2)
-                    .frame(width: 18, height: 18)
-                    .fixedSize()
+                checkmark
                     .foregroundColor(.white)
+                    .padding([.trailing], 2)
             } else {
-                Text("#")
-                    .font(.system(size: 20))
-                    .padding(.all, 0)
-                    .frame(width: 18, height: 18)
-                    .fixedSize()
+                // frameサイズを合わせるため、チェックマークをベースにする
+                checkmark
+                    .foregroundColor(.clear)
+                    .overlay(
+                        Text("#")
+                            .font(size.font)
+                            .padding(.all, 0)
+                            .scaleEffect(1.2)
+                    )
+                    .padding([.trailing], 2)
             }
 
             Text(tagName)
                 .foregroundColor(isSelected ? .white : .primary)
-                .font(.system(size: 16))
+                .font(size.font)
         }
-        .padding([.leading, .trailing], 16)
-        .padding([.top, .bottom], 8)
+        .padding([.leading, .trailing], padding * 2)
+        .padding([.top, .bottom], padding)
         .background(GeometryReader { geometry in
             let baseView = isSelected
                 ? Color.green
@@ -63,14 +88,26 @@ struct TagCell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             VStack {
-                TagCell(tagId: UUID(), tagName: "タグ", isSelected: false)
-                TagCell(tagId: UUID(), tagName: "my tag", isSelected: true)
+                HStack {
+                    TagCell(tagId: UUID(), tagName: "タグ", isSelected: false)
+                    TagCell(tagId: UUID(), tagName: "my tag", isSelected: true)
+                }
+                HStack {
+                    TagCell(tagId: UUID(), tagName: "タグ", isSelected: false, size: .small)
+                    TagCell(tagId: UUID(), tagName: "my tag", isSelected: true, size: .small)
+                }
             }
             .preferredColorScheme(.light)
 
             VStack {
-                TagCell(tagId: UUID(), tagName: "タグ", isSelected: false)
-                TagCell(tagId: UUID(), tagName: "my tag", isSelected: true)
+                HStack {
+                    TagCell(tagId: UUID(), tagName: "タグ", isSelected: false)
+                    TagCell(tagId: UUID(), tagName: "my tag", isSelected: true)
+                }
+                HStack {
+                    TagCell(tagId: UUID(), tagName: "タグ", isSelected: false, size: .small)
+                    TagCell(tagId: UUID(), tagName: "my tag", isSelected: true, size: .small)
+                }
             }
             .preferredColorScheme(.dark)
         }
