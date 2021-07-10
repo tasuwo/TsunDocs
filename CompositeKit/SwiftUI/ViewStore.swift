@@ -35,6 +35,12 @@ public class ViewStore<State: Equatable, Action: CompositeKit.Action, Dependency
         store.execute(action)
     }
 
+    public func execute(_ action: Action, animation: Animation?) {
+        withAnimation(animation) {
+            store.execute(action)
+        }
+    }
+
     public func bind<T>(_ keyPath: KeyPath<State, T>,
                         action: @escaping (T) -> Action) -> Binding<T>
     {

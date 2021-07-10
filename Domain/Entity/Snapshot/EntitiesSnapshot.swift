@@ -9,6 +9,12 @@ public struct EntitiesSnapshot<Entity: Identifiable & Hashable>: Equatable {
 
     // MARK: - Initializers
 
+    public init(_ entities: [Entity]) {
+        _entities = entities.indexed()
+        _selectedIds = .init()
+        _filteredIds = Set(entities.map(\.id))
+    }
+
     public init(entities: [Entity.ID: Ordered<Entity>] = [:],
                 selectedIds: Set<Entity.ID> = .init(),
                 filteredIds: Set<Entity.ID> = .init())
@@ -28,16 +34,28 @@ public extension EntitiesSnapshot {
                      filteredIds: _filteredIds)
     }
 
-    func selecting(ids: Set<Entity.ID>) -> Self {
+    func updating(selectedIds: Set<Entity.ID>) -> Self {
         return .init(entities: _entities,
-                     selectedIds: ids,
+                     selectedIds: selectedIds,
                      filteredIds: _filteredIds)
     }
 
-    func filtering(ids: Set<Entity.ID>) -> Self {
+    func selecting(id: Entity.ID) -> Self {
+        return .init(entities: _entities,
+                     selectedIds: _selectedIds.union(Set([id])),
+                     filteredIds: _filteredIds)
+    }
+
+    func deselecting(id: Entity.ID) -> Self {
+        return .init(entities: _entities,
+                     selectedIds: _selectedIds.subtracting(Set([id])),
+                     filteredIds: _filteredIds)
+    }
+
+    func updating(filteredIds: Set<Entity.ID>) -> Self {
         return .init(entities: _entities,
                      selectedIds: _selectedIds,
-                     filteredIds: ids)
+                     filteredIds: filteredIds)
     }
 
     func removingEntity(having id: Entity.ID) -> Self {
