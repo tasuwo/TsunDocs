@@ -6,6 +6,7 @@ import Domain
 
 public struct TagFilterState: Equatable {
     var tags: [Tag]
+    var lastHandledQuery: String?
     var filteredIds: Set<Tag.ID> = .init()
     var storage: SearchableStorage<Tag> = .init()
 }

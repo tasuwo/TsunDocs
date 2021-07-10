@@ -3,8 +3,10 @@
 //
 
 import CompositeKit
+import Domain
 
 public enum TagMultiSelectionViewAction: Action {
+    case tagsUpdated([Tag])
     case selection(TagSelectionAction)
     case filter(TagFilterAction)
 }
@@ -19,6 +21,15 @@ public extension TagMultiSelectionViewAction {
     static let mappingToFilter: ActionMapping<Self, TagFilterAction> = .init(build: {
         .filter($0)
     }, get: {
-        guard case let .filter(action) = $0 else { return nil }; return action
+        switch $0 {
+        case let .tagsUpdated(tags):
+            return .tagsUpdated(tags)
+
+        case let .filter(action):
+            return action
+
+        default:
+            return nil
+        }
     })
 }

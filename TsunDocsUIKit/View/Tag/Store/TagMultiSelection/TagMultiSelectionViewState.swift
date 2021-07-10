@@ -14,7 +14,6 @@ public struct TagMultiSelectionViewState: Equatable {
                   allowsMultipleSelection: true)
         }
         set {
-            tags = newValue.tags
             selectedIds = newValue.selectedIds
         }
     }

@@ -7,8 +7,6 @@ import Domain
 import SwiftUI
 import TsunDocsUIKit
 
-// TODO: 初回のフィルタの同期がうまくいっていない問題を修正する
-
 struct TagSelectionView: View {
     typealias Store = ViewStore<
         TagSelectionViewState,
@@ -150,7 +148,7 @@ struct TagSelectionView_Previews: PreviewProvider {
         @State var isPresenting: Bool = false
 
         var body: some View {
-            let store = Store(initialState: TagSelectionViewState(tags: []),
+            let store = Store(initialState: TagSelectionViewState(),
                               dependency: Dependency(),
                               reducer: tagSelectionViewReducer)
             let viewStore = ViewStore(store: store)

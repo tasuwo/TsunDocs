@@ -9,9 +9,9 @@ struct TagControlState: Equatable {
         case failedToAddTag
     }
 
-    var tags: [Tag]
-    var selectedIds: Set<Tag.ID>
+    var tags: [Tag] = []
+    var selectedIds: Set<Tag.ID> = .init()
 
     var alert: Alert?
-    var isTagAdditionAlertPresenting: Bool
+    var isTagAdditionAlertPresenting: Bool = false
 }
