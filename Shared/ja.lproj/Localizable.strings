@@ -8,6 +8,7 @@
 
 "app_name" = "TsunDocs";
 "tab_item_title_tsundoc_list" = "マイリスト";
+"tab_item_title_tags" = "タグ";
 "tab_item_title_settings" = "設定";
 
 "tsundoc_list_title" = "マイリスト";

@@ -19,6 +19,9 @@ struct ContentView: View {
                     NavigationLink(destination: TsundocList(store: viewStore)) {
                         TabItem.tsundocList.label
                     }
+                    NavigationLink(destination: Text("TODO")) {
+                        TabItem.tags.label
+                    }
                     NavigationLink(destination: SettingView()) {
                         TabItem.settings.label
                     }
@@ -32,6 +35,9 @@ struct ContentView: View {
             TabView {
                 TsundocList(store: viewStore)
                     .tabItem { TabItem.tsundocList.view }
+
+                Text("TODO")
+                    .tabItem { TabItem.tags.view }
 
                 SettingView()
                     .tabItem { TabItem.settings.view }

@@ -8,6 +8,7 @@
 
 "app_name" = "TsunDocs";
 "tab_item_title_tsundoc_list" = "My List";
+"tab_item_title_tags" = "Tags";
 "tab_item_title_settings" = "Settings";
 
 "tsundoc_list_title" = "My List";
