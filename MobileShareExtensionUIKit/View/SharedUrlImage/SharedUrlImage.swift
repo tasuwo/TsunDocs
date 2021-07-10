@@ -112,7 +112,7 @@ struct SharedUrlImage: View {
     private func makeBadge(systemName: String, backgroundColor: Color) -> some View {
         Image(systemName: systemName)
             .font(.system(size: Self.badgeSymbolSize).bold())
-            .foregroundColor(.white)
+            .foregroundColor(Color(uiColor: UIColor.systemBackground))
             .frame(width: Self.badgeSize, height: Self.badgeSize)
             .background(backgroundColor)
             .clipShape(RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous))
