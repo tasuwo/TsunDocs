@@ -23,7 +23,7 @@ struct SharedUrlImage: View {
     private var thumbnail: some View {
         Group {
             if let emoji = store.state.selectedEmoji {
-                Color.cyan
+                Color("emoji_background", bundle: Bundle.tsunDocsUiKit)
                     .overlay(
                         Text(emoji.emoji)
                             .font(.system(size: 40))

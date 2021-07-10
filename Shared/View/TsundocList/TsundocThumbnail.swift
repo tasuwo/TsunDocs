@@ -44,7 +44,7 @@ struct TsundocThumbnail: View {
                 }
 
             case let .emoji(emoji):
-                Color.cyan
+                Color("emoji_background", bundle: Bundle.tsunDocsUiKit)
                     .overlay(
                         Text(emoji)
                             .font(.system(size: 40))
