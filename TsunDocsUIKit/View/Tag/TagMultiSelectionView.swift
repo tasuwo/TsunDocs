@@ -6,19 +6,19 @@ import CompositeKit
 import Domain
 import SwiftUI
 
-public struct TagSelectionView: View {
-    typealias Store = ViewStore<TagMultiSelectionViewState, TagMultiSelectionViewAction, TagMultiSelectionViewDependency>
+public struct TagMultiSelectionView: View {
+    public typealias Store = ViewStore<TagMultiSelectionViewState,
+        TagMultiSelectionViewAction,
+        TagMultiSelectionViewDependency>
     typealias FilterStore = ViewStore<TagFilterState, TagFilterAction, TagFilterDependency>
-
-    @Environment(\.presentationMode) var presentationMode
 
     @StateObject var store: Store
     @StateObject var filterStore: FilterStore
-    @ObservedObject var engine: TextEngine = .init(debounceFor: 0.3)
+    @StateObject var engine: TextEngine = .init(debounceFor: 0.3)
 
     // MARK: - Initializers
 
-    init(store: Store) {
+    public init(store: Store) {
         _store = StateObject(wrappedValue: store)
 
         let filterStore: FilterStore = store
@@ -46,7 +46,7 @@ public struct TagSelectionView: View {
     }
 }
 
-struct TagSelectionView_Previews: PreviewProvider {
+struct TagMultiSelectionView_Previews: PreviewProvider {
     struct Container: View {
         private let tags: [Tag] = [
             .init(id: UUID(), name: "This"),
@@ -91,7 +91,7 @@ struct TagSelectionView_Previews: PreviewProvider {
                 }
                 .sheet(isPresented: $isPresenting) {
                     NavigationView {
-                        TagSelectionView(store: viewStore)
+                        TagMultiSelectionView(store: viewStore)
                     }
                 }
             }

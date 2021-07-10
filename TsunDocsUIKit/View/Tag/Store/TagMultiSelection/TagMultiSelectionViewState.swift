@@ -34,16 +34,29 @@ public struct TagMultiSelectionViewState: Equatable {
 
     // MARK: - Shared
 
-    var tags: [Tag]
+    public var tags: [Tag]
 
     // MARK: - TagSelectionState
 
-    var selectedIds: Set<Tag.ID> = .init()
+    public var selectedIds: Set<Tag.ID> = .init()
 
     // MARK: - TagFitlerState
 
-    var filteredIds: Set<Tag.ID> = .init()
-    var storage: SearchableStorage<Tag> = .init()
+    public var filteredIds: Set<Tag.ID> = .init()
+    public var storage: SearchableStorage<Tag> = .init()
+
+    // MARK: - Initializers
+
+    public init(tags: [Tag],
+                selectedIds: Set<Tag.ID>,
+                filteredIds: Set<Tag.ID>,
+                storage: SearchableStorage<Tag>)
+    {
+        self.tags = tags
+        self.selectedIds = selectedIds
+        self.filteredIds = filteredIds
+        self.storage = storage
+    }
 }
 
 public extension TagMultiSelectionViewState {

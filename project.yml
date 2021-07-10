@@ -268,7 +268,7 @@ targets:
     platform: iOS
     sources:
       - path: MobileShareExtensionUIKit
-      - path: Preview Content/Mocks/Manual/URL
+      - path: Preview Content/Mocks/Manual
       - path: Preview Content/Mocks/Protocol/Domain.ProtocolMocks.swift
       - Preview Content/Preview Assets.xcassets
     dependencies:
