@@ -9,20 +9,22 @@ import SwiftUI
 public struct TagGrid: View {
     // MARK: - Properties
 
-    public let spacing: CGFloat = 8
-    public let inset: CGFloat
-
     @ObservedObject var store: ViewStore<TagGridState, TagGridAction, TagGridDependency>
 
     @State private var availableWidth: CGFloat = 0
     @State private var cellSizes: [Tag: CGSize] = [:]
 
+    private let spacing: CGFloat
+    private let inset: CGFloat
+
     // MARK: - Initializers
 
     public init(store: ViewStore<TagGridState, TagGridAction, TagGridDependency>,
+                spacing: CGFloat = 8,
                 inset: CGFloat = 8)
     {
         _store = ObservedObject(wrappedValue: store)
+        self.spacing = spacing
         self.inset = inset
     }
 
