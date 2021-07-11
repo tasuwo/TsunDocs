@@ -16,7 +16,7 @@ public struct SharedUrlEditView: View {
 
     // MARK: - Properties
 
-    @ObservedObject var store: RootStore
+    @StateObject var store: RootStore
     // TODO: DI方法を検討する
     private let tagSelectionViewDependency: TagSelectionViewDependency
 
@@ -25,7 +25,7 @@ public struct SharedUrlEditView: View {
     public init(_ store: RootStore,
                 tagSelectionViewDependency: TagSelectionViewDependency)
     {
-        self._store = ObservedObject(wrappedValue: store)
+        self._store = StateObject(wrappedValue: store)
         self.tagSelectionViewDependency = tagSelectionViewDependency
     }
 

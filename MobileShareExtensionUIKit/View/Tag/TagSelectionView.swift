@@ -14,13 +14,13 @@ struct TagSelectionView: View {
         TagSelectionViewDependency
     >
 
-    @ObservedObject var store: Store
+    @StateObject var store: Store
     private let onDone: ([Tag]) -> Void
 
     // MARK: - Initializers
 
     init(store: Store, onDone: @escaping ([Tag]) -> Void) {
-        _store = ObservedObject(wrappedValue: store)
+        _store = StateObject(wrappedValue: store)
         self.onDone = onDone
     }
 

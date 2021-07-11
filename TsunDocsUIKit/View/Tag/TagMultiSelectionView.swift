@@ -13,13 +13,13 @@ public struct TagMultiSelectionView: View {
         TagMultiSelectionViewDependency
     >
 
-    @ObservedObject var store: Store
+    @StateObject var store: Store
     @StateObject var engine: TextEngine = .init(debounceFor: 0.3)
 
     // MARK: - Initializers
 
     public init(store: Store) {
-        _store = ObservedObject(wrappedValue: store)
+        _store = StateObject(wrappedValue: store)
     }
 
     // MARK: - View

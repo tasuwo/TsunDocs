@@ -15,7 +15,7 @@ public struct EmojiList: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     @Environment(\.presentationMode) var presentationMode
 
-    @ObservedObject var engine: TextEngine = .init(debounceFor: 0.3)
+    @StateObject var engine: TextEngine = .init(debounceFor: 0.3)
 
     @State var storage: SearchableStorage<Emoji> = .init()
     @State var emojis: [Emoji] = Self.allEmojis

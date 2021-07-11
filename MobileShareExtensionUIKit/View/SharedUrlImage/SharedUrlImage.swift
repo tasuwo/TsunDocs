@@ -8,6 +8,12 @@ import SwiftUI
 import TsunDocsUIKit
 
 struct SharedUrlImage: View {
+    typealias Store = ViewStore<
+        SharedUrlImageState,
+        SharedUrlImageAction,
+        SharedUrlImageDependency
+    >
+
     // MARK: - Properties
 
     static let thumbnailSize: CGFloat = 88
@@ -16,7 +22,7 @@ struct SharedUrlImage: View {
     static let padding: CGFloat = 32 / 2 - 6
 
     @Environment(\.imageLoaderFactory) var imageLoaderFactory
-    @ObservedObject var store: ViewStore<SharedUrlImageState, SharedUrlImageAction, SharedUrlImageDependency>
+    @StateObject var store: Store
 
     // MARK: - View
 
