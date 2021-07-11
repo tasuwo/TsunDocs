@@ -9,8 +9,8 @@ public struct TagMultiSelectionViewState: Equatable {
     var gridState: TagGridState {
         get {
             .init(tags: tags.filter { filteredIds.contains($0.id) },
-                  selectedIds: selectedIds,
-                  configuration: .init(.selectable(.multiple)))
+                  configuration: .init(.selectable(.multiple)),
+                  selectedIds: selectedIds)
         }
         set {
             selectedIds = newValue.selectedIds

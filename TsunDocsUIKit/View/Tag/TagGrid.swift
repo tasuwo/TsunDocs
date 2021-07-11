@@ -47,6 +47,7 @@ public struct TagGrid: View {
             tagName: tag.name,
             status: .init(store.state.configuration,
                           isSelected: store.state.selectedIds.contains(tag.id)),
+            size: store.state.configuration.size,
             onSelect: { store.execute(.selected($0)) },
             onDelete: { store.execute(.deleted($0)) }
         )
@@ -126,18 +127,26 @@ struct TagGrid_Previews: PreviewProvider {
     ]
 
     static var previews: some View {
-        VStack {
-            TagGrid(store: makeViewStore(.init(.default)))
-                .padding()
+        Group {
+            VStack(spacing: 4) {
+                TagGrid(store: makeViewStore(.init(.default)))
 
-            TagGrid(store: makeViewStore(.init(.selectable(.multiple))))
-                .padding()
+                TagGrid(store: makeViewStore(.init(.selectable(.multiple))))
 
-            TagGrid(store: makeViewStore(.init(.selectable(.single))))
-                .padding()
+                TagGrid(store: makeViewStore(.init(.selectable(.single))))
 
-            TagGrid(store: makeViewStore(.init(.deletable)))
-                .padding()
+                TagGrid(store: makeViewStore(.init(.deletable)))
+            }
+
+            VStack(spacing: 4) {
+                TagGrid(store: makeViewStore(.init(.default, size: .small)))
+
+                TagGrid(store: makeViewStore(.init(.selectable(.multiple), size: .small)))
+
+                TagGrid(store: makeViewStore(.init(.selectable(.single), size: .small)))
+
+                TagGrid(store: makeViewStore(.init(.deletable, size: .small)))
+            }
         }
     }
 
