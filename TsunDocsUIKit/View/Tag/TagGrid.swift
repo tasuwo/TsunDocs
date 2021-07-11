@@ -10,6 +10,7 @@ public struct TagGrid: View {
     // MARK: - Properties
 
     public let spacing: CGFloat = 8
+    public let inset: CGFloat
 
     @ObservedObject var store: ViewStore<TagGridState, TagGridAction, TagGridDependency>
 
@@ -18,8 +19,11 @@ public struct TagGrid: View {
 
     // MARK: - Initializers
 
-    public init(store: ViewStore<TagGridState, TagGridAction, TagGridDependency>) {
+    public init(store: ViewStore<TagGridState, TagGridAction, TagGridDependency>,
+                inset: CGFloat = 8)
+    {
         _store = ObservedObject(wrappedValue: store)
+        self.inset = inset
     }
 
     // MARK: - View
@@ -41,7 +45,7 @@ public struct TagGrid: View {
                             }
                         }
                     }
-                    .padding(.all, spacing)
+                    .padding(.all, inset)
                 }
             }
         }
@@ -57,7 +61,7 @@ public struct TagGrid: View {
             onSelect: { store.execute(.selected($0)) },
             onDelete: { store.execute(.deleted($0)) }
         )
-        .frame(maxWidth: geometry.size.width - spacing * 2)
+        .frame(maxWidth: geometry.size.width - inset * 2)
         .fixedSize()
         .onChangeFrame {
             cellSizes[tag] = $0
@@ -67,17 +71,17 @@ public struct TagGrid: View {
     private func calcRows() -> [[Tag]] {
         var rows: [[Tag]] = [[]]
         var currentRow = 0
-        var remainingWidth = availableWidth - spacing * 2
+        var remainingWidth = availableWidth - inset * 2
 
         for tag in store.state.tags {
-            let cellSize = cellSizes[tag, default: CGSize(width: availableWidth - spacing * 2, height: 1)]
+            let cellSize = cellSizes[tag, default: CGSize(width: availableWidth - inset * 2, height: 1)]
 
             if remainingWidth - (cellSize.width + spacing) >= 0 {
                 rows[currentRow].append(tag)
             } else {
                 currentRow += 1
                 rows.append([tag])
-                remainingWidth = availableWidth - spacing * 2
+                remainingWidth = availableWidth - inset * 2
             }
 
             remainingWidth -= (cellSize.width + spacing)
@@ -136,7 +140,9 @@ struct TagGrid_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            VStack(spacing: 4) {
+            TagGrid(store: makeViewStore(.init(.default)))
+
+            VStack(alignment: .center, spacing: 4) {
                 TagGrid(store: makeViewStore(.init(.default)))
 
                 TagGrid(store: makeViewStore(.init(.selectable(.multiple))))

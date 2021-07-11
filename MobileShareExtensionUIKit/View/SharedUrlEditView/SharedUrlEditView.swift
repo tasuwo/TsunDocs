@@ -88,10 +88,13 @@ public struct SharedUrlEditView: View {
 
             Group {
                 if !store.state.selectedTags.isEmpty {
-                    TagGrid(store: store
-                        .proxy(SharedUrlEditViewRootState.mappingToTagGrid,
-                               SharedUrlEditViewRootAction.mappingToTagGrid)
-                        .viewStore())
+                    TagGrid(
+                        store: store
+                            .proxy(SharedUrlEditViewRootState.mappingToTagGrid,
+                                   SharedUrlEditViewRootAction.mappingToTagGrid)
+                            .viewStore(),
+                        inset: 0
+                    )
                 } else {
                     Text("No Tags")
                         .foregroundColor(.gray)
