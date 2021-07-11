@@ -26,7 +26,9 @@ class DependencyContainer: ObservableObject {
 
     // MARK: Command
 
+    private let _tagQueryService: Domain.TagQueryService
     private let _tsundocCommandService: Domain.TsundocCommandService
+    private let _tagCommandService: Domain.TagCommandService
 
     // MARK: - Initializers
 
@@ -39,7 +41,9 @@ class DependencyContainer: ObservableObject {
         container = PersistentContainer(author: .shareExtension)
         commandContext = container.newBackgroundContext(on: commandQueue)
 
+        _tagQueryService = TagQueryService(container.viewContext)
         _tsundocCommandService = TsundocCommandService(commandContext)
+        _tagCommandService = TagCommandService(commandContext)
     }
 }
 
@@ -51,8 +55,16 @@ extension DependencyContainer: HasWebPageMetaResolver {
     var webPageMetaResolver: WebPageMetaResolvable { _webPageMetaResolver }
 }
 
+extension DependencyContainer: HasTagQueryService {
+    var tagQueryService: Domain.TagQueryService { _tagQueryService }
+}
+
 extension DependencyContainer: HasTsundocCommandService {
     var tsundocCommandService: Domain.TsundocCommandService { _tsundocCommandService }
+}
+
+extension DependencyContainer: HasTagCommandService {
+    var tagCommandService: Domain.TagCommandService { _tagCommandService }
 }
 
 extension DependencyContainer: HasCompletable {
