@@ -73,6 +73,10 @@ public struct SharedUrlEditView: View {
                         Spacer()
                     }
 
+                    if !store.state.selectedTags.isEmpty {
+                        Text(store.state.selectedTags.map(\.name).joined(separator: ", "))
+                    }
+
                     Image(systemName: "tag.circle.fill")
                         .foregroundColor(.cyan)
                         .font(.system(size: 24))
@@ -120,11 +124,13 @@ public struct SharedUrlEditView: View {
             })
         .sheet(isPresented: store.bind(\.isTagEditSheetPresenting,
                                        action: { _ in .edit(.alertDismissed) })) {
-            let store = Store(initialState: TagSelectionViewState(),
-                              dependency: tagSelectionViewDependency,
-                              reducer: tagSelectionViewReducer)
-            let viewStore = ViewStore(store: store)
-            TagSelectionView(store: viewStore, onDone: { _ in /* TODO: */ })
+            let selectedIds = Set(store.state.selectedTags.map(\.id))
+            let _store = Store(initialState: TagSelectionViewState(selectedIds: selectedIds),
+                               dependency: tagSelectionViewDependency,
+                               reducer: tagSelectionViewReducer)
+            let viewStore = ViewStore(store: _store)
+            TagSelectionView(store: viewStore,
+                             onDone: { store.execute(.edit(.onSelectedTags($0))) })
         }
         .alert(isPresenting: store.bind(\.isTitleEditAlertPresenting,
                                         action: { _ in .edit(.alertDismissed) }),

@@ -5,7 +5,7 @@
 import Foundation
 
 // sourcery: AutoDefaultValue
-public struct Tag: Searchable {
+public struct Tag: Searchable, Equatable {
     // MARK: - Properties
 
     public let id: UUID

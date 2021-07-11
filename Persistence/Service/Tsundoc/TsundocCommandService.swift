@@ -31,6 +31,14 @@ extension TsundocCommandService: Domain.TsundocCommandService {
         tsundoc.emojiAlias = command.emojiAlias
         tsundoc.imageUrl = command.imageUrl
 
+        let tags: [Tag] = command.tagIds
+            .compactMap {
+                let requestById: NSFetchRequest<Tag> = Tag.fetchRequest()
+                requestById.predicate = NSPredicate(format: "id == %@", $0 as CVarArg)
+                return try? context.fetch(requestById).first
+            }
+        tsundoc.tags = NSSet(array: tags)
+
         let currentDate = Date()
         tsundoc.createdDate = currentDate
         tsundoc.updatedDate = currentDate

@@ -83,6 +83,11 @@ public struct SharedUrlEditViewReducer: Reducer {
             nextState.selectedEmoji = emoji
             return (nextState, .none)
 
+        case let .onSelectedTags(tags):
+            nextState.selectedTags = tags
+            nextState.isTagEditSheetPresenting = false
+            return (nextState, .none)
+
         case .errorConfirmed:
             dependency.completable.cancel(with: NSError()) // TODO:
             return (nextState, .none)

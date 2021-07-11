@@ -3,6 +3,7 @@
 //
 
 import CompositeKit
+import Domain
 import TsunDocsUIKit
 
 public struct SharedUrlEditViewRootState: Equatable {
@@ -13,6 +14,7 @@ public struct SharedUrlEditViewRootState: Equatable {
                   sharedUrlDescription: sharedUrlDescription,
                   sharedUrlImageUrl: sharedUrlImageUrl,
                   selectedEmoji: selectedEmoji,
+                  selectedTags: selectedTags,
                   alert: alert,
                   isTitleEditAlertPresenting: isTitleEditAlertPresenting,
                   isTagEditSheetPresenting: isTagEditSheetPresenting)
@@ -23,6 +25,7 @@ public struct SharedUrlEditViewRootState: Equatable {
             sharedUrlDescription = newValue.sharedUrlDescription
             sharedUrlImageUrl = newValue.sharedUrlImageUrl
             selectedEmoji = newValue.selectedEmoji
+            selectedTags = newValue.selectedTags
             alert = newValue.alert
             isTitleEditAlertPresenting = newValue.isTitleEditAlertPresenting
             isTagEditSheetPresenting = newValue.isTagEditSheetPresenting
@@ -54,6 +57,7 @@ public struct SharedUrlEditViewRootState: Equatable {
     var sharedUrl: URL?
     var sharedUrlTitle: String?
     var sharedUrlDescription: String?
+    var selectedTags: [Tag]
     var alert: SharedUrlEditViewState.Alert?
     var isAlertPresenting: Bool { alert != nil }
     var isTitleEditAlertPresenting: Bool
@@ -67,6 +71,7 @@ public struct SharedUrlEditViewRootState: Equatable {
 
 public extension SharedUrlEditViewRootState {
     init() {
+        selectedTags = []
         isTitleEditAlertPresenting = false
         isTagEditSheetPresenting = false
         isSelectingEmoji = false

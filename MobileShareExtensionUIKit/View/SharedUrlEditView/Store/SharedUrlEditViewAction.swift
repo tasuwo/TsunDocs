@@ -14,6 +14,7 @@ public enum SharedUrlEditViewAction: Action {
     case onSaveTitle(String)
     case onFailedToLoadUrl
     case onSelectedEmoji(Emoji?)
+    case onSelectedTags([Tag])
     case errorConfirmed
     case alertDismissed
 }

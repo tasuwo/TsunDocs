@@ -18,6 +18,12 @@ extension TagSelectionViewState {
 }
 
 extension TagSelectionViewState {
+    init(selectedIds: Set<Tag.ID>) {
+        self.multiSelectionState = .init(selectedIds: selectedIds)
+    }
+}
+
+extension TagSelectionViewState {
     static let mappingToMultiSelection: StateMapping<Self, TagMultiSelectionViewState> = .init(keyPath: \.multiSelectionState)
     static let mappingToControl: StateMapping<Self, TagControlState> = .init(keyPath: \.controlState)
 }

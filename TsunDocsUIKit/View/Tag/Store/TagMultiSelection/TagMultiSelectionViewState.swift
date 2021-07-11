@@ -46,10 +46,10 @@ public struct TagMultiSelectionViewState: Equatable {
 
     // MARK: - Initializers
 
-    public init(tags: [Tag],
-                selectedIds: Set<Tag.ID>,
-                filteredIds: Set<Tag.ID>,
-                storage: SearchableStorage<Tag>)
+    public init(tags: [Tag] = [],
+                selectedIds: Set<Tag.ID> = .init(),
+                filteredIds: Set<Tag.ID> = .init(),
+                storage: SearchableStorage<Tag> = .init())
     {
         self.tags = tags
         self.selectedIds = selectedIds

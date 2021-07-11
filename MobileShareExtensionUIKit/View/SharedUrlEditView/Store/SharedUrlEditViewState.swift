@@ -16,6 +16,7 @@ public struct SharedUrlEditViewState: Equatable {
     var sharedUrlImageUrl: URL?
 
     var selectedEmoji: Emoji?
+    var selectedTags: [Tag]
 
     var alert: Alert?
     var isTitleEditAlertPresenting: Bool
@@ -33,6 +34,7 @@ extension SharedUrlEditViewState {
                               description: sharedUrlDescription,
                               url: url,
                               imageUrl: sharedUrlImageUrl,
-                              emojiAlias: selectedEmoji?.alias)
+                              emojiAlias: selectedEmoji?.alias,
+                              tagIds: selectedTags.map(\.id))
     }
 }

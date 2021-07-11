@@ -13,6 +13,7 @@ public struct TsundocCommand {
     public let url: URL
     public let imageUrl: URL?
     public let emojiAlias: String?
+    public let tagIds: [Tag.ID]
 
     // MARK: - Initializers
 
@@ -20,12 +21,14 @@ public struct TsundocCommand {
                 description: String?,
                 url: URL,
                 imageUrl: URL?,
-                emojiAlias: String?)
+                emojiAlias: String?,
+                tagIds: [Tag.ID] = [])
     {
         self.title = title
         self.description = description
         self.url = url
         self.imageUrl = imageUrl
         self.emojiAlias = emojiAlias
+        self.tagIds = tagIds
     }
 }
