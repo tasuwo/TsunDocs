@@ -11,7 +11,7 @@ public struct TagGrid: View {
 
     public let spacing: CGFloat = 8
 
-    @ObservedObject var store: ViewStore<TagSelectionState, TagSelectionAction, TagSelectionDependency>
+    @ObservedObject var store: ViewStore<TagGridState, TagGridAction, TagGridDependency>
 
     @State private var availableWidth: CGFloat = 0
     @State private var cellSizes: [Tag: CGSize] = [:]
@@ -26,24 +26,12 @@ public struct TagGrid: View {
                     availableWidth = $0.width
                 }
 
-            GeometryReader { proxy in
+            GeometryReader { geometry in
                 ScrollView {
                     VStack(alignment: .leading, spacing: spacing) {
                         ForEach(calcRows(), id: \.self) { tags in
                             HStack(spacing: spacing) {
-                                ForEach(tags) { tag in
-                                    TagCell(tagId: tag.id,
-                                            tagName: tag.name,
-                                            status: store.state.selectedIds.contains(tag.id) ? .selected : .default)
-                                        .frame(maxWidth: proxy.size.width - spacing * 2)
-                                        .fixedSize()
-                                        .onChangeFrame {
-                                            cellSizes[tag] = $0
-                                        }
-                                        .onTapGesture {
-                                            store.execute(.selected(tag.id))
-                                        }
-                                }
+                                ForEach(tags) { cell(geometry, $0) }
                             }
                         }
                     }
@@ -53,7 +41,23 @@ public struct TagGrid: View {
         }
     }
 
-    func calcRows() -> [[Tag]] {
+    private func cell(_ geometry: GeometryProxy, _ tag: Tag) -> some View {
+        return TagCell(
+            tagId: tag.id,
+            tagName: tag.name,
+            status: .init(store.state.configuration,
+                          isSelected: store.state.selectedIds.contains(tag.id)),
+            onSelect: { store.execute(.selected($0)) },
+            onDelete: { store.execute(.deleted($0)) }
+        )
+        .frame(maxWidth: geometry.size.width - spacing * 2)
+        .fixedSize()
+        .onChangeFrame {
+            cellSizes[tag] = $0
+        }
+    }
+
+    private func calcRows() -> [[Tag]] {
         var rows: [[Tag]] = [[]]
         var currentRow = 0
         var remainingWidth = availableWidth - spacing * 2
@@ -73,6 +77,21 @@ public struct TagGrid: View {
         }
 
         return rows
+    }
+}
+
+private extension TagCellStatus {
+    init(_ config: TagGridConfiguration, isSelected: Bool) {
+        switch config.style {
+        case .selectable:
+            self = isSelected ? .selected : .default
+
+        case .deletable:
+            self = .deletable
+
+        default:
+            self = .default
+        }
     }
 }
 
@@ -108,28 +127,26 @@ struct TagGrid_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack {
-            TagGrid(store: makeViewStore(allowsSelection: true,
-                                         allowsMultipleSelection: true))
+            TagGrid(store: makeViewStore(.init(.default)))
                 .padding()
 
-            TagGrid(store: makeViewStore(allowsSelection: true,
-                                         allowsMultipleSelection: false))
+            TagGrid(store: makeViewStore(.init(.selectable(.multiple))))
                 .padding()
 
-            TagGrid(store: makeViewStore(allowsSelection: false,
-                                         allowsMultipleSelection: false))
+            TagGrid(store: makeViewStore(.init(.selectable(.single))))
+                .padding()
+
+            TagGrid(store: makeViewStore(.init(.deletable)))
                 .padding()
         }
     }
 
-    static func makeViewStore(allowsSelection: Bool,
-                              allowsMultipleSelection: Bool) -> ViewStore<TagSelectionState, TagSelectionAction, TagSelectionDependency>
+    static func makeViewStore(_ config: TagGridConfiguration) -> ViewStore<TagGridState, TagGridAction, TagGridDependency>
     {
-        let store = Store(initialState: TagSelectionState(tags: tags,
-                                                          allowsSelection: allowsSelection,
-                                                          allowsMultipleSelection: allowsMultipleSelection),
+        let store = Store(initialState: TagGridState(tags: tags,
+                                                     configuration: config),
                           dependency: (),
-                          reducer: TagSelectionReducer())
+                          reducer: TagGridReducer())
         return ViewStore(store: store)
     }
 }

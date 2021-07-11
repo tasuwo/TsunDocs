@@ -10,6 +10,6 @@ private typealias RootState = TagMultiSelectionViewState
 private typealias RootAction = TagMultiSelectionViewAction
 
 public let tagMultiSelectionReducer = combine(
-    contramap(RootAction.mappingToSelection, RootState.mappingToSelection, { $0 as TagMultiSelectionViewDependency })(TagSelectionReducer()),
+    contramap(RootAction.mappingToGrid, RootState.mappingToGrid, { $0 as TagMultiSelectionViewDependency })(TagGridReducer()),
     contramap(RootAction.mappingToFilter, RootState.mappingToFilter, { $0 })(TagFilterReducer())
 )

@@ -6,12 +6,11 @@ import CompositeKit
 import Domain
 
 public struct TagMultiSelectionViewState: Equatable {
-    var selectionState: TagSelectionState {
+    var gridState: TagGridState {
         get {
             .init(tags: tags.filter { filteredIds.contains($0.id) },
                   selectedIds: selectedIds,
-                  allowsSelection: true,
-                  allowsMultipleSelection: true)
+                  configuration: .init(.selectable(.multiple)))
         }
         set {
             selectedIds = newValue.selectedIds
@@ -35,7 +34,7 @@ public struct TagMultiSelectionViewState: Equatable {
 
     public var tags: [Tag]
 
-    // MARK: - TagSelectionState
+    // MARK: - TagGridState
 
     public var selectedIds: Set<Tag.ID> = .init()
 
@@ -66,6 +65,6 @@ public extension TagMultiSelectionViewState {
 }
 
 public extension TagMultiSelectionViewState {
-    static let mappingToSelection: StateMapping<Self, TagSelectionState> = .init(keyPath: \Self.selectionState)
+    static let mappingToGrid: StateMapping<Self, TagGridState> = .init(keyPath: \Self.gridState)
     static let mappingToFilter: StateMapping<Self, TagFilterState> = .init(keyPath: \Self.filterState)
 }

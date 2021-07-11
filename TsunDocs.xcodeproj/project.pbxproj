@@ -33,7 +33,6 @@
 		0F229B58C3FB3EB560F88BDF /* Publisher+bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B13F8D9178337ED377514C /* Publisher+bind.swift */; };
 		0F298109F4C31D59C2D2844D /* WebPageMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F6162C468E2FD4BACE299 /* WebPageMeta.swift */; };
 		0F82BFCAB8F9386EF28FD221 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 76BF5FB387009A73F0B7B0CC /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		10DF54B66A951D51E0667F05 /* TagSelectionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959F4629310B2B92DAC51011 /* TagSelectionReducer.swift */; };
 		10E32694054C970EE08B63ED /* WebViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60564664ABBE179B7D642598 /* WebViewCoordinator.swift */; };
 		112A74257BB1C2BB1BE44F49 /* TagSelectionViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCC81D8C9ACAA777E969EF7 /* TagSelectionViewState.swift */; };
 		11B23092AC27CE254D75909D /* ViewContextObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20359867208A7C1CD2A407E /* ViewContextObserving.swift */; };
@@ -68,6 +67,7 @@
 		1F8DC7795916214BF3351C08 /* SharedUrlEditViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E7685CF8AD138B0230FA2E /* SharedUrlEditViewAction.swift */; };
 		1FB4A9F0E0D04EDB22AF4B66 /* ObservedEntity+EraseToAnyObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D990D2718732D3063B87585 /* ObservedEntity+EraseToAnyObservedEntity.swift */; };
 		204372F12006A63634761E3D /* Smile.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9170889182C4E71C98ED7BB /* Smile.xcframework */; };
+		208F987654427C26165391B9 /* TagGridAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040816BB787DFB5059531DD /* TagGridAction.swift */; };
 		20D1F432B6B22E81245C5247 /* PureReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9554D05676829A7CCBDADB /* PureReducer.swift */; };
 		214F17D7B42C1177A544F904 /* TextEditAlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E44369843F81A3892642 /* TextEditAlertCoordinator.swift */; };
 		221FE1BFE1EDC8357182EE0A /* CompositeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35799AA535128C2EE05F11B /* CompositeKit.framework */; };
@@ -80,6 +80,7 @@
 		2564DC178CA01EED132D7740 /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148372F17E31E53A9CC2A155 /* Searchable.swift */; };
 		2680D99FB41BBDB2B71A6746 /* TagFilterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FD5D39A0075BC31BE146D /* TagFilterAction.swift */; };
 		269DBD668333050AF028A809 /* URLSession+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B622125E86021630595E32 /* URLSession+Mock.swift */; };
+		26CF871D3041B4FAFCEE6839 /* TagGridState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B9B0C9326150184FEEE0B /* TagGridState.swift */; };
 		280AAF6864B654B2DBBCB681 /* TextEditAlertState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93C22B495CA7FA32661A49A /* TextEditAlertState.swift */; };
 		283E41C1D0B1D758FCECF8FF /* Publisher+RemoveDuplicatesByKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BF77246F537239C6619C0 /* Publisher+RemoveDuplicatesByKeyPath.swift */; };
 		292F32DADE3E4285B73BC585 /* TsundocCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1CB6131A6E78E9CDC0E38 /* TsundocCommand.swift */; };
@@ -101,7 +102,6 @@
 		33724356FFEE227EA3FE81AE /* TsundocCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184644999F656C54E44F478A /* TsundocCell.swift */; };
 		33C49557C3659D89923EDAF2 /* TagCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E0CB8B10BDC1C3597E84D /* TagCommandService.swift */; };
 		348BF609545DCFFBE0D583A9 /* TagFilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC968567E8D876AFDE574E0 /* TagFilterState.swift */; };
-		34D9FB9D89ADC5B567816857 /* TagSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895116743C2A462939A2E0B /* TagSelectionState.swift */; };
 		353BBE276B07AE8A99955BC4 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3226AB7E955805DCE41708A /* Domain.framework */; };
 		35E25A8DEF0058347C79698E /* CoreDataQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6AD0EFACF2354233A077D6 /* CoreDataQueryService.swift */; };
 		35F6D435F2C21399296617F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51C3DABAB6E2E48C9F39FFE /* Preview Assets.xcassets */; };
@@ -136,7 +136,6 @@
 		5517244131DB02E1881E74F6 /* TsundocListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFBF2205272BE3F44A11ED2 /* TsundocListState.swift */; };
 		55511BF9830D00D9EA4093FF /* Publisher+RemoveDuplicatesByKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2BF77246F537239C6619C0 /* Publisher+RemoveDuplicatesByKeyPath.swift */; };
 		5778886C0FCF6890F327BC81 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45E0E9801334633968BF67 /* WebView.swift */; };
-		59A9CD6D860931F936BEEF96 /* TagSelectionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F5C3FE05CAC7CE7B3EFB3 /* TagSelectionAction.swift */; };
 		5ACC3BD9922A5FAA06FA476B /* CompositeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35799AA535128C2EE05F11B /* CompositeKit.framework */; };
 		5BD698BF7A9B6B92C2599F2C /* WebPageMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F6162C468E2FD4BACE299 /* WebPageMeta.swift */; };
 		5BE97571A82F8E01E172C8B8 /* SceneDependencyContainer+StoreBuilderDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AACC6BBD61E9D3BB9C5F5 /* SceneDependencyContainer+StoreBuilderDependencies.swift */; };
@@ -145,6 +144,7 @@
 		5D7F26D08FC345318EEE4A96 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45E0E9801334633968BF67 /* WebView.swift */; };
 		5DD5108A146C6BF0095155E7 /* ObservedTsundocArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DA4B99AC13B0BCE2948229 /* ObservedTsundocArray.swift */; };
 		626467A6218FE3B3E40DFFB4 /* URLProtocolMockBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBA70808F3D6A7C2A4914C /* URLProtocolMockBase.swift */; };
+		6376B7165F9E82F6AE905F82 /* TagGridAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040816BB787DFB5059531DD /* TagGridAction.swift */; };
 		643D1F879BEA5F4E62A4DD46 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB805921E6138257BD5469 /* ImageLoader.swift */; };
 		64595F3EBE7C6CEB45E8C66A /* TsundocQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F161F8607F7E91EF50F7A /* TsundocQueryService.swift */; };
 		6512615AEE0735D3B2023563 /* Effect_Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794C108E202071CBAC13E790 /* Effect_Delay.swift */; };
@@ -172,7 +172,9 @@
 		7668D8AAC1D42B3A9C88BD7C /* Factory+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC0638AD2471C70763F9D1B /* Factory+ImageLoader.swift */; };
 		768D733910B830A5ECAA736A /* Storing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C964B927C59265B9DA1FAA /* Storing.swift */; };
 		7697BACE409CD8CB315EB8ED /* Tag+MapToDomainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3425C767AC7288629755D4E3 /* Tag+MapToDomainModel.swift */; };
+		76D6F5FFFC9C9DE12566EEA1 /* TagGridConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3314882634F91345EBC2B514 /* TagGridConfiguration.swift */; };
 		771CCB10E8024043A1A3EAB4 /* Effect_Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49063500A67242610D7717A2 /* Effect_Debounce.swift */; };
+		7796DDEAD54A718733644661 /* TagGridReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511AF3F6E0488E84278B2AA /* TagGridReducer.swift */; };
 		78B56C77A003953F9DFF9C4B /* Array+Indexed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751CB4BABB83AE5E3ABA2B3 /* Array+Indexed.swift */; };
 		78CC6B401B4D8D857893CE33 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99820BE1D5B2BD2A3F6D6CAE /* Effect.swift */; };
 		7937458E5DE80B34C7479EDD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51C3DABAB6E2E48C9F39FFE /* Preview Assets.xcassets */; };
@@ -247,7 +249,6 @@
 		A6FF9F02CC26EF83575F081A /* TextEditAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454D17488F6BC1C7374F3725 /* TextEditAlertAction.swift */; };
 		A7F3FEE02DEFD402F8F539C8 /* SharedUrlLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780FB25AD975C2EEEA3F7487 /* SharedUrlLoader.swift */; };
 		A86D42C64DB0C334F77F6080 /* Domain.AutoDefaultValue.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */; };
-		A90AD2A979094FF9B7406267 /* TagSelectionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F5C3FE05CAC7CE7B3EFB3 /* TagSelectionAction.swift */; };
 		A90FB126B070151C19D7F174 /* ObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9067959A9FE67AC28B9975B /* ObservedEntity.swift */; };
 		A926E9C0D9D59E512A1E5AA1 /* AnyObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56B664262DBD1E23EFEAF8F /* AnyObservedEntity.swift */; };
 		A931EBC84A453046E52EE449 /* Environment+ImageLoaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1953AEC0000F8BB8582BA0FA /* Environment+ImageLoaderFactory.swift */; };
@@ -275,8 +276,8 @@
 		B9CBD5E8A725D89FC3B8441A /* TsundocThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE5BDE1AFCA46143EF930B2 /* TsundocThumbnail.swift */; };
 		BA2365D908C92879794FE89A /* Persistence.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BC8668BC53023AADDC2C232 /* Persistence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BBB1F82E2B57BB6F376D8558 /* ObservedEntityArray+EraseToAnyObservedEntityArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D49148E186997B65F018D27 /* ObservedEntityArray+EraseToAnyObservedEntityArray.swift */; };
+		BBB2E19CAD432D785882FFD1 /* TagGridState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B9B0C9326150184FEEE0B /* TagGridState.swift */; };
 		BC42619430C425F59BA4AB02 /* TagSelectionViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80181B1C005C459A5229A7A /* TagSelectionViewReducer.swift */; };
-		BD5610146EEE08F77DB4508B /* TagSelectionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959F4629310B2B92DAC51011 /* TagSelectionReducer.swift */; };
 		BE61F64E31533CFC3342B13D /* ObservedEntityArray+EraseToAnyObservedEntityArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D49148E186997B65F018D27 /* ObservedEntityArray+EraseToAnyObservedEntityArray.swift */; };
 		BE9CD37203831C49C3CD2111 /* CommandServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55797B837237A467F5EE7864 /* CommandServiceError.swift */; };
 		C1589E0E7568531089624F8D /* Contramap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C4D91D2246D795D8C79210 /* Contramap.swift */; };
@@ -294,6 +295,7 @@
 		CD119EA3413EE74D15260CFF /* TsunDocsUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CC088DED423E1AC52ECAB87 /* TsunDocsUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD83D5449FCE4A6E66034CA1 /* View+OnChangeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064A731E68ECE9A31259BAFC /* View+OnChangeFrame.swift */; };
 		CEF56279AD7B1B39499E7514 /* ObservedTsundocArrayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4005A46521343EC5AAB40193 /* ObservedTsundocArrayMock.swift */; };
+		CF85FB42FF23178238DF4B3F /* TagGridReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511AF3F6E0488E84278B2AA /* TagGridReducer.swift */; };
 		D0EEEEF7FA90D1893A2521A8 /* Kanna.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79135336C4C9F21FCE1AA18C /* Kanna.xcframework */; };
 		D1593BAC89865AD0689600BA /* String+LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4377AB4D3FC6E0B93BE8272E /* String+LocalizedString.swift */; };
 		D1EA62C8BE3EF3ED16F2A9DD /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3226AB7E955805DCE41708A /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -322,6 +324,7 @@
 		E14AC4AFA3DE7B4C0D78044C /* TsundocListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6FAF09FFCDE1D39A6305FB /* TsundocListAction.swift */; };
 		E1B0EDC100F5373C7D39E54A /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */; };
 		E23A89479D12F1BCD3DDF928 /* Publisher+bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B13F8D9178337ED377514C /* Publisher+bind.swift */; };
+		E248BE5B78F34BFC7FEBA861 /* TagGridConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3314882634F91345EBC2B514 /* TagGridConfiguration.swift */; };
 		E2F3A3115D7E4A5D9B750219 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6ED6A0804000E62025C74E /* TagCell.swift */; };
 		E3FE142BBE8AAF36D7461D36 /* ObservedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939312F1559214B10346C3C /* ObservedTag.swift */; };
 		E4F8C50BC5681F6B6D5F29F8 /* TextEditAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B18F9DCD521528764E4E2 /* TextEditAlert.swift */; };
@@ -353,7 +356,6 @@
 		F15A7DF0F95AD080613AA969 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51C3DABAB6E2E48C9F39FFE /* Preview Assets.xcassets */; };
 		F30CAFCE4BD0B986E5298D05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9180BF53336E2369C3393 /* ContentView.swift */; };
 		F3B231BBB0AA9E672A69B659 /* Tsundoc+MapToDomainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE52D741C6408929139E480 /* Tsundoc+MapToDomainModel.swift */; };
-		F529D9C3E1FADDB69D1111BC /* TagSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895116743C2A462939A2E0B /* TagSelectionState.swift */; };
 		F574B97E87A7348ACCCAE89D /* TagFilterReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D927266A554B1FDE7863 /* TagFilterReducer.swift */; };
 		F58E454AA8B82F696AE6E4BD /* QueryServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8269E45DB3DF6A007C579D7C /* QueryServiceError.swift */; };
 		F5B0D049E303468591323D27 /* TsundocThumbnailSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF100B5604EF4AA7E5784FE /* TsundocThumbnailSource.swift */; };
@@ -613,6 +615,7 @@
 		2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
 		30AAD67C51AA7E03591D09EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		30F540E17C40608155B9A59E /* TagCellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCellSize.swift; sourceTree = "<group>"; };
+		3314882634F91345EBC2B514 /* TagGridConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGridConfiguration.swift; sourceTree = "<group>"; };
 		3425C767AC7288629755D4E3 /* Tag+MapToDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+MapToDomainModel.swift"; sourceTree = "<group>"; };
 		36703B036CCADF3624EF5269 /* StoreProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProxy.swift; sourceTree = "<group>"; };
 		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "TsunDocs (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -627,7 +630,6 @@
 		454D17488F6BC1C7374F3725 /* TextEditAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditAlertAction.swift; sourceTree = "<group>"; };
 		46559B24420E0CF31FCE1DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Domain.AutoDefaultValue.generated.swift; sourceTree = "<group>"; };
-		4895116743C2A462939A2E0B /* TagSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectionState.swift; sourceTree = "<group>"; };
 		49063500A67242610D7717A2 /* Effect_Debounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect_Debounce.swift; sourceTree = "<group>"; };
 		4B7505ED14B71026D6A2F7DC /* TagCellStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCellStatus.swift; sourceTree = "<group>"; };
 		4E2BF77246F537239C6619C0 /* Publisher+RemoveDuplicatesByKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+RemoveDuplicatesByKeyPath.swift"; sourceTree = "<group>"; };
@@ -643,6 +645,7 @@
 		5FD4B0E937F6328BA7F0297D /* TsunDocsUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TsunDocsUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF100B5604EF4AA7E5784FE /* TsundocThumbnailSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocThumbnailSource.swift; sourceTree = "<group>"; };
 		60564664ABBE179B7D642598 /* WebViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewCoordinator.swift; sourceTree = "<group>"; };
+		627B9B0C9326150184FEEE0B /* TagGridState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGridState.swift; sourceTree = "<group>"; };
 		628FBCE946424E947347B449 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62B13F8D9178337ED377514C /* Publisher+bind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+bind.swift"; sourceTree = "<group>"; };
 		6436A0AD8019C62E212225DB /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
@@ -683,17 +686,16 @@
 		91DA13C7B96697C981A7FF8C /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		94744D703C86FC606C9A09C9 /* SharedUrlEditViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUrlEditViewState.swift; sourceTree = "<group>"; };
 		9556EC87DBBC5294C70F8B10 /* ViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStore.swift; sourceTree = "<group>"; };
-		959F4629310B2B92DAC51011 /* TagSelectionReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectionReducer.swift; sourceTree = "<group>"; };
 		989DD3FC55326FB26604D216 /* Ordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ordered.swift; sourceTree = "<group>"; };
 		996091F6CF3AEC49172A7747 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		99820BE1D5B2BD2A3F6D6CAE /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		9BC8668BC53023AADDC2C232 /* Persistence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Persistence.h; sourceTree = "<group>"; };
 		9D6E1744FE9011E35F3EEED7 /* TextEditAlertWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditAlertWrapper.swift; sourceTree = "<group>"; };
 		9E55C55E1BD0C901650D4950 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A511AF3F6E0488E84278B2AA /* TagGridReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGridReducer.swift; sourceTree = "<group>"; };
 		A552925980793202724394C8 /* ObservedEntityArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedEntityArray.swift; sourceTree = "<group>"; };
 		A7EA7D645F6AAF33ACFCE34A /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		A9067959A9FE67AC28B9975B /* ObservedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedEntity.swift; sourceTree = "<group>"; };
-		A92F5C3FE05CAC7CE7B3EFB3 /* TagSelectionAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectionAction.swift; sourceTree = "<group>"; };
 		A997614656C63362BB864AC5 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		AAA797FDE403EA923AD92AD5 /* HTTPURLResponse+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Mock.swift"; sourceTree = "<group>"; };
 		AD01E9205F3BDD6034F953C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -740,6 +742,7 @@
 		DBCC81D8C9ACAA777E969EF7 /* TagSelectionViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectionViewState.swift; sourceTree = "<group>"; };
 		DBFE76ACCFC63224AD50EE0E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DC474DB2B9BF7C8DE5E78FA7 /* PersistentHistoryTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryTracker.swift; sourceTree = "<group>"; };
+		E040816BB787DFB5059531DD /* TagGridAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGridAction.swift; sourceTree = "<group>"; };
 		E2AFA5F5AD7A6E67B27FB5FF /* TsundocQueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocQueryService.swift; sourceTree = "<group>"; };
 		E2F28D64542224B684CF6236 /* NSExtensionContext+ResolveUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSExtensionContext+ResolveUrl.swift"; sourceTree = "<group>"; };
 		E2F35C94195FBD18F3E22560 /* EmojiList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiList.swift; sourceTree = "<group>"; };
@@ -1321,6 +1324,17 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		8C6A2844680028CA23C7062C /* TagGrid */ = {
+			isa = PBXGroup;
+			children = (
+				E040816BB787DFB5059531DD /* TagGridAction.swift */,
+				3314882634F91345EBC2B514 /* TagGridConfiguration.swift */,
+				A511AF3F6E0488E84278B2AA /* TagGridReducer.swift */,
+				627B9B0C9326150184FEEE0B /* TagGridState.swift */,
+			);
+			path = TagGrid;
+			sourceTree = "<group>";
+		};
 		90FA9BBF04604F13BF03A3CA /* Struct */ = {
 			isa = PBXGroup;
 			children = (
@@ -1501,16 +1515,6 @@
 			path = SwiftUI;
 			sourceTree = "<group>";
 		};
-		C551AEE27BE48A7BE53FA812 /* TagSelection */ = {
-			isa = PBXGroup;
-			children = (
-				A92F5C3FE05CAC7CE7B3EFB3 /* TagSelectionAction.swift */,
-				959F4629310B2B92DAC51011 /* TagSelectionReducer.swift */,
-				4895116743C2A462939A2E0B /* TagSelectionState.swift */,
-			);
-			path = TagSelection;
-			sourceTree = "<group>";
-		};
 		C7FF7B08ECDDFE497F290709 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1561,8 +1565,8 @@
 			isa = PBXGroup;
 			children = (
 				28B67A974B795DE5EEFB95AF /* TagFilter */,
+				8C6A2844680028CA23C7062C /* TagGrid */,
 				AD1975B804CA7874A008DDA8 /* TagMultiSelection */,
-				C551AEE27BE48A7BE53FA812 /* TagSelection */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -2308,13 +2312,14 @@
 				F574B97E87A7348ACCCAE89D /* TagFilterReducer.swift in Sources */,
 				A16881876988E7213ABD72EE /* TagFilterState.swift in Sources */,
 				9E9952DD2D741B7830E8DDD8 /* TagGrid.swift in Sources */,
+				208F987654427C26165391B9 /* TagGridAction.swift in Sources */,
+				76D6F5FFFC9C9DE12566EEA1 /* TagGridConfiguration.swift in Sources */,
+				CF85FB42FF23178238DF4B3F /* TagGridReducer.swift in Sources */,
+				BBB2E19CAD432D785882FFD1 /* TagGridState.swift in Sources */,
 				68B5B585A82B35C5D917D34F /* TagMultiSelectionView.swift in Sources */,
 				00DAFF1E3D59CF2DCD027C9C /* TagMultiSelectionViewAction.swift in Sources */,
 				063EDC845A6AA7B8D90606AD /* TagMultiSelectionViewReducer.swift in Sources */,
 				14D037365A71061BA1C4E459 /* TagMultiSelectionViewState.swift in Sources */,
-				A90AD2A979094FF9B7406267 /* TagSelectionAction.swift in Sources */,
-				10DF54B66A951D51E0667F05 /* TagSelectionReducer.swift in Sources */,
-				34D9FB9D89ADC5B567816857 /* TagSelectionState.swift in Sources */,
 				09E8933A516DD5D8100A336D /* TextEditAlert.swift in Sources */,
 				F80985D39420872EBABF9EA4 /* TextEditAlertAction.swift in Sources */,
 				3DD82D8A657E556BFEE5AE73 /* TextEditAlertConfig.swift in Sources */,
@@ -2383,13 +2388,14 @@
 				A5F68D554E32F005E7678403 /* TagFilterReducer.swift in Sources */,
 				348BF609545DCFFBE0D583A9 /* TagFilterState.swift in Sources */,
 				0E618FF5EA3EDC3DC3E0E135 /* TagGrid.swift in Sources */,
+				6376B7165F9E82F6AE905F82 /* TagGridAction.swift in Sources */,
+				E248BE5B78F34BFC7FEBA861 /* TagGridConfiguration.swift in Sources */,
+				7796DDEAD54A718733644661 /* TagGridReducer.swift in Sources */,
+				26CF871D3041B4FAFCEE6839 /* TagGridState.swift in Sources */,
 				146531BF8855E918B34B1F0E /* TagMultiSelectionView.swift in Sources */,
 				11D00EFECB232219CC267149 /* TagMultiSelectionViewAction.swift in Sources */,
 				EB02DC36EB7F6BB53BBCD451 /* TagMultiSelectionViewReducer.swift in Sources */,
 				0CE8267AD7374BF2B5DF7C7A /* TagMultiSelectionViewState.swift in Sources */,
-				59A9CD6D860931F936BEEF96 /* TagSelectionAction.swift in Sources */,
-				BD5610146EEE08F77DB4508B /* TagSelectionReducer.swift in Sources */,
-				F529D9C3E1FADDB69D1111BC /* TagSelectionState.swift in Sources */,
 				E4F8C50BC5681F6B6D5F29F8 /* TextEditAlert.swift in Sources */,
 				A6FF9F02CC26EF83575F081A /* TextEditAlertAction.swift in Sources */,
 				85F6412BD64B6786383C055C /* TextEditAlertConfig.swift in Sources */,

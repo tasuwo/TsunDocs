@@ -11,8 +11,8 @@ public struct TagCell: View {
     private let tagName: String
     private let status: TagCellStatus
     private let size: TagCellSize
-    private let onSelect: ((UUID, String) -> Void)?
-    private let onDelete: ((UUID, String) -> Void)?
+    private let onSelect: ((UUID) -> Void)?
+    private let onDelete: ((UUID) -> Void)?
 
     @ScaledMetric private var padding: CGFloat
 
@@ -49,7 +49,7 @@ public struct TagCell: View {
 
     private var deleteButtonContainer: some View {
         Button {
-            onDelete?(tagId, tagName)
+            onDelete?(tagId)
         } label: {
             Image(systemName: "xmark")
                 .font(size.font)
@@ -63,8 +63,8 @@ public struct TagCell: View {
                 tagName: String,
                 status: TagCellStatus,
                 size: TagCellSize = .normal,
-                onSelect: ((UUID, String) -> Void)? = nil,
-                onDelete: ((UUID, String) -> Void)? = nil)
+                onSelect: ((UUID) -> Void)? = nil,
+                onDelete: ((UUID) -> Void)? = nil)
     {
         self.tagId = tagId
         self.tagName = tagName
@@ -93,7 +93,7 @@ public struct TagCell: View {
                     }
                 })
                 .onTapGesture {
-                    onSelect?(tagId, tagName)
+                    onSelect?(tagId)
                 }
 
             if status.isDeletable {
@@ -125,8 +125,8 @@ public struct TagCell: View {
 
 struct TagCell_Previews: PreviewProvider {
     struct Container: View {
-        @State var selected: (UUID, String)?
-        @State var deleted: (UUID, String)?
+        @State var selected: UUID?
+        @State var deleted: UUID?
 
         var body: some View {
             VStack(spacing: 8) {
@@ -134,16 +134,16 @@ struct TagCell_Previews: PreviewProvider {
                     TagCell(tagId: UUID(),
                             tagName: "タグ",
                             status: .default,
-                            onSelect: { selected = ($0, $1) })
+                            onSelect: { selected = $0 })
                     TagCell(tagId: UUID(),
                             tagName: "my tag",
                             status: .selected,
-                            onSelect: { selected = ($0, $1) })
+                            onSelect: { selected = $0 })
                     TagCell(tagId: UUID(),
                             tagName: "😁",
                             status: .deletable,
-                            onSelect: { selected = ($0, $1) },
-                            onDelete: { deleted = ($0, $1) })
+                            onSelect: { selected = $0 },
+                            onDelete: { deleted = $0 })
                 }
 
                 HStack {
@@ -151,29 +151,29 @@ struct TagCell_Previews: PreviewProvider {
                             tagName: "タグ",
                             status: .default,
                             size: .small,
-                            onSelect: { selected = ($0, $1) })
+                            onSelect: { selected = $0 })
                     TagCell(tagId: UUID(),
                             tagName: "my tag",
                             status: .selected,
                             size: .small,
-                            onSelect: { selected = ($0, $1) })
+                            onSelect: { selected = $0 })
                     TagCell(tagId: UUID(),
                             tagName: "😁",
                             status: .deletable,
                             size: .small,
-                            onSelect: { selected = ($0, $1) },
-                            onDelete: { deleted = ($0, $1) })
+                            onSelect: { selected = $0 },
+                            onDelete: { deleted = $0 })
                 }
 
                 if let selected = selected {
-                    Text("Selected: id=\(selected.0.uuidString), name=\(selected.1)")
+                    Text("Selected: id=\(selected.uuidString)")
                         .foregroundColor(.gray)
                         .font(.callout)
                         .padding([.trailing, .leading])
                 }
 
                 if let deleted = deleted {
-                    Text("Deleted: id=\(deleted.0.uuidString), name=\(deleted.1)")
+                    Text("Deleted: id=\(deleted.uuidString)")
                         .foregroundColor(.gray)
                         .font(.callout)
                         .padding([.trailing, .leading])

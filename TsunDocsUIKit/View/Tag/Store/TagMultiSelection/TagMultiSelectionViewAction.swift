@@ -7,15 +7,15 @@ import Domain
 
 public enum TagMultiSelectionViewAction: Action {
     case tagsUpdated([Tag])
-    case selection(TagSelectionAction)
+    case grid(TagGridAction)
     case filter(TagFilterAction)
 }
 
 public extension TagMultiSelectionViewAction {
-    static let mappingToSelection: ActionMapping<Self, TagSelectionAction> = .init(build: {
-        .selection($0)
+    static let mappingToGrid: ActionMapping<Self, TagGridAction> = .init(build: {
+        .grid($0)
     }, get: {
-        guard case let .selection(action) = $0 else { return nil }; return action
+        guard case let .grid(action) = $0 else { return nil }; return action
     })
 
     static let mappingToFilter: ActionMapping<Self, TagFilterAction> = .init(build: {

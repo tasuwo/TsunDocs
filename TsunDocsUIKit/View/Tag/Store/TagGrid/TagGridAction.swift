@@ -5,6 +5,7 @@
 import CompositeKit
 import Domain
 
-public enum TagSelectionAction: Action {
+public enum TagGridAction: Action {
     case selected(Tag.ID)
+    case deleted(Tag.ID)
 }

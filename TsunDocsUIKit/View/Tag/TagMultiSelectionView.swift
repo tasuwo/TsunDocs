@@ -34,8 +34,8 @@ public struct TagMultiSelectionView: View {
     public var body: some View {
         TagGrid(
             store: store
-                .proxy(TagMultiSelectionViewState.mappingToSelection,
-                       TagMultiSelectionViewAction.mappingToSelection)
+                .proxy(TagMultiSelectionViewState.mappingToGrid,
+                       TagMultiSelectionViewAction.mappingToGrid)
                 .viewStore()
         )
         .searchable(text: $engine.input, placement: .navigationBarDrawer(displayMode: .always))
