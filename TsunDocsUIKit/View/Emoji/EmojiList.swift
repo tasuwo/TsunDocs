@@ -5,19 +5,12 @@
 import Domain
 import Smile
 import SwiftUI
-import TsunDocsUIKit
 
 public struct EmojiList: View {
     // MARK: - Properties
 
     private static let spacing: CGFloat = 16
-    private static let allEmojis = Smile.emojiList
-        .sorted(by: <)
-        .map {
-            Emoji(alias: $0.key,
-                  emoji: $0.value,
-                  searchableText: $0.key.transformToSearchableText()!)
-        }
+    private static let allEmojis = Emoji.emojiList()
 
     @Environment(\.horizontalSizeClass) var sizeClass
     @Environment(\.presentationMode) var presentationMode
@@ -30,6 +23,12 @@ public struct EmojiList: View {
     @Binding var selectedEmoji: Emoji?
 
     private let searchQueue = DispatchQueue(label: "net.tasuwo.MobileShareExtensionUIKit.EmojiList.search")
+
+    // MARK: - Initializers
+
+    public init(selectedEmoji: Binding<Emoji?>) {
+        _selectedEmoji = selectedEmoji
+    }
 
     // MARK: - View
 

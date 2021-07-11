@@ -2,15 +2,15 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import Domain
 import SwiftUI
-import TsunDocsUIKit
 
 struct EmojiCell: View {
     let emoji: Emoji
 
     var body: some View {
         VStack {
-            Color("emoji_background", bundle: Bundle.tsunDocsUiKit)
+            Color("emoji_background", bundle: Bundle.this)
                 .aspectRatio(1, contentMode: .fill)
                 .overlay(
                     GeometryReader { proxy in

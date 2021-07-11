@@ -42,6 +42,7 @@
 		12BBBC2073D762C478ED8CA2 /* ObservedTsundocArrayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4005A46521343EC5AAB40193 /* ObservedTsundocArrayMock.swift */; };
 		12DD534944ABFDFC034B822E /* ObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9067959A9FE67AC28B9975B /* ObservedEntity.swift */; };
 		13091937BDECF173E805F047 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B136162E98378F1B9BAB41 /* AsyncImage.swift */; };
+		13754EC598D041A0662D4F33 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CD476D8786307D7185D52 /* Emoji.swift */; };
 		1378836A9B75960AC35191AF /* Persistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F854A01A6B968EC4A5C926 /* Persistence.framework */; };
 		146531BF8855E918B34B1F0E /* TagMultiSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3492D8A890BA28C3B85C9 /* TagMultiSelectionView.swift */; };
 		14D037365A71061BA1C4E459 /* TagMultiSelectionViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879B08E8ABFBD29A85C71D5D /* TagMultiSelectionViewState.swift */; };
@@ -144,6 +145,7 @@
 		5D5E658835C5309F3C8E0FE7 /* Effect_Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49063500A67242610D7717A2 /* Effect_Debounce.swift */; };
 		5D7F26D08FC345318EEE4A96 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45E0E9801334633968BF67 /* WebView.swift */; };
 		5DD5108A146C6BF0095155E7 /* ObservedTsundocArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DA4B99AC13B0BCE2948229 /* ObservedTsundocArray.swift */; };
+		5EFA68086715B8C5014D9E90 /* EmojiList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03646CAC1ABF090950BBBFE /* EmojiList.swift */; };
 		626467A6218FE3B3E40DFFB4 /* URLProtocolMockBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBA70808F3D6A7C2A4914C /* URLProtocolMockBase.swift */; };
 		6376B7165F9E82F6AE905F82 /* TagGridAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040816BB787DFB5059531DD /* TagGridAction.swift */; };
 		643D1F879BEA5F4E62A4DD46 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB805921E6138257BD5469 /* ImageLoader.swift */; };
@@ -190,7 +192,6 @@
 		7EFAD842B7975E81CF2DB617 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8640F3563CBE8F878D8D76F2 /* Localizable.strings */; };
 		7FF6F750D568B95C03DBD07D /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1BA76FFFA86760D991CF5A /* Transaction.swift */; };
 		81A9B0A3C370D17F4B5FA204 /* SharedUrlEditViewRootAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39ACB115FE3618D90738CF3 /* SharedUrlEditViewRootAction.swift */; };
-		8240001EEE80B2C8476A0BDC /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DA13C7B96697C981A7FF8C /* Emoji.swift */; };
 		83FEED56E37D013F01C82A39 /* SharedUrlImageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA8CE11770E7D2BE9A6DCD7 /* SharedUrlImageAction.swift */; };
 		84CA55DBACD2A24B9DBBAB71 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D8B3B757767F0CE5FEC1B2 /* Tag.swift */; };
 		85BDE18B62DF820D0F4EB9B0 /* TsundocThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE5BDE1AFCA46143EF930B2 /* TsundocThumbnail.swift */; };
@@ -222,12 +223,12 @@
 		94C6A756361B02E1DD7555B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B580E0494ED881EEE702782F /* Assets.xcassets */; };
 		94D14D78F0E031B555F86D98 /* Result+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CFB028496441B4FDE1D13 /* Result+Value.swift */; };
 		95B1A4A25B2A1E9101D6CC1D /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997614656C63362BB864AC5 /* PersistentContainer.swift */; };
+		95E851C462297AB3C2B34F3C /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CD476D8786307D7185D52 /* Emoji.swift */; };
 		969AC0F19212371D55A9CCAE /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CE6920517D969536BA694B /* Combine.swift */; };
 		97077CC35359143AA5E00DFE /* SearchableStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260B3784FDA190DC2BD3B7F6 /* SearchableStorage.swift */; };
 		974D517FC88A2E02ACC6623E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E90809410822573C49B43281 /* Localizable.strings */; };
 		97A6D02EAB5B3210065CC4E1 /* Smile.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B9170889182C4E71C98ED7BB /* Smile.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97C7BA02FC6D43DEAFD8059D /* ObservedTagArrayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD16AB663EF6E6EC269736F0 /* ObservedTagArrayMock.swift */; };
-		98120729246505592F8E9FA9 /* EmojiList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F35C94195FBD18F3E22560 /* EmojiList.swift */; };
 		986E0B8BDE54C97CC70973CD /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8097C5C6F26D04EF44DE3B /* TabItem.swift */; };
 		993CA6F6361CC38A4D0B1EB1 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F6B62DA5F764BD52AA146 /* ShareSheet.swift */; };
 		99BA1ADE033A3DED386A822C /* ObservedTsundocArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DA4B99AC13B0BCE2948229 /* ObservedTsundocArray.swift */; };
@@ -264,7 +265,6 @@
 		B2532699E361300D82387BC0 /* ObservedTagArrayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD16AB663EF6E6EC269736F0 /* ObservedTagArrayMock.swift */; };
 		B2643DC6D78A94C3B97880D6 /* HTTPURLResponse+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA797FDE403EA923AD92AD5 /* HTTPURLResponse+Mock.swift */; };
 		B2997925E07F4894F74FF30F /* SharedUrlEditViewRootReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBC7EFEBB894E7ED12CC88E /* SharedUrlEditViewRootReducer.swift */; };
-		B2D157606E7348F022D0FB0A /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E32BEBD0D752F0691E324C7 /* EmojiCell.swift */; };
 		B3458D6C6072F430B64E8161 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB805921E6138257BD5469 /* ImageLoader.swift */; };
 		B428C9B70E21C862A1491B50 /* WeakContainerArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE05EA9AD3B4E208ED7C6D52 /* WeakContainerArray.swift */; };
 		B4FEC9E84E455A8A4B0B2FC7 /* TsundocCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184644999F656C54E44F478A /* TsundocCell.swift */; };
@@ -311,6 +311,7 @@
 		D6A7C33E5293BAAA7B783E09 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8097C5C6F26D04EF44DE3B /* TabItem.swift */; };
 		D6E1AB407C123DFED473D8B6 /* ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C544C2D5A0778EFAE021B /* ServiceDependencies.swift */; };
 		D6F9EAD66695596FD31B60A0 /* Persistence.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27C0DCB7221B326130827769 /* Persistence.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D74319E3F5D5A586C09DE885 /* EmojiList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03646CAC1ABF090950BBBFE /* EmojiList.swift */; };
 		D74E9A22EE74BF7DA0AECFCE /* TextEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F389A707C98E981825910611 /* TextEngine.swift */; };
 		D81E6D222BBF0770DD7D0395 /* TagQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F23479C1E3AC092FAFEF3 /* TagQueryService.swift */; };
 		D96736FDE23F6509CA2947E5 /* TagCellStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7505ED14B71026D6A2F7DC /* TagCellStatus.swift */; };
@@ -320,7 +321,6 @@
 		DD36EDAF13ADBEF920FBD0D4 /* URLProtocolMockBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBA70808F3D6A7C2A4914C /* URLProtocolMockBase.swift */; };
 		DE92BA44C2B23DC24E2A627C /* TsundocListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE906AC356C938833DCB0939 /* TsundocListReducer.swift */; };
 		DEADE2DAAB80F2C83BE7FED0 /* TsundocList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4058A249D33AD35728B16C /* TsundocList.swift */; };
-		E0EA79636DA82F4E3259B0A3 /* Smile.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9170889182C4E71C98ED7BB /* Smile.xcframework */; };
 		E11C17C9FD589FF9B6D9637E /* ObservedTagArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8E721F79C535AE67943B14 /* ObservedTagArray.swift */; };
 		E14AC4AFA3DE7B4C0D78044C /* TsundocListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6FAF09FFCDE1D39A6305FB /* TsundocListAction.swift */; };
 		E1B0EDC100F5373C7D39E54A /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */; };
@@ -345,6 +345,7 @@
 		EAAC128FED71FEA5D0EA0EB5 /* CoreDataCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C14ED7496449B824AA1F9 /* CoreDataCommandService.swift */; };
 		EAB0D7765556ED57F88DA897 /* AnyObservedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56B664262DBD1E23EFEAF8F /* AnyObservedEntity.swift */; };
 		EB02DC36EB7F6BB53BBCD451 /* TagMultiSelectionViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725D09D3DE926CA2B01555DE /* TagMultiSelectionViewReducer.swift */; };
+		EBE1BAA46825FF94CDAFDAED /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE8E4C95F3B77C48BA1DA9 /* EmojiCell.swift */; };
 		EC1AD6D29033C4429C420E8B /* Persistence.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69F854A01A6B968EC4A5C926 /* Persistence.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ECDE91686FB35D5F0A724900 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */; };
 		ED07BF56A991BFC0A6769051 /* TagControlState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5447961BF31ECC01CA3EEE5 /* TagControlState.swift */; };
@@ -366,6 +367,7 @@
 		F9F483A18592E38B3EE3CEDD /* AnyReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A90843522DA6C6D50D6194C /* AnyReducer.swift */; };
 		FB698AB36275A50C9DCE32AA /* Prism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903667AB7D58C504DB9CA3A0 /* Prism.swift */; };
 		FC58345881B03CD9B64F4453 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3B640A2AE2A490958D8BCF /* Bundle.swift */; };
+		FE851C2EBA912AD1ADF75717 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE8E4C95F3B77C48BA1DA9 /* EmojiCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -602,6 +604,7 @@
 		1E1BA76FFFA86760D991CF5A /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		22EFA274C8FDA48BDAC713AC /* TsunDocsUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TsunDocsUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23CE6920517D969536BA694B /* Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
+		243CD476D8786307D7185D52 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		260B3784FDA190DC2BD3B7F6 /* SearchableStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableStorage.swift; sourceTree = "<group>"; };
 		265617AD24F188BE4827D108 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		26B39D7D7773EF90085F3F9D /* TagCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCommand.swift; sourceTree = "<group>"; };
@@ -682,10 +685,8 @@
 		8D4058A249D33AD35728B16C /* TsundocList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocList.swift; sourceTree = "<group>"; };
 		8D91768C3AB3EBD97E188BC1 /* TagCommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCommandService.swift; sourceTree = "<group>"; };
 		8DC4C5F1C064735885AB29F8 /* PersistentHistoryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryFetcher.swift; sourceTree = "<group>"; };
-		8E32BEBD0D752F0691E324C7 /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
 		8EE5BDE1AFCA46143EF930B2 /* TsundocThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocThumbnail.swift; sourceTree = "<group>"; };
 		903667AB7D58C504DB9CA3A0 /* Prism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prism.swift; sourceTree = "<group>"; };
-		91DA13C7B96697C981A7FF8C /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		94744D703C86FC606C9A09C9 /* SharedUrlEditViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUrlEditViewState.swift; sourceTree = "<group>"; };
 		9556EC87DBBC5294C70F8B10 /* ViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStore.swift; sourceTree = "<group>"; };
 		989DD3FC55326FB26604D216 /* Ordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ordered.swift; sourceTree = "<group>"; };
@@ -732,6 +733,7 @@
 		CC4A4AFD726808016F4F15D7 /* TagGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGrid.swift; sourceTree = "<group>"; };
 		CF6FAF09FFCDE1D39A6305FB /* TsundocListAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocListAction.swift; sourceTree = "<group>"; };
 		CF81EB210494BD9A1FE99615 /* Lens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lens.swift; sourceTree = "<group>"; };
+		D03646CAC1ABF090950BBBFE /* EmojiList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiList.swift; sourceTree = "<group>"; };
 		D113B371CF4876DC1812D458 /* HasImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasImageLoader.swift; sourceTree = "<group>"; };
 		D136C2F475561EDBE927D472 /* TagSelectionViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectionViewAction.swift; sourceTree = "<group>"; };
 		D275639112609E63A9C9890B /* NSExtensionContext+Completable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSExtensionContext+Completable.swift"; sourceTree = "<group>"; };
@@ -747,7 +749,6 @@
 		E040816BB787DFB5059531DD /* TagGridAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGridAction.swift; sourceTree = "<group>"; };
 		E2AFA5F5AD7A6E67B27FB5FF /* TsundocQueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocQueryService.swift; sourceTree = "<group>"; };
 		E2F28D64542224B684CF6236 /* NSExtensionContext+ResolveUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSExtensionContext+ResolveUrl.swift"; sourceTree = "<group>"; };
-		E2F35C94195FBD18F3E22560 /* EmojiList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiList.swift; sourceTree = "<group>"; };
 		E373F9AA9ABB042C81AD5DB3 /* Tsundoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tsundoc.swift; sourceTree = "<group>"; };
 		E56B664262DBD1E23EFEAF8F /* AnyObservedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObservedEntity.swift; sourceTree = "<group>"; };
 		E6DA4B99AC13B0BCE2948229 /* ObservedTsundocArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedTsundocArray.swift; sourceTree = "<group>"; };
@@ -766,6 +767,7 @@
 		F5B622125E86021630595E32 /* URLSession+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Mock.swift"; sourceTree = "<group>"; };
 		F887EB4DB6E1DE3040F95054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F889EC725ABF3E0BC6CCBFB5 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
+		F8AE8E4C95F3B77C48BA1DA9 /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
 		F8DBA70808F3D6A7C2A4914C /* URLProtocolMockBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolMockBase.swift; sourceTree = "<group>"; };
 		F9E9E84507130606D807E10C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FB12BE80561F7E0A9DBE4E6D /* ObservedTsundoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedTsundoc.swift; sourceTree = "<group>"; };
@@ -822,7 +824,6 @@
 			files = (
 				2EF68A0EA28704F15B93BFA4 /* TsunDocsUIKit.framework in Frameworks */,
 				221FE1BFE1EDC8357182EE0A /* CompositeKit.framework in Frameworks */,
-				E0EA79636DA82F4E3259B0A3 /* Smile.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,6 +958,7 @@
 			isa = PBXGroup;
 			children = (
 				51CA39C6F27D82EB50B83BEF /* Command */,
+				17F4C7CF7690282A934361E3 /* Emoji */,
 				CC747332F6E3D98DE87BEDC2 /* Factory */,
 				42932C3D0C7FBD2844F37D7F /* ImageLoader */,
 				766AE49970A984A1B4D032EA /* Query */,
@@ -966,6 +968,14 @@
 				53DF3C8E9DDA59C49AA62AAB /* WebPage */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		17F4C7CF7690282A934361E3 /* Emoji */ = {
+			isa = PBXGroup;
+			children = (
+				243CD476D8786307D7185D52 /* Emoji.swift */,
+			);
+			path = Emoji;
 			sourceTree = "<group>";
 		};
 		1981D6D1CD70EA701B2198AE /* Tsundoc */ = {
@@ -1564,6 +1574,15 @@
 			path = Dependency;
 			sourceTree = "<group>";
 		};
+		D33E334D7768EFA30D36F214 /* Emoji */ = {
+			isa = PBXGroup;
+			children = (
+				F8AE8E4C95F3B77C48BA1DA9 /* EmojiCell.swift */,
+				D03646CAC1ABF090950BBBFE /* EmojiList.swift */,
+			);
+			path = Emoji;
+			sourceTree = "<group>";
+		};
 		D799317159B03CB269C63C75 /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -1589,16 +1608,6 @@
 				6E5F6162C468E2FD4BACE299 /* WebPageMeta.swift */,
 			);
 			path = ValueObject;
-			sourceTree = "<group>";
-		};
-		D936F53F6D727B28D48ED37A /* Emoji */ = {
-			isa = PBXGroup;
-			children = (
-				91DA13C7B96697C981A7FF8C /* Emoji.swift */,
-				8E32BEBD0D752F0691E324C7 /* EmojiCell.swift */,
-				E2F35C94195FBD18F3E22560 /* EmojiList.swift */,
-			);
-			path = Emoji;
 			sourceTree = "<group>";
 		};
 		DAE688497F8FD91FBA8897BF /* Products */ = {
@@ -1642,6 +1651,7 @@
 			children = (
 				F0B136162E98378F1B9BAB41 /* AsyncImage.swift */,
 				0CAA3728E457F6AA4E751196 /* Button */,
+				D33E334D7768EFA30D36F214 /* Emoji */,
 				C7FF7B08ECDDFE497F290709 /* Extensions */,
 				2A80D71BBCDB5A2E296FB970 /* Tag */,
 				B7DF87AB7B71C5A1EA70411A /* TextEditAlert */,
@@ -1764,7 +1774,6 @@
 		F690A3E37ACC251256C86331 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D936F53F6D727B28D48ED37A /* Emoji */,
 				7FC229D86D7E14732B4A2F4D /* SharedUrlEditView */,
 				9E82A2029A95B4DEBD91FAB5 /* SharedUrlImage */,
 				EA437205A3FA21A3EE4B2B19 /* Tag */,
@@ -2304,6 +2313,8 @@
 			files = (
 				13091937BDECF173E805F047 /* AsyncImage.swift in Sources */,
 				9EC8C4A76F0FCC73C4243CB7 /* Bundle.swift in Sources */,
+				EBE1BAA46825FF94CDAFDAED /* EmojiCell.swift in Sources */,
+				5EFA68086715B8C5014D9E90 /* EmojiList.swift in Sources */,
 				A931EBC84A453046E52EE449 /* Environment+ImageLoaderFactory.swift in Sources */,
 				2A6C0B5A561CDBC1C0A33A62 /* HTTPURLResponse+Mock.swift in Sources */,
 				4E002D81A63433638137BB48 /* PrimaryButtonStyle.swift in Sources */,
@@ -2344,9 +2355,6 @@
 				FC58345881B03CD9B64F4453 /* Bundle.swift in Sources */,
 				E87592B060CDE02492A2B56C /* Completable.swift in Sources */,
 				1B97A00BD8BA657475A2F62C /* Domain.ProtocolMocks.swift in Sources */,
-				8240001EEE80B2C8476A0BDC /* Emoji.swift in Sources */,
-				B2D157606E7348F022D0FB0A /* EmojiCell.swift in Sources */,
-				98120729246505592F8E9FA9 /* EmojiList.swift in Sources */,
 				C7A0142E67A8EF7681EF5E90 /* HTTPURLResponse+Mock.swift in Sources */,
 				A1C30E197515B64E3266009C /* ObservedTagArrayMock.swift in Sources */,
 				8A9A865F3157B62C87CC9DE5 /* ObservedTsundocArrayMock.swift in Sources */,
@@ -2381,6 +2389,8 @@
 			files = (
 				F0444E11C4B846BB44349ABD /* AsyncImage.swift in Sources */,
 				8C1DEE084732170B3E134782 /* Bundle.swift in Sources */,
+				FE851C2EBA912AD1ADF75717 /* EmojiCell.swift in Sources */,
+				D74319E3F5D5A586C09DE885 /* EmojiList.swift in Sources */,
 				B603FCDB0EB47C3FD613E5F3 /* Environment+ImageLoaderFactory.swift in Sources */,
 				4BA4F909799695EA2B0A9698 /* HTTPURLResponse+Mock.swift in Sources */,
 				94868C1877570DE8ED12AD3F /* PrimaryButtonStyle.swift in Sources */,
@@ -2528,6 +2538,7 @@
 				73416CF4BCFCD7A2522DC584 /* AnyObservedEntityArray.swift in Sources */,
 				78B56C77A003953F9DFF9C4B /* Array+Indexed.swift in Sources */,
 				EFB9D1D9CFA58D67C213DB31 /* CommandServiceError.swift in Sources */,
+				13754EC598D041A0662D4F33 /* Emoji.swift in Sources */,
 				D29F3F6FF5AC8DED7A8FBA65 /* EntitiesSnapshot.swift in Sources */,
 				7668D8AAC1D42B3A9C88BD7C /* Factory+ImageLoader.swift in Sources */,
 				2C8037F6D65241A59A022D88 /* Factory.swift in Sources */,
@@ -2572,6 +2583,7 @@
 				C3C4E1A09ACB3BF4381AE494 /* AnyObservedEntityArray.swift in Sources */,
 				190C5189C2B4DC0804ECC38F /* Array+Indexed.swift in Sources */,
 				BE9CD37203831C49C3CD2111 /* CommandServiceError.swift in Sources */,
+				95E851C462297AB3C2B34F3C /* Emoji.swift in Sources */,
 				6CAB48BFE80C65D7070408C3 /* EntitiesSnapshot.swift in Sources */,
 				F77ED0CA15C5BC8CDA556E5B /* Factory+ImageLoader.swift in Sources */,
 				E9EF0FA7D29E70943444E969 /* Factory.swift in Sources */,
@@ -3109,10 +3121,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"Carthage/Build\"",
-				);
 				INFOPLIST_FILE = MobileShareExtensionUIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -3387,10 +3395,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"Carthage/Build\"",
-				);
 				INFOPLIST_FILE = MobileShareExtensionUIKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

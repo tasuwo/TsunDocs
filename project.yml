@@ -274,7 +274,6 @@ targets:
     dependencies:
       - target: TsunDocsUIKit_iOS
       - target: CompositeKit_iOS
-      - framework: Carthage/Build/Smile.xcframework
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES

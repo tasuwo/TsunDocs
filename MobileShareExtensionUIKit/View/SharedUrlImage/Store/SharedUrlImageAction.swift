@@ -3,6 +3,7 @@
 //
 
 import CompositeKit
+import Domain
 import TsunDocsUIKit
 
 public enum SharedUrlImageAction: Action {
