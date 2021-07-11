@@ -59,7 +59,7 @@ public struct TagGrid: View {
                           isSelected: store.state.selectedIds.contains(tag.id)),
             size: store.state.configuration.size,
             onSelect: { store.execute(.selected($0)) },
-            onDelete: { store.execute(.deleted($0)) }
+            onDelete: { store.execute(.deleted($0), animation: .default) }
         )
         .frame(maxWidth: geometry.size.width - inset * 2)
         .fixedSize()

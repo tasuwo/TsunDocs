@@ -15,7 +15,16 @@ public extension SharedUrlEditViewRootAction {
     static let mappingToEdit: ActionMapping<Self, SharedUrlEditViewAction> = .init(build: {
         .edit($0)
     }, get: {
-        guard case let .edit(action) = $0 else { return nil }; return action
+        switch $0 {
+        case let .edit(action):
+            return action
+
+        case let .tagGrid(.deleted(tagId)):
+            return .onDeleteTag(tagId)
+
+        default:
+            return nil
+        }
     })
 
     static let mappingToImage: ActionMapping<Self, SharedUrlImageAction> = .init(build: {

@@ -88,6 +88,10 @@ public struct SharedUrlEditViewReducer: Reducer {
             nextState.isTagEditSheetPresenting = false
             return (nextState, .none)
 
+        case let .onDeleteTag(tagId):
+            nextState.selectedTags.removeAll(where: { $0.id == tagId })
+            return (nextState, .none)
+
         case .errorConfirmed:
             dependency.completable.cancel(with: NSError()) // TODO:
             return (nextState, .none)
