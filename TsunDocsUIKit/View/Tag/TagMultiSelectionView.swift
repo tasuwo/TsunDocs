@@ -7,26 +7,19 @@ import Domain
 import SwiftUI
 
 public struct TagMultiSelectionView: View {
-    public typealias Store = ViewStore<TagMultiSelectionViewState,
+    public typealias Store = ViewStore<
+        TagMultiSelectionViewState,
         TagMultiSelectionViewAction,
-        TagMultiSelectionViewDependency>
-    typealias FilterStore = ViewStore<TagFilterState, TagFilterAction, TagFilterDependency>
+        TagMultiSelectionViewDependency
+    >
 
     @ObservedObject var store: Store
-    @ObservedObject var filterStore: FilterStore
-
     @StateObject var engine: TextEngine = .init(debounceFor: 0.3)
 
     // MARK: - Initializers
 
     public init(store: Store) {
         _store = ObservedObject(wrappedValue: store)
-
-        let filterStore: FilterStore = store
-            .proxy(TagMultiSelectionViewState.mappingToFilter,
-                   TagMultiSelectionViewAction.mappingToFilter)
-            .viewStore()
-        _filterStore = ObservedObject(wrappedValue: filterStore)
     }
 
     // MARK: - View
@@ -42,7 +35,7 @@ public struct TagMultiSelectionView: View {
         .navigationTitle(Text("tag_selection_view_title", bundle: Bundle.this))
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: engine.output) { query in
-            filterStore.execute(.queryUpdated(query), animation: .default)
+            store.execute(.filter(.queryUpdated(query)), animation: .default)
         }
     }
 }
