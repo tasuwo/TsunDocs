@@ -34,7 +34,7 @@ public struct TagGrid: View {
                                 ForEach(tags) { tag in
                                     TagCell(tagId: tag.id,
                                             tagName: tag.name,
-                                            isSelected: store.state.selectedIds.contains(tag.id))
+                                            status: store.state.selectedIds.contains(tag.id) ? .selected : .default)
                                         .frame(maxWidth: proxy.size.width - spacing * 2)
                                         .fixedSize()
                                         .onChangeFrame {
