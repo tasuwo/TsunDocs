@@ -31,46 +31,6 @@ public struct SharedUrlEditView: View {
 
     // MARK: - Methods
 
-    private func metaDataContainer(_ url: URL) -> some View {
-        HStack(alignment: .top) {
-            VStack {
-                SharedUrlImage(store: store
-                    .proxy(SharedUrlEditViewRootState.mappingToImage,
-                           SharedUrlEditViewRootAction.mappingToImage)
-                    .viewStore())
-            }
-
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    if let title = store.state.sharedUrlTitle, !title.isEmpty {
-                        Text(title)
-                            .lineLimit(3)
-                            .font(.body)
-                    } else {
-                        Text("shared_url_edit_view_no_title", bundle: Bundle.this)
-                            .foregroundColor(.gray)
-                            .font(.title3)
-                    }
-
-                    Image(systemName: "pencil.circle.fill")
-                        .foregroundColor(.cyan)
-                        .font(.system(size: 24))
-                }
-                .onTapGesture {
-                    store.execute(.edit(.onTapEditTitleButton))
-                }
-
-                Text(url.absoluteString)
-                    .lineLimit(2)
-                    .foregroundColor(.gray)
-                    .font(.caption)
-            }
-            .padding([.top, .bottom], SharedUrlImage.padding)
-
-            Spacer()
-        }
-    }
-
     private func tagContainer() -> some View {
         VStack {
             HStack {
@@ -109,9 +69,9 @@ public struct SharedUrlEditView: View {
 
     public var body: some View {
         VStack {
-            if let url = store.state.sharedUrl {
+            if store.state.sharedUrl != nil {
                 VStack {
-                    metaDataContainer(url)
+                    SharedUrlMetaContainer(store: store)
 
                     Divider()
 

@@ -130,6 +130,7 @@
 		4DC6F516546501F3590058CE /* TagQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702DBF5A2F3CB92719E98136 /* TagQueryService.swift */; };
 		4DEBBAB683C5B223AD5EA6C0 /* TsunDocsUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CC088DED423E1AC52ECAB87 /* TsunDocsUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E002D81A63433638137BB48 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6436A0AD8019C62E212225DB /* PrimaryButtonStyle.swift */; };
+		4F13E2AC5DC27E3F5BEF20F4 /* SharedUrlMetaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A52892F6EBD9FB72705B06 /* SharedUrlMetaContainer.swift */; };
 		501B24E8A6A2C02493D0D9E3 /* URLProtocolMockBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBA70808F3D6A7C2A4914C /* URLProtocolMockBase.swift */; };
 		505707C1B17737FABA4F7D9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51C3DABAB6E2E48C9F39FFE /* Preview Assets.xcassets */; };
 		50A9E6B016F3A8F9F46B73EC /* SceneDependencyContainer+ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A484483DC29892DD0EB5B0 /* SceneDependencyContainer+ServiceDependencies.swift */; };
@@ -625,6 +626,7 @@
 		3F45E0E9801334633968BF67 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		3FE52D741C6408929139E480 /* Tsundoc+MapToDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tsundoc+MapToDomainModel.swift"; sourceTree = "<group>"; };
 		4005A46521343EC5AAB40193 /* ObservedTsundocArrayMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedTsundocArrayMock.swift; sourceTree = "<group>"; };
+		42A52892F6EBD9FB72705B06 /* SharedUrlMetaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUrlMetaContainer.swift; sourceTree = "<group>"; };
 		4377AB4D3FC6E0B93BE8272E /* String+LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+LocalizedString.swift"; sourceTree = "<group>"; };
 		43AC0CDB8D40FD1E728E32E0 /* CompositeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompositeKit.h; sourceTree = "<group>"; };
 		454D17488F6BC1C7374F3725 /* TextEditAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditAlertAction.swift; sourceTree = "<group>"; };
@@ -1278,6 +1280,7 @@
 			isa = PBXGroup;
 			children = (
 				F046E75E5BDEDB9A49372B80 /* SharedUrlEditView.swift */,
+				42A52892F6EBD9FB72705B06 /* SharedUrlMetaContainer.swift */,
 				E7F7C618712E069F2D314921 /* RootStore */,
 				F52772F67C72CDCA5835F3D5 /* Store */,
 			);
@@ -2358,6 +2361,7 @@
 				83FEED56E37D013F01C82A39 /* SharedUrlImageAction.swift in Sources */,
 				032F537FCB64581D904DA7D1 /* SharedUrlImageReducer.swift in Sources */,
 				30CDEFDF92D58CE9ADD82107 /* SharedUrlImageState.swift in Sources */,
+				4F13E2AC5DC27E3F5BEF20F4 /* SharedUrlMetaContainer.swift in Sources */,
 				AC499F9C8E07C33D857B662B /* String+LocalizedString.swift in Sources */,
 				3282B3969F53CE98EC4243D9 /* TagControlAction.swift in Sources */,
 				C6B579EA79C579F35F5B6E9B /* TagControlReducer.swift in Sources */,
