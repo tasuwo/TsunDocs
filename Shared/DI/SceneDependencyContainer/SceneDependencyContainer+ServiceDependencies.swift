@@ -27,3 +27,5 @@ extension SceneDependencyContainer: HasTagCommandService {
 
     var tagCommandService: TagCommandService { appDependencyContainer.tagCommandService }
 }
+
+extension SceneDependencyContainer: HasNop {}

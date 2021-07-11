@@ -20,3 +20,8 @@
 
 "browse_view_title_loading" = "読み込み中...";
 "browse_view_button_close" = "閉じる";
+
+"tag_list_title" = "タグ";
+"tag_list_alert_new_tag_title" = "新規タグ";
+"tag_list_alert_new_tag_message" = "このタグの名前を入力してください";
+"tag_list_alert_new_tag_placeholder" = "タグ名";

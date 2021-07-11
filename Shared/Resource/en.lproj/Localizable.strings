@@ -20,3 +20,8 @@
 
 "browse_view_title_loading" = "Loading...";
 "browse_view_button_close" = "Close";
+
+"tag_list_title" = "Tags";
+"tag_list_alert_new_tag_title" = "New Tag";
+"tag_list_alert_new_tag_message" = "Enter a name for this tag.";
+"tag_list_alert_new_tag_placeholder" = "Tag Name";

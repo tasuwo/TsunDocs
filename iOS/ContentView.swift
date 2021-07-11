@@ -11,15 +11,16 @@ struct ContentView: View {
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
     var body: some View {
-        let viewStore = container.buildTsundocListStore()
+        let tsundocListStore = container.buildTsundocListStore()
+        let tagListStore = container.buildTagListStore()
 
         if idiom == .pad {
             NavigationView {
                 List {
-                    NavigationLink(destination: TsundocList(store: viewStore)) {
+                    NavigationLink(destination: TsundocList(store: tsundocListStore)) {
                         TabItem.tsundocList.label
                     }
-                    NavigationLink(destination: Text("TODO")) {
+                    NavigationLink(destination: TagList(store: tagListStore)) {
                         TabItem.tags.label
                     }
                     NavigationLink(destination: SettingView()) {
@@ -29,14 +30,14 @@ struct ContentView: View {
                 .navigationTitle(LocalizedStringKey("app_name"))
                 .listStyle(SidebarListStyle())
 
-                TsundocList(store: viewStore)
+                TsundocList(store: tsundocListStore)
             }
         } else {
             TabView {
-                TsundocList(store: viewStore)
+                TsundocList(store: tsundocListStore)
                     .tabItem { TabItem.tsundocList.view }
 
-                Text("TODO")
+                TagList(store: tagListStore)
                     .tabItem { TabItem.tags.view }
 
                 SettingView()

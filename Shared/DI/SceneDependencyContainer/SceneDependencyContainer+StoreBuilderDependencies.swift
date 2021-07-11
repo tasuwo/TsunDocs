@@ -14,3 +14,14 @@ extension SceneDependencyContainer: TsundocListStoreBuildable {
         return ViewStore(store: store)
     }
 }
+
+extension SceneDependencyContainer: TagListStoreBuildable {
+    // MARK: - TagListStoreBuildable
+
+    func buildTagListStore() -> ViewStore<TagListState, TagListAction, TagListDependency> {
+        let store = Store(initialState: TagListState(),
+                          dependency: self,
+                          reducer: tagListReducer)
+        return ViewStore(store: store)
+    }
+}

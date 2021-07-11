@@ -5,10 +5,10 @@
 import Domain
 
 public struct TagGridState: Equatable {
-    let tags: [Tag]
-    let configuration: TagGridConfiguration
+    public let tags: [Tag]
+    public let configuration: TagGridConfiguration
 
-    var selectedIds: Set<Tag.ID> = .init()
+    public var selectedIds: Set<Tag.ID> = .init()
 }
 
 public extension TagGridState {

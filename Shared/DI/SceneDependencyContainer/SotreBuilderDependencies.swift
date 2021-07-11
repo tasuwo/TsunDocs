@@ -8,3 +8,8 @@ import CompositeKit
 protocol TsundocListStoreBuildable {
     func buildTsundocListStore() -> ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
 }
+
+/// @mockable
+protocol TagListStoreBuildable {
+    func buildTagListStore() -> ViewStore<TagListState, TagListAction, TagListDependency>
+}
