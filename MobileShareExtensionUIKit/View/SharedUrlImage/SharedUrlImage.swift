@@ -66,7 +66,9 @@ struct SharedUrlImage: View {
         .sheet(isPresented: store.bind(\.isSelectingEmoji,
                                        action: { .updatedEmojiSheet(isPresenting: $0) })) {
             NavigationView {
-                EmojiList(selectedEmoji: store.bind(\.selectedEmoji, action: { .selectedEmoji($0) }))
+                EmojiList {
+                    store.execute(.selectedEmoji($0), animation: .default)
+                }
             }
         }
     }

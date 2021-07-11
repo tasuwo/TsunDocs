@@ -6,8 +6,6 @@
   Copyright © 2021 Tasuku Tozawa. All rights reserved.
 */
 
-"emoji_list_title" = "絵文字を選択";
-
 "shared_url_edit_view_no_title" = "タイトルなし";
 "shared_url_edit_view_save_button" = "保存";
 "shared_url_edit_view_title_edit_title" = "タイトルの編集";

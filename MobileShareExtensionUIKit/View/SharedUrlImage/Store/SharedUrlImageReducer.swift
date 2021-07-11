@@ -32,6 +32,7 @@ public struct SharedUrlImageReducer: Reducer {
 
         case let .selectedEmoji(emoji):
             nextState.selectedEmoji = emoji
+            nextState.isSelectingEmoji = false
             return (nextState, .none)
 
         case let .updatedThumbnail(status):

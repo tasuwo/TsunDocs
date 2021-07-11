@@ -20,14 +20,14 @@ public struct EmojiList: View {
     @State var storage: SearchableStorage<Emoji> = .init()
     @State var emojis: [Emoji] = Self.allEmojis
 
-    @Binding var selectedEmoji: Emoji?
+    private let onSelected: (Emoji) -> Void
 
     private let searchQueue = DispatchQueue(label: "net.tasuwo.MobileShareExtensionUIKit.EmojiList.search")
 
     // MARK: - Initializers
 
-    public init(selectedEmoji: Binding<Emoji?>) {
-        _selectedEmoji = selectedEmoji
+    public init(onSelected: @escaping (Emoji) -> Void) {
+        self.onSelected = onSelected
     }
 
     // MARK: - View
@@ -44,10 +44,7 @@ public struct EmojiList: View {
                 ForEach(emojis) { emoji in
                     EmojiCell(emoji: emoji)
                         .onTapGesture {
-                            selectedEmoji = emoji
-                            withAnimation {
-                                presentationMode.wrappedValue.dismiss()
-                            }
+                            onSelected(emoji)
                         }
                 }
             }
@@ -83,7 +80,10 @@ struct EmojiList_Previews: PreviewProvider {
                 Text(selectedEmojiText)
                     .sheet(isPresented: $isPresenting) {
                         NavigationView {
-                            EmojiList(selectedEmoji: $selectedEmoji)
+                            EmojiList {
+                                selectedEmoji = $0
+                                withAnimation { isPresenting = false }
+                            }
                         }
                     }
                     .padding()
