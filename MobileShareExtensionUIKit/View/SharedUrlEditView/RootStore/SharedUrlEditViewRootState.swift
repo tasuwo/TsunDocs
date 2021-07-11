@@ -50,8 +50,7 @@ public struct SharedUrlEditViewRootState: Equatable {
     var tagGridState: TagGridState {
         get {
             .init(tags: selectedTags,
-                  configuration: .init(.deletable,
-                                       size: .small))
+                  configuration: .init(.deletable))
         }
         set {
             // NOP
