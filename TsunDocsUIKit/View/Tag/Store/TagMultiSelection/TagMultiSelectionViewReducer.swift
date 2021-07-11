@@ -4,7 +4,8 @@
 
 import CompositeKit
 
-public typealias TagMultiSelectionViewDependency = Void
+public typealias TagMultiSelectionViewDependency = TagGridDependency
+    & TagFilterDependency
 
 private typealias RootState = TagMultiSelectionViewState
 private typealias RootAction = TagMultiSelectionViewAction

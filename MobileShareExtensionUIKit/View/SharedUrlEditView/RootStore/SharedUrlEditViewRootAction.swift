@@ -3,10 +3,12 @@
 //
 
 import CompositeKit
+import TsunDocsUIKit
 
 public enum SharedUrlEditViewRootAction: Action {
     case edit(SharedUrlEditViewAction)
     case image(SharedUrlImageAction)
+    case tagGrid(TagGridAction)
 }
 
 public extension SharedUrlEditViewRootAction {
@@ -20,5 +22,11 @@ public extension SharedUrlEditViewRootAction {
         .image($0)
     }, get: {
         guard case let .image(action) = $0 else { return nil }; return action
+    })
+
+    static let mappingToTagGrid: ActionMapping<Self, TagGridAction> = .init(build: {
+        .tagGrid($0)
+    }, get: {
+        guard case let .tagGrid(action) = $0 else { return nil }; return action
     })
 }

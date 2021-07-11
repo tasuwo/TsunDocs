@@ -5,7 +5,8 @@
 import CompositeKit
 import TsunDocsUIKit
 
-public typealias TagSelectionViewDependency = TagControlDependency
+public typealias TagSelectionViewDependency = TagMultiSelectionViewDependency
+    & TagControlDependency
 
 private typealias RootState = TagSelectionViewState
 private typealias RootAction = TagSelectionViewAction

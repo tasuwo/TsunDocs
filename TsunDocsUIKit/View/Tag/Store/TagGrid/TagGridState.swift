@@ -11,7 +11,7 @@ public struct TagGridState: Equatable {
     var selectedIds: Set<Tag.ID> = .init()
 }
 
-extension TagGridState {
+public extension TagGridState {
     init(tags: [Tag],
          configuration: TagGridConfiguration)
     {

@@ -48,6 +48,8 @@ public struct TagMultiSelectionView: View {
 }
 
 struct TagMultiSelectionView_Previews: PreviewProvider {
+    class Dependency: HasNop {}
+
     struct Container: View {
         private let tags: [Tag] = [
             .init(id: UUID(), name: "This"),
@@ -80,7 +82,7 @@ struct TagMultiSelectionView_Previews: PreviewProvider {
 
         var body: some View {
             let store = Store(initialState: TagMultiSelectionViewState(tags: tags),
-                              dependency: (),
+                              dependency: Dependency(),
                               reducer: tagMultiSelectionReducer)
             let viewStore = ViewStore(store: store)
 

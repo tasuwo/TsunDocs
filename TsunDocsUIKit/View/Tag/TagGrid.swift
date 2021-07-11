@@ -16,6 +16,12 @@ public struct TagGrid: View {
     @State private var availableWidth: CGFloat = 0
     @State private var cellSizes: [Tag: CGSize] = [:]
 
+    // MARK: - Initializers
+
+    public init(store: ViewStore<TagGridState, TagGridAction, TagGridDependency>) {
+        _store = ObservedObject(wrappedValue: store)
+    }
+
     // MARK: - View
 
     public var body: some View {
@@ -99,6 +105,8 @@ private extension TagCellStatus {
 // MARK: - Preview
 
 struct TagGrid_Previews: PreviewProvider {
+    class Dependency: HasNop {}
+
     static let tags: [Tag] = [
         .init(id: UUID(), name: "This"),
         .init(id: UUID(), name: "is"),
@@ -154,7 +162,7 @@ struct TagGrid_Previews: PreviewProvider {
     {
         let store = Store(initialState: TagGridState(tags: tags,
                                                      configuration: config),
-                          dependency: (),
+                          dependency: Dependency(),
                           reducer: TagGridReducer())
         return ViewStore(store: store)
     }

@@ -29,61 +29,92 @@ public struct SharedUrlEditView: View {
         self.tagSelectionViewDependency = tagSelectionViewDependency
     }
 
+    // MARK: - Methods
+
+    private func metaDataContainer(_ url: URL) -> some View {
+        HStack(alignment: .top) {
+            VStack {
+                SharedUrlImage(store: store
+                    .proxy(SharedUrlEditViewRootState.mappingToImage,
+                           SharedUrlEditViewRootAction.mappingToImage)
+                    .viewStore())
+            }
+
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    if let title = store.state.sharedUrlTitle, !title.isEmpty {
+                        Text(title)
+                            .lineLimit(3)
+                            .font(.body)
+                    } else {
+                        Text("shared_url_edit_view_no_title", bundle: Bundle.this)
+                            .foregroundColor(.gray)
+                            .font(.title3)
+                    }
+
+                    Image(systemName: "pencil.circle.fill")
+                        .foregroundColor(.cyan)
+                        .font(.system(size: 24))
+                }
+                .onTapGesture {
+                    store.execute(.edit(.onTapEditTitleButton))
+                }
+
+                Text(url.absoluteString)
+                    .lineLimit(2)
+                    .foregroundColor(.gray)
+                    .font(.caption)
+            }
+            .padding([.top, .bottom], SharedUrlImage.padding)
+
+            Spacer()
+        }
+    }
+
+    private func tagContainer() -> some View {
+        VStack {
+            HStack {
+                Text("Tags")
+
+                Spacer()
+
+                Image(systemName: "plus")
+                    .foregroundColor(.cyan)
+                    .font(.system(size: 24))
+                    .onTapGesture {
+                        store.execute(.edit(.onTapEditTagButton))
+                    }
+            }
+
+            Group {
+                if !store.state.selectedTags.isEmpty {
+                    TagGrid(store: store
+                        .proxy(SharedUrlEditViewRootState.mappingToTagGrid,
+                               SharedUrlEditViewRootAction.mappingToTagGrid)
+                        .viewStore())
+                } else {
+                    Text("No Tags")
+                        .foregroundColor(.gray)
+                }
+            }
+            .frame(height: 100)
+        }
+        .padding([.leading, .trailing], SharedUrlImage.padding)
+    }
+
     // MARK: - View
 
     public var body: some View {
         VStack {
             if let url = store.state.sharedUrl {
                 VStack {
-                    HStack(alignment: .top) {
-                        VStack {
-                            SharedUrlImage(store: store
-                                .proxy(SharedUrlEditViewRootState.mappingToImage,
-                                       SharedUrlEditViewRootAction.mappingToImage)
-                                .viewStore())
-                        }
+                    metaDataContainer(url)
 
-                        VStack(alignment: .leading, spacing: 8) {
-                            HStack {
-                                if let title = store.state.sharedUrlTitle, !title.isEmpty {
-                                    Text(title)
-                                        .lineLimit(3)
-                                        .font(.body)
-                                } else {
-                                    Text("shared_url_edit_view_no_title", bundle: Bundle.this)
-                                        .foregroundColor(.gray)
-                                        .font(.title3)
-                                }
+                    Divider()
 
-                                Image(systemName: "pencil.circle.fill")
-                                    .foregroundColor(.cyan)
-                                    .font(.system(size: 24))
-                            }
-                            .onTapGesture {
-                                store.execute(.edit(.onTapEditTitleButton))
-                            }
+                    tagContainer()
 
-                            Text(url.absoluteString)
-                                .lineLimit(2)
-                                .foregroundColor(.gray)
-                                .font(.caption)
-                        }
-                        .padding([.top, .bottom], SharedUrlImage.padding)
-
-                        Spacer()
-                    }
-
-                    if !store.state.selectedTags.isEmpty {
-                        Text(store.state.selectedTags.map(\.name).joined(separator: ", "))
-                    }
-
-                    Image(systemName: "tag.circle.fill")
-                        .foregroundColor(.cyan)
-                        .font(.system(size: 24))
-                        .onTapGesture {
-                            store.execute(.edit(.onTapEditTagButton))
-                        }
-                        .padding()
+                    Divider()
 
                     Button {
                         store.execute(.edit(.onTapSaveButton))

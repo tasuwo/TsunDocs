@@ -47,6 +47,17 @@ public struct SharedUrlEditViewRootState: Equatable {
         }
     }
 
+    var tagGridState: TagGridState {
+        get {
+            .init(tags: selectedTags,
+                  configuration: .init(.deletable,
+                                       size: .small))
+        }
+        set {
+            // NOP
+        }
+    }
+
     // MARK: - Shared
 
     var sharedUrlImageUrl: URL?
@@ -81,4 +92,5 @@ public extension SharedUrlEditViewRootState {
 public extension SharedUrlEditViewRootState {
     static let mappingToEdit: StateMapping<Self, SharedUrlEditViewState> = .init(keyPath: \Self.editViewState)
     static let mappingToImage: StateMapping<Self, SharedUrlImageState> = .init(keyPath: \Self.imageState)
+    static let mappingToTagGrid: StateMapping<Self, TagGridState> = .init(keyPath: \Self.tagGridState)
 }

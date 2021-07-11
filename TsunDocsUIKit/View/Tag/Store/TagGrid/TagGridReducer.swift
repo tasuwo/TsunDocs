@@ -6,12 +6,16 @@ import Combine
 import CompositeKit
 import Domain
 
-public typealias TagGridDependency = Void
+public typealias TagGridDependency = HasNop
 
 public struct TagGridReducer: Reducer {
     public typealias Dependency = TagGridDependency
     public typealias State = TagGridState
     public typealias Action = TagGridAction
+
+    // MARK: - Initializer
+
+    public init() {}
 
     // MARK: - Reducer
 

@@ -6,7 +6,7 @@ import Combine
 import CompositeKit
 import Domain
 
-public typealias TagFilterDependency = Void
+public typealias TagFilterDependency = HasNop
 
 public struct TagFilterReducer: Reducer {
     public typealias Dependency = TagFilterDependency
