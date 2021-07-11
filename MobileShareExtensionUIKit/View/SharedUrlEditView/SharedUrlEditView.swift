@@ -34,7 +34,7 @@ public struct SharedUrlEditView: View {
     private func tagContainer() -> some View {
         VStack {
             HStack {
-                Text("Tags")
+                Text("shared_url_edit_view_tags_title", bundle: Bundle.this)
 
                 Spacer()
 
@@ -46,21 +46,17 @@ public struct SharedUrlEditView: View {
                     }
             }
 
-            Group {
-                if !store.state.selectedTags.isEmpty {
-                    TagGrid(
-                        store: store
-                            .proxy(SharedUrlEditViewRootState.mappingToTagGrid,
-                                   SharedUrlEditViewRootAction.mappingToTagGrid)
-                            .viewStore(),
-                        inset: 0
-                    )
-                } else {
-                    Text("No Tags")
-                        .foregroundColor(.gray)
-                }
+            if !store.state.selectedTags.isEmpty {
+                TagGrid(
+                    store: store
+                        .proxy(SharedUrlEditViewRootState.mappingToTagGrid,
+                               SharedUrlEditViewRootAction.mappingToTagGrid)
+                        .viewStore(),
+                    inset: 0
+                )
+            } else {
+                Spacer()
             }
-            .frame(height: 100)
         }
         .padding([.leading, .trailing], SharedUrlImage.padding)
     }
@@ -78,6 +74,8 @@ public struct SharedUrlEditView: View {
                     tagContainer()
 
                     Divider()
+
+                    Spacer()
 
                     Button {
                         store.execute(.edit(.onTapSaveButton))

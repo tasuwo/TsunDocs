@@ -49,7 +49,7 @@ struct TagSelectionView: View {
                     Button {
                         onDone(store.state.selectedTags)
                     } label: {
-                        Text("Done")
+                        Text("tag_selection_view_done_button", bundle: Bundle.this)
                     }
                 }
             }
@@ -57,9 +57,9 @@ struct TagSelectionView: View {
         .alert(isPresenting: store.bind(\.controlState.isTagAdditionAlertPresenting,
                                         action: { _ in .control(.alertDismissed) }),
                text: "",
-               config: .init(title: "Add New Tag",
-                             message: "Enter",
-                             placeholder: "Tag Name",
+               config: .init(title: "tag_selection_view_alert_new_tag_title".localized,
+                             message: "tag_selection_view_alert_new_tag_message".localized,
+                             placeholder: "tag_selection_view_alert_new_tag_placeholder".localized,
                              validator: { $0?.count ?? 0 > 0 },
                              saveAction: { store.execute(.control(.didSaveTag($0))) },
                              cancelAction: nil))

@@ -13,5 +13,11 @@
 "shared_url_edit_view_title_edit_placeholder" = "Title";
 "shared_url_edit_view_error_title_load_url" = "Failed to read url.";
 "shared_url_edit_view_error_title_save_url" = "Failed to save url.";
+"shared_url_edit_view_tags_title" = "Tags";
+
+"tag_selection_view_alert_new_tag_title" = "New Tag";
+"tag_selection_view_alert_new_tag_message" = "Enter a name for this tag.";
+"tag_selection_view_alert_new_tag_placeholder" = "Tag Name";
+"tag_selection_view_done_button" = "Done";
 
 "alert_close" = "Close";
