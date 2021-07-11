@@ -11,6 +11,7 @@ public struct TagCell: View {
     private let tagName: String
     private let status: TagCellStatus
     private let size: TagCellSize
+    private let onSelect: ((UUID, String) -> Void)?
     private let onDelete: ((UUID, String) -> Void)?
 
     @ScaledMetric private var padding: CGFloat
@@ -62,12 +63,14 @@ public struct TagCell: View {
                 tagName: String,
                 status: TagCellStatus,
                 size: TagCellSize = .normal,
+                onSelect: ((UUID, String) -> Void)? = nil,
                 onDelete: ((UUID, String) -> Void)? = nil)
     {
         self.tagId = tagId
         self.tagName = tagName
         self.status = status
         self.size = size
+        self.onSelect = onSelect
         self.onDelete = onDelete
         self._padding = ScaledMetric(wrappedValue: size.padding)
     }
@@ -89,6 +92,9 @@ public struct TagCell: View {
                         Color.clear
                     }
                 })
+                .onTapGesture {
+                    onSelect?(tagId, tagName)
+                }
 
             if status.isDeletable {
                 deleteButtonContainer
@@ -119,20 +125,51 @@ public struct TagCell: View {
 
 struct TagCell_Previews: PreviewProvider {
     struct Container: View {
+        @State var selected: (UUID, String)?
         @State var deleted: (UUID, String)?
 
         var body: some View {
             VStack(spacing: 8) {
                 HStack {
-                    TagCell(tagId: UUID(), tagName: "タグ", status: .default)
-                    TagCell(tagId: UUID(), tagName: "my tag", status: .selected)
-                    TagCell(tagId: UUID(), tagName: "😁", status: .deletable, onDelete: { deleted = ($0, $1) })
+                    TagCell(tagId: UUID(),
+                            tagName: "タグ",
+                            status: .default,
+                            onSelect: { selected = ($0, $1) })
+                    TagCell(tagId: UUID(),
+                            tagName: "my tag",
+                            status: .selected,
+                            onSelect: { selected = ($0, $1) })
+                    TagCell(tagId: UUID(),
+                            tagName: "😁",
+                            status: .deletable,
+                            onSelect: { selected = ($0, $1) },
+                            onDelete: { deleted = ($0, $1) })
                 }
 
                 HStack {
-                    TagCell(tagId: UUID(), tagName: "タグ", status: .default, size: .small)
-                    TagCell(tagId: UUID(), tagName: "my tag", status: .selected, size: .small)
-                    TagCell(tagId: UUID(), tagName: "😁", status: .deletable, size: .small, onDelete: { deleted = ($0, $1) })
+                    TagCell(tagId: UUID(),
+                            tagName: "タグ",
+                            status: .default,
+                            size: .small,
+                            onSelect: { selected = ($0, $1) })
+                    TagCell(tagId: UUID(),
+                            tagName: "my tag",
+                            status: .selected,
+                            size: .small,
+                            onSelect: { selected = ($0, $1) })
+                    TagCell(tagId: UUID(),
+                            tagName: "😁",
+                            status: .deletable,
+                            size: .small,
+                            onSelect: { selected = ($0, $1) },
+                            onDelete: { deleted = ($0, $1) })
+                }
+
+                if let selected = selected {
+                    Text("Selected: id=\(selected.0.uuidString), name=\(selected.1)")
+                        .foregroundColor(.gray)
+                        .font(.callout)
+                        .padding([.trailing, .leading])
                 }
 
                 if let deleted = deleted {
