@@ -22,6 +22,24 @@ extension TsundocQueryService: Domain.TsundocQueryService {
         }
     }
 
+    public func queryTsundocs(tagged tag: Domain.Tag) -> Result<AnyObservedEntityArray<Domain.Tsundoc>, QueryServiceError> {
+        assert(Thread.isMainThread)
+
+        do {
+            let factory: ObservedTsundocArray.RequestFactory = {
+                let request: NSFetchRequest<Tsundoc> = Tsundoc.fetchRequest()
+                request.sortDescriptors = [NSSortDescriptor(keyPath: \Tsundoc.createdDate, ascending: false)]
+                request.predicate = NSPredicate(format: "SUBQUERY(tags, $tag, $tag.id == %@).@count > 0", tag.id as CVarArg)
+                return request
+            }
+            let query = try ObservedTsundocArray(requestFactory: factory, context: context)
+            append(query)
+            return .success(query.eraseToAnyObservedEntityArray())
+        } catch {
+            return .failure(.internalError(error))
+        }
+    }
+
     public func queryAllTsundocs() -> Result<AnyObservedEntityArray<Domain.Tsundoc>, QueryServiceError> {
         assert(Thread.isMainThread)
 
