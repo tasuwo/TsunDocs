@@ -20,7 +20,7 @@ struct SharedUrlMetaContainer: View {
 
     // MARK: - Initializers
 
-    public init(store: Store) {
+    init(store: Store) {
         self._store = ObservedObject(wrappedValue: store)
     }
 

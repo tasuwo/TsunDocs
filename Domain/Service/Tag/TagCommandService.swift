@@ -23,6 +23,7 @@ public extension TagCommandService {
                 result = .failure(.internalError(error))
             }
         }
+        // swiftlint:disable:next force_unwrapping
         return result!
     }
 }

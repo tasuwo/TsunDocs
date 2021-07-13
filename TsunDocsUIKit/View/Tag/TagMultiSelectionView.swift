@@ -71,7 +71,7 @@ struct TagMultiSelectionView_Previews: PreviewProvider {
             .init(id: UUID(), name: "flexible")
         ]
 
-        @State var isPresenting: Bool = false
+        @State var isPresenting = false
 
         var body: some View {
             let store = Store(initialState: TagMultiSelectionViewState(tags: tags),

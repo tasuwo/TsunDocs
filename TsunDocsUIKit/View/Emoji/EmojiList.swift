@@ -66,7 +66,7 @@ public struct EmojiList: View {
 struct EmojiList_Previews: PreviewProvider {
     struct Container: View {
         @State var selectedEmoji: Emoji?
-        @State var isPresenting: Bool = false
+        @State var isPresenting = false
 
         var selectedEmojiText: String {
             guard let emoji = selectedEmoji else {

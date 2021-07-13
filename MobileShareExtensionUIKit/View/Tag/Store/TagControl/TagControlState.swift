@@ -13,5 +13,5 @@ public struct TagControlState: Equatable {
     var selectedIds: Set<Tag.ID> = .init()
 
     var alert: Alert?
-    var isTagAdditionAlertPresenting: Bool = false
+    var isTagAdditionAlertPresenting = false
 }

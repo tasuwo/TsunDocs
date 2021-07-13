@@ -32,7 +32,7 @@ class PersistentHistoryTracker {
                                                      attributes: nil)
         }
 
-        // swiftlint:disable:next
+        // swiftlint:disable:next force_unwrapping
         return url.appendingPathComponent("\(container!.author.rawValue)-token.data", isDirectory: false)
     }()
 

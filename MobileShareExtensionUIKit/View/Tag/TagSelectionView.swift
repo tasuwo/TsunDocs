@@ -128,7 +128,7 @@ struct TagSelectionView_Previews: PreviewProvider {
     }
 
     struct Container: View {
-        @State var isPresenting: Bool = false
+        @State var isPresenting = false
 
         var body: some View {
             VStack {

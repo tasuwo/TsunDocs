@@ -17,6 +17,6 @@
 --hexliteralcase lowercase
 --octalgrouping none
 --wrapcollections beforefirst
---exclude Pods
+--exclude Pods,Carthage
 --ifdef no-indent
 

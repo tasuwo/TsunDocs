@@ -42,7 +42,7 @@ public struct SharedUrlEditViewReducer: Reducer {
                 do {
                     try dependency.tsundocCommandService.begin()
 
-                    if let _ = dependency.tsundocCommandService.createTsundoc(by: command).failureValue {
+                    if dependency.tsundocCommandService.createTsundoc(by: command).failureValue != nil {
                         isFailed = true
                         try dependency.tsundocCommandService.cancel()
                         return

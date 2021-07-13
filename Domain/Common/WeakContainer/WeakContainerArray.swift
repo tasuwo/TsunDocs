@@ -20,6 +20,7 @@ public class WeakContainerArray<T> {
     public subscript(_ index: Int) -> T {
         get {
             clean()
+            // swiftlint:disable:next force_unwrapping
             return containers[index].value!
         }
         set {

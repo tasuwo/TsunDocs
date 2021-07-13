@@ -52,6 +52,7 @@ public struct SharedUrlEditViewRootState: Equatable {
             .init(tags: selectedTags,
                   configuration: .init(.deletable))
         }
+        // swiftlint:disable:next unused_setter_value
         set {
             // NOP
         }

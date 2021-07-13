@@ -40,7 +40,7 @@ class ShareRootViewController: UIViewController {
             viewController.view.topAnchor.constraint(equalTo: view.topAnchor),
             viewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             viewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 }

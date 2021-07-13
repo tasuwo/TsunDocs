@@ -31,6 +31,7 @@ public extension Emoji {
             .map {
                 Emoji(alias: $0.key,
                       emoji: $0.value,
+                      // swiftlint:disable:next force_unwrapping
                       searchableText: $0.key.transformToSearchableText()!)
             }
     }

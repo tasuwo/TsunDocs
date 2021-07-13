@@ -2,6 +2,8 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+// swiftlint:disable force_unwrapping
+
 import Foundation
 
 extension HTTPURLResponse {
