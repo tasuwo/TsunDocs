@@ -10,20 +10,16 @@ public protocol TagCommandService: Transaction {
 }
 
 public extension TagCommandService {
-    func createAndCommitTag(by command: TagCommand) -> Result<Tag.ID, CommandServiceError> {
-        var result: Result<Tag.ID, CommandServiceError>?
-        perform {
-            do {
-                try begin()
+    @discardableResult
+    func createAndCommitTag(by command: TagCommand) async throws -> Tag.ID {
+        try await perform {
+            try begin()
 
-                result = createTag(by: command)
+            let result = createTag(by: command)
 
-                try commit()
-            } catch {
-                result = .failure(.internalError(error))
-            }
+            try commit()
+
+            return try result.get()
         }
-        // swiftlint:disable:next force_unwrapping
-        return result!
     }
 }

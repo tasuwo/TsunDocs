@@ -38,6 +38,21 @@ public class Effect<Action: CompositeKit.Action> {
         self.underlyingObject = nil
         self.actionAtCompleted = nil
     }
+
+    public init(_ block: @escaping () async -> Action?) {
+        let stream: AnyPublisher<Action?, Never> = Deferred {
+            Future { promise in
+                Task {
+                    promise(.success(await block()))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+        self.id = UUID()
+        self.upstream = stream
+        self.underlyingObject = nil
+        self.actionAtCompleted = nil
+    }
 }
 
 public extension Effect {

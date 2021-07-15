@@ -46,14 +46,21 @@ struct TagListControlReducer: Reducer {
             return (nextState, .none)
 
         case let .didSaveTag(tagName):
-            switch dependency.tagCommandService.createAndCommitTag(by: .init(name: tagName)) {
-            case .success:
-                return (nextState, .none)
-
-            case .failure:
-                nextState.alert = .failedToAddTag
-                return (nextState, .none)
+            let effect = Effect<Action> {
+                do {
+                    try await dependency.tagCommandService.createAndCommitTag(by: .init(name: tagName))
+                    return .none
+                } catch let error as CommandServiceError {
+                    return .failedToSaveTag(error)
+                } catch {
+                    return .failedToSaveTag(nil)
+                }
             }
+            return (nextState, [effect])
+
+        case .failedToSaveTag:
+            nextState.alert = .failedToAddTag
+            return (nextState, .none)
 
         case .alertDismissed:
             nextState.isTagAdditionAlertPresenting = false

@@ -22,4 +22,14 @@ public extension Result {
             return nil
         }
     }
+
+    func get() throws -> Success {
+        switch self {
+        case let .success(value):
+            return value
+
+        case let .failure(error):
+            throw error
+        }
+    }
 }

@@ -10,5 +10,6 @@ public enum TagControlAction: Action {
     case tagsUpdated([Tag])
     case didTapAddButton
     case didSaveTag(String)
+    case failedToSaveTag(CommandServiceError?)
     case alertDismissed
 }
