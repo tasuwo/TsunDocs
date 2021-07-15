@@ -3,21 +3,9 @@
 ///
 
 import CompositeKit
+import CoreData
 import Domain
-
-class HasTsundocQueryServiceMock: HasTsundocQueryService {
-    init() { }
-    init(tsundocQueryService: TsundocQueryService) {
-        self._tsundocQueryService = tsundocQueryService
-    }
-
-    private(set) var tsundocQueryServiceSetCallCount = 0
-    private var _tsundocQueryService: TsundocQueryService! { didSet { tsundocQueryServiceSetCallCount += 1 } }
-    var tsundocQueryService: TsundocQueryService {
-        get { return _tsundocQueryService }
-        set { _tsundocQueryService = newValue }
-    }
-}
+import Persistence
 
 class TsundocListStoreBuildableMock: TsundocListStoreBuildable {
     init() { }
@@ -33,44 +21,16 @@ class TsundocListStoreBuildableMock: TsundocListStoreBuildable {
     }
 }
 
-class HasTagQueryServiceMock: HasTagQueryService {
+class TagListStoreBuildableMock: TagListStoreBuildable {
     init() { }
-    init(tagQueryService: TagQueryService) {
-        self._tagQueryService = tagQueryService
-    }
 
-    private(set) var tagQueryServiceSetCallCount = 0
-    private var _tagQueryService: TagQueryService! { didSet { tagQueryServiceSetCallCount += 1 } }
-    var tagQueryService: TagQueryService {
-        get { return _tagQueryService }
-        set { _tagQueryService = newValue }
-    }
-}
-
-class HasTsundocCommandServiceMock: HasTsundocCommandService {
-    init() { }
-    init(tsundocCommandService: TsundocCommandService) {
-        self._tsundocCommandService = tsundocCommandService
-    }
-
-    private(set) var tsundocCommandServiceSetCallCount = 0
-    private var _tsundocCommandService: TsundocCommandService! { didSet { tsundocCommandServiceSetCallCount += 1 } }
-    var tsundocCommandService: TsundocCommandService {
-        get { return _tsundocCommandService }
-        set { _tsundocCommandService = newValue }
-    }
-}
-
-class HasTagCommandServiceMock: HasTagCommandService {
-    init() { }
-    init(tagCommandService: TagCommandService) {
-        self._tagCommandService = tagCommandService
-    }
-
-    private(set) var tagCommandServiceSetCallCount = 0
-    private var _tagCommandService: TagCommandService! { didSet { tagCommandServiceSetCallCount += 1 } }
-    var tagCommandService: TagCommandService {
-        get { return _tagCommandService }
-        set { _tagCommandService = newValue }
+    private(set) var buildTagListStoreCallCount = 0
+    var buildTagListStoreHandler: (() -> (ViewStore<TagListState, TagListAction, TagListDependency>))?
+    func buildTagListStore() -> ViewStore<TagListState, TagListAction, TagListDependency> {
+        buildTagListStoreCallCount += 1
+        if let buildTagListStoreHandler = buildTagListStoreHandler {
+            return buildTagListStoreHandler()
+        }
+        fatalError("buildTagListStoreHandler returns can't have a default value thus its handler must be set")
     }
 }

@@ -22,6 +22,16 @@ public class HasImageLoaderMock: HasImageLoader {
     }
 }
 
+public class HasTsundocQueryServiceMock: HasTsundocQueryService {
+    public init() { }
+    public init(tsundocQueryService: TsundocQueryService = TsundocQueryServiceMock()) {
+        self.tsundocQueryService = tsundocQueryService
+    }
+
+    public private(set) var tsundocQueryServiceSetCallCount = 0
+    public var tsundocQueryService: TsundocQueryService = TsundocQueryServiceMock() { didSet { tsundocQueryServiceSetCallCount += 1 } }
+}
+
 public class TagCommandServiceMock: TagCommandService {
     public init() { }
 
@@ -219,6 +229,16 @@ public class TsundocQueryServiceMock: TsundocQueryService {
         fatalError("queryTsundocHandler returns can't have a default value thus its handler must be set")
     }
 
+    public private(set) var queryTsundocsCallCount = 0
+    public var queryTsundocsHandler: ((Tag) -> (Result<AnyObservedEntityArray<Tsundoc>, QueryServiceError>))?
+    public func queryTsundocs(tagged tag: Tag) -> Result<AnyObservedEntityArray<Tsundoc>, QueryServiceError> {
+        queryTsundocsCallCount += 1
+        if let queryTsundocsHandler = queryTsundocsHandler {
+            return queryTsundocsHandler(tag)
+        }
+        fatalError("queryTsundocsHandler returns can't have a default value thus its handler must be set")
+    }
+
     public private(set) var queryAllTsundocsCallCount = 0
     public var queryAllTsundocsHandler: (() -> (Result<AnyObservedEntityArray<Tsundoc>, QueryServiceError>))?
     public func queryAllTsundocs() -> Result<AnyObservedEntityArray<Tsundoc>, QueryServiceError> {
@@ -287,4 +307,58 @@ public class SharedUrlLoadableMock: SharedUrlLoadable {
             loadHandler(completion)
         }
     }
+}
+
+public class HasTagQueryServiceMock: HasTagQueryService {
+    public init() { }
+    public init(tagQueryService: TagQueryService = TagQueryServiceMock()) {
+        self.tagQueryService = tagQueryService
+    }
+
+    public private(set) var tagQueryServiceSetCallCount = 0
+    public var tagQueryService: TagQueryService = TagQueryServiceMock() { didSet { tagQueryServiceSetCallCount += 1 } }
+}
+
+public class HasTsundocCommandServiceMock: HasTsundocCommandService {
+    public init() { }
+    public init(tsundocCommandService: TsundocCommandService = TsundocCommandServiceMock()) {
+        self.tsundocCommandService = tsundocCommandService
+    }
+
+    public private(set) var tsundocCommandServiceSetCallCount = 0
+    public var tsundocCommandService: TsundocCommandService = TsundocCommandServiceMock() { didSet { tsundocCommandServiceSetCallCount += 1 } }
+}
+
+public class HasTagCommandServiceMock: HasTagCommandService {
+    public init() { }
+    public init(tagCommandService: TagCommandService = TagCommandServiceMock()) {
+        self.tagCommandService = tagCommandService
+    }
+
+    public private(set) var tagCommandServiceSetCallCount = 0
+    public var tagCommandService: TagCommandService = TagCommandServiceMock() { didSet { tagCommandServiceSetCallCount += 1 } }
+}
+
+public class HasSharedUrlLoaderMock: HasSharedUrlLoader {
+    public init() { }
+    public init(sharedUrlLoader: SharedUrlLoadable = SharedUrlLoadableMock()) {
+        self.sharedUrlLoader = sharedUrlLoader
+    }
+
+    public private(set) var sharedUrlLoaderSetCallCount = 0
+    public var sharedUrlLoader: SharedUrlLoadable = SharedUrlLoadableMock() { didSet { sharedUrlLoaderSetCallCount += 1 } }
+}
+
+public class HasWebPageMetaResolverMock: HasWebPageMetaResolver {
+    public init() { }
+    public init(webPageMetaResolver: WebPageMetaResolvable = WebPageMetaResolvableMock()) {
+        self.webPageMetaResolver = webPageMetaResolver
+    }
+
+    public private(set) var webPageMetaResolverSetCallCount = 0
+    public var webPageMetaResolver: WebPageMetaResolvable = WebPageMetaResolvableMock() { didSet { webPageMetaResolverSetCallCount += 1 } }
+}
+
+public class HasNopMock: HasNop {
+    public init() { }
 }

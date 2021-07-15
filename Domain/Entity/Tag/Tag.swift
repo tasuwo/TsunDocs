@@ -17,6 +17,12 @@ public struct Tag: Searchable, Equatable {
 
     // MARK: - Initializers
 
+    public init(id: UUID, name: String, searchableText: String?) {
+        self.id = id
+        self.name = name
+        self.searchableText = searchableText
+    }
+
     public init(id: UUID, name: String) {
         self.id = id
         self.name = name

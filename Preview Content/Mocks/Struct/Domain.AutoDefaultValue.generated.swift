@@ -6,11 +6,13 @@ import Domain
 extension Tag {
     static func makeDefault(
         id: UUID = UUID(),
-        name: String = ""
+        name: String = "",
+        searchableText: String? = nil
     ) -> Self {
         return .init(
             id: id,
-            name: name
+            name: name,
+            searchableText: searchableText
         )
     }
 }
@@ -55,14 +57,16 @@ extension TsundocCommand {
         description: String? = nil,
         url: URL = URL(string: "https://xxx.xxxx.xx")!,
         imageUrl: URL? = nil,
-        emojiAlias: String? = nil
+        emojiAlias: String? = nil,
+        tagIds: [Tag.ID] = []
     ) -> Self {
         return .init(
             title: title,
             description: description,
             url: url,
             imageUrl: imageUrl,
-            emojiAlias: emojiAlias
+            emojiAlias: emojiAlias,
+            tagIds: tagIds
         )
     }
 }
