@@ -15,61 +15,86 @@ public extension TsundocCommandService {
     @discardableResult
     func createTsundoc(by command: TsundocCommand) async throws -> Domain.Tsundoc.ID {
         try await perform {
-            try begin()
+            do {
+                try begin()
 
-            let result = createTsundoc(by: command)
+                let result = createTsundoc(by: command)
 
-            try commit()
+                try commit()
 
-            return try result.get()
+                return try result.get()
+            } catch {
+                try cancel()
+                throw error
+            }
         }
     }
 
     func updateTsundoc(having id: Tsundoc.ID, byAddingTagHaving tagId: Tag.ID) async throws {
         try await perform { () -> Void in
-            try begin()
+            do {
+                try begin()
 
-            let result = updateTsundoc(having: id, byAddingTagHaving: tagId)
+                let result = updateTsundoc(having: id, byAddingTagHaving: tagId)
 
-            try commit()
+                try commit()
 
-            try result.get()
+                try result.get()
+            } catch {
+                try cancel()
+                throw error
+            }
         }
     }
 
     func updateTsundoc(having id: Tsundoc.ID, byRemovingTagHaving tagId: Tag.ID) async throws {
         try await perform { () -> Void in
-            try begin()
+            do {
+                try begin()
 
-            let result = updateTsundoc(having: id, byRemovingTagHaving: tagId)
+                let result = updateTsundoc(having: id, byRemovingTagHaving: tagId)
 
-            try commit()
+                try commit()
 
-            try result.get()
+                try result.get()
+            } catch {
+                try cancel()
+                throw error
+            }
         }
     }
 
     func updateTsundoc(having id: Tsundoc.ID, byReplacingTagsHaving tagIds: Set<Tag.ID>) async throws {
         try await perform { () -> Void in
-            try begin()
+            do {
+                try begin()
 
-            let result = updateTsundoc(having: id, byReplacingTagsHaving: tagIds)
+                let result = updateTsundoc(having: id, byReplacingTagsHaving: tagIds)
 
-            try commit()
+                try commit()
 
-            try result.get()
+                try result.get()
+            } catch {
+                try cancel()
+                throw error
+            }
         }
     }
 
     func deleteTsundoc(having id: Tsundoc.ID) async throws {
         try await perform { () -> Void in
-            try begin()
+            do {
+                try begin()
 
-            let result = deleteTsundoc(having: id)
+                let result = deleteTsundoc(having: id)
 
-            try commit()
+                try commit()
 
-            try result.get()
+                try result.get()
+            } catch {
+                try cancel()
+                throw error
+            }
         }
     }
 }

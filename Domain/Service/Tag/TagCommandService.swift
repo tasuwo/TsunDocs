@@ -13,13 +13,18 @@ public extension TagCommandService {
     @discardableResult
     func createAndCommitTag(by command: TagCommand) async throws -> Tag.ID {
         try await perform {
-            try begin()
+            do {
+                try begin()
 
-            let result = createTag(by: command)
+                let result = createTag(by: command)
 
-            try commit()
+                try commit()
 
-            return try result.get()
+                return try result.get()
+            } catch {
+                try cancel()
+                throw error
+            }
         }
     }
 }
