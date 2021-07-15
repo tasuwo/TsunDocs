@@ -36,31 +36,22 @@ public struct SharedUrlEditViewReducer: Reducer {
             guard let command = state.command() else {
                 return (nextState, .none)
             }
-
-            var isFailed = false
-            dependency.tsundocCommandService.perform {
+            let effect = Effect<Action> {
                 do {
-                    try dependency.tsundocCommandService.begin()
-
-                    if dependency.tsundocCommandService.createTsundoc(by: command).failureValue != nil {
-                        isFailed = true
-                        try dependency.tsundocCommandService.cancel()
-                        return
-                    }
-
-                    try dependency.tsundocCommandService.commit()
+                    try await dependency.tsundocCommandService.createTsundoc(by: command)
+                    return .succeededToSave
                 } catch {
-                    isFailed = true
+                    return .failedToSave
                 }
             }
+            return (nextState, [effect])
 
-            if isFailed {
-                nextState.alert = .failedToSaveSharedUrl
-                return (nextState, .none)
-            }
-
+        case .succeededToSave:
             dependency.completable.complete()
+            return (nextState, .none)
 
+        case .failedToSave:
+            nextState.alert = .failedToSaveSharedUrl
             return (nextState, .none)
 
         case .onTapEditTitleButton:

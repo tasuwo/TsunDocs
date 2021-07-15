@@ -9,6 +9,8 @@ public enum SharedUrlEditViewAction: Action {
     case onAppear
     case onLoad(URL, WebPageMeta?)
     case onTapSaveButton
+    case succeededToSave
+    case failedToSave
     case onTapEditTitleButton
     case onTapEditTagButton
     case onSaveTitle(String)
