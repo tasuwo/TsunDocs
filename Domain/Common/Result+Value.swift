@@ -23,6 +23,7 @@ public extension Result {
         }
     }
 
+    @discardableResult
     func get() throws -> Success {
         switch self {
         case let .success(value):

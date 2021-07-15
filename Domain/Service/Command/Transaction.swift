@@ -4,6 +4,7 @@
 
 public protocol Transaction {
     func perform(_ block: @escaping () -> Void)
+    @discardableResult
     func perform<T>(_ block: @escaping () throws -> T) async throws -> T
     func begin() throws
     func commit() throws
