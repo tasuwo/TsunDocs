@@ -54,6 +54,26 @@ public class TagCommandServiceMock: TagCommandService {
         fatalError("createTagHandler returns can't have a default value thus its handler must be set")
     }
 
+    public private(set) var performBlockCallCount = 0
+    public var performBlockHandler: ((@escaping () throws -> Any) throws -> (Any))?
+    public func perform<T>(_ block: @escaping () throws -> T) throws -> T {
+        performBlockCallCount += 1
+        if let performBlockHandler = performBlockHandler {
+            return try performBlockHandler(block) as! T
+        }
+        fatalError("performBlockHandler returns can't have a default value thus its handler must be set")
+    }
+
+    public private(set) var updateTagCallCount = 0
+    public var updateTagHandler: ((Tag.ID, String) -> (Result<Void, CommandServiceError>))?
+    public func updateTag(having id: Tag.ID, nameTo name: String) -> Result<Void, CommandServiceError> {
+        updateTagCallCount += 1
+        if let updateTagHandler = updateTagHandler {
+            return updateTagHandler(id, name)
+        }
+        fatalError("updateTagHandler returns can't have a default value thus its handler must be set")
+    }
+
     public private(set) var beginCallCount = 0
     public var beginHandler: (() throws -> Void)?
     public func begin() throws {
@@ -79,16 +99,6 @@ public class TagCommandServiceMock: TagCommandService {
         if let cancelHandler = cancelHandler {
             try cancelHandler()
         }
-    }
-
-    public private(set) var updateTagCallCount = 0
-    public var updateTagHandler: ((Tag.ID, String) -> (Result<Void, CommandServiceError>))?
-    public func updateTag(having id: Tag.ID, nameTo name: String) -> Result<Void, CommandServiceError> {
-        updateTagCallCount += 1
-        if let updateTagHandler = updateTagHandler {
-            return updateTagHandler(id, name)
-        }
-        fatalError("updateTagHandler returns can't have a default value thus its handler must be set")
     }
 
     public private(set) var deleteTagCallCount = 0
@@ -148,6 +158,16 @@ public class TsundocCommandServiceMock: TsundocCommandService {
         fatalError("createTsundocHandler returns can't have a default value thus its handler must be set")
     }
 
+    public private(set) var performBlockCallCount = 0
+    public var performBlockHandler: ((@escaping () throws -> Any) throws -> (Any))?
+    public func perform<T>(_ block: @escaping () throws -> T) throws -> T {
+        performBlockCallCount += 1
+        if let performBlockHandler = performBlockHandler {
+            return try performBlockHandler(block) as! T
+        }
+        fatalError("performBlockHandler returns can't have a default value thus its handler must be set")
+    }
+
     public private(set) var beginCallCount = 0
     public var beginHandler: (() throws -> Void)?
     public func begin() throws {
@@ -155,6 +175,16 @@ public class TsundocCommandServiceMock: TsundocCommandService {
         if let beginHandler = beginHandler {
             try beginHandler()
         }
+    }
+
+    public private(set) var updateTsundocCallCount = 0
+    public var updateTsundocHandler: ((Tsundoc.ID, Tag.ID) -> (Result<Void, CommandServiceError>))?
+    public func updateTsundoc(having id: Tsundoc.ID, byAddingTagHaving tagId: Tag.ID) -> Result<Void, CommandServiceError> {
+        updateTsundocCallCount += 1
+        if let updateTsundocHandler = updateTsundocHandler {
+            return updateTsundocHandler(id, tagId)
+        }
+        fatalError("updateTsundocHandler returns can't have a default value thus its handler must be set")
     }
 
     public private(set) var commitCallCount = 0
@@ -173,16 +203,6 @@ public class TsundocCommandServiceMock: TsundocCommandService {
         if let cancelHandler = cancelHandler {
             try cancelHandler()
         }
-    }
-
-    public private(set) var updateTsundocCallCount = 0
-    public var updateTsundocHandler: ((Tsundoc.ID, Tag.ID) -> (Result<Void, CommandServiceError>))?
-    public func updateTsundoc(having id: Tsundoc.ID, byAddingTagHaving tagId: Tag.ID) -> Result<Void, CommandServiceError> {
-        updateTsundocCallCount += 1
-        if let updateTsundocHandler = updateTsundocHandler {
-            return updateTsundocHandler(id, tagId)
-        }
-        fatalError("updateTsundocHandler returns can't have a default value thus its handler must be set")
     }
 
     public private(set) var updateTsundocHavingCallCount = 0

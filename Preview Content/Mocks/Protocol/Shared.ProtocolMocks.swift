@@ -3,9 +3,6 @@
 ///
 
 import CompositeKit
-import CoreData
-import Domain
-import Persistence
 
 class TsundocListStoreBuildableMock: TsundocListStoreBuildable {
     init() { }

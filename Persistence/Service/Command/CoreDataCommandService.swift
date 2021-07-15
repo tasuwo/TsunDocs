@@ -31,6 +31,10 @@ extension CoreDataCommandService: Transaction {
         context.performAndWait(block)
     }
 
+    public func perform<T>(_ block: @escaping () throws -> T) async throws -> T {
+        try await context.perform(block)
+    }
+
     public func begin() throws {
         context.reset()
     }
