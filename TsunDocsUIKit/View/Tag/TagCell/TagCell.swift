@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-public struct TagCell: View {
+public struct TagCell<Menu: View>: View {
     // MARK: - Properties
 
     private let tagId: UUID
@@ -13,8 +13,10 @@ public struct TagCell: View {
     private let size: TagCellSize
     private let onSelect: ((UUID) -> Void)?
     private let onDelete: ((UUID) -> Void)?
+    private let menu: Menu
 
     @ScaledMetric private var padding: CGFloat
+    @State private var cornerRadius: CGFloat = 0
 
     private var checkmark: some View {
         Image(systemName: "checkmark")
@@ -64,7 +66,7 @@ public struct TagCell: View {
                 status: TagCellStatus,
                 size: TagCellSize = .normal,
                 onSelect: ((UUID) -> Void)? = nil,
-                onDelete: ((UUID) -> Void)? = nil)
+                onDelete: ((UUID) -> Void)? = nil) where Menu == EmptyView
     {
         self.tagId = tagId
         self.tagName = tagName
@@ -72,6 +74,25 @@ public struct TagCell: View {
         self.size = size
         self.onSelect = onSelect
         self.onDelete = onDelete
+        self.menu = EmptyView()
+        self._padding = ScaledMetric(wrappedValue: size.padding)
+    }
+
+    public init(tagId: UUID,
+                tagName: String,
+                status: TagCellStatus,
+                size: TagCellSize = .normal,
+                onSelect: ((UUID) -> Void)? = nil,
+                onDelete: ((UUID) -> Void)? = nil,
+                @ViewBuilder menu: () -> Menu)
+    {
+        self.tagId = tagId
+        self.tagName = tagName
+        self.status = status
+        self.size = size
+        self.onSelect = onSelect
+        self.onDelete = onDelete
+        self.menu = menu()
         self._padding = ScaledMetric(wrappedValue: size.padding)
     }
 
@@ -92,9 +113,6 @@ public struct TagCell: View {
                         Color.clear
                     }
                 })
-                .onTapGesture {
-                    onSelect?(tagId)
-                }
 
             if status.isDeletable {
                 deleteButtonContainer
@@ -118,6 +136,17 @@ public struct TagCell: View {
                     .foregroundColor(Color("tag_separator", bundle: Bundle.this))
             }
         })
+        .onChangeFrame {
+            cornerRadius = $0.height / 2
+        }
+        .contentShape(RoundedRectangle(cornerRadius: cornerRadius,
+                                       style: .continuous))
+        .onTapGesture {
+            onSelect?(tagId)
+        }
+        .contextMenu {
+            menu
+        }
     }
 }
 
@@ -127,6 +156,7 @@ struct TagCell_Previews: PreviewProvider {
     struct Container: View {
         @State var selected: UUID?
         @State var deleted: UUID?
+        @State var tappedMenu: String?
 
         var body: some View {
             VStack(spacing: 8) {
@@ -165,6 +195,40 @@ struct TagCell_Previews: PreviewProvider {
                             onDelete: { deleted = $0 })
                 }
 
+                HStack {
+                    TagCell(tagId: UUID(),
+                            tagName: "Menu",
+                            status: .default,
+                            onSelect: { selected = $0 }) {
+                        Button {
+                            tappedMenu = "Add"
+                        } label: {
+                            Label("Add", systemImage: "plus")
+                        }
+
+                        Button {
+                            tappedMenu = "Call"
+                        } label: {
+                            Label("Call", systemImage: "phone")
+                        }
+                        .disabled(true)
+
+                        Button(role: .cancel) {
+                            tappedMenu = "Cancel"
+                        } label: {
+                            Text("Cancel")
+                        }
+
+                        Divider()
+
+                        Button(role: .destructive) {
+                            tappedMenu = "Delete"
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
+                }
+
                 if let selected = selected {
                     Text("Selected: id=\(selected.uuidString)")
                         .foregroundColor(.gray)
@@ -174,6 +238,13 @@ struct TagCell_Previews: PreviewProvider {
 
                 if let deleted = deleted {
                     Text("Deleted: id=\(deleted.uuidString)")
+                        .foregroundColor(.gray)
+                        .font(.callout)
+                        .padding([.trailing, .leading])
+                }
+
+                if let tappedMenu = tappedMenu {
+                    Text("Tapped menu: name=\(tappedMenu)")
                         .foregroundColor(.gray)
                         .font(.callout)
                         .padding([.trailing, .leading])
