@@ -16,11 +16,11 @@ public extension TagCommandService {
             do {
                 try begin()
 
-                let result = createTag(by: command)
+                let result = try createTag(by: command).get()
 
                 try commit()
 
-                return try result.get()
+                return result
             } catch {
                 try cancel()
                 throw error

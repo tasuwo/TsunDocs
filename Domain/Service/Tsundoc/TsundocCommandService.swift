@@ -18,11 +18,11 @@ public extension TsundocCommandService {
             do {
                 try begin()
 
-                let result = createTsundoc(by: command)
+                let result = try createTsundoc(by: command).get()
 
                 try commit()
 
-                return try result.get()
+                return result
             } catch {
                 try cancel()
                 throw error
@@ -35,11 +35,9 @@ public extension TsundocCommandService {
             do {
                 try begin()
 
-                let result = updateTsundoc(having: id, byAddingTagHaving: tagId)
+                try updateTsundoc(having: id, byAddingTagHaving: tagId).get()
 
                 try commit()
-
-                try result.get()
             } catch {
                 try cancel()
                 throw error
@@ -52,11 +50,9 @@ public extension TsundocCommandService {
             do {
                 try begin()
 
-                let result = updateTsundoc(having: id, byRemovingTagHaving: tagId)
+                try updateTsundoc(having: id, byRemovingTagHaving: tagId).get()
 
                 try commit()
-
-                try result.get()
             } catch {
                 try cancel()
                 throw error
@@ -69,11 +65,9 @@ public extension TsundocCommandService {
             do {
                 try begin()
 
-                let result = updateTsundoc(having: id, byReplacingTagsHaving: tagIds)
+                try updateTsundoc(having: id, byReplacingTagsHaving: tagIds).get()
 
                 try commit()
-
-                try result.get()
             } catch {
                 try cancel()
                 throw error
@@ -86,11 +80,9 @@ public extension TsundocCommandService {
             do {
                 try begin()
 
-                let result = deleteTsundoc(having: id)
+                try deleteTsundoc(having: id).get()
 
                 try commit()
-
-                try result.get()
             } catch {
                 try cancel()
                 throw error
