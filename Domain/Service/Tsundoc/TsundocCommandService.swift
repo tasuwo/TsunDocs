@@ -89,4 +89,21 @@ public extension TsundocCommandService {
             }
         }
     }
+
+    func deleteTsundocs(having ids: Set<Tsundoc.ID>) async throws {
+        try await perform { () -> Void in
+            do {
+                try begin()
+
+                try ids.forEach {
+                    try deleteTsundoc(having: $0).get()
+                }
+
+                try commit()
+            } catch {
+                try cancel()
+                throw error
+            }
+        }
+    }
 }
