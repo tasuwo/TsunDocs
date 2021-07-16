@@ -7,6 +7,7 @@ import CompositeKit
 extension SceneDependencyContainer: TsundocListStoreBuildable {
     // MARK: - TsundocListStoreBuildable
 
+    @MainActor
     func buildTsundocListStore() -> ViewStore<TsundocListState, TsundocListAction, TsundocListDependency> {
         let store = Store(initialState: TsundocListState(tsundocs: []),
                           dependency: self,
@@ -18,6 +19,7 @@ extension SceneDependencyContainer: TsundocListStoreBuildable {
 extension SceneDependencyContainer: TagListStoreBuildable {
     // MARK: - TagListStoreBuildable
 
+    @MainActor
     func buildTagListStore() -> ViewStore<TagListState, TagListAction, TagListDependency> {
         let store = Store(initialState: TagListState(),
                           dependency: self,

@@ -5,6 +5,7 @@
 import Combine
 import SwiftUI
 
+@MainActor
 public class ViewStore<State: Equatable, Action: CompositeKit.Action, Dependency>: ObservableObject {
     // MARK: - Properties
 
@@ -26,7 +27,9 @@ public class ViewStore<State: Equatable, Action: CompositeKit.Action, Dependency
     {
         self.store = store.eraseToAnyStoring()
         self.state = store.stateValue
-        self.cancellable = store.state.sink { [weak self] in self?.state = $0 }
+        self.cancellable = store.state
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in self?.state = $0 }
     }
 
     // MARK: - Methods

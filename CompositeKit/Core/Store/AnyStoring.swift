@@ -4,6 +4,7 @@
 
 import Combine
 
+@MainActor
 private class StoringBoxBase<State: Equatable, Action: CompositeKit.Action, Dependency> {
     var stateValue: State { fatalError("abstract") }
     var state: AnyPublisher<State, Never> { fatalError("abstract") }
@@ -12,6 +13,7 @@ private class StoringBoxBase<State: Equatable, Action: CompositeKit.Action, Depe
     func execute(_ action: Action) { fatalError("abstract") }
 }
 
+@MainActor
 private class StoringBox<Store: Storing>: StoringBoxBase<Store.State, Store.Action, Store.Dependency> {
     private let base: Store
 
@@ -27,6 +29,7 @@ private class StoringBox<Store: Storing>: StoringBoxBase<Store.State, Store.Acti
     }
 }
 
+@MainActor
 public class AnyStoring<State: Equatable, Action: CompositeKit.Action, Dependency> {
     private let box: StoringBoxBase<State, Action, Dependency>
 

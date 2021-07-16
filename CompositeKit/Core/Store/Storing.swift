@@ -4,6 +4,7 @@
 
 import Combine
 
+@MainActor
 public protocol Storing {
     associatedtype State: Equatable
     associatedtype Action: CompositeKit.Action

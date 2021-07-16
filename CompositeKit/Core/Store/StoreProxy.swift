@@ -4,6 +4,7 @@
 
 import Combine
 
+@MainActor
 public class StoreProxy<
     ChildState: Equatable,
     ChildAction: CompositeKit.Action,

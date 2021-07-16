@@ -5,6 +5,7 @@
 import Combine
 import Foundation
 
+@MainActor
 public class Store<State: Equatable, Action: CompositeKit.Action, Dependency>: Storing {
     public var stateValue: State { _state.value }
     public var state: AnyPublisher<State, Never> { _state.eraseToAnyPublisher() }
@@ -13,7 +14,6 @@ public class Store<State: Equatable, Action: CompositeKit.Action, Dependency>: S
     private let reducer: AnyReducer<Action, State, Dependency>
     private let _state: CurrentValueSubject<State, Never>
 
-    private let stateLock = NSLock()
     private var isStateUpdating = false
     private let effectsLock = NSRecursiveLock()
     private var effects: [UUID: (Effect<Action>, Cancellable)] = [:]
@@ -30,32 +30,18 @@ public class Store<State: Equatable, Action: CompositeKit.Action, Dependency>: S
     // MARK: - Methods
 
     public func execute(_ action: Action) {
-        if Thread.isMainThread {
-            _execute(action)
-        } else {
-            DispatchQueue.main.async {
-                self._execute(action)
-            }
-        }
-    }
-
-    private func _execute(_ action: Action) {
         // Reducer内の副作用で、状態の更新中にactionが発行される可能性がある
         // その場合には次回の実行に回す
         guard !isStateUpdating else {
-            DispatchQueue.main.async { self._execute(action) }
+            schedule(Effect(value: action))
             return
         }
 
         isStateUpdating = true
 
-        stateLock.lock()
-
         let (nextState, effects) = reducer.execute(action: action, state: _state.value, dependency: dependency)
 
         _state.send(nextState)
-
-        stateLock.unlock()
 
         isStateUpdating = false
 

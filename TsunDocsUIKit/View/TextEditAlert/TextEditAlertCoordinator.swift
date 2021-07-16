@@ -6,15 +6,17 @@ import Combine
 import CompositeKit
 import UIKit
 
+@MainActor
 class TextEditAlertCoordinator: NSObject {
     typealias Store = CompositeKit.Store<TextEditAlertState, TextEditAlertAction, TextEditAlertDependency>
 
+    @MainActor
     private class AlertController: UIAlertController {
         var completion: (() -> Void)?
         weak var store: Store?
 
         deinit {
-            store?.execute(.dismissed)
+            Task { await store?.execute(.dismissed) }
             completion?()
         }
     }
