@@ -16,7 +16,7 @@ class TextEditAlertCoordinator: NSObject {
         weak var store: Store?
 
         deinit {
-            Task { await store?.execute(.dismissed) }
+            Task { [weak store] in await store?.execute(.dismissed) }
             completion?()
         }
     }
