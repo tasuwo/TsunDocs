@@ -12,3 +12,7 @@
 "text_edit_alert_cancel_action" = "Cancel";
 
 "tag_selection_view_title" = "Select Tag";
+
+"tag_grid_menu_copy" = "Copy";
+"tag_grid_menu_rename" = "Rename";
+"tag_grid_menu_delete" = "Delete";

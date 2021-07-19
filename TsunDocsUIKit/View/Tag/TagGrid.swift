@@ -65,7 +65,44 @@ public struct TagGrid: View {
                           isSelected: store.state.selectedIds.contains(tag.id)),
             size: store.state.configuration.size,
             onSelect: { store.execute(.selected($0)) },
-            onDelete: { store.execute(.deleted($0), animation: .default) }
+            onDelete: { store.execute(.deleted($0), animation: .default) },
+            menu: {
+                if store.state.configuration.isEnabledMenu {
+                    Button {
+                        store.execute(.tappedMenu(tag.id, .copy))
+                    } label: {
+                        Label {
+                            Text("tag_grid_menu_copy", bundle: Bundle.this)
+                        } icon: {
+                            Image(systemName: "doc.on.doc")
+                        }
+                    }
+
+                    Button {
+                        store.execute(.tappedMenu(tag.id, .rename))
+                    } label: {
+                        Label {
+                            Text("tag_grid_menu_rename", bundle: Bundle.this)
+                        } icon: {
+                            Image(systemName: "text.cursor")
+                        }
+                    }
+
+                    Divider()
+
+                    Button(role: .destructive) {
+                        store.execute(.tappedMenu(tag.id, .delete))
+                    } label: {
+                        Label {
+                            Text("tag_grid_menu_delete", bundle: Bundle.this)
+                        } icon: {
+                            Image(systemName: "trash")
+                        }
+                    }
+                } else {
+                    EmptyView()
+                }
+            }
         )
         .frame(maxWidth: geometry.size.width - inset * 2)
         .fixedSize()
@@ -146,7 +183,7 @@ struct TagGrid_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            TagGrid(store: makeViewStore(.init(.default)))
+            TagGrid(store: makeViewStore(.init(.default, isEnabledMenu: true)))
 
             VStack(alignment: .center, spacing: 4) {
                 TagGrid(store: makeViewStore(.init(.default)))

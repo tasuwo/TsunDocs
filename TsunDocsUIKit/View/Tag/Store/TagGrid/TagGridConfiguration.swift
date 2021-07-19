@@ -18,11 +18,16 @@ public struct TagGridConfiguration: Equatable {
 
     public let style: Style
     public let size: TagCellSize
+    public let isEnabledMenu: Bool
 
     // MARK: - Initializers
 
-    public init(_ style: Style, size: TagCellSize = .normal) {
+    public init(_ style: Style,
+                size: TagCellSize = .normal,
+                isEnabledMenu: Bool = false)
+    {
         self.style = style
         self.size = size
+        self.isEnabledMenu = isEnabledMenu
     }
 }
