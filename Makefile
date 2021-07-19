@@ -1,26 +1,37 @@
 .PHONY: init
-init: ## ライブラリ群をインストールする
-	bundle exec pod install && carthage update --use-xcframeworks --cache-builds --no-use-binaries --platform iOS,macOS
+init: init_pod init_carthage ## ライブラリ群をインストールする
+
+.PHONY: init_pod
+init_pod: ## CocoaPodsライブラリを準備する
+	bundle exec pod install
+
+.PHONY: init_carthage
+init_carthage: ## Carthageライブラリを準備する
+	carthage update --use-xcframeworks --cache-builds --no-use-binaries --platform iOS,macOS
 
 .PHONY: generate
 generate: sourcery_generate mockolo_generate format ## 各種コード自動生成を実行する
+
+.PHONY: swiftgen_generate
+swiftgen_generate: init_pod ## SwiftGenによるコード自動生成を実行する
+	./Pods/SwiftGen/bin/swiftgen
 
 .PHONY: lint
 lint: swiftlint_lint ## 各種Linterを実行する
 
 .PHONY: swiftlint_lint
-swiftlint_lint: init ## SwiftLintによるリントを実行する
+swiftlint_lint: init_pod ## SwiftLintによるリントを実行する
 	Pods/SwiftLint/swiftlint
 
 .PHONY: format
 format: swiftformat_format ## 各種フォーマッターを実行する
 
 .PHONY: swiftformat_format
-swiftformat_format: init ## SwiftFormatによるフォーマットを実行する
+swiftformat_format: init_pod ## SwiftFormatによるフォーマットを実行する
 	Pods/SwiftFormat/CommandLineTool/swiftformat --config ./.swiftformat ./
 
 .PHONY: sourcery_generate
-sourcery_generate: init ## Sourceryによるモック自動生成を行う
+sourcery_generate: init_pod ## Sourceryによるモック自動生成を行う
 	if [[ ! -f "./templates/AutoDefaultValue.swifttemplate" ]] || [[ ! -f "./templates/AutoDefaultValue.extension.swifttemplate" ]]; then \
 	curl -o "./templates/AutoDefaultValue.swifttemplate" \
 		"https://raw.githubusercontent.com/tasuwo/SwiftTemplates/master/Templates/AutoDefaultValue.swifttemplate"; \
