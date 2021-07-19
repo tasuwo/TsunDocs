@@ -9,7 +9,7 @@ struct TagListState: Equatable {
     var gridState: TagGridState {
         get {
             .init(tags: controlState.tags.filter { controlState.filteredIds.contains($0.id) },
-                  configuration: .init(.default))
+                  configuration: .init(.default, isEnabledMenu: true))
         }
         // swiftlint:disable:next unused_setter_value
         set {

@@ -3,6 +3,13 @@
 //
 
 import Domain
+import UIKit
+
+extension SceneDependencyContainer: HasPasteboard {
+    // MARK: - HasPasteboard
+
+    var pasteboard: Pasteboard { UIPasteboard.general }
+}
 
 extension SceneDependencyContainer: HasTsundocQueryService {
     // MARK: - HasTsundocQueryService

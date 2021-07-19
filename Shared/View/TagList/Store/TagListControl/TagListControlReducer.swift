@@ -8,6 +8,7 @@ import Domain
 
 typealias TagListControlDependency = HasTagCommandService
     & HasTagQueryService
+    & HasPasteboard
 
 struct TagListControlReducer: Reducer {
     typealias Dependency = TagListControlDependency
@@ -42,13 +43,13 @@ struct TagListControlReducer: Reducer {
             return (nextState, .none)
 
         case .didTapAddButton:
-            nextState.isTagAdditionAlertPresenting = true
+            nextState.alert = .edit(.addition)
             return (nextState, .none)
 
         case let .didSaveTag(tagName):
             let effect = Effect<Action> {
                 do {
-                    try await dependency.tagCommandService.createAndCommitTag(by: .init(name: tagName))
+                    try await dependency.tagCommandService.createTag(by: .init(name: tagName))
                     return .none
                 } catch let error as CommandServiceError {
                     return .failedToSaveTag(error)
@@ -58,12 +59,72 @@ struct TagListControlReducer: Reducer {
             }
             return (nextState, [effect])
 
-        case .failedToSaveTag:
-            nextState.alert = .failedToAddTag
+        case let .didTapMenu(tagId, .copy):
+            guard let tag = state.tags.first(where: { $0.id == tagId }) else {
+                return (nextState, .none)
+            }
+            dependency.pasteboard.set(tag.name)
             return (nextState, .none)
 
-        case .alertDismissed:
-            nextState.isTagAdditionAlertPresenting = false
+        case let .didTapMenu(tagId, .rename):
+            nextState.alert = .edit(.rename(tagId))
+            return (nextState, .none)
+
+        case let .didTapMenu(tagId, .delete):
+            guard let tag = state.tags.first(where: { $0.id == tagId }) else {
+                return (nextState, .none)
+            }
+            nextState.alert = .plain(.deleteConfirmation(tagId, name: tag.name))
+            return (nextState, .none)
+
+        case .failedToSaveTag:
+            nextState.alert = .plain(.failedToAddTag)
+            return (nextState, .none)
+
+        case .failedToDeleteTag:
+            nextState.alert = .plain(.failedToDeleteTag)
+            return (nextState, .none)
+
+        case .failedToUpdateTag:
+            nextState.alert = .plain(.failedToUpdateTag)
+            return (nextState, .none)
+
+        case let .alert(.updatedTitle(title)):
+            guard let tagId = state.renamingTagId else {
+                nextState.alert = nil
+                return (nextState, .none)
+            }
+            let effect = Effect<Action> {
+                do {
+                    try await dependency.tagCommandService.updateTag(having: tagId, nameTo: title)
+                    return .none
+                } catch let error as CommandServiceError {
+                    return .failedToUpdateTag(error)
+                } catch {
+                    return .failedToUpdateTag(nil)
+                }
+            }
+            return (nextState, [effect])
+
+        case .alert(.confirmedToDelete):
+            guard let tagId = state.deletingTagId else {
+                nextState.alert = nil
+                return (nextState, .none)
+            }
+            let effect = Effect<Action> {
+                do {
+                    try await dependency.tagCommandService.deleteTag(having: tagId)
+                    return .none
+                } catch let error as CommandServiceError {
+                    return .failedToDeleteTag(error)
+                } catch {
+                    return .failedToDeleteTag(nil)
+                }
+            }
+            return (nextState, [effect])
+
+        case .alert(.dismissed):
+            nextState.alert = nil
             return (nextState, .none)
         }
     }

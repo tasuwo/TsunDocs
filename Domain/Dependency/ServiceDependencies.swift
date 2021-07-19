@@ -3,6 +3,11 @@
 //
 
 /// @mockable
+public protocol HasPasteboard {
+    var pasteboard: Pasteboard { get }
+}
+
+/// @mockable
 public protocol HasTsundocQueryService {
     var tsundocQueryService: TsundocQueryService { get }
 }

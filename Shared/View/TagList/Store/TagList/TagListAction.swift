@@ -20,6 +20,30 @@ extension TagListAction {
     static let mappingToControl: ActionMapping<Self, TagListControlAction> = .init(build: {
         .control($0)
     }, get: {
-        guard case let .control(action) = $0 else { return nil }; return action
+        switch $0 {
+        case let .control(action):
+            return action
+
+        case let .grid(.tappedMenu(tagId, item)):
+            return .didTapMenu(tagId, item.controlAction)
+
+        default:
+            return nil
+        }
     })
+}
+
+private extension TagGridAction.MenuItem {
+    var controlAction: TagListControlAction.MenuItem {
+        switch self {
+        case .copy:
+            return .copy
+
+        case .rename:
+            return .rename
+
+        case .delete:
+            return .delete
+        }
+    }
 }

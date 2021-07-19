@@ -33,7 +33,7 @@ public struct TagControlReducer: Reducer {
         case let .didSaveTag(tagName):
             let effect = Effect<Action> {
                 do {
-                    try await dependency.tagCommandService.createAndCommitTag(by: .init(name: tagName))
+                    try await dependency.tagCommandService.createTag(by: .init(name: tagName))
                     return .none
                 } catch let error as CommandServiceError {
                     return .failedToSaveTag(error)

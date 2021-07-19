@@ -22,6 +22,21 @@
 "browse_view_button_close" = "閉じる";
 
 "tag_list_title" = "タグ";
+
+"tag_list_alert_placeholder" = "タグ名";
+
 "tag_list_alert_new_tag_title" = "新規タグ";
 "tag_list_alert_new_tag_message" = "このタグの名前を入力してください";
-"tag_list_alert_new_tag_placeholder" = "タグ名";
+
+"tag_list_alert_update_tag_name_title" = "タグ名の変更";
+"tag_list_alert_update_tag_name_message" = "このタグの新しい名前を入力してください";
+
+"tag_list_alert_delete_tag_message" = "タグ「%@」を削除しますか？\n含まれるクリップは削除されません";
+"tag_list_alert_delete_tag_action" = "タグを削除";
+
+"error_tag_read" = "Failed to read tags";
+"error_tag_add_default" = "Failed to add tag.";
+"error_tag_add_duplicated" = "Duplicated tag name.";
+"error_tag_delete" = "Failed to delete tag";
+"error_tag_rename_duplicated" = "Duplicated tag name.";
+"error_tag_update" = "Failed to update tag";

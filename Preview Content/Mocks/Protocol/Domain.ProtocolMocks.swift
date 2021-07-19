@@ -22,14 +22,37 @@ public class HasImageLoaderMock: HasImageLoader {
     }
 }
 
-public class HasTsundocQueryServiceMock: HasTsundocQueryService {
+public class HasPasteboardMock: HasPasteboard {
     public init() { }
-    public init(tsundocQueryService: TsundocQueryService = TsundocQueryServiceMock()) {
-        self.tsundocQueryService = tsundocQueryService
+    public init(pasteboard: Pasteboard = PasteboardMock()) {
+        self.pasteboard = pasteboard
     }
 
-    public private(set) var tsundocQueryServiceSetCallCount = 0
-    public var tsundocQueryService: TsundocQueryService = TsundocQueryServiceMock() { didSet { tsundocQueryServiceSetCallCount += 1 } }
+    public private(set) var pasteboardSetCallCount = 0
+    public var pasteboard: Pasteboard = PasteboardMock() { didSet { pasteboardSetCallCount += 1 } }
+}
+
+public class PasteboardMock: Pasteboard {
+    public init() { }
+
+    public private(set) var setCallCount = 0
+    public var setHandler: ((String) -> Void)?
+    public func set(_ text: String) {
+        setCallCount += 1
+        if let setHandler = setHandler {
+            setHandler(text)
+        }
+    }
+
+    public private(set) var getCallCount = 0
+    public var getHandler: (() -> (String?))?
+    public func get() -> String? {
+        getCallCount += 1
+        if let getHandler = getHandler {
+            return getHandler()
+        }
+        return nil
+    }
 }
 
 public class TagCommandServiceMock: TagCommandService {
@@ -168,15 +191,6 @@ public class TsundocCommandServiceMock: TsundocCommandService {
         fatalError("performBlockHandler returns can't have a default value thus its handler must be set")
     }
 
-    public private(set) var beginCallCount = 0
-    public var beginHandler: (() throws -> Void)?
-    public func begin() throws {
-        beginCallCount += 1
-        if let beginHandler = beginHandler {
-            try beginHandler()
-        }
-    }
-
     public private(set) var updateTsundocCallCount = 0
     public var updateTsundocHandler: ((Tsundoc.ID, Tag.ID) -> (Result<Void, CommandServiceError>))?
     public func updateTsundoc(having id: Tsundoc.ID, byAddingTagHaving tagId: Tag.ID) -> Result<Void, CommandServiceError> {
@@ -185,6 +199,15 @@ public class TsundocCommandServiceMock: TsundocCommandService {
             return updateTsundocHandler(id, tagId)
         }
         fatalError("updateTsundocHandler returns can't have a default value thus its handler must be set")
+    }
+
+    public private(set) var beginCallCount = 0
+    public var beginHandler: (() throws -> Void)?
+    public func begin() throws {
+        beginCallCount += 1
+        if let beginHandler = beginHandler {
+            try beginHandler()
+        }
     }
 
     public private(set) var commitCallCount = 0
@@ -217,10 +240,10 @@ public class TsundocCommandServiceMock: TsundocCommandService {
 
     public private(set) var updateTsundocHavingByReplacingTagsHavingCallCount = 0
     public var updateTsundocHavingByReplacingTagsHavingHandler: ((Tsundoc.ID, Set<Tag.ID>) -> (Result<Void, CommandServiceError>))?
-    public func updateTsundoc(having id: Tsundoc.ID, byReplacingTagsHaving tagID: Set<Tag.ID>) -> Result<Void, CommandServiceError> {
+    public func updateTsundoc(having id: Tsundoc.ID, byReplacingTagsHaving tagIds: Set<Tag.ID>) -> Result<Void, CommandServiceError> {
         updateTsundocHavingByReplacingTagsHavingCallCount += 1
         if let updateTsundocHavingByReplacingTagsHavingHandler = updateTsundocHavingByReplacingTagsHavingHandler {
-            return updateTsundocHavingByReplacingTagsHavingHandler(id, tagID)
+            return updateTsundocHavingByReplacingTagsHavingHandler(id, tagIds)
         }
         fatalError("updateTsundocHavingByReplacingTagsHavingHandler returns can't have a default value thus its handler must be set")
     }
@@ -327,6 +350,16 @@ public class SharedUrlLoadableMock: SharedUrlLoadable {
             loadHandler(completion)
         }
     }
+}
+
+public class HasTsundocQueryServiceMock: HasTsundocQueryService {
+    public init() { }
+    public init(tsundocQueryService: TsundocQueryService = TsundocQueryServiceMock()) {
+        self.tsundocQueryService = tsundocQueryService
+    }
+
+    public private(set) var tsundocQueryServiceSetCallCount = 0
+    public var tsundocQueryService: TsundocQueryService = TsundocQueryServiceMock() { didSet { tsundocQueryServiceSetCallCount += 1 } }
 }
 
 public class HasTagQueryServiceMock: HasTagQueryService {

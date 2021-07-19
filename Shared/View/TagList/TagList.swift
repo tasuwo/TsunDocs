@@ -51,14 +51,46 @@ struct TagList: View {
                 }
             }
         }
+        .alert(isPresented: store.bind(\.controlState.isAlertPresenting,
+                                       action: { _ in .control(.alert(.dismissed)) })) {
+            switch store.state.controlState.alert {
+            case .plain(.failedToAddTag):
+                return Alert(title: Text(L10n.errorTagAddDefault))
+
+            case .plain(.failedToDeleteTag):
+                return Alert(title: Text(L10n.errorTagDelete))
+
+            case .plain(.failedToUpdateTag):
+                return Alert(title: Text(L10n.errorTagUpdate))
+
+            case let .plain(.deleteConfirmation(_, tagName)):
+                // TODO: confirmationDialogにする
+                return Alert(title: Text(L10n.tagListAlertDeleteTagMessage(tagName)))
+
+            default:
+                fatalError("Invalid Alert")
+            }
+        }
         .alert(isPresenting: store.bind(\.controlState.isTagAdditionAlertPresenting,
-                                        action: { _ in .control(.alertDismissed) }),
+                                        action: { _ in .control(.alert(.dismissed)) }),
                text: "",
-               config: .init(title: "tag_list_alert_new_tag_title".localized,
-                             message: "tag_list_alert_new_tag_message".localized,
-                             placeholder: "tag_list_alert_new_tag_placeholder".localized,
+               config: .init(title: L10n.tagListAlertNewTagTitle,
+                             message: L10n.tagListAlertNewTagMessage,
+                             placeholder: L10n.tagListAlertPlaceholder,
                              validator: { $0?.count ?? 0 > 0 },
                              saveAction: { store.execute(.control(.didSaveTag($0))) },
+                             cancelAction: nil))
+        .alert(isPresenting: store.bind(\.controlState.isRenameAlertPresenting,
+                                        action: { _ in .control(.alert(.dismissed)) }),
+               text: store.state.controlState.renamingTagName ?? "",
+               config: .init(title: L10n.tagListAlertUpdateTagNameTitle,
+                             message: L10n.tagListAlertUpdateTagNameMessage,
+                             placeholder: L10n.tagListAlertPlaceholder,
+                             validator: { text in
+                                 let baseTitle = store.state.controlState.renamingTagName ?? ""
+                                 return text != baseTitle && text?.count ?? 0 > 0
+                             },
+                             saveAction: { store.execute(.control(.alert(.updatedTitle($0)))) },
                              cancelAction: nil))
     }
 }
@@ -121,6 +153,10 @@ struct TagList_Previews: PreviewProvider {
                 .success(self.tags)
             }
             return service
+        }
+
+        var pasteboard: Pasteboard {
+            return PasteboardMock()
         }
     }
 

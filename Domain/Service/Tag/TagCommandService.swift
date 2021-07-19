@@ -11,7 +11,7 @@ public protocol TagCommandService: Transaction {
 
 public extension TagCommandService {
     @discardableResult
-    func createAndCommitTag(by command: TagCommand) async throws -> Tag.ID {
+    func createTag(by command: TagCommand) async throws -> Tag.ID {
         try await perform {
             do {
                 try begin()
@@ -21,6 +21,36 @@ public extension TagCommandService {
                 try commit()
 
                 return result
+            } catch {
+                try cancel()
+                throw error
+            }
+        }
+    }
+
+    func updateTag(having id: Tag.ID, nameTo name: String) async throws {
+        try await perform {
+            do {
+                try begin()
+
+                try updateTag(having: id, nameTo: name).get()
+
+                try commit()
+            } catch {
+                try cancel()
+                throw error
+            }
+        }
+    }
+
+    func deleteTag(having id: Tag.ID) async throws {
+        try await perform {
+            do {
+                try begin()
+
+                try deleteTag(having: id).get()
+
+                try commit()
             } catch {
                 try cancel()
                 throw error

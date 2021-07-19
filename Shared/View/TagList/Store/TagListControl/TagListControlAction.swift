@@ -6,11 +6,26 @@ import CompositeKit
 import Domain
 
 enum TagListControlAction: Action {
+    enum MenuItem {
+        case copy
+        case rename
+        case delete
+    }
+
+    enum AlertAction {
+        case updatedTitle(String)
+        case confirmedToDelete
+        case dismissed
+    }
+
     case onAppear
     case queryUpdated(String)
     case tagsUpdated([Tag])
     case didTapAddButton
     case didSaveTag(String)
+    case didTapMenu(Tag.ID, MenuItem)
     case failedToSaveTag(CommandServiceError?)
-    case alertDismissed
+    case failedToDeleteTag(CommandServiceError?)
+    case failedToUpdateTag(CommandServiceError?)
+    case alert(AlertAction)
 }
