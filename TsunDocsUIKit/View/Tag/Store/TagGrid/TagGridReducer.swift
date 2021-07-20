@@ -46,6 +46,14 @@ public struct TagGridReducer: Reducer {
         case .tappedMenu:
             // NOP
             return (nextState, .none)
+
+        case .alert(.confirmedToDelete):
+            // NOP
+            return (nextState, .none)
+
+        case .alert(.dismissed):
+            nextState.alert = nil
+            return (nextState, .none)
         }
     }
 }

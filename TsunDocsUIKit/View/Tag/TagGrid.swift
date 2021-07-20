@@ -105,6 +105,17 @@ public struct TagGrid: View {
             }
         )
         .frame(maxWidth: geometry.size.width - inset * 2)
+        .confirmationDialog(store.state.titleForConfirmationToDelete ?? "",
+                            isPresented: store.bind(\.isPresentingConfirmation,
+                                                    action: { _ in .alert(.dismissed) })) {
+            Button(store.state.actionForConfirmationToDelete ?? "", role: .destructive) {
+                store.execute(.alert(.confirmedToDelete))
+            }
+
+            Button("cancel".localized, role: .cancel) {
+                store.execute(.alert(.dismissed))
+            }
+        }
         .fixedSize()
         .onChangeFrame {
             cellSizes[tag] = $0

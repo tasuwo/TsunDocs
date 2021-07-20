@@ -16,3 +16,5 @@
 "tag_grid_menu_copy" = "コピー";
 "tag_grid_menu_rename" = "名前の変更";
 "tag_grid_menu_delete" = "削除";
+
+"cancel" = "キャンセル";

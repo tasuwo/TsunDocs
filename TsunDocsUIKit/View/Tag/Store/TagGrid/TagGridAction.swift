@@ -12,7 +12,13 @@ public enum TagGridAction: Action {
         case delete
     }
 
+    public enum AlertAction {
+        case confirmedToDelete
+        case dismissed
+    }
+
     case selected(Tag.ID)
     case deleted(Tag.ID)
     case tappedMenu(Tag.ID, MenuItem)
+    case alert(AlertAction)
 }
