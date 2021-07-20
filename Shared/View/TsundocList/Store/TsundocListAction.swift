@@ -7,11 +7,11 @@ import Domain
 
 enum TsundocListAction {
     case onAppear
-    case onUpdate([Tsundoc])
-    case onDelete(IndexSet)
+    case updateTsundocs([Tsundoc])
+    case delete(IndexSet)
     case select(Tsundoc)
-    case modalDismissed
-    case alertDismissed
+    case dismissModal
+    case dismissAlert
 }
 
 extension TsundocListAction: Action {}

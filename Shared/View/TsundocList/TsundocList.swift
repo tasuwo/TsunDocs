@@ -25,19 +25,19 @@ struct TsundocList: View {
                 }
                 .onDelete { offsets in
                     withAnimation {
-                        store.execute(.onDelete(offsets))
+                        store.execute(.delete(offsets))
                     }
                 }
             }
             .navigationTitle("tsundoc_list_title")
-            .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .modalDismissed })) {
+            .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .dismissModal })) {
                 switch store.state.modal {
                 case let .safariView(tsundoc):
                     #if os(iOS)
                     NavigationView {
                         BrowseView(baseUrl: tsundoc.url,
                                    isPresenting: store.bind(\.isModalPresenting,
-                                                            action: { _ in .modalDismissed }))
+                                                            action: { _ in .dismissModal }))
                     }
                     .ignoresSafeArea()
                     #elseif os(macOS)
@@ -48,7 +48,7 @@ struct TsundocList: View {
                     EmptyView()
                 }
             }
-            .alert(isPresented: store.bind(\.isAlertPresenting, action: { _ in .alertDismissed })) {
+            .alert(isPresented: store.bind(\.isAlertPresenting, action: { _ in .dismissAlert })) {
                 switch store.state.alert {
                 case .failedToDelete:
                     return Alert(title: Text("tsundoc_list_error_title_delete"))

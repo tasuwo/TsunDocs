@@ -22,7 +22,7 @@ public struct TagGridReducer: Reducer {
     public func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
         var nextState = state
         switch action {
-        case let .selected(tagId):
+        case let .select(tagId):
             switch state.configuration.style {
             case .selectable(.single):
                 nextState.selectedIds = state.selectedIds.contains(tagId)
@@ -39,11 +39,11 @@ public struct TagGridReducer: Reducer {
 
             return (nextState, .none)
 
-        case .deleted(_):
+        case .delete:
             // NOP
             return (nextState, .none)
 
-        case .tappedMenu:
+        case .tap:
             // NOP
             return (nextState, .none)
 
@@ -55,7 +55,7 @@ public struct TagGridReducer: Reducer {
             nextState.alert = nil
             return (nextState, .none)
 
-        case let .showDeleteConfirmation(tagId, title: title, action: action):
+        case let .present(.deleteConfirmation(tagId, title: title, action: action)):
             nextState.alert = .confirmation(.delete(tagId, title: title, action: action))
             return (nextState, .none)
         }

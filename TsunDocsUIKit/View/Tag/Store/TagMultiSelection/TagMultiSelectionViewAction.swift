@@ -23,7 +23,7 @@ public extension TagMultiSelectionViewAction {
     }, get: {
         switch $0 {
         case let .tagsUpdated(tags):
-            return .tagsUpdated(tags)
+            return .updateTags(tags)
 
         case let .filter(action):
             return action

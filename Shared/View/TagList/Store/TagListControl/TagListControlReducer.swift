@@ -23,13 +23,13 @@ struct TagListControlReducer: Reducer {
         case .onAppear:
             return Self.prepareQueryEffects(nextState, dependency)
 
-        case let .queryUpdated(query):
+        case let .updateQuery(query):
             nextState.lastHandledQuery = query
             let displayTags = nextState.storage.perform(query: query, to: nextState.tags)
             nextState.filteredIds = Set(displayTags.map(\.id))
             return (nextState, .none)
 
-        case let .tagsUpdated(tags):
+        case let .updateTags(tags):
             nextState.tags = tags
 
             guard let lastHandledQuery = state.lastHandledQuery else {
@@ -42,11 +42,11 @@ struct TagListControlReducer: Reducer {
 
             return (nextState, .none)
 
-        case .didTapAddButton:
+        case .addNewTag:
             nextState.alert = .edit(.addition)
             return (nextState, .none)
 
-        case let .didSaveTag(tagName):
+        case let .saveNewTag(tagName):
             let effect = Effect<Action> {
                 do {
                     try await dependency.tagCommandService.createTag(by: .init(name: tagName))
@@ -59,24 +59,24 @@ struct TagListControlReducer: Reducer {
             }
             return (nextState, [effect])
 
-        case let .didTapMenu(tagId, .copy):
+        case let .tap(tagId, .copy):
             guard let tag = state.tags.first(where: { $0.id == tagId }) else {
                 return (nextState, .none)
             }
             dependency.pasteboard.set(tag.name)
             return (nextState, .none)
 
-        case let .didTapMenu(tagId, .rename):
+        case let .tap(tagId, .rename):
             nextState.alert = .edit(.rename(tagId))
             return (nextState, .none)
 
-        case let .didTapMenu(tagId, .delete):
+        case let .tap(tagId, .delete):
             guard let tag = state.tags.first(where: { $0.id == tagId }) else {
                 return (nextState, .none)
             }
             let title = L10n.tagListAlertDeleteTagMessage(tag.name)
             let action = L10n.tagListAlertDeleteTagAction
-            return (nextState, [Effect(value: .showDeleteConfirmation(tagId, title: title, action: action))])
+            return (nextState, [Effect(value: .present(.deleteConfirmation(tagId, title: title, action: action)))])
 
         case .failedToSaveTag:
             nextState.alert = .plain(.failedToAddTag)
@@ -124,7 +124,7 @@ struct TagListControlReducer: Reducer {
             nextState.alert = nil
             return (nextState, .none)
 
-        case .showDeleteConfirmation:
+        case .present:
             // NOP
             return (nextState, .none)
         }
@@ -148,7 +148,7 @@ extension TagListControlReducer {
 
         let tagsStream = entities.values
             .catch { _ in Just([]) }
-            .map { Action.tagsUpdated($0) as Action? }
+            .map { Action.updateTags($0) as Action? }
         let tagsEffect = Effect(tagsStream, underlying: entities)
 
         nextState.tags = entities.values.value

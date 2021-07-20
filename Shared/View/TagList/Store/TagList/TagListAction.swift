@@ -18,8 +18,8 @@ extension TagListAction {
         case let .grid(action):
             return action
 
-        case let .control(.showDeleteConfirmation(tagId, title: title, action: action)):
-            return .showDeleteConfirmation(tagId, title: title, action: action)
+        case let .control(.present(.deleteConfirmation(tagId, title: title, action: action))):
+            return .present(.deleteConfirmation(tagId, title: title, action: action))
 
         default:
             return nil
@@ -33,8 +33,8 @@ extension TagListAction {
         case let .control(action):
             return action
 
-        case let .grid(.tappedMenu(tagId, item)):
-            return .didTapMenu(tagId, item.controlAction)
+        case let .grid(.tap(tagId, item)):
+            return .tap(tagId, item.controlAction)
 
         case let .grid(.alert(.confirmedToDelete(tagId))):
             return .alert(.confirmedToDelete(tagId))

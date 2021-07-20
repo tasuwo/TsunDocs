@@ -23,11 +23,11 @@ struct TsundocListReducer: Reducer {
         case .onAppear:
             return Self.prepareQueryEffects(nextState, dependency)
 
-        case let .onUpdate(tsundocs):
+        case let .updateTsundocs(tsundocs):
             nextState.tsundocs = tsundocs
             return (nextState, nil)
 
-        case let .onDelete(offsets):
+        case let .delete(offsets):
             let nextState = Self.delete(offsets: offsets, state, dependency)
             return (nextState, nil)
 
@@ -35,11 +35,11 @@ struct TsundocListReducer: Reducer {
             nextState.modal = .safariView(tsundoc)
             return (nextState, nil)
 
-        case .modalDismissed:
+        case .dismissModal:
             nextState.modal = nil
             return (nextState, nil)
 
-        case .alertDismissed:
+        case .dismissAlert:
             nextState.alert = nil
             return (nextState, nil)
         }
@@ -63,7 +63,7 @@ extension TsundocListReducer {
 
         let tsundocsStream = entities.values
             .catch { _ in Just([]) }
-            .map { Action.onUpdate($0) as Action? }
+            .map { Action.updateTsundocs($0) as Action? }
         let tsundocsEffect = Effect(tsundocsStream, underlying: entities)
 
         nextState.tsundocs = entities.values.value

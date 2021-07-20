@@ -32,18 +32,18 @@ public extension TagGridState {
 }
 
 extension TagGridState {
-    var isPresentingConfirmation: Bool {
-        guard case .confirmation = alert else { return false }
-        return true
+    var deletingTagId: Tag.ID? {
+        guard case let .confirmation(.delete(tagId, title: _, action: _)) = alert else { return nil }
+        return tagId
     }
 
-    var titleForConfirmationToDelete: String? {
-        guard case let .confirmation(.delete(_, title: title, action: _)) = alert else { return nil }
+    var titleForConfirmationToDelete: String {
+        guard case let .confirmation(.delete(_, title: title, action: _)) = alert else { return "" }
         return title
     }
 
-    var actionForConfirmationToDelete: String? {
-        guard case let .confirmation(.delete(_, title: _, action: action)) = alert else { return nil }
+    var actionForConfirmationToDelete: String {
+        guard case let .confirmation(.delete(_, title: _, action: action)) = alert else { return "" }
         return action
     }
 }

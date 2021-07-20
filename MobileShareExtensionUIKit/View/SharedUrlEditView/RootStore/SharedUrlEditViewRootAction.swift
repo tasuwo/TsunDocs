@@ -19,7 +19,7 @@ public extension SharedUrlEditViewRootAction {
         case let .edit(action):
             return action
 
-        case let .tagGrid(.deleted(tagId)):
+        case let .tagGrid(.delete(tagId)):
             return .onDeleteTag(tagId)
 
         default:

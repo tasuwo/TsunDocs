@@ -35,7 +35,7 @@ public struct TagMultiSelectionView: View {
         .navigationTitle(Text("tag_selection_view_title", bundle: Bundle.this))
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: engine.output) { query in
-            store.execute(.filter(.queryUpdated(query)), animation: .default)
+            store.execute(.filter(.updateQuery(query)), animation: .default)
         }
     }
 }

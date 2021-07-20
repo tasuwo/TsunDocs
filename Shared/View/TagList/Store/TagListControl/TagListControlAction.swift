@@ -18,15 +18,19 @@ enum TagListControlAction: Action {
         case dismissed
     }
 
+    enum PresentAction {
+        case deleteConfirmation(Tag.ID, title: String, action: String)
+    }
+
     case onAppear
-    case queryUpdated(String)
-    case tagsUpdated([Tag])
-    case didTapAddButton
-    case didSaveTag(String)
-    case didTapMenu(Tag.ID, MenuItem)
+    case updateQuery(String)
+    case updateTags([Tag])
+    case addNewTag
+    case saveNewTag(String)
+    case tap(Tag.ID, MenuItem)
     case failedToSaveTag(CommandServiceError?)
     case failedToDeleteTag(CommandServiceError?)
     case failedToUpdateTag(CommandServiceError?)
     case alert(AlertAction)
-    case showDeleteConfirmation(Tag.ID, title: String, action: String)
+    case present(PresentAction)
 }

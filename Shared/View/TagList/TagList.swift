@@ -36,7 +36,7 @@ struct TagList: View {
             .searchable(text: $engine.input, placement: .navigationBarDrawer(displayMode: .always))
             .navigationTitle(Text("tag_list_title"))
             .onChange(of: engine.output) { query in
-                store.execute(.control(.queryUpdated(query)), animation: .default)
+                store.execute(.control(.updateQuery(query)), animation: .default)
             }
             .onAppear {
                 store.execute(.control(.onAppear))
@@ -44,7 +44,7 @@ struct TagList: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        store.execute(.control(.didTapAddButton))
+                        store.execute(.control(.addNewTag))
                     } label: {
                         Image(systemName: "plus")
                     }
@@ -74,7 +74,7 @@ struct TagList: View {
                              message: L10n.tagListAlertNewTagMessage,
                              placeholder: L10n.tagListAlertPlaceholder,
                              validator: { $0?.count ?? 0 > 0 },
-                             saveAction: { store.execute(.control(.didSaveTag($0))) },
+                             saveAction: { store.execute(.control(.saveNewTag($0))) },
                              cancelAction: nil))
         .alert(isPresenting: store.bind(\.controlState.isRenameAlertPresenting,
                                         action: { _ in .control(.alert(.dismissed)) }),

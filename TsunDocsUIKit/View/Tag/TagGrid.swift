@@ -9,7 +9,7 @@ import SwiftUI
 public struct TagGrid: View {
     // MARK: - Properties
 
-    @ObservedObject var store: ViewStore<TagGridState, TagGridAction, TagGridDependency>
+    @StateObject var store: ViewStore<TagGridState, TagGridAction, TagGridDependency>
 
     @State private var availableWidth: CGFloat = 0
     @State private var cellSizes: [Tag: CGSize] = [:]
@@ -23,7 +23,7 @@ public struct TagGrid: View {
                 spacing: CGFloat = 8,
                 inset: CGFloat = 8)
     {
-        _store = ObservedObject(wrappedValue: store)
+        _store = StateObject(wrappedValue: store)
         self.spacing = spacing
         self.inset = inset
     }
@@ -64,66 +64,77 @@ public struct TagGrid: View {
             status: .init(store.state.configuration,
                           isSelected: store.state.selectedIds.contains(tag.id)),
             size: store.state.configuration.size,
-            onSelect: { store.execute(.selected($0)) },
-            onDelete: { store.execute(.deleted($0), animation: .default) },
+            onSelect: { store.execute(.select($0)) },
+            onDelete: { store.execute(.delete($0), animation: .default) },
             menu: {
                 if store.state.configuration.isEnabledMenu {
-                    Button {
-                        store.execute(.tappedMenu(tag.id, .copy))
-                    } label: {
-                        Label {
-                            Text("tag_grid_menu_copy", bundle: Bundle.this)
-                        } icon: {
-                            Image(systemName: "doc.on.doc")
-                        }
-                    }
-
-                    Button {
-                        store.execute(.tappedMenu(tag.id, .rename))
-                    } label: {
-                        Label {
-                            Text("tag_grid_menu_rename", bundle: Bundle.this)
-                        } icon: {
-                            Image(systemName: "text.cursor")
-                        }
-                    }
-
-                    Divider()
-
-                    Button(role: .destructive) {
-                        store.execute(.tappedMenu(tag.id, .delete))
-                    } label: {
-                        Label {
-                            Text("tag_grid_menu_delete", bundle: Bundle.this)
-                        } icon: {
-                            Image(systemName: "trash")
-                        }
-                    }
+                    cellMenu(tag)
                 } else {
                     EmptyView()
                 }
             }
         )
         .frame(maxWidth: geometry.size.width - inset * 2)
-        .confirmationDialog(Text(store.state.titleForConfirmationToDelete ?? ""),
-                            isPresented: store.bind({
-                                guard case let .confirmation(.delete(tagId, title: _, action: _)) = $0.alert else { return false }
-                                return tagId == tag.id
-                            }, action: { _ in
-                                .alert(.dismissed)
-                            }),
-                            titleVisibility: .visible) {
-            Button(store.state.actionForConfirmationToDelete ?? "", role: .destructive) {
-                store.execute(.alert(.confirmedToDelete(tag.id)))
-            }
-
-            Button(L10n.cancel, role: .cancel) {
-                store.execute(.alert(.dismissed))
-            }
-        }
         .fixedSize()
         .onChangeFrame {
             cellSizes[tag] = $0
+        }
+        .confirmationDialog(
+            Text(store.state.titleForConfirmationToDelete),
+            isPresented: store.bind {
+                $0.deletingTagId == tag.id
+            } action: { _ in
+                .alert(.dismissed)
+            },
+            titleVisibility: .visible
+        ) {
+            cellDeleteConfirmationDialog(tag)
+        }
+    }
+
+    @ViewBuilder
+    private func cellMenu(_ tag: Tag) -> some View {
+        Button {
+            store.execute(.tap(tag.id, .copy))
+        } label: {
+            Label {
+                Text("tag_grid_menu_copy", bundle: Bundle.this)
+            } icon: {
+                Image(systemName: "doc.on.doc")
+            }
+        }
+
+        Button {
+            store.execute(.tap(tag.id, .rename))
+        } label: {
+            Label {
+                Text("tag_grid_menu_rename", bundle: Bundle.this)
+            } icon: {
+                Image(systemName: "text.cursor")
+            }
+        }
+
+        Divider()
+
+        Button(role: .destructive) {
+            store.execute(.tap(tag.id, .delete))
+        } label: {
+            Label {
+                Text("tag_grid_menu_delete", bundle: Bundle.this)
+            } icon: {
+                Image(systemName: "trash")
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func cellDeleteConfirmationDialog(_ tag: Tag) -> some View {
+        Button(store.state.actionForConfirmationToDelete, role: .destructive) {
+            store.execute(.alert(.confirmedToDelete(tag.id)))
+        }
+
+        Button(L10n.cancel, role: .cancel) {
+            store.execute(.alert(.dismissed))
         }
     }
 
