@@ -10,7 +10,6 @@ struct TagListControlState: Equatable {
             case failedToAddTag
             case failedToDeleteTag
             case failedToUpdateTag
-            case deleteConfirmation(Tag.ID, name: String)
         }
 
         enum Edit: Equatable {
@@ -38,11 +37,6 @@ extension TagListControlState {
     var renamingTagName: String? {
         guard case let .edit(.rename(tagId)) = alert else { return nil }
         return tags.first(where: { $0.id == tagId })?.name
-    }
-
-    var deletingTagId: Tag.ID? {
-        guard case let .plain(.deleteConfirmation(tagId, _)) = alert else { return nil }
-        return tagId
     }
 }
 

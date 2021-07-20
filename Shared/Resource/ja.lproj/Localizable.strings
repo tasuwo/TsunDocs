@@ -31,7 +31,7 @@
 "tag_list_alert_update_tag_name_title" = "タグ名の変更";
 "tag_list_alert_update_tag_name_message" = "このタグの新しい名前を入力してください";
 
-"tag_list_alert_delete_tag_message" = "タグ「%@」を削除しますか？\n含まれるクリップは削除されません";
+"tag_list_alert_delete_tag_message" = "タグ「%@」を削除しますか？";
 "tag_list_alert_delete_tag_action" = "タグを削除";
 
 "error_tag_read" = "タグの読み込みに失敗しました";

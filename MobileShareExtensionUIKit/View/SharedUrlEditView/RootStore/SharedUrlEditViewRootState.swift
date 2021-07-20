@@ -50,7 +50,8 @@ public struct SharedUrlEditViewRootState: Equatable {
     var tagGridState: TagGridState {
         get {
             .init(tags: selectedTags,
-                  configuration: .init(.deletable))
+                  configuration: .init(.deletable),
+                  alert: nil)
         }
         // swiftlint:disable:next unused_setter_value
         set {

@@ -74,8 +74,9 @@ struct TagListControlReducer: Reducer {
             guard let tag = state.tags.first(where: { $0.id == tagId }) else {
                 return (nextState, .none)
             }
-            nextState.alert = .plain(.deleteConfirmation(tagId, name: tag.name))
-            return (nextState, .none)
+            let title = L10n.tagListAlertDeleteTagMessage(tag.name)
+            let action = L10n.tagListAlertDeleteTagAction
+            return (nextState, [Effect(value: .showDeleteConfirmation(tagId, title: title, action: action))])
 
         case .failedToSaveTag:
             nextState.alert = .plain(.failedToAddTag)
@@ -106,11 +107,7 @@ struct TagListControlReducer: Reducer {
             }
             return (nextState, [effect])
 
-        case .alert(.confirmedToDelete):
-            guard let tagId = state.deletingTagId else {
-                nextState.alert = nil
-                return (nextState, .none)
-            }
+        case let .alert(.confirmedToDelete(tagId)):
             let effect = Effect<Action> {
                 do {
                     try await dependency.tagCommandService.deleteTag(having: tagId)
@@ -125,6 +122,10 @@ struct TagListControlReducer: Reducer {
 
         case .alert(.dismissed):
             nextState.alert = nil
+            return (nextState, .none)
+
+        case .showDeleteConfirmation:
+            // NOP
             return (nextState, .none)
         }
     }

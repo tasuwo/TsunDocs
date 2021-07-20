@@ -14,7 +14,16 @@ extension TagListAction {
     static let mappingToGird: ActionMapping<Self, TagGridAction> = .init(build: {
         .grid($0)
     }, get: {
-        guard case let .grid(action) = $0 else { return nil }; return action
+        switch $0 {
+        case let .grid(action):
+            return action
+
+        case let .control(.showDeleteConfirmation(tagId, title: title, action: action)):
+            return .showDeleteConfirmation(tagId, title: title, action: action)
+
+        default:
+            return nil
+        }
     })
 
     static let mappingToControl: ActionMapping<Self, TagListControlAction> = .init(build: {
@@ -26,6 +35,9 @@ extension TagListAction {
 
         case let .grid(.tappedMenu(tagId, item)):
             return .didTapMenu(tagId, item.controlAction)
+
+        case let .grid(.alert(.confirmedToDelete(tagId))):
+            return .alert(.confirmedToDelete(tagId))
 
         default:
             return nil

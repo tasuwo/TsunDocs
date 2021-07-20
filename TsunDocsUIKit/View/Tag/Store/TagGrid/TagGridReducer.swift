@@ -48,11 +48,15 @@ public struct TagGridReducer: Reducer {
             return (nextState, .none)
 
         case .alert(.confirmedToDelete):
-            // NOP
+            nextState.alert = nil
             return (nextState, .none)
 
         case .alert(.dismissed):
             nextState.alert = nil
+            return (nextState, .none)
+
+        case let .showDeleteConfirmation(tagId, title: title, action: action):
+            nextState.alert = .confirmation(.delete(tagId, title: title, action: action))
             return (nextState, .none)
         }
     }

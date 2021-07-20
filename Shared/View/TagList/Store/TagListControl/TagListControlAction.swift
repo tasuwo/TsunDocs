@@ -14,7 +14,7 @@ enum TagListControlAction: Action {
 
     enum AlertAction {
         case updatedTitle(String)
-        case confirmedToDelete
+        case confirmedToDelete(Tag.ID)
         case dismissed
     }
 
@@ -28,4 +28,5 @@ enum TagListControlAction: Action {
     case failedToDeleteTag(CommandServiceError?)
     case failedToUpdateTag(CommandServiceError?)
     case alert(AlertAction)
+    case showDeleteConfirmation(Tag.ID, title: String, action: String)
 }

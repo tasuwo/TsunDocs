@@ -105,11 +105,16 @@ public struct TagGrid: View {
             }
         )
         .frame(maxWidth: geometry.size.width - inset * 2)
-        .confirmationDialog(store.state.titleForConfirmationToDelete ?? "",
-                            isPresented: store.bind(\.isPresentingConfirmation,
-                                                    action: { _ in .alert(.dismissed) })) {
+        .confirmationDialog(Text(store.state.titleForConfirmationToDelete ?? ""),
+                            isPresented: store.bind({
+                                guard case let .confirmation(.delete(tagId, title: _, action: _)) = $0.alert else { return false }
+                                return tagId == tag.id
+                            }, action: { _ in
+                                .alert(.dismissed)
+                            }),
+                            titleVisibility: .visible) {
             Button(store.state.actionForConfirmationToDelete ?? "", role: .destructive) {
-                store.execute(.alert(.confirmedToDelete))
+                store.execute(.alert(.confirmedToDelete(tag.id)))
             }
 
             Button("cancel".localized, role: .cancel) {

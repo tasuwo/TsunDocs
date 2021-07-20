@@ -7,7 +7,7 @@ import Domain
 public struct TagGridState: Equatable {
     public enum Alert: Equatable {
         public enum Confirmation: Equatable {
-            case delete(title: String, action: String)
+            case delete(Tag.ID, title: String, action: String)
         }
 
         case confirmation(Confirmation)
@@ -15,17 +15,19 @@ public struct TagGridState: Equatable {
 
     public let tags: [Tag]
     public let configuration: TagGridConfiguration
-    public var alert: Alert?
 
+    public var alert: Alert?
     public var selectedIds: Set<Tag.ID> = .init()
 }
 
 public extension TagGridState {
     init(tags: [Tag],
-         configuration: TagGridConfiguration)
+         configuration: TagGridConfiguration,
+         alert: Alert?)
     {
         self.tags = tags
         self.configuration = configuration
+        self.alert = alert
     }
 }
 
@@ -36,12 +38,12 @@ extension TagGridState {
     }
 
     var titleForConfirmationToDelete: String? {
-        guard case let .confirmation(.delete(title: title, action: _)) = alert else { return nil }
+        guard case let .confirmation(.delete(_, title: title, action: _)) = alert else { return nil }
         return title
     }
 
     var actionForConfirmationToDelete: String? {
-        guard case let .confirmation(.delete(title: _, action: action)) = alert else { return nil }
+        guard case let .confirmation(.delete(_, title: _, action: action)) = alert else { return nil }
         return action
     }
 }

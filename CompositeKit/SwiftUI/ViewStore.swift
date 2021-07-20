@@ -53,6 +53,16 @@ public class ViewStore<State: Equatable, Action: CompositeKit.Action, Dependency
             self.store.execute(action($0))
         })
     }
+
+    public func bind<T>(_ block: @escaping (State) -> T,
+                        action: @escaping (T) -> Action) -> Binding<T>
+    {
+        return Binding(get: {
+            return block(self.store.stateValue)
+        }, set: {
+            self.store.execute(action($0))
+        })
+    }
 }
 
 public extension ViewStore {

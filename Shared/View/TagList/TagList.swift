@@ -63,10 +63,6 @@ struct TagList: View {
             case .plain(.failedToUpdateTag):
                 return Alert(title: Text(L10n.errorTagUpdate))
 
-            case let .plain(.deleteConfirmation(_, tagName)):
-                // TODO: confirmationDialogにする
-                return Alert(title: Text(L10n.tagListAlertDeleteTagMessage(tagName)))
-
             default:
                 fatalError("Invalid Alert")
             }
