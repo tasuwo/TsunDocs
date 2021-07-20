@@ -16,17 +16,17 @@ internal enum L10n {
     internal static let browseViewButtonClose = L10n.tr("Localizable", "browse_view_button_close")
     /// 読み込み中...
     internal static let browseViewTitleLoading = L10n.tr("Localizable", "browse_view_title_loading")
-    /// Failed to add tag.
+    /// タグの追加に失敗しました
     internal static let errorTagAddDefault = L10n.tr("Localizable", "error_tag_add_default")
-    /// Duplicated tag name.
+    /// 同名のタグを追加することはできません
     internal static let errorTagAddDuplicated = L10n.tr("Localizable", "error_tag_add_duplicated")
-    /// Failed to delete tag
+    /// タグの削除に失敗しました
     internal static let errorTagDelete = L10n.tr("Localizable", "error_tag_delete")
-    /// Failed to read tags
+    /// タグの読み込みに失敗しました
     internal static let errorTagRead = L10n.tr("Localizable", "error_tag_read")
-    /// Duplicated tag name.
+    /// 同じ名前のタグが既に存在します
     internal static let errorTagRenameDuplicated = L10n.tr("Localizable", "error_tag_rename_duplicated")
-    /// Failed to update tag
+    /// タグの更新に失敗しました
     internal static let errorTagUpdate = L10n.tr("Localizable", "error_tag_update")
     /// バージョン
     internal static let settingViewRowAppVersion = L10n.tr("Localizable", "setting_view_row_app_version")
@@ -42,7 +42,7 @@ internal enum L10n {
     internal static let tabItemTitleTsundocList = L10n.tr("Localizable", "tab_item_title_tsundoc_list")
     /// タグを削除
     internal static let tagListAlertDeleteTagAction = L10n.tr("Localizable", "tag_list_alert_delete_tag_action")
-    /// タグ「%@」を削除しますか？\n含まれるクリップは削除されません
+    /// タグ「%@」を削除しますか？
     internal static func tagListAlertDeleteTagMessage(_ p1: Any) -> String {
         return L10n.tr("Localizable", "tag_list_alert_delete_tag_message", String(describing: p1))
     }

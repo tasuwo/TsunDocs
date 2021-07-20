@@ -117,7 +117,7 @@ public struct TagGrid: View {
                 store.execute(.alert(.confirmedToDelete(tag.id)))
             }
 
-            Button("cancel".localized, role: .cancel) {
+            Button(L10n.cancel, role: .cancel) {
                 store.execute(.alert(.dismissed))
             }
         }

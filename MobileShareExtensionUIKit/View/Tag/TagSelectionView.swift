@@ -57,9 +57,9 @@ struct TagSelectionView: View {
         .alert(isPresenting: store.bind(\.controlState.isTagAdditionAlertPresenting,
                                         action: { _ in .control(.alertDismissed) }),
                text: "",
-               config: .init(title: "tag_selection_view_alert_new_tag_title".localized,
-                             message: "tag_selection_view_alert_new_tag_message".localized,
-                             placeholder: "tag_selection_view_alert_new_tag_placeholder".localized,
+               config: .init(title: L10n.tagSelectionViewAlertNewTagTitle,
+                             message: L10n.tagSelectionViewAlertNewTagMessage,
+                             placeholder: L10n.tagSelectionViewAlertNewTagPlaceholder,
                              validator: { $0?.count ?? 0 > 0 },
                              saveAction: { store.execute(.control(.didSaveTag($0))) },
                              cancelAction: nil))

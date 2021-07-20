@@ -127,9 +127,9 @@ public struct SharedUrlEditView: View {
         .alert(isPresenting: store.bind(\.isTitleEditAlertPresenting,
                                         action: { _ in .edit(.alertDismissed) }),
                text: store.state.sharedUrlTitle ?? "",
-               config: .init(title: "shared_url_edit_view_title_edit_title".localized,
-                             message: "shared_url_edit_view_title_edit_message".localized,
-                             placeholder: "shared_url_edit_view_title_edit_placeholder".localized,
+               config: .init(title: L10n.sharedUrlEditViewTitleEditTitle,
+                             message: L10n.sharedUrlEditViewTitleEditMessage,
+                             placeholder: L10n.sharedUrlEditViewTitleEditPlaceholder,
                              validator: { text in
                                  store.state.sharedUrlTitle != text && text?.count ?? 0 > 0
                              },

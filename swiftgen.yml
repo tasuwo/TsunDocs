@@ -4,3 +4,18 @@ strings:
       outputs:
         - templateName: structured-swift5
           output: Shared/Generated/String.swift
+    - inputs:
+        - TsunDocsUIKit/Resources/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: TsunDocsUIKit/Generated/String.swift
+    - inputs:
+        - MobileShareExtensionUIKit/Resources/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: MobileShareExtensionUIKit/Generated/String.swift
+    - inputs:
+        - MobileShareExtension/Resources/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: MobileShareExtension/Generated/String.swift

@@ -39,4 +39,4 @@
 "error_tag_add_duplicated" = "Duplicated tag name.";
 "error_tag_delete" = "Failed to delete tag";
 "error_tag_rename_duplicated" = "Duplicated tag name.";
-"error_tag_default" = "Failed to update tag";
+"error_tag_update" = "Failed to update tag";
