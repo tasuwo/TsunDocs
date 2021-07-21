@@ -6,7 +6,7 @@ import CompositeKit
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var container: SceneDependencyContainer
+    @Environment(\.sceneDependencyContainer) var container
 
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
@@ -51,10 +51,10 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView(container: SceneDependencyContainer(AppDependencyContainer()))
+            ContentView()
                 .previewDevice("iPhone 12")
 
-            ContentView(container: SceneDependencyContainer(AppDependencyContainer()))
+            ContentView()
                 .previewDevice("iPad Pro (12.9-inch) (3rd generation)")
         }
     }

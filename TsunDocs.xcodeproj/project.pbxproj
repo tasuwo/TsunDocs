@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		032F537FCB64581D904DA7D1 /* SharedUrlImageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CD1C076244AD072B9CF8BD /* SharedUrlImageReducer.swift */; };
 		033196558C566069A732CD2F /* TextEditAlertState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93C22B495CA7FA32661A49A /* TextEditAlertState.swift */; };
 		0372EA4F4783B801374F8A3D /* SharedUrlImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E38A89680CD8AA9A184C5E /* SharedUrlImage.swift */; };
+		04265BD7D5976C9A47853C25 /* Environment+SceneDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3FE7BB4D85A044860F35DF /* Environment+SceneDependencyContainer.swift */; };
 		04FB10364671B0D863E0943C /* TsundocThumbnailSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF100B5604EF4AA7E5784FE /* TsundocThumbnailSource.swift */; };
 		063EDC845A6AA7B8D90606AD /* TagMultiSelectionViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725D09D3DE926CA2B01555DE /* TagMultiSelectionViewReducer.swift */; };
 		06CFA4D7698C620799FAF146 /* ViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9556EC87DBBC5294C70F8B10 /* ViewStore.swift */; };
@@ -73,6 +74,7 @@
 		20D1F432B6B22E81245C5247 /* PureReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9554D05676829A7CCBDADB /* PureReducer.swift */; };
 		214F17D7B42C1177A544F904 /* TextEditAlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E44369843F81A3892642 /* TextEditAlertCoordinator.swift */; };
 		221FE1BFE1EDC8357182EE0A /* CompositeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35799AA535128C2EE05F11B /* CompositeKit.framework */; };
+		2244BBAFA9957671FA8008F4 /* Environment+AppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6DBD9720CF586C72FEDF7A /* Environment+AppDependencyContainer.swift */; };
 		224DCC1D0756ADBA6FF95BE2 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BF5FB387009A73F0B7B0CC /* Domain.framework */; };
 		22F78318CF72AC30A10BB134 /* Result+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CFB028496441B4FDE1D13 /* Result+Value.swift */; };
 		230051CAEFB67EDADB62893C /* Domain.AutoDefaultValue.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */; };
@@ -91,6 +93,10 @@
 		2AB66AC69EDC8D5FB78538E9 /* TagCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91768C3AB3EBD97E188BC1 /* TagCommandService.swift */; };
 		2B54DC7650A6F732313A90D0 /* SharedUrlLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780FB25AD975C2EEEA3F7487 /* SharedUrlLoader.swift */; };
 		2C8037F6D65241A59A022D88 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EA7D645F6AAF33ACFCE34A /* Factory.swift */; };
+		2CA0DD1426A8879F003DD3FE /* Environment+TsundocListStoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA0DD1326A8879F003DD3FE /* Environment+TsundocListStoreBuilder.swift */; };
+		2CA0DD1526A8879F003DD3FE /* Environment+TsundocListStoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA0DD1326A8879F003DD3FE /* Environment+TsundocListStoreBuilder.swift */; };
+		2CA0DD1726A887CC003DD3FE /* Environment+TagListStoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA0DD1626A887CC003DD3FE /* Environment+TagListStoreBuilder.swift */; };
+		2CA0DD1826A887CC003DD3FE /* Environment+TagListStoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA0DD1626A887CC003DD3FE /* Environment+TagListStoreBuilder.swift */; };
 		2CAAC85733A99D6DF43796E9 /* ObservedTsundoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB12BE80561F7E0A9DBE4E6D /* ObservedTsundoc.swift */; };
 		2D597C2ACAB6E2316EE63A56 /* SotreBuilderDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DDF86893CB1ADC7D2AE788 /* SotreBuilderDependencies.swift */; };
 		2EF68A0EA28704F15B93BFA4 /* TsunDocsUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EFA274C8FDA48BDAC713AC /* TsunDocsUIKit.framework */; };
@@ -372,6 +378,7 @@
 		F0B78A5F71628C2E9BB9A54B /* View+OnChangeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50587A5058FB1C1E5D3F35 /* View+OnChangeFrame.swift */; };
 		F15A7DF0F95AD080613AA969 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51C3DABAB6E2E48C9F39FFE /* Preview Assets.xcassets */; };
 		F30CAFCE4BD0B986E5298D05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9180BF53336E2369C3393 /* ContentView.swift */; };
+		F36A513214CC8A06B6D91E41 /* Environment+SceneDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3FE7BB4D85A044860F35DF /* Environment+SceneDependencyContainer.swift */; };
 		F3B231BBB0AA9E672A69B659 /* Tsundoc+MapToDomainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE52D741C6408929139E480 /* Tsundoc+MapToDomainModel.swift */; };
 		F4D0A84B5FE0C06DC83DF411 /* Pasiteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D5447BB91603E2493E55E /* Pasiteboard.swift */; };
 		F574B97E87A7348ACCCAE89D /* TagFilterReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D927266A554B1FDE7863 /* TagFilterReducer.swift */; };
@@ -388,6 +395,7 @@
 		FC58345881B03CD9B64F4453 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3B640A2AE2A490958D8BCF /* Bundle.swift */; };
 		FD05B15F77F12AFF41CB423F /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3715A8C51F45D991F0898F75 /* AsyncImage.swift */; };
 		FE851C2EBA912AD1ADF75717 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE8E4C95F3B77C48BA1DA9 /* EmojiCell.swift */; };
+		FFAD43D33B0ED2C19126FC71 /* Environment+AppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6DBD9720CF586C72FEDF7A /* Environment+AppDependencyContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -607,6 +615,7 @@
 		06B41D230914A93D29427F68 /* SceneDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDependencyContainer.swift; sourceTree = "<group>"; };
 		08E9A88BBD11F48D4DCD9120 /* TagListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListState.swift; sourceTree = "<group>"; };
 		0BD8B7D42E9CC7D502C63C16 /* TagListControlReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListControlReducer.swift; sourceTree = "<group>"; };
+		0F3FE7BB4D85A044860F35DF /* Environment+SceneDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+SceneDependencyContainer.swift"; sourceTree = "<group>"; };
 		108D8768741A992FEAE5976C /* MobileShareExtensionUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobileShareExtensionUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A484483DC29892DD0EB5B0 /* SceneDependencyContainer+ServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDependencyContainer+ServiceDependencies.swift"; sourceTree = "<group>"; };
 		12C96424FF884AC81B25170D /* TagList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagList.swift; sourceTree = "<group>"; };
@@ -638,6 +647,8 @@
 		27C4D91D2246D795D8C79210 /* Contramap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contramap.swift; sourceTree = "<group>"; };
 		2A90843522DA6C6D50D6194C /* AnyReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyReducer.swift; sourceTree = "<group>"; };
 		2B8097C5C6F26D04EF44DE3B /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		2CA0DD1326A8879F003DD3FE /* Environment+TsundocListStoreBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+TsundocListStoreBuilder.swift"; sourceTree = "<group>"; };
+		2CA0DD1626A887CC003DD3FE /* Environment+TagListStoreBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+TagListStoreBuilder.swift"; sourceTree = "<group>"; };
 		2DB3D927266A554B1FDE7863 /* TagFilterReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFilterReducer.swift; sourceTree = "<group>"; };
 		2E06FEE0FB002FB6A3B26F93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2E6ED6A0804000E62025C74E /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
@@ -647,7 +658,7 @@
 		3314882634F91345EBC2B514 /* TagGridConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGridConfiguration.swift; sourceTree = "<group>"; };
 		3425C767AC7288629755D4E3 /* Tag+MapToDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+MapToDomainModel.swift"; sourceTree = "<group>"; };
 		36703B036CCADF3624EF5269 /* StoreProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProxy.swift; sourceTree = "<group>"; };
-		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "TsunDocs (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; name = "TsunDocs (iOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3715A8C51F45D991F0898F75 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		37AD00BB2DCA41D989959A72 /* WeakContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakContainer.swift; sourceTree = "<group>"; };
 		39207BDA04E73F372BDE4DDA /* TagListAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListAction.swift; sourceTree = "<group>"; };
@@ -751,7 +762,7 @@
 		BC3B640A2AE2A490958D8BCF /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		BD025077E909BE230574082B /* TagListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListReducer.swift; sourceTree = "<group>"; };
 		BD67C8F082DAEAE15E00EB2A /* TextEditAlertConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditAlertConfig.swift; sourceTree = "<group>"; };
-		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TsunDocs (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "TsunDocs (macOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBC7EFEBB894E7ED12CC88E /* SharedUrlEditViewRootReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUrlEditViewRootReducer.swift; sourceTree = "<group>"; };
 		C35799AA535128C2EE05F11B /* CompositeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CompositeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3D1943A9A23E0149BEB6DEC /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -785,6 +796,7 @@
 		E74FD5D39A0075BC31BE146D /* TagFilterAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFilterAction.swift; sourceTree = "<group>"; };
 		E7998AC20EE38BDAA0BA24C3 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		E82A6E9232FC8E6E33F2FC02 /* TagMultiSelectionViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMultiSelectionViewAction.swift; sourceTree = "<group>"; };
+		EB6DBD9720CF586C72FEDF7A /* Environment+AppDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+AppDependencyContainer.swift"; sourceTree = "<group>"; };
 		ED160644CF84EEEF09E34394 /* TagListControlAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListControlAction.swift; sourceTree = "<group>"; };
 		EE287F8C21E9028322ED3BAA /* TagSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectionView.swift; sourceTree = "<group>"; };
 		EF9554D05676829A7CCBDADB /* PureReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PureReducer.swift; sourceTree = "<group>"; };
@@ -1147,6 +1159,17 @@
 			path = Tag;
 			sourceTree = "<group>";
 		};
+		42416DAFCFD4D427D997B127 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				EB6DBD9720CF586C72FEDF7A /* Environment+AppDependencyContainer.swift */,
+				0F3FE7BB4D85A044860F35DF /* Environment+SceneDependencyContainer.swift */,
+				2CA0DD1326A8879F003DD3FE /* Environment+TsundocListStoreBuilder.swift */,
+				2CA0DD1626A887CC003DD3FE /* Environment+TagListStoreBuilder.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
 		42932C3D0C7FBD2844F37D7F /* ImageLoader */ = {
 			isa = PBXGroup;
 			children = (
@@ -1253,6 +1276,7 @@
 			isa = PBXGroup;
 			children = (
 				5FD2593D51CFC4B413F4A6C6 /* AppDependencyContainer.swift */,
+				42416DAFCFD4D427D997B127 /* Environment */,
 				FE52DB83023D56AD62DBF259 /* SceneDependencyContainer */,
 			);
 			path = DI;
@@ -1529,8 +1553,6 @@
 		A22E014B7BCB53902CBDDE14 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				0AF84BA0FB5367367F847128 /* Manual */,
-				2DFADEEAB84AFFA0447A9497 /* Protocol */,
 				90FA9BBF04604F13BF03A3CA /* Struct */,
 			);
 			path = Mocks;
@@ -2777,6 +2799,8 @@
 				F30CAFCE4BD0B986E5298D05 /* ContentView.swift in Sources */,
 				A86D42C64DB0C334F77F6080 /* Domain.AutoDefaultValue.generated.swift in Sources */,
 				759F4DA493E4C1B4C1B0E2AD /* Domain.ProtocolMocks.swift in Sources */,
+				FFAD43D33B0ED2C19126FC71 /* Environment+AppDependencyContainer.swift in Sources */,
+				04265BD7D5976C9A47853C25 /* Environment+SceneDependencyContainer.swift in Sources */,
 				7BD51D2009B8A4D026C54F34 /* HTTPURLResponse+Mock.swift in Sources */,
 				97C7BA02FC6D43DEAFD8059D /* ObservedTagArrayMock.swift in Sources */,
 				CEF56279AD7B1B39499E7514 /* ObservedTsundocArrayMock.swift in Sources */,
@@ -2789,6 +2813,7 @@
 				986E0B8BDE54C97CC70973CD /* TabItem.swift in Sources */,
 				154A8F67CBBA004AEFC1A940 /* TagList.swift in Sources */,
 				52B8B078A7B0D6B3797FFE5F /* TagListAction.swift in Sources */,
+				2CA0DD1526A8879F003DD3FE /* Environment+TsundocListStoreBuilder.swift in Sources */,
 				2F4987798B8C1ADD01584FAA /* TagListControlAction.swift in Sources */,
 				DA2667C446C8401E32FC2D62 /* TagListControlReducer.swift in Sources */,
 				115DB336C596267E1E8B3E53 /* TagListControlState.swift in Sources */,
@@ -2802,6 +2827,7 @@
 				1DEB8FD6CACA4A8697ECABF3 /* TsundocListState.swift in Sources */,
 				B9CBD5E8A725D89FC3B8441A /* TsundocThumbnail.swift in Sources */,
 				6EFF53377B9ABE40D8DFA3CB /* URLProtocolMockBase.swift in Sources */,
+				2CA0DD1826A887CC003DD3FE /* Environment+TagListStoreBuilder.swift in Sources */,
 				660DAF1C9258E2CF36E11EAF /* URLSession+Mock.swift in Sources */,
 				5D7F26D08FC345318EEE4A96 /* WebView.swift in Sources */,
 				E71C7C89682F980BE90F4408 /* WebViewCoordinator.swift in Sources */,
@@ -2817,6 +2843,8 @@
 				1C4E47BD773458338D123241 /* ContentView.swift in Sources */,
 				230051CAEFB67EDADB62893C /* Domain.AutoDefaultValue.generated.swift in Sources */,
 				9F9AF5890E763DAC7407E13A /* Domain.ProtocolMocks.swift in Sources */,
+				2244BBAFA9957671FA8008F4 /* Environment+AppDependencyContainer.swift in Sources */,
+				F36A513214CC8A06B6D91E41 /* Environment+SceneDependencyContainer.swift in Sources */,
 				B2643DC6D78A94C3B97880D6 /* HTTPURLResponse+Mock.swift in Sources */,
 				B2532699E361300D82387BC0 /* ObservedTagArrayMock.swift in Sources */,
 				12BBBC2073D762C478ED8CA2 /* ObservedTsundocArrayMock.swift in Sources */,
@@ -2830,6 +2858,7 @@
 				7B7FCCAB5F4A2DB1F00C3D19 /* SotreBuilderDependencies.swift in Sources */,
 				77E922CBD1236DE2A67D1E10 /* String.swift in Sources */,
 				D6A7C33E5293BAAA7B783E09 /* TabItem.swift in Sources */,
+				2CA0DD1726A887CC003DD3FE /* Environment+TagListStoreBuilder.swift in Sources */,
 				5B871EB954AB3721684C4483 /* TagList.swift in Sources */,
 				C1C3D88BD1A9493262B70AAE /* TagListAction.swift in Sources */,
 				F85ADC0BFDA946758C46F37C /* TagListControlAction.swift in Sources */,
@@ -2838,6 +2867,7 @@
 				538BA6A4864C497626060A10 /* TagListReducer.swift in Sources */,
 				E484ABE0FB45DEB6EDE2266E /* TagListState.swift in Sources */,
 				386734DFA2CE2F8208BFAE7D /* TsunDocsApp.swift in Sources */,
+				2CA0DD1426A8879F003DD3FE /* Environment+TsundocListStoreBuilder.swift in Sources */,
 				33724356FFEE227EA3FE81AE /* TsundocCell.swift in Sources */,
 				DEADE2DAAB80F2C83BE7FED0 /* TsundocList.swift in Sources */,
 				1F104CEB1C099E4C98C521AB /* TsundocListAction.swift in Sources */,

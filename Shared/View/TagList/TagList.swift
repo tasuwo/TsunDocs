@@ -17,12 +17,6 @@ struct TagList: View {
     @StateObject var store: Store
     @StateObject var engine: TextEngine = .init(debounceFor: 0.3)
 
-    // MARK: - Initializers
-
-    init(store: Store) {
-        _store = StateObject(wrappedValue: store)
-    }
-
     // MARK: - View
 
     var body: some View {
