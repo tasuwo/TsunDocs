@@ -53,12 +53,25 @@ extension TsundocListReducer {
         var nextState = state
 
         let entities: AnyObservedEntityArray<Tsundoc>
-        switch dependency.tsundocQueryService.queryAllTsundocs() {
-        case let .success(result):
-            entities = result
 
-        case .failure:
-            fatalError("Failed to load entities.")
+        switch state.query {
+        case .all:
+            switch dependency.tsundocQueryService.queryAllTsundocs() {
+            case let .success(result):
+                entities = result
+
+            case .failure:
+                fatalError("Failed to load entities.")
+            }
+
+        case let .tagged(tagId):
+            switch dependency.tsundocQueryService.queryTsundocs(tagged: tagId) {
+            case let .success(result):
+                entities = result
+
+            case .failure:
+                fatalError("Failed to load entities.")
+            }
         }
 
         let tsundocsStream = entities.values

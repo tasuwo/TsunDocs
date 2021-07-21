@@ -8,8 +8,8 @@ extension SceneDependencyContainer: TsundocListStoreBuildable {
     // MARK: - TsundocListStoreBuildable
 
     @MainActor
-    func buildTsundocListStore() -> ViewStore<TsundocListState, TsundocListAction, TsundocListDependency> {
-        let store = Store(initialState: TsundocListState(tsundocs: []),
+    func buildTsundocListStore(query: TsundocListState.Query) -> ViewStore<TsundocListState, TsundocListAction, TsundocListDependency> {
+        let store = Store(initialState: TsundocListState(query: query),
                           dependency: self,
                           reducer: TsundocListReducer())
         return ViewStore(store: store)

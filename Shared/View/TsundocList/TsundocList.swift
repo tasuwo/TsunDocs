@@ -95,7 +95,7 @@ struct TsundocList_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        let store = Store(initialState: TsundocListState(),
+        let store = Store(initialState: TsundocListState(query: .all),
                           dependency: DummyDependency(),
                           reducer: TsundocListReducer())
         let viewStore = ViewStore(store: store)

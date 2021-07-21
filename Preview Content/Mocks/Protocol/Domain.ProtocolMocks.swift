@@ -273,11 +273,11 @@ public class TsundocQueryServiceMock: TsundocQueryService {
     }
 
     public private(set) var queryTsundocsCallCount = 0
-    public var queryTsundocsHandler: ((Tag) -> (Result<AnyObservedEntityArray<Tsundoc>, QueryServiceError>))?
-    public func queryTsundocs(tagged tag: Tag) -> Result<AnyObservedEntityArray<Tsundoc>, QueryServiceError> {
+    public var queryTsundocsHandler: ((Tag.ID) -> (Result<AnyObservedEntityArray<Tsundoc>, QueryServiceError>))?
+    public func queryTsundocs(tagged tagId: Tag.ID) -> Result<AnyObservedEntityArray<Tsundoc>, QueryServiceError> {
         queryTsundocsCallCount += 1
         if let queryTsundocsHandler = queryTsundocsHandler {
-            return queryTsundocsHandler(tag)
+            return queryTsundocsHandler(tagId)
         }
         fatalError("queryTsundocsHandler returns can't have a default value thus its handler must be set")
     }

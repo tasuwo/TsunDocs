@@ -4,20 +4,6 @@
 
 import CompositeKit
 
-class TsundocListStoreBuildableMock: TsundocListStoreBuildable {
-    init() { }
-
-    private(set) var buildTsundocListStoreCallCount = 0
-    var buildTsundocListStoreHandler: (() -> (ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>))?
-    func buildTsundocListStore() -> ViewStore<TsundocListState, TsundocListAction, TsundocListDependency> {
-        buildTsundocListStoreCallCount += 1
-        if let buildTsundocListStoreHandler = buildTsundocListStoreHandler {
-            return buildTsundocListStoreHandler()
-        }
-        fatalError("buildTsundocListStoreHandler returns can't have a default value thus its handler must be set")
-    }
-}
-
 class TagListStoreBuildableMock: TagListStoreBuildable {
     init() { }
 
@@ -29,5 +15,19 @@ class TagListStoreBuildableMock: TagListStoreBuildable {
             return buildTagListStoreHandler()
         }
         fatalError("buildTagListStoreHandler returns can't have a default value thus its handler must be set")
+    }
+}
+
+class TsundocListStoreBuildableMock: TsundocListStoreBuildable {
+    init() { }
+
+    private(set) var buildTsundocListStoreCallCount = 0
+    var buildTsundocListStoreHandler: ((TsundocListState.Query) -> (ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>))?
+    func buildTsundocListStore(query: TsundocListState.Query) -> ViewStore<TsundocListState, TsundocListAction, TsundocListDependency> {
+        buildTsundocListStoreCallCount += 1
+        if let buildTsundocListStoreHandler = buildTsundocListStoreHandler {
+            return buildTsundocListStoreHandler(query)
+        }
+        fatalError("buildTsundocListStoreHandler returns can't have a default value thus its handler must be set")
     }
 }

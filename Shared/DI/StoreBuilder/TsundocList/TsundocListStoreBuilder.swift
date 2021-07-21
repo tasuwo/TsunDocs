@@ -7,5 +7,5 @@ import CompositeKit
 /// @mockable
 protocol TsundocListStoreBuildable {
     @MainActor
-    func buildTsundocListStore() -> ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
+    func buildTsundocListStore(query: TsundocListState.Query) -> ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
 }

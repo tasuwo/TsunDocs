@@ -11,7 +11,7 @@ struct ContentView: View {
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
     var body: some View {
-        let tsundocListStore = container.buildTsundocListStore()
+        let tsundocListStore = container.buildTsundocListStore(query: .all)
         let tagListStore = container.buildTagListStore()
         let tsundocList = TsundocList(title: L10n.tsundocListTitle, store: tsundocListStore)
 
