@@ -10,18 +10,9 @@ struct TsundocThumbnail: View {
     // MARK: - Properties
 
     @State private var status: AsyncImageStatus?
+    @Environment(\.imageLoaderFactory) var imageLoaderFactory
 
-    private let source: TsundocThumbnailSource?
-    private let imageLoaderFactory: Factory<ImageLoader>
-
-    // MARK: - Initializers
-
-    init(source: TsundocThumbnailSource?,
-         imageLoaderFactory: Factory<ImageLoader> = .default)
-    {
-        self.source = source
-        self.imageLoaderFactory = imageLoaderFactory
-    }
+    let source: TsundocThumbnailSource?
 
     // MARK: - View
 
@@ -95,21 +86,21 @@ struct TsundocThumbnailView_Previews: PreviewProvider {
         Group {
             VStack {
                 HStack {
-                    TsundocThumbnail(source: nil,
-                                     imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
+                    TsundocThumbnail(source: nil)
+                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
-                    TsundocThumbnail(source: .emoji("👍"),
-                                     imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
+                    TsundocThumbnail(source: .emoji("👍"))
+                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 }
 
                 HStack {
                     // swiftlint:disable:next force_unwrapping
-                    TsundocThumbnail(source: .imageUrl(URL(string: "https://localhost")!),
-                                     imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
+                    TsundocThumbnail(source: .imageUrl(URL(string: "https://localhost")!))
+                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
                     // swiftlint:disable:next force_unwrapping
-                    TsundocThumbnail(source: .imageUrl(URL(string: "https://localhost")!),
-                                     imageLoaderFactory: .init { .init(urlSession: .makeMock(FailureMock.self)) })
+                    TsundocThumbnail(source: .imageUrl(URL(string: "https://localhost")!))
+                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(FailureMock.self)) })
                 }
             }
         }
