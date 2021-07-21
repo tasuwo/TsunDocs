@@ -18,8 +18,7 @@ struct TsundocCell: View {
     var body: some View {
         HStack {
             VStack {
-                TsundocThumbnail(source: tsundoc.thumbnailSource,
-                                 imageLoaderFactory: imageLoaderFactory)
+                TsundocThumbnail(source: tsundoc.thumbnailSource)
                     .padding([.top, .trailing, .bottom], 4.0)
                 Spacer(minLength: 0)
             }

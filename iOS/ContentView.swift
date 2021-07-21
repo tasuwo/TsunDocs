@@ -13,11 +13,12 @@ struct ContentView: View {
     var body: some View {
         let tsundocListStore = container.buildTsundocListStore()
         let tagListStore = container.buildTagListStore()
+        let tsundocList = TsundocList(title: L10n.tsundocListTitle, store: tsundocListStore)
 
         if idiom == .pad {
             NavigationView {
                 List {
-                    NavigationLink(destination: TsundocList(store: tsundocListStore)) {
+                    NavigationLink(destination: tsundocList) {
                         TabItem.tsundocList.label
                     }
                     NavigationLink(destination: TagList(store: tagListStore)) {
@@ -30,11 +31,11 @@ struct ContentView: View {
                 .navigationTitle(LocalizedStringKey("app_name"))
                 .listStyle(SidebarListStyle())
 
-                TsundocList(store: tsundocListStore)
+                tsundocList
             }
         } else {
             TabView {
-                TsundocList(store: tsundocListStore)
+                tsundocList
                     .tabItem { TabItem.tsundocList.view }
 
                 TagList(store: tagListStore)

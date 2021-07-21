@@ -9,6 +9,7 @@ import SwiftUI
 struct TsundocList: View {
     // MARK: - Properties
 
+    let title: String
     @StateObject var store: ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
 
     // MARK: - View
@@ -29,7 +30,7 @@ struct TsundocList: View {
                     }
                 }
             }
-            .navigationTitle("tsundoc_list_title")
+            .navigationTitle(title)
             .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .dismissModal })) {
                 switch store.state.modal {
                 case let .safariView(tsundoc):
@@ -98,6 +99,6 @@ struct TsundocList_Previews: PreviewProvider {
                           dependency: DummyDependency(),
                           reducer: TsundocListReducer())
         let viewStore = ViewStore(store: store)
-        TsundocList(store: viewStore)
+        TsundocList(title: L10n.tsundocListTitle, store: viewStore)
     }
 }
