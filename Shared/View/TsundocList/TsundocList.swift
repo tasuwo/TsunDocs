@@ -17,29 +17,10 @@ struct TsundocList: View {
 
     // MARK: - View
 
-    var emptyView: some View {
-        VStack {
-            Spacer()
-            Text(self.emptyTitle)
-                .foregroundColor(Color(UIColor.secondaryLabel))
-                .multilineTextAlignment(.center)
-                .font(.headline)
-                .padding()
-            if let message = self.emptyMessage {
-                Text(message)
-                    .foregroundColor(Color(UIColor.tertiaryLabel))
-                    .font(.body)
-                    .multilineTextAlignment(.center)
-                    .padding()
-            }
-            Spacer()
-        }
-    }
-
     var body: some View {
         Group {
             if store.state.tsundocs.isEmpty {
-                emptyView
+                EmptyMessageView(emptyTitle, message: emptyMessage)
             } else {
                 List {
                     ForEach(store.state.tsundocs) { tsundoc in

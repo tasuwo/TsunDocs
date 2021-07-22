@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-public struct PrimaryButtonStyle: ButtonStyle {
+public struct ActionButtonStyle: ButtonStyle {
     private struct InternalButton: View {
         let configuration: ButtonStyle.Configuration
 
@@ -12,18 +12,16 @@ public struct PrimaryButtonStyle: ButtonStyle {
 
         var body: some View {
             configuration.label
-                .foregroundColor(Color.white)
+                .foregroundColor(Color.gray)
                 .padding([.leading, .trailing], 16)
                 .padding([.top, .bottom], 8)
                 .background(GeometryReader { geometry in
-                    LinearGradient(gradient: Gradient(colors: [Color.cyan, Color.blue]),
-                                   startPoint: .leading,
-                                   endPoint: .trailing)
-                        .clipShape(RoundedRectangle(cornerRadius: geometry.size.height / 2,
-                                                    style: .continuous))
-                        .opacity(isEnabled ? 1 : 0.6)
+                    RoundedRectangle(cornerRadius: geometry.size.height / 2,
+                                     style: .continuous)
+                        .stroke(Color.gray, lineWidth: 2)
                 })
                 .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+                .opacity(isEnabled ? 1 : 0.6)
         }
     }
 
@@ -38,19 +36,16 @@ public struct PrimaryButtonStyle: ButtonStyle {
     }
 }
 
-struct PrimaryButtonStyle_Previews: PreviewProvider {
+struct ActionButtonStyleView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             VStack {
                 Button {
                     // NOP
                 } label: {
-                    HStack {
-                        Image(systemName: "checkmark")
-                        Text("Save")
-                    }
+                    Text("Action")
                 }
-                .buttonStyle(PrimaryButtonStyle())
+                .buttonStyle(ActionButtonStyle())
                 .padding()
 
                 Button {
@@ -61,7 +56,18 @@ struct PrimaryButtonStyle_Previews: PreviewProvider {
                         Text("Save")
                     }
                 }
-                .buttonStyle(PrimaryButtonStyle())
+                .buttonStyle(ActionButtonStyle())
+                .padding()
+
+                Button {
+                    // NOP
+                } label: {
+                    HStack {
+                        Image(systemName: "checkmark")
+                        Text("Save")
+                    }
+                }
+                .buttonStyle(ActionButtonStyle())
                 .padding()
                 .disabled(true)
             }
@@ -71,12 +77,9 @@ struct PrimaryButtonStyle_Previews: PreviewProvider {
                 Button {
                     // NOP
                 } label: {
-                    HStack {
-                        Image(systemName: "checkmark")
-                        Text("Save")
-                    }
+                    Text("Action")
                 }
-                .buttonStyle(PrimaryButtonStyle())
+                .buttonStyle(ActionButtonStyle())
                 .padding()
 
                 Button {
@@ -87,7 +90,18 @@ struct PrimaryButtonStyle_Previews: PreviewProvider {
                         Text("Save")
                     }
                 }
-                .buttonStyle(PrimaryButtonStyle())
+                .buttonStyle(ActionButtonStyle())
+                .padding()
+
+                Button {
+                    // NOP
+                } label: {
+                    HStack {
+                        Image(systemName: "checkmark")
+                        Text("Save")
+                    }
+                }
+                .buttonStyle(ActionButtonStyle())
                 .padding()
                 .disabled(true)
             }
