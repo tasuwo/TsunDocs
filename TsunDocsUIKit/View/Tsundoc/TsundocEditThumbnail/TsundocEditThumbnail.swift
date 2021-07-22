@@ -5,24 +5,29 @@
 import CompositeKit
 import Domain
 import SwiftUI
-import TsunDocsUIKit
 
-struct SharedUrlImage: View {
-    typealias Store = ViewStore<
-        SharedUrlImageState,
-        SharedUrlImageAction,
+public struct TsundocEditThumbnail: View {
+    public typealias Store = ViewStore<
+        TsundocEditThumbnailState,
+        TsundocEditThumbnailAction,
         SharedUrlImageDependency
     >
 
     // MARK: - Properties
 
-    static let thumbnailSize: CGFloat = 88
-    static let badgeSize: CGFloat = 32
-    static let badgeSymbolSize: CGFloat = 18
-    static let padding: CGFloat = 32 / 2 - 6
+    public static let thumbnailSize: CGFloat = 88
+    public static let badgeSize: CGFloat = 32
+    public static let badgeSymbolSize: CGFloat = 18
+    public static let padding: CGFloat = 32 / 2 - 6
 
     @Environment(\.imageLoaderFactory) var imageLoaderFactory
     @StateObject var store: Store
+
+    // MARK: - Initializers
+
+    public init(store: Store) {
+        _store = StateObject(wrappedValue: store)
+    }
 
     // MARK: - View
 
@@ -81,7 +86,7 @@ struct SharedUrlImage: View {
 
     // MARK: - View
 
-    var body: some View {
+    public var body: some View {
         ZStack {
             thumbnail
                 .frame(width: Self.thumbnailSize, height: Self.thumbnailSize, alignment: .center)
@@ -133,6 +138,7 @@ struct SharedUrlImage: View {
 
 // MARK: - Preview
 
+@MainActor
 struct SharedUrlThumbnailView_Previews: PreviewProvider {
     class SuccessMock: URLProtocolMockBase {
         override class var mock_delay: TimeInterval? { 3 }
@@ -156,12 +162,12 @@ struct SharedUrlThumbnailView_Previews: PreviewProvider {
         let imageLoaderFactory: Factory<ImageLoader>
 
         var body: some View {
-            let store = Store(initialState: SharedUrlImageState(imageUrl: imageUrl),
+            let store = Store(initialState: TsundocEditThumbnailState(imageUrl: imageUrl),
                               dependency: Nop(),
-                              reducer: SharedUrlImageReducer())
+                              reducer: TsundocEditThumbnailReducer())
             let viewStore = ViewStore(store: store)
 
-            SharedUrlImage(store: viewStore)
+            TsundocEditThumbnail(store: viewStore)
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
         }
     }

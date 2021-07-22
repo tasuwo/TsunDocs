@@ -14,6 +14,6 @@ private typealias RootAction = SharedUrlEditViewRootAction
 
 public let sharedUrlEditViewRootReducer = combine(
     contramap(RootAction.mappingToEdit, RootState.mappingToEdit, { $0 as SharedUrlEditViewRootDependency })(SharedUrlEditViewReducer()),
-    contramap(RootAction.mappingToImage, RootState.mappingToImage, { $0 })(SharedUrlImageReducer()),
+    contramap(RootAction.mappingToImage, RootState.mappingToImage, { $0 })(TsundocEditThumbnailReducer()),
     contramap(RootAction.mappingToTagGrid, RootState.mappingToTagGrid, { $0 })(TagGridReducer())
 )

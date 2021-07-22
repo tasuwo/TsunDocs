@@ -7,7 +7,7 @@ import TsunDocsUIKit
 
 public enum SharedUrlEditViewRootAction: Action {
     case edit(SharedUrlEditViewAction)
-    case image(SharedUrlImageAction)
+    case image(TsundocEditThumbnailAction)
     case tagGrid(TagGridAction)
 }
 
@@ -27,7 +27,7 @@ public extension SharedUrlEditViewRootAction {
         }
     })
 
-    static let mappingToImage: ActionMapping<Self, SharedUrlImageAction> = .init(build: {
+    static let mappingToImage: ActionMapping<Self, TsundocEditThumbnailAction> = .init(build: {
         .image($0)
     }, get: {
         guard case let .image(action) = $0 else { return nil }; return action

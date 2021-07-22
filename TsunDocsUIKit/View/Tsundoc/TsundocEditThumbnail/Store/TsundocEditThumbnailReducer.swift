@@ -8,10 +8,14 @@ import Domain
 
 public typealias SharedUrlImageDependency = HasNop
 
-public struct SharedUrlImageReducer: Reducer {
+public struct TsundocEditThumbnailReducer: Reducer {
     public typealias Dependency = SharedUrlImageDependency
-    public typealias State = SharedUrlImageState
-    public typealias Action = SharedUrlImageAction
+    public typealias State = TsundocEditThumbnailState
+    public typealias Action = TsundocEditThumbnailAction
+
+    // MARK: - Initializers
+
+    public init() {}
 
     // MARK: - Reducer
 

@@ -4,9 +4,8 @@
 
 import CompositeKit
 import Domain
-import TsunDocsUIKit
 
-public enum SharedUrlImageAction: Action {
+public enum TsundocEditThumbnailAction: Action {
     case onLoadImageUrl(URL?)
     case didTapSelectEmoji
     case didTapDeleteEmoji

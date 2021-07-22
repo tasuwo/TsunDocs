@@ -58,7 +58,7 @@ public struct SharedUrlEditView: View {
                 Spacer()
             }
         }
-        .padding([.leading, .trailing], SharedUrlImage.padding)
+        .padding([.leading, .trailing], TsundocEditThumbnail.padding)
     }
 
     // MARK: - View

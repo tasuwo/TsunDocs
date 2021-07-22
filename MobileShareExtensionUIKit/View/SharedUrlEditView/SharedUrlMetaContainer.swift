@@ -30,7 +30,7 @@ struct SharedUrlMetaContainer: View {
         if let url = store.state.sharedUrl {
             HStack(alignment: .top) {
                 VStack {
-                    SharedUrlImage(store: store
+                    TsundocEditThumbnail(store: store
                         .proxy(SharedUrlEditViewRootState.mappingToImage,
                                SharedUrlEditViewRootAction.mappingToImage)
                         .viewStore())
@@ -61,7 +61,7 @@ struct SharedUrlMetaContainer: View {
                         .foregroundColor(.gray)
                         .font(.caption)
                 }
-                .padding([.top, .bottom], SharedUrlImage.padding)
+                .padding([.top, .bottom], TsundocEditThumbnail.padding)
 
                 Spacer()
             }

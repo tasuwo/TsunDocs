@@ -32,7 +32,7 @@ public struct SharedUrlEditViewRootState: Equatable {
         }
     }
 
-    var imageState: SharedUrlImageState {
+    var imageState: TsundocEditThumbnailState {
         get {
             .init(imageUrl: sharedUrlImageUrl,
                   thumbnailLoadingStatus: thumbnailLoadingStatus,
@@ -75,7 +75,7 @@ public struct SharedUrlEditViewRootState: Equatable {
     var isTitleEditAlertPresenting: Bool
     var isTagEditSheetPresenting: Bool
 
-    // MARK: - SharedUrlImageState
+    // MARK: - TsundocEditViewState
 
     var thumbnailLoadingStatus: AsyncImageStatus?
     var isSelectingEmoji: Bool
@@ -92,6 +92,6 @@ public extension SharedUrlEditViewRootState {
 
 public extension SharedUrlEditViewRootState {
     static let mappingToEdit: StateMapping<Self, SharedUrlEditViewState> = .init(keyPath: \Self.editViewState)
-    static let mappingToImage: StateMapping<Self, SharedUrlImageState> = .init(keyPath: \Self.imageState)
+    static let mappingToImage: StateMapping<Self, TsundocEditThumbnailState> = .init(keyPath: \Self.imageState)
     static let mappingToTagGrid: StateMapping<Self, TagGridState> = .init(keyPath: \Self.tagGridState)
 }
