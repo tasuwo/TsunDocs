@@ -9,6 +9,7 @@ public struct TagCell: View {
 
     private let tagId: UUID
     private let tagName: String
+    private let tsundocCount: Int
     private let status: TagCellStatus
     private let size: TagCellSize
     private let onSelect: ((UUID) -> Void)?
@@ -42,9 +43,17 @@ public struct TagCell: View {
                     .padding([.trailing], 2)
             }
 
-            Text(tagName)
-                .foregroundColor(status.isSelected ? .white : .primary)
-                .font(size.font)
+            HStack(spacing: 4) {
+                Text(tagName)
+                    .foregroundColor(status.isSelected ? .white : .primary)
+                    .font(size.font)
+                    .lineLimit(1)
+
+                Text("(\(tsundocCount))")
+                    .foregroundColor(status.isSelected ? .white : .secondary)
+                    .font(size.font)
+                    .lineLimit(1)
+            }
         }
     }
 
@@ -62,6 +71,7 @@ public struct TagCell: View {
 
     public init(tagId: UUID,
                 tagName: String,
+                tsundocCount: Int,
                 status: TagCellStatus,
                 size: TagCellSize = .normal,
                 onSelect: ((UUID) -> Void)? = nil,
@@ -69,6 +79,7 @@ public struct TagCell: View {
     {
         self.tagId = tagId
         self.tagName = tagName
+        self.tsundocCount = tsundocCount
         self.status = status
         self.size = size
         self.onSelect = onSelect
@@ -139,14 +150,17 @@ struct TagCell_Previews: PreviewProvider {
                 HStack {
                     TagCell(tagId: UUID(),
                             tagName: "タグ",
+                            tsundocCount: 5,
                             status: .default,
                             onSelect: { selected = $0 })
                     TagCell(tagId: UUID(),
                             tagName: "my tag",
+                            tsundocCount: 5,
                             status: .selected,
                             onSelect: { selected = $0 })
                     TagCell(tagId: UUID(),
                             tagName: "😁",
+                            tsundocCount: 5,
                             status: .deletable,
                             onSelect: { selected = $0 },
                             onDelete: { deleted = $0 })
@@ -155,16 +169,19 @@ struct TagCell_Previews: PreviewProvider {
                 HStack {
                     TagCell(tagId: UUID(),
                             tagName: "タグ",
+                            tsundocCount: 5,
                             status: .default,
                             size: .small,
                             onSelect: { selected = $0 })
                     TagCell(tagId: UUID(),
                             tagName: "my tag",
+                            tsundocCount: 5,
                             status: .selected,
                             size: .small,
                             onSelect: { selected = $0 })
                     TagCell(tagId: UUID(),
                             tagName: "😁",
+                            tsundocCount: 5,
                             status: .deletable,
                             size: .small,
                             onSelect: { selected = $0 },

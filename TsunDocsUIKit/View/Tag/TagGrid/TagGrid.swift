@@ -63,6 +63,7 @@ public struct TagGrid: View {
         return TagCell(
             tagId: tag.id,
             tagName: tag.name,
+            tsundocCount: tag.tsundocsCount,
             status: .init(store.state.configuration,
                           isSelected: store.state.selectedIds.contains(tag.id)),
             size: store.state.configuration.size,

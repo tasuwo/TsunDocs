@@ -111,6 +111,7 @@ struct TagList: View {
 
 // MARK: - Preview
 
+@MainActor
 struct TagList_Previews: PreviewProvider {
     class Dependency: TagListDependency {
         var tags: AnyObservedEntityArray<Tag> = {
