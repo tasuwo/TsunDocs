@@ -68,6 +68,7 @@ struct TagSelectionView: View {
 
 // MARK: - Preview
 
+@MainActor
 struct TagSelectionView_Previews: PreviewProvider {
     class Dependency: TagSelectionViewDependency {
         var tags: AnyObservedEntityArray<Tag> = {

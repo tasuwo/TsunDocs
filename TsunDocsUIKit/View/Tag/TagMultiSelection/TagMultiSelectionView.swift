@@ -40,6 +40,9 @@ public struct TagMultiSelectionView: View {
     }
 }
 
+// MARK: - Preview
+
+@MainActor
 struct TagMultiSelectionView_Previews: PreviewProvider {
     class Dependency: HasNop {}
 
