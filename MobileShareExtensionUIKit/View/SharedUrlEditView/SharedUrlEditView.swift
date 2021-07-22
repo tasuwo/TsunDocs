@@ -18,12 +18,12 @@ public struct SharedUrlEditView: View {
 
     @StateObject var store: RootStore
     // TODO: DI方法を検討する
-    private let tagSelectionViewDependency: TagSelectionViewDependency
+    private let tagSelectionViewDependency: TagMultiAdditionViewDependency
 
     // MARK: - Initializers
 
     public init(_ store: RootStore,
-                tagSelectionViewDependency: TagSelectionViewDependency)
+                tagSelectionViewDependency: TagMultiAdditionViewDependency)
     {
         self._store = StateObject(wrappedValue: store)
         self.tagSelectionViewDependency = tagSelectionViewDependency
@@ -119,7 +119,7 @@ public struct SharedUrlEditView: View {
             let selectedIds = Set(store.state.selectedTags.map(\.id))
             let _store = Store(initialState: TagMultiAdditionViewState(selectedIds: selectedIds),
                                dependency: tagSelectionViewDependency,
-                               reducer: TagMultiAdditionViewReducer)
+                               reducer: tagMultiAdditionViewReducer)
             let viewStore = ViewStore(store: _store)
             TagMultiAdditionView(store: viewStore,
                                  onDone: { store.execute(.edit(.onSelectedTags($0))) })
@@ -139,7 +139,7 @@ public struct SharedUrlEditView: View {
 }
 
 struct SharedUrlEditView_Previews: PreviewProvider {
-    class Dependency: SharedUrlEditViewRootDependency & TagSelectionViewDependency {
+    class Dependency: SharedUrlEditViewRootDependency & TagMultiAdditionViewDependency {
         // MARK: SharedUrlEditViewRootDependency
 
         class Complete: Completable {
@@ -157,7 +157,7 @@ struct SharedUrlEditView_Previews: PreviewProvider {
         var _tsundocCommandService = TsundocCommandServiceMock()
         var _completable = Complete()
 
-        // MARK: TagSelectionViewDependency
+        // MARK: TagMultiAdditionViewDependency
 
         var tags: AnyObservedEntityArray<Tag> = {
             let tags: [Tag] = [

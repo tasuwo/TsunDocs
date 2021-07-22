@@ -3,6 +3,8 @@
 //
 
 import CompositeKit
+import Domain
+import TsunDocsUIKit
 
 extension SceneDependencyContainer: TsundocListStoreBuildable {
     // MARK: - TsundocListStoreBuildable
@@ -24,6 +26,18 @@ extension SceneDependencyContainer: TagListStoreBuildable {
         let store = Store(initialState: TagListState(),
                           dependency: self,
                           reducer: tagListReducer)
+        return ViewStore(store: store)
+    }
+}
+
+extension SceneDependencyContainer: TagMultiAdditionViewStoreBuildable {
+    // MARK: - TagListStoreBuildable
+
+    @MainActor
+    func buildTagMultiAdditionViewStore(selectedIds: Set<Tag.ID>) -> ViewStore<TagMultiAdditionViewState, TagMultiAdditionViewAction, TagMultiAdditionViewDependency> {
+        let store = Store(initialState: TagMultiAdditionViewState(selectedIds: selectedIds),
+                          dependency: self,
+                          reducer: tagMultiAdditionViewReducer)
         return ViewStore(store: store)
     }
 }

@@ -18,6 +18,7 @@ struct TsundocListState: Equatable {
 
         enum Plain {
             case failedToDelete
+            case failedToUpdate
         }
 
         case plain(Plain)
@@ -26,6 +27,7 @@ struct TsundocListState: Equatable {
 
     enum Modal: Equatable {
         case safariView(Tsundoc)
+        case tagAdditionView(Tsundoc.ID, Set<Tag.ID>)
     }
 
     let query: Query

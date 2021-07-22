@@ -5,6 +5,7 @@
 import CompositeKit
 import Domain
 import SwiftUI
+import TsunDocsUIKit
 
 struct TsundocList: View {
     // MARK: - Properties
@@ -16,11 +17,12 @@ struct TsundocList: View {
     @StateObject var store: ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
 
     @Environment(\.openURL) var openURL
+    @Environment(\.tagMultiAdditionViewStoreBuilder) var tagMultiAdditionViewStoreBuilder
 
     // MARK: - View
 
     var body: some View {
-        Group {
+        ZStack {
             if store.state.tsundocs.isEmpty {
                 EmptyMessageView(emptyTitle, message: emptyMessage)
             } else {
@@ -42,25 +44,34 @@ struct TsundocList: View {
             case let .safariView(tsundoc):
                 #if os(iOS)
                 NavigationView {
-                    BrowseView(baseUrl: tsundoc.url,
-                               isPresenting: store.bind(\.isModalPresenting,
-                                                        action: { _ in .dismissModal }))
+                    BrowseView(baseUrl: tsundoc.url) {
+                        store.execute(.alert(.dismissed))
+                    }
                 }
                 .ignoresSafeArea()
                 #elseif os(macOS)
                 EmptyView()
                 #endif
 
-            default:
+            case let .tagAdditionView(tsundocId, tagIds):
+                let newStore = tagMultiAdditionViewStoreBuilder.buildTagMultiAdditionViewStore(selectedIds: tagIds)
+                TagMultiAdditionView(store: newStore) {
+                    store.execute(.selectTags(Set($0.map(\.id)), tsundocId))
+                }
+
+            case .none:
                 EmptyView()
             }
         }
         .alert(isPresented: store.bind(\.isAlertPresenting, action: { _ in .alert(.dismissed) })) {
             switch store.state.alert {
             case .plain(.failedToDelete):
-                return Alert(title: Text("tsundoc_list_error_title_delete"))
+                return Alert(title: Text(L10n.tsundocListErrorTitleDelete))
 
-            default:
+            case .plain(.failedToUpdate):
+                return Alert(title: Text(L10n.tsundocListErrorTitleUpdate))
+
+            case .confirmation, .none:
                 fatalError("Invalid Alert")
             }
         }
@@ -153,6 +164,10 @@ struct TsundocList: View {
 
 struct TsundocList_Previews: PreviewProvider {
     class DummyDependency: TsundocListDependency {
+        var tagQueryService: TagQueryService {
+            TagQueryServiceMock()
+        }
+
         var pasteboard: Pasteboard {
             PasteboardMock()
         }

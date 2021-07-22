@@ -4,15 +4,15 @@
 
 import CompositeKit
 
-public typealias TagSelectionViewDependency = TagMultiSelectionViewDependency
+public typealias TagMultiAdditionViewDependency = TagMultiSelectionViewDependency
     & TagControlDependency
 
 private typealias RootState = TagMultiAdditionViewState
 private typealias RootAction = TagMultiAdditionViewAction
 
-public let TagMultiAdditionViewReducer = combine(
+public let tagMultiAdditionViewReducer = combine(
     contramap(RootAction.mappingToMultiSelection,
               RootState.mappingToMultiSelection,
-              { $0 as TagSelectionViewDependency })(tagMultiSelectionReducer),
+              { $0 as TagMultiAdditionViewDependency })(tagMultiSelectionReducer),
     contramap(RootAction.mappingToControl, RootState.mappingToControl, { $0 })(TagControlReducer())
 )

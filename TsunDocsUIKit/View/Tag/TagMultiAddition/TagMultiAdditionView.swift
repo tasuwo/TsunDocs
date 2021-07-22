@@ -10,7 +10,7 @@ public struct TagMultiAdditionView: View {
     public typealias Store = ViewStore<
         TagMultiAdditionViewState,
         TagMultiAdditionViewAction,
-        TagSelectionViewDependency
+        TagMultiAdditionViewDependency
     >
 
     @StateObject var store: Store
@@ -69,7 +69,7 @@ public struct TagMultiAdditionView: View {
 
 @MainActor
 struct TagSelectionView_Previews: PreviewProvider {
-    class Dependency: TagSelectionViewDependency {
+    class Dependency: TagMultiAdditionViewDependency {
         var tags: AnyObservedEntityArray<Tag> = {
             let tags: [Tag] = [
                 .init(id: UUID(), name: "This"),
@@ -140,7 +140,7 @@ struct TagSelectionView_Previews: PreviewProvider {
                 .sheet(isPresented: $isPresenting) {
                     let store = Store(initialState: TagMultiAdditionViewState(),
                                       dependency: Dependency(),
-                                      reducer: TagMultiAdditionViewReducer)
+                                      reducer: tagMultiAdditionViewReducer)
                     let viewStore = ViewStore(store: store)
                     TagMultiAdditionView(store: viewStore,
                                          onDone: { _ in isPresenting = false })

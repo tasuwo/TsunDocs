@@ -8,6 +8,7 @@ import Domain
 
 typealias TsundocListDependency = HasTsundocQueryService
     & HasTsundocCommandService
+    & HasTagQueryService
     & HasPasteboard
 
 struct TsundocListReducer: Reducer {
@@ -36,8 +37,25 @@ struct TsundocListReducer: Reducer {
             nextState.modal = .safariView(tsundoc)
             return (nextState, nil)
 
+        case let .selectTags(tagIds, tsundocId):
+            let effect = Effect<Action> {
+                do {
+                    try await dependency.tsundocCommandService.updateTsundoc(having: tsundocId, byReplacingTagsHaving: tagIds)
+                    return .none
+                } catch let error as CommandServiceError {
+                    return .failedToUpdateTsundoc(error)
+                } catch {
+                    return .failedToUpdateTsundoc(nil)
+                }
+            }
+            nextState.modal = nil
+            return (nextState, [effect])
+
         case let .tap(tsundocId, .addTag):
-            // TODO:
+            let tags = dependency.tagQueryService.fetchTags(taggedToTsundocHaving: tsundocId)
+                .successValue?
+                .map(\.id) ?? [Tag.ID]()
+            nextState.modal = .tagAdditionView(tsundocId, Set(tags))
             return (nextState, nil)
 
         case let .tap(tsundocId, .copyUrl):
@@ -53,6 +71,10 @@ struct TsundocListReducer: Reducer {
 
         case .failedToDeleteTsundoc:
             nextState.alert = .plain(.failedToDelete)
+            return (nextState, nil)
+
+        case .failedToUpdateTsundoc:
+            nextState.alert = .plain(.failedToUpdate)
             return (nextState, nil)
 
         case .dismissModal:

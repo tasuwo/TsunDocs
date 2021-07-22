@@ -13,6 +13,7 @@
 
 "tsundoc_list_title" = "My List";
 "tsundoc_list_error_title_delete" = "Failed to delete.";
+"tsundoc_list_error_title_update" = "Failed to update.";
 
 "tsundoc_list_empty_message_default_title" = "No Clips";
 "tsundoc_list_empty_message_default_message" = "Share the url of the web site using other apps.";

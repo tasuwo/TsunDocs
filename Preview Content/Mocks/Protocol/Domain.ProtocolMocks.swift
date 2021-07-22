@@ -138,6 +138,16 @@ public class TagCommandServiceMock: TagCommandService {
 public class TagQueryServiceMock: TagQueryService {
     public init() { }
 
+    public private(set) var fetchTagsCallCount = 0
+    public var fetchTagsHandler: ((Tsundoc.ID) -> (Result<Set<Tag>, QueryServiceError>))?
+    public func fetchTags(taggedToTsundocHaving id: Tsundoc.ID) -> Result<Set<Tag>, QueryServiceError> {
+        fetchTagsCallCount += 1
+        if let fetchTagsHandler = fetchTagsHandler {
+            return fetchTagsHandler(id)
+        }
+        fatalError("fetchTagsHandler returns can't have a default value thus its handler must be set")
+    }
+
     public private(set) var queryTagCallCount = 0
     public var queryTagHandler: ((Tag.ID) -> (Result<AnyObservedEntity<Tag>, QueryServiceError>))?
     public func queryTag(having id: Tag.ID) -> Result<AnyObservedEntity<Tag>, QueryServiceError> {

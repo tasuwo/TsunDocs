@@ -13,6 +13,7 @@
 
 "tsundoc_list_title" = "マイリスト";
 "tsundoc_list_error_title_delete" = "削除に失敗しました";
+"tsundoc_list_error_title_update" = "更新に失敗しました";
 
 "tsundoc_list_empty_message_default_title" = "アイテムがありません";
 "tsundoc_list_empty_message_default_message" = "他のアプリの「共有」から、追加したいサイトの URL をシェアしましょう";

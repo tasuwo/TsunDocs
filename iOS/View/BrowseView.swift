@@ -8,8 +8,7 @@ struct BrowseView: View {
     // MARK: - Properties
 
     let baseUrl: URL
-
-    @Binding var isPresenting: Bool
+    let onClose: () -> Void
 
     @State var action: WebView.Action?
 
@@ -23,6 +22,15 @@ struct BrowseView: View {
     @State var isPresentShareSheet = false
 
     @Environment(\.openURL) var openURL
+
+    // MARK: - Initializers
+
+    init(baseUrl: URL,
+         onClose: @escaping () -> Void)
+    {
+        self.baseUrl = baseUrl
+        self.onClose = onClose
+    }
 
     // MARK: - View
 
@@ -57,7 +65,7 @@ struct BrowseView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    isPresenting = false
+                    onClose()
                 } label: {
                     Text("browse_view_button_close")
                 }
@@ -132,8 +140,9 @@ struct BrowseView_Previews: PreviewProvider {
             .sheet(isPresented: $isPresenting) {
                 NavigationView {
                     // swiftlint:disable:next force_unwrapping
-                    BrowseView(baseUrl: URL(string: "https://www.apple.com")!,
-                               isPresenting: $isPresenting)
+                    BrowseView(baseUrl: URL(string: "https://www.apple.com")!) {
+                        isPresenting = false
+                    }
                 }
             }
         }

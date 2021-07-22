@@ -76,6 +76,8 @@ internal enum L10n {
 
     /// 削除に失敗しました
     internal static let tsundocListErrorTitleDelete = L10n.tr("Localizable", "tsundoc_list_error_title_delete")
+    /// 更新に失敗しました
+    internal static let tsundocListErrorTitleUpdate = L10n.tr("Localizable", "tsundoc_list_error_title_update")
     /// タグを追加する
     internal static let tsundocListMenuAddTag = L10n.tr("Localizable", "tsundoc_list_menu_add_tag")
     /// URLをコピー

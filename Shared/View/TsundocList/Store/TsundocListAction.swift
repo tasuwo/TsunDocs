@@ -21,8 +21,10 @@ enum TsundocListAction {
     case updateTsundocs([Tsundoc])
     case delete(IndexSet)
     case select(Tsundoc)
+    case selectTags(Set<Tag.ID>, Tsundoc.ID)
     case tap(Tsundoc.ID, MenuItem)
     case failedToDeleteTsundoc(CommandServiceError?)
+    case failedToUpdateTsundoc(CommandServiceError?)
     case dismissModal
     case alert(AlertAction)
 }
