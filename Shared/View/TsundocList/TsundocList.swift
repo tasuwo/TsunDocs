@@ -10,53 +10,79 @@ struct TsundocList: View {
     // MARK: - Properties
 
     let title: String
+    let emptyTitle: String
+    let emptyMessage: String?
+
     @StateObject var store: ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
 
     // MARK: - View
 
+    var emptyView: some View {
+        VStack {
+            Spacer()
+            Text(self.emptyTitle)
+                .foregroundColor(Color(UIColor.secondaryLabel))
+                .multilineTextAlignment(.center)
+                .font(.headline)
+                .padding()
+            if let message = self.emptyMessage {
+                Text(message)
+                    .foregroundColor(Color(UIColor.tertiaryLabel))
+                    .font(.body)
+                    .multilineTextAlignment(.center)
+                    .padding()
+            }
+            Spacer()
+        }
+    }
+
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(store.state.tsundocs) { tsundoc in
-                    TsundocCell(tsundoc: tsundoc)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            store.execute(.select(tsundoc))
+        Group {
+            if store.state.tsundocs.isEmpty {
+                emptyView
+            } else {
+                List {
+                    ForEach(store.state.tsundocs) { tsundoc in
+                        TsundocCell(tsundoc: tsundoc)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                store.execute(.select(tsundoc))
+                            }
+                    }
+                    .onDelete { offsets in
+                        withAnimation {
+                            store.execute(.delete(offsets))
                         }
-                }
-                .onDelete { offsets in
-                    withAnimation {
-                        store.execute(.delete(offsets))
                     }
                 }
             }
-            .navigationTitle(title)
-            .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .dismissModal })) {
-                switch store.state.modal {
-                case let .safariView(tsundoc):
-                    #if os(iOS)
-                    NavigationView {
-                        BrowseView(baseUrl: tsundoc.url,
-                                   isPresenting: store.bind(\.isModalPresenting,
-                                                            action: { _ in .dismissModal }))
-                    }
-                    .ignoresSafeArea()
-                    #elseif os(macOS)
-                    EmptyView()
-                    #endif
-
-                default:
-                    EmptyView()
+        }
+        .navigationTitle(title)
+        .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .dismissModal })) {
+            switch store.state.modal {
+            case let .safariView(tsundoc):
+                #if os(iOS)
+                NavigationView {
+                    BrowseView(baseUrl: tsundoc.url,
+                               isPresenting: store.bind(\.isModalPresenting,
+                                                        action: { _ in .dismissModal }))
                 }
+                .ignoresSafeArea()
+                #elseif os(macOS)
+                EmptyView()
+                #endif
+
+            default:
+                EmptyView()
             }
-            .alert(isPresented: store.bind(\.isAlertPresenting, action: { _ in .dismissAlert })) {
-                switch store.state.alert {
-                case .failedToDelete:
-                    return Alert(title: Text("tsundoc_list_error_title_delete"))
+        }
+        .alert(isPresented: store.bind(\.isAlertPresenting, action: { _ in .dismissAlert })) {
+            switch store.state.alert {
+            case .failedToDelete:
+                return Alert(title: Text("tsundoc_list_error_title_delete"))
 
-                default:
-                    fatalError("Invalid Alert")
-                }
+            default:
+                fatalError("Invalid Alert")
             }
         }
         .onAppear {
@@ -99,6 +125,11 @@ struct TsundocList_Previews: PreviewProvider {
                           dependency: DummyDependency(),
                           reducer: TsundocListReducer())
         let viewStore = ViewStore(store: store)
-        TsundocList(title: L10n.tsundocListTitle, store: viewStore)
+        NavigationView {
+            TsundocList(title: L10n.tsundocListTitle,
+                        emptyTitle: L10n.tsundocListEmptyMessageDefaultTitle,
+                        emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
+                        store: viewStore)
+        }
     }
 }

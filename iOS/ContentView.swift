@@ -13,7 +13,12 @@ struct ContentView: View {
     var body: some View {
         let tsundocListStore = container.buildTsundocListStore(query: .all)
         let tagListStore = container.buildTagListStore()
-        let tsundocList = TsundocList(title: L10n.tsundocListTitle, store: tsundocListStore)
+        let tsundocList = NavigationView {
+            TsundocList(title: L10n.tsundocListTitle,
+                        emptyTitle: L10n.tsundocListEmptyMessageDefaultTitle,
+                        emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
+                        store: tsundocListStore)
+        }
 
         if idiom == .pad {
             NavigationView {

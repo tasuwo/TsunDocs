@@ -17,6 +17,8 @@ struct TagList: View {
     @StateObject var store: Store
     @StateObject var engine: TextEngine = .init(debounceFor: 0.3)
 
+    @Environment(\.tsundocListStoreBuilder) var tsundocListSotreBuilder
+
     // MARK: - View
 
     var body: some View {
@@ -27,7 +29,7 @@ struct TagList: View {
                            TagListAction.mappingToGird)
                     .viewStore()
             )
-            .searchable(text: $engine.input, placement: .navigationBarDrawer(displayMode: .always))
+            .searchable(text: $engine.input)
             .navigationTitle(Text("tag_list_title"))
             .onChange(of: engine.output) { query in
                 store.execute(.control(.updateQuery(query)), animation: .default)
@@ -44,6 +46,13 @@ struct TagList: View {
                     }
                 }
             }
+            .background(
+                NavigationLink(destination: tsundocList(),
+                               isActive: store.bind(\.controlState.isTsundocListNavigationActive,
+                                                    action: { _ in .control(.navigation(.deactivated)) })) {
+                    EmptyView()
+                }
+            )
         }
         .alert(isPresented: store.bind(\.controlState.isAlertPresenting,
                                        action: { _ in .control(.alert(.dismissed)) })) {
@@ -82,6 +91,21 @@ struct TagList: View {
                              },
                              saveAction: { store.execute(.control(.alert(.updatedTitle($0)))) },
                              cancelAction: nil))
+    }
+
+    @ViewBuilder
+    private func tsundocList() -> some View {
+        if case let .tsundocList(tagId) = store.state.controlState.navigation,
+           let tag = store.state.gridState.tags.first(where: { $0.id == tagId })
+        {
+            let store = tsundocListSotreBuilder.buildTsundocListStore(query: .tagged(tagId))
+            TsundocList(title: tag.name,
+                        emptyTitle: L10n.tsundocListEmptyMessageTagMessage(tag.name),
+                        emptyMessage: nil,
+                        store: store)
+        } else {
+            EmptyView()
+        }
     }
 }
 

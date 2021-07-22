@@ -18,6 +18,10 @@ enum TagListControlAction: Action {
         case dismissed
     }
 
+    enum NavigationAction {
+        case deactivated
+    }
+
     enum PresentAction {
         case deleteConfirmation(Tag.ID, title: String, action: String)
     }
@@ -27,10 +31,12 @@ enum TagListControlAction: Action {
     case updateTags([Tag])
     case addNewTag
     case saveNewTag(String)
+    case select(Tag.ID)
     case tap(Tag.ID, MenuItem)
     case failedToSaveTag(CommandServiceError?)
     case failedToDeleteTag(CommandServiceError?)
     case failedToUpdateTag(CommandServiceError?)
     case alert(AlertAction)
+    case navigation(NavigationAction)
     case present(PresentAction)
 }

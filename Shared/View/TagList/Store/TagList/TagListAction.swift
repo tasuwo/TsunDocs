@@ -33,6 +33,9 @@ extension TagListAction {
         case let .control(action):
             return action
 
+        case let .grid(.select(tagId)):
+            return .select(tagId)
+
         case let .grid(.tap(tagId, item)):
             return .tap(tagId, item.controlAction)
 

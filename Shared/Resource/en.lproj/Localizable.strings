@@ -14,6 +14,11 @@
 "tsundoc_list_title" = "My List";
 "tsundoc_list_error_title_delete" = "Failed to delete.";
 
+"tsundoc_list_empty_message_default_title" = "No Clips";
+"tsundoc_list_empty_message_default_message" = "Share the url of the web site using other apps.";
+
+"tsundoc_list_empty_message_tag_message" = "No items categorized with Tag \"%@\"";
+
 "setting_view_title" = "Settings";
 "setting_view_section_title_this_app" = "About This App";
 "setting_view_row_app_version" = "Version";

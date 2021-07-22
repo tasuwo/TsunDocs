@@ -21,11 +21,16 @@ struct TagListControlState: Equatable {
         case edit(Edit)
     }
 
+    enum Navigation: Equatable {
+        case tsundocList(Tag.ID)
+    }
+
     var tags: [Tag] = []
     var lastHandledQuery: String?
     var filteredIds: Set<Tag.ID> = .init()
     var storage: SearchableStorage<Tag> = .init()
     var alert: Alert?
+    var navigation: Navigation?
 }
 
 extension TagListControlState {
@@ -69,5 +74,10 @@ extension TagListControlState {
         default:
             return false
         }
+    }
+
+    var isTsundocListNavigationActive: Bool {
+        guard case .tsundocList = navigation else { return false }
+        return true
     }
 }

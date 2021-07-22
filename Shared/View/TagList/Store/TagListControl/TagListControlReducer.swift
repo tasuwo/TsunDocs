@@ -59,6 +59,10 @@ struct TagListControlReducer: Reducer {
             }
             return (nextState, [effect])
 
+        case let .select(tagId):
+            nextState.navigation = .tsundocList(tagId)
+            return (nextState, .none)
+
         case let .tap(tagId, .copy):
             guard let tag = state.tags.first(where: { $0.id == tagId }) else {
                 return (nextState, .none)
@@ -122,6 +126,10 @@ struct TagListControlReducer: Reducer {
 
         case .alert(.dismissed):
             nextState.alert = nil
+            return (nextState, .none)
+
+        case .navigation(.deactivated):
+            nextState.navigation = nil
             return (nextState, .none)
 
         case .present:
