@@ -47,7 +47,9 @@ public struct TagGrid: View {
 
                         ForEach(calcRows(), id: \.self) { tags in
                             HStack(spacing: spacing) {
-                                ForEach(tags) { cell(geometry, $0) }
+                                ForEach(tags) {
+                                    cell(geometry, $0)
+                                }
                             }
                         }
                     }
@@ -65,19 +67,15 @@ public struct TagGrid: View {
                           isSelected: store.state.selectedIds.contains(tag.id)),
             size: store.state.configuration.size,
             onSelect: { store.execute(.select($0)) },
-            onDelete: { store.execute(.delete($0), animation: .default) },
-            menu: {
-                if store.state.configuration.isEnabledMenu {
-                    cellMenu(tag)
-                } else {
-                    EmptyView()
-                }
-            }
+            onDelete: { store.execute(.delete($0), animation: .default) }
         )
         .frame(maxWidth: geometry.size.width - inset * 2)
         .fixedSize()
         .onChangeFrame {
             cellSizes[tag] = $0
+        }
+        .contextMenu {
+            menu(tag)
         }
         .confirmationDialog(
             Text(store.state.titleForConfirmationToDelete),
@@ -88,47 +86,51 @@ public struct TagGrid: View {
             },
             titleVisibility: .visible
         ) {
-            cellDeleteConfirmationDialog(tag)
+            deleteConfirmationDialog(tag)
         }
     }
 
     @ViewBuilder
-    private func cellMenu(_ tag: Tag) -> some View {
-        Button {
-            store.execute(.tap(tag.id, .copy))
-        } label: {
-            Label {
-                Text("tag_grid_menu_copy", bundle: Bundle.this)
-            } icon: {
-                Image(systemName: "doc.on.doc")
+    private func menu(_ tag: Tag) -> some View {
+        if store.state.configuration.isEnabledMenu {
+            Button {
+                store.execute(.tap(tag.id, .copy))
+            } label: {
+                Label {
+                    Text(L10n.tagGridMenuCopy)
+                } icon: {
+                    Image(systemName: "doc.on.doc")
+                }
             }
-        }
 
-        Button {
-            store.execute(.tap(tag.id, .rename))
-        } label: {
-            Label {
-                Text("tag_grid_menu_rename", bundle: Bundle.this)
-            } icon: {
-                Image(systemName: "text.cursor")
+            Button {
+                store.execute(.tap(tag.id, .rename))
+            } label: {
+                Label {
+                    Text(L10n.tagGridMenuRename)
+                } icon: {
+                    Image(systemName: "text.cursor")
+                }
             }
-        }
 
-        Divider()
+            Divider()
 
-        Button(role: .destructive) {
-            store.execute(.tap(tag.id, .delete))
-        } label: {
-            Label {
-                Text("tag_grid_menu_delete", bundle: Bundle.this)
-            } icon: {
-                Image(systemName: "trash")
+            Button(role: .destructive) {
+                store.execute(.tap(tag.id, .delete))
+            } label: {
+                Label {
+                    Text(L10n.tagGridMenuDelete)
+                } icon: {
+                    Image(systemName: "trash")
+                }
             }
+        } else {
+            EmptyView()
         }
     }
 
     @ViewBuilder
-    private func cellDeleteConfirmationDialog(_ tag: Tag) -> some View {
+    private func deleteConfirmationDialog(_ tag: Tag) -> some View {
         Button(store.state.actionForConfirmationToDelete, role: .destructive) {
             store.execute(.alert(.confirmedToDelete(tag.id)))
         }
