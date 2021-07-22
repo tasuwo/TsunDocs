@@ -6,11 +6,23 @@ import CompositeKit
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.sceneDependencyContainer) var container
+    // MARK: - Properties
+
+    @StateObject var container: SceneDependencyContainer
 
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
+    // MARK: - View
+
     var body: some View {
+        content()
+            .environment(\.tsundocListStoreBuilder, container)
+            .environment(\.tagMultiAdditionViewStoreBuilder, container)
+            .environment(\.tagListStoreBuilder, container)
+    }
+
+    @ViewBuilder
+    func content() -> some View {
         let tsundocListStore = container.buildTsundocListStore(query: .all)
         let tagListStore = container.buildTagListStore()
         let tsundocList = NavigationView {
@@ -56,10 +68,10 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
+            ContentView(container: SceneDependencyContainer(AppDependencyContainer()))
                 .previewDevice("iPhone 12")
 
-            ContentView()
+            ContentView(container: SceneDependencyContainer(AppDependencyContainer()))
                 .previewDevice("iPad Pro (12.9-inch) (3rd generation)")
         }
     }
