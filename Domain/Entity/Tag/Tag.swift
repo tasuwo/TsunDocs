@@ -10,6 +10,7 @@ public struct Tag: Searchable, Equatable {
 
     public let id: UUID
     public let name: String
+    public let tsundocsCount: Int
 
     // MARK: - Searchable
 
@@ -17,16 +18,18 @@ public struct Tag: Searchable, Equatable {
 
     // MARK: - Initializers
 
-    public init(id: UUID, name: String, searchableText: String?) {
+    public init(id: UUID, name: String, tsundocsCount: Int, searchableText: String?) {
         self.id = id
         self.name = name
         self.searchableText = searchableText
+        self.tsundocsCount = tsundocsCount
     }
 
-    public init(id: UUID, name: String) {
+    public init(id: UUID, name: String, tsundocsCount: Int) {
         self.id = id
         self.name = name
         self.searchableText = name.transformToSearchableText()
+        self.tsundocsCount = tsundocsCount
     }
 }
 

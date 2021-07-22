@@ -12,7 +12,6 @@ extension Tag {
             return nil
         }
 
-        return .init(id: id,
-                     name: name)
+        return .init(id: id, name: name, tsundocsCount: Int(tsundocsCount))
     }
 }

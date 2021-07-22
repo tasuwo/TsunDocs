@@ -115,30 +115,30 @@ struct TagList_Previews: PreviewProvider {
     class Dependency: TagListDependency {
         var tags: AnyObservedEntityArray<Tag> = {
             let tags: [Tag] = [
-                .init(id: UUID(), name: "This"),
-                .init(id: UUID(), name: "is"),
-                .init(id: UUID(), name: "Flexible"),
-                .init(id: UUID(), name: "Gird"),
-                .init(id: UUID(), name: "Layout"),
-                .init(id: UUID(), name: "for"),
-                .init(id: UUID(), name: "Tags."),
-                .init(id: UUID(), name: "This"),
-                .init(id: UUID(), name: "Layout"),
-                .init(id: UUID(), name: "allows"),
-                .init(id: UUID(), name: "displaying"),
-                .init(id: UUID(), name: "very"),
-                .init(id: UUID(), name: "long"),
-                .init(id: UUID(), name: "tag"),
-                .init(id: UUID(), name: "names"),
-                .init(id: UUID(), name: "like"),
-                .init(id: UUID(), name: "Too Too Too Too Long Tag"),
-                .init(id: UUID(), name: "or"),
-                .init(id: UUID(), name: "Toooooooooooooo Loooooooooooooooooooooooong Tag."),
-                .init(id: UUID(), name: "All"),
-                .init(id: UUID(), name: "cell"),
-                .init(id: UUID(), name: "sizes"),
-                .init(id: UUID(), name: "are"),
-                .init(id: UUID(), name: "flexible")
+                .makeDefault(id: UUID(), name: "This"),
+                .makeDefault(id: UUID(), name: "is"),
+                .makeDefault(id: UUID(), name: "Flexible"),
+                .makeDefault(id: UUID(), name: "Gird"),
+                .makeDefault(id: UUID(), name: "Layout"),
+                .makeDefault(id: UUID(), name: "for"),
+                .makeDefault(id: UUID(), name: "Tags."),
+                .makeDefault(id: UUID(), name: "This"),
+                .makeDefault(id: UUID(), name: "Layout"),
+                .makeDefault(id: UUID(), name: "allows"),
+                .makeDefault(id: UUID(), name: "displaying"),
+                .makeDefault(id: UUID(), name: "very"),
+                .makeDefault(id: UUID(), name: "long"),
+                .makeDefault(id: UUID(), name: "tag"),
+                .makeDefault(id: UUID(), name: "names"),
+                .makeDefault(id: UUID(), name: "like"),
+                .makeDefault(id: UUID(), name: "Too Too Too Too Long Tag"),
+                .makeDefault(id: UUID(), name: "or"),
+                .makeDefault(id: UUID(), name: "Toooooooooooooo Loooooooooooooooooooooooong Tag."),
+                .makeDefault(id: UUID(), name: "All"),
+                .makeDefault(id: UUID(), name: "cell"),
+                .makeDefault(id: UUID(), name: "sizes"),
+                .makeDefault(id: UUID(), name: "are"),
+                .makeDefault(id: UUID(), name: "flexible")
             ]
             return ObservedTagArrayMock(values: .init(tags))
                 .eraseToAnyObservedEntityArray()
@@ -151,7 +151,9 @@ struct TagList_Previews: PreviewProvider {
             service.commitHandler = {}
             service.createTagHandler = { [unowned self] _ in
                 let id = UUID()
-                let newTag = Tag(id: id, name: String(UUID().uuidString.prefix(5)))
+                let newTag = Tag(id: id,
+                                 name: String(UUID().uuidString.prefix(5)),
+                                 tsundocsCount: 5)
 
                 let values = self.tags.values.value
                 self.tags.values.send(values + [newTag])

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19178.1" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Tag" representedClassName="Persistence.Tag" syncable="YES" codeGenerationType="class">
         <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="tsundocsCount" optional="YES" attributeType="Integer 64" derived="YES" derivationExpression="tsundocs.@count" usesScalarValueType="YES"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="clips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tsundoc" inverseName="tags" inverseEntity="Tsundoc"/>
+        <relationship name="tsundocs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tsundoc" inverseName="tags" inverseEntity="Tsundoc"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -19,13 +20,13 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
-        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="clips" inverseEntity="Tag"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="tsundocs" inverseEntity="Tag"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
     <elements>
-        <element name="Tag" positionX="-45" positionY="63" width="128" height="104"/>
+        <element name="Tag" positionX="-45" positionY="63" width="128" height="119"/>
         <element name="Tsundoc" positionX="-45" positionY="0" width="128" height="164"/>
     </elements>
 </model>

@@ -315,6 +315,7 @@
 		C1C3D88BD1A9493262B70AAE /* TagListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39207BDA04E73F372BDE4DDA /* TagListAction.swift */; };
 		C3C4E1A09ACB3BF4381AE494 /* AnyObservedEntityArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C35C0C8A9FE8563155A69 /* AnyObservedEntityArray.swift */; };
 		C64086B098CBB141BC3A0BDC /* StoreProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36703B036CCADF3624EF5269 /* StoreProxy.swift */; };
+		C6659842E4D62FFD8D36E32B /* Domain.AutoDefaultValue.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */; };
 		C6B01428850180A842249217 /* ObservedTsundoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB12BE80561F7E0A9DBE4E6D /* ObservedTsundoc.swift */; };
 		C7973BB0E54C2AF2ACD094AF /* TagControlAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C919C76EC9B19FE3C24FC220 /* TagControlAction.swift */; };
 		C7A0142E67A8EF7681EF5E90 /* HTTPURLResponse+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA797FDE403EA923AD92AD5 /* HTTPURLResponse+Mock.swift */; };
@@ -348,6 +349,7 @@
 		D6E1AB407C123DFED473D8B6 /* ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C544C2D5A0778EFAE021B /* ServiceDependencies.swift */; };
 		D6F3F4DD6D3F089E701C633D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211920DFC6015D69A75355D2 /* String.swift */; };
 		D6F9EAD66695596FD31B60A0 /* Persistence.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27C0DCB7221B326130827769 /* Persistence.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D72E515B1C52C57A05B5D49E /* Domain.AutoDefaultValue.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */; };
 		D74319E3F5D5A586C09DE885 /* EmojiList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03646CAC1ABF090950BBBFE /* EmojiList.swift */; };
 		D74E9A22EE74BF7DA0AECFCE /* TextEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F389A707C98E981825910611 /* TextEngine.swift */; };
 		D81E6D222BBF0770DD7D0395 /* TagQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F23479C1E3AC092FAFEF3 /* TagQueryService.swift */; };
@@ -388,6 +390,7 @@
 		EBE1BAA46825FF94CDAFDAED /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE8E4C95F3B77C48BA1DA9 /* EmojiCell.swift */; };
 		EC1AD6D29033C4429C420E8B /* Persistence.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69F854A01A6B968EC4A5C926 /* Persistence.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ECDE91686FB35D5F0A724900 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */; };
+		ED87076702C0CD2029922952 /* Domain.AutoDefaultValue.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */; };
 		ED8833A13BC5FE36A96EE200 /* TagMultiSelectionViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEE9248CD6CD94699DC3DA /* TagMultiSelectionViewState.swift */; };
 		ED8D4DD70BD742DF77AFF034 /* SharedUrlEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F046E75E5BDEDB9A49372B80 /* SharedUrlEditView.swift */; };
 		EE32E8797ED9E58CFEEA5774 /* TagMultiAdditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43577EF368F748451ACA91 /* TagMultiAdditionView.swift */; };
@@ -1551,7 +1554,8 @@
 			children = (
 				4730211ABFA16371F01D50AD /* Domain.AutoDefaultValue.generated.swift */,
 			);
-			path = Struct;
+			name = Struct;
+			path = "Preview Content/Mocks/Struct";
 			sourceTree = "<group>";
 		};
 		919B1B21137DDA18D9EB3C85 /* View */ = {
@@ -1977,6 +1981,7 @@
 				E982BA6FBB67A0852BE6AD47 /* CompositeKit */,
 				0AF84BA0FB5367367F847128 /* Manual */,
 				2DFADEEAB84AFFA0447A9497 /* Protocol */,
+				90FA9BBF04604F13BF03A3CA /* Struct */,
 				77D54FD8509C86A2E1547E28 /* Frameworks */,
 				DAE688497F8FD91FBA8897BF /* Products */,
 			);
@@ -2565,6 +2570,7 @@
 				095FB4AD85EB4BF725EE25C6 /* ActionButtonStyle.swift in Sources */,
 				FD05B15F77F12AFF41CB423F /* AsyncImage.swift in Sources */,
 				9EC8C4A76F0FCC73C4243CB7 /* Bundle.swift in Sources */,
+				ED87076702C0CD2029922952 /* Domain.AutoDefaultValue.generated.swift in Sources */,
 				B265746659C347CD5BBCF4C7 /* Domain.ProtocolMocks.swift in Sources */,
 				EBE1BAA46825FF94CDAFDAED /* EmojiCell.swift in Sources */,
 				5EFA68086715B8C5014D9E90 /* EmojiList.swift in Sources */,
@@ -2616,6 +2622,7 @@
 			files = (
 				FC58345881B03CD9B64F4453 /* Bundle.swift in Sources */,
 				E87592B060CDE02492A2B56C /* Completable.swift in Sources */,
+				C6659842E4D62FFD8D36E32B /* Domain.AutoDefaultValue.generated.swift in Sources */,
 				1B97A00BD8BA657475A2F62C /* Domain.ProtocolMocks.swift in Sources */,
 				C7A0142E67A8EF7681EF5E90 /* HTTPURLResponse+Mock.swift in Sources */,
 				A1C30E197515B64E3266009C /* ObservedTagArrayMock.swift in Sources */,
@@ -2645,6 +2652,7 @@
 				453325EDD98203617A3F7633 /* ActionButtonStyle.swift in Sources */,
 				4081508B5EE82D0EC9A09EB3 /* AsyncImage.swift in Sources */,
 				8C1DEE084732170B3E134782 /* Bundle.swift in Sources */,
+				D72E515B1C52C57A05B5D49E /* Domain.AutoDefaultValue.generated.swift in Sources */,
 				2D0327CDDEBBF899666DAD60 /* Domain.ProtocolMocks.swift in Sources */,
 				FE851C2EBA912AD1ADF75717 /* EmojiCell.swift in Sources */,
 				D74319E3F5D5A586C09DE885 /* EmojiList.swift in Sources */,

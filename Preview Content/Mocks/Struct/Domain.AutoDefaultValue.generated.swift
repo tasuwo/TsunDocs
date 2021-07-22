@@ -7,11 +7,13 @@ extension Tag {
     static func makeDefault(
         id: UUID = UUID(),
         name: String = "",
+        tsundocsCount: Int = 0,
         searchableText: String? = nil
     ) -> Self {
         return .init(
             id: id,
             name: name,
+            tsundocsCount: tsundocsCount,
             searchableText: searchableText
         )
     }
