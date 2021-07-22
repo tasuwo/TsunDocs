@@ -16,8 +16,15 @@
 
 "tsundoc_list_empty_message_default_title" = "アイテムがありません";
 "tsundoc_list_empty_message_default_message" = "他のアプリの「共有」から、追加したいサイトの URL をシェアしましょう";
-
 "tsundoc_list_empty_message_tag_message" = "タグ「%@」が付与されたアイテムはありません";
+
+"tsundoc_list_menu_add_tag" = "タグを追加する";
+"tsundoc_list_menu_copy_url" = "URLをコピー";
+"tsundoc_list_menu_open_safari" = "Safariで開く";
+"tsundoc_list_menu_delete" = "削除する";
+
+"tsundoc_list_alert_delete_tsundoc_message" = "このアイテムを削除しますか？";
+"tsundoc_list_alert_delete_tsundoc_action" = "アイテムを削除";
 
 "setting_view_title" = "設定";
 "setting_view_section_title_this_app" = "このアプリについて";
@@ -45,3 +52,5 @@
 "error_tag_delete" = "タグの削除に失敗しました";
 "error_tag_rename_duplicated" = "同じ名前のタグが既に存在します";
 "error_tag_update" = "タグの更新に失敗しました";
+
+"cancel" = "キャンセル";

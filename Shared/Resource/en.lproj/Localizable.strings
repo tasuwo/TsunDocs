@@ -16,8 +16,15 @@
 
 "tsundoc_list_empty_message_default_title" = "No Clips";
 "tsundoc_list_empty_message_default_message" = "Share the url of the web site using other apps.";
-
 "tsundoc_list_empty_message_tag_message" = "No items categorized with Tag \"%@\"";
+
+"tsundoc_list_menu_add_tag" = "Add Tags";
+"tsundoc_list_menu_copy_url" = "Copy URL";
+"tsundoc_list_menu_open_safari" = "Open Safari";
+"tsundoc_list_menu_delete" = "Delete";
+
+"tsundoc_list_alert_delete_tsundoc_message" = "Are you sure you want to delete this item?";
+"tsundoc_list_alert_delete_tsundoc_action" = "Delete Item";
 
 "setting_view_title" = "Settings";
 "setting_view_section_title_this_app" = "About This App";
@@ -45,3 +52,5 @@
 "error_tag_delete" = "Failed to delete tag";
 "error_tag_rename_duplicated" = "Duplicated tag name.";
 "error_tag_update" = "Failed to update tag";
+
+"cancel" = "Cancel";

@@ -8,6 +8,7 @@ import Domain
 
 typealias TsundocListDependency = HasTsundocQueryService
     & HasTsundocCommandService
+    & HasPasteboard
 
 struct TsundocListReducer: Reducer {
     typealias Dependency = TsundocListDependency
@@ -35,11 +36,43 @@ struct TsundocListReducer: Reducer {
             nextState.modal = .safariView(tsundoc)
             return (nextState, nil)
 
+        case let .tap(tsundocId, .addTag):
+            // TODO:
+            return (nextState, nil)
+
+        case let .tap(tsundocId, .copyUrl):
+            guard let tsundoc = state.tsundocs.first(where: { $0.id == tsundocId }) else {
+                return (nextState, nil)
+            }
+            dependency.pasteboard.set(tsundoc.url.absoluteString)
+            return (nextState, nil)
+
+        case let .tap(tsundocId, .delete):
+            nextState.alert = .confirmation(.delete(tsundocId))
+            return (nextState, nil)
+
+        case .failedToDeleteTsundoc:
+            nextState.alert = .plain(.failedToDelete)
+            return (nextState, nil)
+
         case .dismissModal:
             nextState.modal = nil
             return (nextState, nil)
 
-        case .dismissAlert:
+        case let .alert(.confirmedToDelete(tsundocId)):
+            let effect = Effect<Action> {
+                do {
+                    try await dependency.tsundocCommandService.deleteTsundoc(having: tsundocId)
+                    return .none
+                } catch let error as CommandServiceError {
+                    return .failedToDeleteTsundoc(error)
+                } catch {
+                    return .failedToDeleteTsundoc(nil)
+                }
+            }
+            return (nextState, [effect])
+
+        case .alert(.dismissed):
             nextState.alert = nil
             return (nextState, nil)
         }
@@ -120,7 +153,7 @@ extension TsundocListReducer {
         }
 
         if failedToDelete {
-            nextState.alert = .failedToDelete
+            nextState.alert = .plain(.failedToDelete)
             return nextState
         }
 

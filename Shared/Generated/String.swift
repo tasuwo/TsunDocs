@@ -16,6 +16,8 @@ internal enum L10n {
     internal static let browseViewButtonClose = L10n.tr("Localizable", "browse_view_button_close")
     /// 読み込み中...
     internal static let browseViewTitleLoading = L10n.tr("Localizable", "browse_view_title_loading")
+    /// キャンセル
+    internal static let cancel = L10n.tr("Localizable", "cancel")
     /// タグの追加に失敗しました
     internal static let errorTagAddDefault = L10n.tr("Localizable", "error_tag_add_default")
     /// 同名のタグを追加することはできません
@@ -59,6 +61,10 @@ internal enum L10n {
     internal static let tagListAlertUpdateTagNameTitle = L10n.tr("Localizable", "tag_list_alert_update_tag_name_title")
     /// タグ
     internal static let tagListTitle = L10n.tr("Localizable", "tag_list_title")
+    /// アイテムを削除
+    internal static let tsundocListAlertDeleteTsundocAction = L10n.tr("Localizable", "tsundoc_list_alert_delete_tsundoc_action")
+    /// このアイテムを削除しますか？
+    internal static let tsundocListAlertDeleteTsundocMessage = L10n.tr("Localizable", "tsundoc_list_alert_delete_tsundoc_message")
     /// 他のアプリの「共有」から、追加したいサイトの URL をシェアしましょう
     internal static let tsundocListEmptyMessageDefaultMessage = L10n.tr("Localizable", "tsundoc_list_empty_message_default_message")
     /// アイテムがありません
@@ -70,6 +76,14 @@ internal enum L10n {
 
     /// 削除に失敗しました
     internal static let tsundocListErrorTitleDelete = L10n.tr("Localizable", "tsundoc_list_error_title_delete")
+    /// タグを追加する
+    internal static let tsundocListMenuAddTag = L10n.tr("Localizable", "tsundoc_list_menu_add_tag")
+    /// URLをコピー
+    internal static let tsundocListMenuCopyUrl = L10n.tr("Localizable", "tsundoc_list_menu_copy_url")
+    /// 削除する
+    internal static let tsundocListMenuDelete = L10n.tr("Localizable", "tsundoc_list_menu_delete")
+    /// Safariで開く
+    internal static let tsundocListMenuOpenSafari = L10n.tr("Localizable", "tsundoc_list_menu_open_safari")
     /// マイリスト
     internal static let tsundocListTitle = L10n.tr("Localizable", "tsundoc_list_title")
 }

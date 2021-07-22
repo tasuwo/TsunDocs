@@ -12,7 +12,16 @@ struct TsundocListState: Equatable {
     }
 
     enum Alert: Equatable {
-        case failedToDelete
+        enum Confirmation: Equatable {
+            case delete(Tsundoc.ID)
+        }
+
+        enum Plain {
+            case failedToDelete
+        }
+
+        case plain(Plain)
+        case confirmation(Confirmation)
     }
 
     enum Modal: Equatable {
@@ -34,5 +43,14 @@ extension TsundocListState {
 
 extension TsundocListState {
     var isModalPresenting: Bool { modal != nil }
-    var isAlertPresenting: Bool { alert != nil }
+
+    var isAlertPresenting: Bool {
+        guard case .plain = alert else { return false }
+        return true
+    }
+
+    var deletingTsundocId: Tsundoc.ID? {
+        guard case let .confirmation(.delete(id)) = alert else { return nil }
+        return id
+    }
 }
