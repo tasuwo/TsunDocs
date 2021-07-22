@@ -3,14 +3,13 @@
 //
 
 import CompositeKit
-import TsunDocsUIKit
 
-public enum TagSelectionViewAction: Action {
+public enum TagMultiAdditionViewAction: Action {
     case multiSelection(TagMultiSelectionViewAction)
     case control(TagControlAction)
 }
 
-extension TagSelectionViewAction {
+extension TagMultiAdditionViewAction {
     static let mappingToMultiSelection: ActionMapping<Self, TagMultiSelectionViewAction> = .init(build: {
         .multiSelection($0)
     }, get: {

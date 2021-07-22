@@ -117,12 +117,12 @@ public struct SharedUrlEditView: View {
         .sheet(isPresented: store.bind(\.isTagEditSheetPresenting,
                                        action: { _ in .edit(.alertDismissed) })) {
             let selectedIds = Set(store.state.selectedTags.map(\.id))
-            let _store = Store(initialState: TagSelectionViewState(selectedIds: selectedIds),
+            let _store = Store(initialState: TagMultiAdditionViewState(selectedIds: selectedIds),
                                dependency: tagSelectionViewDependency,
-                               reducer: tagSelectionViewReducer)
+                               reducer: TagMultiAdditionViewReducer)
             let viewStore = ViewStore(store: _store)
-            TagSelectionView(store: viewStore,
-                             onDone: { store.execute(.edit(.onSelectedTags($0))) })
+            TagMultiAdditionView(store: viewStore,
+                                 onDone: { store.execute(.edit(.onSelectedTags($0))) })
         }
         .alert(isPresenting: store.bind(\.isTitleEditAlertPresenting,
                                         action: { _ in .edit(.alertDismissed) }),

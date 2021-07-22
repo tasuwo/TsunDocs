@@ -28,14 +28,6 @@ internal enum L10n {
     internal static let sharedUrlEditViewTitleEditPlaceholder = L10n.tr("Localizable", "shared_url_edit_view_title_edit_placeholder")
     /// タイトルの編集
     internal static let sharedUrlEditViewTitleEditTitle = L10n.tr("Localizable", "shared_url_edit_view_title_edit_title")
-    /// このタグの名前を入力してください
-    internal static let tagSelectionViewAlertNewTagMessage = L10n.tr("Localizable", "tag_selection_view_alert_new_tag_message")
-    /// タグ名
-    internal static let tagSelectionViewAlertNewTagPlaceholder = L10n.tr("Localizable", "tag_selection_view_alert_new_tag_placeholder")
-    /// 新規タグ
-    internal static let tagSelectionViewAlertNewTagTitle = L10n.tr("Localizable", "tag_selection_view_alert_new_tag_title")
-    /// 完了
-    internal static let tagSelectionViewDoneButton = L10n.tr("Localizable", "tag_selection_view_done_button")
 }
 
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

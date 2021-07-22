@@ -13,8 +13,14 @@
 
 "tag_selection_view_title" = "Select Tag";
 
+"tag_multi_addition_view_alert_new_tag_title" = "New Tag";
+"tag_multi_addition_view_alert_new_tag_message" = "Enter a name for this tag.";
+"tag_multi_addition_view_alert_new_tag_placeholder" = "Tag Name";
+"tag_multi_addition_view_done_button" = "Done";
+
 "tag_grid_menu_copy" = "Copy";
 "tag_grid_menu_rename" = "Rename";
 "tag_grid_menu_delete" = "Delete";
 
+"close" = "Close";
 "cancel" = "Cancel";

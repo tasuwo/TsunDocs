@@ -13,8 +13,14 @@
 
 "tag_selection_view_title" = "タグを選択";
 
+"tag_multi_addition_view_alert_new_tag_title" = "新規タグ";
+"tag_multi_addition_view_alert_new_tag_message" = "このタグの名前を入力してください";
+"tag_multi_addition_view_alert_new_tag_placeholder" = "タグ名";
+"tag_multi_addition_view_done_button" = "完了";
+
 "tag_grid_menu_copy" = "コピー";
 "tag_grid_menu_rename" = "名前の変更";
 "tag_grid_menu_delete" = "削除";
 
+"close" = "閉じる";
 "cancel" = "キャンセル";

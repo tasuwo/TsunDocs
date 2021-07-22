@@ -5,12 +5,11 @@
 import CompositeKit
 import Domain
 import SwiftUI
-import TsunDocsUIKit
 
-struct TagSelectionView: View {
-    typealias Store = ViewStore<
-        TagSelectionViewState,
-        TagSelectionViewAction,
+public struct TagMultiAdditionView: View {
+    public typealias Store = ViewStore<
+        TagMultiAdditionViewState,
+        TagMultiAdditionViewAction,
         TagSelectionViewDependency
     >
 
@@ -19,19 +18,19 @@ struct TagSelectionView: View {
 
     // MARK: - Initializers
 
-    init(store: Store, onDone: @escaping ([Tag]) -> Void) {
+    public init(store: Store, onDone: @escaping ([Tag]) -> Void) {
         _store = StateObject(wrappedValue: store)
         self.onDone = onDone
     }
 
     // MARK: - View
 
-    var body: some View {
+    public var body: some View {
         NavigationView {
             TagMultiSelectionView(store:
                 store
-                    .proxy(TagSelectionViewState.mappingToMultiSelection,
-                           TagSelectionViewAction.mappingToMultiSelection)
+                    .proxy(TagMultiAdditionViewState.mappingToMultiSelection,
+                           TagMultiAdditionViewAction.mappingToMultiSelection)
                     .viewStore()
             )
             .onAppear {
@@ -49,7 +48,7 @@ struct TagSelectionView: View {
                     Button {
                         onDone(store.state.selectedTags)
                     } label: {
-                        Text("tag_selection_view_done_button", bundle: Bundle.this)
+                        Text(L10n.tagMultiAdditionViewDoneButton)
                     }
                 }
             }
@@ -57,9 +56,9 @@ struct TagSelectionView: View {
         .alert(isPresenting: store.bind(\.controlState.isTagAdditionAlertPresenting,
                                         action: { _ in .control(.alertDismissed) }),
                text: "",
-               config: .init(title: L10n.tagSelectionViewAlertNewTagTitle,
-                             message: L10n.tagSelectionViewAlertNewTagMessage,
-                             placeholder: L10n.tagSelectionViewAlertNewTagPlaceholder,
+               config: .init(title: L10n.tagMultiAdditionViewAlertNewTagTitle,
+                             message: L10n.tagMultiAdditionViewAlertNewTagMessage,
+                             placeholder: L10n.tagMultiAdditionViewAlertNewTagPlaceholder,
                              validator: { $0?.count ?? 0 > 0 },
                              saveAction: { store.execute(.control(.didSaveTag($0))) },
                              cancelAction: nil))
@@ -139,12 +138,12 @@ struct TagSelectionView_Previews: PreviewProvider {
                     Text("Select tag")
                 }
                 .sheet(isPresented: $isPresenting) {
-                    let store = Store(initialState: TagSelectionViewState(),
+                    let store = Store(initialState: TagMultiAdditionViewState(),
                                       dependency: Dependency(),
-                                      reducer: tagSelectionViewReducer)
+                                      reducer: TagMultiAdditionViewReducer)
                     let viewStore = ViewStore(store: store)
-                    TagSelectionView(store: viewStore,
-                                     onDone: { _ in isPresenting = false })
+                    TagMultiAdditionView(store: viewStore,
+                                         onDone: { _ in isPresenting = false })
                 }
             }
         }

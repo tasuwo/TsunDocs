@@ -12,6 +12,8 @@ import Foundation
 internal enum L10n {
     /// キャンセル
     internal static let cancel = L10n.tr("Localizable", "cancel")
+    /// 閉じる
+    internal static let close = L10n.tr("Localizable", "close")
     /// 絵文字を選択
     internal static let emojiListTitle = L10n.tr("Localizable", "emoji_list_title")
     /// コピー
@@ -20,6 +22,14 @@ internal enum L10n {
     internal static let tagGridMenuDelete = L10n.tr("Localizable", "tag_grid_menu_delete")
     /// 名前の変更
     internal static let tagGridMenuRename = L10n.tr("Localizable", "tag_grid_menu_rename")
+    /// このタグの名前を入力してください
+    internal static let tagMultiAdditionViewAlertNewTagMessage = L10n.tr("Localizable", "tag_multi_addition_view_alert_new_tag_message")
+    /// タグ名
+    internal static let tagMultiAdditionViewAlertNewTagPlaceholder = L10n.tr("Localizable", "tag_multi_addition_view_alert_new_tag_placeholder")
+    /// 新規タグ
+    internal static let tagMultiAdditionViewAlertNewTagTitle = L10n.tr("Localizable", "tag_multi_addition_view_alert_new_tag_title")
+    /// 完了
+    internal static let tagMultiAdditionViewDoneButton = L10n.tr("Localizable", "tag_multi_addition_view_done_button")
     /// タグを選択
     internal static let tagSelectionViewTitle = L10n.tr("Localizable", "tag_selection_view_title")
     /// キャンセル
