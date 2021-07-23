@@ -19,8 +19,6 @@ public struct SharedUrlEditViewState: Equatable {
     var selectedTags: [Tag]
 
     var alert: Alert?
-    var isTitleEditAlertPresenting: Bool
-    var isTagEditSheetPresenting: Bool
 }
 
 extension SharedUrlEditViewState {

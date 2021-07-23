@@ -40,6 +40,12 @@ internal enum L10n {
     internal static let tsundocEditViewSaveButton = L10n.tr("Localizable", "tsundoc_edit_view_save_button")
     /// タグ
     internal static let tsundocEditViewTagsTitle = L10n.tr("Localizable", "tsundoc_edit_view_tags_title")
+    /// このWebページのタイトルを入力してください
+    internal static let tsundocEditViewTitleEditMessage = L10n.tr("Localizable", "tsundoc_edit_view_title_edit_message")
+    /// タイトル
+    internal static let tsundocEditViewTitleEditPlaceholder = L10n.tr("Localizable", "tsundoc_edit_view_title_edit_placeholder")
+    /// タイトルの編集
+    internal static let tsundocEditViewTitleEditTitle = L10n.tr("Localizable", "tsundoc_edit_view_title_edit_title")
 }
 
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

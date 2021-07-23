@@ -7,9 +7,6 @@
 */
 
 "shared_url_edit_view_no_title" = "No Title";
-"shared_url_edit_view_title_edit_title" = "Edit Title";
-"shared_url_edit_view_title_edit_message" = "Enter a title for this web site.";
-"shared_url_edit_view_title_edit_placeholder" = "Title";
 "shared_url_edit_view_error_title_load_url" = "Failed to read url.";
 "shared_url_edit_view_error_title_save_url" = "Failed to save url.";
 

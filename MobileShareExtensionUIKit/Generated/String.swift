@@ -18,12 +18,6 @@ internal enum L10n {
     internal static let sharedUrlEditViewErrorTitleSaveUrl = L10n.tr("Localizable", "shared_url_edit_view_error_title_save_url")
     /// タイトルなし
     internal static let sharedUrlEditViewNoTitle = L10n.tr("Localizable", "shared_url_edit_view_no_title")
-    /// このWebページのタイトルを入力してください
-    internal static let sharedUrlEditViewTitleEditMessage = L10n.tr("Localizable", "shared_url_edit_view_title_edit_message")
-    /// タイトル
-    internal static let sharedUrlEditViewTitleEditPlaceholder = L10n.tr("Localizable", "shared_url_edit_view_title_edit_placeholder")
-    /// タイトルの編集
-    internal static let sharedUrlEditViewTitleEditTitle = L10n.tr("Localizable", "shared_url_edit_view_title_edit_title")
 }
 
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

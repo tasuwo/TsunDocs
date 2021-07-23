@@ -54,14 +54,6 @@ public struct SharedUrlEditViewReducer: Reducer {
             nextState.alert = .failedToSaveSharedUrl
             return (nextState, .none)
 
-        case .onTapEditTitleButton:
-            nextState.isTitleEditAlertPresenting = true
-            return (nextState, .none)
-
-        case .onTapEditTagButton:
-            nextState.isTagEditSheetPresenting = true
-            return (nextState, .none)
-
         case let .onSaveTitle(title):
             nextState.sharedUrlTitle = title
             return (nextState, .none)
@@ -76,7 +68,6 @@ public struct SharedUrlEditViewReducer: Reducer {
 
         case let .onSelectedTags(tags):
             nextState.selectedTags = tags
-            nextState.isTagEditSheetPresenting = false
             return (nextState, .none)
 
         case let .onDeleteTag(tagId):
@@ -89,8 +80,6 @@ public struct SharedUrlEditViewReducer: Reducer {
 
         case .alertDismissed:
             nextState.alert = nil
-            nextState.isTitleEditAlertPresenting = false
-            nextState.isTagEditSheetPresenting = false
             return (nextState, .none)
         }
     }

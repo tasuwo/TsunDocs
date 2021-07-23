@@ -11,32 +11,32 @@ public struct TsundocEditView: View {
 
     private let url: URL
     private let title: String
-    private let existsSelectedTags: Bool
-    private let onTapEditTitleButton: () -> Void
+    private let selectedTags: Set<Tag.ID>
+    private let onEditTitle: (String) -> Void
     private let onTapSaveButton: () -> Void
-    private let onTapEditTagButton: () -> Void
+    private let onSelectTags: ([Tag]) -> Void
 
-    private let tagGridStoreBuilder: () -> ViewStore<TagGridState, TagGridAction, TagGridDependency>
+    @State var isTagEditSheetPresenting = false
+    @State var isTitleEditAlertPresenting = false
 
-    @Environment(\.tsundocEditThumbnailStoreBuilder) var tsundocEditThumbnailStoreBuilder
+    @Environment(\.tagGridStoreBuilder) var tagGridStoreBuilder
+    @Environment(\.tagMultiAdditionViewStoreBuilder) var tagMultiAdditionViewStoreBuilder
 
     // MARK: - Initializers
 
     public init(url: URL,
                 title: String,
-                existsSelectedTags: Bool,
-                tagGridStoreBuilder: @escaping () -> ViewStore<TagGridState, TagGridAction, TagGridDependency>,
-                onTapEditTitleButton: @escaping () -> Void,
+                selectedTags: Set<Tag.ID>,
+                onEditTitle: @escaping (String) -> Void,
                 onTapSaveButton: @escaping () -> Void,
-                onTapEditTagButton: @escaping () -> Void)
+                onSelectTags: @escaping ([Tag]) -> Void)
     {
         self.url = url
         self.title = title
-        self.existsSelectedTags = existsSelectedTags
-        self.tagGridStoreBuilder = tagGridStoreBuilder
-        self.onTapEditTitleButton = onTapEditTitleButton
+        self.selectedTags = selectedTags
+        self.onEditTitle = onEditTitle
         self.onTapSaveButton = onTapSaveButton
-        self.onTapEditTagButton = onTapEditTagButton
+        self.onSelectTags = onSelectTags
     }
 
     // MARK: - View
@@ -44,9 +44,8 @@ public struct TsundocEditView: View {
     public var body: some View {
         VStack {
             TsundocMetaContainer(url: url, title: title) {
-                onTapEditTitleButton()
+                isTitleEditAlertPresenting = true
             }
-            .environment(\.tsundocEditThumbnailStoreBuilder, tsundocEditThumbnailStoreBuilder)
 
             Divider()
 
@@ -68,9 +67,26 @@ public struct TsundocEditView: View {
             .padding()
         }
         .padding(8)
+        .sheet(isPresented: $isTagEditSheetPresenting) {
+            let viewStore = tagMultiAdditionViewStoreBuilder.buildTagMultiAdditionViewStore(selectedIds: selectedTags)
+            TagMultiAdditionView(store: viewStore) {
+                isTagEditSheetPresenting = false
+                onSelectTags($0)
+            }
+        }
+        .alert(isPresenting: $isTitleEditAlertPresenting,
+               text: title,
+               config: .init(title: L10n.tsundocEditViewTitleEditTitle,
+                             message: L10n.tsundocEditViewTitleEditMessage,
+                             placeholder: L10n.tsundocEditViewTitleEditPlaceholder,
+                             validator: { title != $0 && $0?.count ?? 0 > 0 },
+                             saveAction: { onEditTitle($0) },
+                             cancelAction: nil))
     }
 
-    private func tagContainer() -> some View {
+    @MainActor
+    @ViewBuilder
+    func tagContainer() -> some View {
         VStack {
             HStack {
                 Text(L10n.tsundocEditViewTagsTitle)
@@ -81,12 +97,12 @@ public struct TsundocEditView: View {
                     .foregroundColor(.cyan)
                     .font(.system(size: 24))
                     .onTapGesture {
-                        onTapEditTagButton()
+                        isTagEditSheetPresenting = true
                     }
             }
 
-            if existsSelectedTags {
-                TagGrid(store: tagGridStoreBuilder(), inset: 0)
+            if !selectedTags.isEmpty {
+                TagGrid(store: tagGridStoreBuilder.buildTagGridStore(), inset: 0)
             } else {
                 Spacer()
             }

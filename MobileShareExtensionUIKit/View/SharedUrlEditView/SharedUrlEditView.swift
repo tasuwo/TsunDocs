@@ -14,22 +14,21 @@ public struct SharedUrlEditView: View {
         SharedUrlEditViewRootDependency
     >
 
-    struct ThumbnailStoreBuilder: TsundocEditThumbnailStoreBuildable {
+    struct StoreBuilder: TsundocEditThumbnailStoreBuildable, TagGridStoreBuildable {
         let store: Store
 
         func buildTsundocEditThumbnailStore() -> ViewStore<TsundocEditThumbnailState, TsundocEditThumbnailAction, TsundocEditThumbnailDependency> {
-            return store
-                .proxy(SharedUrlEditViewRootState.mappingToImage,
-                       SharedUrlEditViewRootAction.mappingToImage)
-                .viewStore()
+            return store.tsundocEditThumbnailStore
+        }
+
+        func buildTagGridStore() -> ViewStore<TagGridState, TagGridAction, TagGridDependency> {
+            return store.tagGridStore
         }
     }
 
     // MARK: - Properties
 
     @StateObject var store: Store
-
-    @Environment(\.tagMultiAdditionViewStoreBuilder) var tagMultiAdditionViewStoreBuilder
 
     // MARK: - Initializers
 
@@ -44,19 +43,15 @@ public struct SharedUrlEditView: View {
             if let url = store.state.sharedUrl {
                 TsundocEditView(url: url,
                                 title: store.state.sharedUrlTitle ?? "",
-                                existsSelectedTags: !store.state.selectedTags.isEmpty) {
-                    store
-                        .proxy(SharedUrlEditViewRootState.mappingToTagGrid,
-                               SharedUrlEditViewRootAction.mappingToTagGrid)
-                        .viewStore()
-                } onTapEditTitleButton: {
-                    store.execute(.edit(.onTapEditTitleButton))
+                                selectedTags: Set(store.state.selectedTags.map(\.id))) {
+                    store.execute(.edit(.onSaveTitle($0)))
                 } onTapSaveButton: {
                     store.execute(.edit(.onTapSaveButton))
-                } onTapEditTagButton: {
-                    store.execute(.edit(.onTapEditTagButton))
+                } onSelectTags: {
+                    store.execute(.edit(.onSelectedTags($0)))
                 }
-                .environment(\.tsundocEditThumbnailStoreBuilder, ThumbnailStoreBuilder(store: store))
+                .environment(\.tagGridStoreBuilder, StoreBuilder(store: store))
+                .environment(\.tsundocEditThumbnailStoreBuilder, StoreBuilder(store: store))
             } else {
                 ProgressView()
                     .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
@@ -78,28 +73,10 @@ public struct SharedUrlEditView: View {
                                  message: Text("shared_url_edit_view_error_title_save_url", bundle: Bundle.this),
                                  dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.edit(.errorConfirmed)) }))
 
-                default:
+                case .none:
                     fatalError("Invalid Alert")
                 }
             })
-        .sheet(isPresented: store.bind(\.isTagEditSheetPresenting,
-                                       action: { _ in .edit(.alertDismissed) })) {
-            let selectedIds = Set(store.state.selectedTags.map(\.id))
-            let viewStore = tagMultiAdditionViewStoreBuilder.buildTagMultiAdditionViewStore(selectedIds: selectedIds)
-            TagMultiAdditionView(store: viewStore,
-                                 onDone: { store.execute(.edit(.onSelectedTags($0))) })
-        }
-        .alert(isPresenting: store.bind(\.isTitleEditAlertPresenting,
-                                        action: { _ in .edit(.alertDismissed) }),
-               text: store.state.sharedUrlTitle ?? "",
-               config: .init(title: L10n.sharedUrlEditViewTitleEditTitle,
-                             message: L10n.sharedUrlEditViewTitleEditMessage,
-                             placeholder: L10n.sharedUrlEditViewTitleEditPlaceholder,
-                             validator: { text in
-                                 store.state.sharedUrlTitle != text && text?.count ?? 0 > 0
-                             },
-                             saveAction: { store.execute(.edit(.onSaveTitle($0))) },
-                             cancelAction: nil))
     }
 }
 

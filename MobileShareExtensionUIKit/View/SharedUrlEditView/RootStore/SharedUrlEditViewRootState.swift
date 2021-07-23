@@ -15,9 +15,7 @@ public struct SharedUrlEditViewRootState: Equatable {
                   sharedUrlImageUrl: sharedUrlImageUrl,
                   selectedEmoji: selectedEmoji,
                   selectedTags: selectedTags,
-                  alert: alert,
-                  isTitleEditAlertPresenting: isTitleEditAlertPresenting,
-                  isTagEditSheetPresenting: isTagEditSheetPresenting)
+                  alert: alert)
         }
         set {
             sharedUrl = newValue.sharedUrl
@@ -27,8 +25,6 @@ public struct SharedUrlEditViewRootState: Equatable {
             selectedEmoji = newValue.selectedEmoji
             selectedTags = newValue.selectedTags
             alert = newValue.alert
-            isTitleEditAlertPresenting = newValue.isTitleEditAlertPresenting
-            isTagEditSheetPresenting = newValue.isTagEditSheetPresenting
         }
     }
 
