@@ -6,10 +6,10 @@ import Combine
 import CompositeKit
 import Domain
 
-public typealias SharedUrlImageDependency = HasNop
+public typealias TsundocEditThumbnailDependency = HasNop
 
 public struct TsundocEditThumbnailReducer: Reducer {
-    public typealias Dependency = SharedUrlImageDependency
+    public typealias Dependency = TsundocEditThumbnailDependency
     public typealias State = TsundocEditThumbnailState
     public typealias Action = TsundocEditThumbnailAction
 

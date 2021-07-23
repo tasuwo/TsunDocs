@@ -6,7 +6,7 @@ import CompositeKit
 import TsunDocsUIKit
 
 public typealias SharedUrlEditViewRootDependency = SharedUrlEditViewDependency
-    & SharedUrlImageDependency
+    & TsundocEditThumbnailDependency
     & TagGridDependency
 
 private typealias RootState = SharedUrlEditViewRootState

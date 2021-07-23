@@ -27,8 +27,8 @@ class ShareRootViewController: UIViewController {
         let store = Store(initialState: SharedUrlEditViewRootState(),
                           dependency: dependencyContainer,
                           reducer: sharedUrlEditViewRootReducer)
-        let rootView = SharedUrlEditView(ViewStore(store: store),
-                                         tagSelectionViewDependency: dependencyContainer)
+        let rootView = SharedUrlEditView(ViewStore(store: store))
+            .environment(\.tagMultiAdditionViewStoreBuilder, dependencyContainer)
 
         let viewController = UIHostingController(rootView: rootView)
         addChild(viewController)

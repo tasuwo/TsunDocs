@@ -4,10 +4,9 @@
 
 import CompositeKit
 import Domain
-import TsunDocsUIKit
 
 /// @mockable
-protocol TagMultiAdditionViewStoreBuildable {
+public protocol TagMultiAdditionViewStoreBuildable {
     @MainActor
     func buildTagMultiAdditionViewStore(selectedIds: Set<Tag.ID>) -> ViewStore<TagMultiAdditionViewState, TagMultiAdditionViewAction, TagMultiAdditionViewDependency>
 }

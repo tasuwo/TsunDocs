@@ -8,25 +8,33 @@ import SwiftUI
 import TsunDocsUIKit
 
 public struct SharedUrlEditView: View {
-    public typealias RootStore = ViewStore<
+    public typealias Store = ViewStore<
         SharedUrlEditViewRootState,
         SharedUrlEditViewRootAction,
         SharedUrlEditViewRootDependency
     >
 
+    struct ThumbnailStoreBuilder: TsundocEditThumbnailStoreBuildable {
+        let store: Store
+
+        func buildTsundocEditThumbnailStore() -> ViewStore<TsundocEditThumbnailState, TsundocEditThumbnailAction, TsundocEditThumbnailDependency> {
+            return store
+                .proxy(SharedUrlEditViewRootState.mappingToImage,
+                       SharedUrlEditViewRootAction.mappingToImage)
+                .viewStore()
+        }
+    }
+
     // MARK: - Properties
 
-    @StateObject var store: RootStore
-    // TODO: DI方法を検討する
-    private let tagSelectionViewDependency: TagMultiAdditionViewDependency
+    @StateObject var store: Store
+
+    @Environment(\.tagMultiAdditionViewStoreBuilder) var tagMultiAdditionViewStoreBuilder
 
     // MARK: - Initializers
 
-    public init(_ store: RootStore,
-                tagSelectionViewDependency: TagMultiAdditionViewDependency)
-    {
+    public init(_ store: Store) {
         self._store = StateObject(wrappedValue: store)
-        self.tagSelectionViewDependency = tagSelectionViewDependency
     }
 
     // MARK: - Methods
@@ -65,9 +73,12 @@ public struct SharedUrlEditView: View {
 
     public var body: some View {
         VStack {
-            if store.state.sharedUrl != nil {
+            if let url = store.state.sharedUrl {
                 VStack {
-                    SharedUrlMetaContainer(store: store)
+                    TsundocMetaContainer(url: url, title: store.state.sharedUrlTitle ?? "") {
+                        store.execute(.edit(.onTapEditTitleButton))
+                    }
+                    .environment(\.tsundocEditThumbnailStoreBuilder, ThumbnailStoreBuilder(store: store))
 
                     Divider()
 
@@ -117,10 +128,7 @@ public struct SharedUrlEditView: View {
         .sheet(isPresented: store.bind(\.isTagEditSheetPresenting,
                                        action: { _ in .edit(.alertDismissed) })) {
             let selectedIds = Set(store.state.selectedTags.map(\.id))
-            let _store = Store(initialState: TagMultiAdditionViewState(selectedIds: selectedIds),
-                               dependency: tagSelectionViewDependency,
-                               reducer: tagMultiAdditionViewReducer)
-            let viewStore = ViewStore(store: _store)
+            let viewStore = tagMultiAdditionViewStoreBuilder.buildTagMultiAdditionViewStore(selectedIds: selectedIds)
             TagMultiAdditionView(store: viewStore,
                                  onDone: { store.execute(.edit(.onSelectedTags($0))) })
         }
@@ -138,6 +146,9 @@ public struct SharedUrlEditView: View {
     }
 }
 
+// MARK: - Preview
+
+@MainActor
 struct SharedUrlEditView_Previews: PreviewProvider {
     class Dependency: SharedUrlEditViewRootDependency & TagMultiAdditionViewDependency {
         // MARK: SharedUrlEditViewRootDependency
@@ -218,6 +229,21 @@ struct SharedUrlEditView_Previews: PreviewProvider {
         }
     }
 
+    class StoreBuilder: TagMultiAdditionViewStoreBuildable {
+        private let dependency: TagMultiAdditionViewDependency
+
+        init(dependency: TagMultiAdditionViewDependency) {
+            self.dependency = dependency
+        }
+
+        func buildTagMultiAdditionViewStore(selectedIds: Set<Tag.ID>) -> ViewStore<TagMultiAdditionViewState, TagMultiAdditionViewAction, TagMultiAdditionViewDependency> {
+            let store = Store(initialState: TagMultiAdditionViewState(selectedIds: selectedIds),
+                              dependency: dependency,
+                              reducer: tagMultiAdditionViewReducer)
+            return ViewStore(store: store)
+        }
+    }
+
     class SuccessMock: URLProtocolMockBase {
         override class var mock_delay: TimeInterval? { 3 }
         override class var mock_handler: ((URLRequest) throws -> (HTTPURLResponse, Data?))? {
@@ -236,29 +262,29 @@ struct SharedUrlEditView_Previews: PreviewProvider {
                                               title: "My Title",
                                               description: "Web Page Description",
                                               imageUrl: URL(string: "https://localhost"))
-            SharedUrlEditView(makeStore(dependency: dependency01),
-                              tagSelectionViewDependency: dependency01)
+            SharedUrlEditView(makeStore(dependency: dependency01))
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
+                .environment(\.tagMultiAdditionViewStoreBuilder, StoreBuilder(dependency: dependency01))
 
             let dependency02 = makeDependency(sharedUrl: URL(string: "https://apple.com/"),
                                               title: nil,
                                               description: nil,
                                               imageUrl: nil)
-            SharedUrlEditView(makeStore(dependency: dependency02),
-                              tagSelectionViewDependency: dependency02)
+            SharedUrlEditView(makeStore(dependency: dependency02))
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
+                .environment(\.tagMultiAdditionViewStoreBuilder, StoreBuilder(dependency: dependency02))
 
             let dependency03 = makeDependency(sharedUrl: URL(string: "https://apple.com/\(String(repeating: "long/", count: 100))"),
                                               title: String(repeating: "Title ", count: 100),
                                               description: String(repeating: "Description ", count: 100),
                                               imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))"))
-            SharedUrlEditView(makeStore(dependency: dependency03),
-                              tagSelectionViewDependency: dependency03)
+            SharedUrlEditView(makeStore(dependency: dependency03))
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
+                .environment(\.tagMultiAdditionViewStoreBuilder, StoreBuilder(dependency: dependency03))
         }
     }
 
-    static func makeStore(dependency: Dependency) -> SharedUrlEditView.RootStore {
+    static func makeStore(dependency: Dependency) -> SharedUrlEditView.Store {
         let store = Store(initialState: SharedUrlEditViewRootState(),
                           dependency: dependency,
                           reducer: sharedUrlEditViewRootReducer)

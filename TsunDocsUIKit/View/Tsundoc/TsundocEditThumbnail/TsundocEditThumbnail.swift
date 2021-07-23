@@ -10,7 +10,7 @@ public struct TsundocEditThumbnail: View {
     public typealias Store = ViewStore<
         TsundocEditThumbnailState,
         TsundocEditThumbnailAction,
-        SharedUrlImageDependency
+        TsundocEditThumbnailDependency
     >
 
     // MARK: - Properties
