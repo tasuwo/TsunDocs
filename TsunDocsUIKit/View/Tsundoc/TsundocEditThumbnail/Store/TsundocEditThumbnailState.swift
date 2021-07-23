@@ -5,7 +5,7 @@
 import Domain
 
 public struct TsundocEditThumbnailState: Equatable {
-    public var imageUrl: URL?
+    public let imageUrl: URL?
     public var thumbnailLoadingStatus: AsyncImageStatus?
     public var selectedEmoji: Emoji?
 

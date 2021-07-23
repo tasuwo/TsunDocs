@@ -6,7 +6,6 @@ import CompositeKit
 import Domain
 
 public enum TsundocEditThumbnailAction: Action {
-    case onLoadImageUrl(URL?)
     case didTapDeleteEmoji
     case selectedEmoji(Emoji?)
     case updatedThumbnail(AsyncImageStatus?)

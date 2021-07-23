@@ -22,10 +22,6 @@ public struct TsundocEditThumbnailReducer: Reducer {
     public func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
         var nextState = state
         switch action {
-        case let .onLoadImageUrl(url):
-            nextState.imageUrl = url
-            return (nextState, .none)
-
         case .didTapDeleteEmoji:
             nextState.selectedEmoji = nil
             return (nextState, .none)
