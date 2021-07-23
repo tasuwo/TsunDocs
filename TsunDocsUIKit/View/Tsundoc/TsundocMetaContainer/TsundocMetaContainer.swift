@@ -140,8 +140,7 @@ struct TsundocMetaContainer_Previews: PreviewProvider {
     static func makeStore(imageUrl: URL?) -> ViewStore<TsundocEditThumbnailState, TsundocEditThumbnailAction, TsundocEditThumbnailDependency> {
         let store = Store(initialState: TsundocEditThumbnailState(imageUrl: imageUrl,
                                                                   thumbnailLoadingStatus: nil,
-                                                                  selectedEmoji: nil,
-                                                                  isSelectingEmoji: false),
+                                                                  selectedEmoji: nil),
                           dependency: Dependency(),
                           reducer: TsundocEditThumbnailReducer())
         return ViewStore(store: store)

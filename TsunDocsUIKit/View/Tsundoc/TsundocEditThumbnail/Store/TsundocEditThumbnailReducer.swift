@@ -26,25 +26,16 @@ public struct TsundocEditThumbnailReducer: Reducer {
             nextState.imageUrl = url
             return (nextState, .none)
 
-        case .didTapSelectEmoji:
-            nextState.isSelectingEmoji = true
-            return (nextState, .none)
-
         case .didTapDeleteEmoji:
             nextState.selectedEmoji = nil
             return (nextState, .none)
 
         case let .selectedEmoji(emoji):
             nextState.selectedEmoji = emoji
-            nextState.isSelectingEmoji = false
             return (nextState, .none)
 
         case let .updatedThumbnail(status):
             nextState.thumbnailLoadingStatus = status
-            return (nextState, .none)
-
-        case let .updatedEmojiSheet(isPresenting: isPresenting):
-            nextState.isSelectingEmoji = isPresenting
             return (nextState, .none)
         }
     }

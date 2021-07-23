@@ -8,17 +8,14 @@ public struct TsundocEditThumbnailState: Equatable {
     public var imageUrl: URL?
     public var thumbnailLoadingStatus: AsyncImageStatus?
     public var selectedEmoji: Emoji?
-    public var isSelectingEmoji: Bool
 
     public init(imageUrl: URL?,
                 thumbnailLoadingStatus: AsyncImageStatus?,
-                selectedEmoji: Emoji?,
-                isSelectingEmoji: Bool)
+                selectedEmoji: Emoji?)
     {
         self.imageUrl = imageUrl
         self.thumbnailLoadingStatus = thumbnailLoadingStatus
         self.selectedEmoji = selectedEmoji
-        self.isSelectingEmoji = isSelectingEmoji
     }
 }
 
@@ -27,7 +24,6 @@ public extension TsundocEditThumbnailState {
         self.imageUrl = imageUrl
         self.thumbnailLoadingStatus = nil
         self.selectedEmoji = nil
-        self.isSelectingEmoji = false
     }
 }
 

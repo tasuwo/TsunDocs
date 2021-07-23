@@ -20,8 +20,10 @@ public struct TsundocEditThumbnail: View {
     public static let badgeSymbolSize: CGFloat = 18
     public static let padding: CGFloat = 32 / 2 - 6
 
-    @Environment(\.imageLoaderFactory) var imageLoaderFactory
     @StateObject var store: Store
+    @State var isSelectingEmoji = false
+
+    @Environment(\.imageLoaderFactory) var imageLoaderFactory
 
     // MARK: - Initializers
 
@@ -32,7 +34,7 @@ public struct TsundocEditThumbnail: View {
     // MARK: - View
 
     private var thumbnail: some View {
-        Group {
+        ZStack {
             if let emoji = store.state.selectedEmoji {
                 Color("emoji_background", bundle: Bundle.tsunDocsUiKit)
                     .overlay(
@@ -40,7 +42,7 @@ public struct TsundocEditThumbnail: View {
                             .font(.system(size: 40))
                     )
                     .onTapGesture {
-                        store.execute(.didTapSelectEmoji)
+                        isSelectingEmoji = true
                     }
             } else {
                 if let imageUrl = store.state.imageUrl {
@@ -69,15 +71,15 @@ public struct TsundocEditThumbnail: View {
                                 .foregroundColor(Color.gray)
                         )
                         .onTapGesture {
-                            store.execute(.didTapSelectEmoji)
+                            isSelectingEmoji = true
                         }
                 }
             }
         }
-        .sheet(isPresented: store.bind(\.isSelectingEmoji,
-                                       action: { .updatedEmojiSheet(isPresenting: $0) })) {
+        .sheet(isPresented: $isSelectingEmoji) {
             NavigationView {
                 EmojiList {
+                    isSelectingEmoji = false
                     store.execute(.selectedEmoji($0), animation: .default)
                 }
             }
@@ -107,14 +109,14 @@ public struct TsundocEditThumbnail: View {
                     .offset(x: (Self.thumbnailSize / 2) - 6,
                             y: (Self.thumbnailSize / 2) - 6)
                     .onTapGesture {
-                        store.execute(.didTapSelectEmoji)
+                        isSelectingEmoji = true
                     }
             } else if !store.state.visibleDeleteButton {
                 makeBadge(systemName: "plus", backgroundColor: .cyan)
                     .offset(x: (Self.thumbnailSize / 2) - 6,
                             y: (Self.thumbnailSize / 2) - 6)
                     .onTapGesture {
-                        store.execute(.didTapSelectEmoji)
+                        isSelectingEmoji = true
                     }
             }
         }

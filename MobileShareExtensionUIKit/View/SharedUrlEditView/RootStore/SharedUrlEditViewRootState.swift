@@ -32,14 +32,12 @@ public struct SharedUrlEditViewRootState: Equatable {
         get {
             .init(imageUrl: sharedUrlImageUrl,
                   thumbnailLoadingStatus: thumbnailLoadingStatus,
-                  selectedEmoji: selectedEmoji,
-                  isSelectingEmoji: isSelectingEmoji)
+                  selectedEmoji: selectedEmoji)
         }
         set {
             sharedUrlImageUrl = newValue.imageUrl
             thumbnailLoadingStatus = newValue.thumbnailLoadingStatus
             selectedEmoji = newValue.selectedEmoji
-            isSelectingEmoji = newValue.isSelectingEmoji
         }
     }
 
@@ -74,7 +72,6 @@ public struct SharedUrlEditViewRootState: Equatable {
     // MARK: - TsundocEditViewState
 
     var thumbnailLoadingStatus: AsyncImageStatus?
-    var isSelectingEmoji: Bool
 }
 
 public extension SharedUrlEditViewRootState {
@@ -82,7 +79,6 @@ public extension SharedUrlEditViewRootState {
         selectedTags = []
         isTitleEditAlertPresenting = false
         isTagEditSheetPresenting = false
-        isSelectingEmoji = false
     }
 }
 
