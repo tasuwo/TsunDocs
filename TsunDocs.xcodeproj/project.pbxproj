@@ -15,6 +15,7 @@
 		03242EA18162F1F8B673D8AC /* ViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9556EC87DBBC5294C70F8B10 /* ViewStore.swift */; };
 		033196558C566069A732CD2F /* TextEditAlertState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93C22B495CA7FA32661A49A /* TextEditAlertState.swift */; };
 		04FB10364671B0D863E0943C /* TsundocThumbnailSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF100B5604EF4AA7E5784FE /* TsundocThumbnailSource.swift */; };
+		0655A2FFCA121FE136CB6476 /* TsundocMetaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6EFCC79869C0149B2550CD /* TsundocMetaContainer.swift */; };
 		06CFA4D7698C620799FAF146 /* ViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9556EC87DBBC5294C70F8B10 /* ViewStore.swift */; };
 		0717B1C6E7A4E11D71EE5C13 /* TagMultiSelectionViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C711B6B1367062E57A567F /* TagMultiSelectionViewReducer.swift */; };
 		088FEF9A9B1EFFDBFDCAC84F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0054503F7B1FB3BC313B3A06 /* String.swift */; };
@@ -112,7 +113,6 @@
 		386734DFA2CE2F8208BFAE7D /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */; };
 		399030322BDEB1E5EC7DBC75 /* TagMultiAdditionViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA95C9CD199A3F806269D89 /* TagMultiAdditionViewReducer.swift */; };
 		39BAA21A1491A532104AD0EE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51C3DABAB6E2E48C9F39FFE /* Preview Assets.xcassets */; };
-		3A2F2AFA7C32021C6C863994 /* TsundocMetaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11660BE1FE34DB61AF72ADD3 /* TsundocMetaContainer.swift */; };
 		3AC3A7503CDB876E4A3EC2C4 /* NSExtensionContext+ResolveUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F28D64542224B684CF6236 /* NSExtensionContext+ResolveUrl.swift */; };
 		3C9E8A126254BFD271BE6978 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C551701D81C77163DF7EBF1 /* Localizable.strings */; };
 		3DD82D8A657E556BFEE5AE73 /* TextEditAlertConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD67C8F082DAEAE15E00EB2A /* TextEditAlertConfig.swift */; };
@@ -210,6 +210,7 @@
 		7BD51D2009B8A4D026C54F34 /* HTTPURLResponse+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA797FDE403EA923AD92AD5 /* HTTPURLResponse+Mock.swift */; };
 		7D63AD387D1EAEA0139E9245 /* TsunDocsUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EFA274C8FDA48BDAC713AC /* TsunDocsUIKit.framework */; };
 		7D7ABAE7AB920A89F07DCC89 /* Shared.ProtocolMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175F8D44D9118CFFDD862FAE /* Shared.ProtocolMocks.swift */; };
+		7DAB06A259F9C23B8928C9A8 /* TsundocMetaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6EFCC79869C0149B2550CD /* TsundocMetaContainer.swift */; };
 		7ECC85085B081FE29BA97E4C /* Smile.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9170889182C4E71C98ED7BB /* Smile.xcframework */; };
 		7EEB4817533CDE2B4AB68282 /* AppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD2593D51CFC4B413F4A6C6 /* AppDependencyContainer.swift */; };
 		7FF6F750D568B95C03DBD07D /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1BA76FFFA86760D991CF5A /* Transaction.swift */; };
@@ -649,7 +650,6 @@
 		08E9A88BBD11F48D4DCD9120 /* TagListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListState.swift; sourceTree = "<group>"; };
 		0BD8B7D42E9CC7D502C63C16 /* TagListControlReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListControlReducer.swift; sourceTree = "<group>"; };
 		108D8768741A992FEAE5976C /* MobileShareExtensionUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobileShareExtensionUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		11660BE1FE34DB61AF72ADD3 /* TsundocMetaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocMetaContainer.swift; sourceTree = "<group>"; };
 		12A484483DC29892DD0EB5B0 /* SceneDependencyContainer+ServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDependencyContainer+ServiceDependencies.swift"; sourceTree = "<group>"; };
 		12C96424FF884AC81B25170D /* TagList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagList.swift; sourceTree = "<group>"; };
 		148372F17E31E53A9CC2A155 /* Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchable.swift; sourceTree = "<group>"; };
@@ -802,6 +802,7 @@
 		BD025077E909BE230574082B /* TagListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListReducer.swift; sourceTree = "<group>"; };
 		BD67C8F082DAEAE15E00EB2A /* TextEditAlertConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditAlertConfig.swift; sourceTree = "<group>"; };
 		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TsunDocs (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF6EFCC79869C0149B2550CD /* TsundocMetaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocMetaContainer.swift; sourceTree = "<group>"; };
 		BFBC7EFEBB894E7ED12CC88E /* SharedUrlEditViewRootReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUrlEditViewRootReducer.swift; sourceTree = "<group>"; };
 		C1034E059D3BD5A7849C19FA /* EmptyMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMessageView.swift; sourceTree = "<group>"; };
 		C1378835671AAB8487FB30B2 /* Environment+TsundocListStoreBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+TsundocListStoreBuilder.swift"; sourceTree = "<group>"; };
@@ -1215,6 +1216,7 @@
 			isa = PBXGroup;
 			children = (
 				812ABC553CD8FC246E89DA36 /* TsundocEditThumbnail */,
+				57672B058EB83B5DD88FFC80 /* TsundocMetaContainer */,
 			);
 			path = Tsundoc;
 			sourceTree = "<group>";
@@ -1278,6 +1280,14 @@
 				04DDB36D1C706D829A18EAF4 /* WebPageMetaResolver.swift */,
 			);
 			path = WebPage;
+			sourceTree = "<group>";
+		};
+		57672B058EB83B5DD88FFC80 /* TsundocMetaContainer */ = {
+			isa = PBXGroup;
+			children = (
+				BF6EFCC79869C0149B2550CD /* TsundocMetaContainer.swift */,
+			);
+			path = TsundocMetaContainer;
 			sourceTree = "<group>";
 		};
 		59C3EF565909CA8743E8E20F /* TagMultiSelection */ = {
@@ -1489,7 +1499,6 @@
 			isa = PBXGroup;
 			children = (
 				F046E75E5BDEDB9A49372B80 /* SharedUrlEditView.swift */,
-				11660BE1FE34DB61AF72ADD3 /* TsundocMetaContainer.swift */,
 				E7F7C618712E069F2D314921 /* RootStore */,
 				F52772F67C72CDCA5835F3D5 /* Store */,
 			);
@@ -2649,6 +2658,7 @@
 				AB536E0357A194B7FAF2EFE5 /* TsundocEditThumbnailReducer.swift in Sources */,
 				B76FCDD509F68190DCBF1310 /* TsundocEditThumbnailState.swift in Sources */,
 				1D08CB36B13A99449D5977A6 /* TsundocEditThumbnailStoreBuilder.swift in Sources */,
+				7DAB06A259F9C23B8928C9A8 /* TsundocMetaContainer.swift in Sources */,
 				501B24E8A6A2C02493D0D9E3 /* URLProtocolMockBase.swift in Sources */,
 				31691A3203449A934CCD56D0 /* URLSession+Mock.swift in Sources */,
 				F0B78A5F71628C2E9BB9A54B /* View+OnChangeFrame.swift in Sources */,
@@ -2674,7 +2684,6 @@
 				EE7F6284E9CC11EB84E7BD98 /* SharedUrlEditViewRootState.swift in Sources */,
 				915676EBE0626BCA3AF014E3 /* SharedUrlEditViewState.swift in Sources */,
 				088FEF9A9B1EFFDBFDCAC84F /* String.swift in Sources */,
-				3A2F2AFA7C32021C6C863994 /* TsundocMetaContainer.swift in Sources */,
 				DD36EDAF13ADBEF920FBD0D4 /* URLProtocolMockBase.swift in Sources */,
 				88F3CE448B9A3724D46523BD /* URLSession+Mock.swift in Sources */,
 			);
@@ -2735,6 +2744,7 @@
 				6AC921FE7EB8DE6E3C90041E /* TsundocEditThumbnailReducer.swift in Sources */,
 				12367C5F71BE17C52313792D /* TsundocEditThumbnailState.swift in Sources */,
 				1AE29F0FCFF068AA1C2A7B95 /* TsundocEditThumbnailStoreBuilder.swift in Sources */,
+				0655A2FFCA121FE136CB6476 /* TsundocMetaContainer.swift in Sources */,
 				626467A6218FE3B3E40DFFB4 /* URLProtocolMockBase.swift in Sources */,
 				6C64D5C5CE97E2A7049E8B83 /* URLSession+Mock.swift in Sources */,
 				F8C2B8DE361A4DECD7D456A8 /* View+OnChangeFrame.swift in Sources */,

@@ -5,7 +5,6 @@
 import CompositeKit
 import Domain
 import SwiftUI
-import TsunDocsUIKit
 
 public struct TsundocMetaContainer: View {
     // MARK: - Properties
