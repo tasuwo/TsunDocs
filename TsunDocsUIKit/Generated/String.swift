@@ -36,6 +36,10 @@ internal enum L10n {
     internal static let textEditAlertCancelAction = L10n.tr("Localizable", "text_edit_alert_cancel_action")
     /// 保存
     internal static let textEditAlertSaveAction = L10n.tr("Localizable", "text_edit_alert_save_action")
+    /// 保存
+    internal static let tsundocEditViewSaveButton = L10n.tr("Localizable", "tsundoc_edit_view_save_button")
+    /// タグ
+    internal static let tsundocEditViewTagsTitle = L10n.tr("Localizable", "tsundoc_edit_view_tags_title")
 }
 
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

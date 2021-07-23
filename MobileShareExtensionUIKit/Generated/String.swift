@@ -18,10 +18,6 @@ internal enum L10n {
     internal static let sharedUrlEditViewErrorTitleSaveUrl = L10n.tr("Localizable", "shared_url_edit_view_error_title_save_url")
     /// タイトルなし
     internal static let sharedUrlEditViewNoTitle = L10n.tr("Localizable", "shared_url_edit_view_no_title")
-    /// 保存
-    internal static let sharedUrlEditViewSaveButton = L10n.tr("Localizable", "shared_url_edit_view_save_button")
-    /// タグ
-    internal static let sharedUrlEditViewTagsTitle = L10n.tr("Localizable", "shared_url_edit_view_tags_title")
     /// このWebページのタイトルを入力してください
     internal static let sharedUrlEditViewTitleEditMessage = L10n.tr("Localizable", "shared_url_edit_view_title_edit_message")
     /// タイトル

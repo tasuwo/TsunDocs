@@ -37,69 +37,26 @@ public struct SharedUrlEditView: View {
         self._store = StateObject(wrappedValue: store)
     }
 
-    // MARK: - Methods
-
-    private func tagContainer() -> some View {
-        VStack {
-            HStack {
-                Text("shared_url_edit_view_tags_title", bundle: Bundle.this)
-
-                Spacer()
-
-                Image(systemName: "plus")
-                    .foregroundColor(.cyan)
-                    .font(.system(size: 24))
-                    .onTapGesture {
-                        store.execute(.edit(.onTapEditTagButton))
-                    }
-            }
-
-            if !store.state.selectedTags.isEmpty {
-                TagGrid(
-                    store: store
-                        .proxy(SharedUrlEditViewRootState.mappingToTagGrid,
-                               SharedUrlEditViewRootAction.mappingToTagGrid)
-                        .viewStore(),
-                    inset: 0
-                )
-            } else {
-                Spacer()
-            }
-        }
-        .padding([.leading, .trailing], TsundocEditThumbnail.padding)
-    }
-
     // MARK: - View
 
     public var body: some View {
         VStack {
             if let url = store.state.sharedUrl {
-                VStack {
-                    TsundocMetaContainer(url: url, title: store.state.sharedUrlTitle ?? "") {
-                        store.execute(.edit(.onTapEditTitleButton))
-                    }
-                    .environment(\.tsundocEditThumbnailStoreBuilder, ThumbnailStoreBuilder(store: store))
-
-                    Divider()
-
-                    tagContainer()
-
-                    Divider()
-
-                    Spacer()
-
-                    Button {
-                        store.execute(.edit(.onTapSaveButton))
-                    } label: {
-                        HStack {
-                            Image(systemName: "checkmark")
-                            Text("shared_url_edit_view_save_button", bundle: Bundle.this)
-                        }
-                    }
-                    .buttonStyle(PrimaryButtonStyle())
-                    .padding()
+                TsundocEditView(url: url,
+                                title: store.state.sharedUrlTitle ?? "",
+                                existsSelectedTags: !store.state.selectedTags.isEmpty) {
+                    store
+                        .proxy(SharedUrlEditViewRootState.mappingToTagGrid,
+                               SharedUrlEditViewRootAction.mappingToTagGrid)
+                        .viewStore()
+                } onTapEditTitleButton: {
+                    store.execute(.edit(.onTapEditTitleButton))
+                } onTapSaveButton: {
+                    store.execute(.edit(.onTapSaveButton))
+                } onTapEditTagButton: {
+                    store.execute(.edit(.onTapEditTagButton))
                 }
-                .padding(8)
+                .environment(\.tsundocEditThumbnailStoreBuilder, ThumbnailStoreBuilder(store: store))
             } else {
                 ProgressView()
                     .scaleEffect(x: 1.5, y: 1.5, anchor: .center)

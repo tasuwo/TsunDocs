@@ -22,5 +22,8 @@
 "tag_grid_menu_rename" = "Rename";
 "tag_grid_menu_delete" = "Delete";
 
+"tsundoc_edit_view_save_button" = "保存";
+"tsundoc_edit_view_tags_title" = "タグ";
+
 "close" = "Close";
 "cancel" = "Cancel";

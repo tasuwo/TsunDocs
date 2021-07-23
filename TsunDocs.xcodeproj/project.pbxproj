@@ -26,6 +26,7 @@
 		09E8933A516DD5D8100A336D /* TextEditAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B18F9DCD521528764E4E2 /* TextEditAlert.swift */; };
 		0A29826B7F7CA1DB4F3531DA /* TextEditAlertWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6E1744FE9011E35F3EEED7 /* TextEditAlertWrapper.swift */; };
 		0AAF5082E4A676EDCD385986 /* TsundocListStoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D150A0C5098070D47CFB60 /* TsundocListStoreBuilder.swift */; };
+		0AFF91A01177B900AD7F5BF6 /* TsundocEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A8D258900D067E4F88CF6 /* TsundocEditView.swift */; };
 		0C3DD5AFD474EF3C74A0A4D6 /* TagQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702DBF5A2F3CB92719E98136 /* TagQueryService.swift */; };
 		0C4759B1F7DEF34F58FF2785 /* Kanna.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79135336C4C9F21FCE1AA18C /* Kanna.xcframework */; };
 		0C9B3CA7C6CB3251FC91AB1F /* SharedUrlEditViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAB6A1916F703D2702B559F /* SharedUrlEditViewReducer.swift */; };
@@ -409,6 +410,7 @@
 		EFF39157E338DFCF9BB57443 /* ObservedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939312F1559214B10346C3C /* ObservedTag.swift */; };
 		F007CE79EBB0677F9B817892 /* TagGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45CF6A319DF6E486B679172 /* TagGrid.swift */; };
 		F06C6C3E33246E2BB6B920EB /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085AAF929F99EBBB0EBD9B4 /* SettingView.swift */; };
+		F076C35E60408F8C8BE6D52F /* TsundocEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A8D258900D067E4F88CF6 /* TsundocEditView.swift */; };
 		F0AA850C55303234FDCA7C2F /* TagMultiSelectionViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA109B2DC2368160F502564 /* TagMultiSelectionViewAction.swift */; };
 		F0B78A5F71628C2E9BB9A54B /* View+OnChangeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50587A5058FB1C1E5D3F35 /* View+OnChangeFrame.swift */; };
 		F15A7DF0F95AD080613AA969 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51C3DABAB6E2E48C9F39FFE /* Preview Assets.xcassets */; };
@@ -813,6 +815,7 @@
 		C50E30AC1247BCC367C677A3 /* TsundocEditThumbnailState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocEditThumbnailState.swift; sourceTree = "<group>"; };
 		C5F35EAB0037253ACF4BECF8 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C626D4B84BE867E3C6F9E23A /* TagGridReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGridReducer.swift; sourceTree = "<group>"; };
+		C76A8D258900D067E4F88CF6 /* TsundocEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocEditView.swift; sourceTree = "<group>"; };
 		C919C76EC9B19FE3C24FC220 /* TagControlAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagControlAction.swift; sourceTree = "<group>"; };
 		C939312F1559214B10346C3C /* ObservedTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedTag.swift; sourceTree = "<group>"; };
 		CD91EAFE09460C410CBBC3AE /* TagControlReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagControlReducer.swift; sourceTree = "<group>"; };
@@ -1215,6 +1218,7 @@
 		4081F3E86450A2DAF46142E4 /* Tsundoc */ = {
 			isa = PBXGroup;
 			children = (
+				7476A6864EA627A723AE95A9 /* TsundocEdit */,
 				812ABC553CD8FC246E89DA36 /* TsundocEditThumbnail */,
 				57672B058EB83B5DD88FFC80 /* TsundocMetaContainer */,
 			);
@@ -1413,6 +1417,14 @@
 				B627E584457D6A01023EFB9B /* Reducer.swift */,
 			);
 			path = Reducer;
+			sourceTree = "<group>";
+		};
+		7476A6864EA627A723AE95A9 /* TsundocEdit */ = {
+			isa = PBXGroup;
+			children = (
+				C76A8D258900D067E4F88CF6 /* TsundocEditView.swift */,
+			);
+			path = TsundocEdit;
 			sourceTree = "<group>";
 		};
 		766AE49970A984A1B4D032EA /* Query */ = {
@@ -2658,6 +2670,7 @@
 				AB536E0357A194B7FAF2EFE5 /* TsundocEditThumbnailReducer.swift in Sources */,
 				B76FCDD509F68190DCBF1310 /* TsundocEditThumbnailState.swift in Sources */,
 				1D08CB36B13A99449D5977A6 /* TsundocEditThumbnailStoreBuilder.swift in Sources */,
+				F076C35E60408F8C8BE6D52F /* TsundocEditView.swift in Sources */,
 				7DAB06A259F9C23B8928C9A8 /* TsundocMetaContainer.swift in Sources */,
 				501B24E8A6A2C02493D0D9E3 /* URLProtocolMockBase.swift in Sources */,
 				31691A3203449A934CCD56D0 /* URLSession+Mock.swift in Sources */,
@@ -2744,6 +2757,7 @@
 				6AC921FE7EB8DE6E3C90041E /* TsundocEditThumbnailReducer.swift in Sources */,
 				12367C5F71BE17C52313792D /* TsundocEditThumbnailState.swift in Sources */,
 				1AE29F0FCFF068AA1C2A7B95 /* TsundocEditThumbnailStoreBuilder.swift in Sources */,
+				0AFF91A01177B900AD7F5BF6 /* TsundocEditView.swift in Sources */,
 				0655A2FFCA121FE136CB6476 /* TsundocMetaContainer.swift in Sources */,
 				626467A6218FE3B3E40DFFB4 /* URLProtocolMockBase.swift in Sources */,
 				6C64D5C5CE97E2A7049E8B83 /* URLSession+Mock.swift in Sources */,
