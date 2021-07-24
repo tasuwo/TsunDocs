@@ -28,19 +28,6 @@ public struct SharedUrlEditViewRootState: Equatable {
         }
     }
 
-    var imageState: TsundocEditThumbnailState {
-        get {
-            .init(imageUrl: sharedUrlImageUrl,
-                  thumbnailLoadingStatus: thumbnailLoadingStatus,
-                  selectedEmoji: selectedEmoji)
-        }
-        set {
-            sharedUrlImageUrl = newValue.imageUrl
-            thumbnailLoadingStatus = newValue.thumbnailLoadingStatus
-            selectedEmoji = newValue.selectedEmoji
-        }
-    }
-
     var tagGridState: TagGridState {
         get {
             .init(tags: selectedTags,
@@ -69,9 +56,9 @@ public struct SharedUrlEditViewRootState: Equatable {
     var isTitleEditAlertPresenting: Bool
     var isTagEditSheetPresenting: Bool
 
-    // MARK: - TsundocEditViewState
-
-    var thumbnailLoadingStatus: AsyncImageStatus?
+    var title: String {
+        sharedUrlTitle ?? ""
+    }
 }
 
 public extension SharedUrlEditViewRootState {
@@ -84,6 +71,5 @@ public extension SharedUrlEditViewRootState {
 
 public extension SharedUrlEditViewRootState {
     static let mappingToEdit: StateMapping<Self, SharedUrlEditViewState> = .init(keyPath: \Self.editViewState)
-    static let mappingToImage: StateMapping<Self, TsundocEditThumbnailState> = .init(keyPath: \Self.imageState)
     static let mappingToTagGrid: StateMapping<Self, TagGridState> = .init(keyPath: \Self.tagGridState)
 }

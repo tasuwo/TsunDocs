@@ -7,12 +7,6 @@ import Domain
 import SwiftUI
 
 public struct TsundocEditThumbnail: View {
-    public typealias Store = ViewStore<
-        TsundocEditThumbnailState,
-        TsundocEditThumbnailAction,
-        TsundocEditThumbnailDependency
-    >
-
     // MARK: - Properties
 
     public static let thumbnailSize: CGFloat = 88
@@ -20,22 +14,30 @@ public struct TsundocEditThumbnail: View {
     public static let badgeSymbolSize: CGFloat = 18
     public static let padding: CGFloat = 32 / 2 - 6
 
-    @StateObject var store: Store
-    @State var isSelectingEmoji = false
+    private let imageUrl: URL?
+
+    @Binding private var selectedEmoji: Emoji?
+
+    @State private var isSelectingEmoji = false
+    @State private var thumbnailLoadingStatus: AsyncImageStatus?
+
+    private var visibleDeleteButton: Bool { selectedEmoji != nil }
+    private var visibleEmojiLoadButton: Bool { imageUrl != nil && selectedEmoji == nil }
 
     @Environment(\.imageLoaderFactory) var imageLoaderFactory
 
     // MARK: - Initializers
 
-    public init(store: Store) {
-        _store = StateObject(wrappedValue: store)
+    public init(imageUrl: URL?, selectedEmoji: Binding<Emoji?>) {
+        self.imageUrl = imageUrl
+        _selectedEmoji = selectedEmoji
     }
 
     // MARK: - View
 
     private var thumbnail: some View {
         ZStack {
-            if let emoji = store.state.selectedEmoji {
+            if let emoji = selectedEmoji {
                 Color("emoji_background", bundle: Bundle.tsunDocsUiKit)
                     .overlay(
                         Text(emoji.emoji)
@@ -45,18 +47,16 @@ public struct TsundocEditThumbnail: View {
                         isSelectingEmoji = true
                     }
             } else {
-                if let imageUrl = store.state.imageUrl {
+                if let imageUrl = imageUrl {
                     ZStack {
                         AsyncImage(url: imageUrl,
-                                   status: store.bind(\.thumbnailLoadingStatus,
-                                                      action: { .updatedThumbnail($0) }),
+                                   status: $thumbnailLoadingStatus,
                                    factory: imageLoaderFactory) {
                             Color.gray.opacity(0.4)
                         }
                         .aspectRatio(contentMode: .fill)
 
-                        if store.state.thumbnailLoadingStatus == .failed
-                            || store.state.thumbnailLoadingStatus == .cancelled
+                        if thumbnailLoadingStatus == .failed || thumbnailLoadingStatus == .cancelled
                         {
                             Image(systemName: "xmark")
                                 .font(.system(size: 24))
@@ -80,7 +80,7 @@ public struct TsundocEditThumbnail: View {
             NavigationView {
                 EmojiList {
                     isSelectingEmoji = false
-                    store.execute(.selectedEmoji($0), animation: .default)
+                    selectedEmoji = $0
                 }
             }
         }
@@ -95,23 +95,23 @@ public struct TsundocEditThumbnail: View {
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 .padding(.all, Self.padding)
 
-            if store.state.visibleDeleteButton {
+            if visibleDeleteButton {
                 makeBadge(systemName: "xmark", backgroundColor: .gray)
                     .offset(x: -1 * (Self.thumbnailSize / 2) + 5,
                             y: -1 * (Self.thumbnailSize / 2) + 5)
                     .onTapGesture {
-                        store.execute(.didTapDeleteEmoji)
+                        selectedEmoji = nil
                     }
             }
 
-            if store.state.visibleEmojiLoadButton {
+            if visibleEmojiLoadButton {
                 makeBadge(systemName: "face.smiling", backgroundColor: .cyan)
                     .offset(x: (Self.thumbnailSize / 2) - 6,
                             y: (Self.thumbnailSize / 2) - 6)
                     .onTapGesture {
                         isSelectingEmoji = true
                     }
-            } else if !store.state.visibleDeleteButton {
+            } else if !visibleDeleteButton {
                 makeBadge(systemName: "plus", backgroundColor: .cyan)
                     .offset(x: (Self.thumbnailSize / 2) - 6,
                             y: (Self.thumbnailSize / 2) - 6)
@@ -158,18 +158,15 @@ struct SharedUrlThumbnailView_Previews: PreviewProvider {
     }
 
     struct Container: View {
+        @State var selectedEmoji: Emoji?
+
         class Nop: HasNop {}
 
         let imageUrl: URL?
         let imageLoaderFactory: Factory<ImageLoader>
 
         var body: some View {
-            let store = Store(initialState: TsundocEditThumbnailState(imageUrl: imageUrl),
-                              dependency: Nop(),
-                              reducer: TsundocEditThumbnailReducer())
-            let viewStore = ViewStore(store: store)
-
-            TsundocEditThumbnail(store: viewStore)
+            TsundocEditThumbnail(imageUrl: imageUrl, selectedEmoji: $selectedEmoji)
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
         }
     }

@@ -10,20 +10,24 @@ public struct TsundocMetaContainer: View {
     // MARK: - Properties
 
     private let url: URL
-    private let title: String
-    private let onTapEditTitleButton: () -> Void
+    private let imageUrl: URL?
 
-    @Environment(\.tsundocEditThumbnailStoreBuilder) var tsundocEditThumbnailStoreBuilder
+    @Binding var title: String
+    @Binding var selectedEmoji: Emoji?
+
+    @State var isTitleEditAlertPresenting = false
 
     // MARK: - Initializers
 
     public init(url: URL,
-                title: String,
-                onTapEditTitleButton: @escaping () -> Void)
+                imageUrl: URL?,
+                title: Binding<String>,
+                selectedEmoji: Binding<Emoji?>)
     {
         self.url = url
-        self.title = title
-        self.onTapEditTitleButton = onTapEditTitleButton
+        self.imageUrl = imageUrl
+        _title = title
+        _selectedEmoji = selectedEmoji
     }
 
     // MARK: - View
@@ -31,8 +35,7 @@ public struct TsundocMetaContainer: View {
     public var body: some View {
         HStack(alignment: .top) {
             VStack {
-                let store = tsundocEditThumbnailStoreBuilder.buildTsundocEditThumbnailStore()
-                TsundocEditThumbnail(store: store)
+                TsundocEditThumbnail(imageUrl: imageUrl, selectedEmoji: $selectedEmoji)
             }
 
             VStack(alignment: .leading, spacing: 8) {
@@ -52,7 +55,7 @@ public struct TsundocMetaContainer: View {
                         .font(.system(size: 24))
                 }
                 .onTapGesture {
-                    onTapEditTitleButton()
+                    isTitleEditAlertPresenting = true
                 }
 
                 Text(url.absoluteString)
@@ -64,6 +67,20 @@ public struct TsundocMetaContainer: View {
 
             Spacer()
         }
+        .background(
+            // HACK: View の frame が意図せず広がってしまったので、背景に配置する
+            Color.clear
+                .frame(width: 0, height: 0)
+                .fixedSize()
+                .alert(isPresenting: $isTitleEditAlertPresenting,
+                       text: title,
+                       config: .init(title: L10n.tsundocEditViewTitleEditTitle,
+                                     message: L10n.tsundocEditViewTitleEditMessage,
+                                     placeholder: L10n.tsundocEditViewTitleEditPlaceholder,
+                                     validator: { title != $0 && $0?.count ?? 0 > 0 },
+                                     saveAction: { title = $0 },
+                                     cancelAction: nil))
+        )
     }
 }
 
@@ -71,8 +88,6 @@ public struct TsundocMetaContainer: View {
 
 @MainActor
 struct TsundocMetaContainer_Previews: PreviewProvider {
-    class Dependency: TsundocEditThumbnailDependency {}
-
     class SuccessMock: URLProtocolMockBase {
         override class var mock_delay: TimeInterval? { 3 }
         override class var mock_handler: ((URLRequest) throws -> (HTTPURLResponse, Data?))? {
@@ -81,17 +96,17 @@ struct TsundocMetaContainer_Previews: PreviewProvider {
         }
     }
 
-    class StoreBuilder: TsundocEditThumbnailStoreBuildable {
-        typealias Store = ViewStore<TsundocEditThumbnailState, TsundocEditThumbnailAction, TsundocEditThumbnailDependency>
+    struct Container: View {
+        let url: URL
+        let imageUrl: URL?
+        @State var title: String
+        @State var selectedEmoji: Emoji?
 
-        let store: Store
-
-        init(_ store: Store) {
-            self.store = store
-        }
-
-        func buildTsundocEditThumbnailStore() -> Store {
-            return store
+        var body: some View {
+            TsundocMetaContainer(url: url,
+                                 imageUrl: imageUrl,
+                                 title: $title,
+                                 selectedEmoji: $selectedEmoji)
         }
     }
 
@@ -104,45 +119,30 @@ struct TsundocMetaContainer_Previews: PreviewProvider {
             Divider()
 
             // swiftlint:disable:next force_unwrapping
-            TsundocMetaContainer(url: URL(string: "https://apple.com")!,
-                                 title: "My Title",
-                                 onTapEditTitleButton: {})
+            Container(url: URL(string: "https://apple.com")!,
+                      // swiftlint:disable:next force_unwrapping
+                      imageUrl: URL(string: "https://localhost")!,
+                      title: "My Title")
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
-                .environment(\.tsundocEditThumbnailStoreBuilder,
-                             // swiftlint:disable:next force_unwrapping
-                             StoreBuilder(makeStore(imageUrl: URL(string: "https://localhost")!)))
 
             Divider()
 
             // swiftlint:disable:next force_unwrapping
-            TsundocMetaContainer(url: URL(string: "https://apple.com")!,
-                                 title: "",
-                                 onTapEditTitleButton: {})
+            Container(url: URL(string: "https://apple.com")!,
+                      imageUrl: nil,
+                      title: "")
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
-                .environment(\.tsundocEditThumbnailStoreBuilder,
-                             StoreBuilder(makeStore(imageUrl: nil)))
 
             Divider()
 
             // swiftlint:disable:next force_unwrapping
-            TsundocMetaContainer(url: URL(string: "https://apple.com")!,
-                                 title: String(repeating: "Title ", count: 100),
-                                 onTapEditTitleButton: {})
+            Container(url: URL(string: "https://apple.com")!,
+                      // swiftlint:disable:next force_unwrapping
+                      imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))")!,
+                      title: String(repeating: "Title ", count: 100))
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
-                .environment(\.tsundocEditThumbnailStoreBuilder,
-                             // swiftlint:disable:next force_unwrapping
-                             StoreBuilder(makeStore(imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))")!)))
 
             Divider()
         }
-    }
-
-    static func makeStore(imageUrl: URL?) -> ViewStore<TsundocEditThumbnailState, TsundocEditThumbnailAction, TsundocEditThumbnailDependency> {
-        let store = Store(initialState: TsundocEditThumbnailState(imageUrl: imageUrl,
-                                                                  thumbnailLoadingStatus: nil,
-                                                                  selectedEmoji: nil),
-                          dependency: Dependency(),
-                          reducer: TsundocEditThumbnailReducer())
-        return ViewStore(store: store)
     }
 }

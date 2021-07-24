@@ -14,12 +14,8 @@ public struct SharedUrlEditView: View {
         SharedUrlEditViewRootDependency
     >
 
-    struct StoreBuilder: TsundocEditThumbnailStoreBuildable, TagGridStoreBuildable {
+    struct StoreBuilder: TagGridStoreBuildable {
         let store: Store
-
-        func buildTsundocEditThumbnailStore() -> ViewStore<TsundocEditThumbnailState, TsundocEditThumbnailAction, TsundocEditThumbnailDependency> {
-            return store.tsundocEditThumbnailStore
-        }
 
         func buildTagGridStore() -> ViewStore<TagGridState, TagGridAction, TagGridDependency> {
             return store.tagGridStore
@@ -42,16 +38,16 @@ public struct SharedUrlEditView: View {
         VStack {
             if let url = store.state.sharedUrl {
                 TsundocEditView(url: url,
-                                title: store.state.sharedUrlTitle ?? "",
-                                selectedTags: Set(store.state.selectedTags.map(\.id))) {
-                    store.execute(.edit(.onSaveTitle($0)))
-                } onTapSaveButton: {
+                                imageUrl: store.state.sharedUrlImageUrl,
+                                title: store.bind(\.title,
+                                                  action: { .edit(.onSaveTitle($0)) }),
+                                selectedEmoji: store.bind(\.selectedEmoji,
+                                                          action: { .edit(.onSelectedEmoji($0)) }),
+                                selectedTags: store.bind(\.selectedTags,
+                                                         action: { .edit(.onSelectedTags($0)) })) {
                     store.execute(.edit(.onTapSaveButton))
-                } onSelectTags: {
-                    store.execute(.edit(.onSelectedTags($0)))
                 }
                 .environment(\.tagGridStoreBuilder, StoreBuilder(store: store))
-                .environment(\.tsundocEditThumbnailStoreBuilder, StoreBuilder(store: store))
             } else {
                 ProgressView()
                     .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
