@@ -46,6 +46,8 @@ struct TsundocList: View {
                 NavigationView {
                     BrowseView(baseUrl: tsundoc.url) {
                         store.execute(.alert(.dismissed))
+                    } onClose: {
+                        store.execute(.tap(tsundoc.id, .editInfo))
                     }
                 }
                 .ignoresSafeArea()
@@ -105,6 +107,16 @@ struct TsundocList: View {
 
     @ViewBuilder
     private func menu(_ tsundoc: Tsundoc) -> some View {
+        Button {
+            store.execute(.tap(tsundoc.id, .editInfo))
+        } label: {
+            Label {
+                Text(L10n.tsundocListMenuInfo)
+            } icon: {
+                Image(systemName: "pencil")
+            }
+        }
+
         Button {
             store.execute(.tap(tsundoc.id, .addTag))
         } label: {

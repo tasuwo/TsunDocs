@@ -23,6 +23,7 @@
 "tsundoc_list_menu_copy_url" = "URLをコピー";
 "tsundoc_list_menu_open_safari" = "Safariで開く";
 "tsundoc_list_menu_delete" = "削除する";
+"tsundoc_list_menu_info" = "情報の編集";
 
 "tsundoc_list_alert_delete_tsundoc_message" = "このアイテムを削除しますか？";
 "tsundoc_list_alert_delete_tsundoc_action" = "アイテムを削除";
@@ -33,6 +34,8 @@
 
 "browse_view_title_loading" = "読み込み中...";
 "browse_view_button_close" = "閉じる";
+"browse_view_button_edit" = "情報の編集";
+"browse_view_button_safari" = "Safariで開く";
 
 "tag_list_title" = "タグ";
 

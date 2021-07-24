@@ -23,6 +23,7 @@
 "tsundoc_list_menu_copy_url" = "Copy URL";
 "tsundoc_list_menu_open_safari" = "Open Safari";
 "tsundoc_list_menu_delete" = "Delete";
+"tsundoc_list_menu_info" = "Edit Info";
 
 "tsundoc_list_alert_delete_tsundoc_message" = "Are you sure you want to delete this item?";
 "tsundoc_list_alert_delete_tsundoc_action" = "Delete Item";
@@ -33,6 +34,8 @@
 
 "browse_view_title_loading" = "Loading...";
 "browse_view_button_close" = "Close";
+"browse_view_button_edit" = "Edit Info";
+"browse_view_button_safari" = "Open Safari";
 
 "tag_list_title" = "Tags";
 

@@ -51,6 +51,10 @@ struct TsundocListReducer: Reducer {
             nextState.modal = nil
             return (nextState, [effect])
 
+        case let .tap(tsundocId, .editInfo):
+            // TODO:
+            return (nextState, nil)
+
         case let .tap(tsundocId, .addTag):
             let tags = dependency.tagQueryService.fetchTags(taggedToTsundocHaving: tsundocId)
                 .successValue?

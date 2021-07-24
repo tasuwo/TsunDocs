@@ -14,6 +14,10 @@ internal enum L10n {
     internal static let appName = L10n.tr("Localizable", "app_name")
     /// 閉じる
     internal static let browseViewButtonClose = L10n.tr("Localizable", "browse_view_button_close")
+    /// 情報の編集
+    internal static let browseViewButtonEdit = L10n.tr("Localizable", "browse_view_button_edit")
+    /// Safariで開く
+    internal static let browseViewButtonSafari = L10n.tr("Localizable", "browse_view_button_safari")
     /// 読み込み中...
     internal static let browseViewTitleLoading = L10n.tr("Localizable", "browse_view_title_loading")
     /// キャンセル
@@ -84,6 +88,8 @@ internal enum L10n {
     internal static let tsundocListMenuCopyUrl = L10n.tr("Localizable", "tsundoc_list_menu_copy_url")
     /// 削除する
     internal static let tsundocListMenuDelete = L10n.tr("Localizable", "tsundoc_list_menu_delete")
+    /// 情報の編集
+    internal static let tsundocListMenuInfo = L10n.tr("Localizable", "tsundoc_list_menu_info")
     /// Safariで開く
     internal static let tsundocListMenuOpenSafari = L10n.tr("Localizable", "tsundoc_list_menu_open_safari")
     /// マイリスト

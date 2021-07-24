@@ -7,28 +7,31 @@ import SwiftUI
 struct BrowseView: View {
     // MARK: - Properties
 
-    let baseUrl: URL
-    let onClose: () -> Void
+    private let baseUrl: URL
+    private let onEdit: () -> Void
+    private let onClose: () -> Void
 
-    @State var action: WebView.Action?
+    @State private var action: WebView.Action?
 
-    @State var title: String?
-    @State var currentUrl: URL?
-    @State var canGoBack = false
-    @State var canGoForward = false
-    @State var isLoading = false
-    @State var estimatedProgress: Double = 0
+    @State private var title: String?
+    @State private var currentUrl: URL?
+    @State private var canGoBack = false
+    @State private var canGoForward = false
+    @State private var isLoading = false
+    @State private var estimatedProgress: Double = 0
 
-    @State var isPresentShareSheet = false
+    @State private var isPresentShareSheet = false
 
     @Environment(\.openURL) var openURL
 
     // MARK: - Initializers
 
     init(baseUrl: URL,
+         onEdit: @escaping () -> Void,
          onClose: @escaping () -> Void)
     {
         self.baseUrl = baseUrl
+        self.onEdit = onEdit
         self.onClose = onClose
     }
 
@@ -115,13 +118,32 @@ struct BrowseView: View {
 
                 Spacer()
 
-                Button {
-                    guard let url = currentUrl else { return }
-                    openURL(url)
+                Menu {
+                    Button {
+                        guard let url = currentUrl else { return }
+                        openURL(url)
+                    } label: {
+                        Label {
+                            Text(L10n.browseViewButtonSafari)
+                        } icon: {
+                            Image(systemName: "safari")
+                        }
+                    }
+                    .disabled(currentUrl == nil)
+
+                    Button {
+                        onEdit()
+                    } label: {
+                        Label {
+                            Text(L10n.browseViewButtonEdit)
+                        } icon: {
+                            Image(systemName: "pencil")
+                        }
+                    }
                 } label: {
-                    Image(systemName: "safari")
+                    Image(systemName: "ellipsis")
+                        .padding([.top, .bottom])
                 }
-                .disabled(currentUrl == nil)
             }
         }
     }
@@ -141,6 +163,8 @@ struct BrowseView_Previews: PreviewProvider {
                 NavigationView {
                     // swiftlint:disable:next force_unwrapping
                     BrowseView(baseUrl: URL(string: "https://www.apple.com")!) {
+                        // NOP
+                    } onClose: {
                         isPresenting = false
                     }
                 }

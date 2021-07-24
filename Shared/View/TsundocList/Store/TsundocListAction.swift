@@ -7,6 +7,7 @@ import Domain
 
 enum TsundocListAction {
     enum MenuItem {
+        case editInfo
         case addTag
         case copyUrl
         case delete
