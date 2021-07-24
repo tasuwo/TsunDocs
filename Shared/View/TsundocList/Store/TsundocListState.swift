@@ -26,14 +26,18 @@ struct TsundocListState: Equatable {
     }
 
     enum Modal: Equatable {
-        case safariView(Tsundoc)
         case tagAdditionView(Tsundoc.ID, Set<Tag.ID>)
+    }
+
+    enum Navigation: Equatable {
+        case browse(Tsundoc)
     }
 
     let query: Query
     var tsundocs: [Tsundoc]
     var modal: Modal?
     var alert: Alert?
+    var navigation: Navigation?
 }
 
 extension TsundocListState {
@@ -48,6 +52,11 @@ extension TsundocListState {
 
     var isAlertPresenting: Bool {
         guard case .plain = alert else { return false }
+        return true
+    }
+
+    var isBrowseActive: Bool {
+        guard case .browse = navigation else { return false }
         return true
     }
 

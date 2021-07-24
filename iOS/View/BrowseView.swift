@@ -9,7 +9,7 @@ struct BrowseView: View {
 
     private let baseUrl: URL
     private let onEdit: () -> Void
-    private let onClose: () -> Void
+    private let onClose: (() -> Void)?
 
     @State private var action: WebView.Action?
 
@@ -28,7 +28,7 @@ struct BrowseView: View {
 
     init(baseUrl: URL,
          onEdit: @escaping () -> Void,
-         onClose: @escaping () -> Void)
+         onClose: (() -> Void)? = nil)
     {
         self.baseUrl = baseUrl
         self.onEdit = onEdit
@@ -67,10 +67,14 @@ struct BrowseView: View {
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    onClose()
-                } label: {
-                    Text("browse_view_button_close")
+                if let onClose = onClose {
+                    Button {
+                        onClose()
+                    } label: {
+                        Text("browse_view_button_close")
+                    }
+                } else {
+                    EmptyView()
                 }
             }
 

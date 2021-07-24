@@ -70,27 +70,33 @@ struct TagList: View {
                 fatalError("Invalid Alert")
             }
         }
-        .alert(isPresenting: store.bind(\.controlState.isTagAdditionAlertPresenting,
-                                        action: { _ in .control(.alert(.dismissed)) }),
-               text: "",
-               config: .init(title: L10n.tagListAlertNewTagTitle,
-                             message: L10n.tagListAlertNewTagMessage,
-                             placeholder: L10n.tagListAlertPlaceholder,
-                             validator: { $0?.count ?? 0 > 0 },
-                             saveAction: { store.execute(.control(.saveNewTag($0))) },
-                             cancelAction: nil))
-        .alert(isPresenting: store.bind(\.controlState.isRenameAlertPresenting,
-                                        action: { _ in .control(.alert(.dismissed)) }),
-               text: store.state.controlState.renamingTagName ?? "",
-               config: .init(title: L10n.tagListAlertUpdateTagNameTitle,
-                             message: L10n.tagListAlertUpdateTagNameMessage,
-                             placeholder: L10n.tagListAlertPlaceholder,
-                             validator: { text in
-                                 let baseTitle = store.state.controlState.renamingTagName ?? ""
-                                 return text != baseTitle && text?.count ?? 0 > 0
-                             },
-                             saveAction: { store.execute(.control(.alert(.updatedTitle($0)))) },
-                             cancelAction: nil))
+        .background(
+            // HACK: View表示が崩れるため、背景に配置する
+            Color.clear
+                .frame(width: 0, height: 0)
+                .fixedSize()
+                .alert(isPresenting: store.bind(\.controlState.isTagAdditionAlertPresenting,
+                                                action: { _ in .control(.alert(.dismissed)) }),
+                       text: "",
+                       config: .init(title: L10n.tagListAlertNewTagTitle,
+                                     message: L10n.tagListAlertNewTagMessage,
+                                     placeholder: L10n.tagListAlertPlaceholder,
+                                     validator: { $0?.count ?? 0 > 0 },
+                                     saveAction: { store.execute(.control(.saveNewTag($0))) },
+                                     cancelAction: nil))
+                .alert(isPresenting: store.bind(\.controlState.isRenameAlertPresenting,
+                                                action: { _ in .control(.alert(.dismissed)) }),
+                       text: store.state.controlState.renamingTagName ?? "",
+                       config: .init(title: L10n.tagListAlertUpdateTagNameTitle,
+                                     message: L10n.tagListAlertUpdateTagNameMessage,
+                                     placeholder: L10n.tagListAlertPlaceholder,
+                                     validator: { text in
+                                         let baseTitle = store.state.controlState.renamingTagName ?? ""
+                                         return text != baseTitle && text?.count ?? 0 > 0
+                                     },
+                                     saveAction: { store.execute(.control(.alert(.updatedTitle($0)))) },
+                                     cancelAction: nil))
+        )
     }
 
     @ViewBuilder

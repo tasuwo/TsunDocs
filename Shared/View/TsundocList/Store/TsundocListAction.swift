@@ -18,6 +18,10 @@ enum TsundocListAction {
         case dismissed
     }
 
+    enum NavigationAction {
+        case deactivated
+    }
+
     case onAppear
     case updateTsundocs([Tsundoc])
     case delete(IndexSet)
@@ -28,6 +32,7 @@ enum TsundocListAction {
     case failedToUpdateTsundoc(CommandServiceError?)
     case dismissModal
     case alert(AlertAction)
+    case navigation(NavigationAction)
 }
 
 extension TsundocListAction: Action {}

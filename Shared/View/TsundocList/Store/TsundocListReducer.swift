@@ -34,7 +34,7 @@ struct TsundocListReducer: Reducer {
             return (nextState, nil)
 
         case let .select(tsundoc):
-            nextState.modal = .safariView(tsundoc)
+            nextState.navigation = .browse(tsundoc)
             return (nextState, nil)
 
         case let .selectTags(tagIds, tsundocId):
@@ -100,6 +100,10 @@ struct TsundocListReducer: Reducer {
 
         case .alert(.dismissed):
             nextState.alert = nil
+            return (nextState, nil)
+
+        case .navigation(.deactivated):
+            nextState.navigation = nil
             return (nextState, nil)
         }
     }

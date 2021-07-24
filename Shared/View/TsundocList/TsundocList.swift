@@ -38,23 +38,16 @@ struct TsundocList: View {
                 }
             }
         }
+        .background(
+            NavigationLink(destination: browseView(),
+                           isActive: store.bind(\.isBrowseActive,
+                                                action: { _ in .navigation(.deactivated) })) {
+                EmptyView()
+            }
+        )
         .navigationTitle(title)
         .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .dismissModal })) {
             switch store.state.modal {
-            case let .safariView(tsundoc):
-                #if os(iOS)
-                NavigationView {
-                    BrowseView(baseUrl: tsundoc.url) {
-                        store.execute(.alert(.dismissed))
-                    } onClose: {
-                        store.execute(.tap(tsundoc.id, .editInfo))
-                    }
-                }
-                .ignoresSafeArea()
-                #elseif os(macOS)
-                EmptyView()
-                #endif
-
             case let .tagAdditionView(tsundocId, tagIds):
                 let newStore = tagMultiAdditionViewStoreBuilder.buildTagMultiAdditionViewStore(selectedIds: tagIds)
                 TagMultiAdditionView(store: newStore) {
@@ -168,6 +161,17 @@ struct TsundocList: View {
 
         Button(L10n.cancel, role: .cancel) {
             store.execute(.alert(.dismissed))
+        }
+    }
+
+    @ViewBuilder
+    private func browseView() -> some View {
+        if case let .browse(tsundoc) = store.state.navigation {
+            BrowseView(baseUrl: tsundoc.url) {
+                store.execute(.tap(tsundoc.id, .editInfo))
+            }
+        } else {
+            EmptyView()
         }
     }
 }
