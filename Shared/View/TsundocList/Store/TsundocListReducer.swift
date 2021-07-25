@@ -34,7 +34,7 @@ struct TsundocListReducer: Reducer {
             return (nextState, nil)
 
         case let .select(tsundoc):
-            nextState.navigation = .browse(tsundoc)
+            nextState.navigation = .browse(tsundoc, isEditing: false)
             return (nextState, nil)
 
         case let .selectTags(tagIds, tsundocId):
@@ -52,7 +52,16 @@ struct TsundocListReducer: Reducer {
             return (nextState, [effect])
 
         case let .tap(tsundocId, .editInfo):
-            // TODO:
+            guard let tsundoc = state.tsundocs.first(where: { $0.id == tsundocId }) else {
+                return (nextState, nil)
+            }
+            switch state.navigation {
+            case let .browse(tsundoc, isEditing: _) where tsundoc.id == tsundocId:
+                nextState.navigation = .browse(tsundoc, isEditing: true)
+
+            default:
+                nextState.navigation = .edit(tsundoc)
+            }
             return (nextState, nil)
 
         case let .tap(tsundocId, .addTag):
@@ -102,8 +111,20 @@ struct TsundocListReducer: Reducer {
             nextState.alert = nil
             return (nextState, nil)
 
-        case .navigation(.deactivated):
-            nextState.navigation = nil
+        case let .navigation(.deactivated(destination)):
+            switch destination {
+            case .edit, .browse:
+                nextState.navigation = nil
+
+            case .browseAndEdit:
+                switch state.navigation {
+                case let .browse(tsundoc, isEditing: _):
+                    nextState.navigation = .browse(tsundoc, isEditing: false)
+
+                default:
+                    nextState.navigation = nil
+                }
+            }
             return (nextState, nil)
         }
     }

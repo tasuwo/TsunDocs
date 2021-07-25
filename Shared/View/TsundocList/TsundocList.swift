@@ -41,7 +41,14 @@ struct TsundocList: View {
         .background(
             NavigationLink(destination: browseView(),
                            isActive: store.bind(\.isBrowseActive,
-                                                action: { _ in .navigation(.deactivated) })) {
+                                                action: { _ in .navigation(.deactivated(.browse)) })) {
+                EmptyView()
+            }
+        )
+        .background(
+            NavigationLink(destination: Text("Edit"),
+                           isActive: store.bind(\.isEditActive,
+                                                action: { _ in .navigation(.deactivated(.edit)) })) {
                 EmptyView()
             }
         )
@@ -166,10 +173,17 @@ struct TsundocList: View {
 
     @ViewBuilder
     private func browseView() -> some View {
-        if case let .browse(tsundoc) = store.state.navigation {
+        if case let .browse(tsundoc, isEditing: _) = store.state.navigation {
             BrowseView(baseUrl: tsundoc.url) {
                 store.execute(.tap(tsundoc.id, .editInfo))
             }
+            .background(
+                NavigationLink(destination: Text("Edit"),
+                               isActive: store.bind(\.isBrowseAndEditActive,
+                                                    action: { _ in .navigation(.deactivated(.browseAndEdit)) })) {
+                    EmptyView()
+                }
+            )
         } else {
             EmptyView()
         }

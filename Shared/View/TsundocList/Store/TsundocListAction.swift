@@ -19,7 +19,13 @@ enum TsundocListAction {
     }
 
     enum NavigationAction {
-        case deactivated
+        enum Destination {
+            case edit
+            case browse
+            case browseAndEdit
+        }
+
+        case deactivated(Destination)
     }
 
     case onAppear

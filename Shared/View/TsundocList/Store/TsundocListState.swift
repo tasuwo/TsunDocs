@@ -30,7 +30,8 @@ struct TsundocListState: Equatable {
     }
 
     enum Navigation: Equatable {
-        case browse(Tsundoc)
+        case edit(Tsundoc)
+        case browse(Tsundoc, isEditing: Bool)
     }
 
     let query: Query
@@ -57,6 +58,16 @@ extension TsundocListState {
 
     var isBrowseActive: Bool {
         guard case .browse = navigation else { return false }
+        return true
+    }
+
+    var isBrowseAndEditActive: Bool {
+        guard case .browse(_, isEditing: true) = navigation else { return false }
+        return true
+    }
+
+    var isEditActive: Bool {
+        guard case .edit = navigation else { return false }
         return true
     }
 
