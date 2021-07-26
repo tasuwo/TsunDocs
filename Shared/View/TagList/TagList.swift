@@ -55,7 +55,7 @@ struct TagList: View {
             )
         }
         // HACK: https://forums.swift.org/t/14-5-beta3-navigationlink-unexpected-pop/45279/35
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(.stack)
         .alert(isPresented: store.bind(\.controlState.isAlertPresenting,
                                        action: { _ in .control(.alert(.dismissed)) })) {
             switch store.state.controlState.alert {

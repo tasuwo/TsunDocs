@@ -33,7 +33,7 @@ struct ContentView: View {
                         store: tsundocListStore)
         }
         // HACK: https://forums.swift.org/t/14-5-beta3-navigationlink-unexpected-pop/45279/35
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(.stack)
 
         if idiom == .pad {
             NavigationView {
