@@ -66,7 +66,9 @@ extension WebView: UIViewRepresentable {
         case .none:
             break
         }
-        action = nil
+        Task { @MainActor in
+            action = nil
+        }
     }
 }
 

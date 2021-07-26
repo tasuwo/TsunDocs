@@ -17,33 +17,45 @@ class WebViewCoordinator: NSObject, WKUIDelegate {
         self.parent = parent
 
         let progressObservation = parent.internalWebView.observe(\.estimatedProgress, options: .new) { _, change in
-            guard let newValue = change.newValue else { return }
-            parent.estimatedProgress = newValue
+            Task { @MainActor in
+                guard let newValue = change.newValue else { return }
+                parent.estimatedProgress = newValue
+            }
         }
 
         let loadingObservation = parent.internalWebView.observe(\.isLoading, options: .new) { _, change in
-            guard let newValue = change.newValue else { return }
-            parent.isLoading = newValue
+            Task { @MainActor in
+                guard let newValue = change.newValue else { return }
+                parent.isLoading = newValue
+            }
         }
 
         let canGoBackObservation = parent.internalWebView.observe(\.canGoBack, options: .new) { _, change in
-            guard let newValue = change.newValue else { return }
-            parent.canGoBack = newValue
+            Task { @MainActor in
+                guard let newValue = change.newValue else { return }
+                parent.canGoBack = newValue
+            }
         }
 
         let canGoForwardObservation = parent.internalWebView.observe(\.canGoForward, options: .new) { _, change in
-            guard let newValue = change.newValue else { return }
-            parent.canGoForward = newValue
+            Task { @MainActor in
+                guard let newValue = change.newValue else { return }
+                parent.canGoForward = newValue
+            }
         }
 
         let titleObservation = parent.internalWebView.observe(\.title, options: [.initial, .new]) { _, change in
-            guard let newValue = change.newValue else { return }
-            parent.title = newValue
+            Task { @MainActor in
+                guard let newValue = change.newValue else { return }
+                parent.title = newValue
+            }
         }
 
         let urlObservation = parent.internalWebView.observe(\.url, options: [.initial, .new]) { _, change in
-            guard let newValue = change.newValue else { return }
-            parent.currentUrl = newValue
+            Task { @MainActor in
+                guard let newValue = change.newValue else { return }
+                parent.currentUrl = newValue
+            }
         }
 
         self.observations = [
