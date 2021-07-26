@@ -22,6 +22,18 @@ public struct Emoji: Searchable {
         self.emoji = emoji
         self.searchableText = searchableText
     }
+
+    public init?(alias: String) {
+        self.alias = alias
+
+        let maybeEmoji = Smile.replaceAlias(string: ":\(alias):")
+        guard Smile.isEmoji(character: maybeEmoji) else {
+            return nil
+        }
+
+        self.emoji = maybeEmoji
+        self.searchableText = alias.transformToSearchableText()
+    }
 }
 
 public extension Emoji {

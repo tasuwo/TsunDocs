@@ -52,6 +52,11 @@ public extension Tsundoc {
             return nil
         }
     }
+
+    var emoji: Emoji? {
+        guard let alias = emojiAlias else { return nil }
+        return Emoji(alias: alias)
+    }
 }
 
 extension Tsundoc: Identifiable {}
