@@ -158,6 +158,16 @@ public class TagQueryServiceMock: TagQueryService {
         fatalError("queryTagHandler returns can't have a default value thus its handler must be set")
     }
 
+    public private(set) var queryTagsCallCount = 0
+    public var queryTagsHandler: ((Tsundoc.ID) -> (Result<AnyObservedEntityArray<Tag>, QueryServiceError>))?
+    public func queryTags(taggedToTsundocHaving id: Tsundoc.ID) -> Result<AnyObservedEntityArray<Tag>, QueryServiceError> {
+        queryTagsCallCount += 1
+        if let queryTagsHandler = queryTagsHandler {
+            return queryTagsHandler(id)
+        }
+        fatalError("queryTagsHandler returns can't have a default value thus its handler must be set")
+    }
+
     public private(set) var queryAllTagsCallCount = 0
     public var queryAllTagsHandler: (() -> (Result<AnyObservedEntityArray<Tag>, QueryServiceError>))?
     public func queryAllTags() -> Result<AnyObservedEntityArray<Tag>, QueryServiceError> {
@@ -202,11 +212,11 @@ public class TsundocCommandServiceMock: TsundocCommandService {
     }
 
     public private(set) var updateTsundocCallCount = 0
-    public var updateTsundocHandler: ((Tsundoc.ID, Tag.ID) -> (Result<Void, CommandServiceError>))?
-    public func updateTsundoc(having id: Tsundoc.ID, byAddingTagHaving tagId: Tag.ID) -> Result<Void, CommandServiceError> {
+    public var updateTsundocHandler: ((Tsundoc.ID, String) -> (Result<Void, CommandServiceError>))?
+    public func updateTsundoc(having id: Tsundoc.ID, title: String) -> Result<Void, CommandServiceError> {
         updateTsundocCallCount += 1
         if let updateTsundocHandler = updateTsundocHandler {
-            return updateTsundocHandler(id, tagId)
+            return updateTsundocHandler(id, title)
         }
         fatalError("updateTsundocHandler returns can't have a default value thus its handler must be set")
     }
@@ -239,13 +249,33 @@ public class TsundocCommandServiceMock: TsundocCommandService {
     }
 
     public private(set) var updateTsundocHavingCallCount = 0
-    public var updateTsundocHavingHandler: ((Tsundoc.ID, Tag.ID) -> (Result<Void, CommandServiceError>))?
-    public func updateTsundoc(having id: Tsundoc.ID, byRemovingTagHaving tagId: Tag.ID) -> Result<Void, CommandServiceError> {
+    public var updateTsundocHavingHandler: ((Tsundoc.ID, String?) -> (Result<Void, CommandServiceError>))?
+    public func updateTsundoc(having id: Tsundoc.ID, emojiAlias: String?) -> Result<Void, CommandServiceError> {
         updateTsundocHavingCallCount += 1
         if let updateTsundocHavingHandler = updateTsundocHavingHandler {
-            return updateTsundocHavingHandler(id, tagId)
+            return updateTsundocHavingHandler(id, emojiAlias)
         }
         fatalError("updateTsundocHavingHandler returns can't have a default value thus its handler must be set")
+    }
+
+    public private(set) var updateTsundocHavingByAddingTagHavingCallCount = 0
+    public var updateTsundocHavingByAddingTagHavingHandler: ((Tsundoc.ID, Tag.ID) -> (Result<Void, CommandServiceError>))?
+    public func updateTsundoc(having id: Tsundoc.ID, byAddingTagHaving tagId: Tag.ID) -> Result<Void, CommandServiceError> {
+        updateTsundocHavingByAddingTagHavingCallCount += 1
+        if let updateTsundocHavingByAddingTagHavingHandler = updateTsundocHavingByAddingTagHavingHandler {
+            return updateTsundocHavingByAddingTagHavingHandler(id, tagId)
+        }
+        fatalError("updateTsundocHavingByAddingTagHavingHandler returns can't have a default value thus its handler must be set")
+    }
+
+    public private(set) var updateTsundocHavingByRemovingTagHavingCallCount = 0
+    public var updateTsundocHavingByRemovingTagHavingHandler: ((Tsundoc.ID, Tag.ID) -> (Result<Void, CommandServiceError>))?
+    public func updateTsundoc(having id: Tsundoc.ID, byRemovingTagHaving tagId: Tag.ID) -> Result<Void, CommandServiceError> {
+        updateTsundocHavingByRemovingTagHavingCallCount += 1
+        if let updateTsundocHavingByRemovingTagHavingHandler = updateTsundocHavingByRemovingTagHavingHandler {
+            return updateTsundocHavingByRemovingTagHavingHandler(id, tagId)
+        }
+        fatalError("updateTsundocHavingByRemovingTagHavingHandler returns can't have a default value thus its handler must be set")
     }
 
     public private(set) var updateTsundocHavingByReplacingTagsHavingCallCount = 0

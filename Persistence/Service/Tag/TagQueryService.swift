@@ -45,6 +45,22 @@ extension TagQueryService: Domain.TagQueryService {
         }
     }
 
+    public func queryTags(taggedToTsundocHaving id: Domain.Tsundoc.ID) -> Result<AnyObservedEntityArray<Domain.Tag>, QueryServiceError> {
+        do {
+            let factory: ObservedTagArray.RequestFactory = {
+                let request: NSFetchRequest<Tag> = Tag.fetchRequest()
+                request.sortDescriptors = [NSSortDescriptor(keyPath: \Tag.createdDate, ascending: false)]
+                request.predicate = NSPredicate(format: "SUBQUERY(tsundocs, $tsundoc, $tsundoc.id == %@).@count > 0", id as CVarArg)
+                return request
+            }
+            let query = try ObservedTagArray(requestFactory: factory, context: context)
+            append(query)
+            return .success(query.eraseToAnyObservedEntityArray())
+        } catch {
+            return .failure(.internalError(error))
+        }
+    }
+
     public func queryAllTags() -> Result<AnyObservedEntityArray<Domain.Tag>, QueryServiceError> {
         assert(Thread.isMainThread)
 

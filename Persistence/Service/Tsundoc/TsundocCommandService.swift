@@ -46,6 +46,36 @@ extension TsundocCommandService: Domain.TsundocCommandService {
         return .success(id)
     }
 
+    public func updateTsundoc(having id: Domain.Tsundoc.ID, title: String) -> Result<Void, CommandServiceError> {
+        do {
+            guard let tsundoc = try fetchTsundoc(having: id) else {
+                return .failure(.notFound)
+            }
+
+            tsundoc.title = title
+            tsundoc.updatedDate = Date()
+
+            return .success(())
+        } catch {
+            return .failure(.internalError(error))
+        }
+    }
+
+    public func updateTsundoc(having id: Domain.Tsundoc.ID, emojiAlias: String?) -> Result<Void, CommandServiceError> {
+        do {
+            guard let tsundoc = try fetchTsundoc(having: id) else {
+                return .failure(.notFound)
+            }
+
+            tsundoc.emojiAlias = emojiAlias
+            tsundoc.updatedDate = Date()
+
+            return .success(())
+        } catch {
+            return .failure(.internalError(error))
+        }
+    }
+
     public func updateTsundoc(having id: Domain.Tsundoc.ID, byAddingTagHaving tagId: Domain.Tag.ID) -> Result<Void, CommandServiceError> {
         do {
             guard let tsundoc = try fetchTsundoc(having: id) else {
@@ -76,7 +106,7 @@ extension TsundocCommandService: Domain.TsundocCommandService {
                 return .failure(.notFound)
             }
 
-            guard let tag = try fetchTag(having: id) else {
+            guard let tag = try fetchTag(having: tagId) else {
                 return .failure(.notFound)
             }
 
@@ -102,9 +132,6 @@ extension TsundocCommandService: Domain.TsundocCommandService {
 
             let newTags = try tagIds
                 .compactMap { try fetchTag(having: $0) }
-            guard !newTags.isEmpty else {
-                return .failure(.notFound)
-            }
 
             let tags = tsundoc.mutableSetValue(forKeyPath: #keyPath(Tsundoc.tags))
             tags.removeAllObjects()
