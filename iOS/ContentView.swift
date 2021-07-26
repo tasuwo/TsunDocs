@@ -19,6 +19,7 @@ struct ContentView: View {
             .environment(\.tsundocListStoreBuilder, container)
             .environment(\.tagMultiAdditionViewStoreBuilder, container)
             .environment(\.tagListStoreBuilder, container)
+            .environment(\.tsundocInfoViewStoreBuilder, container)
     }
 
     @ViewBuilder

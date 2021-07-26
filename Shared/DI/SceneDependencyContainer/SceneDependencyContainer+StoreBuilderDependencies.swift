@@ -41,3 +41,15 @@ extension SceneDependencyContainer: TagMultiAdditionViewStoreBuildable {
         return ViewStore(store: store)
     }
 }
+
+extension SceneDependencyContainer: TsundocInfoViewStoreBuildable {
+    // MARK: - TsundocInfoViewStoreBuildable
+
+    @MainActor
+    func buildTsundocInfoViewStore(tsundoc: Tsundoc) -> ViewStore<TsundocInfoViewRootState, TsundocInfoViewRootAction, TsundocInfoViewRootDependency> {
+        let store = Store(initialState: TsundocInfoViewRootState(tags: [], tsundoc: tsundoc),
+                          dependency: self,
+                          reducer: tsundocInfoViewRootReducer)
+        return ViewStore(store: store)
+    }
+}

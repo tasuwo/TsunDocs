@@ -65,6 +65,8 @@ internal enum L10n {
     internal static let tagListAlertUpdateTagNameTitle = L10n.tr("Localizable", "tag_list_alert_update_tag_name_title")
     /// タグ
     internal static let tagListTitle = L10n.tr("Localizable", "tag_list_title")
+    /// タグ
+    internal static let tsundocInfoViewTag = L10n.tr("Localizable", "tsundoc_info_view_tag")
     /// アイテムを削除
     internal static let tsundocListAlertDeleteTsundocAction = L10n.tr("Localizable", "tsundoc_list_alert_delete_tsundoc_action")
     /// このアイテムを削除しますか？

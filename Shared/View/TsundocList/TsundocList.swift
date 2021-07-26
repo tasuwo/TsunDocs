@@ -18,6 +18,7 @@ struct TsundocList: View {
 
     @Environment(\.openURL) var openURL
     @Environment(\.tagMultiAdditionViewStoreBuilder) var tagMultiAdditionViewStoreBuilder
+    @Environment(\.tsundocInfoViewStoreBuilder) var tsundocInfoViewStoreBuilder
 
     // MARK: - View
 
@@ -46,7 +47,7 @@ struct TsundocList: View {
             }
         )
         .background(
-            NavigationLink(destination: Text("Edit"),
+            NavigationLink(destination: infoView(),
                            isActive: store.bind(\.isEditActive,
                                                 action: { _ in .navigation(.deactivated(.edit)) })) {
                 EmptyView()
@@ -178,13 +179,27 @@ struct TsundocList: View {
                 store.execute(.tap(tsundoc.id, .editInfo))
             }
             .background(
-                NavigationLink(destination: Text("Edit"),
+                NavigationLink(destination: infoView(),
                                isActive: store.bind(\.isBrowseAndEditActive,
                                                     action: { _ in .navigation(.deactivated(.browseAndEdit)) })) {
                     EmptyView()
                 }
             )
         } else {
+            EmptyView()
+        }
+    }
+
+    @ViewBuilder
+    private func infoView() -> some View {
+        switch store.state.navigation {
+        case let .edit(tsundoc),
+             .browse(let tsundoc, isEditing: true):
+            let store = tsundocInfoViewStoreBuilder.buildTsundocInfoViewStore(tsundoc: tsundoc)
+            TsundocInfoView(store: store)
+                .navigationBarTitleDisplayMode(.inline)
+
+        default:
             EmptyView()
         }
     }

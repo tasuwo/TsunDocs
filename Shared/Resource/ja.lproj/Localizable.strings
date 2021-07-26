@@ -28,6 +28,8 @@
 "tsundoc_list_alert_delete_tsundoc_message" = "このアイテムを削除しますか？";
 "tsundoc_list_alert_delete_tsundoc_action" = "アイテムを削除";
 
+"tsundoc_info_view_tag" = "タグ";
+
 "setting_view_title" = "設定";
 "setting_view_section_title_this_app" = "このアプリについて";
 "setting_view_row_app_version" = "バージョン";

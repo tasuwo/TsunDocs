@@ -3,6 +3,7 @@
 ///
 
 import CompositeKit
+import Domain
 
 class TagListStoreBuildableMock: TagListStoreBuildable {
     init() { }
@@ -29,5 +30,19 @@ class TsundocListStoreBuildableMock: TsundocListStoreBuildable {
             return buildTsundocListStoreHandler(query)
         }
         fatalError("buildTsundocListStoreHandler returns can't have a default value thus its handler must be set")
+    }
+}
+
+class TsundocInfoViewStoreBuildableMock: TsundocInfoViewStoreBuildable {
+    init() { }
+
+    private(set) var buildTsundocInfoViewStoreCallCount = 0
+    var buildTsundocInfoViewStoreHandler: ((Tsundoc) -> (ViewStore<TsundocInfoViewRootState, TsundocInfoViewRootAction, TsundocInfoViewRootDependency>))?
+    func buildTsundocInfoViewStore(tsundoc: Tsundoc) -> ViewStore<TsundocInfoViewRootState, TsundocInfoViewRootAction, TsundocInfoViewRootDependency> {
+        buildTsundocInfoViewStoreCallCount += 1
+        if let buildTsundocInfoViewStoreHandler = buildTsundocInfoViewStoreHandler {
+            return buildTsundocInfoViewStoreHandler(tsundoc)
+        }
+        fatalError("buildTsundocInfoViewStoreHandler returns can't have a default value thus its handler must be set")
     }
 }
