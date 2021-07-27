@@ -47,7 +47,11 @@ public struct TsundocEditThumbnail: View {
                     }
             } else {
                 if let imageUrl = imageUrl {
-                    AsyncImage(url: imageUrl, factory: imageLoaderFactory) {
+                    AsyncImage(url: imageUrl,
+                               size: .init(width: Self.thumbnailSize * 2,
+                                           height: Self.thumbnailSize * 2),
+                               contentMode: .fill,
+                               factory: imageLoaderFactory) {
                         switch $0 {
                         case let .loaded(image):
                             image

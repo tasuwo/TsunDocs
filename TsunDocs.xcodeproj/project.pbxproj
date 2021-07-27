@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -124,6 +124,7 @@
 		40871D01CBDF1F2240F9B5E8 /* WebPageMetaResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDB36D1C706D829A18EAF4 /* WebPageMetaResolver.swift */; };
 		4092B6F521F0C9BFB66F524B /* TsundocInfoViewRootAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F3ABF104FAABC8ABC4CBE /* TsundocInfoViewRootAction.swift */; };
 		416A85D4E940D2B3D6D7FD97 /* SceneDependencyContainer+ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A484483DC29892DD0EB5B0 /* SceneDependencyContainer+ServiceDependencies.swift */; };
+		423E38C1316D95C1871E0862 /* CGSize+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96116426AE1CC8DEC4C98D0 /* CGSize+Scale.swift */; };
 		427034C034BEBA7B97CD47CB /* TagCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F540E17C40608155B9A59E /* TagCellSize.swift */; };
 		439AD332560F3773C1EA0C36 /* TsunDocsUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD4B0E937F6328BA7F0297D /* TsunDocsUIKit.framework */; };
 		43BCE8CD90E8C89D7C5C79A9 /* TsundocList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4058A249D33AD35728B16C /* TsundocList.swift */; };
@@ -392,6 +393,7 @@
 		E1A05F0F5E2CC09D9B25D002 /* TagMultiAdditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43577EF368F748451ACA91 /* TagMultiAdditionView.swift */; };
 		E1B0EDC100F5373C7D39E54A /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */; };
 		E23A89479D12F1BCD3DDF928 /* Publisher+bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B13F8D9178337ED377514C /* Publisher+bind.swift */; };
+		E275F894D5CB50670585488B /* CGSize+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96116426AE1CC8DEC4C98D0 /* CGSize+Scale.swift */; };
 		E2F3A3115D7E4A5D9B750219 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6ED6A0804000E62025C74E /* TagCell.swift */; };
 		E3FE142BBE8AAF36D7461D36 /* ObservedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939312F1559214B10346C3C /* ObservedTag.swift */; };
 		E484ABE0FB45DEB6EDE2266E /* TagListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E9A88BBD11F48D4DCD9120 /* TagListState.swift */; };
@@ -709,7 +711,7 @@
 		30F540E17C40608155B9A59E /* TagCellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCellSize.swift; sourceTree = "<group>"; };
 		3425C767AC7288629755D4E3 /* Tag+MapToDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+MapToDomainModel.swift"; sourceTree = "<group>"; };
 		36703B036CCADF3624EF5269 /* StoreProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProxy.swift; sourceTree = "<group>"; };
-		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "TsunDocs (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; name = "TsunDocs (iOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3715A8C51F45D991F0898F75 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		37AD00BB2DCA41D989959A72 /* WeakContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakContainer.swift; sourceTree = "<group>"; };
 		39086131CDC1E01FB0873C88 /* Environment+AppDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+AppDependencyContainer.swift"; sourceTree = "<group>"; };
@@ -826,7 +828,7 @@
 		BC3B640A2AE2A490958D8BCF /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		BD025077E909BE230574082B /* TagListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListReducer.swift; sourceTree = "<group>"; };
 		BD67C8F082DAEAE15E00EB2A /* TextEditAlertConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditAlertConfig.swift; sourceTree = "<group>"; };
-		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TsunDocs (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "TsunDocs (macOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF6EFCC79869C0149B2550CD /* TsundocMetaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocMetaContainer.swift; sourceTree = "<group>"; };
 		BFBC7EFEBB894E7ED12CC88E /* SharedUrlEditViewRootReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUrlEditViewRootReducer.swift; sourceTree = "<group>"; };
 		C06F3ABF104FAABC8ABC4CBE /* TsundocInfoViewRootAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocInfoViewRootAction.swift; sourceTree = "<group>"; };
@@ -858,6 +860,7 @@
 		D724954D4CA81429AD139A4D /* MemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
 		D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootViewController.swift; sourceTree = "<group>"; };
 		D7C952F4C9A6BD608C2BA70B /* TextEditAlertReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditAlertReducer.swift; sourceTree = "<group>"; };
+		D96116426AE1CC8DEC4C98D0 /* CGSize+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Scale.swift"; sourceTree = "<group>"; };
 		DA913F50BBD7D9E8E9769D96 /* CompositeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CompositeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB56EBEB7892DC64ACED096E /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 		DC474DB2B9BF7C8DE5E78FA7 /* PersistentHistoryTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryTracker.swift; sourceTree = "<group>"; };
@@ -1040,6 +1043,14 @@
 				743D0046893FD6BFC8078A0A /* Reducer */,
 			);
 			path = Reducer;
+			sourceTree = "<group>";
+		};
+		0A1D57529501022643B4C8B2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D96116426AE1CC8DEC4C98D0 /* CGSize+Scale.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		0AF84BA0FB5367367F847128 /* Manual */ = {
@@ -1279,6 +1290,7 @@
 				E19C98C155E539E825D1B2A6 /* Common */,
 				D01E427A7D548DD7CD6A4E95 /* Dependency */,
 				A21A4DDCC52227C64040FFF2 /* Entity */,
+				0A1D57529501022643B4C8B2 /* Extension */,
 				7338F62E6014170C0EEA409B /* ObservedEntity */,
 				E866914F0C2143A49D791D33 /* Searchable */,
 				13A447D5D25C1610A1E4274F /* Service */,
@@ -1718,9 +1730,6 @@
 		A22E014B7BCB53902CBDDE14 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				0AF84BA0FB5367367F847128 /* Manual */,
-				2DFADEEAB84AFFA0447A9497 /* Protocol */,
-				90FA9BBF04604F13BF03A3CA /* Struct */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -2942,6 +2951,7 @@
 				EAB0D7765556ED57F88DA897 /* AnyObservedEntity.swift in Sources */,
 				73416CF4BCFCD7A2522DC584 /* AnyObservedEntityArray.swift in Sources */,
 				78B56C77A003953F9DFF9C4B /* Array+Indexed.swift in Sources */,
+				423E38C1316D95C1871E0862 /* CGSize+Scale.swift in Sources */,
 				EFB9D1D9CFA58D67C213DB31 /* CommandServiceError.swift in Sources */,
 				13754EC598D041A0662D4F33 /* Emoji.swift in Sources */,
 				D29F3F6FF5AC8DED7A8FBA65 /* EntitiesSnapshot.swift in Sources */,
@@ -2990,6 +3000,7 @@
 				A926E9C0D9D59E512A1E5AA1 /* AnyObservedEntity.swift in Sources */,
 				C3C4E1A09ACB3BF4381AE494 /* AnyObservedEntityArray.swift in Sources */,
 				190C5189C2B4DC0804ECC38F /* Array+Indexed.swift in Sources */,
+				E275F894D5CB50670585488B /* CGSize+Scale.swift in Sources */,
 				BE9CD37203831C49C3CD2111 /* CommandServiceError.swift in Sources */,
 				95E851C462297AB3C2B34F3C /* Emoji.swift in Sources */,
 				6CAB48BFE80C65D7070408C3 /* EntitiesSnapshot.swift in Sources */,

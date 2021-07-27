@@ -18,6 +18,11 @@ public enum AsyncImageStatus: Equatable {
 }
 
 public struct AsyncImage<Content>: View where Content: View {
+    public enum ContentMode {
+        case fit
+        case fill
+    }
+
     // MARK: - Properties
 
     @StateObject private var loader: ImageLoader
@@ -28,6 +33,8 @@ public struct AsyncImage<Content>: View where Content: View {
     // MARK: - Initializers
 
     public init<C, P>(url: URL,
+                      size: CGSize? = nil,
+                      contentMode: ContentMode = .fit,
                       factory: Factory<ImageLoader> = .default,
                       @ViewBuilder content: @escaping (Image) -> C,
                       @ViewBuilder placeholder: @escaping () -> P) where C: View, P: View, Content == _ConditionalContent<C, P>
@@ -37,7 +44,14 @@ public struct AsyncImage<Content>: View where Content: View {
             switch complete {
             case let .image(image):
                 #if os(iOS)
-                return ViewBuilder.buildEither(first: content(Image(uiImage: image)))
+                let thumbnail: UIImage
+                if let size = size {
+                    let target = Self.calcSize(for: image, size: size, contentMode: contentMode)
+                    thumbnail = image.preparingThumbnail(of: target) ?? image
+                } else {
+                    thumbnail = image
+                }
+                return ViewBuilder.buildEither(first: content(Image(uiImage: thumbnail)))
                 #elseif os(macOS)
                 return ViewBuilder.buildEither(first: content(Image(nsImage: image)))
                 #endif
@@ -54,6 +68,8 @@ public struct AsyncImage<Content>: View where Content: View {
     }
 
     public init(url: URL,
+                size: CGSize? = nil,
+                contentMode: ContentMode = .fit,
                 factory: Factory<ImageLoader> = .default,
                 @ViewBuilder content: @escaping (AsyncImageStatus) -> Content)
     {
@@ -62,7 +78,14 @@ public struct AsyncImage<Content>: View where Content: View {
             switch complete {
             case let .image(image):
                 #if os(iOS)
-                return content(.loaded(Image(uiImage: image)))
+                let thumbnail: UIImage
+                if let size = size {
+                    let target = Self.calcSize(for: image, size: size, contentMode: contentMode)
+                    thumbnail = image.preparingThumbnail(of: target) ?? image
+                } else {
+                    thumbnail = image
+                }
+                return content(.loaded(Image(uiImage: thumbnail)))
                 #elseif os(macOS)
                 return content(.loaded(Image(nsImage: image)))
                 #endif
@@ -88,6 +111,18 @@ public struct AsyncImage<Content>: View where Content: View {
             .onAppear {
                 loader.load(url)
             }
+    }
+
+    // MARK: - Methods
+
+    static func calcSize(for image: UIImage, size: CGSize, contentMode: ContentMode) -> CGSize {
+        switch contentMode {
+        case .fit:
+            return image.size.aspectFit(to: size)
+
+        case .fill:
+            return image.size.aspectFill(to: size)
+        }
     }
 }
 

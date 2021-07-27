@@ -9,7 +9,6 @@ import TsunDocsUIKit
 struct TsundocThumbnail: View {
     // MARK: - Properties
 
-    @State private var status: AsyncImageStatus?
     @Environment(\.imageLoaderFactory) var imageLoaderFactory
 
     let source: TsundocThumbnailSource?
@@ -20,7 +19,11 @@ struct TsundocThumbnail: View {
         Group {
             switch source {
             case let .imageUrl(url):
-                AsyncImage(url: url, factory: imageLoaderFactory) {
+                AsyncImage(url: url,
+                           size: .init(width: 80 * 2,
+                                       height: 80 * 2),
+                           contentMode: .fill,
+                           factory: imageLoaderFactory) {
                     switch $0 {
                     case let .loaded(image):
                         image
