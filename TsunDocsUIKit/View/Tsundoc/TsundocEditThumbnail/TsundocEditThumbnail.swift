@@ -19,7 +19,6 @@ public struct TsundocEditThumbnail: View {
     @Binding private var selectedEmoji: Emoji?
 
     @State private var isSelectingEmoji = false
-    @State private var thumbnailLoadingStatus: AsyncImageStatus?
 
     private var visibleDeleteButton: Bool { selectedEmoji != nil }
     private var visibleEmojiLoadButton: Bool { imageUrl != nil && selectedEmoji == nil }
@@ -48,19 +47,25 @@ public struct TsundocEditThumbnail: View {
                     }
             } else {
                 if let imageUrl = imageUrl {
-                    ZStack {
-                        AsyncImage(url: imageUrl,
-                                   status: $thumbnailLoadingStatus,
-                                   factory: imageLoaderFactory) {
-                            Color.gray.opacity(0.4)
-                        }
-                        .aspectRatio(contentMode: .fill)
+                    AsyncImage(url: imageUrl, factory: imageLoaderFactory) {
+                        switch $0 {
+                        case let .loaded(image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
 
-                        if thumbnailLoadingStatus == .failed || thumbnailLoadingStatus == .cancelled
-                        {
-                            Image(systemName: "xmark")
-                                .font(.system(size: 24))
-                                .foregroundColor(.gray.opacity(0.7))
+                        case .failed, .cancelled:
+                            ZStack {
+                                Color.gray.opacity(0.4)
+
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(.gray.opacity(0.7))
+                            }
+
+                        case .empty:
+                            Color.gray.opacity(0.4)
+                                .overlay(ProgressView())
                         }
                     }
                 } else {

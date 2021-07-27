@@ -20,17 +20,26 @@ struct TsundocThumbnail: View {
         Group {
             switch source {
             case let .imageUrl(url):
-                ZStack {
-                    AsyncImage(url: url, status: $status, factory: imageLoaderFactory) {
-                        Color.gray.opacity(0.4)
-                    }
-                    .aspectRatio(contentMode: .fill)
-
-                    if status == .failed || status == .cancelled {
-                        Image(systemName: "xmark")
+                AsyncImage(url: url, factory: imageLoaderFactory) {
+                    switch $0 {
+                    case let .loaded(image):
+                        image
                             .resizable()
-                            .frame(width: 16, height: 16, alignment: .center)
-                            .foregroundColor(.gray.opacity(0.7))
+                            .aspectRatio(contentMode: .fill)
+
+                    case .failed, .cancelled:
+                        ZStack {
+                            Color.gray.opacity(0.4)
+
+                            Image(systemName: "xmark")
+                                .resizable()
+                                .frame(width: 16, height: 16, alignment: .center)
+                                .foregroundColor(.gray.opacity(0.7))
+                        }
+
+                    case .empty:
+                        Color.gray.opacity(0.4)
+                            .overlay(ProgressView())
                     }
                 }
 

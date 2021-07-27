@@ -11,76 +11,83 @@ import Cocoa
 #endif
 
 public enum AsyncImageStatus: Equatable {
-    case loaded
+    case empty
+    case loaded(Image)
     case failed
     case cancelled
 }
 
-public struct AsyncImage<Placeholder: View>: View {
+public struct AsyncImage<Content>: View where Content: View {
     // MARK: - Properties
 
     @StateObject private var loader: ImageLoader
-    @Binding private var status: AsyncImageStatus?
 
     private let url: URL
-    private let placeholder: Placeholder
+    private let content: (ImageLoader.Complete?) -> Content
 
     // MARK: - Initializers
 
-    public init(url: URL,
-                status: Binding<AsyncImageStatus?>,
-                factory: Factory<ImageLoader> = .default,
-                @ViewBuilder placeholder: () -> Placeholder)
+    public init<C, P>(url: URL,
+                      factory: Factory<ImageLoader> = .default,
+                      @ViewBuilder content: @escaping (Image) -> C,
+                      @ViewBuilder placeholder: @escaping () -> P) where C: View, P: View, Content == _ConditionalContent<C, P>
     {
         self.url = url
-        self._status = status
-        self.placeholder = placeholder()
+        self.content = { complete in
+            switch complete {
+            case let .image(image):
+                #if os(iOS)
+                return ViewBuilder.buildEither(first: content(Image(uiImage: image)))
+                #elseif os(macOS)
+                return ViewBuilder.buildEither(first: content(Image(nsImage: image)))
+                #endif
+
+            case .failure, .cancelled:
+                return ViewBuilder.buildEither(second: placeholder())
+
+            case .none:
+                return ViewBuilder.buildEither(second: placeholder())
+            }
+        }
+
+        _loader = StateObject(wrappedValue: factory.make())
+    }
+
+    public init(url: URL,
+                factory: Factory<ImageLoader> = .default,
+                @ViewBuilder content: @escaping (AsyncImageStatus) -> Content)
+    {
+        self.url = url
+        self.content = { complete in
+            switch complete {
+            case let .image(image):
+                #if os(iOS)
+                return content(.loaded(Image(uiImage: image)))
+                #elseif os(macOS)
+                return content(.loaded(Image(nsImage: image)))
+                #endif
+
+            case .failure:
+                return content(.failed)
+
+            case .cancelled:
+                return content(.cancelled)
+
+            case .none:
+                return content(.empty)
+            }
+        }
+
         _loader = StateObject(wrappedValue: factory.make())
     }
 
     // MARK: - View
 
     public var body: some View {
-        Group {
-            switch loader.complete {
-            case let .image(image):
-                #if os(iOS)
-                Image(uiImage: image)
-                    .resizable()
-                #elseif os(macOS)
-                Image(nsImage: image)
-                    .resizable()
-                #endif
-
-            case .failure, .cancelled:
-                placeholder
-
-            case .none:
-                placeholder
-                    .overlay(ProgressView())
+        content(loader.complete)
+            .onAppear {
+                loader.load(url)
             }
-        }
-        .onAppear {
-            loader.load(url)
-        }
-        .onChange(of: loader.complete) {
-            status = $0?.asyncImageStatus
-        }
-    }
-}
-
-private extension ImageLoader.Complete {
-    var asyncImageStatus: AsyncImageStatus {
-        switch self {
-        case .image:
-            return .loaded
-
-        case .cancelled:
-            return .cancelled
-
-        case .failure:
-            return .failed
-        }
     }
 }
 
@@ -113,32 +120,59 @@ struct AsyncImage_Previews: PreviewProvider {
                 HStack {
                     // swiftlint:disable:next force_unwrapping
                     AsyncImage(url: URL(string: "https://localhost")!,
-                               status: .constant(nil),
-                               factory: .init { .init(urlSession: .makeMock(SuccessMock.self)) },
-                               placeholder: { Color.gray.opacity(0.5) })
-                        .frame(width: 100, height: 100, alignment: .center)
+                               factory: .init { .init(urlSession: .makeMock(SuccessMock.self)) }) {
+                        $0.resizable()
+                    } placeholder: {
+                        Color.gray.opacity(0.5)
+                    }
+                    .frame(width: 100, height: 100, alignment: .center)
 
                     // swiftlint:disable:next force_unwrapping
                     AsyncImage(url: URL(string: "https://localhost")!,
-                               status: .constant(nil),
-                               factory: .init { .init(urlSession: .makeMock(FailureMock.self)) },
-                               placeholder: { Color.gray.opacity(0.5) })
-                        .frame(width: 100, height: 100, alignment: .center)
+                               factory: .init { .init(urlSession: .makeMock(FailureMock.self)) }) {
+                        $0.resizable()
+                    } placeholder: {
+                        Color.gray.opacity(0.5)
+                    }
+                    .frame(width: 100, height: 100, alignment: .center)
                 }
                 HStack {
                     // swiftlint:disable:next force_unwrapping
                     AsyncImage(url: URL(string: "https://localhost")!,
-                               status: .constant(nil),
-                               factory: .init { .init(urlSession: .makeMock(SuccessMock.self)) },
-                               placeholder: { Color.green.opacity(0.5) })
-                        .frame(width: 100, height: 100, alignment: .center)
+                               factory: .init { .init(urlSession: .makeMock(SuccessMock.self)) }) {
+                        switch $0 {
+                        case .empty:
+                            Color.gray.opacity(0.5)
+                                .overlay(ProgressView())
+
+                        case let .loaded(image):
+                            image
+                                .resizable()
+
+                        case .cancelled, .failed:
+                            Color.gray.opacity(0.5)
+                        }
+                    }
+                    .frame(width: 100, height: 100, alignment: .center)
 
                     // swiftlint:disable:next force_unwrapping
                     AsyncImage(url: URL(string: "https://localhost")!,
-                               status: .constant(nil),
-                               factory: .init { .init(urlSession: .makeMock(FailureMock.self)) },
-                               placeholder: { Color.green.opacity(0.5) })
-                        .frame(width: 100, height: 100, alignment: .center)
+                               factory: .init { .init(urlSession: .makeMock(FailureMock.self)) }) {
+                        switch $0 {
+                        case .empty:
+                            Color.gray.opacity(0.5)
+                                .overlay(ProgressView())
+
+                        case let .loaded(image):
+                            image
+                                .resizable()
+
+                        case .cancelled, .failed:
+                            Color.gray.opacity(0.5)
+                                .overlay(Image(systemName: "xmark"))
+                        }
+                    }
+                    .frame(width: 100, height: 100, alignment: .center)
                 }
             }
         }
