@@ -45,6 +45,7 @@ public class ImageLoader: ObservableObject {
 
     private let urlSession: URLSession
     private var cancellable: AnyCancellable?
+    private let cache: MemoryCache<Data> = .init()
 
     @Published public var complete: Complete?
 
@@ -62,8 +63,16 @@ public class ImageLoader: ObservableObject {
 
     public func load(_ url: URL) {
         cancellable?.cancel()
+
+        if let data = cache[url.absoluteString] {
+            complete = .init(data)
+        }
+
         cancellable = urlSession.dataTaskPublisher(for: url)
-            .map { Complete($0.data) }
+            .map { [weak self] data, _ in
+                self?.cache[url.absoluteString] = data
+                return Complete(data)
+            }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] complete in
                 switch complete {
