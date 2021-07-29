@@ -126,6 +126,7 @@
 		4092B6F521F0C9BFB66F524B /* TsundocInfoViewRootAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F3ABF104FAABC8ABC4CBE /* TsundocInfoViewRootAction.swift */; };
 		416A85D4E940D2B3D6D7FD97 /* SceneDependencyContainer+ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A484483DC29892DD0EB5B0 /* SceneDependencyContainer+ServiceDependencies.swift */; };
 		427034C034BEBA7B97CD47CB /* TagCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F540E17C40608155B9A59E /* TagCellSize.swift */; };
+		430A7D9673F5EDA94A927B5B /* AnimatingEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4771F12D39B91E176DF373 /* AnimatingEffect.swift */; };
 		439AD332560F3773C1EA0C36 /* TsunDocsUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD4B0E937F6328BA7F0297D /* TsunDocsUIKit.framework */; };
 		43BCE8CD90E8C89D7C5C79A9 /* TsundocList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4058A249D33AD35728B16C /* TsundocList.swift */; };
 		43C480475934129C3C534C40 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA8AEA8894D65A2392567CFD /* Localizable.strings */; };
@@ -316,6 +317,7 @@
 		AE417ECE2C3B6EE3C0B8CDEF /* Persistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C0DCB7221B326130827769 /* Persistence.framework */; };
 		AF3C8EBC8FF176ED0FCEE982 /* TagCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91768C3AB3EBD97E188BC1 /* TagCommandService.swift */; };
 		B0ED72FBCCE639C0FAA2FAA5 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7998AC20EE38BDAA0BA24C3 /* Store.swift */; };
+		B17D65E04C5AFC3F867B78C3 /* AnimatingEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4771F12D39B91E176DF373 /* AnimatingEffect.swift */; };
 		B2532699E361300D82387BC0 /* ObservedTagArrayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD16AB663EF6E6EC269736F0 /* ObservedTagArrayMock.swift */; };
 		B2643DC6D78A94C3B97880D6 /* HTTPURLResponse+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA797FDE403EA923AD92AD5 /* HTTPURLResponse+Mock.swift */; };
 		B265746659C347CD5BBCF4C7 /* Domain.ProtocolMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544D7B7DCC997A4E3292614E /* Domain.ProtocolMocks.swift */; };
@@ -709,6 +711,7 @@
 		2E06FEE0FB002FB6A3B26F93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2E6ED6A0804000E62025C74E /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		2E85C1D5AA923AAD880BED5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2F4771F12D39B91E176DF373 /* AnimatingEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingEffect.swift; sourceTree = "<group>"; };
 		2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
 		30F540E17C40608155B9A59E /* TagCellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCellSize.swift; sourceTree = "<group>"; };
 		3425C767AC7288629755D4E3 /* Tag+MapToDomainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+MapToDomainModel.swift"; sourceTree = "<group>"; };
@@ -1866,6 +1869,7 @@
 		C43DD459FD3E6E85AE2A6831 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				2F4771F12D39B91E176DF373 /* AnimatingEffect.swift */,
 				9556EC87DBBC5294C70F8B10 /* ViewStore.swift */,
 			);
 			path = SwiftUI;
@@ -2849,6 +2853,7 @@
 			files = (
 				EA9E62CD05A1B3E2FB763B0E /* Action.swift in Sources */,
 				7B52DE2DFD347AFAD9250361 /* ActionDispatcher.swift in Sources */,
+				B17D65E04C5AFC3F867B78C3 /* AnimatingEffect.swift in Sources */,
 				89EE4D01F71B798F9EF77002 /* AnyReducer.swift in Sources */,
 				69F2F3A759BC3EF107CE1B96 /* AnyStoring.swift in Sources */,
 				969AC0F19212371D55A9CCAE /* Combine.swift in Sources */,
@@ -2875,6 +2880,7 @@
 			files = (
 				B95EF5A026E99D6726A6D91B /* Action.swift in Sources */,
 				921A7F602CB4506B7271CEA5 /* ActionDispatcher.swift in Sources */,
+				430A7D9673F5EDA94A927B5B /* AnimatingEffect.swift in Sources */,
 				F9F483A18592E38B3EE3CEDD /* AnyReducer.swift in Sources */,
 				3F6F72A3B032DC2DDA4F0CF5 /* AnyStoring.swift in Sources */,
 				12761DD7CA93A65A7C151CBD /* Combine.swift in Sources */,
