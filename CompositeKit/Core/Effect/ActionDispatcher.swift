@@ -28,6 +28,17 @@ struct ActionDispatcher<Action: CompositeKit.Action> {
         }
     }
 
+    func dispatchAndWait(_ block: @escaping (Action) -> Void) {
+        let semaphore = DispatchSemaphore(value: 0)
+
+        dispatch { action in
+            block(action)
+            semaphore.signal()
+        }
+
+        semaphore.wait()
+    }
+
     func map<T: CompositeKit.Action>(_ transform: @escaping (Action?) -> T?) -> ActionDispatcher<T>? {
         return ActionDispatcher<T>(action: transform(action), with: withContext)
     }
