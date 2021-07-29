@@ -161,7 +161,7 @@ extension TsundocListReducer {
         let tsundocsStream = entities.values
             .catch { _ in Just([]) }
             .map { Action.updateTsundocs($0) as Action? }
-        let tsundocsEffect = Effect(tsundocsStream, underlying: entities)
+        let tsundocsEffect = AnimatingEffect(tsundocsStream, underlying: entities)
 
         nextState.tsundocs = entities.values.value
 
