@@ -28,7 +28,6 @@ public class ViewStore<State: Equatable, Action: CompositeKit.Action, Dependency
         self.store = store.eraseToAnyStoring()
         self.state = store.stateValue
         self.cancellable = store.state
-            .receive(on: RunLoop.main)
             .removeDuplicates()
             .sink { [weak self] in self?.state = $0 }
     }

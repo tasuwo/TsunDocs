@@ -67,14 +67,13 @@ public class Store<State: Equatable, Action: CompositeKit.Action, Dependency>: S
                 self.effectsLock.lock()
                 defer { self.effectsLock.unlock() }
 
-                if let action = effect?.actionAtCompleted {
-                    self.execute(action)
+                if let dispatcher = effect?.actionAtCompleted {
+                    dispatcher.dispatch { self.execute($0) }
                 }
 
                 self.effects.removeValue(forKey: id)
-            } receiveValue: { [weak self] action in
-                guard let action = action else { return }
-                self?.execute(action)
+            } receiveValue: { [weak self] dispatcher in
+                dispatcher?.dispatch { self?.execute($0) }
             }
 
         effects[id] = (effect, cancellable)
