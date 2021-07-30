@@ -105,7 +105,7 @@ extension TsundocInfoViewReducer {
         let tsundocStream = tsundocEntity.value
             .map { Action.updateTsundoc($0) as Action? }
             .catch { _ in Just(Action.failedToLoad) }
-        let tsundocEffect = Effect(tsundocStream, underlying: tsundocEntity)
+        let tsundocEffect = AnimatingEffect(tsundocStream, underlying: tsundocEntity, animateWith: .default)
 
         nextState.tsundoc = tsundocEntity.value.value
 
@@ -123,7 +123,7 @@ extension TsundocInfoViewReducer {
         let tagStream = tagEntities.values
             .map { Action.updateTag($0) as Action? }
             .catch { _ in Just(Action.failedToLoad) }
-        let tagsEffect = Effect(tagStream, underlying: tagEntities)
+        let tagsEffect = AnimatingEffect(tagStream, underlying: tagEntities, animateWith: .default)
 
         nextState.tags = tagEntities.values.value
 
