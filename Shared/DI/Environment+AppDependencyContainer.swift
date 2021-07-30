@@ -5,7 +5,7 @@
 import SwiftUI
 
 private struct AppDependencyContainerKey: EnvironmentKey {
-    static let defaultValue = AppDependencyContainer()
+    static let defaultValue = AppDependencyContainer.shared
 }
 
 extension EnvironmentValues {

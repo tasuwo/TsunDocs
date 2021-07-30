@@ -9,6 +9,8 @@ import Persistence
 class AppDependencyContainer: ObservableObject {
     // MARK: - Properties
 
+    static let shared = AppDependencyContainer()
+
     // MARK: CoreData
 
     private let container: PersistentContainer
@@ -27,7 +29,7 @@ class AppDependencyContainer: ObservableObject {
 
     // MARK: - Initializers
 
-    init() {
+    private init() {
         container = PersistentContainer(author: .app)
         commandContext = container.newBackgroundContext(on: commandQueue)
 

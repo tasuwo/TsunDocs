@@ -71,10 +71,10 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView(container: SceneDependencyContainer(AppDependencyContainer()))
+            ContentView(container: SceneDependencyContainer(.shared))
                 .previewDevice("iPhone 12")
 
-            ContentView(container: SceneDependencyContainer(AppDependencyContainer()))
+            ContentView(container: SceneDependencyContainer(.shared))
                 .previewDevice("iPad Pro (12.9-inch) (3rd generation)")
         }
     }

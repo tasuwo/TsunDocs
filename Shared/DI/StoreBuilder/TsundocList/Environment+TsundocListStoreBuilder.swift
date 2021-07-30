@@ -2,10 +2,17 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import CompositeKit
 import SwiftUI
 
 private struct TsundocListStoreBuilderKey: EnvironmentKey {
-    static let defaultValue: TsundocListStoreBuildable = SceneDependencyContainer(AppDependencyContainer())
+    private struct DefaultBuilder: TsundocListStoreBuildable {
+        func buildTsundocListStore(query: TsundocListState.Query) -> ViewStore<TsundocListState, TsundocListAction, TsundocListDependency> {
+            fatalError("Not Implemented")
+        }
+    }
+
+    static let defaultValue: TsundocListStoreBuildable = DefaultBuilder()
 }
 
 extension EnvironmentValues {

@@ -5,7 +5,7 @@
 import SwiftUI
 
 private struct SceneDependencyContainerKey: EnvironmentKey {
-    static let defaultValue = SceneDependencyContainer(AppDependencyContainer())
+    static let defaultValue = SceneDependencyContainer(.shared)
 }
 
 extension EnvironmentValues {
