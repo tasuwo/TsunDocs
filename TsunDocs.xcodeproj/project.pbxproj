@@ -18,6 +18,7 @@
 		0655A2FFCA121FE136CB6476 /* TsundocMetaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6EFCC79869C0149B2550CD /* TsundocMetaContainer.swift */; };
 		06CFA4D7698C620799FAF146 /* ViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9556EC87DBBC5294C70F8B10 /* ViewStore.swift */; };
 		0717B1C6E7A4E11D71EE5C13 /* TagMultiSelectionViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C711B6B1367062E57A567F /* TagMultiSelectionViewReducer.swift */; };
+		08255AFBE59977C27BCA3510 /* Tsundoc+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65AD68E1947AE2044D2128B /* Tsundoc+CoreDataClass.swift */; };
 		088FEF9A9B1EFFDBFDCAC84F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0054503F7B1FB3BC313B3A06 /* String.swift */; };
 		08C91D2EA8C504197C82A267 /* SceneDependencyContainer+StoreBuilderDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AACC6BBD61E9D3BB9C5F5 /* SceneDependencyContainer+StoreBuilderDependencies.swift */; };
 		091443BA5D0E56D0D340BF01 /* Tsundoc+MapToDomainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE52D741C6408929139E480 /* Tsundoc+MapToDomainModel.swift */; };
@@ -112,6 +113,7 @@
 		35F6D435F2C21399296617F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51C3DABAB6E2E48C9F39FFE /* Preview Assets.xcassets */; };
 		363221FCE87813A4BFD15786 /* TagListControlState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F1858B1976512AEBEAA62 /* TagListControlState.swift */; };
 		3655F17D25608763345CA826 /* Shared.ProtocolMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175F8D44D9118CFFDD862FAE /* Shared.ProtocolMocks.swift */; };
+		36668398BA59556E5A888772 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6AF06F3BA2AD785D9EC328 /* Tag+CoreDataProperties.swift */; };
 		385C5A9D536EED66ACB202FC /* TextEditAlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B90E44369843F81A3892642 /* TextEditAlertCoordinator.swift */; };
 		386734DFA2CE2F8208BFAE7D /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA3D285E82BFC08D5A3E3D8 /* TsunDocsApp.swift */; };
 		399030322BDEB1E5EC7DBC75 /* TagMultiAdditionViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA95C9CD199A3F806269D89 /* TagMultiAdditionViewReducer.swift */; };
@@ -164,6 +166,7 @@
 		58FA45A9A46A2FA02C19435E /* TagControlReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD91EAFE09460C410CBBC3AE /* TagControlReducer.swift */; };
 		5A9548BBB23E0ED9A89473D4 /* Environment+TagGridStoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4B2BC36789938DF9FA669D /* Environment+TagGridStoreBuilder.swift */; };
 		5ACC3BD9922A5FAA06FA476B /* CompositeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35799AA535128C2EE05F11B /* CompositeKit.framework */; };
+		5AE9A2650B205BFF6E4CFC86 /* Tsundoc+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65AD68E1947AE2044D2128B /* Tsundoc+CoreDataClass.swift */; };
 		5B871EB954AB3721684C4483 /* TagList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C96424FF884AC81B25170D /* TagList.swift */; };
 		5BD698BF7A9B6B92C2599F2C /* WebPageMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F6162C468E2FD4BACE299 /* WebPageMeta.swift */; };
 		5BE97571A82F8E01E172C8B8 /* SceneDependencyContainer+StoreBuilderDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AACC6BBD61E9D3BB9C5F5 /* SceneDependencyContainer+StoreBuilderDependencies.swift */; };
@@ -196,6 +199,7 @@
 		6F5943A50C4352B9C62CEB97 /* TsunDocsUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD4B0E937F6328BA7F0297D /* TsunDocsUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F996F7B5B63C174FDEF7477 /* Environment+TsundocListStoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1378835671AAB8487FB30B2 /* Environment+TsundocListStoreBuilder.swift */; };
 		70068E20F0635ECFF776327D /* TagCellStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7505ED14B71026D6A2F7DC /* TagCellStatus.swift */; };
+		71B49D01CC927A5458686212 /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126B1E30A4EAD53E9E445B08 /* Tag+CoreDataClass.swift */; };
 		720F44B7B4E06A1CED27A91D /* ObservedTagArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8E721F79C535AE67943B14 /* ObservedTagArray.swift */; };
 		726CA408FC6275AC8928B29D /* TagMultiAdditionViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA95C9CD199A3F806269D89 /* TagMultiAdditionViewReducer.swift */; };
 		72D66F89EF1C6BB4B9FD14D3 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99820BE1D5B2BD2A3F6D6CAE /* Effect.swift */; };
@@ -237,6 +241,7 @@
 		86BEA880D8E459AC5BED4D0C /* AppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD2593D51CFC4B413F4A6C6 /* AppDependencyContainer.swift */; };
 		878A57B65F82C986F28E1236 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D1943A9A23E0149BEB6DEC /* String.swift */; };
 		883FEE94131B6BF68B7FEC87 /* TagGridConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C712665E67E6D331DEF979 /* TagGridConfiguration.swift */; };
+		88D82F617268831E4B8E0F90 /* Tsundoc+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767E88E360A1D30F6637C0D /* Tsundoc+CoreDataProperties.swift */; };
 		88F3CE448B9A3724D46523BD /* URLSession+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B622125E86021630595E32 /* URLSession+Mock.swift */; };
 		891E7960B1E14910FB1BC40B /* Environment+TagGridStoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4B2BC36789938DF9FA669D /* Environment+TagGridStoreBuilder.swift */; };
 		89B6A5A731CD2A405EE0615D /* Environment+AppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39086131CDC1E01FB0873C88 /* Environment+AppDependencyContainer.swift */; };
@@ -363,6 +368,7 @@
 		CBBAABDFC69003E500D105FB /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D724954D4CA81429AD139A4D /* MemoryCache.swift */; };
 		CD119EA3413EE74D15260CFF /* TsunDocsUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CC088DED423E1AC52ECAB87 /* TsunDocsUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE98929E584E54546CC25A70 /* TagMultiAdditionViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19919244893A2BF5FFAB7E7A /* TagMultiAdditionViewAction.swift */; };
+		CEBF627D2BB5512A5E35544E /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126B1E30A4EAD53E9E445B08 /* Tag+CoreDataClass.swift */; };
 		CEF56279AD7B1B39499E7514 /* ObservedTsundocArrayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4005A46521343EC5AAB40193 /* ObservedTsundocArrayMock.swift */; };
 		D0EEEEF7FA90D1893A2521A8 /* Kanna.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79135336C4C9F21FCE1AA18C /* Kanna.xcframework */; };
 		D1E7A6EF65D84E9FCE2EC729 /* ObservedTagArrayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD16AB663EF6E6EC269736F0 /* ObservedTagArrayMock.swift */; };
@@ -429,6 +435,7 @@
 		EE7F6284E9CC11EB84E7BD98 /* SharedUrlEditViewRootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F220C7A27995E093E77928 /* SharedUrlEditViewRootState.swift */; };
 		EFB9D1D9CFA58D67C213DB31 /* CommandServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55797B837237A467F5EE7864 /* CommandServiceError.swift */; };
 		EFF39157E338DFCF9BB57443 /* ObservedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939312F1559214B10346C3C /* ObservedTag.swift */; };
+		F0073F088D49C26D637C2CA7 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6AF06F3BA2AD785D9EC328 /* Tag+CoreDataProperties.swift */; };
 		F007CE79EBB0677F9B817892 /* TagGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45CF6A319DF6E486B679172 /* TagGrid.swift */; };
 		F06C6C3E33246E2BB6B920EB /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5085AAF929F99EBBB0EBD9B4 /* SettingView.swift */; };
 		F076C35E60408F8C8BE6D52F /* TsundocEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76A8D258900D067E4F88CF6 /* TsundocEditView.swift */; };
@@ -450,6 +457,7 @@
 		F85ADC0BFDA946758C46F37C /* TagListControlAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED160644CF84EEEF09E34394 /* TagListControlAction.swift */; };
 		F8C2B8DE361A4DECD7D456A8 /* View+OnChangeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF50587A5058FB1C1E5D3F35 /* View+OnChangeFrame.swift */; };
 		F9F483A18592E38B3EE3CEDD /* AnyReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A90843522DA6C6D50D6194C /* AnyReducer.swift */; };
+		FAD0F972CE1FFA0B2AA1CDBF /* Tsundoc+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767E88E360A1D30F6637C0D /* Tsundoc+CoreDataProperties.swift */; };
 		FB43BDD92811299C0C8ACBCA /* Environment+TsundocInfoViewStoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2177FAF2DC27F25DA514F8 /* Environment+TsundocInfoViewStoreBuilder.swift */; };
 		FB698AB36275A50C9DCE32AA /* Prism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903667AB7D58C504DB9CA3A0 /* Prism.swift */; };
 		FC58345881B03CD9B64F4453 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3B640A2AE2A490958D8BCF /* Bundle.swift */; };
@@ -675,6 +683,7 @@
 		08E9A88BBD11F48D4DCD9120 /* TagListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListState.swift; sourceTree = "<group>"; };
 		0BD8B7D42E9CC7D502C63C16 /* TagListControlReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListControlReducer.swift; sourceTree = "<group>"; };
 		108D8768741A992FEAE5976C /* MobileShareExtensionUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobileShareExtensionUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		126B1E30A4EAD53E9E445B08 /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = "<group>"; };
 		12A484483DC29892DD0EB5B0 /* SceneDependencyContainer+ServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDependencyContainer+ServiceDependencies.swift"; sourceTree = "<group>"; };
 		12C96424FF884AC81B25170D /* TagList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagList.swift; sourceTree = "<group>"; };
 		148372F17E31E53A9CC2A155 /* Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchable.swift; sourceTree = "<group>"; };
@@ -796,6 +805,7 @@
 		90EB3FCB3E4770769151552D /* TagGridAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGridAction.swift; sourceTree = "<group>"; };
 		94744D703C86FC606C9A09C9 /* SharedUrlEditViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUrlEditViewState.swift; sourceTree = "<group>"; };
 		9556EC87DBBC5294C70F8B10 /* ViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStore.swift; sourceTree = "<group>"; };
+		9767E88E360A1D30F6637C0D /* Tsundoc+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tsundoc+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		989DD3FC55326FB26604D216 /* Ordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ordered.swift; sourceTree = "<group>"; };
 		98F278D9A61D1E2782A8A25A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		99820BE1D5B2BD2A3F6D6CAE /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
@@ -821,6 +831,7 @@
 		B40D765713BBB181E1F54710 /* Environment+TagMultiAdditionViewStoreBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+TagMultiAdditionViewStoreBuilder.swift"; sourceTree = "<group>"; };
 		B580E0494ED881EEE702782F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B627E584457D6A01023EFB9B /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		B65AD68E1947AE2044D2128B /* Tsundoc+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tsundoc+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B7F53E9FF9601F627D0DF650 /* TagMultiAdditionViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMultiAdditionViewState.swift; sourceTree = "<group>"; };
 		B7FCE6F236CC52D4926136D2 /* TsundocInfoViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsundocInfoViewAction.swift; sourceTree = "<group>"; };
 		B9170889182C4E71C98ED7BB /* Smile.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Smile.xcframework; path = Carthage/Build/Smile.xcframework; sourceTree = "<group>"; };
@@ -878,6 +889,7 @@
 		E6DA4B99AC13B0BCE2948229 /* ObservedTsundocArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedTsundocArray.swift; sourceTree = "<group>"; };
 		E6FF0D20181C52C22220437C /* CGSize+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Scale.swift"; sourceTree = "<group>"; };
 		E7998AC20EE38BDAA0BA24C3 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		EA6AF06F3BA2AD785D9EC328 /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ECA109B2DC2368160F502564 /* TagMultiSelectionViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMultiSelectionViewAction.swift; sourceTree = "<group>"; };
 		ED160644CF84EEEF09E34394 /* TagListControlAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListControlAction.swift; sourceTree = "<group>"; };
 		EE43577EF368F748451ACA91 /* TagMultiAdditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMultiAdditionView.swift; sourceTree = "<group>"; };
@@ -1175,6 +1187,17 @@
 				59C3EF565909CA8743E8E20F /* TagMultiSelection */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		224E7166D48EB5658107CD8F /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				126B1E30A4EAD53E9E445B08 /* Tag+CoreDataClass.swift */,
+				EA6AF06F3BA2AD785D9EC328 /* Tag+CoreDataProperties.swift */,
+				B65AD68E1947AE2044D2128B /* Tsundoc+CoreDataClass.swift */,
+				9767E88E360A1D30F6637C0D /* Tsundoc+CoreDataProperties.swift */,
+			);
+			path = Generated;
 			sourceTree = "<group>";
 		};
 		229186F786A41C6B3E122053 /* Mapping */ = {
@@ -1622,6 +1645,7 @@
 				A997614656C63362BB864AC5 /* PersistentContainer.swift */,
 				8DC4C5F1C064735885AB29F8 /* PersistentHistoryFetcher.swift */,
 				DC474DB2B9BF7C8DE5E78FA7 /* PersistentHistoryTracker.swift */,
+				224E7166D48EB5658107CD8F /* Generated */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -2915,9 +2939,13 @@
 				301E9BE70F920770D33C0F4C /* PersistentContainer.swift in Sources */,
 				45756BCEFBCF6903B91DCA1D /* PersistentHistoryFetcher.swift in Sources */,
 				0D5D5668883B19F9312FDBF6 /* PersistentHistoryTracker.swift in Sources */,
+				CEBF627D2BB5512A5E35544E /* Tag+CoreDataClass.swift in Sources */,
+				36668398BA59556E5A888772 /* Tag+CoreDataProperties.swift in Sources */,
 				7697BACE409CD8CB315EB8ED /* Tag+MapToDomainModel.swift in Sources */,
 				AC962A43E42BA4D6637F670D /* TagCommandService.swift in Sources */,
 				D81E6D222BBF0770DD7D0395 /* TagQueryService.swift in Sources */,
+				5AE9A2650B205BFF6E4CFC86 /* Tsundoc+CoreDataClass.swift in Sources */,
+				88D82F617268831E4B8E0F90 /* Tsundoc+CoreDataProperties.swift in Sources */,
 				091443BA5D0E56D0D340BF01 /* Tsundoc+MapToDomainModel.swift in Sources */,
 				67F23F2E30772D2BCB85D15B /* TsundocCommandService.swift in Sources */,
 				23C42D8002FF1EF21DCF0A18 /* TsundocQueryService.swift in Sources */,
@@ -2950,9 +2978,13 @@
 				95B1A4A25B2A1E9101D6CC1D /* PersistentContainer.swift in Sources */,
 				731A109FDC5EAE19E20FFC36 /* PersistentHistoryFetcher.swift in Sources */,
 				1EAEE487821103EA75C9A4B7 /* PersistentHistoryTracker.swift in Sources */,
+				71B49D01CC927A5458686212 /* Tag+CoreDataClass.swift in Sources */,
+				F0073F088D49C26D637C2CA7 /* Tag+CoreDataProperties.swift in Sources */,
 				D3003D1A2FB476CF455FB5E7 /* Tag+MapToDomainModel.swift in Sources */,
 				33C49557C3659D89923EDAF2 /* TagCommandService.swift in Sources */,
 				E804D91BBB76CDA0637B3B3A /* TagQueryService.swift in Sources */,
+				08255AFBE59977C27BCA3510 /* Tsundoc+CoreDataClass.swift in Sources */,
+				FAD0F972CE1FFA0B2AA1CDBF /* Tsundoc+CoreDataProperties.swift in Sources */,
 				F3B231BBB0AA9E672A69B659 /* Tsundoc+MapToDomainModel.swift in Sources */,
 				D355A5A42870715EEA25204E /* TsundocCommandService.swift in Sources */,
 				E539216C15CB18565AAAD026 /* TsundocQueryService.swift in Sources */,
