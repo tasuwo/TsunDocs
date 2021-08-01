@@ -40,5 +40,6 @@ templates/*
 !templates/AutoDefaultValue.extension.swifttemplate
 
 # Carthage
+Carthage/*.xcconfig
 Carthage/Checkouts
 Carthage/Build/

@@ -7,7 +7,7 @@ init_pod: ## CocoaPodsライブラリを準備する
 
 .PHONY: init_carthage
 init_carthage: ## Carthageライブラリを準備する
-	carthage update --use-xcframeworks --cache-builds --no-use-binaries --platform iOS,macOS
+	./carthage.sh update --use-xcframeworks --cache-builds --no-use-binaries --platform iOS,macOS
 
 .PHONY: generate
 generate: sourcery_generate swiftgen_generate mockolo_generate format ## 各種コード自動生成を実行する
