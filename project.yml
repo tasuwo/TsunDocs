@@ -1,4 +1,11 @@
 name: TsunDocs
+packages:
+  Kanna:
+    url: https://github.com/tid-kijyun/Kanna
+    exactVersion: 5.2.7
+  Smile:
+    url: https://github.com/onmyway133/Smile
+    exactVersion: 2.1.0
 options:
   defaultConfig: Release
   transitivelyLinkDependencies: false
@@ -112,8 +119,8 @@ targets:
       - target: Persistence_iOS
       - target: TsunDocsUIKit_iOS
       - target: MobileShareExtension
-      - framework: Carthage/Build/Smile.xcframework
-      - framework: Carthage/Build/Kanna.xcframework
+      - package: Smile
+      - package: Kanna
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -160,8 +167,8 @@ targets:
       - target: Domain_macOS
       - target: TsunDocsUIKit_macOS
       - target: Persistence_macOS
-      - framework: Carthage/Build/Smile.xcframework
-      - framework: Carthage/Build/Kanna.xcframework
+      - package: Smile
+      - package: Kanna
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -201,8 +208,8 @@ targets:
     sources:
       - path: Domain
     dependencies:
-      - framework: Carthage/Build/Smile.xcframework
-      - framework: Carthage/Build/Kanna.xcframework
+      - package: Smile
+      - package: Kanna
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES
