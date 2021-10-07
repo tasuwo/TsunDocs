@@ -6,6 +6,8 @@ packages:
   Smile:
     url: https://github.com/onmyway133/Smile
     exactVersion: 2.1.0
+  Domain:
+    path: ./Domain
   CompositeKit:
     path: ./CompositeKit
 options:
@@ -17,7 +19,6 @@ options:
       - Preview Content
       - iOS
       - macOS
-      - Domain
       - Persistence
       - MobileShareExtension
       - MobileShareExtensionUIKit
@@ -115,10 +116,10 @@ targets:
       - Preview Content/Preview Assets.xcassets
       - path: iOS
     dependencies:
-      - target: Domain_iOS
       - target: Persistence_iOS
       - target: TsunDocsUIKit_iOS
       - target: MobileShareExtension
+      - package: Domain
       - package: Smile
       - package: Kanna
       - package: CompositeKit
@@ -164,9 +165,9 @@ targets:
       - Preview Content/Preview Assets.xcassets
       - path: macOS
     dependencies:
-      - target: Domain_macOS
       - target: TsunDocsUIKit_macOS
       - target: Persistence_macOS
+      - package: Domain
       - package: Smile
       - package: Kanna
       - package: CompositeKit
@@ -203,31 +204,11 @@ targets:
           CODE_SIGN_IDENTITY: Apple Distribution
           PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.tsundocs
           PROVISIONING_PROFILE_SPECIFIER: match AppStore net.tasuwo.tsundocs macos
-  Domain:
-    type: framework
-    platform: [iOS, macOS]
-    sources:
-      - path: Domain
-    dependencies:
-      - package: Smile
-      - package: Kanna
-    settings:
-      base:
-        APPLICATION_EXTENSION_API_ONLY: YES
-        DEVELOPMENT_TEAM: RY2377PP7S
-        INFOPLIST_FILE: Domain/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.Domain
-        PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]: net.tasuwo.Domain
-        PROVISIONING_PROFILE_SPECIFIER:
-        PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]:
-        SUPPORTS_MACCATALYST: NO
-        IPHONEOS_DEPLOYMENT_TARGET: 15.0
-        MACOSX_DEPLOYMENT_TARGET: 11.0
   Persistence:
     type: framework
     platform: [iOS, macOS]
     dependencies:
-      - target: Domain_${platform}
+      - package: Domain
     sources:
       - path: Persistence
     settings:
@@ -248,10 +229,10 @@ targets:
     sources:
       - path: MobileShareExtension
     dependencies:
-      - target: Domain_iOS
       - target: Persistence_iOS
       - target: MobileShareExtensionUIKit
         embed: true
+      - package: Domain
       - package: CompositeKit
     settings:
       base:
@@ -282,6 +263,7 @@ targets:
       - Preview Content/Preview Assets.xcassets
     dependencies:
       - target: TsunDocsUIKit_iOS
+      - package: Domain
       - package: CompositeKit
     settings:
       base:
@@ -306,7 +288,7 @@ targets:
       - path: Preview Content/Mocks/Struct/Domain.AutoDefaultValue.generated.swift
       - Preview Content/Preview Assets.xcassets
     dependencies:
-      - target: Domain_${platform}
+      - package: Domain
       - package: CompositeKit
     settings:
       base:

@@ -2,6 +2,8 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import Foundation
+
 public struct MemoryCacheConfiguration {
     public static let `default` = MemoryCacheConfiguration(
         costLimit: Int(Self.defaultCostLimit()),

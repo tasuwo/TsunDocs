@@ -2,6 +2,7 @@
 // DO NOT EDIT
 
 import Domain
+import Foundation
 
 extension Tag {
     static func makeDefault(

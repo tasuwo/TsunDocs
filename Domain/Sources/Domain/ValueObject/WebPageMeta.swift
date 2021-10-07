@@ -2,6 +2,8 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import Foundation
+
 public struct WebPageMeta {
     public let title: String?
     public let description: String?

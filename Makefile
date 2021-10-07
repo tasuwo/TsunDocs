@@ -42,7 +42,7 @@ sourcery_generate: init_pod ## Sourceryによるモック自動生成を行う
 		--sources ./Domain \
 		--templates ./templates \
 		--output ./Preview\ Content/Mocks/Struct/Domain.AutoDefaultValue.generated.swift \
-		--args import=Domain
+		--args import=Domain/Foundation
 
 .PHONY: mockolo_generate
 mockolo_generate: ## mockoloによるモック自動生成を行う
