@@ -2,6 +2,8 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import Foundation
+
 struct ActionDispatcher<Action: CompositeKit.Action> {
     // MARK: - Properties
 

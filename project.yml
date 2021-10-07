@@ -6,6 +6,8 @@ packages:
   Smile:
     url: https://github.com/onmyway133/Smile
     exactVersion: 2.1.0
+  CompositeKit:
+    path: ./CompositeKit
 options:
   defaultConfig: Release
   transitivelyLinkDependencies: false
@@ -20,7 +22,6 @@ options:
       - MobileShareExtension
       - MobileShareExtensionUIKit
       - TsunDocsUIKit
-      - CompositeKit
 attributes:
   LastSwiftUpdateCheck: 1250
   LastUpgradeCheck: 1250
@@ -114,13 +115,13 @@ targets:
       - Preview Content/Preview Assets.xcassets
       - path: iOS
     dependencies:
-      - target: CompositeKit_iOS
       - target: Domain_iOS
       - target: Persistence_iOS
       - target: TsunDocsUIKit_iOS
       - target: MobileShareExtension
       - package: Smile
       - package: Kanna
+      - package: CompositeKit
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -163,12 +164,12 @@ targets:
       - Preview Content/Preview Assets.xcassets
       - path: macOS
     dependencies:
-      - target: CompositeKit_macOS
       - target: Domain_macOS
       - target: TsunDocsUIKit_macOS
       - target: Persistence_macOS
       - package: Smile
       - package: Kanna
+      - package: CompositeKit
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -249,9 +250,9 @@ targets:
     dependencies:
       - target: Domain_iOS
       - target: Persistence_iOS
-      - target: CompositeKit_iOS
       - target: MobileShareExtensionUIKit
         embed: true
+      - package: CompositeKit
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: MobileShareExtension/MobileShareExtension.entitlements
@@ -281,7 +282,7 @@ targets:
       - Preview Content/Preview Assets.xcassets
     dependencies:
       - target: TsunDocsUIKit_iOS
-      - target: CompositeKit_iOS
+      - package: CompositeKit
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES
@@ -306,7 +307,7 @@ targets:
       - Preview Content/Preview Assets.xcassets
     dependencies:
       - target: Domain_${platform}
-      - target: CompositeKit_${platform}
+      - package: CompositeKit
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES
@@ -320,20 +321,3 @@ targets:
         IPHONEOS_DEPLOYMENT_TARGET: 15.0
         MACOSX_DEPLOYMENT_TARGET: 11.0
         DEVELOPMENT_ASSET_PATHS: 'Preview\ Content'
-  CompositeKit:
-    type: framework
-    platform: [iOS, macOS]
-    sources:
-      - path: CompositeKit
-    settings:
-      base:
-        APPLICATION_EXTENSION_API_ONLY: YES
-        DEVELOPMENT_TEAM: RY2377PP7S
-        INFOPLIST_FILE: CompositeKit/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.CompositeKit
-        PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]: net.tasuwo.CompositeKit
-        PROVISIONING_PROFILE_SPECIFIER:
-        PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]:
-        SUPPORTS_MACCATALYST: NO
-        IPHONEOS_DEPLOYMENT_TARGET: 15.0
-        MACOSX_DEPLOYMENT_TARGET: 11.0
