@@ -333,20 +333,6 @@ public class TsundocQueryServiceMock: TsundocQueryService {
     }
 }
 
-public class WebPageMetaResolvableMock: WebPageMetaResolvable {
-    public init() { }
-
-    public private(set) var resolveCallCount = 0
-    public var resolveHandler: ((URL) throws -> (WebPageMeta))?
-    public func resolve(from url: URL) throws -> WebPageMeta {
-        resolveCallCount += 1
-        if let resolveHandler = resolveHandler {
-            return try resolveHandler(url)
-        }
-        fatalError("resolveHandler returns can't have a default value thus its handler must be set")
-    }
-}
-
 public class ObservedEntityArrayMock: ObservedEntityArray {
     public init() { }
     public init(values: CurrentValueSubject<[Entity], Error>) {
@@ -376,6 +362,20 @@ public class ObservedEntityMock: ObservedEntity {
     public var value: CurrentValueSubject<Entity, Error> {
         get { return _value }
         set { _value = newValue }
+    }
+}
+
+public class WebPageMetaResolvableMock: WebPageMetaResolvable {
+    public init() { }
+
+    public private(set) var resolveCallCount = 0
+    public var resolveHandler: ((URL) throws -> (WebPageMeta))?
+    public func resolve(from url: URL) throws -> WebPageMeta {
+        resolveCallCount += 1
+        if let resolveHandler = resolveHandler {
+            return try resolveHandler(url)
+        }
+        fatalError("resolveHandler returns can't have a default value thus its handler must be set")
     }
 }
 

@@ -41,19 +41,20 @@ sourcery_generate: init_pod ## Sourceryによるモック自動生成を行う
 	./Pods/Sourcery/bin/sourcery \
 		--sources ./Domain \
 		--templates ./templates \
-		--output ./Preview\ Content/Mocks/Struct/Domain.AutoDefaultValue.generated.swift \
+		--output ./PreviewContent/Sources/PreviewContent/Struct/Domain.AutoDefaultValue.generated.swift \
 		--args import=Domain/Foundation
 
 .PHONY: mockolo_generate
 mockolo_generate: ## mockoloによるモック自動生成を行う
-	cd BuildTools; \
+	# TODO:
+	# cd BuildTools; \
 	./mockolo \
 		--sourcedirs ../Shared \
-		--destination ../Preview\ Content/Mocks/Protocol/Shared.ProtocolMocks.swift
+		--destination ../PreviewContent/Sources/PreviewContent/Mocks/Protocol/Shared.ProtocolMocks.swift
 	cd BuildTools; \
 	./mockolo \
 		--sourcedirs ../Domain \
-		--destination ../Preview\ Content/Mocks/Protocol/Domain.ProtocolMocks.swift \
+		--destination ../PreviewContent/Sources/PreviewContent/Protocol/Domain.ProtocolMocks.swift \
 		--custom-imports Domain
 
 .PHONY: help
