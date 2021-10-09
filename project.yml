@@ -24,7 +24,6 @@ options:
   groupOrdering:
     - order:
       - Shared
-      - Preview Content
       - iOS
       - macOS
       - MobileShareExtension
@@ -117,8 +116,6 @@ targets:
     platform: iOS
     sources:
       - path: Shared
-      - path: Preview Content
-      - Preview Content/Preview Assets.xcassets
       - path: iOS
     dependencies:
       - target: MobileShareExtension
@@ -128,6 +125,7 @@ targets:
       - package: Kanna
       - package: CompositeKit
       - package: TsunDocsUIKit
+      - package: PreviewContent
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -150,7 +148,6 @@ targets:
         SDKROOT: iphoneos
         SWIFT_VERSION: 5.0
         TARGETED_DEVICE_FAMILY: 1,2
-        DEVELOPMENT_ASSET_PATHS: 'Preview\ Content'
       configs:
         Debug:
           CODE_SIGN_IDENTITY: Apple Development
@@ -166,8 +163,6 @@ targets:
     platform: macOS
     sources:
       - path: Shared
-      - path: Preview Content
-      - Preview Content/Preview Assets.xcassets
       - path: macOS
     dependencies:
       - package: Domain
@@ -176,6 +171,7 @@ targets:
       - package: Kanna
       - package: CompositeKit
       - package: TsunDocsUIKit
+      - package: PreviewContent
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -199,7 +195,6 @@ targets:
         PRODUCT_NAME: TsunDocs
         SDKROOT: macosx
         SWIFT_VERSION: 5.0
-        DEVELOPMENT_ASSET_PATHS: 'Preview\ Content'
       configs:
         Debug:
           CODE_SIGN_IDENTITY: Apple Development

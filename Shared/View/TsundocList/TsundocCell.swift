@@ -51,6 +51,10 @@ struct TsundocCell: View {
 
 // MARK: - Preview
 
+#if DEBUG
+import PreviewContent
+#endif
+
 struct TsundocCell_Previews: PreviewProvider {
     class SuccessMock: URLProtocolMockBase {
         override class var mock_delay: TimeInterval? { 3 }
