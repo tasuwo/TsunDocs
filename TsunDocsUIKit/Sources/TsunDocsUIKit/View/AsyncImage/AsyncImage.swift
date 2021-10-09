@@ -128,6 +128,10 @@ public struct AsyncImage<Content>: View where Content: View {
 
 // MARK: - Preview
 
+#if DEBUG
+import PreviewContent
+#endif
+
 struct AsyncImage_Previews: PreviewProvider {
     class SuccessMock: URLProtocolMockBase {
         override class var mock_delay: TimeInterval? { 3 }

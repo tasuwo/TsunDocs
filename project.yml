@@ -10,6 +10,10 @@ packages:
     path: ./Domain
   CompositeKit:
     path: ./CompositeKit
+  TsunDocsUIKit:
+    path: ./TsunDocsUIKit
+  PreviewContent:
+    path: ./PreviewContent
 options:
   defaultConfig: Release
   transitivelyLinkDependencies: false
@@ -22,7 +26,6 @@ options:
       - Persistence
       - MobileShareExtension
       - MobileShareExtensionUIKit
-      - TsunDocsUIKit
 attributes:
   LastSwiftUpdateCheck: 1250
   LastUpgradeCheck: 1250
@@ -117,12 +120,12 @@ targets:
       - path: iOS
     dependencies:
       - target: Persistence_iOS
-      - target: TsunDocsUIKit_iOS
       - target: MobileShareExtension
       - package: Domain
       - package: Smile
       - package: Kanna
       - package: CompositeKit
+      - package: TsunDocsUIKit
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -165,12 +168,12 @@ targets:
       - Preview Content/Preview Assets.xcassets
       - path: macOS
     dependencies:
-      - target: TsunDocsUIKit_macOS
       - target: Persistence_macOS
       - package: Domain
       - package: Smile
       - package: Kanna
       - package: CompositeKit
+      - package: TsunDocsUIKit
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -262,9 +265,9 @@ targets:
       - path: Preview Content/Mocks/Struct/Domain.AutoDefaultValue.generated.swift
       - Preview Content/Preview Assets.xcassets
     dependencies:
-      - target: TsunDocsUIKit_iOS
       - package: Domain
       - package: CompositeKit
+      - package: TsunDocsUIKit
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: YES
@@ -272,31 +275,6 @@ targets:
         INFOPLIST_FILE: MobileShareExtensionUIKit/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.MobileShareExtensionUIKit
         PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]: net.tasuwo.MobileShareExtensionUIKit
-        PROVISIONING_PROFILE_SPECIFIER:
-        PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]:
-        SUPPORTS_MACCATALYST: NO
-        IPHONEOS_DEPLOYMENT_TARGET: 15.0
-        MACOSX_DEPLOYMENT_TARGET: 11.0
-        DEVELOPMENT_ASSET_PATHS: 'Preview\ Content'
-  TsunDocsUIKit:
-    type: framework
-    platform: [iOS, macOS]
-    sources:
-      - path: TsunDocsUIKit
-      - path: Preview Content/Mocks/Manual
-      - path: Preview Content/Mocks/Protocol/Domain.ProtocolMocks.swift
-      - path: Preview Content/Mocks/Struct/Domain.AutoDefaultValue.generated.swift
-      - Preview Content/Preview Assets.xcassets
-    dependencies:
-      - package: Domain
-      - package: CompositeKit
-    settings:
-      base:
-        APPLICATION_EXTENSION_API_ONLY: YES
-        DEVELOPMENT_TEAM: RY2377PP7S
-        INFOPLIST_FILE: TsunDocsUIKit/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.tsundocs-uikit
-        PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]: net.tasuwo.tsundocs-uikit
         PROVISIONING_PROFILE_SPECIFIER:
         PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]:
         SUPPORTS_MACCATALYST: NO

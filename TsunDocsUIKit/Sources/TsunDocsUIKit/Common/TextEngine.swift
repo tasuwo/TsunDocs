@@ -3,6 +3,7 @@
 //
 
 import Combine
+import Foundation
 
 public class TextEngine: ObservableObject {
     @Published public var input = ""

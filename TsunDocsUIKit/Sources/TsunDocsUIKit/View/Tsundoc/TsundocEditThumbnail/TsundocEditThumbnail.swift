@@ -149,6 +149,10 @@ public struct TsundocEditThumbnail: View {
 
 // MARK: - Preview
 
+#if DEBUG
+import PreviewContent
+#endif
+
 @MainActor
 struct SharedUrlThumbnailView_Previews: PreviewProvider {
     class SuccessMock: URLProtocolMockBase {
