@@ -8,6 +8,8 @@ packages:
     exactVersion: 2.1.0
   Domain:
     path: ./Domain
+  Persistence:
+    path: ./Persistence
   CompositeKit:
     path: ./CompositeKit
   TsunDocsUIKit:
@@ -25,7 +27,6 @@ options:
       - Preview Content
       - iOS
       - macOS
-      - Persistence
       - MobileShareExtension
 attributes:
   LastSwiftUpdateCheck: 1250
@@ -120,9 +121,9 @@ targets:
       - Preview Content/Preview Assets.xcassets
       - path: iOS
     dependencies:
-      - target: Persistence_iOS
       - target: MobileShareExtension
       - package: Domain
+      - package: Persistence
       - package: Smile
       - package: Kanna
       - package: CompositeKit
@@ -169,8 +170,8 @@ targets:
       - Preview Content/Preview Assets.xcassets
       - path: macOS
     dependencies:
-      - target: Persistence_macOS
       - package: Domain
+      - package: Persistence
       - package: Smile
       - package: Kanna
       - package: CompositeKit
@@ -208,33 +209,14 @@ targets:
           CODE_SIGN_IDENTITY: Apple Distribution
           PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.tsundocs
           PROVISIONING_PROFILE_SPECIFIER: match AppStore net.tasuwo.tsundocs macos
-  Persistence:
-    type: framework
-    platform: [iOS, macOS]
-    dependencies:
-      - package: Domain
-    sources:
-      - path: Persistence
-    settings:
-      base:
-        APPLICATION_EXTENSION_API_ONLY: YES
-        DEVELOPMENT_TEAM: RY2377PP7S
-        INFOPLIST_FILE: Persistence/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.Persistence
-        PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]: net.tasuwo.Persistence
-        PROVISIONING_PROFILE_SPECIFIER:
-        PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]:
-        SUPPORTS_MACCATALYST: NO
-        IPHONEOS_DEPLOYMENT_TARGET: 15.0
-        MACOSX_DEPLOYMENT_TARGET: 11.0
   MobileShareExtension:
     type: app-extension
     platform: iOS
     sources:
       - path: MobileShareExtension
     dependencies:
-      - target: Persistence_iOS
       - package: Domain
+      - package: Persistence
       - package: CompositeKit
       - package: MobileShareExtensionUIKit
     settings:
