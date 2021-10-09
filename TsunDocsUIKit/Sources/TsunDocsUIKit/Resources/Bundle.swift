@@ -6,6 +6,6 @@ import Foundation
 
 extension Bundle {
     class Class {}
-    static var this: Bundle { Bundle(for: Class.self) }
-    public static var tsunDocsUiKit: Bundle { Bundle(for: Class.self) }
+    static var this: Bundle { Bundle.module }
+    public static var tsunDocsUiKit: Bundle { Bundle.module }
 }
