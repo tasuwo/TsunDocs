@@ -11,7 +11,7 @@ let package = Package(
         .library(
             name: "TsunDocsUIKit",
             targets: ["TsunDocsUIKit"]
-        ),
+        )
     ],
     dependencies: [
         .package(name: "Domain", path: "./Domain"),

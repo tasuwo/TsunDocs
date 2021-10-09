@@ -78,6 +78,10 @@ public struct SharedUrlEditView: View {
 
 // MARK: - Preview
 
+#if DEBUG
+import PreviewContent
+#endif
+
 @MainActor
 struct SharedUrlEditView_Previews: PreviewProvider {
     class Dependency: SharedUrlEditViewRootDependency & TagMultiAdditionViewDependency {

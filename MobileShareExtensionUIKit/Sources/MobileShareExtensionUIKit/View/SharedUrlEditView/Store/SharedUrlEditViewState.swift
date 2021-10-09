@@ -3,6 +3,7 @@
 //
 
 import Domain
+import Foundation
 
 public struct SharedUrlEditViewState: Equatable {
     public enum Alert: Equatable {

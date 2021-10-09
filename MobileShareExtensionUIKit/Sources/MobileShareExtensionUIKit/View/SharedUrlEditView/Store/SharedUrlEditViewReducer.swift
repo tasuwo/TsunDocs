@@ -5,6 +5,7 @@
 import Combine
 import CompositeKit
 import Domain
+import Foundation
 
 public typealias SharedUrlEditViewDependency = HasSharedUrlLoader
     & HasWebPageMetaResolver

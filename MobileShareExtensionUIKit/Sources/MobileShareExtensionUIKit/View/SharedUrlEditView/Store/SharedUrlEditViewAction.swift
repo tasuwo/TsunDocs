@@ -4,6 +4,7 @@
 
 import CompositeKit
 import Domain
+import Foundation
 
 public enum SharedUrlEditViewAction: Action {
     case onAppear

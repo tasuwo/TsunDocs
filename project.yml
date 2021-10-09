@@ -12,6 +12,8 @@ packages:
     path: ./CompositeKit
   TsunDocsUIKit:
     path: ./TsunDocsUIKit
+  MobileShareExtensionUIKit:
+    path: ./MobileShareExtensionUIKit
   PreviewContent:
     path: ./PreviewContent
 options:
@@ -25,7 +27,6 @@ options:
       - macOS
       - Persistence
       - MobileShareExtension
-      - MobileShareExtensionUIKit
 attributes:
   LastSwiftUpdateCheck: 1250
   LastUpgradeCheck: 1250
@@ -233,10 +234,9 @@ targets:
       - path: MobileShareExtension
     dependencies:
       - target: Persistence_iOS
-      - target: MobileShareExtensionUIKit
-        embed: true
       - package: Domain
       - package: CompositeKit
+      - package: MobileShareExtensionUIKit
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: MobileShareExtension/MobileShareExtension.entitlements
@@ -255,29 +255,3 @@ targets:
           CODE_SIGN_IDENTITY: iPhone Distribution
           PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.tsundocs.ext-mobile-share
           PROVISIONING_PROFILE_SPECIFIER: match AppStore net.tasuwo.tsundocs.ext-mobile-share
-  MobileShareExtensionUIKit:
-    type: framework
-    platform: iOS
-    sources:
-      - path: MobileShareExtensionUIKit
-      - path: Preview Content/Mocks/Manual
-      - path: Preview Content/Mocks/Protocol/Domain.ProtocolMocks.swift
-      - path: Preview Content/Mocks/Struct/Domain.AutoDefaultValue.generated.swift
-      - Preview Content/Preview Assets.xcassets
-    dependencies:
-      - package: Domain
-      - package: CompositeKit
-      - package: TsunDocsUIKit
-    settings:
-      base:
-        APPLICATION_EXTENSION_API_ONLY: YES
-        DEVELOPMENT_TEAM: RY2377PP7S
-        INFOPLIST_FILE: MobileShareExtensionUIKit/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.MobileShareExtensionUIKit
-        PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]: net.tasuwo.MobileShareExtensionUIKit
-        PROVISIONING_PROFILE_SPECIFIER:
-        PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]:
-        SUPPORTS_MACCATALYST: NO
-        IPHONEOS_DEPLOYMENT_TARGET: 15.0
-        MACOSX_DEPLOYMENT_TARGET: 11.0
-        DEVELOPMENT_ASSET_PATHS: 'Preview\ Content'

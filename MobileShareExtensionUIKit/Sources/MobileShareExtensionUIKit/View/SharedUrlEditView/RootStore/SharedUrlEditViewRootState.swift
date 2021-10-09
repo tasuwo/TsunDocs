@@ -4,6 +4,7 @@
 
 import CompositeKit
 import Domain
+import Foundation
 import TsunDocsUIKit
 
 public struct SharedUrlEditViewRootState: Equatable {
