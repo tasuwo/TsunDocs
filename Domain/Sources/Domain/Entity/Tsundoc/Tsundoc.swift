@@ -5,7 +5,7 @@
 import Foundation
 import Smile
 
-// sourcery: AutoDefaultValue
+// sourcery: AutoDefaultValuePublic
 public struct Tsundoc {
     // MARK: - Properties
 

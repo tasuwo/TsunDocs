@@ -32,17 +32,7 @@ swiftformat_format: init_pod ## SwiftFormatによるフォーマットを実行�
 
 .PHONY: sourcery_generate
 sourcery_generate: init_pod ## Sourceryによるモック自動生成を行う
-	if [[ ! -f "./templates/AutoDefaultValue.swifttemplate" ]] || [[ ! -f "./templates/AutoDefaultValue.extension.swifttemplate" ]]; then \
-	curl -o "./templates/AutoDefaultValue.swifttemplate" \
-		"https://raw.githubusercontent.com/tasuwo/SwiftTemplates/master/Templates/AutoDefaultValue.swifttemplate"; \
-	curl -o "./templates/AutoDefaultValue.extension.swifttemplate" \
-		"https://raw.githubusercontent.com/tasuwo/SwiftTemplates/master/Templates/AutoDefaultValue.extension.swifttemplate"; \
-	fi
-	./Pods/Sourcery/bin/sourcery \
-		--sources ./Domain \
-		--templates ./templates \
-		--output ./PreviewContent/Sources/PreviewContent/Struct/Domain.AutoDefaultValue.generated.swift \
-		--args import=Domain/Foundation
+	sh ./scripts/run_sourcery.sh
 
 .PHONY: mockolo_generate
 mockolo_generate: ## mockoloによるモック自動生成を行う
