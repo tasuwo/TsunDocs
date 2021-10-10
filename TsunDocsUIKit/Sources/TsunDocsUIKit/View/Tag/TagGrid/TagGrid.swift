@@ -14,6 +14,8 @@ public struct TagGrid: View {
     @State private var availableWidth: CGFloat = 0
     @State private var cellSizes: [Tag: CGSize] = [:]
 
+    @Namespace var animation
+
     private let spacing: CGFloat
     private let inset: CGFloat
 
@@ -89,6 +91,7 @@ public struct TagGrid: View {
         ) {
             deleteConfirmationDialog(tag)
         }
+        .matchedGeometryEffect(id: tag.id, in: animation)
     }
 
     @ViewBuilder
