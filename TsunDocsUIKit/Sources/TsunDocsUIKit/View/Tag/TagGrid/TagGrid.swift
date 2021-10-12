@@ -15,6 +15,7 @@ public struct TagGrid: View {
     @State private var cellSizes: [Tag: CGSize] = [:]
 
     @Namespace var animation
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
     private let spacing: CGFloat
     private let inset: CGFloat
@@ -36,32 +37,34 @@ public struct TagGrid: View {
         ZStack {
             Color.clear
                 .frame(height: 0)
-                .onChangeFrame {
-                    availableWidth = $0.width
+                .onChangeFrame { frame in
+                    cellSizes = [:]
+                    availableWidth = frame.width
                 }
 
-            GeometryReader { geometry in
-                ScrollView {
-                    VStack(alignment: .leading, spacing: spacing) {
-                        Color.clear
-                            .frame(height: 0)
-                            .frame(minWidth: 0, maxWidth: .infinity)
+            ScrollView {
+                VStack(alignment: .leading, spacing: spacing) {
+                    Color.clear
+                        .frame(height: 0)
+                        .frame(minWidth: 0, maxWidth: .infinity)
 
-                        ForEach(calcRows(), id: \.self) { tags in
-                            HStack(spacing: spacing) {
-                                ForEach(tags) {
-                                    cell(geometry, $0)
-                                }
+                    ForEach(calcRows(), id: \.self) { tags in
+                        HStack(spacing: spacing) {
+                            ForEach(tags) {
+                                cell($0)
                             }
                         }
                     }
-                    .padding(.all, inset)
                 }
+                .padding(.all, inset)
             }
+        }
+        .onChange(of: dynamicTypeSize) { _ in
+            cellSizes = [:]
         }
     }
 
-    private func cell(_ geometry: GeometryProxy, _ tag: Tag) -> some View {
+    private func cell(_ tag: Tag) -> some View {
         return TagCell(
             tagId: tag.id,
             tagName: tag.name,
@@ -77,11 +80,6 @@ public struct TagGrid: View {
             case let .delete(tagId):
                 store.execute(.delete(tagId), animation: .default)
             }
-        }
-        .frame(maxWidth: geometry.size.width - inset * 2)
-        .fixedSize()
-        .onChangeFrame {
-            cellSizes[tag] = $0
         }
         .contextMenu {
             menu(tag)
@@ -156,7 +154,17 @@ public struct TagGrid: View {
         var remainingWidth = availableWidth - inset * 2
 
         for tag in store.state.tags {
-            let cellSize = cellSizes[tag, default: CGSize(width: availableWidth - inset * 2, height: 1)]
+            let cellSize: CGSize
+            if let size = cellSizes[tag] {
+                cellSize = size
+            } else {
+                let size = TagCell.preferredSize(tagName: tag.name,
+                                                 tsundocCount: tag.tsundocsCount,
+                                                 size: store.state.configuration.size,
+                                                 isDeletable: store.state.configuration.style == .deletable)
+                let width = min(size.width, availableWidth - inset * 2)
+                cellSize = CGSize(width: width, height: size.height)
+            }
 
             if remainingWidth - (cellSize.width + spacing) >= 0 {
                 rows[currentRow].append(tag)
@@ -174,7 +182,7 @@ public struct TagGrid: View {
 }
 
 private extension TagCell.Status {
-    init(_ config: TagGridConfiguration, isSelected: Bool) {
+    init(_ config: TagGrid.Configuration, isSelected: Bool) {
         switch config.style {
         case .selectable:
             self = isSelected ? .selected : .default
@@ -250,7 +258,7 @@ struct TagGrid_Previews: PreviewProvider {
         }
     }
 
-    static func makeViewStore(_ config: TagGridConfiguration) -> ViewStore<TagGridState, TagGridAction, TagGridDependency>
+    static func makeViewStore(_ config: TagGrid.Configuration) -> ViewStore<TagGridState, TagGridAction, TagGridDependency>
     {
         let store = Store(initialState: TagGridState(tags: tags,
                                                      configuration: config),

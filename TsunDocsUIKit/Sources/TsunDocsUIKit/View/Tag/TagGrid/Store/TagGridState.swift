@@ -14,7 +14,7 @@ public struct TagGridState: Equatable {
     }
 
     public let tags: [Tag]
-    public let configuration: TagGridConfiguration
+    public let configuration: TagGrid.Configuration
 
     public var alert: Alert?
     public var selectedIds: Set<Tag.ID> = .init()
@@ -22,7 +22,7 @@ public struct TagGridState: Equatable {
 
 public extension TagGridState {
     init(tags: [Tag],
-         configuration: TagGridConfiguration,
+         configuration: TagGrid.Configuration,
          alert: Alert?)
     {
         self.tags = tags
