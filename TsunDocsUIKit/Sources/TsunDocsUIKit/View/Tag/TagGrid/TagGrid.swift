@@ -68,10 +68,16 @@ public struct TagGrid: View {
             tsundocCount: tag.tsundocsCount,
             status: .init(store.state.configuration,
                           isSelected: store.state.selectedIds.contains(tag.id)),
-            size: store.state.configuration.size,
-            onSelect: { store.execute(.select($0)) },
-            onDelete: { store.execute(.delete($0), animation: .default) }
-        )
+            size: store.state.configuration.size
+        ) {
+            switch $0 {
+            case let .select(tagId):
+                store.execute(.select(tagId))
+
+            case let .delete(tagId):
+                store.execute(.delete(tagId), animation: .default)
+            }
+        }
         .frame(maxWidth: geometry.size.width - inset * 2)
         .fixedSize()
         .onChangeFrame {
@@ -167,7 +173,7 @@ public struct TagGrid: View {
     }
 }
 
-private extension TagCellStatus {
+private extension TagCell.Status {
     init(_ config: TagGridConfiguration, isSelected: Bool) {
         switch config.style {
         case .selectable:

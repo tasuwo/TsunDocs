@@ -10,10 +10,10 @@ public struct TagCell: View {
     private let tagId: UUID
     private let tagName: String
     private let tsundocCount: Int
-    private let status: TagCellStatus
-    private let size: TagCellSize
-    private let onSelect: ((UUID) -> Void)?
-    private let onDelete: ((UUID) -> Void)?
+    private let status: Status
+    private let size: Size
+
+    private let onPerform: ((Action) -> Void)?
 
     @ScaledMetric private var padding: CGFloat
     @State private var cornerRadius: CGFloat = 0
@@ -59,7 +59,7 @@ public struct TagCell: View {
 
     private var deleteButtonContainer: some View {
         Button {
-            onDelete?(tagId)
+            onPerform?(.delete(tagId))
         } label: {
             Image(systemName: "xmark")
                 .font(size.font)
@@ -72,18 +72,16 @@ public struct TagCell: View {
     public init(tagId: UUID,
                 tagName: String,
                 tsundocCount: Int,
-                status: TagCellStatus,
-                size: TagCellSize = .normal,
-                onSelect: ((UUID) -> Void)? = nil,
-                onDelete: ((UUID) -> Void)? = nil)
+                status: Status,
+                size: Size = .normal,
+                onPerform: ((Action) -> Void)? = nil)
     {
         self.tagId = tagId
         self.tagName = tagName
         self.tsundocCount = tsundocCount
         self.status = status
         self.size = size
-        self.onSelect = onSelect
-        self.onDelete = onDelete
+        self.onPerform = onPerform
         self._padding = ScaledMetric(wrappedValue: size.padding)
     }
 
@@ -133,9 +131,32 @@ public struct TagCell: View {
         .contentShape(RoundedRectangle(cornerRadius: cornerRadius,
                                        style: .continuous))
         .onTapGesture {
-            onSelect?(tagId)
+            onPerform?(.select(tagId))
         }
     }
+
+    // MARK: - Methods
+
+    static func preferredSize(tagName: String, tsundocCount: Int, size: TagCell.Size, isDeletable: Bool) -> CGSize {
+        let font = size.font
+        let padding = size.padding.scaledValueWithDefaultMetrics()
+
+        let markSize = String.labelSizeOfSymbol(systemName: "checkmark", withFont: font)
+        let tagNameSize = tagName.labelSize(withFont: font)
+        let countLabelSize = "(\(tsundocCount))".labelSize(withFont: font)
+
+        let cellHeight = max(markSize.height, tagNameSize.height, countLabelSize.height) + padding * 2
+
+        let bodyWidth = markSize.width + 2 + tagNameSize.width + 4 + countLabelSize.width
+        let horizontalPadding = padding * 3 / 2
+        var cellWidth = bodyWidth + horizontalPadding * 2
+
+        if isDeletable {
+            cellWidth += padding * 2 + String.labelSizeOfSymbol(systemName: "xmark", withFont: font).width
+        }
+
+        return CGSize(width: cellWidth, height: cellHeight)
+     }
 }
 
 // MARK: - Preview
@@ -151,19 +172,37 @@ struct TagCell_Previews: PreviewProvider {
                     TagCell(tagId: UUID(),
                             tagName: "タグ",
                             tsundocCount: 5,
-                            status: .default,
-                            onSelect: { selected = $0 })
+                            status: .default) {
+                        switch $0 {
+                        case let .select(tagId):
+                            selected = tagId
+
+                        default: ()
+                        }
+                    }
                     TagCell(tagId: UUID(),
                             tagName: "my tag",
                             tsundocCount: 5,
-                            status: .selected,
-                            onSelect: { selected = $0 })
+                            status: .selected) {
+                        switch $0 {
+                        case let .select(tagId):
+                            selected = tagId
+
+                        default: ()
+                        }
+                    }
                     TagCell(tagId: UUID(),
                             tagName: "😁",
                             tsundocCount: 5,
-                            status: .deletable,
-                            onSelect: { selected = $0 },
-                            onDelete: { deleted = $0 })
+                            status: .deletable) {
+                        switch $0 {
+                        case let .select(tagId):
+                            selected = tagId
+
+                        case let .delete(tagId):
+                            deleted = tagId
+                        }
+                    }
                 }
 
                 HStack {
@@ -171,21 +210,39 @@ struct TagCell_Previews: PreviewProvider {
                             tagName: "タグ",
                             tsundocCount: 5,
                             status: .default,
-                            size: .small,
-                            onSelect: { selected = $0 })
+                            size: .small) {
+                        switch $0 {
+                        case let .select(tagId):
+                            selected = tagId
+
+                        default: ()
+                        }
+                    }
                     TagCell(tagId: UUID(),
                             tagName: "my tag",
                             tsundocCount: 5,
                             status: .selected,
-                            size: .small,
-                            onSelect: { selected = $0 })
+                            size: .small) {
+                        switch $0 {
+                        case let .select(tagId):
+                            selected = tagId
+
+                        default: ()
+                        }
+                    }
                     TagCell(tagId: UUID(),
                             tagName: "😁",
                             tsundocCount: 5,
                             status: .deletable,
-                            size: .small,
-                            onSelect: { selected = $0 },
-                            onDelete: { deleted = $0 })
+                            size: .small) {
+                        switch $0 {
+                        case let .select(tagId):
+                            selected = tagId
+
+                        case let .delete(tagId):
+                            deleted = tagId
+                        }
+                    }
                 }
 
                 if let selected = selected {
