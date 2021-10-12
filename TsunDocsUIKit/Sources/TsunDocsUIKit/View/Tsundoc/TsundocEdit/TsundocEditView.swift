@@ -41,6 +41,7 @@ public struct TsundocEditView: View {
 
     // MARK: - View
 
+    @MainActor
     public var body: some View {
         VStack {
             TsundocMetaContainer(url: url, imageUrl: imageUrl, title: $title, selectedEmoji: $selectedEmoji)

@@ -14,6 +14,7 @@ public struct SharedUrlEditView: View {
         SharedUrlEditViewRootDependency
     >
 
+    @MainActor
     struct StoreBuilder: TagGridStoreBuildable {
         let store: Store
 
