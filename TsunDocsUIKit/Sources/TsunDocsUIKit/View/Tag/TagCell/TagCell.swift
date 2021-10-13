@@ -156,7 +156,7 @@ public struct TagCell: View {
         }
 
         return CGSize(width: cellWidth, height: cellHeight)
-     }
+    }
 }
 
 // MARK: - Preview

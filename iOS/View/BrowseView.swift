@@ -39,18 +39,24 @@ struct BrowseView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            if isLoading {
-                ProgressView(value: estimatedProgress, total: 1.0)
-                    .progressViewStyle(LinearProgressViewStyle(tint: Color.blue))
+            ZStack {
+                WebView(url: baseUrl,
+                        action: $action,
+                        title: $title,
+                        currentUrl: $currentUrl,
+                        canGoBack: $canGoBack,
+                        canGoForward: $canGoForward,
+                        isLoading: $isLoading,
+                        estimatedProgress: $estimatedProgress)
+
+                if isLoading {
+                    VStack(spacing: 0) {
+                        ProgressView(value: estimatedProgress, total: 1.0)
+                            .progressViewStyle(LinearProgressViewStyle(tint: Color.blue))
+                        Spacer()
+                    }
+                }
             }
-            WebView(url: baseUrl,
-                    action: $action,
-                    title: $title,
-                    currentUrl: $currentUrl,
-                    canGoBack: $canGoBack,
-                    canGoForward: $canGoForward,
-                    isLoading: $isLoading,
-                    estimatedProgress: $estimatedProgress)
         }
         .navigationBarTitle(title ?? NSLocalizedString("browse_view_title_loading", comment: "loading"))
         .navigationBarTitleDisplayMode(.inline)
