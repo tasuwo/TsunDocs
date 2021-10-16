@@ -5,15 +5,15 @@ strings:
         - templateName: structured-swift5
           output: Shared/Generated/String.swift
     - inputs:
-        - TsunDocsUIKit/Sources/TsunDocsUIKit/Resources/ja.lproj/Localizable.strings
+        - TsunDocsKit/Sources/TsunDocsUIKit/Resources/ja.lproj/Localizable.strings
       outputs:
         - templateName: structured-swift5
-          output: TsunDocsUIKit/Sources/TsunDocsUIKit/Generated/String.swift
+          output: TsunDocsKit/Sources/TsunDocsUIKit/Generated/String.swift
     - inputs:
-        - MobileShareExtensionUIKit/Sources/MobileShareExtensionUIKit/Resources/ja.lproj/Localizable.strings
+        - TsunDocsKit/Sources/MobileShareExtensionUIKit/Resources/ja.lproj/Localizable.strings
       outputs:
         - templateName: structured-swift5
-          output: MobileShareExtensionUIKit/Sources/MobileShareExtensionUIKit/Generated/String.swift
+          output: TsunDocsKit/Sources/MobileShareExtensionUIKit/Generated/String.swift
     - inputs:
         - MobileShareExtension/Resources/ja.lproj/Localizable.strings
       outputs:

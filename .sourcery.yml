@@ -1,8 +1,8 @@
 sources:
-  - ./Domain
+  - ./TsunDocsKit/Sources/Domain
 templates:
   - ./templates
 output:
-  ./PreviewContent/Sources/PreviewContent/Struct/Domain.AutoDefaultValue.generated.swift
+  ./TsunDocsKit/Sources/PreviewContent/Struct/Domain.AutoDefaultValue.generated.swift
 args:
   import: "Domain;Foundation"

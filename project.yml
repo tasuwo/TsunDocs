@@ -6,18 +6,8 @@ packages:
   Smile:
     url: https://github.com/onmyway133/Smile
     exactVersion: 2.1.0
-  Domain:
-    path: ./Domain
-  Persistence:
-    path: ./Persistence
-  CompositeKit:
-    path: ./CompositeKit
-  TsunDocsUIKit:
-    path: ./TsunDocsUIKit
-  MobileShareExtensionUIKit:
-    path: ./MobileShareExtensionUIKit
-  PreviewContent:
-    path: ./PreviewContent
+  TsunDocsKit:
+    path: ./TsunDocsKit
 options:
   defaultConfig: Release
   transitivelyLinkDependencies: false
@@ -119,13 +109,18 @@ targets:
       - path: iOS
     dependencies:
       - target: MobileShareExtension
-      - package: Domain
-      - package: Persistence
+      - package: TsunDocsKit
+        product: Domain
+      - package: TsunDocsKit
+        product: Persistence
+      - package: TsunDocsKit
+        product: CompositeKit
+      - package: TsunDocsKit
+        product: TsunDocsUIKit
+      - package: TsunDocsKit
+        product: PreviewContent
       - package: Smile
       - package: Kanna
-      - package: CompositeKit
-      - package: TsunDocsUIKit
-      - package: PreviewContent
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -165,13 +160,18 @@ targets:
       - path: Shared
       - path: macOS
     dependencies:
-      - package: Domain
-      - package: Persistence
+      - package: TsunDocsKit
+        product: Domain
+      - package: TsunDocsKit
+        product: Persistence
+      - package: TsunDocsKit
+        product: CompositeKit
+      - package: TsunDocsKit
+        product: TsunDocsUIKit
+      - package: TsunDocsKit
+        product: PreviewContent
       - package: Smile
       - package: Kanna
-      - package: CompositeKit
-      - package: TsunDocsUIKit
-      - package: PreviewContent
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -210,10 +210,14 @@ targets:
     sources:
       - path: MobileShareExtension
     dependencies:
-      - package: Domain
-      - package: Persistence
-      - package: CompositeKit
-      - package: MobileShareExtensionUIKit
+      - package: TsunDocsKit
+        product: Domain
+      - package: TsunDocsKit
+        product: Persistence
+      - package: TsunDocsKit
+        product: CompositeKit
+      - package: TsunDocsKit
+        product: MobileShareExtensionUIKit
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: MobileShareExtension/MobileShareExtension.entitlements

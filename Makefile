@@ -43,8 +43,8 @@ mockolo_generate: ## mockoloによるモック自動生成を行う
 		--destination ../PreviewContent/Sources/PreviewContent/Mocks/Protocol/Shared.ProtocolMocks.swift
 	cd BuildTools; \
 	./mockolo \
-		--sourcedirs ../Domain \
-		--destination ../PreviewContent/Sources/PreviewContent/Protocol/Domain.ProtocolMocks.swift \
+		--sourcedirs ../TsunDocsKit/Sources/Domain \
+		--destination ../TsunDocsKit/Sources/PreviewContent/Protocol/Domain.ProtocolMocks.swift \
 		--custom-imports Domain
 
 .PHONY: help

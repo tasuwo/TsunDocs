@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Kanna",
+        "repositoryURL": "https://github.com/tid-kijyun/Kanna",
+        "state": {
+          "branch": null,
+          "revision": "f9e4922223dd0d3dfbf02ca70812cf5531fc0593",
+          "version": "5.2.7"
+        }
+      },
+      {
+        "package": "Smile",
+        "repositoryURL": "https://github.com/onmyway133/Smile",
+        "state": {
+          "branch": null,
+          "revision": "40604722a7a56f735124e069fcbb58307637744b",
+          "version": "2.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
