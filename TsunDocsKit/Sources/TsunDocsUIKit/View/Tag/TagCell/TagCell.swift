@@ -7,9 +7,9 @@ import SwiftUI
 public struct TagCell: View {
     // MARK: - Properties
 
-    private let tagId: UUID
-    private let tagName: String
-    private let tsundocCount: Int
+    private let id: UUID
+    private let name: String
+    private let count: Int
     private let status: Status
     private let size: Size
 
@@ -44,12 +44,12 @@ public struct TagCell: View {
             }
 
             HStack(spacing: 4) {
-                Text(tagName)
+                Text(name)
                     .foregroundColor(status.isSelected ? .white : .primary)
                     .font(size.font)
                     .lineLimit(1)
 
-                Text("(\(tsundocCount))")
+                Text("(\(count))")
                     .foregroundColor(status.isSelected ? .white : .secondary)
                     .font(size.font)
                     .lineLimit(1)
@@ -59,7 +59,7 @@ public struct TagCell: View {
 
     private var deleteButtonContainer: some View {
         Button {
-            onPerform?(.delete(tagId))
+            onPerform?(.delete(id))
         } label: {
             Image(systemName: "xmark")
                 .font(size.font)
@@ -69,16 +69,16 @@ public struct TagCell: View {
 
     // MARK: - Initializers
 
-    public init(tagId: UUID,
-                tagName: String,
-                tsundocCount: Int,
+    public init(id: UUID,
+                name: String,
+                count: Int,
                 status: Status,
                 size: Size = .normal,
                 onPerform: ((Action) -> Void)? = nil)
     {
-        self.tagId = tagId
-        self.tagName = tagName
-        self.tsundocCount = tsundocCount
+        self.id = id
+        self.name = name
+        self.count = count
         self.status = status
         self.size = size
         self.onPerform = onPerform
@@ -131,7 +131,7 @@ public struct TagCell: View {
         .contentShape(RoundedRectangle(cornerRadius: cornerRadius,
                                        style: .continuous))
         .onTapGesture {
-            onPerform?(.select(tagId))
+            onPerform?(.select(id))
         }
     }
 
@@ -169,9 +169,9 @@ struct TagCell_Previews: PreviewProvider {
         var body: some View {
             VStack(spacing: 8) {
                 HStack {
-                    TagCell(tagId: UUID(),
-                            tagName: "タグ",
-                            tsundocCount: 5,
+                    TagCell(id: UUID(),
+                            name: "タグ",
+                            count: 5,
                             status: .default) {
                         switch $0 {
                         case let .select(tagId):
@@ -180,9 +180,9 @@ struct TagCell_Previews: PreviewProvider {
                         default: ()
                         }
                     }
-                    TagCell(tagId: UUID(),
-                            tagName: "my tag",
-                            tsundocCount: 5,
+                    TagCell(id: UUID(),
+                            name: "my tag",
+                            count: 5,
                             status: .selected) {
                         switch $0 {
                         case let .select(tagId):
@@ -191,9 +191,9 @@ struct TagCell_Previews: PreviewProvider {
                         default: ()
                         }
                     }
-                    TagCell(tagId: UUID(),
-                            tagName: "😁",
-                            tsundocCount: 5,
+                    TagCell(id: UUID(),
+                            name: "😁",
+                            count: 5,
                             status: .deletable) {
                         switch $0 {
                         case let .select(tagId):
@@ -206,9 +206,9 @@ struct TagCell_Previews: PreviewProvider {
                 }
 
                 HStack {
-                    TagCell(tagId: UUID(),
-                            tagName: "タグ",
-                            tsundocCount: 5,
+                    TagCell(id: UUID(),
+                            name: "タグ",
+                            count: 5,
                             status: .default,
                             size: .small) {
                         switch $0 {
@@ -218,9 +218,9 @@ struct TagCell_Previews: PreviewProvider {
                         default: ()
                         }
                     }
-                    TagCell(tagId: UUID(),
-                            tagName: "my tag",
-                            tsundocCount: 5,
+                    TagCell(id: UUID(),
+                            name: "my tag",
+                            count: 5,
                             status: .selected,
                             size: .small) {
                         switch $0 {
@@ -230,9 +230,9 @@ struct TagCell_Previews: PreviewProvider {
                         default: ()
                         }
                     }
-                    TagCell(tagId: UUID(),
-                            tagName: "😁",
-                            tsundocCount: 5,
+                    TagCell(id: UUID(),
+                            name: "😁",
+                            count: 5,
                             status: .deletable,
                             size: .small) {
                         switch $0 {

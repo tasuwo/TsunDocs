@@ -66,9 +66,9 @@ public struct TagGrid: View {
 
     private func cell(_ tag: Tag) -> some View {
         return TagCell(
-            tagId: tag.id,
-            tagName: tag.name,
-            tsundocCount: tag.tsundocsCount,
+            id: tag.id,
+            name: tag.name,
+            count: tag.tsundocsCount,
             status: .init(store.state.configuration,
                           isSelected: store.state.selectedIds.contains(tag.id)),
             size: store.state.configuration.size
