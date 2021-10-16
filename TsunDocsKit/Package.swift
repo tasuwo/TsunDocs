@@ -29,6 +29,14 @@ let package = Package(
             targets: ["TsunDocsUIKit"]
         ),
         .library(
+            name: "TagKit",
+            targets: ["TagKit"]
+        ),
+        .library(
+            name: "TextEditAlert",
+            targets: ["TextEditAlert"]
+        ),
+        .library(
             name: "PreviewContent",
             targets: ["PreviewContent"]
         ),
@@ -57,6 +65,14 @@ let package = Package(
         .target(
             name: "TsunDocsUIKit",
             dependencies: ["Domain", "CompositeKit", "PreviewContent"]
+        ),
+        .target(
+            name: "TagKit",
+            dependencies: ["TextEditAlert"]
+        ),
+        .target(
+            name: "TextEditAlert",
+            dependencies: ["CompositeKit"]
         ),
         .target(
             name: "MobileShareExtensionUIKit",
