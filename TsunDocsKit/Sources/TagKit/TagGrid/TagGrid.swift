@@ -14,7 +14,7 @@ public struct TagGrid: View {
     @State private var availableWidth: CGFloat = 0
     @State private var cellSizes: [Tag: CGSize] = [:]
     @State private var isDeleteConfirmationPresenting = false
-    @State private var isRenameDialogPresenting = false
+    @State private var renamingTag: Tag? = nil
 
     @Namespace var animation
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
@@ -72,6 +72,25 @@ public struct TagGrid: View {
         .onChange(of: dynamicTypeSize) { _ in
             cellSizes = [:]
         }
+        .alert(
+            isPresenting: .init {
+                renamingTag != nil
+            } set: { isPresenting in
+                guard !isPresenting else { return }
+                renamingTag = nil
+            },
+            text: renamingTag?.name ?? "",
+            config: .init(title: NSLocalizedString("tag_grid_alert_rename_tag_title", bundle: Bundle.module, comment: ""),
+                          message: NSLocalizedString("tag_grid_alert_rename_tag_message", bundle: Bundle.module, comment: ""),
+                          placeholder: NSLocalizedString("tag_grid_alert_rename_tag_placeholder", bundle: Bundle.module, comment: ""),
+                          validator: { _ in return true },
+                          saveAction: { text in
+                              guard let tag = renamingTag else { return }
+                              renamingTag = nil
+                              onPerform?(.rename(tagId: tag.id, name: text))
+                          },
+                          cancelAction: nil)
+        )
     }
 
     private func cell(_ tag: Tag) -> some View {
@@ -117,8 +136,7 @@ public struct TagGrid: View {
             }
 
             Button {
-                // TODO:
-                isRenameDialogPresenting = true
+                renamingTag = tag
             } label: {
                 Label {
                     Text("tag_grid_menu_rename", bundle: Bundle.module)
@@ -245,14 +263,16 @@ struct TagGrid_Previews: PreviewProvider {
                             tags.remove(at: index)
                         }
 
-                    case let .copy(tagId: tagId):
+                    case .copy:
                         break
 
                     case let .rename(tagId, name):
                         guard let index = self.tags.firstIndex(where: { $0.id == tagId }) else { return }
-                        var tag = self.tags[index]
-                        tag.name = name
-                        self.tags[index] = tag
+                        withAnimation {
+                            var tag = self.tags[index]
+                            tag.name = name
+                            self.tags[index] = tag
+                        }
                     }
                 }
             }

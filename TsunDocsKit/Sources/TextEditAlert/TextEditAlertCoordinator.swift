@@ -10,17 +10,6 @@ import UIKit
 class TextEditAlertCoordinator: NSObject {
     typealias Store = CompositeKit.Store<TextEditAlertState, TextEditAlertAction, TextEditAlertDependency>
 
-    @MainActor
-    private class AlertController: UIAlertController {
-        var completion: (() -> Void)?
-        weak var store: Store?
-
-        deinit {
-            Task { [weak store] in await store?.execute(.dismissed) }
-            completion?()
-        }
-    }
-
     private class Dependency: TextEditAlertDependency {
         var validator: ((String?) -> Bool)?
         var saveAction: ((String) -> Void)?
@@ -43,10 +32,8 @@ class TextEditAlertCoordinator: NSObject {
     private let dependency: Dependency
     private var subscriptions: Set<AnyCancellable> = .init()
 
-    private weak var presentingAlert: AlertController?
+    private(set) weak var presentingAlert: UIAlertController?
     private weak var presentingSaveAction: UIAlertAction?
-
-    var alertController: UIAlertController? { presentingAlert }
 
     // MARK: - Initializers
 
@@ -85,21 +72,22 @@ class TextEditAlertCoordinator: NSObject {
     {
         guard presentingAlert == nil else { return }
 
-        let alert = AlertController(title: store.stateValue.title,
-                                    message: store.stateValue.message,
-                                    preferredStyle: .alert)
-        alert.completion = completion
+        let alert = UIAlertController(title: store.stateValue.title,
+                                      message: store.stateValue.message,
+                                      preferredStyle: .alert)
 
         store.execute(.textChanged(text: text))
 
         let saveAction = UIAlertAction(title: NSLocalizedString("save", bundle: Bundle.module, comment: ""), style: .default) { [weak self] _ in
             self?.store.execute(.saveActionTapped)
+            self?.completion()
         }
         alert.addAction(saveAction)
         saveAction.isEnabled = store.stateValue.shouldReturn
 
         let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", bundle: Bundle.module, comment: ""), style: .cancel) { [weak self] _ in
             self?.store.execute(.cancelActionTapped)
+            self?.completion()
         }
         alert.addAction(cancelAction)
 
@@ -111,7 +99,6 @@ class TextEditAlertCoordinator: NSObject {
             textField.addTarget(self, action: #selector(self.textFieldDidChange(sender:)), for: .editingChanged)
         }
 
-        alert.store = store
         presentingAlert = alert
         presentingSaveAction = saveAction
 

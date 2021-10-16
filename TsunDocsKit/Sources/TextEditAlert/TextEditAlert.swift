@@ -6,7 +6,10 @@ import SwiftUI
 
 public extension View {
     func alert(isPresenting: Binding<Bool>, text: String, config: TextEditAlertConfig) -> some View {
-        TextEditAlertWrapper(isPresenting: isPresenting, text: text, content: self, config: config)
+        ZStack {
+            TextEditAlertWrapper(isPresenting: isPresenting, text: text, config: config)
+            self
+        }
     }
 }
 
