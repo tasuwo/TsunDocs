@@ -48,6 +48,7 @@ public struct TagGrid: View {
         ZStack {
             Color.clear
                 .frame(height: 0)
+                .frame(minWidth: 0, maxWidth: .infinity)
                 .onChangeFrame { frame in
                     cellSizes = [:]
                     availableWidth = frame.width
@@ -55,10 +56,6 @@ public struct TagGrid: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: spacing) {
-                    Color.clear
-                        .frame(height: 0)
-                        .frame(minWidth: 0, maxWidth: .infinity)
-
                     ForEach(calcRows(), id: \.self) { tags in
                         HStack(spacing: spacing) {
                             ForEach(tags) {
@@ -67,6 +64,7 @@ public struct TagGrid: View {
                         }
                     }
                 }
+                .frame(minWidth: 0, maxWidth: .infinity)
                 .padding(.all, inset)
             }
         }
