@@ -17,5 +17,7 @@
 "tag_grid_alert_rename_tag_title" = "Rename Tag";
 "tag_grid_alert_rename_tag_message" = "Enter a new name for this tag.";
 
+"tag_multi_selection_view_title" = "Select Tag";
+
 "close" = "Close";
 "cancel" = "Cancel";

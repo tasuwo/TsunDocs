@@ -17,5 +17,7 @@
 "tag_grid_alert_rename_tag_title" = "タグ名の変更";
 "tag_grid_alert_rename_tag_message" = "このタグの新しい名前を入力してください";
 
+"tag_multi_selection_view_title" = "タグを選択";
+
 "close" = "閉じる";
 "cancel" = "キャンセル";

@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import SearchKit
 
 public struct Tag: Equatable, Identifiable, Hashable {
     // MARK: - Properties
@@ -17,5 +18,11 @@ public struct Tag: Equatable, Identifiable, Hashable {
         self.id = id
         self.name = name
         self.count = count
+    }
+}
+
+extension Tag: Searchable {
+    public var searchableText: String? {
+        name.transformToSearchableText()
     }
 }

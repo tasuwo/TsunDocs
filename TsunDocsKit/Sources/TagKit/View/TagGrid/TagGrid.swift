@@ -8,8 +8,8 @@ import TextEditAlert
 public struct TagGrid: View {
     // MARK: - Properties
 
-    @Binding private var tags: [Tag]
-    @Binding private var selectedIds: Set<Tag.ID>
+    private var tags: [Tag]
+    private var selectedIds: Set<Tag.ID>
 
     @State private var availableWidth: CGFloat = 0
     @State private var cellSizes: [Tag: CGSize] = [:]
@@ -26,15 +26,15 @@ public struct TagGrid: View {
 
     // MARK: - Initializers
 
-    public init(tags: Binding<[Tag]>,
-                selectedIds: Binding<Set<Tag.ID>>,
+    public init(tags: [Tag],
+                selectedIds: Set<Tag.ID>,
                 configuration: Configuration = .init(.default),
                 spacing: CGFloat = 8,
                 inset: CGFloat = 8,
                 onPerform: ((Action) -> Void)? = nil)
     {
-        _tags = tags
-        _selectedIds = selectedIds
+        self.tags = tags
+        self.selectedIds = selectedIds
         self.configuration = configuration
         self.spacing = spacing
         self.inset = inset
@@ -246,8 +246,8 @@ struct TagGrid_Previews: PreviewProvider {
                     Text("Add Tag")
                 }
 
-                TagGrid(tags: $tags,
-                        selectedIds: $selectedIds,
+                TagGrid(tags: tags,
+                        selectedIds: selectedIds,
                         configuration: .init(.selectable(.multiple), isEnabledMenu: true)) { action in
                     switch action {
                     case let .select(tagId):

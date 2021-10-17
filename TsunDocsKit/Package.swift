@@ -37,6 +37,10 @@ let package = Package(
             targets: ["TextEditAlert"]
         ),
         .library(
+            name: "SearchKit",
+            targets: ["SearchKit"]
+        ),
+        .library(
             name: "PreviewContent",
             targets: ["PreviewContent"]
         ),
@@ -68,10 +72,17 @@ let package = Package(
         ),
         .target(
             name: "TagKit",
-            dependencies: ["TextEditAlert"]
+            dependencies: [
+                "TextEditAlert",
+                "SearchKit"
+            ]
         ),
         .target(
             name: "TextEditAlert",
+            dependencies: ["CompositeKit"]
+        ),
+        .target(
+            name: "SearchKit",
             dependencies: ["CompositeKit"]
         ),
         .target(
