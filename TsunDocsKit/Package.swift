@@ -33,6 +33,10 @@ let package = Package(
             targets: ["TagKit"]
         ),
         .library(
+            name: "EmojiKit",
+            targets: ["EmojiKit"]
+        ),
+        .library(
             name: "TextEditAlert",
             targets: ["TextEditAlert"]
         ),
@@ -75,6 +79,13 @@ let package = Package(
             dependencies: [
                 "TextEditAlert",
                 "SearchKit"
+            ]
+        ),
+        .target(
+            name: "EmojiKit",
+            dependencies: [
+                "SearchKit",
+                .product(name: "Smile", package: "Smile")
             ]
         ),
         .target(
