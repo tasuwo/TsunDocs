@@ -5,6 +5,7 @@
 import CompositeKit
 import SearchKit
 import SwiftUI
+import TextEditAlert
 
 public struct TagMultiSelectionView: View {
     public typealias FilterStore = ViewStore<
@@ -15,18 +16,25 @@ public struct TagMultiSelectionView: View {
 
     // MARK: - Properties
 
-    @State private var selectedIds: Set<Tag.ID> = .init()
+    @Binding private var tags: [Tag]
 
-    @StateObject var filterStore: FilterStore
-    @StateObject var engine: TextEngine = .init(debounceFor: 0.3)
+    @State private var selectedIds: Set<Tag.ID> = .init()
+    @State private var isAdditionDialogPresenting = false
+
+    @StateObject private var filterStore: FilterStore
+    @StateObject private var engine: TextEngine = .init(debounceFor: 0.3)
+
+    private let onPerform: (Action) -> Void
 
     // MARK: - Initializers
 
-    public init(tags: [Tag]) {
-        let store = Store(initialState: .init(items: tags),
+    public init(tags: Binding<[Tag]>, onPerform: @escaping (Action) -> Void) {
+        _tags = tags
+        let store = Store(initialState: .init(items: tags.wrappedValue),
                           dependency: Nop(),
                           reducer: SearchableFilterReducer<Tag>())
         _filterStore = StateObject(wrappedValue: ViewStore(store: store))
+        self.onPerform = onPerform
     }
 
     // MARK: - View
@@ -56,6 +64,35 @@ public struct TagMultiSelectionView: View {
         .onChange(of: engine.output) { query in
             filterStore.execute(.updateQuery(query), animation: .default)
         }
+        .onChange(of: tags) { tags in
+            filterStore.execute(.updateItems(tags), animation: .default)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    isAdditionDialogPresenting = true
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    onPerform(.done(selected: selectedIds))
+                } label: {
+                    Text("tag_multi_selection_view_done_button", bundle: Bundle.module)
+                }
+            }
+        }
+        .alert(
+            isPresenting: $isAdditionDialogPresenting,
+            text: "",
+            config: .init(title: NSLocalizedString("tag_multi_selection_view_alert_new_tag_title", bundle: Bundle.module, comment: ""),
+                          message: NSLocalizedString("tag_multi_selection_view_alert_new_tag_message", bundle: Bundle.module, comment: ""),
+                          placeholder: NSLocalizedString("tag_multi_selection_view_alert_new_tag_placeholder", bundle: Bundle.module, comment: ""),
+                          validator: { $0?.isEmpty == false },
+                          saveAction: { onPerform(.addNewTag(name: $0)) },
+                          cancelAction: nil)
+        )
     }
 }
 
@@ -67,7 +104,12 @@ struct TagMultiSelectionView_Previews: PreviewProvider {
         // MARK: - Properties
 
         @State private var tags: [Tag]
+        @State private var selectedIds: Set<Tag.ID> = .init()
         @State private var isPresenting = false
+
+        var selectedTags: [Tag] {
+            tags.filter { selectedIds.contains($0.id) }
+        }
 
         // MARK: - Initializers
 
@@ -78,15 +120,27 @@ struct TagMultiSelectionView_Previews: PreviewProvider {
         // MARK: - View
 
         var body: some View {
-            VStack {
+            VStack(spacing: 12) {
                 Button {
                     isPresenting = true
                 } label: {
                     Text("Select tag")
                 }
-                .sheet(isPresented: $isPresenting) {
-                    NavigationView {
-                        TagMultiSelectionView(tags: tags)
+                Text("Selected: \(Array(selectedTags.map(\.name)).joined(separator: ", "))")
+            }
+            .sheet(isPresented: $isPresenting) {
+                NavigationView {
+                    TagMultiSelectionView(tags: $tags) { action in
+                        switch action {
+                        case let .addNewTag(name: name):
+                            withAnimation {
+                                self.tags.append(.init(id: UUID(), name: name))
+                            }
+
+                        case let .done(selected: ids):
+                            selectedIds = ids
+                            isPresenting = false
+                        }
                     }
                 }
             }

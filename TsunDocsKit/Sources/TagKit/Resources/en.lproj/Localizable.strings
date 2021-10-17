@@ -18,6 +18,10 @@
 "tag_grid_alert_rename_tag_message" = "Enter a new name for this tag.";
 
 "tag_multi_selection_view_title" = "Select Tag";
+"tag_multi_selection_view_alert_new_tag_title" = "New Tag";
+"tag_multi_selection_view_alert_new_tag_message" = "Enter a name for this tag.";
+"tag_multi_selection_view_alert_new_tag_placeholder" = "Tag Name";
+"tag_multi_selection_view_done_button" = "Done";
 
 "close" = "Close";
 "cancel" = "Cancel";
