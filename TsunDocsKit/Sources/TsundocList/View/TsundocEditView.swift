@@ -58,8 +58,7 @@ public struct TsundocEditView: View {
                     Text("tsundoc_edit_view_save_button", bundle: Bundle.module)
                 }
             }
-            // TODO:
-            // .buttonStyle(PrimaryButtonStyle())
+            .buttonStyle(PrimaryButtonStyle())
             .padding()
         }
         .padding(8)
