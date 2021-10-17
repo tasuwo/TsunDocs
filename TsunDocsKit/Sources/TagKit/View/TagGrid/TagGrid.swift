@@ -14,8 +14,8 @@ public struct TagGrid: View {
 
     @State private var availableWidth: CGFloat = 0
     @State private var cellSizes: [Tag: CGSize] = [:]
-    @State private var isDeleteConfirmationPresenting = false
     @State private var renamingTag: Tag? = nil
+    @State private var deletingTag: Tag? = nil
 
     @Namespace var animation
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
@@ -45,39 +45,34 @@ public struct TagGrid: View {
     // MARK: - View
 
     public var body: some View {
-        ZStack {
-            Color.clear
-                .frame(height: 0)
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .onChangeFrame { frame in
-                    cellSizes = [:]
-                    availableWidth = frame.width
-                }
-
-            ScrollView {
-                VStack(alignment: .leading, spacing: spacing) {
-                    ForEach(calcRows(), id: \.self) { tags in
-                        HStack(spacing: spacing) {
-                            ForEach(tags) {
-                                cell($0)
-                            }
+        ScrollView {
+            VStack(alignment: .leading, spacing: spacing) {
+                ForEach(calcRows(), id: \.self) { tags in
+                    HStack(spacing: spacing) {
+                        ForEach(tags) {
+                            cell($0)
                         }
                     }
                 }
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .padding(.all, inset)
             }
+            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+            .background(
+                Color.clear
+                    .frame(height: 5)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .onChangeFrame { frame in
+                        cellSizes = [:]
+                        availableWidth = frame.width
+                    }
+            )
+            .padding(.all, inset)
         }
         .onChange(of: dynamicTypeSize) { _ in
             cellSizes = [:]
         }
         .alert(
-            isPresenting: .init {
-                renamingTag != nil
-            } set: { isPresenting in
-                guard !isPresenting else { return }
-                renamingTag = nil
-            },
+            isPresenting: .init(get: { renamingTag != nil },
+                                set: { if !$0 { renamingTag = nil } }),
             text: renamingTag?.name ?? "",
             config: .init(title: NSLocalizedString("tag_grid_alert_rename_tag_title", bundle: Bundle.module, comment: ""),
                           message: NSLocalizedString("tag_grid_alert_rename_tag_message", bundle: Bundle.module, comment: ""),
@@ -116,7 +111,8 @@ public struct TagGrid: View {
         }
         .confirmationDialog(
             Text("tag_grid_alert_delete_tag_message \(tag.name)", bundle: Bundle.module),
-            isPresented: $isDeleteConfirmationPresenting,
+            isPresented: .init(get: { deletingTag?.id == tag.id },
+                               set: { if !$0 { deletingTag = nil } }),
             titleVisibility: .visible
         ) {
             deleteConfirmationDialog(tag)
@@ -150,7 +146,7 @@ public struct TagGrid: View {
             Divider()
 
             Button(role: .destructive) {
-                isDeleteConfirmationPresenting = true
+                deletingTag = tag
             } label: {
                 Label {
                     Text("tag_grid_menu_delete", bundle: Bundle.module)
@@ -174,9 +170,11 @@ public struct TagGrid: View {
     }
 
     private func calcRows() -> [[Tag]] {
+        let contentWidth = availableWidth - inset * 2
+
         var rows: [[Tag]] = [[]]
         var currentRow = 0
-        var remainingWidth = availableWidth - inset * 2
+        var remainingWidth = contentWidth
 
         for tag in tags {
             let cellSize: CGSize
@@ -187,19 +185,25 @@ public struct TagGrid: View {
                                                  count: tag.count,
                                                  size: configuration.size,
                                                  isDeletable: configuration.style == .deletable)
-                let width = min(size.width, availableWidth - inset * 2)
+                let width = min(size.width, contentWidth)
                 cellSize = CGSize(width: width, height: size.height)
             }
 
-            if remainingWidth - (cellSize.width + spacing) >= 0 {
+            if rows[currentRow].isEmpty {
                 rows[currentRow].append(tag)
+
+                remainingWidth -= cellSize.width
+            } else if remainingWidth - (cellSize.width + spacing) >= 0 {
+                rows[currentRow].append(tag)
+
+                remainingWidth -= (cellSize.width + spacing)
             } else {
                 currentRow += 1
                 rows.append([tag])
-                remainingWidth = availableWidth - inset * 2
-            }
+                remainingWidth = contentWidth
 
-            remainingWidth -= (cellSize.width + spacing)
+                remainingWidth -= cellSize.width
+            }
         }
 
         return rows
@@ -228,6 +232,8 @@ struct TagGrid_Previews: PreviewProvider {
         // MARK: - Properties
 
         @State private var tags: [Tag]
+        @State private var text: String = ""
+        @State private var log: String = ""
         @State private var selectedIds: Set<Tag.ID> = .init()
 
         // MARK: - Initializers
@@ -240,14 +246,6 @@ struct TagGrid_Previews: PreviewProvider {
 
         var body: some View {
             VStack {
-                Button {
-                    withAnimation {
-                        tags.insert(Tag(id: UUID(), name: "Added"), at: 0)
-                    }
-                } label: {
-                    Text("Add Tag")
-                }
-
                 TagGrid(tags: tags,
                         selectedIds: selectedIds,
                         configuration: .init(.selectable(.multiple), isEnabledMenu: true)) { action in
@@ -261,15 +259,18 @@ struct TagGrid_Previews: PreviewProvider {
 
                     case let .delete(tagId):
                         guard let index = tags.firstIndex(where: { $0.id == tagId }) else { return }
-                        _ = withAnimation {
-                            tags.remove(at: index)
+                        log = "Deleted: \(tags[index].name)"
+                        withAnimation {
+                            _ = tags.remove(at: index)
                         }
 
-                    case .copy:
-                        break
+                    case let .copy(tagId: tagId):
+                        guard let index = tags.firstIndex(where: { $0.id == tagId }) else { return }
+                        log = "Copied: \(tags[index].name)"
 
                     case let .rename(tagId, name):
                         guard let index = self.tags.firstIndex(where: { $0.id == tagId }) else { return }
+                        log = "Renamed: \(tags[index].name) to \(name)"
                         withAnimation {
                             var tag = self.tags[index]
                             tag.name = name
@@ -277,6 +278,35 @@ struct TagGrid_Previews: PreviewProvider {
                         }
                     }
                 }
+
+                HStack {
+                    TextField("Tag Name", text: $text)
+                        .disableAutocorrection(true)
+
+                    Button {
+                        withAnimation {
+                            tags.insert(Tag(id: UUID(), name: text), at: 0)
+                        }
+                    } label: {
+                        Text("Add Tag")
+                    }
+                    .disabled(text.isEmpty)
+                }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 8, style: .continuous)
+                        .stroke()
+                )
+                .padding([.leading, .trailing, .top])
+
+                Text(log)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .stroke()
+                    )
+                    .padding()
             }
         }
     }
