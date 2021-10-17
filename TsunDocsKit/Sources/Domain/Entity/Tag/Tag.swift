@@ -3,14 +3,17 @@
 //
 
 import Foundation
+import SearchKit
 
 // sourcery: AutoDefaultValuePublic
 public struct Tag: Searchable, Equatable {
     // MARK: - Properties
 
     public let id: UUID
-    public let name: String
-    public let tsundocsCount: Int
+    public var name: String
+    public var tsundocsCount: Int
+
+    public var count: Int { tsundocsCount }
 
     // MARK: - Searchable
 
@@ -18,7 +21,7 @@ public struct Tag: Searchable, Equatable {
 
     // MARK: - Initializers
 
-    public init(id: UUID, name: String, tsundocsCount: Int, searchableText: String?) {
+    public init(id: UUID, name: String, tsundocsCount: Int = 0, searchableText: String? = nil) {
         self.id = id
         self.name = name
         self.searchableText = searchableText

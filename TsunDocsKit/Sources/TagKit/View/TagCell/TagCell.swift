@@ -2,12 +2,13 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import struct Domain.Tag
 import SwiftUI
 
 public struct TagCell: View {
     // MARK: - Properties
 
-    private let id: UUID
+    private let id: Tag.ID
     private let name: String
     private let count: Int
     private let status: Status

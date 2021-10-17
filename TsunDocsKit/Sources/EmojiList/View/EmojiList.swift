@@ -3,6 +3,7 @@
 //
 
 import CompositeKit
+import struct Domain.Emoji
 import SearchKit
 import SwiftUI
 

@@ -3,6 +3,7 @@
 //
 
 import CompositeKit
+import struct Domain.Tag
 import SearchKit
 import SwiftUI
 import TextEditAlert

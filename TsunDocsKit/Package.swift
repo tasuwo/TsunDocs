@@ -72,7 +72,11 @@ let package = Package(
         ),
         .target(
             name: "Domain",
-            dependencies: ["Kanna", "Smile"]
+            dependencies: [
+                .product(name: "Kanna", package: "Kanna"),
+                .product(name: "Smile", package: "Smile"),
+                "SearchKit"
+            ]
         ),
         .target(
             name: "Persistence",
@@ -95,14 +99,15 @@ let package = Package(
             name: "TagKit",
             dependencies: [
                 "TextEditAlert",
-                "SearchKit"
+                "SearchKit",
+                "Domain"
             ]
         ),
         .target(
             name: "EmojiList",
             dependencies: [
                 "SearchKit",
-                .product(name: "Smile", package: "Smile")
+                "Domain"
             ]
         ),
         .target(
