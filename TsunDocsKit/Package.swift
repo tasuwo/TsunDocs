@@ -45,6 +45,10 @@ let package = Package(
             targets: ["SearchKit"]
         ),
         .library(
+            name: "ImageLoader",
+            targets: ["ImageLoader"]
+        ),
+        .library(
             name: "PreviewContent",
             targets: ["PreviewContent"]
         ),
@@ -95,6 +99,10 @@ let package = Package(
         .target(
             name: "SearchKit",
             dependencies: ["CompositeKit"]
+        ),
+        .target(
+            name: "ImageLoader",
+            dependencies: []
         ),
         .target(
             name: "MobileShareExtensionUIKit",
