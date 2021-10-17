@@ -83,7 +83,10 @@ public struct TagGrid: View {
             config: .init(title: NSLocalizedString("tag_grid_alert_rename_tag_title", bundle: Bundle.module, comment: ""),
                           message: NSLocalizedString("tag_grid_alert_rename_tag_message", bundle: Bundle.module, comment: ""),
                           placeholder: NSLocalizedString("tag_grid_alert_rename_tag_placeholder", bundle: Bundle.module, comment: ""),
-                          validator: { _ in return true },
+                          validator: { text in
+                              guard let tag = renamingTag else { return text?.isEmpty == false }
+                              return text != tag.name && text?.isEmpty == false
+                          },
                           saveAction: { text in
                               guard let tag = renamingTag else { return }
                               renamingTag = nil
@@ -236,7 +239,7 @@ struct TagGrid_Previews: PreviewProvider {
 
         // MARK: - View
 
-        public var body: some View {
+        var body: some View {
             VStack {
                 Button {
                     withAnimation {

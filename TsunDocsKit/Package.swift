@@ -29,6 +29,10 @@ let package = Package(
             targets: ["TsunDocsUIKit"]
         ),
         .library(
+            name: "TsundocList",
+            targets: ["TsundocList"]
+        ),
+        .library(
             name: "TagKit",
             targets: ["TagKit"]
         ),
@@ -77,6 +81,15 @@ let package = Package(
         .target(
             name: "TsunDocsUIKit",
             dependencies: ["Domain", "CompositeKit", "PreviewContent"]
+        ),
+        .target(
+            name: "TsundocList",
+            dependencies: [
+                "TagKit",
+                "EmojiList",
+                "ImageLoader",
+                "TextEditAlert"
+            ]
         ),
         .target(
             name: "TagKit",
