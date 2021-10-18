@@ -87,6 +87,22 @@ public extension ViewStore {
     }
 }
 
+public extension ViewStore {
+    func connection<
+        Property: Equatable,
+        Action: CompositeKit.Action
+    >(
+        at keyPath: KeyPath<State, Property>,
+        _ mapping: @escaping (Property) -> Action?
+    ) -> Connection<Action> {
+        store.state
+            .removeDuplicates(by: keyPath)
+            .map(keyPath)
+            .map { mapping($0) }
+            .eraseToAnyPublisher()
+    }
+}
+
 public extension Storing {
     func viewStore() -> ViewStore<State, Action, Dependency> {
         return ViewStore(store: self)
