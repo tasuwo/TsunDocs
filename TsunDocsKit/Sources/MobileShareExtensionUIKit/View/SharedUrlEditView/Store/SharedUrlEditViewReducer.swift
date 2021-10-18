@@ -17,6 +17,10 @@ public struct SharedUrlEditViewReducer: Reducer {
     public typealias State = SharedUrlEditViewState
     public typealias Action = SharedUrlEditViewAction
 
+    // MARK: - Initializers
+
+    public init() {}
+
     // MARK: - Reducer
 
     public func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {

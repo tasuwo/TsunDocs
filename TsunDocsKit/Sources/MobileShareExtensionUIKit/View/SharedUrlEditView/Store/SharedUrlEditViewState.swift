@@ -17,9 +17,11 @@ public struct SharedUrlEditViewState: Equatable {
     var sharedUrlImageUrl: URL?
 
     var selectedEmoji: Emoji?
-    var selectedTags: [Tag]
+    var selectedTags: [Tag] = []
 
     var alert: Alert?
+
+    public init() {}
 }
 
 extension SharedUrlEditViewState {

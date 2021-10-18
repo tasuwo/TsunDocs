@@ -116,8 +116,6 @@ targets:
       - package: TsunDocsKit
         product: CompositeKit
       - package: TsunDocsKit
-        product: TsunDocsUIKit
-      - package: TsunDocsKit
         product: PreviewContent
       - package: Smile
       - package: Kanna
@@ -166,8 +164,6 @@ targets:
         product: Persistence
       - package: TsunDocsKit
         product: CompositeKit
-      - package: TsunDocsKit
-        product: TsunDocsUIKit
       - package: TsunDocsKit
         product: PreviewContent
       - package: Smile
@@ -218,6 +214,8 @@ targets:
         product: CompositeKit
       - package: TsunDocsKit
         product: MobileShareExtensionUIKit
+      - package: TsunDocsKit
+        product: TagKit
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: MobileShareExtension/MobileShareExtension.entitlements

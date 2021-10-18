@@ -4,15 +4,15 @@
 
 import CompositeKit
 import Domain
-import TsunDocsUIKit
+import TagKit
 
-extension DependencyContainer: TagMultiAdditionViewStoreBuildable {
-    // MARK: - TagMultiAdditionViewStoreBuildable
+extension DependencyContainer: TagControlViewStoreBuildable {
+    // MARK: - TagControlViewStoreBuildable
 
-    func buildTagMultiAdditionViewStore(selectedIds: Set<Tag.ID>) -> ViewStore<TagMultiAdditionViewState, TagMultiAdditionViewAction, TagMultiAdditionViewDependency> {
-        let store = Store(initialState: TagMultiAdditionViewState(selectedIds: selectedIds),
+    func buildTagControlViewStore() -> ViewStore<TagControlState, TagControlAction, TagControlDependency> {
+        let store = Store(initialState: TagControlState(),
                           dependency: self,
-                          reducer: tagMultiAdditionViewReducer)
+                          reducer: TagControlReducer())
         return ViewStore(store: store)
     }
 }

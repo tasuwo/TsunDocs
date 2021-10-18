@@ -138,7 +138,7 @@ struct SharedUrlEditView_Previews: PreviewProvider {
     }
 
     static func makeStore(dependency: Dependency) -> SharedUrlEditView.Store {
-        let store = Store(initialState: .init(selectedTags: []),
+        let store = Store(initialState: .init(),
                           dependency: dependency,
                           reducer: SharedUrlEditViewReducer())
         let viewStore = ViewStore(store: store)
