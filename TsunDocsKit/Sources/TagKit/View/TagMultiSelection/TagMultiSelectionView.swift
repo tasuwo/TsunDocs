@@ -63,7 +63,7 @@ public struct TagMultiSelectionView: View {
             }
         }
         .searchable(text: $engine.input, placement: .navigationBarDrawer(displayMode: .always))
-        .navigationTitle(Text("tag_multi_selection_view_title", bundle: Bundle.module))
+        .navigationTitle(Text("tag_multi_selection_view_title", bundle: Bundle.this))
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: engine.output) { query in
             store.execute(.updateQuery(query), animation: .default)
@@ -80,16 +80,16 @@ public struct TagMultiSelectionView: View {
                 Button {
                     onPerform(.done(selected: selectedIds))
                 } label: {
-                    Text("tag_multi_selection_view_done_button", bundle: Bundle.module)
+                    Text("tag_multi_selection_view_done_button", bundle: Bundle.this)
                 }
             }
         }
         .alert(
             isPresenting: $isAdditionDialogPresenting,
             text: "",
-            config: .init(title: NSLocalizedString("tag_multi_selection_view_alert_new_tag_title", bundle: Bundle.module, comment: ""),
-                          message: NSLocalizedString("tag_multi_selection_view_alert_new_tag_message", bundle: Bundle.module, comment: ""),
-                          placeholder: NSLocalizedString("tag_multi_selection_view_alert_new_tag_placeholder", bundle: Bundle.module, comment: ""),
+            config: .init(title: NSLocalizedString("tag_multi_selection_view_alert_new_tag_title", bundle: Bundle.this, comment: ""),
+                          message: NSLocalizedString("tag_multi_selection_view_alert_new_tag_message", bundle: Bundle.this, comment: ""),
+                          placeholder: NSLocalizedString("tag_multi_selection_view_alert_new_tag_placeholder", bundle: Bundle.this, comment: ""),
                           validator: { $0?.isEmpty == false },
                           saveAction: { onPerform(.addNewTag(name: $0)) },
                           cancelAction: nil)

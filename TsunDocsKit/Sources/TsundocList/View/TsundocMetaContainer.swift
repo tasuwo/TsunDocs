@@ -47,7 +47,7 @@ public struct TsundocMetaContainer: View {
                             .lineLimit(4)
                             .font(.body)
                     } else {
-                        Text("tsundoc_edit_view_no_title", bundle: Bundle.module)
+                        Text("tsundoc_edit_view_no_title", bundle: Bundle.this)
                             .foregroundColor(.gray)
                             .font(.title3)
                     }
@@ -71,9 +71,9 @@ public struct TsundocMetaContainer: View {
         }
         .alert(isPresenting: $isTitleEditAlertPresenting,
                text: title,
-               config: .init(title: NSLocalizedString("tsundoc_edit_view_title_edit_title", bundle: Bundle.module, comment: ""),
-                             message: NSLocalizedString("tsundoc_edit_view_title_edit_message", bundle: Bundle.module, comment: ""),
-                             placeholder: NSLocalizedString("tsundoc_edit_view_title_edit_placeholder", bundle: Bundle.module, comment: ""),
+               config: .init(title: NSLocalizedString("tsundoc_edit_view_title_edit_title", bundle: Bundle.this, comment: ""),
+                             message: NSLocalizedString("tsundoc_edit_view_title_edit_message", bundle: Bundle.this, comment: ""),
+                             placeholder: NSLocalizedString("tsundoc_edit_view_title_edit_placeholder", bundle: Bundle.this, comment: ""),
                              validator: { title != $0 && $0?.count ?? 0 > 0 },
                              saveAction: { title = $0 },
                              cancelAction: nil))

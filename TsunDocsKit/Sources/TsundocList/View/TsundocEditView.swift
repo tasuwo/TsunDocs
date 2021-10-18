@@ -61,7 +61,7 @@ public struct TsundocEditView: View {
             } label: {
                 HStack {
                     Image(systemName: "checkmark")
-                    Text("tsundoc_edit_view_save_button", bundle: Bundle.module)
+                    Text("tsundoc_edit_view_save_button", bundle: Bundle.this)
                 }
             }
             .buttonStyle(PrimaryButtonStyle())
@@ -81,7 +81,7 @@ public struct TsundocEditView: View {
     func tagContainer() -> some View {
         VStack {
             HStack {
-                Text("tsundoc_edit_view_tags_title", bundle: Bundle.module)
+                Text("tsundoc_edit_view_tags_title", bundle: Bundle.this)
 
                 Spacer()
 

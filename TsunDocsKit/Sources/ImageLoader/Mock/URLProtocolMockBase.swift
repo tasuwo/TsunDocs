@@ -54,7 +54,7 @@ public class SuccessMock: URLProtocolMockBase {
     override public class var mock_delay: TimeInterval? { 3 }
     override public class var mock_handler: ((URLRequest) throws -> (HTTPURLResponse, Data?))? {
         // swiftlint:disable:next force_unwrapping
-        return { _ in (.mock_success, UIImage(named: "320x320", in: Bundle.module, with: nil)!.pngData()) }
+        return { _ in (.mock_success, UIImage(named: "320x320", in: Bundle.this, with: nil)!.pngData()) }
     }
 }
 

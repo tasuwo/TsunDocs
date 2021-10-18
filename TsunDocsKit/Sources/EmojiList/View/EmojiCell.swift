@@ -10,7 +10,7 @@ struct EmojiCell: View {
 
     var body: some View {
         VStack {
-            Color("emoji_background", bundle: Bundle.module)
+            Color("emoji_background", bundle: Bundle.this)
                 .aspectRatio(1, contentMode: .fill)
                 .overlay(
                     GeometryReader { proxy in

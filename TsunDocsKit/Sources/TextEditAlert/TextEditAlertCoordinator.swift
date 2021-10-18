@@ -78,14 +78,14 @@ class TextEditAlertCoordinator: NSObject {
 
         store.execute(.textChanged(text: text))
 
-        let saveAction = UIAlertAction(title: NSLocalizedString("save", bundle: Bundle.module, comment: ""), style: .default) { [weak self] _ in
+        let saveAction = UIAlertAction(title: NSLocalizedString("save", bundle: Bundle.this, comment: ""), style: .default) { [weak self] _ in
             self?.store.execute(.saveActionTapped)
             self?.completion()
         }
         alert.addAction(saveAction)
         saveAction.isEnabled = store.stateValue.shouldReturn
 
-        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", bundle: Bundle.module, comment: ""), style: .cancel) { [weak self] _ in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", bundle: Bundle.this, comment: ""), style: .cancel) { [weak self] _ in
             self?.store.execute(.cancelActionTapped)
             self?.completion()
         }

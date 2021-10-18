@@ -6,6 +6,6 @@ import SwiftUI
 
 public extension Color {
     static var emojiBackground: Color {
-        Color("emoji_background", bundle: Bundle.module)
+        Color("emoji_background", bundle: Bundle.this)
     }
 }

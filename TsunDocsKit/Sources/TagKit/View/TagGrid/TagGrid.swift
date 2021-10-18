@@ -74,9 +74,9 @@ public struct TagGrid: View {
             isPresenting: .init(get: { renamingTag != nil },
                                 set: { if !$0 { renamingTag = nil } }),
             text: renamingTag?.name ?? "",
-            config: .init(title: NSLocalizedString("tag_grid_alert_rename_tag_title", bundle: Bundle.module, comment: ""),
-                          message: NSLocalizedString("tag_grid_alert_rename_tag_message", bundle: Bundle.module, comment: ""),
-                          placeholder: NSLocalizedString("tag_grid_alert_rename_tag_placeholder", bundle: Bundle.module, comment: ""),
+            config: .init(title: NSLocalizedString("tag_grid_alert_rename_tag_title", bundle: Bundle.this, comment: ""),
+                          message: NSLocalizedString("tag_grid_alert_rename_tag_message", bundle: Bundle.this, comment: ""),
+                          placeholder: NSLocalizedString("tag_grid_alert_rename_tag_placeholder", bundle: Bundle.this, comment: ""),
                           validator: { text in
                               guard let tag = renamingTag else { return text?.isEmpty == false }
                               return text != tag.name && text?.isEmpty == false
@@ -110,7 +110,7 @@ public struct TagGrid: View {
             menu(tag)
         }
         .confirmationDialog(
-            Text("tag_grid_alert_delete_tag_message \(tag.name)", bundle: Bundle.module),
+            Text("tag_grid_alert_delete_tag_message \(tag.name)", bundle: Bundle.this),
             isPresented: .init(get: { deletingTag?.id == tag.id },
                                set: { if !$0 { deletingTag = nil } }),
             titleVisibility: .visible
@@ -127,7 +127,7 @@ public struct TagGrid: View {
                 onPerform?(.copy(tagId: tag.id))
             } label: {
                 Label {
-                    Text("tag_grid_menu_copy", bundle: Bundle.module)
+                    Text("tag_grid_menu_copy", bundle: Bundle.this)
                 } icon: {
                     Image(systemName: "doc.on.doc")
                 }
@@ -137,7 +137,7 @@ public struct TagGrid: View {
                 renamingTag = tag
             } label: {
                 Label {
-                    Text("tag_grid_menu_rename", bundle: Bundle.module)
+                    Text("tag_grid_menu_rename", bundle: Bundle.this)
                 } icon: {
                     Image(systemName: "text.cursor")
                 }
@@ -149,7 +149,7 @@ public struct TagGrid: View {
                 deletingTag = tag
             } label: {
                 Label {
-                    Text("tag_grid_menu_delete", bundle: Bundle.module)
+                    Text("tag_grid_menu_delete", bundle: Bundle.this)
                 } icon: {
                     Image(systemName: "trash")
                 }
@@ -164,9 +164,9 @@ public struct TagGrid: View {
         Button(role: .destructive) {
             onPerform?(.delete(tagId: tag.id))
         } label: {
-            Text("tag_grid_alert_delete_tag_action", bundle: Bundle.module)
+            Text("tag_grid_alert_delete_tag_action", bundle: Bundle.this)
         }
-        Button(role: .cancel, action: {}, label: { Text("cancel", bundle: Bundle.module) })
+        Button(role: .cancel, action: {}, label: { Text("cancel", bundle: Bundle.this) })
     }
 
     private func calcRows() -> [[Tag]] {

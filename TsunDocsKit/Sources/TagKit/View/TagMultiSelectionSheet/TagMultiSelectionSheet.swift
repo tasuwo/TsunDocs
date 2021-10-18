@@ -52,7 +52,7 @@ public struct TagMultiSelectionSheet: View {
         }
         .alert(isPresented: store.bind(\.isFailedToCreateTagAlertPresenting,
                                        action: { _ in .alertDismissed })) {
-            Alert(title: Text("tag_multi_selection_sheet_alert_failed_to_create_tag_title", bundle: Bundle.module))
+            Alert(title: Text("tag_multi_selection_sheet_alert_failed_to_create_tag_title", bundle: Bundle.this))
         }
     }
 }

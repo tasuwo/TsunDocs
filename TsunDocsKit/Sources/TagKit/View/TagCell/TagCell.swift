@@ -96,7 +96,7 @@ public struct TagCell: View {
                 .overlay(GeometryReader { geometry in
                     if status.isDeletable {
                         Divider()
-                            .background(Color("tag_background", bundle: Bundle.module))
+                            .background(Color("tag_background", bundle: Bundle.this))
                             .offset(x: geometry.size.width)
                             .padding([.top, .bottom], padding)
                     } else {
@@ -111,7 +111,7 @@ public struct TagCell: View {
         .background(GeometryReader { geometry in
             let baseView = status.isSelected
                 ? Color.green
-                : Color("tag_background", bundle: Bundle.module)
+                : Color("tag_background", bundle: Bundle.this)
             baseView
                 .clipShape(RoundedRectangle(cornerRadius: geometry.size.height / 2,
                                             style: .continuous))
@@ -123,7 +123,7 @@ public struct TagCell: View {
                 RoundedRectangle(cornerRadius: geometry.size.height / 2,
                                  style: .continuous)
                     .stroke(lineWidth: 0.5)
-                    .foregroundColor(Color("tag_separator", bundle: Bundle.module))
+                    .foregroundColor(Color("tag_separator", bundle: Bundle.this))
             }
         })
         .onChangeFrame {
