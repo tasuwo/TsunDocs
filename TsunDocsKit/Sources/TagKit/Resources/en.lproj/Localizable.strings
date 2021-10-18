@@ -23,5 +23,7 @@
 "tag_multi_selection_view_alert_new_tag_placeholder" = "Tag Name";
 "tag_multi_selection_view_done_button" = "Done";
 
+"tag_multi_selection_sheet_alert_failed_to_create_tag_title" = "Failed to create tag.";
+
 "close" = "Close";
 "cancel" = "Cancel";

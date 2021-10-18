@@ -100,7 +100,8 @@ let package = Package(
             dependencies: [
                 "TextEditAlert",
                 "SearchKit",
-                "Domain"
+                "Domain",
+                "PreviewContent"
             ]
         ),
         .target(

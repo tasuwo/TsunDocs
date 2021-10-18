@@ -9,7 +9,7 @@ import SwiftUI
 import TextEditAlert
 
 public struct TagMultiSelectionView: View {
-    public typealias FilterStore = ViewStore<
+    public typealias Store = ViewStore<
         SearchableFilterState<Tag>,
         SearchableFilterAction<Tag>,
         SearchableFilterDepenency
@@ -17,31 +17,32 @@ public struct TagMultiSelectionView: View {
 
     // MARK: - Properties
 
-    @Binding private var tags: [Tag]
-
     @State private var selectedIds: Set<Tag.ID> = .init()
     @State private var isAdditionDialogPresenting = false
 
-    @StateObject private var filterStore: FilterStore
+    @StateObject private var store: Store
     @StateObject private var engine: TextEngine = .init(debounceFor: 0.3)
 
     private let onPerform: (Action) -> Void
 
     // MARK: - Initializers
 
-    public init(tags: Binding<[Tag]>, onPerform: @escaping (Action) -> Void) {
-        _tags = tags
-        let store = Store(initialState: .init(items: tags.wrappedValue),
-                          dependency: Nop(),
-                          reducer: SearchableFilterReducer<Tag>())
-        _filterStore = StateObject(wrappedValue: ViewStore(store: store))
+    public init(connection: Connection<SearchableFilterAction<Tag>>,
+                onPerform: @escaping (Action) -> Void)
+    {
+        let store = CompositeKit.Store(initialState: .init(items: []),
+                                       dependency: Nop(),
+                                       reducer: SearchableFilterReducer<Tag>())
+            .connect(connection)
+            .eraseToAnyStoring()
+        _store = StateObject(wrappedValue: ViewStore(store: store))
         self.onPerform = onPerform
     }
 
     // MARK: - View
 
     public var body: some View {
-        TagGrid(tags: filterStore.state.filteredItems,
+        TagGrid(tags: store.state.filteredItems,
                 selectedIds: selectedIds,
                 configuration: .init(.selectable(.multiple),
                                      size: .normal,
@@ -63,10 +64,7 @@ public struct TagMultiSelectionView: View {
         .navigationTitle(Text("tag_multi_selection_view_title", bundle: Bundle.module))
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: engine.output) { query in
-            filterStore.execute(.updateQuery(query), animation: .default)
-        }
-        .onChange(of: tags) { tags in
-            filterStore.execute(.updateItems(tags), animation: .default)
+            store.execute(.updateQuery(query), animation: .default)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -131,18 +129,6 @@ struct TagMultiSelectionView_Previews: PreviewProvider {
             }
             .sheet(isPresented: $isPresenting) {
                 NavigationView {
-                    TagMultiSelectionView(tags: $tags) { action in
-                        switch action {
-                        case let .addNewTag(name: name):
-                            withAnimation {
-                                self.tags.append(.init(id: UUID(), name: name))
-                            }
-
-                        case let .done(selected: ids):
-                            selectedIds = ids
-                            isPresenting = false
-                        }
-                    }
                 }
             }
         }
