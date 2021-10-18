@@ -107,8 +107,112 @@ extension ViewStore where Action == TsundocInfoViewAction, State == TsundocInfoV
 
 // MARK: - Previews
 
+#if DEBUG
+import PreviewContent
+#endif
+
 struct TsundocInfoView_Previews: PreviewProvider {
+    class Dependency: TsundocInfoViewDependency {
+        var allTags: AnyObservedEntityArray<Tag> = {
+            let tags: [Tag] = [
+                .init(id: UUID(), name: "This"),
+                .init(id: UUID(), name: "is"),
+                .init(id: UUID(), name: "Flexible"),
+                .init(id: UUID(), name: "Gird"),
+                .init(id: UUID(), name: "Layout"),
+                .init(id: UUID(), name: "for"),
+                .init(id: UUID(), name: "Tags."),
+                .init(id: UUID(), name: "This"),
+                .init(id: UUID(), name: "Layout"),
+                .init(id: UUID(), name: "allows"),
+                .init(id: UUID(), name: "displaying"),
+                .init(id: UUID(), name: "very"),
+                .init(id: UUID(), name: "long"),
+                .init(id: UUID(), name: "tag"),
+                .init(id: UUID(), name: "names"),
+                .init(id: UUID(), name: "like"),
+                .init(id: UUID(), name: "Too Too Too Too Long Tag"),
+                .init(id: UUID(), name: "or"),
+                .init(id: UUID(), name: "Toooooooooooooo Loooooooooooooooooooooooong Tag."),
+                .init(id: UUID(), name: "All"),
+                .init(id: UUID(), name: "cell"),
+                .init(id: UUID(), name: "sizes"),
+                .init(id: UUID(), name: "are"),
+                .init(id: UUID(), name: "flexible")
+            ]
+            return ObservedTagArrayMock(values: .init(tags))
+                .eraseToAnyObservedEntityArray()
+        }()
+
+        var tags: AnyObservedEntityArray<Tag> = {
+            let tags: [Tag] = [
+                .init(id: UUID(), name: "This"),
+                .init(id: UUID(), name: "is"),
+                .init(id: UUID(), name: "Flexible"),
+                .init(id: UUID(), name: "Gird"),
+                .init(id: UUID(), name: "Layout"),
+            ]
+            return ObservedTagArrayMock(values: .init(tags))
+                .eraseToAnyObservedEntityArray()
+        }()
+
+        public var tagCommandService: TagCommandService {
+            let service = TagCommandServiceMock()
+            service.performHandler = { $0() }
+            service.beginHandler = {}
+            service.commitHandler = {}
+            service.createTagHandler = { [unowned self] _ in
+                let id = UUID()
+                let newTag = Tag(id: id,
+                                 name: String(UUID().uuidString.prefix(5)),
+                                 tsundocsCount: 5)
+
+                let values = self.tags.values.value
+                self.tags.values.send(values + [newTag])
+
+                return .success(id)
+            }
+            return service
+        }
+
+        public var tagQueryService: TagQueryService {
+            let service = TagQueryServiceMock()
+            service.queryAllTagsHandler = { [unowned self] in
+                .success(self.allTags)
+            }
+            service.queryTagsHandler = { [unowned self] _ in
+                .success(self.tags)
+            }
+            return service
+        }
+
+        public var tsundocCommandService: TsundocCommandService {
+            let service = TsundocCommandServiceMock()
+            service.performHandler = { $0() }
+            service.beginHandler = {}
+            service.commitHandler = {}
+            service.updateTsundocHandler = { _, _ in return .success(()) }
+            service.updateTsundocHavingHandler = { _, _ in return .success(()) }
+            service.updateTsundocHavingByRemovingTagHavingHandler = { _, _ in return .success(()) }
+            service.updateTsundocHavingByReplacingTagsHavingHandler = { _, _ in return .success(()) }
+            return service
+        }
+
+        public var tsundocQueryService: TsundocQueryService {
+            let service = TsundocQueryServiceMock()
+            service.queryTsundocHandler = { _ in
+                .success(ObservedTsundocMock(value: .init(Tsundoc.makeDefault())).eraseToAnyObservedEntity())
+            }
+            return service
+        }
+    }
+
     static var previews: some View {
-        EmptyView()
+        let store = Store(initialState: TsundocInfoViewState(tsundoc: .makeDefault(),
+                                                             tags: [.makeDefault()]),
+                          dependency: Dependency(),
+                          reducer: TsundocInfoViewReducer())
+        TsundocInfoView(store: ViewStore(store: store))
+            .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
     }
 }
