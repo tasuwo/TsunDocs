@@ -9,6 +9,10 @@ let package = Package(
     ],
     products: [
         .library(
+            name: "AppFeature",
+            targets: ["AppFeature"]
+        ),
+        .library(
             name: "CompositeKit",
             targets: ["CompositeKit"]
         ),
@@ -66,6 +70,19 @@ let package = Package(
                  .upToNextMajor(from: "2.1.0"))
     ],
     targets: [
+        .target(
+            name: "AppFeature",
+            dependencies: [
+                "ButtonStyle",
+                "CompositeKit",
+                "Domain",
+                "EmojiList",
+                "Persistence",
+                "SearchKit",
+                "TagKit",
+                "TsundocList"
+            ]
+        ),
         .target(
             name: "MobileShareExtensionUIKit",
             dependencies: [
