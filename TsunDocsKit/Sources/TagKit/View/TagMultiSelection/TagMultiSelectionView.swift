@@ -27,9 +27,11 @@ public struct TagMultiSelectionView: View {
 
     // MARK: - Initializers
 
-    public init(connection: Connection<SearchableFilterAction<Tag>>,
+    public init(selectedIds: Set<Tag.ID>,
+                connection: Connection<SearchableFilterAction<Tag>>,
                 onPerform: @escaping (Action) -> Void)
     {
+        _selectedIds = State(initialValue: selectedIds)
         let store = CompositeKit.Store(initialState: .init(items: []),
                                        dependency: Nop(),
                                        reducer: SearchableFilterReducer<Tag>())
@@ -140,7 +142,7 @@ struct TagMultiSelectionView_Previews: PreviewProvider {
             }
             .sheet(isPresented: $isPresenting) {
                 NavigationView {
-                    TagMultiSelectionView(connection: connection) { action in
+                    TagMultiSelectionView(selectedIds: selectedIds, connection: connection) { action in
                         switch action {
                         case let .addNewTag(name: name):
                             withAnimation {

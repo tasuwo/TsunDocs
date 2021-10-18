@@ -129,6 +129,7 @@ let package = Package(
                 "Domain",
                 "CompositeKit",
                 "TsunDocsUIKit",
+                "TsundocList",
                 "PreviewContent"
             ]
         ),

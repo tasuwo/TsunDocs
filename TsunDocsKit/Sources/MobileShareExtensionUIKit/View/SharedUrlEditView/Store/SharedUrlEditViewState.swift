@@ -23,6 +23,7 @@ public struct SharedUrlEditViewState: Equatable {
 }
 
 extension SharedUrlEditViewState {
+    var title: String { sharedUrlTitle ?? "" }
     var isAlertPresenting: Bool { alert != nil }
 }
 

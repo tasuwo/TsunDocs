@@ -5,23 +5,14 @@
 import CompositeKit
 import Domain
 import SwiftUI
-import TsunDocsUIKit
+import TsundocList
 
 public struct SharedUrlEditView: View {
     public typealias Store = ViewStore<
-        SharedUrlEditViewRootState,
-        SharedUrlEditViewRootAction,
-        SharedUrlEditViewRootDependency
+        SharedUrlEditViewState,
+        SharedUrlEditViewAction,
+        SharedUrlEditViewDependency
     >
-
-    @MainActor
-    struct StoreBuilder: TagGridStoreBuildable {
-        let store: Store
-
-        func buildTagGridStore() -> ViewStore<TagGridState, TagGridAction, TagGridDependency> {
-            return store.tagGridStore
-        }
-    }
 
     // MARK: - Properties
 
@@ -41,34 +32,33 @@ public struct SharedUrlEditView: View {
                 TsundocEditView(url: url,
                                 imageUrl: store.state.sharedUrlImageUrl,
                                 title: store.bind(\.title,
-                                                  action: { .edit(.onSaveTitle($0)) }),
+                                                  action: { .onSaveTitle($0) }),
                                 selectedEmoji: store.bind(\.selectedEmoji,
-                                                          action: { .edit(.onSelectedEmoji($0)) }),
+                                                          action: { .onSelectedEmoji($0) }),
                                 selectedTags: store.bind(\.selectedTags,
-                                                         action: { .edit(.onSelectedTags($0)) })) {
-                    store.execute(.edit(.onTapSaveButton))
+                                                         action: { .onSelectedTags($0) })) {
+                    store.execute(.onTapSaveButton)
                 }
-                .environment(\.tagGridStoreBuilder, StoreBuilder(store: store))
             } else {
                 ProgressView()
                     .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
             }
         }
         .onAppear {
-            store.execute(.edit(.onAppear))
+            store.execute(.onAppear)
         }
         .alert(isPresented: store.bind(\.isAlertPresenting,
-                                       action: { _ in .edit(.alertDismissed) }), content: {
+                                       action: { _ in .alertDismissed }), content: {
                 switch store.state.alert {
                 case .failedToLoadUrl:
                     return Alert(title: Text(""),
                                  message: Text("shared_url_edit_view_error_title_load_url", bundle: Bundle.this),
-                                 dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.edit(.errorConfirmed)) }))
+                                 dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.errorConfirmed) }))
 
                 case .failedToSaveSharedUrl:
                     return Alert(title: Text(""),
                                  message: Text("shared_url_edit_view_error_title_save_url", bundle: Bundle.this),
-                                 dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.edit(.errorConfirmed)) }))
+                                 dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.errorConfirmed) }))
 
                 case .none:
                     fatalError("Invalid Alert")
@@ -80,14 +70,14 @@ public struct SharedUrlEditView: View {
 // MARK: - Preview
 
 #if DEBUG
+import ImageLoader
 import PreviewContent
+import TagKit
 #endif
 
 @MainActor
 struct SharedUrlEditView_Previews: PreviewProvider {
-    class Dependency: SharedUrlEditViewRootDependency & TagMultiAdditionViewDependency {
-        // MARK: SharedUrlEditViewRootDependency
-
+    class Dependency: SharedUrlEditViewDependency {
         class Complete: Completable {
             func complete() {}
             func cancel(with: Error) {}
@@ -102,127 +92,55 @@ struct SharedUrlEditView_Previews: PreviewProvider {
         var _webPageMetaResolver = WebPageMetaResolvableMock()
         var _tsundocCommandService = TsundocCommandServiceMock()
         var _completable = Complete()
-
-        // MARK: TagMultiAdditionViewDependency
-
-        var tags: AnyObservedEntityArray<Tag> = {
-            let tags: [Tag] = [
-                .makeDefault(id: UUID(), name: "This"),
-                .makeDefault(id: UUID(), name: "is"),
-                .makeDefault(id: UUID(), name: "Flexible"),
-                .makeDefault(id: UUID(), name: "Gird"),
-                .makeDefault(id: UUID(), name: "Layout"),
-                .makeDefault(id: UUID(), name: "for"),
-                .makeDefault(id: UUID(), name: "Tags."),
-                .makeDefault(id: UUID(), name: "This"),
-                .makeDefault(id: UUID(), name: "Layout"),
-                .makeDefault(id: UUID(), name: "allows"),
-                .makeDefault(id: UUID(), name: "displaying"),
-                .makeDefault(id: UUID(), name: "very"),
-                .makeDefault(id: UUID(), name: "long"),
-                .makeDefault(id: UUID(), name: "tag"),
-                .makeDefault(id: UUID(), name: "names"),
-                .makeDefault(id: UUID(), name: "like"),
-                .makeDefault(id: UUID(), name: "Too Too Too Too Long Tag"),
-                .makeDefault(id: UUID(), name: "or"),
-                .makeDefault(id: UUID(), name: "Toooooooooooooo Loooooooooooooooooooooooong Tag."),
-                .makeDefault(id: UUID(), name: "All"),
-                .makeDefault(id: UUID(), name: "cell"),
-                .makeDefault(id: UUID(), name: "sizes"),
-                .makeDefault(id: UUID(), name: "are"),
-                .makeDefault(id: UUID(), name: "flexible")
-            ]
-            return ObservedTagArrayMock(values: .init(tags))
-                .eraseToAnyObservedEntityArray()
-        }()
-
-        var tagCommandService: TagCommandService {
-            let service = TagCommandServiceMock()
-            service.performHandler = { $0() }
-            service.beginHandler = {}
-            service.commitHandler = {}
-            service.createTagHandler = { [unowned self] _ in
-                let id = UUID()
-                let newTag = Tag(id: id,
-                                 name: String(UUID().uuidString.prefix(5)),
-                                 tsundocsCount: 5)
-
-                let values = self.tags.values.value
-                self.tags.values.send(values + [newTag])
-
-                return .success(id)
-            }
-            return service
-        }
-
-        var tagQueryService: TagQueryService {
-            let service = TagQueryServiceMock()
-            service.queryAllTagsHandler = { [unowned self] in
-                .success(self.tags)
-            }
-            return service
-        }
     }
 
-    class StoreBuilder: TagMultiAdditionViewStoreBuildable {
-        private let dependency: TagMultiAdditionViewDependency
+    class StoreBuilder: TagControlViewStoreBuildable {
+        private let dependency: TagControlDependency
 
-        init(dependency: TagMultiAdditionViewDependency) {
+        init(dependency: TagControlDependency) {
             self.dependency = dependency
         }
 
-        func buildTagMultiAdditionViewStore(selectedIds: Set<Tag.ID>) -> ViewStore<TagMultiAdditionViewState, TagMultiAdditionViewAction, TagMultiAdditionViewDependency> {
-            let store = Store(initialState: TagMultiAdditionViewState(selectedIds: selectedIds),
+        func buildTagControlViewStore() -> ViewStore<TagControlState, TagControlAction, TagControlDependency> {
+            let store = Store(initialState: TagControlState(),
                               dependency: dependency,
-                              reducer: tagMultiAdditionViewReducer)
+                              reducer: TagControlReducer())
             return ViewStore(store: store)
         }
     }
 
-    class SuccessMock: URLProtocolMockBase {
-        override class var mock_delay: TimeInterval? { 3 }
-        override class var mock_handler: ((URLRequest) throws -> (HTTPURLResponse, Data?))? {
-            // swiftlint:disable:next force_unwrapping
-            return { _ in (.mock_success, UIImage(named: "320x320", in: Bundle.this, with: nil)!.pngData()) }
-        }
-    }
-
     static var previews: some View {
-        let imageLoaderFactory = Factory<ImageLoader> {
-            .init(urlSession: .makeMock(SuccessMock.self))
-        }
-
         Group {
             let dependency01 = makeDependency(sharedUrl: URL(string: "https://apple.com"),
                                               title: "My Title",
                                               description: "Web Page Description",
                                               imageUrl: URL(string: "https://localhost"))
             SharedUrlEditView(makeStore(dependency: dependency01))
-                .environment(\.imageLoaderFactory, imageLoaderFactory)
-                .environment(\.tagMultiAdditionViewStoreBuilder, StoreBuilder(dependency: dependency01))
+                .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
+                .environment(\.tagControlViewStoreBuilder, StoreBuilder(dependency: TagControlDependencyMock()))
 
             let dependency02 = makeDependency(sharedUrl: URL(string: "https://apple.com/"),
                                               title: nil,
                                               description: nil,
                                               imageUrl: nil)
             SharedUrlEditView(makeStore(dependency: dependency02))
-                .environment(\.imageLoaderFactory, imageLoaderFactory)
-                .environment(\.tagMultiAdditionViewStoreBuilder, StoreBuilder(dependency: dependency02))
+                .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
+                .environment(\.tagControlViewStoreBuilder, StoreBuilder(dependency: TagControlDependencyMock()))
 
             let dependency03 = makeDependency(sharedUrl: URL(string: "https://apple.com/\(String(repeating: "long/", count: 100))"),
                                               title: String(repeating: "Title ", count: 100),
                                               description: String(repeating: "Description ", count: 100),
                                               imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))"))
             SharedUrlEditView(makeStore(dependency: dependency03))
-                .environment(\.imageLoaderFactory, imageLoaderFactory)
-                .environment(\.tagMultiAdditionViewStoreBuilder, StoreBuilder(dependency: dependency03))
+                .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
+                .environment(\.tagControlViewStoreBuilder, StoreBuilder(dependency: TagControlDependencyMock()))
         }
     }
 
     static func makeStore(dependency: Dependency) -> SharedUrlEditView.Store {
-        let store = Store(initialState: SharedUrlEditViewRootState(),
+        let store = Store(initialState: .init(selectedTags: []),
                           dependency: dependency,
-                          reducer: sharedUrlEditViewRootReducer)
+                          reducer: SharedUrlEditViewReducer())
         let viewStore = ViewStore(store: store)
         return viewStore
     }

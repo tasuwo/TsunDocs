@@ -15,15 +15,19 @@ public struct TagMultiSelectionSheet: View {
 
     // MARK: - Properties
 
+    private let selectedIds: Set<Tag.ID>
+
     @StateObject private var store: ControlStore
 
     private let onDone: ([Tag]) -> Void
 
     // MARK: - Initializers
 
-    public init(viewStore: ControlStore,
+    public init(selectedIds: Set<Tag.ID>,
+                viewStore: ControlStore,
                 onDone: @escaping ([Tag]) -> Void)
     {
+        self.selectedIds = selectedIds
         _store = StateObject(wrappedValue: viewStore)
         self.onDone = onDone
     }
@@ -32,7 +36,8 @@ public struct TagMultiSelectionSheet: View {
 
     public var body: some View {
         NavigationView {
-            TagMultiSelectionView(connection: store.connection(at: \.tags, { .updateItems($0) })) { action in
+            TagMultiSelectionView(selectedIds: selectedIds,
+                                  connection: store.connection(at: \.tags, { .updateItems($0) })) { action in
                 switch action {
                 case let .addNewTag(name: name):
                     store.execute(.createNewTag(name), animation: .default)
@@ -71,7 +76,8 @@ struct TagSelectionView_Previews: PreviewProvider {
                                       dependency: TagControlDependencyMock(),
                                       reducer: TagControlReducer())
                     let viewStore = ViewStore(store: store)
-                    TagMultiSelectionSheet(viewStore: viewStore,
+                    TagMultiSelectionSheet(selectedIds: .init(),
+                                           viewStore: viewStore,
                                            onDone: { _ in isPresenting = false })
                 }
             }
