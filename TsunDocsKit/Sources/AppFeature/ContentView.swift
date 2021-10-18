@@ -49,7 +49,7 @@ struct ContentView: View {
                         TabItem.settings.label
                     }
                 }
-                .navigationTitle(LocalizedStringKey("app_name"))
+                .navigationTitle(NSLocalizedString("app_name", bundle: .module, comment: ""))
                 .listStyle(SidebarListStyle())
 
                 tsundocList
