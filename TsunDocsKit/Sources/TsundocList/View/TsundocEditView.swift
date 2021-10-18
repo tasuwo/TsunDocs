@@ -2,6 +2,8 @@
 //  Copyright ©︎ 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import struct Domain.Emoji
+import struct Domain.Tag
 import EmojiList
 import SwiftUI
 import TagKit
@@ -18,6 +20,8 @@ public struct TsundocEditView: View {
     @Binding private var selectedTags: [Tag]
 
     @State private var isTagEditSheetPresenting = false
+
+    @Environment(\.tagControlViewStoreBuilder) private var builder: TagControlViewStoreBuildable
 
     // MARK: - Initializers
 
@@ -38,6 +42,7 @@ public struct TsundocEditView: View {
 
     // MARK: - View
 
+    @MainActor
     public var body: some View {
         VStack {
             TsundocMetaContainer(url: url, imageUrl: imageUrl, title: $title, selectedEmoji: $selectedEmoji)
@@ -63,10 +68,9 @@ public struct TsundocEditView: View {
         }
         .padding(8)
         .sheet(isPresented: $isTagEditSheetPresenting) {
-            // TODO:
-            TagMultiSelectionView(tags: .init(get: { [] }, set: { _ in })) { _ in
+            TagMultiSelectionSheet(viewStore: builder.buildTagControlViewStore()) {
                 isTagEditSheetPresenting = false
-                // selectedTags = $0
+                selectedTags = $0
             }
         }
     }

@@ -2,6 +2,7 @@
 //  Copyright ©︎ 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import struct Domain.Emoji
 import EmojiList
 import ImageLoader
 import SwiftUI
