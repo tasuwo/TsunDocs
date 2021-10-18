@@ -68,7 +68,19 @@ struct TsundocInfoView: View {
             }
 
             if !store.state.tags.isEmpty {
-                TagGrid(tags: store.state.tags, selectedIds: .init(), inset: 0)
+                TagGrid(tags: store.state.tags,
+                        selectedIds: .init(),
+                        configuration: .init(.deletable, size: .normal, isEnabledMenu: false),
+                        inset: 0) { action in
+                    switch action {
+                    case let .delete(tagId: tagId):
+                        store.execute(.deleteTag(tagId), animation: .default)
+
+                    default:
+                        // NOP
+                        break
+                    }
+                }
             } else {
                 Spacer()
             }
