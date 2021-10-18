@@ -12,6 +12,8 @@ public struct TagControlState: Equatable {
 
     var tags: [Tag] = []
     var alert: Alert?
+
+    public init() {}
 }
 
 extension TagControlState {

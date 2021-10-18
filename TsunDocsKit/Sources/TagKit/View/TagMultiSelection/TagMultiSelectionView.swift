@@ -97,23 +97,34 @@ public struct TagMultiSelectionView: View {
 
 // MARK: - Preview
 
+#if DEBUG
+import Combine
+#endif
+
 @MainActor
 struct TagMultiSelectionView_Previews: PreviewProvider {
     struct ContentView: View {
         // MARK: - Properties
 
-        @State private var tags: [Tag]
+        private var tags: CurrentValueSubject<[Tag], Never>
+
         @State private var selectedIds: Set<Tag.ID> = .init()
         @State private var isPresenting = false
 
         var selectedTags: [Tag] {
-            tags.filter { selectedIds.contains($0.id) }
+            tags.value.filter { selectedIds.contains($0.id) }
+        }
+
+        var connection: Connection<SearchableFilterAction<Tag>> {
+            tags
+                .map { SearchableFilterAction<Tag>.updateItems($0) }
+                .eraseToAnyPublisher()
         }
 
         // MARK: - Initializers
 
         init(tags: [Tag]) {
-            self.tags = tags
+            self.tags = .init(tags)
         }
 
         // MARK: - View
@@ -129,6 +140,18 @@ struct TagMultiSelectionView_Previews: PreviewProvider {
             }
             .sheet(isPresented: $isPresenting) {
                 NavigationView {
+                    TagMultiSelectionView(connection: connection) { action in
+                        switch action {
+                        case let .addNewTag(name: name):
+                            withAnimation {
+                                self.tags.send(self.tags.value + [.init(id: UUID(), name: name)])
+                            }
+
+                        case let .done(selected: ids):
+                            selectedIds = ids
+                            isPresenting = false
+                        }
+                    }
                 }
             }
         }
