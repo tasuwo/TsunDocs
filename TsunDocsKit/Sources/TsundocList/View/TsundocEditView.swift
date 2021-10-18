@@ -128,6 +128,7 @@ struct TsundocEditView_Previews: PreviewProvider {
                                 selectedTags: $selectedTags) {
                     isPresenting = false
                 }
+                .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
             }
         }
     }

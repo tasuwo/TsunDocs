@@ -94,21 +94,6 @@ struct SharedUrlEditView_Previews: PreviewProvider {
         var _completable = Complete()
     }
 
-    class StoreBuilder: TagControlViewStoreBuildable {
-        private let dependency: TagControlDependency
-
-        init(dependency: TagControlDependency) {
-            self.dependency = dependency
-        }
-
-        func buildTagControlViewStore() -> ViewStore<TagControlState, TagControlAction, TagControlDependency> {
-            let store = Store(initialState: TagControlState(),
-                              dependency: dependency,
-                              reducer: TagControlReducer())
-            return ViewStore(store: store)
-        }
-    }
-
     static var previews: some View {
         Group {
             let dependency01 = makeDependency(sharedUrl: URL(string: "https://apple.com"),
@@ -117,7 +102,7 @@ struct SharedUrlEditView_Previews: PreviewProvider {
                                               imageUrl: URL(string: "https://localhost"))
             SharedUrlEditView(makeStore(dependency: dependency01))
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
-                .environment(\.tagControlViewStoreBuilder, StoreBuilder(dependency: TagControlDependencyMock()))
+                .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
 
             let dependency02 = makeDependency(sharedUrl: URL(string: "https://apple.com/"),
                                               title: nil,
@@ -125,7 +110,7 @@ struct SharedUrlEditView_Previews: PreviewProvider {
                                               imageUrl: nil)
             SharedUrlEditView(makeStore(dependency: dependency02))
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
-                .environment(\.tagControlViewStoreBuilder, StoreBuilder(dependency: TagControlDependencyMock()))
+                .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
 
             let dependency03 = makeDependency(sharedUrl: URL(string: "https://apple.com/\(String(repeating: "long/", count: 100))"),
                                               title: String(repeating: "Title ", count: 100),
@@ -133,7 +118,7 @@ struct SharedUrlEditView_Previews: PreviewProvider {
                                               imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))"))
             SharedUrlEditView(makeStore(dependency: dependency03))
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
-                .environment(\.tagControlViewStoreBuilder, StoreBuilder(dependency: TagControlDependencyMock()))
+                .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
         }
     }
 
