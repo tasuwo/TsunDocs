@@ -8,6 +8,8 @@ import SwiftUI
 public struct TagControlState: Equatable {
     enum Alert {
         case failedToCreateTag
+        case failedToDeleteTag
+        case failedToRenameTag
     }
 
     var tags: [Tag] = []
@@ -18,4 +20,6 @@ public struct TagControlState: Equatable {
 
 extension TagControlState {
     var isFailedToCreateTagAlertPresenting: Bool { alert == .failedToCreateTag }
+    var isFailedToDeleteTagAlertPresenting: Bool { alert == .failedToDeleteTag }
+    var isFailedToRenameTagAlertPresenting: Bool { alert == .failedToRenameTag }
 }

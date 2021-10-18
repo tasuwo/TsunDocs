@@ -43,8 +43,42 @@ public struct TagControlReducer: Reducer {
             }
             return (nextState, [effect])
 
+        case let .deleteTag(tagId):
+            let effect = Effect<Action> {
+                do {
+                    try await dependency.tagCommandService.deleteTag(having: tagId)
+                    return .none
+                } catch let error as CommandServiceError {
+                    return .failedToDeleteTag(error)
+                } catch {
+                    return .failedToDeleteTag(nil)
+                }
+            }
+            return (nextState, [effect])
+
+        case let .renameTag(tagId, name: newName):
+            let effect = Effect<Action> {
+                do {
+                    try await dependency.tagCommandService.updateTag(having: tagId, nameTo: newName)
+                    return .none
+                } catch let error as CommandServiceError {
+                    return .failedToRenameTag(error)
+                } catch {
+                    return .failedToRenameTag(nil)
+                }
+            }
+            return (nextState, [effect])
+
         case .failedToCreateTag:
             nextState.alert = .failedToCreateTag
+            return (nextState, .none)
+
+        case .failedToDeleteTag:
+            nextState.alert = .failedToDeleteTag
+            return (nextState, .none)
+
+        case .failedToRenameTag:
+            nextState.alert = .failedToRenameTag
             return (nextState, .none)
 
         case .alertDismissed:
