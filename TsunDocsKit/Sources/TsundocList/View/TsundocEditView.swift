@@ -94,7 +94,19 @@ public struct TsundocEditView: View {
             }
 
             if !selectedTags.isEmpty {
-                TagGrid(tags: selectedTags, selectedIds: .init(), inset: 0)
+                TagGrid(tags: selectedTags, selectedIds: .init(), configuration: .init(.deletable), inset: 0) { action in
+                    switch action {
+                    case let .delete(tagId: tagId):
+                        withAnimation {
+                            guard let index = selectedTags.firstIndex(where: { $0.id == tagId }) else { return }
+                            selectedTags.remove(at: index)
+                        }
+
+                    default:
+                        // NOP
+                        break
+                    }
+                }
             } else {
                 Spacer()
             }
