@@ -10,20 +10,18 @@ struct SettingView: View {
     let appVersion: String = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
 
     var body: some View {
-        NavigationView {
-            List {
-                Section(header: Text("setting_view_section_title_this_app", bundle: Bundle.module)) {
-                    HStack {
-                        Text("setting_view_row_app_version", bundle: Bundle.module)
-                        Spacer()
-                        Text(appVersion)
-                            .foregroundColor(.secondary)
-                    }
+        List {
+            Section(header: Text("setting_view_section_title_this_app", bundle: Bundle.module)) {
+                HStack {
+                    Text("setting_view_row_app_version", bundle: Bundle.module)
+                    Spacer()
+                    Text(appVersion)
+                        .foregroundColor(.secondary)
                 }
             }
-            .navigationTitle(Text("setting_view_title", bundle: Bundle.module))
-            .listStyle(InsetGroupedListStyle())
         }
+        .navigationTitle(Text("setting_view_title", bundle: Bundle.module))
+        .listStyle(InsetGroupedListStyle())
     }
 }
 

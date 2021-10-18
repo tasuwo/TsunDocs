@@ -45,51 +45,47 @@ struct TagList: View {
     // MARK: - View
 
     var body: some View {
-        NavigationView {
-            TagGrid(tags: filterStore.state.filteredItems,
-                    selectedIds: .init(),
-                    configuration: .init(.default, size: .normal, isEnabledMenu: true)) { action in
-                switch action {
-                case let .delete(tagId: tagId):
-                    store.execute(.deleteTag(tagId), animation: .default)
+        TagGrid(tags: filterStore.state.filteredItems,
+                selectedIds: .init(),
+                configuration: .init(.default, size: .normal, isEnabledMenu: true)) { action in
+            switch action {
+            case let .delete(tagId: tagId):
+                store.execute(.deleteTag(tagId), animation: .default)
 
-                case let .copy(tagId: tagId):
-                    store.execute(.copyTagName(tagId))
+            case let .copy(tagId: tagId):
+                store.execute(.copyTagName(tagId))
 
-                case let .rename(tagId: tagId, name: name):
-                    store.execute(.renameTag(tagId, name: name), animation: .default)
+            case let .rename(tagId: tagId, name: name):
+                store.execute(.renameTag(tagId, name: name), animation: .default)
 
-                case let .select(tagId: tagId):
-                    isTsundocListPresenting = tagId
-                }
+            case let .select(tagId: tagId):
+                isTsundocListPresenting = tagId
             }
-            .searchable(text: $engine.input)
-            .navigationTitle(Text("tag_list_title", bundle: .module))
-            .onChange(of: engine.output) { query in
-                filterStore.execute(.updateQuery(query), animation: .default)
-            }
-            .onAppear {
-                store.execute(.onAppear)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        isAdditionDialogPresenting = true
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                }
-            }
-            .background(
-                NavigationLink(destination: tsundocList(),
-                               isActive: Binding<Bool>(get: { isTsundocListPresenting != nil },
-                                                       set: { if !$0 { isTsundocListPresenting = nil } })) {
-                    EmptyView()
-                }
-            )
         }
-        // HACK: https://forums.swift.org/t/14-5-beta3-navigationlink-unexpected-pop/45279/35
-        .navigationViewStyle(.stack)
+        .searchable(text: $engine.input)
+        .navigationTitle(Text("tag_list_title", bundle: .module))
+        .onChange(of: engine.output) { query in
+            filterStore.execute(.updateQuery(query), animation: .default)
+        }
+        .onAppear {
+            store.execute(.onAppear)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    isAdditionDialogPresenting = true
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+        .background(
+            NavigationLink(destination: tsundocList(),
+                           isActive: Binding<Bool>(get: { isTsundocListPresenting != nil },
+                                                   set: { if !$0 { isTsundocListPresenting = nil } })) {
+                EmptyView()
+            }
+        )
         .alert(isPresented: store.bind(\.isFailedToCreateTagAlertPresenting,
                                        action: { _ in .alertDismissed })) {
             return Alert(title: Text(L10n.errorTagAddDefault))
@@ -134,7 +130,9 @@ struct TagList: View {
 struct TagList_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TagList(store: TagControlViewStoreBuilderMock().buildTagControlViewStore())
+            NavigationView {
+                TagList(store: TagControlViewStoreBuilderMock().buildTagControlViewStore())
+            }
         }
     }
 }

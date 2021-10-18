@@ -27,14 +27,10 @@ struct ContentView: View {
     func content() -> some View {
         let tsundocListStore = container.buildTsundocListStore(query: .all)
         let tagControlStore = container.buildTagControlViewStore()
-        let tsundocList = NavigationView {
-            TsundocList(title: L10n.tsundocListTitle,
-                        emptyTitle: L10n.tsundocListEmptyMessageDefaultTitle,
-                        emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
-                        store: tsundocListStore)
-        }
-        // HACK: https://forums.swift.org/t/14-5-beta3-navigationlink-unexpected-pop/45279/35
-        .navigationViewStyle(.stack)
+        let tsundocList = TsundocList(title: L10n.tsundocListTitle,
+                                      emptyTitle: L10n.tsundocListEmptyMessageDefaultTitle,
+                                      emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
+                                      store: tsundocListStore)
 
         if idiom == .pad {
             NavigationView {
@@ -42,12 +38,17 @@ struct ContentView: View {
                     NavigationLink(destination: tsundocList) {
                         TabItem.tsundocList.label
                     }
+                    .navigationViewStyle(.stack)
+
                     NavigationLink(destination: TagList(store: tagControlStore)) {
                         TabItem.tags.label
                     }
+                    .navigationViewStyle(.stack)
+
                     NavigationLink(destination: SettingView()) {
                         TabItem.settings.label
                     }
+                    .navigationViewStyle(.stack)
                 }
                 .navigationTitle(NSLocalizedString("app_name", bundle: .module, comment: ""))
                 .listStyle(SidebarListStyle())
@@ -56,14 +57,23 @@ struct ContentView: View {
             }
         } else {
             TabView {
-                tsundocList
-                    .tabItem { TabItem.tsundocList.view }
+                NavigationView {
+                    tsundocList
+                }
+                .navigationViewStyle(.stack)
+                .tabItem { TabItem.tsundocList.view }
 
-                TagList(store: tagControlStore)
-                    .tabItem { TabItem.tags.view }
+                NavigationView {
+                    TagList(store: tagControlStore)
+                }
+                .navigationViewStyle(.stack)
+                .tabItem { TabItem.tags.view }
 
-                SettingView()
-                    .tabItem { TabItem.settings.view }
+                NavigationView {
+                    SettingView()
+                }
+                .navigationViewStyle(.stack)
+                .tabItem { TabItem.settings.view }
             }
         }
     }
