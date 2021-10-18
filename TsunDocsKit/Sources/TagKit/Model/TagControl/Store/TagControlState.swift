@@ -6,19 +6,26 @@ import struct Domain.Tag
 import SwiftUI
 
 public struct TagControlState: Equatable {
-    enum Alert {
+    public enum Alert {
         case failedToCreateTag
         case failedToDeleteTag
         case failedToRenameTag
     }
 
-    var tags: [Tag] = []
-    var alert: Alert?
+    // MARK: - Properties
 
-    public init() {}
+    public var tags: [Tag] = []
+    public var alert: Alert?
+
+    // MARK: - Initializers
+
+    public init(tags: [Tag] = [], alert: Alert? = nil) {
+        self.tags = tags
+        self.alert = alert
+    }
 }
 
-extension TagControlState {
+public extension TagControlState {
     var isFailedToCreateTagAlertPresenting: Bool { alert == .failedToCreateTag }
     var isFailedToDeleteTagAlertPresenting: Bool { alert == .failedToDeleteTag }
     var isFailedToRenameTagAlertPresenting: Bool { alert == .failedToRenameTag }

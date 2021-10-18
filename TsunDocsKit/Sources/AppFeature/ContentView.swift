@@ -20,14 +20,13 @@ struct ContentView: View {
         content()
             .environment(\.tsundocListStoreBuilder, container)
             .environment(\.tagControlViewStoreBuilder, container)
-            .environment(\.tagListStoreBuilder, container)
             .environment(\.tsundocInfoViewStoreBuilder, container)
     }
 
     @ViewBuilder
     func content() -> some View {
         let tsundocListStore = container.buildTsundocListStore(query: .all)
-        let tagListStore = container.buildTagListStore()
+        let tagControlStore = container.buildTagControlViewStore()
         let tsundocList = NavigationView {
             TsundocList(title: L10n.tsundocListTitle,
                         emptyTitle: L10n.tsundocListEmptyMessageDefaultTitle,
@@ -43,7 +42,7 @@ struct ContentView: View {
                     NavigationLink(destination: tsundocList) {
                         TabItem.tsundocList.label
                     }
-                    NavigationLink(destination: TagList(store: tagListStore)) {
+                    NavigationLink(destination: TagList(store: tagControlStore)) {
                         TabItem.tags.label
                     }
                     NavigationLink(destination: SettingView()) {
@@ -60,7 +59,7 @@ struct ContentView: View {
                 tsundocList
                     .tabItem { TabItem.tsundocList.view }
 
-                TagList(store: tagListStore)
+                TagList(store: tagControlStore)
                     .tabItem { TabItem.tags.view }
 
                 SettingView()

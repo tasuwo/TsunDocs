@@ -21,10 +21,10 @@ public class TagControlViewStoreBuilderMock: TagControlViewStoreBuildable {
     }
 
     public func buildTagControlViewStore() -> ViewStore<TagControlState, TagControlAction, TagControlDependency> {
-        let store = Store(initialState: TagControlState(),
-                          dependency: dependency,
-                          reducer: TagControlReducer())
-        return ViewStore(store: store)
+        let controlStore = Store(initialState: TagControlState(),
+                                 dependency: dependency,
+                                 reducer: TagControlReducer())
+        return ViewStore(store: controlStore)
     }
 }
 

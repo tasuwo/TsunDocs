@@ -8,6 +8,7 @@ import Domain
 
 public typealias TagControlDependency = HasTagCommandService
     & HasTagQueryService
+    & HasPasteboard
 
 public struct TagControlReducer: Reducer {
     public typealias Dependency = TagControlDependency
@@ -68,6 +69,11 @@ public struct TagControlReducer: Reducer {
                 }
             }
             return (nextState, [effect])
+
+        case let .copyTagName(tagId):
+            guard let tag = nextState.tags.first(where: { $0.id == tagId }) else { return (nextState, .none) }
+            dependency.pasteboard.set(tag.name)
+            return (nextState, .none)
 
         case .failedToCreateTag:
             nextState.alert = .failedToCreateTag
@@ -178,6 +184,10 @@ public class TagControlDependencyMock: TagControlDependency {
             .success(self.tags)
         }
         return service
+    }
+
+    public var pasteboard: Pasteboard {
+        return PasteboardMock()
     }
 
     public init() {}

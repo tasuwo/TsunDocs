@@ -11,6 +11,7 @@ public enum TagControlAction: Action {
     case createNewTag(String)
     case deleteTag(Tag.ID)
     case renameTag(Tag.ID, name: String)
+    case copyTagName(Tag.ID)
     case failedToCreateTag(CommandServiceError?)
     case failedToDeleteTag(CommandServiceError?)
     case failedToRenameTag(CommandServiceError?)
