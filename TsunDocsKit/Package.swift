@@ -25,10 +25,6 @@ let package = Package(
             targets: ["MobileShareExtensionUIKit"]
         ),
         .library(
-            name: "TsunDocsUIKit",
-            targets: ["TsunDocsUIKit"]
-        ),
-        .library(
             name: "TsundocList",
             targets: ["TsundocList"]
         ),
@@ -51,6 +47,10 @@ let package = Package(
         .library(
             name: "ImageLoader",
             targets: ["ImageLoader"]
+        ),
+        .library(
+            name: "ButtonStyle",
+            targets: ["ButtonStyle"]
         ),
         .library(
             name: "PreviewContent",
@@ -83,16 +83,13 @@ let package = Package(
             dependencies: ["Domain"]
         ),
         .target(
-            name: "TsunDocsUIKit",
-            dependencies: ["Domain", "CompositeKit", "PreviewContent"]
-        ),
-        .target(
             name: "TsundocList",
             dependencies: [
                 "TagKit",
                 "EmojiList",
                 "ImageLoader",
-                "TextEditAlert"
+                "TextEditAlert",
+                "ButtonStyle"
             ]
         ),
         .target(
@@ -124,11 +121,14 @@ let package = Package(
             dependencies: []
         ),
         .target(
+            name: "ButtonStyle",
+            dependencies: []
+        ),
+        .target(
             name: "MobileShareExtensionUIKit",
             dependencies: [
                 "Domain",
                 "CompositeKit",
-                "TsunDocsUIKit",
                 "TsundocList",
                 "PreviewContent"
             ]
