@@ -67,8 +67,13 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "CompositeKit",
-            dependencies: []
+            name: "MobileShareExtensionUIKit",
+            dependencies: [
+                "Domain",
+                "CompositeKit",
+                "TsundocList",
+                "PreviewContent"
+            ]
         ),
         .target(
             name: "Domain",
@@ -125,13 +130,8 @@ let package = Package(
             dependencies: []
         ),
         .target(
-            name: "MobileShareExtensionUIKit",
-            dependencies: [
-                "Domain",
-                "CompositeKit",
-                "TsundocList",
-                "PreviewContent"
-            ]
+            name: "CompositeKit",
+            dependencies: []
         ),
         .target(
             name: "PreviewContent",
