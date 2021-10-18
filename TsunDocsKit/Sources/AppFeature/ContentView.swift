@@ -5,6 +5,8 @@
 import CompositeKit
 import SwiftUI
 
+#if os(iOS)
+
 struct ContentView: View {
     // MARK: - Properties
 
@@ -17,7 +19,7 @@ struct ContentView: View {
     var body: some View {
         content()
             .environment(\.tsundocListStoreBuilder, container)
-            .environment(\.tagMultiAdditionViewStoreBuilder, container)
+            .environment(\.tagControlViewStoreBuilder, container)
             .environment(\.tagListStoreBuilder, container)
             .environment(\.tsundocInfoViewStoreBuilder, container)
     }
@@ -79,3 +81,38 @@ struct ContentView_Previews: PreviewProvider {
         }
     }
 }
+
+#elseif os(macOS)
+
+struct ContentView: View {
+    @StateObject var container: SceneDependencyContainer
+
+    var body: some View {
+        let viewStore = container.buildTsundocListStore()
+
+        NavigationView {
+            List {
+                NavigationLink(destination: TsundocList(store: viewStore)) {
+                    TabItem.tsundocList.label
+                }
+                NavigationLink(destination: Text("TODO")) {
+                    TabItem.settings.label
+                }
+            }
+            .navigationTitle(LocalizedStringKey("app_name"))
+            .listStyle(SidebarListStyle())
+
+            TsundocList(store: viewStore)
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ContentView(container: SceneDependencyContainer(AppDependencyContainer()))
+        }
+    }
+}
+
+#endif

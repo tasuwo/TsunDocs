@@ -3,67 +3,30 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00489507C1174D1ABB1713F5 /* PreviewContent in Frameworks */ = {isa = PBXBuildFile; productRef = E4C6D2912A985BAC88241EE9 /* PreviewContent */; };
 		0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */; };
-		05379807DD47D1488C35CD2D /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = E500A07487A2FE06DC70A317 /* Domain */; };
+		05379807DD47D1488C35CD2D /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 61BEA08BAC38F1FF9313CF45 /* AppFeature */; };
 		0A0E24BA662FF22C7BC7CC8B /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = 456B32B398F1865F500454D7 /* Persistence */; };
-		164489A90C28FFC8F2742F88 /* Kanna in Frameworks */ = {isa = PBXBuildFile; productRef = FF37161AF5AD4E6EC9F5D306 /* Kanna */; };
-		1BED969DBCC5B90F766D1770 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 9766BC03BB0AD248E302C4FE /* Domain */; };
-		1C4E47BD773458338D123241 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E85C1D5AA923AAD880BED5E /* ContentView.swift */; };
-		25200E873AD4A54B9785F277 /* Smile in Frameworks */ = {isa = PBXBuildFile; productRef = E0CD9235D774E4ADF7C9765A /* Smile */; };
-		2AE1E17D1430CA90EE33E1E5 /* Kanna in Frameworks */ = {isa = PBXBuildFile; productRef = F792626321BC79B64FFD3E36 /* Kanna */; };
-		368780BB7605D10B0268E147 /* CompositeKit in Frameworks */ = {isa = PBXBuildFile; productRef = F81CB934F7523BD740825383 /* CompositeKit */; };
+		1BED969DBCC5B90F766D1770 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 811474ECA0ED07A79BDCA028 /* AppFeature */; };
+		3E538E9CD8862D261E823035 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3043BCF99CE7B865A3E51C4 /* main.swift */; };
 		43C480475934129C3C534C40 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA8AEA8894D65A2392567CFD /* Localizable.strings */; };
-		473574F11F6B9A0654E7F0CB /* CompositeKit in Frameworks */ = {isa = PBXBuildFile; productRef = FA2E740E65893AE42C9DEA43 /* CompositeKit */; };
+		74AB4123849FA9A821D5BD93 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1050BC9CDF0B53FBDB51C /* main.swift */; };
 		878A57B65F82C986F28E1236 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D1943A9A23E0149BEB6DEC /* String.swift */; };
-		8B895EE687FB3A23F943755A /* MobileShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		91FF2C57F336117350F65B85 /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = 158BF3566C3EEF05607B40BB /* Persistence */; };
-		9EB209190F2D742BA41C6310 /* Smile in Frameworks */ = {isa = PBXBuildFile; productRef = 58F214CC5281EB6787D7671C /* Smile */; };
 		9FCEFC354E081C74411DBB00 /* MobileShareExtensionUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F700F9EEED5612541D9CDC3 /* MobileShareExtensionUIKit */; };
-		A1E478C6E50ED717D685A047 /* PreviewContent in Frameworks */ = {isa = PBXBuildFile; productRef = D9054E2454A77ADBCE4DF8DC /* PreviewContent */; };
 		AA5AD8C58849CAE85A10CB5F /* TagKit in Frameworks */ = {isa = PBXBuildFile; productRef = BB3B0FD5F587023E22CD6047 /* TagKit */; };
 		D98B7DB37A9882EBB7124F74 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 2865E803F7EFC6B6082BEE1F /* Domain */; };
 		E1EA1E4D1F1744BA1CA68898 /* CompositeKit in Frameworks */ = {isa = PBXBuildFile; productRef = C5D87140BF281FB14DB05762 /* CompositeKit */; };
 		E78F86735C4DA53ED40DBD7E /* NSExtensionContext+Completable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D275639112609E63A9C9890B /* NSExtensionContext+Completable.swift */; };
-		E9B9F583E6F699DA6BD561BF /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = F58965A0AD1DF8255018900C /* Persistence */; };
 		ECDE91686FB35D5F0A724900 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */; };
-		F30CAFCE4BD0B986E5298D05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9180BF53336E2369C3393 /* ContentView.swift */; };
 		F51524FE71BD2D962BF0D912 /* DependencyContainer+StoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB840FDAA9B83DCE1B5E1D37 /* DependencyContainer+StoreBuilder.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		85BC566019A7B020FD907CFF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B10FD681F47AC2A4820934BC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8AF84C32444B977765B9493A;
-			remoteInfo = MobileShareExtension;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		53006B1A1B1698EC1A6B3DF4 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				8B895EE687FB3A23F943755A /* MobileShareExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		111EE81B455BEA8B5A35EFBA /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TsunDocsKit; sourceTree = SOURCE_ROOT; };
-		1AB9180BF53336E2369C3393 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2E85C1D5AA923AAD880BED5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; name = "TsunDocs (iOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		111EE81B455BEA8B5A35EFBA /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TsunDocsKit; path = TsunDocsKit; sourceTree = SOURCE_ROOT; };
+		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "TsunDocs (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3C95910ABB1ED3E39E4C9C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6930039FED775CA4E010873A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7186314948325EFC4E5D93E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -71,8 +34,10 @@
 		89CDF35FD12249BFF1CC6E68 /* MobileShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileShareExtension.entitlements; sourceTree = "<group>"; };
 		AD01E9205F3BDD6034F953C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
-		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "TsunDocs (macOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TsunDocs (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3043BCF99CE7B865A3E51C4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C3D1943A9A23E0149BEB6DEC /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		C3F1050BC9CDF0B53FBDB51C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D275639112609E63A9C9890B /* NSExtensionContext+Completable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSExtensionContext+Completable.swift"; sourceTree = "<group>"; };
 		D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootViewController.swift; sourceTree = "<group>"; };
 		DB56EBEB7892DC64ACED096E /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
@@ -86,12 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BED969DBCC5B90F766D1770 /* Domain in Frameworks */,
-				91FF2C57F336117350F65B85 /* Persistence in Frameworks */,
-				473574F11F6B9A0654E7F0CB /* CompositeKit in Frameworks */,
-				A1E478C6E50ED717D685A047 /* PreviewContent in Frameworks */,
-				9EB209190F2D742BA41C6310 /* Smile in Frameworks */,
-				164489A90C28FFC8F2742F88 /* Kanna in Frameworks */,
+				1BED969DBCC5B90F766D1770 /* AppFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,12 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05379807DD47D1488C35CD2D /* Domain in Frameworks */,
-				E9B9F583E6F699DA6BD561BF /* Persistence in Frameworks */,
-				368780BB7605D10B0268E147 /* CompositeKit in Frameworks */,
-				00489507C1174D1ABB1713F5 /* PreviewContent in Frameworks */,
-				25200E873AD4A54B9785F277 /* Smile in Frameworks */,
-				2AE1E17D1430CA90EE33E1E5 /* Kanna in Frameworks */,
+				05379807DD47D1488C35CD2D /* AppFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,9 +91,9 @@
 		7925802F255C1D710E794AC1 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				2E85C1D5AA923AAD880BED5E /* ContentView.swift */,
 				AD01E9205F3BDD6034F953C5 /* Info.plist */,
 				DB56EBEB7892DC64ACED096E /* iOS.entitlements */,
+				C3043BCF99CE7B865A3E51C4 /* main.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -183,9 +138,9 @@
 		A974C887BE0808533E6C7F49 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				1AB9180BF53336E2369C3393 /* ContentView.swift */,
 				F887EB4DB6E1DE3040F95054 /* Info.plist */,
 				7C239FA42949E1D08FB8479C /* macOS.entitlements */,
+				C3F1050BC9CDF0B53FBDB51C /* main.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -228,23 +183,15 @@
 			buildPhases = (
 				D3138B57806C2FA5B19BA173 /* SwiftLint */,
 				CE0AD2747B613D920FA6F9C5 /* Sources */,
-				3FA1341750C0E291EC792C53 /* Resources */,
 				26CBBCDC2AAD7C4A199E2BC3 /* Frameworks */,
-				53006B1A1B1698EC1A6B3DF4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */,
 			);
 			name = "TsunDocs (iOS)";
 			packageProductDependencies = (
-				9766BC03BB0AD248E302C4FE /* Domain */,
-				158BF3566C3EEF05607B40BB /* Persistence */,
-				FA2E740E65893AE42C9DEA43 /* CompositeKit */,
-				D9054E2454A77ADBCE4DF8DC /* PreviewContent */,
-				58F214CC5281EB6787D7671C /* Smile */,
-				FF37161AF5AD4E6EC9F5D306 /* Kanna */,
+				811474ECA0ED07A79BDCA028 /* AppFeature */,
 			);
 			productName = "TsunDocs (iOS)";
 			productReference = 3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */;
@@ -280,7 +227,6 @@
 			buildPhases = (
 				2C9D5D63BB7A0F59CDA10E4D /* SwiftLint */,
 				C08696BAF5978BBC2261100C /* Sources */,
-				AE988B0E16DBEC97E7D028B3 /* Resources */,
 				85E7B983E892C2FCC3953ACE /* Frameworks */,
 			);
 			buildRules = (
@@ -289,12 +235,7 @@
 			);
 			name = "TsunDocs (macOS)";
 			packageProductDependencies = (
-				E500A07487A2FE06DC70A317 /* Domain */,
-				F58965A0AD1DF8255018900C /* Persistence */,
-				F81CB934F7523BD740825383 /* CompositeKit */,
-				E4C6D2912A985BAC88241EE9 /* PreviewContent */,
-				E0CD9235D774E4ADF7C9765A /* Smile */,
-				F792626321BC79B64FFD3E36 /* Kanna */,
+				61BEA08BAC38F1FF9313CF45 /* AppFeature */,
 			);
 			productName = "TsunDocs (macOS)";
 			productReference = BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */;
@@ -331,10 +272,6 @@
 				ja,
 			);
 			mainGroup = EB5136094B07B8560319AE2D;
-			packageReferences = (
-				15B567AA5EFEC7CCBA2BCB21 /* XCRemoteSwiftPackageReference "Kanna" */,
-				209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */,
-			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -346,20 +283,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3FA1341750C0E291EC792C53 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AE988B0E16DBEC97E7D028B3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C89495D43CC01D5732AF56F8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -426,7 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F30CAFCE4BD0B986E5298D05 /* ContentView.swift in Sources */,
+				74AB4123849FA9A821D5BD93 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,19 +357,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C4E47BD773458338D123241 /* ContentView.swift in Sources */,
+				3E538E9CD8862D261E823035 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8AF84C32444B977765B9493A /* MobileShareExtension */;
-			targetProxy = 85BC566019A7B020FD907CFF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AA8AEA8894D65A2392567CFD /* Localizable.strings */ = {
@@ -759,30 +674,7 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		15B567AA5EFEC7CCBA2BCB21 /* XCRemoteSwiftPackageReference "Kanna" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tid-kijyun/Kanna";
-			requirement = {
-				kind = exactVersion;
-				version = 5.2.7;
-			};
-		};
-		209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onmyway133/Smile";
-			requirement = {
-				kind = exactVersion;
-				version = 2.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		158BF3566C3EEF05607B40BB /* Persistence */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Persistence;
-		};
 		2865E803F7EFC6B6082BEE1F /* Domain */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Domain;
@@ -795,14 +687,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Persistence;
 		};
-		58F214CC5281EB6787D7671C /* Smile */ = {
+		61BEA08BAC38F1FF9313CF45 /* AppFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */;
-			productName = Smile;
+			productName = AppFeature;
 		};
-		9766BC03BB0AD248E302C4FE /* Domain */ = {
+		811474ECA0ED07A79BDCA028 /* AppFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Domain;
+			productName = AppFeature;
 		};
 		BB3B0FD5F587023E22CD6047 /* TagKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -811,45 +702,6 @@
 		C5D87140BF281FB14DB05762 /* CompositeKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CompositeKit;
-		};
-		D9054E2454A77ADBCE4DF8DC /* PreviewContent */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PreviewContent;
-		};
-		E0CD9235D774E4ADF7C9765A /* Smile */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 209EB6244CB81C36714EF984 /* XCRemoteSwiftPackageReference "Smile" */;
-			productName = Smile;
-		};
-		E4C6D2912A985BAC88241EE9 /* PreviewContent */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PreviewContent;
-		};
-		E500A07487A2FE06DC70A317 /* Domain */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Domain;
-		};
-		F58965A0AD1DF8255018900C /* Persistence */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Persistence;
-		};
-		F792626321BC79B64FFD3E36 /* Kanna */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15B567AA5EFEC7CCBA2BCB21 /* XCRemoteSwiftPackageReference "Kanna" */;
-			productName = Kanna;
-		};
-		F81CB934F7523BD740825383 /* CompositeKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CompositeKit;
-		};
-		FA2E740E65893AE42C9DEA43 /* CompositeKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CompositeKit;
-		};
-		FF37161AF5AD4E6EC9F5D306 /* Kanna */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 15B567AA5EFEC7CCBA2BCB21 /* XCRemoteSwiftPackageReference "Kanna" */;
-			productName = Kanna;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

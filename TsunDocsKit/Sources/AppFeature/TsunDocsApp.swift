@@ -4,15 +4,18 @@
 
 import SwiftUI
 
-@main
-struct TsunDocsApp: App {
+public struct TsunDocsApp: App {
     @Environment(\.appDependencyContainer) var container
 
-    var body: some Scene {
-        WindowGroup {
-            // MARK: TODO
+    // MARK: - Initializers
 
-            // ContentView(container: SceneDependencyContainer(container))
+    public init() {}
+
+    // MARK: - View
+
+    public var body: some Scene {
+        WindowGroup {
+            ContentView(container: SceneDependencyContainer(container))
         }
     }
 }
