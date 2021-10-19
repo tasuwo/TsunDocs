@@ -38,17 +38,14 @@ struct ContentView: View {
                     NavigationLink(destination: tsundocList) {
                         TabItem.tsundocList.label
                     }
-                    .navigationViewStyle(.stack)
 
                     NavigationLink(destination: TagList(store: tagControlStore)) {
                         TabItem.tags.label
                     }
-                    .navigationViewStyle(.stack)
 
                     NavigationLink(destination: SettingView()) {
                         TabItem.settings.label
                     }
-                    .navigationViewStyle(.stack)
                 }
                 .navigationTitle(NSLocalizedString("app_name", bundle: .module, comment: ""))
                 .listStyle(SidebarListStyle())
