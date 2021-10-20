@@ -1,13 +1,13 @@
 //
-//  Copyright © 2021 Tasuku Tozawa. All rights reserved.
+//  Copyright ©︎ 2021 Tasuku Tozawa. All rights reserved.
 //
 
 import Combine
 import CompositeKit
+import SwiftUI
 import UIKit
 
-@MainActor
-class TextEditAlertCoordinator: NSObject {
+class TextEditAlertViewController: UIViewController {
     typealias Store = CompositeKit.Store<TextEditAlertState, TextEditAlertAction, TextEditAlertDependency>
 
     private class Dependency: TextEditAlertDependency {
@@ -28,6 +28,7 @@ class TextEditAlertCoordinator: NSObject {
     // MARK: - Properties
 
     private let store: Store
+    private let text: String
     private let completion: () -> Void
     private let dependency: Dependency
     private var subscriptions: Set<AnyCancellable> = .init()
@@ -38,6 +39,7 @@ class TextEditAlertCoordinator: NSObject {
     // MARK: - Initializers
 
     init(config: TextEditAlertConfig,
+         text: String,
          completion: @escaping () -> Void)
     {
         let state = TextEditAlertState(config)
@@ -49,16 +51,42 @@ class TextEditAlertCoordinator: NSObject {
         self.store = .init(initialState: state,
                            dependency: dependency,
                            reducer: TextEditAlertReducer())
+        self.text = text
         self.completion = completion
 
-        super.init()
+        super.init(nibName: nil, bundle: nil)
 
         bind()
+
+        update(config)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - View Life-Cycle Methods
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupAppearance()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        presentAlert()
     }
 
     // MARK: - Methods
 
-    func update(_ config: TextEditAlertConfig) {
+    private func setupAppearance() {
+        self.view.backgroundColor = .clear
+    }
+
+    private func update(_ config: TextEditAlertConfig) {
         dependency.validator = config.validator
         dependency.saveAction = config.saveAction
         dependency.cancelAction = config.cancelAction
@@ -67,9 +95,7 @@ class TextEditAlertCoordinator: NSObject {
                                      placeholder: config.placeholder))
     }
 
-    func present(text: String,
-                 on viewController: UIViewController)
-    {
+    private func presentAlert() {
         guard presentingAlert == nil else { return }
 
         let alert = UIAlertController(title: store.stateValue.title,
@@ -102,13 +128,9 @@ class TextEditAlertCoordinator: NSObject {
         presentingAlert = alert
         presentingSaveAction = saveAction
 
-        viewController.present(alert, animated: true) { [weak self] in
+        present(alert, animated: true) { [weak self] in
             self?.store.execute(.presented)
         }
-    }
-
-    func dismiss(animated: Bool, completion: (() -> Void)?) {
-        presentingAlert?.dismiss(animated: animated, completion: completion)
     }
 
     @objc
@@ -121,7 +143,7 @@ class TextEditAlertCoordinator: NSObject {
 
 // MARK: - Bind
 
-extension TextEditAlertCoordinator {
+extension TextEditAlertViewController {
     func bind() {
         store.state
             .receive(on: DispatchQueue.main)
@@ -155,7 +177,7 @@ extension TextEditAlertCoordinator {
 
 // MARK: - UITextFieldDelegate
 
-extension TextEditAlertCoordinator: UITextFieldDelegate {
+extension TextEditAlertViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return store.stateValue.shouldReturn
     }
