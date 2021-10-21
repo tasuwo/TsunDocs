@@ -22,6 +22,9 @@ struct TextEditAlertWrapper<Content: View>: View {
                 TextEditAlert(text: text, config: config) {
                     isPresenting = false
                 }
+                // HACK: alert表示先のViewサイズに影響を与えないよう、サイズ0で固定する
+                .frame(width: 0, height: 0)
+                .fixedSize()
             } else {
                 EmptyView()
             }
