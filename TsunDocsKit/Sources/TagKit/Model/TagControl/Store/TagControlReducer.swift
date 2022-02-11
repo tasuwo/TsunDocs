@@ -112,7 +112,7 @@ extension TagControlReducer {
         let tagsStream = entities.values
             .catch { _ in Just([]) }
             .map { Action.updatedTags($0) as Action? }
-        let tagsEffect = Effect(tagsStream, underlying: entities)
+        let tagsEffect = AnimatingEffect(tagsStream, underlying: entities, animateWith: .default)
 
         nextState.tags = entities.values.value
 
