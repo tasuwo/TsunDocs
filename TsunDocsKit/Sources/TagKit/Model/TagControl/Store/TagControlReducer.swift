@@ -165,14 +165,14 @@ public class TagControlDependencyMock: TagControlDependency {
         service.performBlockHandler = { try $0() }
         service.beginHandler = {}
         service.commitHandler = {}
-        service.createTagHandler = { [unowned self] _ in
+        service.createTagHandler = { [unowned self] command in
             let id = UUID()
             let newTag = Tag(id: id,
-                             name: String(UUID().uuidString.prefix(5)),
-                             tsundocsCount: 5)
+                             name: command.name,
+                             tsundocsCount: 0)
 
             let values = self.tags.values.value
-            self.tags.values.send(values + [newTag])
+            self.tags.values.send([newTag] + values)
 
             return .success(id)
         }
