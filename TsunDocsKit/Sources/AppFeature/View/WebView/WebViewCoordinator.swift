@@ -4,7 +4,7 @@
 
 import WebKit
 
-class WebViewCoordinator: NSObject, WKUIDelegate {
+class WebViewCoordinator: NSObject {
     // MARK: - Properties
 
     let parent: WebView
@@ -71,7 +71,9 @@ class WebViewCoordinator: NSObject, WKUIDelegate {
     deinit {
         self.observations.forEach { $0.invalidate() }
     }
+}
 
+extension WebViewCoordinator: WKUIDelegate {
     // MARK: - WKUIDelegate
 
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {

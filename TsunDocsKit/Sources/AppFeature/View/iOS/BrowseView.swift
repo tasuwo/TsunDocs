@@ -20,6 +20,7 @@ struct BrowseView: View {
     @State private var canGoForward = false
     @State private var isLoading = false
     @State private var estimatedProgress: Double = 0
+    @StateObject private var scrollState = WebViewScrollState()
 
     @State private var isPresentShareSheet = false
 
@@ -40,27 +41,114 @@ struct BrowseView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                WebView(url: baseUrl,
-                        action: $action,
-                        title: $title,
-                        currentUrl: $currentUrl,
-                        canGoBack: $canGoBack,
-                        canGoForward: $canGoForward,
-                        isLoading: $isLoading,
-                        estimatedProgress: $estimatedProgress)
+            if !scrollState.isNavigationBarHidden {
+                BrowseNavigationBar(title: title ?? NSLocalizedString("browse_view_title_loading", bundle: Bundle.module, comment: "loading")) {
+                    if let onClose = onClose {
+                        Button {
+                            onClose()
+                        } label: {
+                            Text("browse_view_button_close", bundle: Bundle.module)
+                        }
+                    } else {
+                        EmptyView()
+                    }
+                } trailing: {
+                    if isLoading {
+                        Button {
+                            action = .stopLoading
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
+                    } else {
+                        Button {
+                            action = .reload
+                        } label: {
+                            Image(systemName: "arrow.clockwise")
+                        }
+                    }
+                }
+            }
 
-                if isLoading {
-                    VStack(spacing: 0) {
-                        ProgressView(value: estimatedProgress, total: 1.0)
-                            .progressViewStyle(LinearProgressViewStyle(tint: Color.blue))
-                        Spacer()
+            if isLoading {
+                VStack(spacing: 0) {
+                    ProgressView(value: estimatedProgress, total: 1.0)
+                        .progressViewStyle(LinearProgressViewStyle(tint: Color.blue))
+                    Spacer()
+                }
+            }
+
+            Divider()
+
+            WebView(url: baseUrl,
+                    action: $action,
+                    title: $title,
+                    currentUrl: $currentUrl,
+                    canGoBack: $canGoBack,
+                    canGoForward: $canGoForward,
+                    isLoading: $isLoading,
+                    estimatedProgress: $estimatedProgress,
+                    scrollState: scrollState)
+                .edgesIgnoringSafeArea(.bottom)
+
+            if !scrollState.isToolbarHidden {
+                BrowseToolBar {
+                    Button {
+                        action = .goBack
+                    } label: {
+                        Image(systemName: "chevron.left")
+                    }
+                    .disabled(!canGoBack)
+
+                    Spacer()
+
+                    Button {
+                        action = .goForward
+                    } label: {
+                        Image(systemName: "chevron.right")
+                    }
+                    .disabled(!canGoForward)
+
+                    Spacer()
+
+                    Button {
+                        isPresentShareSheet = true
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    .disabled(currentUrl == nil)
+
+                    Spacer()
+
+                    Menu {
+                        Button {
+                            guard let url = currentUrl else { return }
+                            openURL(url)
+                        } label: {
+                            Label {
+                                Text(L10n.browseViewButtonSafari)
+                            } icon: {
+                                Image(systemName: "safari")
+                            }
+                        }
+                        .disabled(currentUrl == nil)
+
+                        Button {
+                            onEdit()
+                        } label: {
+                            Label {
+                                Text(L10n.browseViewButtonEdit)
+                            } icon: {
+                                Image(systemName: "pencil")
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .padding([.top, .bottom])
                     }
                 }
             }
         }
-        .navigationBarTitle(title ?? NSLocalizedString("browse_view_title_loading", bundle: Bundle.module, comment: "loading"))
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarHidden(true)
         .sheet(isPresented: $isPresentShareSheet) {
             let url: URL = {
                 if let currentUrl = currentUrl {
@@ -71,91 +159,6 @@ struct BrowseView: View {
             }()
             ShareSheet(activityItems: [url])
                 .ignoresSafeArea()
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                if let onClose = onClose {
-                    Button {
-                        onClose()
-                    } label: {
-                        Text("browse_view_button_close", bundle: Bundle.module)
-                    }
-                } else {
-                    EmptyView()
-                }
-            }
-
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if isLoading {
-                    Button {
-                        action = .stopLoading
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                } else {
-                    Button {
-                        action = .reload
-                    } label: {
-                        Image(systemName: "arrow.clockwise")
-                    }
-                }
-            }
-
-            ToolbarItemGroup(placement: .bottomBar) {
-                Button {
-                    action = .goBack
-                } label: {
-                    Image(systemName: "chevron.left")
-                }
-                .disabled(!canGoBack)
-
-                Spacer()
-
-                Button {
-                    action = .goForward
-                } label: {
-                    Image(systemName: "chevron.right")
-                }
-                .disabled(!canGoForward)
-
-                Spacer()
-
-                Button {
-                    isPresentShareSheet = true
-                } label: {
-                    Image(systemName: "square.and.arrow.up")
-                }
-                .disabled(currentUrl == nil)
-
-                Spacer()
-
-                Menu {
-                    Button {
-                        guard let url = currentUrl else { return }
-                        openURL(url)
-                    } label: {
-                        Label {
-                            Text(L10n.browseViewButtonSafari)
-                        } icon: {
-                            Image(systemName: "safari")
-                        }
-                    }
-                    .disabled(currentUrl == nil)
-
-                    Button {
-                        onEdit()
-                    } label: {
-                        Label {
-                            Text(L10n.browseViewButtonEdit)
-                        } icon: {
-                            Image(systemName: "pencil")
-                        }
-                    }
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .padding([.top, .bottom])
-                }
-            }
         }
     }
 }

@@ -29,6 +29,31 @@ struct WebView {
     @Binding var canGoForward: Bool
     @Binding var isLoading: Bool
     @Binding var estimatedProgress: Double
+
+    @ObservedObject var scrollState: WebViewScrollState
+
+    init(url: URL,
+         action: Binding<Action?>,
+         title: Binding<String?>,
+         currentUrl: Binding<URL?>,
+         canGoBack: Binding<Bool>,
+         canGoForward: Binding<Bool>,
+         isLoading: Binding<Bool>,
+         estimatedProgress: Binding<Double>,
+         scrollState: WebViewScrollState)
+    {
+        self.url = url
+        _action = action
+        _title = title
+        _currentUrl = currentUrl
+        _canGoBack = canGoBack
+        _canGoForward = canGoForward
+        _isLoading = isLoading
+        _estimatedProgress = estimatedProgress
+        self.scrollState = scrollState
+
+        internalWebView.scrollView.delegate = scrollState
+    }
 }
 
 #if os(iOS)
@@ -174,7 +199,8 @@ struct WebView_Previews: PreviewProvider {
                         canGoBack: $canGoBack,
                         canGoForward: $canGoForward,
                         isLoading: $isLoading,
-                        estimatedProgress: $estimatedProgress)
+                        estimatedProgress: $estimatedProgress,
+                        scrollState: WebViewScrollState())
             }
         }
     }
