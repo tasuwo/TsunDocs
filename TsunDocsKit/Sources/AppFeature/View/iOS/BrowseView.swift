@@ -10,6 +10,7 @@ struct BrowseView: View {
 
     private let baseUrl: URL
     private let onEdit: () -> Void
+    private let onBack: (() -> Void)?
     private let onClose: (() -> Void)?
 
     @State private var action: WebView.Action?
@@ -30,10 +31,12 @@ struct BrowseView: View {
 
     init(baseUrl: URL,
          onEdit: @escaping () -> Void,
+         onBack: (() -> Void)? = nil,
          onClose: (() -> Void)? = nil)
     {
         self.baseUrl = baseUrl
         self.onEdit = onEdit
+        self.onBack = onBack
         self.onClose = onClose
     }
 
@@ -43,6 +46,14 @@ struct BrowseView: View {
         VStack(spacing: 0) {
             if !scrollState.isNavigationBarHidden {
                 BrowseNavigationBar(title: title ?? NSLocalizedString("browse_view_title_loading", bundle: Bundle.module, comment: "loading")) {
+                    if let onBack = onBack {
+                        Button {
+                            onBack()
+                        } label: {
+                            Image(systemName: "chevron.backward")
+                        }
+                    }
+
                     if let onClose = onClose {
                         Button {
                             onClose()

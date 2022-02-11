@@ -177,6 +177,8 @@ struct TsundocList: View {
         if case let .browse(tsundoc, isEditing: _) = store.state.navigation {
             BrowseView(baseUrl: tsundoc.url) {
                 store.execute(.tap(tsundoc.id, .editInfo))
+            } onBack: {
+                store.execute(.navigation(.deactivated(.browse)))
             }
             .background(
                 NavigationLink(destination: infoView(),
