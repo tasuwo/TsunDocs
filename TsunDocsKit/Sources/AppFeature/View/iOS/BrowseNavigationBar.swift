@@ -49,8 +49,6 @@ struct BrowseNavigationBar<LeadingContent, TrailingContent>: View where LeadingC
                 .padding([.leading, .trailing], 16)
             }
             .frame(height: preferredHeight)
-
-            Divider()
         }
     }
 }
@@ -72,6 +70,7 @@ struct BrowseNavigationBar_Previews: PreviewProvider {
                         Image(systemName: "xmark")
                     }
                 }
+                Divider()
                 Color.white
             }
 

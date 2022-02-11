@@ -81,11 +81,8 @@ struct BrowseView: View {
             }
 
             if isLoading {
-                VStack(spacing: 0) {
-                    ProgressView(value: estimatedProgress, total: 1.0)
-                        .progressViewStyle(LinearProgressViewStyle(tint: Color.blue))
-                    Spacer()
-                }
+                ProgressView(value: estimatedProgress, total: 1.0)
+                    .progressViewStyle(LinearProgressViewStyle(tint: Color.blue))
             }
 
             Divider()
@@ -99,6 +96,9 @@ struct BrowseView: View {
                     isLoading: $isLoading,
                     estimatedProgress: $estimatedProgress,
                     scrollState: scrollState)
+                .edgesIgnoringSafeArea([.leading, .trailing])
+
+            Divider()
 
             if !scrollState.isToolbarHidden {
                 BrowseToolBar {

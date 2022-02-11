@@ -20,8 +20,6 @@ struct BrowseToolBar<Content>: View where Content: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Divider()
-
             ZStack {
                 Color(uiColor: UIColor.systemBackground)
                     .edgesIgnoringSafeArea(.bottom)
@@ -40,6 +38,7 @@ struct BrowseToolBar_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Color.white
+            Divider()
             BrowseToolBar {
                 Button {
                     // NOP
