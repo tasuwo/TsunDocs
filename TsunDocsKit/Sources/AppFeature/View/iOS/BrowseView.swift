@@ -26,6 +26,7 @@ struct BrowseView: View {
     @State private var isPresentShareSheet = false
 
     @Environment(\.openURL) var openURL
+    @Environment(\.verticalSizeClass) var verticalSizeClass
 
     // MARK: - Initializers
 
@@ -60,10 +61,20 @@ struct BrowseView: View {
                         } label: {
                             Text("browse_view_button_close", bundle: Bundle.module)
                         }
-                    } else {
-                        EmptyView()
                     }
+
+                    if verticalSizeClass == .compact {
+                        browserBackButton()
+                        browserForwardButton()
+                    }
+
+                    EmptyView()
                 } trailing: {
+                    if verticalSizeClass == .compact {
+                        shareButton()
+                        menuButton()
+                    }
+
                     if isLoading {
                         Button {
                             action = .stopLoading
@@ -100,61 +111,15 @@ struct BrowseView: View {
 
             Divider()
 
-            if !scrollState.isToolbarHidden {
+            if verticalSizeClass != .compact, !scrollState.isToolbarHidden {
                 BrowseToolBar {
-                    Button {
-                        action = .goBack
-                    } label: {
-                        Image(systemName: "chevron.left")
-                    }
-                    .disabled(!canGoBack)
-
+                    browserBackButton()
                     Spacer()
-
-                    Button {
-                        action = .goForward
-                    } label: {
-                        Image(systemName: "chevron.right")
-                    }
-                    .disabled(!canGoForward)
-
+                    browserForwardButton()
                     Spacer()
-
-                    Button {
-                        isPresentShareSheet = true
-                    } label: {
-                        Image(systemName: "square.and.arrow.up")
-                    }
-                    .disabled(currentUrl == nil)
-
+                    shareButton()
                     Spacer()
-
-                    Menu {
-                        Button {
-                            guard let url = currentUrl else { return }
-                            openURL(url)
-                        } label: {
-                            Label {
-                                Text(L10n.browseViewButtonSafari)
-                            } icon: {
-                                Image(systemName: "safari")
-                            }
-                        }
-                        .disabled(currentUrl == nil)
-
-                        Button {
-                            onEdit()
-                        } label: {
-                            Label {
-                                Text(L10n.browseViewButtonEdit)
-                            } icon: {
-                                Image(systemName: "pencil")
-                            }
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .padding([.top, .bottom])
-                    }
+                    menuButton()
                 }
             }
         }
@@ -169,6 +134,66 @@ struct BrowseView: View {
             }()
             ShareSheet(activityItems: [url])
                 .ignoresSafeArea()
+        }
+    }
+
+    @ViewBuilder
+    private func browserBackButton() -> some View {
+        Button {
+            action = .goBack
+        } label: {
+            Image(systemName: "chevron.left")
+        }
+        .disabled(!canGoBack)
+    }
+
+    @ViewBuilder
+    private func browserForwardButton() -> some View {
+        Button {
+            action = .goForward
+        } label: {
+            Image(systemName: "chevron.right")
+        }
+        .disabled(!canGoForward)
+    }
+
+    @ViewBuilder
+    private func shareButton() -> some View {
+        Button {
+            isPresentShareSheet = true
+        } label: {
+            Image(systemName: "square.and.arrow.up")
+        }
+        .disabled(currentUrl == nil)
+    }
+
+    @ViewBuilder
+    private func menuButton() -> some View {
+        Menu {
+            Button {
+                guard let url = currentUrl else { return }
+                openURL(url)
+            } label: {
+                Label {
+                    Text(L10n.browseViewButtonSafari)
+                } icon: {
+                    Image(systemName: "safari")
+                }
+            }
+            .disabled(currentUrl == nil)
+
+            Button {
+                onEdit()
+            } label: {
+                Label {
+                    Text(L10n.browseViewButtonEdit)
+                } icon: {
+                    Image(systemName: "pencil")
+                }
+            }
+        } label: {
+            Image(systemName: "ellipsis")
+                .padding([.top, .bottom])
         }
     }
 }

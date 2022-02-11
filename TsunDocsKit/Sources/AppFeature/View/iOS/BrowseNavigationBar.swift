@@ -13,6 +13,8 @@ struct BrowseNavigationBar<LeadingContent, TrailingContent>: View where LeadingC
     private let leadingContentBuilder: () -> LeadingContent
     private let trailingContentBuilder: () -> TrailingContent
 
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+
     // MARK: - Initializers
 
     init(title: String,
@@ -27,36 +29,35 @@ struct BrowseNavigationBar<LeadingContent, TrailingContent>: View where LeadingC
     // MARK: - View
 
     var body: some View {
-        VStack(spacing: 0) {
-            ZStack {
-                Color(uiColor: UIColor.systemBackground)
-                    .edgesIgnoringSafeArea(.top)
+        ZStack {
+            Color(uiColor: UIColor.systemBackground)
+                .edgesIgnoringSafeArea(.top)
 
-                HStack {
-                    leadingContentBuilder()
+            HStack(spacing: verticalSizeClass == .compact ? 32 : 8) {
+                leadingContentBuilder()
 
-                    Spacer()
+                Spacer()
 
-                    Text(title)
-                        .bold()
-                        .lineLimit(1)
-                        .allowsTightening(false)
+                Text(title)
+                    .bold()
+                    .lineLimit(1)
+                    .allowsTightening(false)
 
-                    Spacer()
+                Spacer()
 
-                    trailingContentBuilder()
-                }
-                .padding([.leading, .trailing], 16)
+                trailingContentBuilder()
             }
-            .frame(height: preferredHeight)
+            .padding([.leading, .trailing], 16)
+            .frame(maxHeight: .infinity)
         }
+        .frame(height: preferredHeight)
     }
 }
 
 struct BrowseNavigationBar_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            VStack {
+            VStack(spacing: 0) {
                 BrowseNavigationBar(title: "Title") {
                     Button {
                         // NOP

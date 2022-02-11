@@ -19,24 +19,23 @@ struct BrowseToolBar<Content>: View where Content: View {
     // MARK: - View
 
     var body: some View {
-        VStack(spacing: 0) {
-            ZStack {
-                Color(uiColor: UIColor.systemBackground)
-                    .edgesIgnoringSafeArea(.bottom)
+        ZStack {
+            Color(uiColor: UIColor.systemBackground)
+                .edgesIgnoringSafeArea(.bottom)
 
-                HStack {
-                    contentProvider()
-                }
-                .padding([.leading, .trailing], 16)
+            HStack {
+                contentProvider()
             }
-            .frame(height: preferredHeight)
+            .padding([.leading, .trailing], 16)
+            .frame(maxHeight: .infinity)
         }
+        .frame(height: preferredHeight)
     }
 }
 
 struct BrowseToolBar_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
+        VStack(spacing: 0) {
             Color.white
             Divider()
             BrowseToolBar {
