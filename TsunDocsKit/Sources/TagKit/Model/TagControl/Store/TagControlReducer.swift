@@ -162,6 +162,7 @@ public class TagControlDependencyMock: TagControlDependency {
     public var tagCommandService: TagCommandService {
         let service = TagCommandServiceMock()
         service.performHandler = { $0() }
+        service.performBlockHandler = { try $0() }
         service.beginHandler = {}
         service.commitHandler = {}
         service.createTagHandler = { [unowned self] _ in
