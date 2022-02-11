@@ -176,6 +176,20 @@ public class TagControlDependencyMock: TagControlDependency {
 
             return .success(id)
         }
+        service.updateTagHandler = { id, name in
+            var snapshot = self.tags.values.value
+            guard let index = snapshot.firstIndex(where: { $0.id == id }) else { return .failure(.notFound) }
+            snapshot[index] = .init(id: snapshot[index].id, name: name)
+            self.tags.values.send(snapshot)
+            return .success(())
+        }
+        service.deleteTagHandler = { id in
+            var snapshot = self.tags.values.value
+            guard let index = snapshot.firstIndex(where: { $0.id == id }) else { return .failure(.notFound) }
+            snapshot.remove(at: index)
+            self.tags.values.send(snapshot)
+            return .success(())
+        }
         return service
     }
 
