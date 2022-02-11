@@ -88,7 +88,6 @@ struct BrowseView: View {
                     isLoading: $isLoading,
                     estimatedProgress: $estimatedProgress,
                     scrollState: scrollState)
-                .edgesIgnoringSafeArea(.bottom)
 
             if !scrollState.isToolbarHidden {
                 BrowseToolBar {
