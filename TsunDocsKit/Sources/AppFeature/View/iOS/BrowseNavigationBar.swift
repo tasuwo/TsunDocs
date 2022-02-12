@@ -2,6 +2,7 @@
 //  Copyright ©︎ 2022 Tasuku Tozawa. All rights reserved.
 //
 
+import ButtonStyle
 import Foundation
 import SwiftUI
 import UIKit
@@ -35,6 +36,8 @@ struct BrowseNavigationBar<LeadingContent, TrailingContent>: View where LeadingC
 
             HStack(spacing: verticalSizeClass == .compact ? 32 : 8) {
                 leadingContentBuilder()
+                    .buttonStyle(BarButtonStyle())
+                    .menuStyle(BarMenuStyle())
 
                 Spacer()
 
@@ -46,6 +49,8 @@ struct BrowseNavigationBar<LeadingContent, TrailingContent>: View where LeadingC
                 Spacer()
 
                 trailingContentBuilder()
+                    .buttonStyle(BarButtonStyle())
+                    .menuStyle(BarMenuStyle())
             }
             .padding([.leading, .trailing], 16)
             .frame(maxHeight: .infinity)

@@ -2,6 +2,7 @@
 //  Copyright ©︎ 2022 Tasuku Tozawa. All rights reserved.
 //
 
+import ButtonStyle
 import Foundation
 import SwiftUI
 
@@ -25,6 +26,8 @@ struct BrowseToolBar<Content>: View where Content: View {
 
             HStack {
                 contentProvider()
+                    .buttonStyle(BarButtonStyle())
+                    .menuStyle(BarMenuStyle())
             }
             .padding([.leading, .trailing], 16)
             .frame(maxHeight: .infinity)
