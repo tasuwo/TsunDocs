@@ -25,6 +25,7 @@
 "tsundoc_list_empty_message_filtered" = "No Items";
 
 "tsundoc_list_menu_add_tag" = "Add Tags";
+"tsundoc_list_menu_add_emoji" = "Add Emoji";
 "tsundoc_list_menu_copy_url" = "Copy URL";
 "tsundoc_list_menu_open_safari" = "Open Safari";
 "tsundoc_list_menu_delete" = "Delete";

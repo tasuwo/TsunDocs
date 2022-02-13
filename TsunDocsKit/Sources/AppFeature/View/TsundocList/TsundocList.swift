@@ -4,6 +4,7 @@
 
 import CompositeKit
 import Domain
+import EmojiList
 import SwiftUI
 import TagKit
 
@@ -57,6 +58,13 @@ struct TsundocList: View {
                 TagMultiSelectionSheet(selectedIds: Set(tagIds),
                                        viewStore: tagControlViewStoreBuilder.buildTagControlViewStore()) {
                     store.execute(.selectTags(Set($0.map(\.id)), tsundocId))
+                }
+
+            case let .emojiSelection(tsundocId):
+                NavigationView {
+                    EmojiList(backgroundColors: EmojiBackgroundColor.self) { emoji, backgrounColor in
+                        store.execute(.updateEmojiInfo(.init(emoji: emoji, backgroundColor: backgrounColor), tsundocId))
+                    }
                 }
 
             case .none:
@@ -146,6 +154,16 @@ struct TsundocList: View {
                 Text(L10n.tsundocListMenuAddTag)
             } icon: {
                 Image(systemName: "tag")
+            }
+        }
+
+        Button {
+            store.execute(.tap(tsundoc.id, .addEmoji))
+        } label: {
+            Label {
+                Text(L10n.tsundocListMenuAddEmoji)
+            } icon: {
+                Image(systemName: "face.smiling")
             }
         }
 

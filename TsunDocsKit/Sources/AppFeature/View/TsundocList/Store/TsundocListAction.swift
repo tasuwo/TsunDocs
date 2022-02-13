@@ -5,11 +5,13 @@
 import CompositeKit
 import Domain
 import Foundation
+import TsundocList
 
 enum TsundocListAction {
     enum MenuItem {
         case editInfo
         case addTag
+        case addEmoji
         case copyUrl
         case delete
     }
@@ -31,6 +33,7 @@ enum TsundocListAction {
 
     case onAppear
     case updateTsundocs([Tsundoc])
+    case updateEmojiInfo(EmojiInfo, Tsundoc.ID)
     case delete(Tsundoc)
     case toggleUnread(Tsundoc)
     case select(Tsundoc)

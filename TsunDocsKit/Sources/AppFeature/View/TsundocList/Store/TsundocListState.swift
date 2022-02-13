@@ -27,6 +27,7 @@ struct TsundocListState: Equatable {
 
     enum Modal: Equatable {
         case tagAdditionView(Tsundoc.ID, Set<Tag.ID>)
+        case emojiSelection(Tsundoc.ID)
     }
 
     enum Navigation: Equatable {

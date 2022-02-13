@@ -90,6 +90,8 @@ internal enum L10n {
     internal static let tsundocListFilterMenuRead = L10n.tr("Localizable", "tsundoc_list_filter_menu_read")
     /// 未読
     internal static let tsundocListFilterMenuUnread = L10n.tr("Localizable", "tsundoc_list_filter_menu_unread")
+    /// 絵文字を追加する
+    internal static let tsundocListMenuAddEmoji = L10n.tr("Localizable", "tsundoc_list_menu_add_emoji")
     /// タグを追加する
     internal static let tsundocListMenuAddTag = L10n.tr("Localizable", "tsundoc_list_menu_add_tag")
     /// URLをコピー

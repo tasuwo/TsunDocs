@@ -25,6 +25,7 @@
 "tsundoc_list_empty_message_filtered" = "条件に合致するアイテムがありません";
 
 "tsundoc_list_menu_add_tag" = "タグを追加する";
+"tsundoc_list_menu_add_emoji" = "絵文字を追加する";
 "tsundoc_list_menu_copy_url" = "URLをコピー";
 "tsundoc_list_menu_open_safari" = "Safariで開く";
 "tsundoc_list_menu_delete" = "削除する";

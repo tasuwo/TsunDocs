@@ -30,6 +30,20 @@ struct TsundocListReducer: Reducer {
             nextState.tsundocs = tsundocs
             return (nextState, nil)
 
+        case let .updateEmojiInfo(info, tsundocId):
+            let effect = Effect<Action> {
+                do {
+                    try await dependency.tsundocCommandService.updateTsundoc(having: tsundocId, emojiAlias: info.emoji.alias, emojiBackgroundColor: info.backgroundColor)
+                    return .none
+                } catch let error as CommandServiceError {
+                    return .failedToUpdateTsundoc(error)
+                } catch {
+                    return .failedToUpdateTsundoc(nil)
+                }
+            }
+            nextState.modal = nil
+            return (nextState, [effect])
+
         case let .delete(tsundoc):
             let nextState = Self.delete(tsundoc, state, dependency)
             return (nextState, nil)
@@ -81,6 +95,10 @@ struct TsundocListReducer: Reducer {
                 return (nextState, nil)
             }
             dependency.pasteboard.set(tsundoc.url.absoluteString)
+            return (nextState, nil)
+
+        case let .tap(tsundocId, .addEmoji):
+            nextState.modal = .emojiSelection(tsundocId)
             return (nextState, nil)
 
         case let .tap(tsundocId, .delete):
