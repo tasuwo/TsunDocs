@@ -4,6 +4,7 @@
 
 import CompositeKit
 import Domain
+import TsundocList
 
 enum TsundocInfoViewAction: Action {
     case onAppear
@@ -12,7 +13,7 @@ enum TsundocInfoViewAction: Action {
     case updateTag([Tag])
 
     case editTitle(String)
-    case editEmoji(Emoji?)
+    case editEmojiInfo(EmojiInfo?)
     case editTags([Tag])
     case deleteTag(Tag.ID)
 

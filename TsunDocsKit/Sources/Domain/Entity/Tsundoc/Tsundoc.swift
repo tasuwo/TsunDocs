@@ -15,6 +15,7 @@ public struct Tsundoc {
     public let url: URL
     public let imageUrl: URL?
     public let emojiAlias: String?
+    public let emojiBackgroundColor: EmojiBackgroundColor?
     public let updatedDate: Date
     public let createdDate: Date
 
@@ -26,6 +27,7 @@ public struct Tsundoc {
                 url: URL,
                 imageUrl: URL?,
                 emojiAlias: String?,
+                emojiBackgroundColor: EmojiBackgroundColor?,
                 updatedDate: Date,
                 createdDate: Date)
     {
@@ -35,6 +37,7 @@ public struct Tsundoc {
         self.url = url
         self.imageUrl = imageUrl
         self.emojiAlias = emojiAlias
+        self.emojiBackgroundColor = emojiBackgroundColor
         self.updatedDate = updatedDate
         self.createdDate = createdDate
     }
@@ -45,7 +48,7 @@ public extension Tsundoc {
         if let emojiAlias = emojiAlias,
            Smile.isEmoji(character: Smile.replaceAlias(string: ":\(emojiAlias):"))
         {
-            return .emoji(Smile.replaceAlias(string: ":\(emojiAlias):"))
+            return .emoji(emoji: Smile.replaceAlias(string: ":\(emojiAlias):"), backgroundColor: emojiBackgroundColor ?? .default)
         } else if let imageUrl = imageUrl {
             return .imageUrl(imageUrl)
         } else {

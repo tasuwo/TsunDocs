@@ -6,5 +6,5 @@ import Foundation
 
 public enum TsundocThumbnailSource {
     case imageUrl(URL)
-    case emoji(String)
+    case emoji(emoji: String, backgroundColor: EmojiBackgroundColor)
 }

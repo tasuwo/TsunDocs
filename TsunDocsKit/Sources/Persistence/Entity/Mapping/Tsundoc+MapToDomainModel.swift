@@ -15,12 +15,18 @@ extension Tsundoc {
             return nil
         }
 
+        let backgroundColor: EmojiBackgroundColor? = {
+            guard let rawValue = emojiBackgroundColor else { return nil }
+            return EmojiBackgroundColor(rawValue: rawValue)
+        }()
+
         return .init(id: id,
                      title: title,
                      description: descriptionText,
                      url: url,
                      imageUrl: imageUrl,
                      emojiAlias: emojiAlias,
+                     emojiBackgroundColor: backgroundColor,
                      updatedDate: updatedDate,
                      createdDate: createdDate)
     }

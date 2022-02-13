@@ -235,11 +235,11 @@ public class TsundocCommandServiceMock: TsundocCommandService {
     }
 
     public private(set) var updateTsundocHavingCallCount = 0
-    public var updateTsundocHavingHandler: ((Tsundoc.ID, String?) -> (Result<Void, CommandServiceError>))?
-    public func updateTsundoc(having id: Tsundoc.ID, emojiAlias: String?) -> Result<Void, CommandServiceError> {
+    public var updateTsundocHavingHandler: ((Tsundoc.ID, String?, EmojiBackgroundColor?) -> (Result<Void, CommandServiceError>))?
+    public func updateTsundoc(having id: Tsundoc.ID, emojiAlias: String?, emojiBackgroundColor: EmojiBackgroundColor?) -> Result<Void, CommandServiceError> {
         updateTsundocHavingCallCount += 1
         if let updateTsundocHavingHandler = updateTsundocHavingHandler {
-            return updateTsundocHavingHandler(id, emojiAlias)
+            return updateTsundocHavingHandler(id, emojiAlias, emojiBackgroundColor)
         }
         fatalError("updateTsundocHavingHandler returns can't have a default value thus its handler must be set")
     }

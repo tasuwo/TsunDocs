@@ -47,8 +47,8 @@ struct TsundocThumbnail: View {
                     }
                 }
 
-            case let .emoji(emoji):
-                Color.emojiBackground
+            case let .emoji(emoji: emoji, backgroundColor: backgroundColor):
+                backgroundColor.swiftUIColor
                     .overlay(
                         Text(emoji)
                             .font(.system(size: 40))
@@ -86,7 +86,7 @@ struct TsundocThumbnailView_Previews: PreviewProvider {
                     TsundocThumbnail(source: nil)
                         .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
-                    TsundocThumbnail(source: .emoji("👍"))
+                    TsundocThumbnail(source: .emoji(emoji: "👍", backgroundColor: .white))
                         .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 }
 

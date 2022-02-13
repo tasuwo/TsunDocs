@@ -3,6 +3,7 @@
 //
 
 import struct Domain.Emoji
+import enum Domain.EmojiBackgroundColor
 import EmojiList
 import ImageLoader
 import SwiftUI
@@ -17,30 +18,32 @@ public struct TsundocEditThumbnail: View {
 
     private let imageUrl: URL?
 
-    @Binding private var selectedEmoji: Emoji?
+    @Binding private var selectedEmojiInfo: EmojiInfo?
 
     @State private var isSelectingEmoji = false
 
-    private var visibleDeleteButton: Bool { selectedEmoji != nil }
-    private var visibleEmojiLoadButton: Bool { imageUrl != nil && selectedEmoji == nil }
+    private var visibleDeleteButton: Bool { selectedEmojiInfo != nil }
+    private var visibleEmojiLoadButton: Bool { imageUrl != nil && selectedEmojiInfo == nil }
 
     @Environment(\.imageLoaderFactory) var imageLoaderFactory
 
     // MARK: - Initializers
 
-    public init(imageUrl: URL?, selectedEmoji: Binding<Emoji?>) {
+    public init(imageUrl: URL?,
+                selectedEmojiInfo: Binding<EmojiInfo?>)
+    {
         self.imageUrl = imageUrl
-        _selectedEmoji = selectedEmoji
+        _selectedEmojiInfo = selectedEmojiInfo
     }
 
     // MARK: - View
 
     private var thumbnail: some View {
         ZStack {
-            if let emoji = selectedEmoji {
-                Color.emojiBackground
+            if let emojiInfo = selectedEmojiInfo {
+                emojiInfo.backgroundColor.swiftUIColor
                     .overlay(
-                        Text(emoji.emoji)
+                        Text(emojiInfo.emoji.emoji)
                             .font(.system(size: 40))
                     )
                     .onTapGesture {
@@ -88,9 +91,9 @@ public struct TsundocEditThumbnail: View {
         }
         .sheet(isPresented: $isSelectingEmoji) {
             NavigationView {
-                EmojiList(backgroundColors: DefaultPickColor.self) { emoji, _ in
+                EmojiList(backgroundColors: EmojiBackgroundColor.self) { emoji, backgrounColor in
                     isSelectingEmoji = false
-                    selectedEmoji = emoji
+                    selectedEmojiInfo = .init(emoji: emoji, backgroundColor: backgrounColor)
                 }
             }
         }
@@ -110,7 +113,7 @@ public struct TsundocEditThumbnail: View {
                     .offset(x: -1 * (Self.thumbnailSize / 2) + 5,
                             y: -1 * (Self.thumbnailSize / 2) + 5)
                     .onTapGesture {
-                        selectedEmoji = nil
+                        selectedEmojiInfo = nil
                     }
             }
 
@@ -153,13 +156,13 @@ public struct TsundocEditThumbnail: View {
 @MainActor
 struct SharedUrlThumbnailView_Previews: PreviewProvider {
     struct Container: View {
-        @State var selectedEmoji: Emoji?
+        @State var selectedEmojiInfo: EmojiInfo?
 
         let imageUrl: URL?
         let imageLoaderFactory: Factory<ImageLoader>
 
         var body: some View {
-            TsundocEditThumbnail(imageUrl: imageUrl, selectedEmoji: $selectedEmoji)
+            TsundocEditThumbnail(imageUrl: imageUrl, selectedEmojiInfo: $selectedEmojiInfo)
                 .environment(\.imageLoaderFactory, imageLoaderFactory)
         }
     }

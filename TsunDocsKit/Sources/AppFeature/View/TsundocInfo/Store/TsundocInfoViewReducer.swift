@@ -41,10 +41,10 @@ struct TsundocInfoViewReducer: Reducer {
             }
             return (nextState, [effect])
 
-        case let .editEmoji(emoji):
+        case let .editEmojiInfo(emojiInfo):
             let effect = Effect<Action> {
                 do {
-                    try await dependency.tsundocCommandService.updateTsundoc(having: state.tsundoc.id, emojiAlias: emoji?.alias)
+                    try await dependency.tsundocCommandService.updateTsundoc(having: state.tsundoc.id, emojiAlias: emojiInfo?.emoji.alias, emojiBackgroundColor: emojiInfo?.backgroundColor)
                     return .none
                 } catch {
                     return .failedToUpdate

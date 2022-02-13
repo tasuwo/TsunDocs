@@ -15,7 +15,7 @@ public struct TsundocMetaContainer: View {
     private let imageUrl: URL?
 
     @Binding var title: String
-    @Binding var selectedEmoji: Emoji?
+    @Binding var selectedEmojiInfo: EmojiInfo?
 
     @State var isTitleEditAlertPresenting = false
 
@@ -24,12 +24,12 @@ public struct TsundocMetaContainer: View {
     public init(url: URL,
                 imageUrl: URL?,
                 title: Binding<String>,
-                selectedEmoji: Binding<Emoji?>)
+                selectedEmojiInfo: Binding<EmojiInfo?>)
     {
         self.url = url
         self.imageUrl = imageUrl
         _title = title
-        _selectedEmoji = selectedEmoji
+        _selectedEmojiInfo = selectedEmojiInfo
     }
 
     // MARK: - View
@@ -37,7 +37,7 @@ public struct TsundocMetaContainer: View {
     public var body: some View {
         HStack(alignment: .top) {
             VStack {
-                TsundocEditThumbnail(imageUrl: imageUrl, selectedEmoji: $selectedEmoji)
+                TsundocEditThumbnail(imageUrl: imageUrl, selectedEmojiInfo: $selectedEmojiInfo)
             }
 
             VStack(alignment: .leading, spacing: 8) {
@@ -87,13 +87,13 @@ struct TsundocMetaContainer_Previews: PreviewProvider {
         let url: URL
         let imageUrl: URL?
         @State var title: String
-        @State var selectedEmoji: Emoji?
+        @State var selectedEmojiInfo: EmojiInfo?
 
         var body: some View {
             TsundocMetaContainer(url: url,
                                  imageUrl: imageUrl,
                                  title: $title,
-                                 selectedEmoji: $selectedEmoji)
+                                 selectedEmojiInfo: $selectedEmojiInfo)
         }
     }
 

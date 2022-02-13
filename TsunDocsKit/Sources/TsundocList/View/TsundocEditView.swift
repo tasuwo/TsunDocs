@@ -17,7 +17,7 @@ public struct TsundocEditView: View {
     private let onTapSaveButton: () -> Void
 
     @Binding private var title: String
-    @Binding private var selectedEmoji: Emoji?
+    @Binding private var selectedEmojiInfo: EmojiInfo?
     @Binding private var selectedTags: [Tag]
 
     @State private var isTagEditSheetPresenting = false
@@ -29,14 +29,14 @@ public struct TsundocEditView: View {
     public init(url: URL,
                 imageUrl: URL?,
                 title: Binding<String>,
-                selectedEmoji: Binding<Emoji?>,
+                selectedEmojiInfo: Binding<EmojiInfo?>,
                 selectedTags: Binding<[Tag]>,
                 onTapSaveButton: @escaping () -> Void)
     {
         self.url = url
         self.imageUrl = imageUrl
         _title = title
-        _selectedEmoji = selectedEmoji
+        _selectedEmojiInfo = selectedEmojiInfo
         _selectedTags = selectedTags
         self.onTapSaveButton = onTapSaveButton
     }
@@ -46,7 +46,7 @@ public struct TsundocEditView: View {
     @MainActor
     public var body: some View {
         VStack {
-            TsundocMetaContainer(url: url, imageUrl: imageUrl, title: $title, selectedEmoji: $selectedEmoji)
+            TsundocMetaContainer(url: url, imageUrl: imageUrl, title: $title, selectedEmojiInfo: $selectedEmojiInfo)
 
             Divider()
 
@@ -120,7 +120,7 @@ public struct TsundocEditView: View {
 struct TsundocEditView_Previews: PreviewProvider {
     struct ContentView: View {
         @State private var title: String = "My Title"
-        @State private var selectedEmoji: Emoji? = nil
+        @State private var selectedEmojiInfo: EmojiInfo? = nil
         @State private var selectedTags: [Tag] = []
         @State private var isPresenting = false
 
@@ -136,7 +136,7 @@ struct TsundocEditView_Previews: PreviewProvider {
                 TsundocEditView(url: URL(string: "https://localhost")!,
                                 imageUrl: nil,
                                 title: $title,
-                                selectedEmoji: $selectedEmoji,
+                                selectedEmojiInfo: $selectedEmojiInfo,
                                 selectedTags: $selectedTags) {
                     isPresenting = false
                 }

@@ -29,6 +29,7 @@ extension TsundocCommandService: Domain.TsundocCommandService {
         tsundoc.descriptionText = command.description
         tsundoc.url = command.url
         tsundoc.emojiAlias = command.emojiAlias
+        tsundoc.emojiBackgroundColor = command.emojiBackgroundColor?.rawValue
         tsundoc.imageUrl = command.imageUrl
 
         let tags: [Tag] = command.tagIds
@@ -61,13 +62,14 @@ extension TsundocCommandService: Domain.TsundocCommandService {
         }
     }
 
-    public func updateTsundoc(having id: Domain.Tsundoc.ID, emojiAlias: String?) -> Result<Void, CommandServiceError> {
+    public func updateTsundoc(having id: Domain.Tsundoc.ID, emojiAlias: String?, emojiBackgroundColor: EmojiBackgroundColor?) -> Result<Void, CommandServiceError> {
         do {
             guard let tsundoc = try fetchTsundoc(having: id) else {
                 return .failure(.notFound)
             }
 
             tsundoc.emojiAlias = emojiAlias
+            tsundoc.emojiBackgroundColor = emojiBackgroundColor?.rawValue
             tsundoc.updatedDate = Date()
 
             return .success(())

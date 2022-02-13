@@ -30,7 +30,7 @@ struct TsundocInfoView: View {
             TsundocMetaContainer(url: store.state.tsundoc.url,
                                  imageUrl: store.state.tsundoc.imageUrl,
                                  title: store.bindTitle(),
-                                 selectedEmoji: store.bindEmoji())
+                                 selectedEmojiInfo: store.bindEmojiInfo())
 
             Divider()
 
@@ -96,8 +96,13 @@ extension ViewStore where Action == TsundocInfoViewAction, State == TsundocInfoV
         bind { $0.tsundoc.title } action: { .editTitle($0) }
     }
 
-    func bindEmoji() -> Binding<Emoji?> {
-        bind { $0.tsundoc.emoji } action: { .editEmoji($0) }
+    func bindEmojiInfo() -> Binding<EmojiInfo?> {
+        bind {
+            guard let emoji = $0.tsundoc.emoji else { return nil }
+            return EmojiInfo(emoji: emoji, backgroundColor: $0.tsundoc.emojiBackgroundColor ?? .default)
+        } action: {
+            .editEmojiInfo($0)
+        }
     }
 
     func bindTags() -> Binding<[Tag]> {
@@ -192,7 +197,7 @@ struct TsundocInfoView_Previews: PreviewProvider {
             service.beginHandler = {}
             service.commitHandler = {}
             service.updateTsundocHandler = { _, _ in return .success(()) }
-            service.updateTsundocHavingHandler = { _, _ in return .success(()) }
+            service.updateTsundocHavingHandler = { _, _, _ in return .success(()) }
             service.updateTsundocHavingByRemovingTagHavingHandler = { _, _ in return .success(()) }
             service.updateTsundocHavingByReplacingTagsHavingHandler = { _, _ in return .success(()) }
             return service

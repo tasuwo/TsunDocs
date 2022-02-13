@@ -20,6 +20,7 @@ public extension Tsundoc {
     @NSManaged var title: String?
     @NSManaged var updatedDate: Date?
     @NSManaged var url: URL?
+    @NSManaged var emojiBackgroundColor: String?
     @NSManaged var tags: NSSet?
 }
 
