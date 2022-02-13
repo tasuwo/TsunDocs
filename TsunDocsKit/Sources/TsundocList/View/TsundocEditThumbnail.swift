@@ -88,9 +88,9 @@ public struct TsundocEditThumbnail: View {
         }
         .sheet(isPresented: $isSelectingEmoji) {
             NavigationView {
-                EmojiList {
+                EmojiList(backgroundColors: DefaultPickColor.self) { emoji, _ in
                     isSelectingEmoji = false
-                    selectedEmoji = $0
+                    selectedEmoji = emoji
                 }
             }
         }
