@@ -94,6 +94,12 @@ internal enum L10n {
     internal static let tsundocListMenuInfo = L10n.tr("Localizable", "tsundoc_list_menu_info")
     /// Safariで開く
     internal static let tsundocListMenuOpenSafari = L10n.tr("Localizable", "tsundoc_list_menu_open_safari")
+    /// 削除
+    internal static let tsundocListSwipeActionDelete = L10n.tr("Localizable", "tsundoc_list_swipe_action_delete")
+    /// 既読
+    internal static let tsundocListSwipeActionToggleUnreadRead = L10n.tr("Localizable", "tsundoc_list_swipe_action_toggle_unread_read")
+    /// 未読
+    internal static let tsundocListSwipeActionToggleUnreadUnread = L10n.tr("Localizable", "tsundoc_list_swipe_action_toggle_unread_unread")
     /// マイリスト
     internal static let tsundocListTitle = L10n.tr("Localizable", "tsundoc_list_title")
 }

@@ -15,6 +15,10 @@
 "tsundoc_list_error_title_delete" = "削除に失敗しました";
 "tsundoc_list_error_title_update" = "更新に失敗しました";
 
+"tsundoc_list_swipe_action_toggle_unread_read" = "既読";
+"tsundoc_list_swipe_action_toggle_unread_unread" = "未読";
+"tsundoc_list_swipe_action_delete" = "削除";
+
 "tsundoc_list_empty_message_default_title" = "アイテムがありません";
 "tsundoc_list_empty_message_default_message" = "他のアプリの「共有」から、追加したいサイトの URL をシェアしましょう";
 "tsundoc_list_empty_message_tag_message" = "タグ「%@」が付与されたアイテムはありません";

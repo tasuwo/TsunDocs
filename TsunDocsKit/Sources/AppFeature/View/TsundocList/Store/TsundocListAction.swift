@@ -31,7 +31,8 @@ enum TsundocListAction {
 
     case onAppear
     case updateTsundocs([Tsundoc])
-    case delete(IndexSet)
+    case delete(Tsundoc)
+    case toggleUnread(Tsundoc)
     case select(Tsundoc)
     case selectTags(Set<Tag.ID>, Tsundoc.ID)
     case tap(Tsundoc.ID, MenuItem)

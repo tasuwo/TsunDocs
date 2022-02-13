@@ -46,6 +46,21 @@ struct TsundocCell: View {
             }
 
             Spacer()
+
+            VStack {
+                if tsundoc.isUnread {
+                    Circle()
+                        .fill(Color.accentColor)
+                        .frame(width: 8, height: 8)
+                        .padding([.top], 8.0)
+                } else {
+                    Circle()
+                        .fill(.clear)
+                        .frame(width: 8, height: 8)
+                        .padding([.top], 8.0)
+                }
+                Spacer()
+            }
         }
     }
 }
@@ -65,7 +80,8 @@ struct TsundocCell_Previews: PreviewProvider {
         Group {
             NavigationView {
                 List {
-                    TsundocCell(tsundoc: .makeDefault(title: "Title only"))
+                    TsundocCell(tsundoc: .makeDefault(title: "Title only",
+                                                      isUnread: true))
                         .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
                     TsundocCell(tsundoc: .makeDefault(title: "Title with description",
@@ -85,7 +101,8 @@ struct TsundocCell_Previews: PreviewProvider {
 
                     TsundocCell(tsundoc: .makeDefault(title: longString,
                                                       description: longString,
-                                                      emojiAlias: "ghost"))
+                                                      emojiAlias: "ghost",
+                                                      isUnread: true))
                         .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 }
                 .navigationTitle("TsundocCell")
@@ -94,7 +111,8 @@ struct TsundocCell_Previews: PreviewProvider {
 
             NavigationView {
                 List {
-                    TsundocCell(tsundoc: .makeDefault(title: "Title only"))
+                    TsundocCell(tsundoc: .makeDefault(title: "Title only",
+                                                      isUnread: true))
                         .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
                     TsundocCell(tsundoc: .makeDefault(title: "Title with description",
@@ -114,7 +132,8 @@ struct TsundocCell_Previews: PreviewProvider {
 
                     TsundocCell(tsundoc: .makeDefault(title: longString,
                                                       description: longString,
-                                                      emojiAlias: "ghost"))
+                                                      emojiAlias: "ghost",
+                                                      isUnread: true))
                         .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(FailureMock.self)) })
                 }
                 .navigationTitle("TsundocCell")

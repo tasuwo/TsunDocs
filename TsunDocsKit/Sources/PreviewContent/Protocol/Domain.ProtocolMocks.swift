@@ -244,6 +244,16 @@ public class TsundocCommandServiceMock: TsundocCommandService {
         fatalError("updateTsundocHavingHandler returns can't have a default value thus its handler must be set")
     }
 
+    public private(set) var updateTsundocHavingIsUnreadCallCount = 0
+    public var updateTsundocHavingIsUnreadHandler: ((Tsundoc.ID, Bool) -> (Result<Void, CommandServiceError>))?
+    public func updateTsundoc(having id: Tsundoc.ID, isUnread: Bool) -> Result<Void, CommandServiceError> {
+        updateTsundocHavingIsUnreadCallCount += 1
+        if let updateTsundocHavingIsUnreadHandler = updateTsundocHavingIsUnreadHandler {
+            return updateTsundocHavingIsUnreadHandler(id, isUnread)
+        }
+        fatalError("updateTsundocHavingIsUnreadHandler returns can't have a default value thus its handler must be set")
+    }
+
     public private(set) var updateTsundocHavingByAddingTagHavingCallCount = 0
     public var updateTsundocHavingByAddingTagHavingHandler: ((Tsundoc.ID, Tag.ID) -> (Result<Void, CommandServiceError>))?
     public func updateTsundoc(having id: Tsundoc.ID, byAddingTagHaving tagId: Tag.ID) -> Result<Void, CommandServiceError> {

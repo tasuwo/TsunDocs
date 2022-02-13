@@ -79,6 +79,21 @@ extension TsundocCommandService: Domain.TsundocCommandService {
         }
     }
 
+    public func updateTsundoc(having id: Domain.Tsundoc.ID, isUnread: Bool) -> Result<Void, CommandServiceError> {
+        do {
+            guard let tsundoc = try fetchTsundoc(having: id) else {
+                return .failure(.notFound)
+            }
+
+            tsundoc.isUnread = isUnread
+            tsundoc.updatedDate = Date()
+
+            return .success(())
+        } catch {
+            return .failure(.internalError(error))
+        }
+    }
+
     public func updateTsundoc(having id: Domain.Tsundoc.ID, byAddingTagHaving tagId: Domain.Tag.ID) -> Result<Void, CommandServiceError> {
         do {
             guard let tsundoc = try fetchTsundoc(having: id) else {

@@ -15,6 +15,10 @@
 "tsundoc_list_error_title_delete" = "Failed to delete.";
 "tsundoc_list_error_title_update" = "Failed to update.";
 
+"tsundoc_list_swipe_action_toggle_unread_read" = "Read";
+"tsundoc_list_swipe_action_toggle_unread_unread" = "Unread";
+"tsundoc_list_swipe_action_delete" = "Delete";
+
 "tsundoc_list_empty_message_default_title" = "No Clips";
 "tsundoc_list_empty_message_default_message" = "Share the url of the web site using other apps.";
 "tsundoc_list_empty_message_tag_message" = "No items categorized with Tag \"%@\"";

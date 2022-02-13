@@ -27,15 +27,31 @@ struct TsundocList: View {
             if store.state.tsundocs.isEmpty {
                 EmptyMessageView(emptyTitle, message: emptyMessage)
             } else {
-                List {
-                    ForEach(store.state.tsundocs) {
-                        cell($0)
-                    }
-                    .onDelete { offsets in
-                        withAnimation {
-                            store.execute(.delete(offsets))
+                List(store.state.tsundocs) { tsundoc in
+                    cell(tsundoc)
+                        .swipeActions(edge: .leading) {
+                            Button(role: .none) {
+                                withAnimation {
+                                    store.execute(.toggleUnread(tsundoc))
+                                }
+                            } label: {
+                                if tsundoc.isUnread {
+                                    Label(L10n.tsundocListSwipeActionToggleUnreadRead, systemImage: "envelope.open")
+                                } else {
+                                    Label(L10n.tsundocListSwipeActionToggleUnreadUnread, systemImage: "envelope.badge")
+                                }
+                            }
+                            .tint(.accentColor)
                         }
-                    }
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                withAnimation {
+                                    store.execute(.delete(tsundoc))
+                                }
+                            } label: {
+                                Label(L10n.tsundocListSwipeActionDelete, systemImage: "trash")
+                            }
+                        }
                 }
             }
         }

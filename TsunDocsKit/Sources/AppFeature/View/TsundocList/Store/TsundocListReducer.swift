@@ -30,8 +30,12 @@ struct TsundocListReducer: Reducer {
             nextState.tsundocs = tsundocs
             return (nextState, nil)
 
-        case let .delete(offsets):
-            let nextState = Self.delete(offsets: offsets, state, dependency)
+        case let .delete(tsundoc):
+            let nextState = Self.delete(tsundoc, state, dependency)
+            return (nextState, nil)
+
+        case let .toggleUnread(tsundoc):
+            let nextState = Self.toggleUnread(tsundoc, state, dependency)
             return (nextState, nil)
 
         case let .select(tsundoc):
@@ -173,12 +177,8 @@ extension TsundocListReducer {
 // MARK: - Deletion
 
 extension TsundocListReducer {
-    private static func delete(offsets: IndexSet, _ state: State, _ dependency: Dependency) -> State {
+    private static func delete(_ tsundoc: Tsundoc, _ state: State, _ dependency: Dependency) -> State {
         var nextState = state
-
-        let targets = offsets
-            .filter { state.tsundocs.indices.contains($0) }
-            .map { state.tsundocs[$0] }
 
         var failedToDelete = false
         dependency.tsundocCommandService.perform {
@@ -186,10 +186,8 @@ extension TsundocListReducer {
                 try dependency.tsundocCommandService.begin()
 
                 var failures: [CommandServiceError] = []
-                targets.forEach {
-                    if let failure = dependency.tsundocCommandService.deleteTsundoc(having: $0.id).failureValue {
-                        failures.append(failure)
-                    }
+                if let failure = dependency.tsundocCommandService.deleteTsundoc(having: tsundoc.id).failureValue {
+                    failures.append(failure)
                 }
 
                 guard failures.isEmpty else {
@@ -209,7 +207,42 @@ extension TsundocListReducer {
             return nextState
         }
 
-        nextState.tsundocs.remove(atOffsets: offsets)
+        if let index = state.tsundocs.firstIndex(of: tsundoc) {
+            nextState.tsundocs.remove(at: index)
+        }
+
+        return nextState
+    }
+
+    private static func toggleUnread(_ tsundoc: Tsundoc, _ state: State, _ dependency: Dependency) -> State {
+        var nextState = state
+
+        var failedToDelete = false
+        dependency.tsundocCommandService.perform {
+            do {
+                try dependency.tsundocCommandService.begin()
+
+                var failures: [CommandServiceError] = []
+                if let failure = dependency.tsundocCommandService.updateTsundoc(having: tsundoc.id, isUnread: !tsundoc.isUnread).failureValue {
+                    failures.append(failure)
+                }
+
+                guard failures.isEmpty else {
+                    try dependency.tsundocCommandService.cancel()
+                    failedToDelete = true
+                    return
+                }
+
+                try dependency.tsundocCommandService.commit()
+            } catch {
+                failedToDelete = true
+            }
+        }
+
+        if failedToDelete {
+            nextState.alert = .plain(.failedToUpdate)
+            return nextState
+        }
 
         return nextState
     }
