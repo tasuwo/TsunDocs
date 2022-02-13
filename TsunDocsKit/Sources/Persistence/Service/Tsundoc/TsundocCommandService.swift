@@ -30,6 +30,7 @@ extension TsundocCommandService: Domain.TsundocCommandService {
         tsundoc.url = command.url
         tsundoc.emojiAlias = command.emojiAlias
         tsundoc.emojiBackgroundColor = command.emojiBackgroundColor?.rawValue
+        tsundoc.isUnread = command.isUnread
         tsundoc.imageUrl = command.imageUrl
 
         let tags: [Tag] = command.tagIds

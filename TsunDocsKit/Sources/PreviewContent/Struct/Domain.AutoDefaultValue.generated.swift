@@ -39,6 +39,7 @@ public extension Tsundoc {
         imageUrl: URL? = nil,
         emojiAlias: String? = nil,
         emojiBackgroundColor: EmojiBackgroundColor? = nil,
+        isUnread: Bool = false,
         updatedDate: Date = Date(timeIntervalSince1970: 0),
         createdDate: Date = Date(timeIntervalSince1970: 0)
     ) -> Self {
@@ -50,6 +51,7 @@ public extension Tsundoc {
             imageUrl: imageUrl,
             emojiAlias: emojiAlias,
             emojiBackgroundColor: emojiBackgroundColor,
+            isUnread: isUnread,
             updatedDate: updatedDate,
             createdDate: createdDate
         )
@@ -64,6 +66,7 @@ public extension TsundocCommand {
         imageUrl: URL? = nil,
         emojiAlias: String? = nil,
         emojiBackgroundColor: EmojiBackgroundColor? = nil,
+        isUnread: Bool = false,
         tagIds: [Tag.ID] = []
     ) -> Self {
         return .init(
@@ -73,6 +76,7 @@ public extension TsundocCommand {
             imageUrl: imageUrl,
             emojiAlias: emojiAlias,
             emojiBackgroundColor: emojiBackgroundColor,
+            isUnread: isUnread,
             tagIds: tagIds
         )
     }

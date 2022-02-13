@@ -79,6 +79,10 @@ public struct SharedUrlEditViewReducer: Reducer {
             nextState.selectedTags.removeAll(where: { $0.id == tagId })
             return (nextState, .none)
 
+        case let .onToggleUnread(isUnread):
+            nextState.isUnread = isUnread
+            return (nextState, .none)
+
         case .errorConfirmed:
             dependency.completable.cancel(with: NSError()) // TODO:
             return (nextState, .none)

@@ -14,6 +14,7 @@ public struct TsundocCommand {
     public let imageUrl: URL?
     public let emojiAlias: String?
     public let emojiBackgroundColor: EmojiBackgroundColor?
+    public let isUnread: Bool
     public let tagIds: [Tag.ID]
 
     // MARK: - Initializers
@@ -24,6 +25,7 @@ public struct TsundocCommand {
                 imageUrl: URL?,
                 emojiAlias: String?,
                 emojiBackgroundColor: EmojiBackgroundColor?,
+                isUnread: Bool,
                 tagIds: [Tag.ID] = [])
     {
         self.title = title
@@ -32,6 +34,7 @@ public struct TsundocCommand {
         self.imageUrl = imageUrl
         self.emojiAlias = emojiAlias
         self.emojiBackgroundColor = emojiBackgroundColor
+        self.isUnread = isUnread
         self.tagIds = tagIds
     }
 }

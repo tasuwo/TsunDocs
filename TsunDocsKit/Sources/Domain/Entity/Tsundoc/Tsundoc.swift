@@ -16,6 +16,7 @@ public struct Tsundoc {
     public let imageUrl: URL?
     public let emojiAlias: String?
     public let emojiBackgroundColor: EmojiBackgroundColor?
+    public let isUnread: Bool
     public let updatedDate: Date
     public let createdDate: Date
 
@@ -28,6 +29,7 @@ public struct Tsundoc {
                 imageUrl: URL?,
                 emojiAlias: String?,
                 emojiBackgroundColor: EmojiBackgroundColor?,
+                isUnread: Bool,
                 updatedDate: Date,
                 createdDate: Date)
     {
@@ -38,6 +40,7 @@ public struct Tsundoc {
         self.imageUrl = imageUrl
         self.emojiAlias = emojiAlias
         self.emojiBackgroundColor = emojiBackgroundColor
+        self.isUnread = isUnread
         self.updatedDate = updatedDate
         self.createdDate = createdDate
     }

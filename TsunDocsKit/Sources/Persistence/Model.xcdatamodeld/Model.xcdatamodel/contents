@@ -18,6 +18,7 @@
         <attribute name="emojiBackgroundColor" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="YES"/>
         <attribute name="imageUrl" optional="YES" attributeType="URI"/>
+        <attribute name="isUnread" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
@@ -28,6 +29,6 @@
     </entity>
     <elements>
         <element name="Tag" positionX="-45" positionY="63" width="128" height="119"/>
-        <element name="Tsundoc" positionX="-45" positionY="0" width="128" height="179"/>
+        <element name="Tsundoc" positionX="-45" positionY="0" width="128" height="194"/>
     </elements>
 </model>

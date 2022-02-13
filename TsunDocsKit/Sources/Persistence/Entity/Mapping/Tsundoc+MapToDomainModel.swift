@@ -27,6 +27,7 @@ extension Tsundoc {
                      imageUrl: imageUrl,
                      emojiAlias: emojiAlias,
                      emojiBackgroundColor: backgroundColor,
+                     isUnread: isUnread,
                      updatedDate: updatedDate,
                      createdDate: createdDate)
     }

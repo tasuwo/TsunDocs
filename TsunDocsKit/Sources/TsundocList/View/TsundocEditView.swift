@@ -19,6 +19,7 @@ public struct TsundocEditView: View {
     @Binding private var title: String
     @Binding private var selectedEmojiInfo: EmojiInfo?
     @Binding private var selectedTags: [Tag]
+    @Binding private var isUnread: Bool
 
     @State private var isTagEditSheetPresenting = false
 
@@ -31,6 +32,7 @@ public struct TsundocEditView: View {
                 title: Binding<String>,
                 selectedEmojiInfo: Binding<EmojiInfo?>,
                 selectedTags: Binding<[Tag]>,
+                isUnread: Binding<Bool>,
                 onTapSaveButton: @escaping () -> Void)
     {
         self.url = url
@@ -38,6 +40,7 @@ public struct TsundocEditView: View {
         _title = title
         _selectedEmojiInfo = selectedEmojiInfo
         _selectedTags = selectedTags
+        _isUnread = isUnread
         self.onTapSaveButton = onTapSaveButton
     }
 
@@ -47,6 +50,16 @@ public struct TsundocEditView: View {
     public var body: some View {
         VStack {
             TsundocMetaContainer(url: url, imageUrl: imageUrl, title: $title, selectedEmojiInfo: $selectedEmojiInfo)
+
+            Divider()
+
+            HStack {
+                Toggle(isOn: $isUnread) {
+                    Text("tsundoc_edit_view_unread_toggle", bundle: Bundle.this)
+                }
+                .toggleStyle(.switch)
+            }
+            .padding([.leading, .trailing], TsundocEditThumbnail.padding)
 
             Divider()
 
@@ -122,26 +135,20 @@ struct TsundocEditView_Previews: PreviewProvider {
         @State private var title: String = "My Title"
         @State private var selectedEmojiInfo: EmojiInfo? = nil
         @State private var selectedTags: [Tag] = []
-        @State private var isPresenting = false
+        @State private var isUnread: Bool = false
 
         init() {}
 
         var body: some View {
-            Button {
-                isPresenting = true
-            } label: {
-                Text("Press me")
+            TsundocEditView(url: URL(string: "https://localhost")!,
+                            imageUrl: nil,
+                            title: $title,
+                            selectedEmojiInfo: $selectedEmojiInfo,
+                            selectedTags: $selectedTags,
+                            isUnread: $isUnread) {
+                // NOP
             }
-            .sheet(isPresented: $isPresenting) {
-                TsundocEditView(url: URL(string: "https://localhost")!,
-                                imageUrl: nil,
-                                title: $title,
-                                selectedEmojiInfo: $selectedEmojiInfo,
-                                selectedTags: $selectedTags) {
-                    isPresenting = false
-                }
-                .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
-            }
+            .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
         }
     }
 

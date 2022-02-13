@@ -15,12 +15,13 @@ public extension Tsundoc {
     @NSManaged var createdDate: Date?
     @NSManaged var descriptionText: String?
     @NSManaged var emojiAlias: String?
+    @NSManaged var emojiBackgroundColor: String?
     @NSManaged var id: UUID?
     @NSManaged var imageUrl: URL?
     @NSManaged var title: String?
     @NSManaged var updatedDate: Date?
     @NSManaged var url: URL?
-    @NSManaged var emojiBackgroundColor: String?
+    @NSManaged var isUnread: Bool
     @NSManaged var tags: NSSet?
 }
 

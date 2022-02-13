@@ -36,7 +36,9 @@ public struct SharedUrlEditView: View {
                                 selectedEmojiInfo: store.bind(\.selectedEmojiInfo,
                                                               action: { .onSelectedEmojiInfo($0) }),
                                 selectedTags: store.bind(\.selectedTags,
-                                                         action: { .onSelectedTags($0) })) {
+                                                         action: { .onSelectedTags($0) }),
+                                isUnread: store.bind(\.isUnread,
+                                                     action: { .onToggleUnread($0) })) {
                     store.execute(.onTapSaveButton)
                 }
             } else {
