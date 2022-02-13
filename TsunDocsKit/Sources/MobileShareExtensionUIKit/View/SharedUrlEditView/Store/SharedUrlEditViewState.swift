@@ -4,6 +4,7 @@
 
 import Domain
 import Foundation
+import TsundocList
 
 public struct SharedUrlEditViewState: Equatable {
     public enum Alert: Equatable {
@@ -16,7 +17,7 @@ public struct SharedUrlEditViewState: Equatable {
     var sharedUrlDescription: String?
     var sharedUrlImageUrl: URL?
 
-    var selectedEmoji: Emoji?
+    var selectedEmojiInfo: EmojiInfo?
     var selectedTags: [Tag] = []
 
     var alert: Alert?
@@ -36,7 +37,8 @@ extension SharedUrlEditViewState {
                               description: sharedUrlDescription,
                               url: url,
                               imageUrl: sharedUrlImageUrl,
-                              emojiAlias: selectedEmoji?.alias,
+                              emojiAlias: selectedEmojiInfo?.emoji.alias,
+                              emojiBackgroundColor: selectedEmojiInfo?.backgroundColor,
                               tagIds: selectedTags.map(\.id))
     }
 }

@@ -67,8 +67,8 @@ public struct SharedUrlEditViewReducer: Reducer {
             nextState.alert = .failedToLoadUrl
             return (nextState, .none)
 
-        case let .onSelectedEmoji(emoji):
-            nextState.selectedEmoji = emoji
+        case let .onSelectedEmojiInfo(emojiInfo):
+            nextState.selectedEmojiInfo = emojiInfo
             return (nextState, .none)
 
         case let .onSelectedTags(tags):

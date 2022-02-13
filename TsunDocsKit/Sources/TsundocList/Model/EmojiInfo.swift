@@ -5,7 +5,7 @@
 import struct Domain.Emoji
 import enum Domain.EmojiBackgroundColor
 
-public struct EmojiInfo {
+public struct EmojiInfo: Equatable {
     public let emoji: Emoji
     public let backgroundColor: EmojiBackgroundColor
 

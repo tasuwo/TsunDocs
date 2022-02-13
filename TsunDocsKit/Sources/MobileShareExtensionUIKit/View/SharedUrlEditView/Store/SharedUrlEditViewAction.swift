@@ -5,6 +5,7 @@
 import CompositeKit
 import Domain
 import Foundation
+import TsundocList
 
 public enum SharedUrlEditViewAction: Action {
     case onAppear
@@ -14,7 +15,7 @@ public enum SharedUrlEditViewAction: Action {
     case failedToSave
     case onSaveTitle(String)
     case onFailedToLoadUrl
-    case onSelectedEmoji(Emoji?)
+    case onSelectedEmojiInfo(EmojiInfo?)
     case onSelectedTags([Tag])
     case onDeleteTag(Tag.ID)
     case errorConfirmed

@@ -11,6 +11,7 @@
 		05379807DD47D1488C35CD2D /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 61BEA08BAC38F1FF9313CF45 /* AppFeature */; };
 		0A0E24BA662FF22C7BC7CC8B /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = 456B32B398F1865F500454D7 /* Persistence */; };
 		1BED969DBCC5B90F766D1770 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 811474ECA0ED07A79BDCA028 /* AppFeature */; };
+		2C204BDA27B906CF001F9ED5 /* UIPasteboard+HasPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C204BD927B906CF001F9ED5 /* UIPasteboard+HasPasteboard.swift */; };
 		3E538E9CD8862D261E823035 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3043BCF99CE7B865A3E51C4 /* main.swift */; };
 		43C480475934129C3C534C40 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA8AEA8894D65A2392567CFD /* Localizable.strings */; };
 		74AB4123849FA9A821D5BD93 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1050BC9CDF0B53FBDB51C /* main.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		111EE81B455BEA8B5A35EFBA /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TsunDocsKit; path = TsunDocsKit; sourceTree = SOURCE_ROOT; };
+		2C204BD927B906CF001F9ED5 /* UIPasteboard+HasPasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPasteboard+HasPasteboard.swift"; sourceTree = "<group>"; };
 		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "TsunDocs (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3C95910ABB1ED3E39E4C9C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6930039FED775CA4E010873A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */,
 				FB840FDAA9B83DCE1B5E1D37 /* DependencyContainer+StoreBuilder.swift */,
 				D275639112609E63A9C9890B /* NSExtensionContext+Completable.swift */,
+				2C204BD927B906CF001F9ED5 /* UIPasteboard+HasPasteboard.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C204BDA27B906CF001F9ED5 /* UIPasteboard+HasPasteboard.swift in Sources */,
 				F51524FE71BD2D962BF0D912 /* DependencyContainer+StoreBuilder.swift in Sources */,
 				ECDE91686FB35D5F0A724900 /* DependencyContainer.swift in Sources */,
 				E78F86735C4DA53ED40DBD7E /* NSExtensionContext+Completable.swift in Sources */,

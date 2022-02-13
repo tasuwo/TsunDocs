@@ -33,8 +33,8 @@ public struct SharedUrlEditView: View {
                                 imageUrl: store.state.sharedUrlImageUrl,
                                 title: store.bind(\.title,
                                                   action: { .onSaveTitle($0) }),
-                                selectedEmoji: store.bind(\.selectedEmoji,
-                                                          action: { .onSelectedEmoji($0) }),
+                                selectedEmojiInfo: store.bind(\.selectedEmojiInfo,
+                                                              action: { .onSelectedEmojiInfo($0) }),
                                 selectedTags: store.bind(\.selectedTags,
                                                          action: { .onSelectedTags($0) })) {
                     store.execute(.onTapSaveButton)

@@ -7,6 +7,7 @@ import Domain
 import Foundation
 import MobileShareExtensionUIKit
 import Persistence
+import UIKit
 
 class DependencyContainer: ObservableObject {
     // MARK: - Properties
@@ -69,6 +70,10 @@ extension DependencyContainer: HasTagCommandService {
 
 extension DependencyContainer: HasCompletable {
     var completable: Completable { context }
+}
+
+extension DependencyContainer: HasPasteboard {
+    var pasteboard: Pasteboard { UIPasteboard.general }
 }
 
 extension DependencyContainer: HasNop {}
