@@ -24,10 +24,14 @@ struct TsundocList: View {
 
     var body: some View {
         ZStack {
-            if store.state.tsundocs.isEmpty {
-                EmptyMessageView(emptyTitle, message: emptyMessage)
+            if store.state.filteredTsundocs.isEmpty {
+                if store.state.isTsundocFilterActive {
+                    EmptyMessageView(L10n.tsundocListEmptyMessageFiltered, message: nil)
+                } else {
+                    EmptyMessageView(emptyTitle, message: emptyMessage)
+                }
             } else {
-                List(store.state.tsundocs) { tsundoc in
+                List(store.state.filteredTsundocs) { tsundoc in
                     cell(tsundoc)
                         .swipeActions(edge: .leading) {
                             Button(role: .none) {
@@ -92,6 +96,33 @@ struct TsundocList: View {
 
             case .confirmation, .none:
                 fatalError("Invalid Alert")
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if store.state.isTsundocFilterActive {
+                    Button {
+                        store.execute(.deactivateTsundocFilter, animation: .default)
+                    } label: {
+                        Image(systemName: "line.3.horizontal.decrease.circle.fill")
+                    }
+                } else {
+                    Menu {
+                        Button {
+                            store.execute(.activateTsundocFilter(.unread), animation: .default)
+                        } label: {
+                            Label(L10n.tsundocListSwipeActionToggleUnreadUnread, systemImage: "envelope.badge")
+                        }
+
+                        Button {
+                            store.execute(.activateTsundocFilter(.read), animation: .default)
+                        } label: {
+                            Label(L10n.tsundocListFilterMenuRead, systemImage: "envelope.open")
+                        }
+                    } label: {
+                        Image(systemName: "line.3.horizontal.decrease.circle")
+                    }
+                }
             }
         }
         .onAppear {

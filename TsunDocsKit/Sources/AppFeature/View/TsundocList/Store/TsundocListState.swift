@@ -35,6 +35,8 @@ struct TsundocListState: Equatable {
     }
 
     let query: Query
+    var tsundocFilter: TsundocFilter = .default
+    var isTsundocFilterActive: Bool = false
     var tsundocs: [Tsundoc]
     var modal: Modal?
     var alert: Alert?
@@ -74,5 +76,16 @@ extension TsundocListState {
     var deletingTsundocId: Tsundoc.ID? {
         guard case let .confirmation(.delete(id)) = alert else { return nil }
         return id
+    }
+
+    var filteredTsundocs: [Tsundoc] {
+        guard isTsundocFilterActive else { return tsundocs }
+        switch tsundocFilter {
+        case .read:
+            return tsundocs.filter { !$0.isUnread }
+
+        case .unread:
+            return tsundocs.filter(\.isUnread)
+        }
     }
 }

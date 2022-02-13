@@ -87,6 +87,15 @@ struct TsundocListReducer: Reducer {
             nextState.alert = .confirmation(.delete(tsundocId))
             return (nextState, nil)
 
+        case let .activateTsundocFilter(filter):
+            nextState.tsundocFilter = filter
+            nextState.isTsundocFilterActive = true
+            return (nextState, nil)
+
+        case .deactivateTsundocFilter:
+            nextState.isTsundocFilterActive = false
+            return (nextState, nil)
+
         case .failedToDeleteTsundoc:
             nextState.alert = .plain(.failedToDelete)
             return (nextState, nil)

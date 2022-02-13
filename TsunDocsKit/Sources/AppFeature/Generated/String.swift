@@ -75,6 +75,8 @@ internal enum L10n {
     internal static let tsundocListEmptyMessageDefaultMessage = L10n.tr("Localizable", "tsundoc_list_empty_message_default_message")
     /// アイテムがありません
     internal static let tsundocListEmptyMessageDefaultTitle = L10n.tr("Localizable", "tsundoc_list_empty_message_default_title")
+    /// 条件に合致するアイテムがありません
+    internal static let tsundocListEmptyMessageFiltered = L10n.tr("Localizable", "tsundoc_list_empty_message_filtered")
     /// タグ「%@」が付与されたアイテムはありません
     internal static func tsundocListEmptyMessageTagMessage(_ p1: Any) -> String {
         return L10n.tr("Localizable", "tsundoc_list_empty_message_tag_message", String(describing: p1))
@@ -84,6 +86,10 @@ internal enum L10n {
     internal static let tsundocListErrorTitleDelete = L10n.tr("Localizable", "tsundoc_list_error_title_delete")
     /// 更新に失敗しました
     internal static let tsundocListErrorTitleUpdate = L10n.tr("Localizable", "tsundoc_list_error_title_update")
+    /// 既読
+    internal static let tsundocListFilterMenuRead = L10n.tr("Localizable", "tsundoc_list_filter_menu_read")
+    /// 未読
+    internal static let tsundocListFilterMenuUnread = L10n.tr("Localizable", "tsundoc_list_filter_menu_unread")
     /// タグを追加する
     internal static let tsundocListMenuAddTag = L10n.tr("Localizable", "tsundoc_list_menu_add_tag")
     /// URLをコピー

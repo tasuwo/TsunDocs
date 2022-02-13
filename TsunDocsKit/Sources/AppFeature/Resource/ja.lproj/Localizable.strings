@@ -22,12 +22,16 @@
 "tsundoc_list_empty_message_default_title" = "アイテムがありません";
 "tsundoc_list_empty_message_default_message" = "他のアプリの「共有」から、追加したいサイトの URL をシェアしましょう";
 "tsundoc_list_empty_message_tag_message" = "タグ「%@」が付与されたアイテムはありません";
+"tsundoc_list_empty_message_filtered" = "条件に合致するアイテムがありません";
 
 "tsundoc_list_menu_add_tag" = "タグを追加する";
 "tsundoc_list_menu_copy_url" = "URLをコピー";
 "tsundoc_list_menu_open_safari" = "Safariで開く";
 "tsundoc_list_menu_delete" = "削除する";
 "tsundoc_list_menu_info" = "情報の編集";
+
+"tsundoc_list_filter_menu_read" = "既読";
+"tsundoc_list_filter_menu_unread" = "未読";
 
 "tsundoc_list_alert_delete_tsundoc_message" = "このアイテムを削除しますか？";
 "tsundoc_list_alert_delete_tsundoc_action" = "アイテムを削除";
