@@ -1,21 +1,11 @@
 strings:
     - inputs:
-        - Shared/Resource/ja.lproj/Localizable.strings
+        - TsunDocsKit/Sources/AppFeature/Resource/ja.lproj/Localizable.strings
       outputs:
         - templateName: structured-swift5
-          output: Shared/Generated/String.swift
-    - inputs:
-        - TsunDocsKit/Sources/TsunDocsUIKit/Resources/ja.lproj/Localizable.strings
-      outputs:
-        - templateName: structured-swift5
-          output: TsunDocsKit/Sources/TsunDocsUIKit/Generated/String.swift
+          output: TsunDocsKit/Sources/AppFeature/Generated/String.swift
     - inputs:
         - TsunDocsKit/Sources/MobileShareExtensionUIKit/Resources/ja.lproj/Localizable.strings
       outputs:
         - templateName: structured-swift5
           output: TsunDocsKit/Sources/MobileShareExtensionUIKit/Generated/String.swift
-    - inputs:
-        - TsunDocsKit/Sources/MobileShareExtensionFeature/Resources/ja.lproj/Localizable.strings
-      outputs:
-        - templateName: structured-swift5
-          output: TsunDocsKit/Sources/MobileShareExtensionFeature/Generated/String.swift
