@@ -7,10 +7,11 @@ import SwiftUI
 
 struct EmojiCell: View {
     let emoji: Emoji
+    let backgroundColor: Color
 
     var body: some View {
         VStack {
-            Color("emoji_background", bundle: Bundle.this)
+            backgroundColor
                 .aspectRatio(1, contentMode: .fill)
                 .overlay(
                     GeometryReader { proxy in
@@ -33,8 +34,10 @@ struct EmojiCell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             List {
-                EmojiCell(emoji: Emoji(alias: "+1", emoji: "👍", searchableText: "+1"))
-                EmojiCell(emoji: Emoji(alias: "smile", emoji: "😄", searchableText: "smile"))
+                EmojiCell(emoji: Emoji(alias: "+1", emoji: "👍", searchableText: "+1"),
+                          backgroundColor: .red)
+                EmojiCell(emoji: Emoji(alias: "smile", emoji: "😄", searchableText: "smile"),
+                          backgroundColor: .blue)
             }
         }
     }

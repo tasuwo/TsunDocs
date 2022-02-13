@@ -7,7 +7,7 @@ import struct Domain.Emoji
 import SearchKit
 import SwiftUI
 
-public struct EmojiList: View {
+public struct EmojiList<BackgroundColor>: View where BackgroundColor: PickColor, BackgroundColor.RawValue: Hashable {
     public typealias FilterStore = ViewStore<
         SearchableFilterState<Emoji>,
         SearchableFilterAction<Emoji>,
@@ -16,10 +16,13 @@ public struct EmojiList: View {
 
     // MARK: - Properties
 
-    private static let spacing: CGFloat = 16
-    private static let allEmojis = Emoji.emojiList()
+    private let spacing: CGFloat = 16
+    private let allEmojis = Emoji.emojiList()
+
+    let backgroundColors: BackgroundColor.Type
 
     @State var emojis: [Emoji]
+    @State var backgroundColorRawValue: BackgroundColor.RawValue = BackgroundColor.default.rawValue
 
     @StateObject private var filterStore: FilterStore
     @StateObject var engine: TextEngine = .init(debounceFor: 0.3)
@@ -27,14 +30,15 @@ public struct EmojiList: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     @Environment(\.presentationMode) var presentationMode
 
-    private let onSelected: (Emoji) -> Void
+    private let onSelected: (Emoji, BackgroundColor) -> Void
 
     // MARK: - Initializers
 
-    public init(onSelected: @escaping (Emoji) -> Void) {
+    public init(backgroundColors: BackgroundColor.Type, onSelected: @escaping (Emoji, BackgroundColor) -> Void) {
+        self.backgroundColors = backgroundColors
         self.onSelected = onSelected
 
-        let emojis = Self.allEmojis
+        let emojis = allEmojis
         _emojis = State(wrappedValue: emojis)
         let store = Store(initialState: .init(items: emojis),
                           dependency: Nop(),
@@ -45,38 +49,61 @@ public struct EmojiList: View {
     // MARK: - View
 
     public var body: some View {
-        ScrollView {
-            LazyVGrid(
-                columns: Array(repeating: GridItem(.flexible(minimum: 50), spacing: Self.spacing),
-                               count: sizeClass == .compact ? 4 : 8),
-                alignment: .center,
-                spacing: Self.spacing,
-                pinnedViews: []
-            ) {
-                ForEach(filterStore.state.filteredItems) { emoji in
-                    EmojiCell(emoji: emoji)
-                        .onTapGesture {
-                            onSelected(emoji)
+        ZStack {
+            ScrollView {
+                VStack(spacing: 0) {
+                    LazyVGrid(
+                        columns: Array(repeating: GridItem(.flexible(minimum: 50), spacing: spacing),
+                                       count: sizeClass == .compact ? 4 : 8),
+                        alignment: .center,
+                        spacing: spacing,
+                        pinnedViews: []
+                    ) {
+                        ForEach(filterStore.state.filteredItems) { emoji in
+                            EmojiCell(emoji: emoji, backgroundColor: backgroundColors.init(rawValue: backgroundColorRawValue)!.swiftUIColor)
+                                .onTapGesture {
+                                    onSelected(emoji, backgroundColors.init(rawValue: backgroundColorRawValue)!)
+                                }
                         }
+                    }
+                    .padding(.all, spacing)
                 }
+
+                colorPicker()
+                    .hidden()
             }
-            .padding(.all, Self.spacing)
+            .searchable(text: $engine.input, placement: .navigationBarDrawer(displayMode: .always))
+            .navigationTitle(Text("emoji_list_title", bundle: Bundle.this))
+            .navigationBarTitleDisplayMode(.inline)
+            .onChange(of: engine.output) { query in
+                filterStore.execute(.updateQuery(query), animation: .default)
+            }
+            .onChange(of: emojis) { emojis in
+                filterStore.execute(.updateItems(emojis), animation: .default)
+            }
+
+            VStack {
+                Spacer()
+                colorPicker()
+            }
         }
-        .searchable(text: $engine.input, placement: .navigationBarDrawer(displayMode: .always))
-        .navigationTitle(Text("emoji_list_title", bundle: Bundle.this))
-        .navigationBarTitleDisplayMode(.inline)
-        .onChange(of: engine.output) { query in
-            filterStore.execute(.updateQuery(query), animation: .default)
+    }
+
+    @ViewBuilder
+    private func colorPicker() -> some View {
+        ColorPicker(color: backgroundColors.self,
+                    selected: $backgroundColorRawValue) {
+            backgroundColorRawValue = $0
         }
-        .onChange(of: emojis) { emojis in
-            filterStore.execute(.updateItems(emojis), animation: .default)
-        }
+        .frame(maxWidth: 320)
+        .padding(16)
     }
 }
 
 struct EmojiList_Previews: PreviewProvider {
     struct Container: View {
         @State var selectedEmoji: Emoji?
+        @State var selectedBackgroundColor: DefaultPickColor?
         @State var isPresenting = false
 
         var selectedEmojiText: String {
@@ -86,23 +113,45 @@ struct EmojiList_Previews: PreviewProvider {
             return emoji.emoji + emoji.alias
         }
 
+        var selectedBackgroundColorText: String {
+            guard let color = selectedBackgroundColor else {
+                return "No backgroundColor selected."
+            }
+            return color.rawValue
+        }
+
         var body: some View {
             VStack {
                 Text(selectedEmojiText)
-                    .sheet(isPresented: $isPresenting) {
-                        NavigationView {
-                            EmojiList {
-                                selectedEmoji = $0
-                                withAnimation { isPresenting = false }
+                    .padding(.bottom)
+
+                if let color = selectedBackgroundColor {
+                    HStack {
+                        Text("backgroundColor: ")
+                        Circle()
+                            .fill(color.swiftUIColor)
+                            .frame(width: 22, height: 22)
+                            .overlay {
+                                Circle()
+                                    .strokeBorder()
                             }
-                        }
                     }
-                    .padding()
+                    .padding(.bottom)
+                }
 
                 Button {
                     isPresenting = true
                 } label: {
                     Text("Select emoji")
+                }
+            }
+            .sheet(isPresented: $isPresenting) {
+                NavigationView {
+                    EmojiList(backgroundColors: DefaultPickColor.self) {
+                        selectedEmoji = $0
+                        selectedBackgroundColor = $1
+                        withAnimation { isPresenting = false }
+                    }
                 }
             }
         }
