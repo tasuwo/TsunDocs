@@ -102,6 +102,9 @@ targets:
     dependencies:
       - package: TsunDocsKit
         product: AppFeature
+      - target: MobileShareExtension
+        codeSign: false
+        embed: true
     prebuildScripts:
       - name: SwiftLint
         runOnlyWhenInstalling: false
@@ -181,15 +184,7 @@ targets:
       - path: MobileShareExtension
     dependencies:
       - package: TsunDocsKit
-        product: Domain
-      - package: TsunDocsKit
-        product: Persistence
-      - package: TsunDocsKit
-        product: CompositeKit
-      - package: TsunDocsKit
-        product: MobileShareExtensionUIKit
-      - package: TsunDocsKit
-        product: TagKit
+        product: MobileShareExtensionFeature
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: MobileShareExtension/MobileShareExtension.entitlements
@@ -200,6 +195,7 @@ targets:
           - "@executable_path/Frameworks"
           - "@executable_path/../../Frameworks"
         SKIP_INSTALL: YES
+        IPHONEOS_DEPLOYMENT_TARGET: 15.0
       configs:
         Debug:
           PRODUCT_BUNDLE_IDENTIFIER: net.tasuwo.tsundocs.ext-mobile-share

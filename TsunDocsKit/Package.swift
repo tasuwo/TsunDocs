@@ -25,6 +25,10 @@ let package = Package(
             targets: ["Persistence"]
         ),
         .library(
+            name: "MobileShareExtensionFeature",
+            targets: ["MobileShareExtensionFeature"]
+        ),
+        .library(
             name: "MobileShareExtensionUIKit",
             targets: ["MobileShareExtensionUIKit"]
         ),
@@ -81,6 +85,13 @@ let package = Package(
                 "SearchKit",
                 "TagKit",
                 "TsundocList"
+            ]
+        ),
+        .target(
+            name: "MobileShareExtensionFeature",
+            dependencies: [
+                "Persistence",
+                "MobileShareExtensionUIKit",
             ]
         ),
         .target(

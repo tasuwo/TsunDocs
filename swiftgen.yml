@@ -15,7 +15,7 @@ strings:
         - templateName: structured-swift5
           output: TsunDocsKit/Sources/MobileShareExtensionUIKit/Generated/String.swift
     - inputs:
-        - MobileShareExtension/Resources/ja.lproj/Localizable.strings
+        - TsunDocsKit/Sources/MobileShareExtensionFeature/Resources/ja.lproj/Localizable.strings
       outputs:
         - templateName: structured-swift5
-          output: MobileShareExtension/Generated/String.swift
+          output: TsunDocsKit/Sources/MobileShareExtensionFeature/Generated/String.swift

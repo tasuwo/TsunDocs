@@ -9,42 +9,50 @@
 /* Begin PBXBuildFile section */
 		0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */; };
 		05379807DD47D1488C35CD2D /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 61BEA08BAC38F1FF9313CF45 /* AppFeature */; };
-		0A0E24BA662FF22C7BC7CC8B /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = 456B32B398F1865F500454D7 /* Persistence */; };
 		1BED969DBCC5B90F766D1770 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 811474ECA0ED07A79BDCA028 /* AppFeature */; };
-		2C204BDA27B906CF001F9ED5 /* UIPasteboard+HasPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C204BD927B906CF001F9ED5 /* UIPasteboard+HasPasteboard.swift */; };
 		3E538E9CD8862D261E823035 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3043BCF99CE7B865A3E51C4 /* main.swift */; };
-		43C480475934129C3C534C40 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA8AEA8894D65A2392567CFD /* Localizable.strings */; };
 		74AB4123849FA9A821D5BD93 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1050BC9CDF0B53FBDB51C /* main.swift */; };
-		878A57B65F82C986F28E1236 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D1943A9A23E0149BEB6DEC /* String.swift */; };
-		9FCEFC354E081C74411DBB00 /* MobileShareExtensionUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2F700F9EEED5612541D9CDC3 /* MobileShareExtensionUIKit */; };
-		AA5AD8C58849CAE85A10CB5F /* TagKit in Frameworks */ = {isa = PBXBuildFile; productRef = BB3B0FD5F587023E22CD6047 /* TagKit */; };
-		D98B7DB37A9882EBB7124F74 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 2865E803F7EFC6B6082BEE1F /* Domain */; };
-		E1EA1E4D1F1744BA1CA68898 /* CompositeKit in Frameworks */ = {isa = PBXBuildFile; productRef = C5D87140BF281FB14DB05762 /* CompositeKit */; };
-		E78F86735C4DA53ED40DBD7E /* NSExtensionContext+Completable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D275639112609E63A9C9890B /* NSExtensionContext+Completable.swift */; };
-		ECDE91686FB35D5F0A724900 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */; };
-		F51524FE71BD2D962BF0D912 /* DependencyContainer+StoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB840FDAA9B83DCE1B5E1D37 /* DependencyContainer+StoreBuilder.swift */; };
+		8B895EE687FB3A23F943755A /* MobileShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D98B7DB37A9882EBB7124F74 /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = C85C52AF7B197EDAEA8A25A3 /* MobileShareExtensionFeature */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		85BC566019A7B020FD907CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B10FD681F47AC2A4820934BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8AF84C32444B977765B9493A;
+			remoteInfo = MobileShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		53006B1A1B1698EC1A6B3DF4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8B895EE687FB3A23F943755A /* MobileShareExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		111EE81B455BEA8B5A35EFBA /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TsunDocsKit; path = TsunDocsKit; sourceTree = SOURCE_ROOT; };
-		2C204BD927B906CF001F9ED5 /* UIPasteboard+HasPasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPasteboard+HasPasteboard.swift"; sourceTree = "<group>"; };
 		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "TsunDocs (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B3C95910ABB1ED3E39E4C9C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6930039FED775CA4E010873A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		7186314948325EFC4E5D93E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7C239FA42949E1D08FB8479C /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		89CDF35FD12249BFF1CC6E68 /* MobileShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileShareExtension.entitlements; sourceTree = "<group>"; };
 		AD01E9205F3BDD6034F953C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TsunDocs (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3043BCF99CE7B865A3E51C4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		C3D1943A9A23E0149BEB6DEC /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C3F1050BC9CDF0B53FBDB51C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		D275639112609E63A9C9890B /* NSExtensionContext+Completable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSExtensionContext+Completable.swift"; sourceTree = "<group>"; };
 		D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootViewController.swift; sourceTree = "<group>"; };
 		DB56EBEB7892DC64ACED096E /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 		F887EB4DB6E1DE3040F95054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		FB840FDAA9B83DCE1B5E1D37 /* DependencyContainer+StoreBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DependencyContainer+StoreBuilder.swift"; sourceTree = "<group>"; };
 		FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = MobileShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -69,28 +77,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D98B7DB37A9882EBB7124F74 /* Domain in Frameworks */,
-				0A0E24BA662FF22C7BC7CC8B /* Persistence in Frameworks */,
-				E1EA1E4D1F1744BA1CA68898 /* CompositeKit in Frameworks */,
-				9FCEFC354E081C74411DBB00 /* MobileShareExtensionUIKit in Frameworks */,
-				AA5AD8C58849CAE85A10CB5F /* TagKit in Frameworks */,
+				D98B7DB37A9882EBB7124F74 /* MobileShareExtensionFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		24AA9E9D34A0C1FEAA570805 /* DI */ = {
-			isa = PBXGroup;
-			children = (
-				B9F1DC82DBE8F738416C5605 /* DependencyContainer.swift */,
-				FB840FDAA9B83DCE1B5E1D37 /* DependencyContainer+StoreBuilder.swift */,
-				D275639112609E63A9C9890B /* NSExtensionContext+Completable.swift */,
-				2C204BD927B906CF001F9ED5 /* UIPasteboard+HasPasteboard.swift */,
-			);
-			path = DI;
-			sourceTree = "<group>";
-		};
 		7925802F255C1D710E794AC1 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,20 +99,9 @@
 			children = (
 				6930039FED775CA4E010873A /* Info.plist */,
 				89CDF35FD12249BFF1CC6E68 /* MobileShareExtension.entitlements */,
-				24AA9E9D34A0C1FEAA570805 /* DI */,
-				E3227E2C047346C97881009C /* Generated */,
-				8880B921CBAF03F390B4035B /* Resources */,
 				919B1B21137DDA18D9EB3C85 /* View */,
 			);
 			path = MobileShareExtension;
-			sourceTree = "<group>";
-		};
-		8880B921CBAF03F390B4035B /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				AA8AEA8894D65A2392567CFD /* Localizable.strings */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		919B1B21137DDA18D9EB3C85 /* View */ = {
@@ -158,14 +140,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E3227E2C047346C97881009C /* Generated */ = {
-			isa = PBXGroup;
-			children = (
-				C3D1943A9A23E0149BEB6DEC /* String.swift */,
-			);
-			path = Generated;
-			sourceTree = "<group>";
-		};
 		EB5136094B07B8560319AE2D = {
 			isa = PBXGroup;
 			children = (
@@ -187,10 +161,12 @@
 				D3138B57806C2FA5B19BA173 /* SwiftLint */,
 				CE0AD2747B613D920FA6F9C5 /* Sources */,
 				26CBBCDC2AAD7C4A199E2BC3 /* Frameworks */,
+				53006B1A1B1698EC1A6B3DF4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */,
 			);
 			name = "TsunDocs (iOS)";
 			packageProductDependencies = (
@@ -205,7 +181,6 @@
 			buildConfigurationList = 3A87E2CCF52BE6D9609BCF89 /* Build configuration list for PBXNativeTarget "MobileShareExtension" */;
 			buildPhases = (
 				87CC4EAA7C77ADEBD12FDFB2 /* Sources */,
-				C89495D43CC01D5732AF56F8 /* Resources */,
 				E88D405D2AB467B45B66F4FD /* Frameworks */,
 			);
 			buildRules = (
@@ -214,11 +189,7 @@
 			);
 			name = MobileShareExtension;
 			packageProductDependencies = (
-				2865E803F7EFC6B6082BEE1F /* Domain */,
-				456B32B398F1865F500454D7 /* Persistence */,
-				C5D87140BF281FB14DB05762 /* CompositeKit */,
-				2F700F9EEED5612541D9CDC3 /* MobileShareExtensionUIKit */,
-				BB3B0FD5F587023E22CD6047 /* TagKit */,
+				C85C52AF7B197EDAEA8A25A3 /* MobileShareExtensionFeature */,
 			);
 			productName = MobileShareExtension;
 			productReference = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */;
@@ -272,7 +243,6 @@
 			knownRegions = (
 				Base,
 				en,
-				ja,
 			);
 			mainGroup = EB5136094B07B8560319AE2D;
 			projectDirPath = "";
@@ -284,17 +254,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		C89495D43CC01D5732AF56F8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				43C480475934129C3C534C40 /* Localizable.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		2C9D5D63BB7A0F59CDA10E4D /* SwiftLint */ = {
@@ -340,12 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C204BDA27B906CF001F9ED5 /* UIPasteboard+HasPasteboard.swift in Sources */,
-				F51524FE71BD2D962BF0D912 /* DependencyContainer+StoreBuilder.swift in Sources */,
-				ECDE91686FB35D5F0A724900 /* DependencyContainer.swift in Sources */,
-				E78F86735C4DA53ED40DBD7E /* NSExtensionContext+Completable.swift in Sources */,
 				0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */,
-				878A57B65F82C986F28E1236 /* String.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,17 +321,13 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		AA8AEA8894D65A2392567CFD /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7186314948325EFC4E5D93E3 /* en */,
-				5B3C95910ABB1ED3E39E4C9C /* ja */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8AF84C32444B977765B9493A /* MobileShareExtension */;
+			targetProxy = 85BC566019A7B020FD907CFF /* PBXContainerItemProxy */;
 		};
-/* End PBXVariantGroup section */
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		003468CAD7D857E59A2EB4AA /* Release */ = {
@@ -443,6 +393,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				INFOPLIST_FILE = MobileShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -512,6 +463,7 @@
 				CODE_SIGN_ENTITLEMENTS = MobileShareExtension/MobileShareExtension.entitlements;
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				INFOPLIST_FILE = MobileShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -679,18 +631,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2865E803F7EFC6B6082BEE1F /* Domain */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Domain;
-		};
-		2F700F9EEED5612541D9CDC3 /* MobileShareExtensionUIKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MobileShareExtensionUIKit;
-		};
-		456B32B398F1865F500454D7 /* Persistence */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Persistence;
-		};
 		61BEA08BAC38F1FF9313CF45 /* AppFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppFeature;
@@ -699,13 +639,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = AppFeature;
 		};
-		BB3B0FD5F587023E22CD6047 /* TagKit */ = {
+		C85C52AF7B197EDAEA8A25A3 /* MobileShareExtensionFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TagKit;
-		};
-		C5D87140BF281FB14DB05762 /* CompositeKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CompositeKit;
+			productName = MobileShareExtensionFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
