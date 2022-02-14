@@ -30,6 +30,18 @@ extension SceneDependencyContainer: TagControlViewStoreBuildable {
     }
 }
 
+extension SceneDependencyContainer: TagMultiSelectionStoreBuildable {
+    // MARK: - TagMultiSelectionStoreBuildable
+
+    @MainActor
+    func buildTagMultiSelectionStore(selectedIds: Set<Tag.ID>) -> ViewStore<TagMultiSelectionState, TagMultiSelectionAction, TagMultiSelectionDependency> {
+        let store = Store(initialState: TagMultiSelectionState(selectedIds: selectedIds),
+                          dependency: self,
+                          reducer: TagMultiSelectionReducer())
+        return ViewStore(store: store)
+    }
+}
+
 extension SceneDependencyContainer: TsundocInfoViewStoreBuildable {
     // MARK: - TsundocInfoViewStoreBuildable
 

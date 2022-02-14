@@ -18,7 +18,7 @@ struct TsundocList: View {
     @StateObject var store: ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
 
     @Environment(\.openURL) var openURL
-    @Environment(\.tagControlViewStoreBuilder) var tagControlViewStoreBuilder: TagControlViewStoreBuildable
+    @Environment(\.tagMultiSelectionStoreBuilder) var tagMultiSelectionStoreBuilder
     @Environment(\.tsundocInfoViewStoreBuilder) var tsundocInfoViewStoreBuilder
 
     // MARK: - View
@@ -55,8 +55,7 @@ struct TsundocList: View {
         .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .dismissModal })) {
             switch store.state.modal {
             case let .tagAdditionView(tsundocId, tagIds):
-                TagMultiSelectionSheet(selectedIds: Set(tagIds),
-                                       viewStore: tagControlViewStoreBuilder.buildTagControlViewStore()) {
+                TagMultiSelectionSheet(store: tagMultiSelectionStoreBuilder.buildTagMultiSelectionStore(selectedIds: tagIds)) {
                     store.execute(.selectTags(Set($0.map(\.id)), tsundocId))
                 }
 

@@ -21,7 +21,7 @@ struct TsundocInfoView: View {
 
     @State private var isTagEditSheetPresenting = false
 
-    @Environment(\.tagControlViewStoreBuilder) var tagControlViewStoreBuilder: TagControlViewStoreBuildable
+    @Environment(\.tagMultiSelectionStoreBuilder) var tagMultiSelectionStoreBuilder
 
     // MARK: - View
 
@@ -39,8 +39,7 @@ struct TsundocInfoView: View {
             Spacer()
         }
         .sheet(isPresented: $isTagEditSheetPresenting) {
-            TagMultiSelectionSheet(selectedIds: Set(store.state.tags.map(\.id)),
-                                   viewStore: tagControlViewStoreBuilder.buildTagControlViewStore()) {
+            TagMultiSelectionSheet(store: tagMultiSelectionStoreBuilder.buildTagMultiSelectionStore(selectedIds: Set(store.state.tags.map(\.id)))) {
                 isTagEditSheetPresenting = false
                 store.execute(.editTags($0))
             }
@@ -218,6 +217,6 @@ struct TsundocInfoView_Previews: PreviewProvider {
                           dependency: Dependency(),
                           reducer: TsundocInfoViewReducer())
         TsundocInfoView(store: ViewStore(store: store))
-            .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
+            .environment(\.tagMultiSelectionStoreBuilder, TagMultiSelectionStoreBuilderMock())
     }
 }

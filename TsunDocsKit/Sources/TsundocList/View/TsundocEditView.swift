@@ -23,7 +23,7 @@ public struct TsundocEditView: View {
 
     @State private var isTagEditSheetPresenting = false
 
-    @Environment(\.tagControlViewStoreBuilder) private var builder: TagControlViewStoreBuildable
+    @Environment(\.tagMultiSelectionStoreBuilder) private var storeBuilder: TagMultiSelectionStoreBuildable
 
     // MARK: - Initializers
 
@@ -82,8 +82,7 @@ public struct TsundocEditView: View {
         }
         .padding(8)
         .sheet(isPresented: $isTagEditSheetPresenting) {
-            TagMultiSelectionSheet(selectedIds: Set(selectedTags.map(\.id)),
-                                   viewStore: builder.buildTagControlViewStore()) {
+            TagMultiSelectionSheet(store: storeBuilder.buildTagMultiSelectionStore(selectedIds: Set(selectedTags.map(\.id)))) {
                 isTagEditSheetPresenting = false
                 selectedTags = $0
             }

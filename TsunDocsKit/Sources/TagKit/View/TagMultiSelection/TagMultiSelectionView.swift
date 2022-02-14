@@ -17,7 +17,7 @@ public struct TagMultiSelectionView: View {
 
     // MARK: - Properties
 
-    @State private var selectedIds: Set<Tag.ID> = .init()
+    @Binding private var selectedIds: Set<Tag.ID>
     @State private var isAdditionDialogPresenting = false
 
     @StateObject private var store: Store
@@ -27,11 +27,11 @@ public struct TagMultiSelectionView: View {
 
     // MARK: - Initializers
 
-    public init(selectedIds: Set<Tag.ID>,
+    public init(selectedIds: Binding<Set<Tag.ID>>,
                 connection: Connection<SearchableFilterAction<Tag>>,
                 onPerform: @escaping (Action) -> Void)
     {
-        _selectedIds = State(initialValue: selectedIds)
+        _selectedIds = selectedIds
         let store = CompositeKit.Store(initialState: .init(items: []),
                                        dependency: Nop(),
                                        reducer: SearchableFilterReducer<Tag>())
@@ -78,7 +78,7 @@ public struct TagMultiSelectionView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    onPerform(.done(selected: selectedIds))
+                    onPerform(.done)
                 } label: {
                     Text("tag_multi_selection_view_done_button", bundle: Bundle.this)
                 }
@@ -142,15 +142,14 @@ struct TagMultiSelectionView_Previews: PreviewProvider {
             }
             .sheet(isPresented: $isPresenting) {
                 NavigationView {
-                    TagMultiSelectionView(selectedIds: selectedIds, connection: connection) { action in
+                    TagMultiSelectionView(selectedIds: $selectedIds, connection: connection) { action in
                         switch action {
                         case let .addNewTag(name: name):
                             withAnimation {
                                 self.tags.send(self.tags.value + [.init(id: UUID(), name: name)])
                             }
 
-                        case let .done(selected: ids):
-                            selectedIds = ids
+                        case .done:
                             isPresenting = false
                         }
                     }

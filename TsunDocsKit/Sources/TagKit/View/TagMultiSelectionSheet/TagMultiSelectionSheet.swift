@@ -7,28 +7,24 @@ import Domain
 import SwiftUI
 
 public struct TagMultiSelectionSheet: View {
-    public typealias ControlStore = ViewStore<
-        TagControlState,
-        TagControlAction,
-        TagControlDependency
+    public typealias Store = ViewStore<
+        TagMultiSelectionState,
+        TagMultiSelectionAction,
+        TagMultiSelectionDependency
     >
 
     // MARK: - Properties
 
-    private let selectedIds: Set<Tag.ID>
-
-    @StateObject private var store: ControlStore
+    @StateObject private var store: Store
 
     private let onDone: ([Tag]) -> Void
 
     // MARK: - Initializers
 
-    public init(selectedIds: Set<Tag.ID>,
-                viewStore: ControlStore,
+    public init(store: Store,
                 onDone: @escaping ([Tag]) -> Void)
     {
-        self.selectedIds = selectedIds
-        _store = StateObject(wrappedValue: viewStore)
+        _store = StateObject(wrappedValue: store)
         self.onDone = onDone
     }
 
@@ -36,14 +32,14 @@ public struct TagMultiSelectionSheet: View {
 
     public var body: some View {
         NavigationView {
-            TagMultiSelectionView(selectedIds: selectedIds,
+            TagMultiSelectionView(selectedIds: store.bind(\.selectedIds, action: { .updatedSelectedTags($0) }),
                                   connection: store.connection(at: \.tags, { .updateItems($0) })) { action in
                 switch action {
                 case let .addNewTag(name: name):
                     store.execute(.createNewTag(name), animation: .default)
 
-                case let .done(selected: ids):
-                    onDone(store.state.tags.filter { ids.contains($0.id) })
+                case .done:
+                    onDone(store.state.selectedTags)
                 }
             }
         }
@@ -72,12 +68,11 @@ struct TagSelectionView_Previews: PreviewProvider {
                     Text("Select tag")
                 }
                 .sheet(isPresented: $isPresenting) {
-                    let store = Store(initialState: TagControlState(),
-                                      dependency: TagControlDependencyMock(),
-                                      reducer: TagControlReducer())
+                    let store = Store(initialState: TagMultiSelectionState(),
+                                      dependency: TagMultiSelectionDependencyMock(),
+                                      reducer: TagMultiSelectionReducer())
                     let viewStore = ViewStore(store: store)
-                    TagMultiSelectionSheet(selectedIds: .init(),
-                                           viewStore: viewStore,
+                    TagMultiSelectionSheet(store: viewStore,
                                            onDone: { _ in isPresenting = false })
                 }
             }
