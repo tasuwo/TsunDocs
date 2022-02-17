@@ -71,7 +71,10 @@ let package = Package(
                  .upToNextMajor(from: "5.2.7")),
         .package(name: "Smile",
                  url: "https://github.com/onmyway133/Smile",
-                 .upToNextMajor(from: "2.1.0"))
+                 .upToNextMajor(from: "2.1.0")),
+        .package(name: "Nuke",
+                 url: "https://github.com/kean/Nuke",
+                 .upToNextMajor(from: "10.7.1"))
     ],
     targets: [
         .target(
@@ -151,7 +154,9 @@ let package = Package(
         ),
         .target(
             name: "ImageLoader",
-            dependencies: []
+            dependencies: [
+                .product(name: "Nuke", package: "Nuke"),
+            ]
         ),
         .target(
             name: "ButtonStyle",
