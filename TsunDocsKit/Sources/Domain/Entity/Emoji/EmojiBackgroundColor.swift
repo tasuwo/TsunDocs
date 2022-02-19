@@ -7,32 +7,32 @@ import SwiftUI
 public enum EmojiBackgroundColor: String, CaseIterable {
     public static var `default`: Self = .white
 
-    case white = "default-white"
-    case red = "default-red"
-    case yellow = "default-yellow"
-    case green = "default-green"
-    case blue = "default-blue"
-    case black = "default-black"
+    case white = "standard-white"
+    case red = "standard-red"
+    case yellow = "standard-yellow"
+    case green = "standard-green"
+    case blue = "standard-blue"
+    case black = "standard-black"
 
     public var swiftUIColor: Color {
         switch self {
         case .white:
-            return .white
+            return Color(Asset.white.color)
 
         case .red:
-            return .red
+            return Color(Asset.red.color)
 
         case .yellow:
-            return .yellow
+            return Color(Asset.yellow.color)
 
         case .green:
-            return .green
+            return Color(Asset.green.color)
 
         case .blue:
-            return .blue
+            return Color(Asset.blue.color)
 
         case .black:
-            return .black
+            return Color(Asset.black.color)
         }
     }
 }
