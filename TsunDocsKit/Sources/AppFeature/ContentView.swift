@@ -26,54 +26,65 @@ struct ContentView: View {
 
     @ViewBuilder
     func content() -> some View {
-        let tsundocListStore = container.buildTsundocListStore(query: .all)
-        let tagControlStore = container.buildTagControlViewStore()
-        let tsundocList = TsundocList(title: L10n.tsundocListTitle,
-                                      emptyTitle: L10n.tsundocListEmptyMessageDefaultTitle,
-                                      emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
-                                      store: tsundocListStore)
-
         if idiom == .pad {
             NavigationView {
                 List {
-                    NavigationLink(destination: tsundocList) {
+                    NavigationLink(destination: tsundocList()) {
                         TabItem.tsundocList.label
                     }
 
-                    NavigationLink(destination: TagList(store: tagControlStore)) {
+                    NavigationLink(destination: tagList()) {
                         TabItem.tags.label
                     }
 
-                    NavigationLink(destination: SettingView()) {
+                    NavigationLink(destination: settingView()) {
                         TabItem.settings.label
                     }
                 }
                 .navigationTitle(NSLocalizedString("app_name", bundle: .module, comment: ""))
                 .listStyle(SidebarListStyle())
 
-                tsundocList
+                tsundocList()
             }
         } else {
             TabView {
                 NavigationView {
-                    tsundocList
+                    tsundocList()
                 }
                 .navigationViewStyle(.stack)
                 .tabItem { TabItem.tsundocList.view }
 
                 NavigationView {
-                    TagList(store: tagControlStore)
+                    tagList()
                 }
                 .navigationViewStyle(.stack)
                 .tabItem { TabItem.tags.view }
 
                 NavigationView {
-                    SettingView()
+                    settingView()
                 }
                 .navigationViewStyle(.stack)
                 .tabItem { TabItem.settings.view }
             }
         }
+    }
+
+    @ViewBuilder
+    func tsundocList() -> some View {
+        TsundocList(title: L10n.tsundocListTitle,
+                    emptyTitle: L10n.tsundocListEmptyMessageDefaultTitle,
+                    emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
+                    store: container.buildTsundocListStore(query: .all))
+    }
+
+    @ViewBuilder
+    func tagList() -> some View {
+        TagList(store: container.buildTagControlViewStore())
+    }
+
+    @ViewBuilder
+    func settingView() -> some View {
+        SettingView()
     }
 }
 
