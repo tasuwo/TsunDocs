@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */; };
-		2C63F1D427C661FA00AF839D /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2C63F1D327C661FA00AF839D /* AppFeature */; };
-		2C63F1D627C6620700AF839D /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2C63F1D527C6620700AF839D /* AppFeature */; };
-		2C63F1D827C6620F00AF839D /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2C63F1D727C6620F00AF839D /* MobileShareExtensionFeature */; };
+		2CC25E7827C669E100E29112 /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */; };
+		2CC25E7A27C669EA00E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7927C669EA00E29112 /* AppFeature */; };
+		2CC25E7C27C669F200E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7B27C669F200E29112 /* AppFeature */; };
+		2CC25E7E27C66D9200E29112 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC25E7D27C66D9200E29112 /* CloudKit.framework */; };
 		2CC9301727C62FE600663CA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CC9301327C62E8000663CA5 /* Assets.xcassets */; };
 		3E538E9CD8862D261E823035 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3043BCF99CE7B865A3E51C4 /* main.swift */; };
 		74AB4123849FA9A821D5BD93 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1050BC9CDF0B53FBDB51C /* main.swift */; };
@@ -42,7 +43,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		111EE81B455BEA8B5A35EFBA /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TsunDocsKit; sourceTree = SOURCE_ROOT; };
+		2CA4E78E27C6698A006EA194 /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TsunDocsKit; path = ../TsunDocsKit; sourceTree = "<group>"; };
+		2CC25E7D27C66D9200E29112 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		2CC9301327C62E8000663CA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6930039FED775CA4E010873A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -63,7 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C63F1D427C661FA00AF839D /* AppFeature in Frameworks */,
+				2CC25E7A27C669EA00E29112 /* AppFeature in Frameworks */,
+				2CC25E7E27C66D9200E29112 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C63F1D627C6620700AF839D /* AppFeature in Frameworks */,
+				2CC25E7C27C669F200E29112 /* AppFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C63F1D827C6620F00AF839D /* MobileShareExtensionFeature in Frameworks */,
+				2CC25E7827C669E100E29112 /* MobileShareExtensionFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +92,7 @@
 		2C63F1D227C661FA00AF839D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2CC25E7D27C66D9200E29112 /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,7 +121,7 @@
 		A63A92AA7FA214F31FEC1306 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				111EE81B455BEA8B5A35EFBA /* TsunDocsKit */,
+				2CA4E78E27C6698A006EA194 /* TsunDocsKit */,
 			);
 			name = Packages;
 			sourceTree = SOURCE_ROOT;
@@ -174,7 +178,7 @@
 			);
 			name = "TsunDocs (iOS)";
 			packageProductDependencies = (
-				2C63F1D327C661FA00AF839D /* AppFeature */,
+				2CC25E7927C669EA00E29112 /* AppFeature */,
 			);
 			productName = "TsunDocs (iOS)";
 			productReference = 3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */;
@@ -193,7 +197,7 @@
 			);
 			name = MobileShareExtension;
 			packageProductDependencies = (
-				2C63F1D727C6620F00AF839D /* MobileShareExtensionFeature */,
+				2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */,
 			);
 			productName = MobileShareExtension;
 			productReference = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */;
@@ -213,7 +217,7 @@
 			);
 			name = "TsunDocs (macOS)";
 			packageProductDependencies = (
-				2C63F1D527C6620700AF839D /* AppFeature */,
+				2CC25E7B27C669F200E29112 /* AppFeature */,
 			);
 			productName = "TsunDocs (macOS)";
 			productReference = BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */;
@@ -646,17 +650,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2C63F1D327C661FA00AF839D /* AppFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppFeature;
-		};
-		2C63F1D527C6620700AF839D /* AppFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppFeature;
-		};
-		2C63F1D727C6620F00AF839D /* MobileShareExtensionFeature */ = {
+		2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MobileShareExtensionFeature;
+		};
+		2CC25E7927C669EA00E29112 /* AppFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppFeature;
+		};
+		2CC25E7B27C669F200E29112 /* AppFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

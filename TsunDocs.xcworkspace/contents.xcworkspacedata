@@ -5,6 +5,6 @@
       location = "group:TsunDocsKit">
    </FileRef>
    <FileRef
-      location = "group:Production.xcodeproj">
+      location = "group:App/Production.xcodeproj">
    </FileRef>
 </Workspace>
