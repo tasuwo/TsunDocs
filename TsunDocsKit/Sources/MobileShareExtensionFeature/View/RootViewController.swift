@@ -10,25 +10,13 @@ import SwiftUI
 public class RootViewController: UIViewController {
     // MARK: - Properties
 
-    private var dependencyContainer: DependencyContainer!
+    public var dependencyContainer: DependencyContainer!
 
     // MARK: - View Life-Cycle Methods
 
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let context = extensionContext else {
-            fatalError("Failed to read extensionContext")
-        }
-
-        let appBundleUrl = Bundle.main.bundleURL
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-        guard let appBundle = Bundle(url: appBundleUrl) else {
-            fatalError("Failed to resolve app bundle.")
-        }
-
-        dependencyContainer = DependencyContainer(appBundle: appBundle, context: context)
         let store = Store(initialState: SharedUrlEditViewState(),
                           dependency: dependencyContainer,
                           reducer: SharedUrlEditViewReducer())

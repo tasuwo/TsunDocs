@@ -12,7 +12,21 @@ class ShareRootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let appBundleUrl = Bundle.main.bundleURL
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+        guard let appBundle = Bundle(url: appBundleUrl) else {
+            fatalError("Failed to resolve app bundle.")
+        }
+
+        guard let context = extensionContext else {
+            fatalError("Failed to read extensionContext")
+        }
+
+        let dependencyContainer = DependencyContainer(appBundle: appBundle, context: context)
+
         let viewController = RootViewController()
+        viewController.dependencyContainer = dependencyContainer
         addChild(viewController)
         view.addSubview(viewController.view)
         viewController.didMove(toParent: self)

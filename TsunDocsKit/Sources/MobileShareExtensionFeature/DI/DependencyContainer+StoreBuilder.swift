@@ -9,7 +9,7 @@ import TagKit
 extension DependencyContainer: TagControlViewStoreBuildable {
     // MARK: - TagControlViewStoreBuildable
 
-    func buildTagControlViewStore() -> ViewStore<TagControlState, TagControlAction, TagControlDependency> {
+    public func buildTagControlViewStore() -> ViewStore<TagControlState, TagControlAction, TagControlDependency> {
         let store = Store(initialState: TagControlState(),
                           dependency: self,
                           reducer: TagControlReducer())
@@ -20,7 +20,7 @@ extension DependencyContainer: TagControlViewStoreBuildable {
 extension DependencyContainer: TagMultiSelectionStoreBuildable {
     // MARK: - TagMultiSelectionStoreBuildable
 
-    func buildTagMultiSelectionStore(selectedIds: Set<Tag.ID>) -> ViewStore<TagMultiSelectionState, TagMultiSelectionAction, TagMultiSelectionDependency> {
+    public func buildTagMultiSelectionStore(selectedIds: Set<Tag.ID>) -> ViewStore<TagMultiSelectionState, TagMultiSelectionAction, TagMultiSelectionDependency> {
         let store = Store(initialState: TagMultiSelectionState(selectedIds: selectedIds),
                           dependency: self,
                           reducer: TagMultiSelectionReducer())

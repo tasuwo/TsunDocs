@@ -9,7 +9,7 @@ import MobileShareExtensionUIKit
 import Persistence
 import UIKit
 
-class DependencyContainer: ObservableObject {
+public class DependencyContainer: ObservableObject {
     // MARK: - Properties
 
     let context: NSExtensionContext
@@ -33,7 +33,7 @@ class DependencyContainer: ObservableObject {
 
     // MARK: - Initializers
 
-    init(appBundle: Bundle, context: NSExtensionContext) {
+    public init(appBundle: Bundle, context: NSExtensionContext) {
         self.context = context
 
         _sharedUrlLoader = SharedUrlLoader(context)
@@ -49,31 +49,31 @@ class DependencyContainer: ObservableObject {
 }
 
 extension DependencyContainer: HasSharedUrlLoader {
-    var sharedUrlLoader: SharedUrlLoadable { _sharedUrlLoader }
+    public var sharedUrlLoader: SharedUrlLoadable { _sharedUrlLoader }
 }
 
 extension DependencyContainer: HasWebPageMetaResolver {
-    var webPageMetaResolver: WebPageMetaResolvable { _webPageMetaResolver }
+    public var webPageMetaResolver: WebPageMetaResolvable { _webPageMetaResolver }
 }
 
 extension DependencyContainer: HasTagQueryService {
-    var tagQueryService: Domain.TagQueryService { _tagQueryService }
+    public var tagQueryService: Domain.TagQueryService { _tagQueryService }
 }
 
 extension DependencyContainer: HasTsundocCommandService {
-    var tsundocCommandService: Domain.TsundocCommandService { _tsundocCommandService }
+    public var tsundocCommandService: Domain.TsundocCommandService { _tsundocCommandService }
 }
 
 extension DependencyContainer: HasTagCommandService {
-    var tagCommandService: Domain.TagCommandService { _tagCommandService }
+    public var tagCommandService: Domain.TagCommandService { _tagCommandService }
 }
 
 extension DependencyContainer: HasCompletable {
-    var completable: Completable { context }
+    public var completable: Completable { context }
 }
 
 extension DependencyContainer: HasPasteboard {
-    var pasteboard: Pasteboard { UIPasteboard.general }
+    public var pasteboard: Pasteboard { UIPasteboard.general }
 }
 
 extension DependencyContainer: HasNop {}
