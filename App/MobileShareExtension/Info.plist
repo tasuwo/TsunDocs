@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>MobileShareExtension</string>
+	<string>MobileShareExtensionDev</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -32,10 +32,10 @@
 				<integer>1</integer>
 			</dict>
 		</dict>
-		<key>NSExtensionPrincipalClass</key>
-		<string>ShareRootViewController</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>ShareRootViewController</string>
 	</dict>
 </dict>
 </plist>
