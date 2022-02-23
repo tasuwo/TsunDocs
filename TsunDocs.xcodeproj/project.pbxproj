@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */; };
 		05379807DD47D1488C35CD2D /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 61BEA08BAC38F1FF9313CF45 /* AppFeature */; };
 		1BED969DBCC5B90F766D1770 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 811474ECA0ED07A79BDCA028 /* AppFeature */; };
+		2CC9301727C62FE600663CA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CC9301327C62E8000663CA5 /* Assets.xcassets */; };
 		3E538E9CD8862D261E823035 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3043BCF99CE7B865A3E51C4 /* main.swift */; };
 		74AB4123849FA9A821D5BD93 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1050BC9CDF0B53FBDB51C /* main.swift */; };
 		8B895EE687FB3A23F943755A /* MobileShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -41,13 +42,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		111EE81B455BEA8B5A35EFBA /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TsunDocsKit; path = TsunDocsKit; sourceTree = SOURCE_ROOT; };
-		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "TsunDocs (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		111EE81B455BEA8B5A35EFBA /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TsunDocsKit; sourceTree = SOURCE_ROOT; };
+		2CC9301327C62E8000663CA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6930039FED775CA4E010873A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7C239FA42949E1D08FB8479C /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		89CDF35FD12249BFF1CC6E68 /* MobileShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileShareExtension.entitlements; sourceTree = "<group>"; };
 		AD01E9205F3BDD6034F953C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TsunDocs (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "TsunDocs (macOS).app"; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3043BCF99CE7B865A3E51C4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C3F1050BC9CDF0B53FBDB51C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				AD01E9205F3BDD6034F953C5 /* Info.plist */,
 				DB56EBEB7892DC64ACED096E /* iOS.entitlements */,
 				C3043BCF99CE7B865A3E51C4 /* main.swift */,
+				2CC9301327C62E8000663CA5 /* Assets.xcassets */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -134,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */,
-				3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */,
+				3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */,
 				BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */,
 			);
 			name = Products;
@@ -160,6 +163,7 @@
 			buildPhases = (
 				D3138B57806C2FA5B19BA173 /* SwiftLint */,
 				CE0AD2747B613D920FA6F9C5 /* Sources */,
+				2CC9301627C62FDC00663CA5 /* Resources */,
 				26CBBCDC2AAD7C4A199E2BC3 /* Frameworks */,
 				53006B1A1B1698EC1A6B3DF4 /* Embed App Extensions */,
 			);
@@ -173,7 +177,7 @@
 				811474ECA0ED07A79BDCA028 /* AppFeature */,
 			);
 			productName = "TsunDocs (iOS)";
-			productReference = 3714AF07DC39BE2BB4DDC2B3 /* TsunDocs (iOS).app */;
+			productReference = 3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8AF84C32444B977765B9493A /* MobileShareExtension */ = {
@@ -254,6 +258,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2CC9301627C62FDC00663CA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CC9301727C62FE600663CA5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		2C9D5D63BB7A0F59CDA10E4D /* SwiftLint */ = {
