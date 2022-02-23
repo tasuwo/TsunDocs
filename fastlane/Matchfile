@@ -9,7 +9,9 @@ for_platform :ios do
 
   app_identifier([
     "net.tasuwo.tsundocs",
+    "net.tasuwo.tsundocs.dev",
     "net.tasuwo.tsundocs.ext-mobile-share",
+    "net.tasuwo.tsundocs.dev.ext-mobile-share",
   ])
 
   for_lane :update_development_pp do
@@ -32,6 +34,7 @@ for_platform :mac do
 
   app_identifier([
     "net.tasuwo.tsundocs",
+    "net.tasuwo.tsundocs.dev",
   ])
 
   for_lane :update_development_pp do
