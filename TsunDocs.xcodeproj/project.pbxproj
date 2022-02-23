@@ -102,17 +102,9 @@
 			children = (
 				6930039FED775CA4E010873A /* Info.plist */,
 				89CDF35FD12249BFF1CC6E68 /* MobileShareExtension.entitlements */,
-				919B1B21137DDA18D9EB3C85 /* View */,
-			);
-			path = MobileShareExtension;
-			sourceTree = "<group>";
-		};
-		919B1B21137DDA18D9EB3C85 /* View */ = {
-			isa = PBXGroup;
-			children = (
 				D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */,
 			);
-			path = View;
+			path = MobileShareExtension;
 			sourceTree = "<group>";
 		};
 		A63A92AA7FA214F31FEC1306 /* Packages */ = {
