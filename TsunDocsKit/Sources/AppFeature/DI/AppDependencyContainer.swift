@@ -6,11 +6,7 @@ import CoreData
 import Domain
 import Persistence
 
-class AppDependencyContainer: ObservableObject {
-    // MARK: - Properties
-
-    static let shared = AppDependencyContainer()
-
+public class AppDependencyContainer: ObservableObject {
     // MARK: CoreData
 
     private let container: PersistentContainer
@@ -29,8 +25,8 @@ class AppDependencyContainer: ObservableObject {
 
     // MARK: - Initializers
 
-    private init() {
-        container = PersistentContainer(author: .app)
+    public init(appBundle: Bundle) {
+        container = PersistentContainer(appBundle: appBundle, author: .app)
         commandContext = container.newBackgroundContext(on: commandQueue)
 
         tsundocQueryService = TsundocQueryService(container.viewContext)

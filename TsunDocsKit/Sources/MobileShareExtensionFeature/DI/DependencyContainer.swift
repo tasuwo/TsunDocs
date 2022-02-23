@@ -33,13 +33,13 @@ class DependencyContainer: ObservableObject {
 
     // MARK: - Initializers
 
-    init(_ context: NSExtensionContext) {
+    init(appBundle: Bundle, context: NSExtensionContext) {
         self.context = context
 
         _sharedUrlLoader = SharedUrlLoader(context)
         _webPageMetaResolver = WebPageMetaResolver()
 
-        container = PersistentContainer(author: .shareExtension)
+        container = PersistentContainer(appBundle: appBundle, author: .shareExtension)
         commandContext = container.newBackgroundContext(on: commandQueue)
 
         _tagQueryService = TagQueryService(container.viewContext)

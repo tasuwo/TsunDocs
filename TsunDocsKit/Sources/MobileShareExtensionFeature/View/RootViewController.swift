@@ -21,7 +21,14 @@ public class RootViewController: UIViewController {
             fatalError("Failed to read extensionContext")
         }
 
-        dependencyContainer = DependencyContainer(context)
+        let appBundleUrl = Bundle.main.bundleURL
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+        guard let appBundle = Bundle(url: appBundleUrl) else {
+            fatalError("Failed to resolve app bundle.")
+        }
+
+        dependencyContainer = DependencyContainer(appBundle: appBundle, context: context)
         let store = Store(initialState: SharedUrlEditViewState(),
                           dependency: dependencyContainer,
                           reducer: SharedUrlEditViewReducer())

@@ -13,8 +13,8 @@
 		2CC25E7C27C669F200E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7B27C669F200E29112 /* AppFeature */; };
 		2CC25E7E27C66D9200E29112 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC25E7D27C66D9200E29112 /* CloudKit.framework */; };
 		2CC25E8627C677FE00E29112 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CC25E8527C677FE00E29112 /* Assets.xcassets */; };
-		3E538E9CD8862D261E823035 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3043BCF99CE7B865A3E51C4 /* main.swift */; };
-		74AB4123849FA9A821D5BD93 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1050BC9CDF0B53FBDB51C /* main.swift */; };
+		3E538E9CD8862D261E823035 /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */; };
+		74AB4123849FA9A821D5BD93 /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */; };
 		8B895EE687FB3A23F943755A /* MobileShareExtensionDev.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF241AF60C49740BA6F08F55 /* MobileShareExtensionDev.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -53,8 +53,8 @@
 		6930039FED775CA4E010873A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AD01E9205F3BDD6034F953C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BEDCBB975AFA4545C1216463 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3043BCF99CE7B865A3E51C4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		C3F1050BC9CDF0B53FBDB51C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
+		C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
 		D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootViewController.swift; sourceTree = "<group>"; };
 		F887EB4DB6E1DE3040F95054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FF241AF60C49740BA6F08F55 /* MobileShareExtensionDev.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MobileShareExtensionDev.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				AD01E9205F3BDD6034F953C5 /* Info.plist */,
-				C3043BCF99CE7B865A3E51C4 /* main.swift */,
+				C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */,
 				2CAE400927C67CE600576F49 /* iOS.entitlements */,
 				2CC25E8527C677FE00E29112 /* Assets.xcassets */,
 			);
@@ -130,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				F887EB4DB6E1DE3040F95054 /* Info.plist */,
-				C3F1050BC9CDF0B53FBDB51C /* main.swift */,
+				C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */,
 				2CAE400A27C67CF200576F49 /* macOS.entitlements */,
 			);
 			path = macOS;
@@ -326,7 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74AB4123849FA9A821D5BD93 /* main.swift in Sources */,
+				74AB4123849FA9A821D5BD93 /* TsunDocsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E538E9CD8862D261E823035 /* main.swift in Sources */,
+				3E538E9CD8862D261E823035 /* TsunDocsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

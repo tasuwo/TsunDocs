@@ -8,31 +8,31 @@ import UIKit
 extension SceneDependencyContainer: HasPasteboard {
     // MARK: - HasPasteboard
 
-    var pasteboard: Pasteboard { UIPasteboard.general }
+    public var pasteboard: Pasteboard { UIPasteboard.general }
 }
 
 extension SceneDependencyContainer: HasTsundocQueryService {
     // MARK: - HasTsundocQueryService
 
-    var tsundocQueryService: TsundocQueryService { appDependencyContainer.tsundocQueryService }
+    public var tsundocQueryService: TsundocQueryService { appDependencyContainer.tsundocQueryService }
 }
 
 extension SceneDependencyContainer: HasTagQueryService {
     // MARK: - HasTagQueryService
 
-    var tagQueryService: TagQueryService { appDependencyContainer.tagQueryService }
+    public var tagQueryService: TagQueryService { appDependencyContainer.tagQueryService }
 }
 
 extension SceneDependencyContainer: HasTsundocCommandService {
     // MARK: - HasTsundocCommandService
 
-    var tsundocCommandService: TsundocCommandService { appDependencyContainer.tsundocCommandService }
+    public var tsundocCommandService: TsundocCommandService { appDependencyContainer.tsundocCommandService }
 }
 
 extension SceneDependencyContainer: HasTagCommandService {
     // MARK: - HasTagCommandService
 
-    var tagCommandService: TagCommandService { appDependencyContainer.tagCommandService }
+    public var tagCommandService: TagCommandService { appDependencyContainer.tagCommandService }
 }
 
 extension SceneDependencyContainer: HasNop {}

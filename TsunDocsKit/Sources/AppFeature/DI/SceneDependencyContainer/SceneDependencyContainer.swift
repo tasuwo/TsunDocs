@@ -4,12 +4,12 @@
 
 import Foundation
 
-class SceneDependencyContainer: ObservableObject {
+public class SceneDependencyContainer: ObservableObject {
     let appDependencyContainer: AppDependencyContainer
 
     // MARK: - Initializers
 
-    init(_ container: AppDependencyContainer) {
+    public init(_ container: AppDependencyContainer) {
         appDependencyContainer = container
     }
 }

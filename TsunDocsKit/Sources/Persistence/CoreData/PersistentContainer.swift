@@ -28,11 +28,12 @@ public class PersistentContainer {
 
     // MARK: - Initializers
 
-    public init(author: TransactionAuthor,
+    public init(appBundle: Bundle,
+                author: TransactionAuthor,
                 notificationCenter: NotificationCenter = .default)
     {
         self.author = author
-        self._persistentContainer = .init(Self.makeContainer())
+        self._persistentContainer = .init(Self.makeContainer(forAppBundle: appBundle))
         self.historyTracker = PersistentHistoryTracker(self)
     }
 
@@ -49,14 +50,14 @@ public class PersistentContainer {
 }
 
 extension PersistentContainer {
-    private static func makeContainer() -> NSPersistentContainer {
+    private static func makeContainer(forAppBundle appBundle: Bundle) -> NSPersistentContainer {
         let container = loadContainer()
 
         guard let description = container.persistentStoreDescriptions.first else {
             fatalError("Failed to retrieve a persistent store description.")
         }
         #if os(iOS)
-        description.url = containerUrl()
+        description.url = containerUrl(forAppBundle: appBundle)
         #endif
         description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
@@ -87,8 +88,11 @@ extension PersistentContainer {
         return NSPersistentContainer(name: "Model", managedObjectModel: model)
     }
 
-    private static func containerUrl() -> URL {
-        guard let containerUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.net.tasuwo.tsundocs") else {
+    private static func containerUrl(forAppBundle appBundle: Bundle) -> URL {
+        guard let bundleIdentifier = appBundle.bundleIdentifier else {
+            fatalError("Failed to resolve bundle identifier")
+        }
+        guard let containerUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.\(bundleIdentifier)") else {
             fatalError("App Group Container could not be created.")
         }
         return containerUrl.appendingPathComponent("tsundocs.sqlite")

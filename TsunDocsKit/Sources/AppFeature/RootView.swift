@@ -7,16 +7,22 @@ import SwiftUI
 
 #if os(iOS)
 
-struct ContentView: View {
+public struct RootView: View {
     // MARK: - Properties
 
     @StateObject var container: SceneDependencyContainer
 
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
+    // MARK: - Initializers
+
+    public init(container: SceneDependencyContainer) {
+        _container = StateObject(wrappedValue: container)
+    }
+
     // MARK: - View
 
-    var body: some View {
+    public var body: some View {
         content()
             .environment(\.tsundocListStoreBuilder, container)
             .environment(\.tagControlViewStoreBuilder, container)
@@ -88,21 +94,9 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ContentView(container: SceneDependencyContainer(.shared))
-                .previewDevice("iPhone 12")
-
-            ContentView(container: SceneDependencyContainer(.shared))
-                .previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-        }
-    }
-}
-
 #elseif os(macOS)
 
-struct ContentView: View {
+struct RootView: View {
     @StateObject var container: SceneDependencyContainer
 
     var body: some View {
@@ -121,14 +115,6 @@ struct ContentView: View {
             .listStyle(SidebarListStyle())
 
             TsundocList(store: viewStore)
-        }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ContentView(container: SceneDependencyContainer(AppDependencyContainer()))
         }
     }
 }
