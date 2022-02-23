@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */; };
-		05379807DD47D1488C35CD2D /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 61BEA08BAC38F1FF9313CF45 /* AppFeature */; };
-		1BED969DBCC5B90F766D1770 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 811474ECA0ED07A79BDCA028 /* AppFeature */; };
+		2C63F1D427C661FA00AF839D /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2C63F1D327C661FA00AF839D /* AppFeature */; };
+		2C63F1D627C6620700AF839D /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2C63F1D527C6620700AF839D /* AppFeature */; };
+		2C63F1D827C6620F00AF839D /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2C63F1D727C6620F00AF839D /* MobileShareExtensionFeature */; };
 		2CC9301727C62FE600663CA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CC9301327C62E8000663CA5 /* Assets.xcassets */; };
 		3E538E9CD8862D261E823035 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3043BCF99CE7B865A3E51C4 /* main.swift */; };
 		74AB4123849FA9A821D5BD93 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1050BC9CDF0B53FBDB51C /* main.swift */; };
 		8B895EE687FB3A23F943755A /* MobileShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D98B7DB37A9882EBB7124F74 /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = C85C52AF7B197EDAEA8A25A3 /* MobileShareExtensionFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BED969DBCC5B90F766D1770 /* AppFeature in Frameworks */,
+				2C63F1D427C661FA00AF839D /* AppFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05379807DD47D1488C35CD2D /* AppFeature in Frameworks */,
+				2C63F1D627C6620700AF839D /* AppFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,13 +79,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D98B7DB37A9882EBB7124F74 /* MobileShareExtensionFeature in Frameworks */,
+				2C63F1D827C6620F00AF839D /* MobileShareExtensionFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C63F1D227C661FA00AF839D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7925802F255C1D710E794AC1 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +150,7 @@
 				7AF567AB1C3C0AEB22B5BDA2 /* MobileShareExtension */,
 				A63A92AA7FA214F31FEC1306 /* Packages */,
 				DAE688497F8FD91FBA8897BF /* Products */,
+				2C63F1D227C661FA00AF839D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -166,7 +174,7 @@
 			);
 			name = "TsunDocs (iOS)";
 			packageProductDependencies = (
-				811474ECA0ED07A79BDCA028 /* AppFeature */,
+				2C63F1D327C661FA00AF839D /* AppFeature */,
 			);
 			productName = "TsunDocs (iOS)";
 			productReference = 3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */;
@@ -185,7 +193,7 @@
 			);
 			name = MobileShareExtension;
 			packageProductDependencies = (
-				C85C52AF7B197EDAEA8A25A3 /* MobileShareExtensionFeature */,
+				2C63F1D727C6620F00AF839D /* MobileShareExtensionFeature */,
 			);
 			productName = MobileShareExtension;
 			productReference = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */;
@@ -205,7 +213,7 @@
 			);
 			name = "TsunDocs (macOS)";
 			packageProductDependencies = (
-				61BEA08BAC38F1FF9313CF45 /* AppFeature */,
+				2C63F1D527C6620700AF839D /* AppFeature */,
 			);
 			productName = "TsunDocs (macOS)";
 			productReference = BEDCBB975AFA4545C1216463 /* TsunDocs (macOS).app */;
@@ -232,7 +240,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E4CC035522DB4841DEA1C06A /* Build configuration list for PBXProject "TsunDocs" */;
+			buildConfigurationList = E4CC035522DB4841DEA1C06A /* Build configuration list for PBXProject "Production" */;
 			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -626,7 +634,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4CC035522DB4841DEA1C06A /* Build configuration list for PBXProject "TsunDocs" */ = {
+		E4CC035522DB4841DEA1C06A /* Build configuration list for PBXProject "Production" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D5AA687459EE26DCA5311561 /* Debug */,
@@ -638,15 +646,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		61BEA08BAC38F1FF9313CF45 /* AppFeature */ = {
+		2C63F1D327C661FA00AF839D /* AppFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppFeature;
 		};
-		811474ECA0ED07A79BDCA028 /* AppFeature */ = {
+		2C63F1D527C6620700AF839D /* AppFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppFeature;
 		};
-		C85C52AF7B197EDAEA8A25A3 /* MobileShareExtensionFeature */ = {
+		2C63F1D727C6620F00AF839D /* MobileShareExtensionFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MobileShareExtensionFeature;
 		};

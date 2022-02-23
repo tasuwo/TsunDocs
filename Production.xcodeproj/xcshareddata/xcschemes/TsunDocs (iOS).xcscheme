@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B1DDE034988CEB952208D99D"
+               BlueprintIdentifier = "31CD9A7FB8B73B41C35ADB91"
                BuildableName = "TsunDocs.app"
-               BlueprintName = "TsunDocs (macOS)"
-               ReferencedContainer = "container:TsunDocs.xcodeproj">
+               BlueprintName = "TsunDocs (iOS)"
+               ReferencedContainer = "container:Production.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -30,9 +30,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B1DDE034988CEB952208D99D"
+            BlueprintIdentifier = "31CD9A7FB8B73B41C35ADB91"
             BuildableName = "TsunDocs.app"
-            BlueprintName = "TsunDocs (macOS)"
+            BlueprintName = "TsunDocs (iOS)"
             ReferencedContainer = "container:TsunDocs.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -53,10 +53,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B1DDE034988CEB952208D99D"
+            BlueprintIdentifier = "31CD9A7FB8B73B41C35ADB91"
             BuildableName = "TsunDocs.app"
-            BlueprintName = "TsunDocs (macOS)"
-            ReferencedContainer = "container:TsunDocs.xcodeproj">
+            BlueprintName = "TsunDocs (iOS)"
+            ReferencedContainer = "container:Production.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -66,16 +66,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B1DDE034988CEB952208D99D"
-            BuildableName = "TsunDocs.app"
-            BlueprintName = "TsunDocs (macOS)"
-            ReferencedContainer = "container:TsunDocs.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
