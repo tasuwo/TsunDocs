@@ -33,7 +33,7 @@ public class PersistentContainer {
                 notificationCenter: NotificationCenter = .default)
     {
         self.author = author
-        self._persistentContainer = .init(Self.makeContainer(forAppBundle: appBundle))
+        self._persistentContainer = .init(Self.makeContainer(forAppBundle: appBundle, author: author))
         self.historyTracker = PersistentHistoryTracker(self)
     }
 
@@ -50,7 +50,9 @@ public class PersistentContainer {
 }
 
 extension PersistentContainer {
-    private static func makeContainer(forAppBundle appBundle: Bundle) -> NSPersistentContainer {
+    private static func makeContainer(forAppBundle appBundle: Bundle,
+                                      author: TransactionAuthor) -> NSPersistentContainer
+    {
         let container = loadContainer()
 
         guard let description = container.persistentStoreDescriptions.first else {
@@ -64,8 +66,9 @@ extension PersistentContainer {
         description.shouldMigrateStoreAutomatically = true
         description.shouldInferMappingModelAutomatically = true
 
-        // TODO: CloudKit対応
-        description.cloudKitContainerOptions = nil
+        if author == .shareExtension {
+            description.cloudKitContainerOptions = nil
+        }
 
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
@@ -85,7 +88,7 @@ extension PersistentContainer {
         else {
             fatalError("Unable to load Core Data Model")
         }
-        return NSPersistentContainer(name: "Model", managedObjectModel: model)
+        return NSPersistentCloudKitContainer(name: "Model", managedObjectModel: model)
     }
 
     private static func containerUrl(forAppBundle appBundle: Bundle) -> URL {
