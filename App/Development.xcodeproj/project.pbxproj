@@ -43,6 +43,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C414B9D27C7BB8700550078 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Development/Info.plist; sourceTree = "<group>"; };
+		2C414BA227C7BBAC00550078 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Development/Info.plist; sourceTree = "<group>"; };
+		2C414BA427C7BC3000550078 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Development/Info.plist; sourceTree = "<group>"; };
 		2CA4E78E27C6698A006EA194 /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TsunDocsKit; path = ../TsunDocsKit; sourceTree = "<group>"; };
 		2CAE400927C67CE600576F49 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = iOS.entitlements; path = Development/iOS.entitlements; sourceTree = "<group>"; };
 		2CAE400A27C67CF200576F49 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = macOS.entitlements; path = Development/macOS.entitlements; sourceTree = "<group>"; };
@@ -50,13 +53,10 @@
 		2CC25E7D27C66D9200E29112 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		2CC25E8527C677FE00E29112 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Development/Assets.xcassets; sourceTree = "<group>"; };
 		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6930039FED775CA4E010873A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		AD01E9205F3BDD6034F953C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BEDCBB975AFA4545C1216463 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
 		C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
 		D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootViewController.swift; sourceTree = "<group>"; };
-		F887EB4DB6E1DE3040F95054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FF241AF60C49740BA6F08F55 /* MobileShareExtensionDev.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MobileShareExtensionDev.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -100,7 +100,7 @@
 		7925802F255C1D710E794AC1 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				AD01E9205F3BDD6034F953C5 /* Info.plist */,
+				2C414BA227C7BBAC00550078 /* Info.plist */,
 				C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */,
 				2CAE400927C67CE600576F49 /* iOS.entitlements */,
 				2CC25E8527C677FE00E29112 /* Assets.xcassets */,
@@ -111,7 +111,7 @@
 		7AF567AB1C3C0AEB22B5BDA2 /* MobileShareExtension */ = {
 			isa = PBXGroup;
 			children = (
-				6930039FED775CA4E010873A /* Info.plist */,
+				2C414B9D27C7BB8700550078 /* Info.plist */,
 				2CAE400B27C67D1300576F49 /* MobileShareExtension.entitlements */,
 				D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */,
 			);
@@ -129,7 +129,7 @@
 		A974C887BE0808533E6C7F49 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				F887EB4DB6E1DE3040F95054 /* Info.plist */,
+				2C414BA427C7BC3000550078 /* Info.plist */,
 				C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */,
 				2CAE400A27C67CF200576F49 /* macOS.entitlements */,
 			);
@@ -411,7 +411,7 @@
 				CODE_SIGN_ENTITLEMENTS = MobileShareExtension/Development/MobileShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_TEAM = RY2377PP7S;
-				INFOPLIST_FILE = MobileShareExtension/Info.plist;
+				INFOPLIST_FILE = MobileShareExtension/Development/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -437,7 +437,7 @@
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_FILE = macOS/Development/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -460,7 +460,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_FILE = iOS/Development/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -482,7 +482,7 @@
 				CODE_SIGN_ENTITLEMENTS = MobileShareExtension/Development/MobileShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = RY2377PP7S;
-				INFOPLIST_FILE = MobileShareExtension/Info.plist;
+				INFOPLIST_FILE = MobileShareExtension/Development/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -506,7 +506,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_FILE = iOS/Development/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -595,7 +595,7 @@
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_FILE = macOS/Development/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
