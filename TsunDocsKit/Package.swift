@@ -61,6 +61,10 @@ let package = Package(
             targets: ["ButtonStyle"]
         ),
         .library(
+            name: "PersistentStoreReloader",
+            targets: ["PersistentStoreReloader"]
+        ),
+        .library(
             name: "PreviewContent",
             targets: ["PreviewContent"]
         ),
@@ -87,7 +91,8 @@ let package = Package(
                 "Persistence",
                 "SearchKit",
                 "TagKit",
-                "TsundocList"
+                "TsundocList",
+                "PersistentStoreReloader"
             ]
         ),
         .target(
@@ -164,6 +169,10 @@ let package = Package(
         ),
         .target(
             name: "CompositeKit",
+            dependencies: []
+        ),
+        .target(
+            name: "PersistentStoreReloader",
             dependencies: []
         ),
         .target(
