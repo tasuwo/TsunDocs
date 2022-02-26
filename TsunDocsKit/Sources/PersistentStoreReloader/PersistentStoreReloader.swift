@@ -12,8 +12,8 @@ public class PersistentStoreReloader {
 
     private var subscriptions = Set<AnyCancellable>()
 
-    public var accountChanged: PassthroughSubject<Void, Never> = .init()
-    public var isiCloudSyncDisabledByUnavailableAccount: PassthroughSubject<Void, Never> = .init()
+    public let accountChanged: PassthroughSubject<Void, Never> = .init()
+    public let isiCloudSyncDisabledByUnavailableAccount: PassthroughSubject<Void, Never> = .init()
 
     // MARK: - Initializers
 
