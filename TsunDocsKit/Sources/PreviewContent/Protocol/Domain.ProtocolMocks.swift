@@ -448,6 +448,20 @@ public class HasWebPageMetaResolverMock: HasWebPageMetaResolver {
     public var webPageMetaResolver: WebPageMetaResolvable = WebPageMetaResolvableMock() { didSet { webPageMetaResolverSetCallCount += 1 } }
 }
 
+public class HasUserSettingStorageMock: HasUserSettingStorage {
+    public init() { }
+    public init(userSettingStorage: UserSettingStorage) {
+        self._userSettingStorage = userSettingStorage
+    }
+
+    public private(set) var userSettingStorageSetCallCount = 0
+    private var _userSettingStorage: UserSettingStorage! { didSet { userSettingStorageSetCallCount += 1 } }
+    public var userSettingStorage: UserSettingStorage {
+        get { return _userSettingStorage }
+        set { _userSettingStorage = newValue }
+    }
+}
+
 public class HasNopMock: HasNop {
     public init() { }
 }
