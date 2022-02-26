@@ -3,5 +3,6 @@
 //
 
 public enum StorageKey: String {
-    case userInterfaceStyle = "user_interface_style"
+    case userInterfaceStyle
+    case isiCloudSyncEnabled
 }

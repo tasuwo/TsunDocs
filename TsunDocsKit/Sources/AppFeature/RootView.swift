@@ -93,7 +93,7 @@ public struct RootView: View {
 
     @ViewBuilder
     func settingView() -> some View {
-        SettingView()
+        SettingView(store: container.buildSettingViewStore())
     }
 }
 

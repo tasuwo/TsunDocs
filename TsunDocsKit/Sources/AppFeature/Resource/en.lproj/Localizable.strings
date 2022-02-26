@@ -44,6 +44,17 @@
 "setting_view.row.user_interface_style.title" = "Theme";
 "setting_view.section.this_app.title" = "Abount This App";
 "setting_view.row.app_version.title" = "Version";
+"setting_view.section.sync.title" = "Sync";
+"setting_view.section.sync.footer.title" = "Sync data with other iOS/iPadOS devices";
+"setting_view.row.icloud_sync.title" = "iCloud Sync";
+
+"setting_view.alert.turn_off_confirmation.title" = "Disable iCloud Sync";
+"setting_view.alert.turn_off_confirmation.message" = "Are you sure you want to disable iCloud sync?";
+
+"setting_view.alert.icloud_unavailable.title" = "iCloud Unavailable";
+"setting_view.alert.icloud_unavailable.message" = "Please sign in to iCloud or enable using iCloud for this app at device setting.";
+"setting_view.alert.icloud_unavailable.action.force_turn_off" = "Always disable iCloud Sync";
+"setting_view.alert.icloud_unavailable.action.force_turn_on" = "Enable iCloud Sync automatically";
 
 "user_interface_style_setting_view.title" = "Theme";
 "user_interface_style_setting_view.row.dark" = "Dark";
@@ -76,3 +87,6 @@
 "error_tag_update" = "Failed to update tag";
 
 "cancel" = "Cancel";
+
+"alert.action.ok" = "OK";
+"alert.action.cancel" = "Cancel";

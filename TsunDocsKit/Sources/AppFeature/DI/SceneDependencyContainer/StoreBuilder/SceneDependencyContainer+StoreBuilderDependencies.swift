@@ -53,3 +53,15 @@ extension SceneDependencyContainer: TsundocInfoViewStoreBuildable {
         return ViewStore(store: store)
     }
 }
+
+extension SceneDependencyContainer: SettingViewStoreBuilder {
+    // MARK: - SettingViewStoreBuilder
+
+    @MainActor
+    func buildSettingViewStore() -> ViewStore<SettingViewState, SettingViewAction, SettingViewDependency> {
+        let store = Store(initialState: SettingViewState(),
+                          dependency: self,
+                          reducer: SettingViewReducer())
+        return ViewStore(store: store)
+    }
+}

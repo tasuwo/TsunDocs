@@ -3,6 +3,7 @@
 //
 
 import Domain
+import PersistentStoreReloader
 import UIKit
 
 extension SceneDependencyContainer: HasPasteboard {
@@ -33,6 +34,18 @@ extension SceneDependencyContainer: HasTagCommandService {
     // MARK: - HasTagCommandService
 
     public var tagCommandService: TagCommandService { appDependencyContainer.tagCommandService }
+}
+
+extension SceneDependencyContainer: HasUserSettingStorage {
+    // MARK: - HasUserSettingStorage
+
+    public var userSettingStorage: UserSettingStorage { appDependencyContainer.userSettingStorage }
+}
+
+extension SceneDependencyContainer: HasCloudKitAvailabilityObserver {
+    // MARK: - HasCloudKitAvailabilityObserver
+
+    public var cloudKitAvailabilityObserver: CloudKitAvailabilityObserver { appDependencyContainer.cloudKitAvailabilityObserver }
 }
 
 extension SceneDependencyContainer: HasNop {}

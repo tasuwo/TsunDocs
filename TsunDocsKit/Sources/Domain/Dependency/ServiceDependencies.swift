@@ -38,4 +38,9 @@ public protocol HasWebPageMetaResolver {
 }
 
 /// @mockable
+public protocol HasUserSettingStorage {
+    var userSettingStorage: UserSettingStorage { get }
+}
+
+/// @mockable
 public protocol HasNop {}

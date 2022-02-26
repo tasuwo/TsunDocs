@@ -44,6 +44,17 @@
 "setting_view.row.user_interface_style.title" = "テーマ";
 "setting_view.section.this_app.title" = "このアプリについて";
 "setting_view.row.app_version.title" = "バージョン";
+"setting_view.section.sync.title" = "同期";
+"setting_view.section.sync.footer.title" = "他のiOS/iPadOSデバイスとデータを同期できます";
+"setting_view.row.icloud_sync.title" = "iCloudで同期する";
+
+"setting_view.alert.turn_off_confirmation.title" = "iCloud同期をオフにしますか？";
+"setting_view.alert.turn_off_confirmation.message" = "この端末に保存したデータを他のiOS/iPadOS端末と共有できなくなります。同期がオフの最中に保存したデータは、後ほどiCloud同期が有効になった際に、他のiOS/iPadOS端末のデータと統合されます";
+
+"setting_view.alert.icloud_unavailable.title" = "iCloudが利用できません";
+"setting_view.alert.icloud_unavailable.message" = "iCloudアカウントでログインしていないか、端末のiCloud同期設定がオフになっている可能性があります。\niCluoudが利用できない間に保存したデータは、後ほどiCloudが有効になった際に統合されます";
+"setting_view.alert.icloud_unavailable.action.force_turn_off" = "iCloud同期を利用しない";
+"setting_view.alert.icloud_unavailable.action.force_turn_on" = "iCloud同期を自動で有効にする";
 
 "user_interface_style_setting_view.title" = "テーマ";
 "user_interface_style_setting_view.row.dark" = "ダーク";
@@ -76,3 +87,6 @@
 "error_tag_update" = "タグの更新に失敗しました";
 
 "cancel" = "キャンセル";
+
+"alert.action.ok" = "OK";
+"alert.action.cancel" = "キャンセル";
