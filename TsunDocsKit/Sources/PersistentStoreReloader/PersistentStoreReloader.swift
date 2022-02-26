@@ -15,7 +15,7 @@ public class PersistentStoreReloader {
     public var accountChanged: PassthroughSubject<Void, Never> = .init()
     public var isiCloudSyncDisabledByUnavailableAccount: PassthroughSubject<Void, Never> = .init()
 
-    // MARK: - Lifecycle
+    // MARK: - Initializers
 
     public init(persistentStore: PersistentStore,
                 settingStorage: ICloudSyncSettingStorage,
