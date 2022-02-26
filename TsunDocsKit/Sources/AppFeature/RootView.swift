@@ -97,7 +97,7 @@ public struct RootView: View {
     }
 }
 
-extension UserInterfaceStyle {
+private extension UserInterfaceStyle {
     var colorScheme: ColorScheme? {
         switch self {
         case .dark:
