@@ -61,8 +61,8 @@ let package = Package(
             targets: ["ButtonStyle"]
         ),
         .library(
-            name: "PersistentStoreReloader",
-            targets: ["PersistentStoreReloader"]
+            name: "CoreDataCloudKitSupport",
+            targets: ["CoreDataCloudKitSupport"]
         ),
         .library(
             name: "PreviewContent",
@@ -92,7 +92,7 @@ let package = Package(
                 "SearchKit",
                 "TagKit",
                 "TsundocList",
-                "PersistentStoreReloader"
+                "CoreDataCloudKitSupport"
             ]
         ),
         .target(
@@ -172,7 +172,7 @@ let package = Package(
             dependencies: []
         ),
         .target(
-            name: "PersistentStoreReloader",
+            name: "CoreDataCloudKitSupport",
             dependencies: []
         ),
         .target(

@@ -4,12 +4,12 @@
 
 import Combine
 import CompositeKit
+import CoreDataCloudKitSupport
 import Domain
-import PersistentStoreReloader
 import SwiftUI
 
 protocol HasCloudKitAvailabilityObserver {
-    var cloudKitAvailabilityObserver: CloudKitAvailabilityObserver { get }
+    var cloudKitAvailabilityObserver: CloudKitAvailabilityObservable { get }
 }
 
 typealias SettingViewDependency = HasCloudKitAvailabilityObserver

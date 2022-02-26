@@ -2,8 +2,8 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import CoreDataCloudKitSupport
 import Domain
-import PersistentStoreReloader
 import UIKit
 
 extension SceneDependencyContainer: HasPasteboard {
@@ -45,7 +45,7 @@ extension SceneDependencyContainer: HasUserSettingStorage {
 extension SceneDependencyContainer: HasCloudKitAvailabilityObserver {
     // MARK: - HasCloudKitAvailabilityObserver
 
-    public var cloudKitAvailabilityObserver: CloudKitAvailabilityObserver { appDependencyContainer.cloudKitAvailabilityObserver }
+    public var cloudKitAvailabilityObserver: CloudKitAvailabilityObservable { appDependencyContainer.cloudKitAvailabilityObserver }
 }
 
 extension SceneDependencyContainer: HasNop {}

@@ -5,7 +5,14 @@
 import CloudKit
 import Combine
 
+public protocol CKAccountStatusObservable {
+    var accountStatus: AnyPublisher<CKAccountStatus?, Error> { get }
+    func accountStatus() async throws -> CKAccountStatus
+}
+
 public class CKAccountStatusObserver {
+    // MARK: - Properties
+
     private let _accountStatus: CurrentValueSubject<CKAccountStatus?, Error> = .init(nil)
     private var subscriptions: Set<AnyCancellable> = .init()
 
@@ -34,12 +41,14 @@ public class CKAccountStatusObserver {
     }
 }
 
-extension CKAccountStatusObserver {
-    var accountStatus: AnyPublisher<CKAccountStatus?, Error> {
+extension CKAccountStatusObserver: CKAccountStatusObservable {
+    // MARK: - CKAccountStatusObservable
+
+    public var accountStatus: AnyPublisher<CKAccountStatus?, Error> {
         _accountStatus.eraseToAnyPublisher()
     }
 
-    func accountStatus() async throws -> CKAccountStatus {
+    public func accountStatus() async throws -> CKAccountStatus {
         return try await CKContainer.default().accountStatus()
     }
 }

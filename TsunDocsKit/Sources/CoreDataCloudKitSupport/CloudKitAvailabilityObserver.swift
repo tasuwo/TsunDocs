@@ -11,14 +11,16 @@ public protocol CloudKitAvailabilityObservable {
 }
 
 public class CloudKitAvailabilityObserver {
-    private let ckAccountStatusObserver: CKAccountStatusObserver
+    // MARK: - Properties
+
+    private let ckAccountStatusObserver: CKAccountStatusObservable
 
     private var _availability: CurrentValueSubject<CloudKitAvailability?, Error> = .init(nil)
     private var subscriptions: Set<AnyCancellable> = .init()
 
     // MARK: - Initializers
 
-    public init(ckAccountStatusObserver: CKAccountStatusObserver) {
+    public init(ckAccountStatusObserver: CKAccountStatusObservable) {
         self.ckAccountStatusObserver = ckAccountStatusObserver
 
         bind()

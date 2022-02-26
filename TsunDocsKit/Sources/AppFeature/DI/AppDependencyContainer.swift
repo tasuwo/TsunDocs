@@ -4,20 +4,20 @@
 
 import Combine
 import CoreData
+import CoreDataCloudKitSupport
 import Domain
 import Persistence
-import PersistentStoreReloader
 
 public class AppDependencyContainer: ObservableObject {
     // MARK: CoreData
 
-    private let container: PersistentContainer
+    private let container: Persistence.PersistentContainer
     private let containerMonitor: PersistentContainerMonitor
     private var commandContext: NSManagedObjectContext
     private let commandQueue = DispatchQueue(label: "net.tasuwo.tsundocs.DependencyContainer.commandQueue")
 
     let cloudKitAvailabilityObserver: CloudKitAvailabilityObserver
-    private let persistentContainerReloader: PersistentStoreReloader
+    private let persistentContainerReloader: PersistentContainerReloader
 
     // MARK: Query
 
@@ -49,10 +49,10 @@ public class AppDependencyContainer: ObservableObject {
         containerMonitor = PersistentContainerMonitor()
         commandContext = container.newBackgroundContext(on: commandQueue)
         cloudKitAvailabilityObserver = CloudKitAvailabilityObserver(ckAccountStatusObserver: CKAccountStatusObserver())
-        persistentContainerReloader = PersistentStoreReloader(persistentStore: container,
-                                                              settingStorage: userSettingStorage,
-                                                              cloudKitAvailabilityObserver: cloudKitAvailabilityObserver,
-                                                              ckAccountIdStorage: CloudKitContextStorage(userDefaults: .standard))
+        persistentContainerReloader = PersistentContainerReloader(persistentContainer: container,
+                                                                  settingStorage: userSettingStorage,
+                                                                  cloudKitAvailabilityObserver: cloudKitAvailabilityObserver,
+                                                                  ckAccountIdStorage: CloudKitContextStorage(userDefaults: .standard))
 
         tsundocQueryService = TsundocQueryService(container.viewContext)
         tagQueryService = TagQueryService(container.viewContext)
@@ -90,7 +90,7 @@ extension AppDependencyContainer {
 
 extension Persistence.UserSettingStorage: ICloudSyncSettingStorage {}
 
-extension PersistentContainer: PersistentStore {}
+extension Persistence.PersistentContainer: CoreDataCloudKitSupport.PersistentContainer {}
 
 // TODO: 下記は適切な場所に移動する
 

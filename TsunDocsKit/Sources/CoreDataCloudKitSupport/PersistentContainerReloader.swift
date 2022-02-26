@@ -4,8 +4,10 @@
 
 import Combine
 
-public class PersistentStoreReloader {
-    private let persistentStore: PersistentStore
+public class PersistentContainerReloader {
+    // MARK: - Properties
+
+    private let persistentContainer: PersistentContainer
     private let settingStorage: ICloudSyncSettingStorage
     private let cloudKitAvailabiltyObserver: CloudKitAvailabilityObservable
     private let ckAccountIdStorage: CKAccountIdStorage
@@ -17,12 +19,12 @@ public class PersistentStoreReloader {
 
     // MARK: - Initializers
 
-    public init(persistentStore: PersistentStore,
+    public init(persistentContainer: PersistentContainer,
                 settingStorage: ICloudSyncSettingStorage,
                 cloudKitAvailabilityObserver: CloudKitAvailabilityObservable,
                 ckAccountIdStorage: CKAccountIdStorage)
     {
-        self.persistentStore = persistentStore
+        self.persistentContainer = persistentContainer
         self.settingStorage = settingStorage
         self.cloudKitAvailabiltyObserver = cloudKitAvailabilityObserver
         self.ckAccountIdStorage = ckAccountIdStorage
@@ -62,8 +64,8 @@ public class PersistentStoreReloader {
 
     @discardableResult
     private func reloadPersistentStoreIfNeeded(isiCloudSyncEnabled: Bool) -> Bool {
-        guard isiCloudSyncEnabled != persistentStore.isiCloudSyncEnabled else { return false }
-        persistentStore.reload(isiCloudSyncSettingEnabled: isiCloudSyncEnabled)
+        guard isiCloudSyncEnabled != persistentContainer.isiCloudSyncEnabled else { return false }
+        persistentContainer.reload(isiCloudSyncSettingEnabled: isiCloudSyncEnabled)
         return true
     }
 }
