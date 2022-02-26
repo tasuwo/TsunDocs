@@ -91,35 +91,3 @@ extension AppDependencyContainer {
 extension Persistence.UserSettingStorage: ICloudSyncSettingStorage {}
 
 extension Persistence.PersistentContainer: CoreDataCloudKitSupport.PersistentContainer {}
-
-// TODO: 下記は適切な場所に移動する
-
-public class CloudKitContextStorage {
-    // MARK: - Properties
-
-    private let userDefaults: UserDefaults
-
-    // MARK: - Initializers
-
-    public init(userDefaults: UserDefaults) {
-        self.userDefaults = userDefaults
-    }
-}
-
-extension UserDefaults {
-    @objc dynamic var lastLoggedInCKAccountId: String? {
-        return string(forKey: StorageKey.lastLoggedInCKAccountId.rawValue)
-    }
-}
-
-extension CloudKitContextStorage: CKAccountIdStorage {
-    // MARK: - CKAccountIdStorage
-
-    public var lastLoggedInCKAccountId: String? {
-        return userDefaults.lastLoggedInCKAccountId
-    }
-
-    public func set(lastLoggedInCKAccountId: String?) {
-        userDefaults.set(lastLoggedInCKAccountId, forKey: StorageKey.lastLoggedInCKAccountId.rawValue)
-    }
-}
