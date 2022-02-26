@@ -3,6 +3,7 @@
 //
 
 import CompositeKit
+import Domain
 import SwiftUI
 
 #if os(iOS)
@@ -10,6 +11,7 @@ import SwiftUI
 public struct RootView: View {
     // MARK: - Properties
 
+    @AppStorage(StorageKey.userInterfaceStyle.rawValue) var userInterfaceStyle = UserInterfaceStyle.unspecified
     @StateObject var container: SceneDependencyContainer
 
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
@@ -28,6 +30,7 @@ public struct RootView: View {
             .environment(\.tagControlViewStoreBuilder, container)
             .environment(\.tagMultiSelectionStoreBuilder, container)
             .environment(\.tsundocInfoViewStoreBuilder, container)
+            .preferredColorScheme(userInterfaceStyle.colorScheme)
     }
 
     @ViewBuilder
@@ -91,6 +94,21 @@ public struct RootView: View {
     @ViewBuilder
     func settingView() -> some View {
         SettingView()
+    }
+}
+
+extension UserInterfaceStyle {
+    var colorScheme: ColorScheme? {
+        switch self {
+        case .dark:
+            return .dark
+
+        case .light:
+            return .light
+
+        case .unspecified:
+            return nil
+        }
     }
 }
 

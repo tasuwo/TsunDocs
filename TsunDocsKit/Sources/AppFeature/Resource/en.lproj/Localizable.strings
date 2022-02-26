@@ -39,9 +39,16 @@
 
 "tsundoc_info_view_tag" = "Tag";
 
-"setting_view_title" = "Settings";
-"setting_view_section_title_this_app" = "About This App";
-"setting_view_row_app_version" = "Version";
+"setting_view.title" = "Settings";
+"setting_view.section.appearance.title" = "Appearance";
+"setting_view.row.user_interface_style.title" = "Theme";
+"setting_view.section.this_app.title" = "Abount This App";
+"setting_view.row.app_version.title" = "Version";
+
+"user_interface_style_setting_view.title" = "Theme";
+"user_interface_style_setting_view.row.dark" = "Dark";
+"user_interface_style_setting_view.row.light" = "Light";
+"user_interface_style_setting_view.row.unspecified" = "Unspecified";
 
 "browse_view_title_loading" = "Loading...";
 "browse_view_button_close" = "Close";

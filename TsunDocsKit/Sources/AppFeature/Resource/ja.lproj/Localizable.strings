@@ -39,9 +39,16 @@
 
 "tsundoc_info_view_tag" = "タグ";
 
-"setting_view_title" = "設定";
-"setting_view_section_title_this_app" = "このアプリについて";
-"setting_view_row_app_version" = "バージョン";
+"setting_view.title" = "設定";
+"setting_view.section.appearance.title" = "表示設定";
+"setting_view.row.user_interface_style.title" = "テーマ";
+"setting_view.section.this_app.title" = "このアプリについて";
+"setting_view.row.app_version.title" = "バージョン";
+
+"user_interface_style_setting_view.title" = "テーマ";
+"user_interface_style_setting_view.row.dark" = "ダーク";
+"user_interface_style_setting_view.row.light" = "ライト";
+"user_interface_style_setting_view.row.unspecified" = "端末に合わせる";
 
 "browse_view_title_loading" = "読み込み中...";
 "browse_view_button_close" = "閉じる";
