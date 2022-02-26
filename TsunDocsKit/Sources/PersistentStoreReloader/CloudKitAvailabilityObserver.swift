@@ -12,18 +12,14 @@ public protocol CloudKitAvailabilityObservable {
 
 public class CloudKitAvailabilityObserver {
     private let ckAccountStatusObserver: CKAccountStatusObserver
-    private let ckAccountIdStorage: CKAccountIdStorage
 
     private var _availability: CurrentValueSubject<CloudKitAvailability?, Error> = .init(nil)
     private var subscriptions: Set<AnyCancellable> = .init()
 
     // MARK: - Initializers
 
-    public init(ckAccountStatusObserver: CKAccountStatusObserver,
-                ckAccountIdStorage: CKAccountIdStorage)
-    {
+    public init(ckAccountStatusObserver: CKAccountStatusObserver) {
         self.ckAccountStatusObserver = ckAccountStatusObserver
-        self.ckAccountIdStorage = ckAccountIdStorage
 
         bind()
     }
@@ -54,15 +50,7 @@ public class CloudKitAvailabilityObserver {
 
     private func resolveCloudAvailability(byAccountId id: String?) -> CloudKitAvailability {
         guard let id = id else { return .unavailable }
-
-        let lastId = ckAccountIdStorage.lastLoggedInCKAccountId
-        ckAccountIdStorage.set(lastLoggedInCKAccountId: id)
-
-        if lastId == nil || lastId == id {
-            return .available(.none)
-        } else {
-            return .available(.accountChanged)
-        }
+        return .available(accountId: id)
     }
 }
 

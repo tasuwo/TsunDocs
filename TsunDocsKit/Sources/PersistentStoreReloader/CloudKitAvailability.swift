@@ -3,11 +3,6 @@
 //
 
 public enum CloudKitAvailability: Equatable {
-    public enum Context: Equatable {
-        case none
-        case accountChanged
-    }
-
-    case available(Context)
+    case available(accountId: String)
     case unavailable
 }

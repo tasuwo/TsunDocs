@@ -8,6 +8,7 @@ public class PersistentStoreReloader {
     private let persistentStore: PersistentStore
     private let settingStorage: ICloudSyncSettingStorage
     private let cloudKitAvailabiltyObserver: CloudKitAvailabilityObservable
+    private let ckAccountIdStorage: CKAccountIdStorage
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -18,11 +19,13 @@ public class PersistentStoreReloader {
 
     public init(persistentStore: PersistentStore,
                 settingStorage: ICloudSyncSettingStorage,
-                cloudKitAvailabilityObserver: CloudKitAvailabilityObservable)
+                cloudKitAvailabilityObserver: CloudKitAvailabilityObservable,
+                ckAccountIdStorage: CKAccountIdStorage)
     {
         self.persistentStore = persistentStore
         self.settingStorage = settingStorage
         self.cloudKitAvailabiltyObserver = cloudKitAvailabilityObserver
+        self.ckAccountIdStorage = ckAccountIdStorage
     }
 
     // MARK: - Methods
@@ -35,13 +38,15 @@ public class PersistentStoreReloader {
             .sink { [weak self] availability, isiCloudSyncEnabled in
                 guard let self = self else { return }
                 switch (isiCloudSyncEnabled, availability) {
-                case (true, .available(.none)):
+                case let (true, .available(accountId: accountId)):
                     self.reloadPersistentStoreIfNeeded(isiCloudSyncEnabled: true)
 
-                case (true, .available(.accountChanged)):
-                    self.reloadPersistentStoreIfNeeded(isiCloudSyncEnabled: true)
-                    // NOTE: アカウント変更の場合は、リロードの成否にかかわらず通知する
-                    self.accountChanged.send(())
+                    let lastId = self.ckAccountIdStorage.lastLoggedInCKAccountId
+                    self.ckAccountIdStorage.set(lastLoggedInCKAccountId: accountId)
+                    if lastId != nil, lastId != accountId {
+                        // NOTE: アカウント変更の場合は、リロードの成否にかかわらず通知する
+                        self.accountChanged.send(())
+                    }
 
                 case (true, .unavailable):
                     if self.reloadPersistentStoreIfNeeded(isiCloudSyncEnabled: false) {
