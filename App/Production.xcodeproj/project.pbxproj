@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */; };
+		2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C24DA2C27CA144C004AA2CD /* Localizable.strings */; };
 		2CC25E7827C669E100E29112 /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */; };
 		2CC25E7A27C669EA00E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7927C669EA00E29112 /* AppFeature */; };
 		2CC25E7C27C669F200E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7B27C669F200E29112 /* AppFeature */; };
@@ -43,6 +44,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C24DA2B27CA144C004AA2CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2C24DA2D27CA144E004AA2CD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C414B9F27C7BB9800550078 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Production/Info.plist; sourceTree = "<group>"; };
 		2C414BA027C7BBA300550078 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Production/Info.plist; sourceTree = "<group>"; };
 		2C414BA627C7BC3800550078 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Production/Info.plist; sourceTree = "<group>"; };
@@ -104,6 +107,7 @@
 				C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */,
 				2CAE400827C67CD700576F49 /* iOS.entitlements */,
 				2CC25E8127C677B400E29112 /* Assets.xcassets */,
+				2C24DA2C27CA144C004AA2CD /* Localizable.strings */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -251,6 +255,7 @@
 			knownRegions = (
 				Base,
 				en,
+				ja,
 			);
 			mainGroup = EB5136094B07B8560319AE2D;
 			projectDirPath = "";
@@ -269,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CC25E8227C677B400E29112 /* Assets.xcassets in Resources */,
+				2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +353,18 @@
 			targetProxy = 85BC566019A7B020FD907CFF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2C24DA2C27CA144C004AA2CD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C24DA2B27CA144C004AA2CD /* en */,
+				2C24DA2D27CA144E004AA2CD /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		003468CAD7D857E59A2EB4AA /* Release */ = {
