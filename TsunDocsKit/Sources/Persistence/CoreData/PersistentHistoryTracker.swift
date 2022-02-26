@@ -69,6 +69,12 @@ class PersistentHistoryTracker {
 
     // MARK: - Methods
 
+    func prepareForReplaceContainer(execute block: @escaping () -> Void) {
+        self.historyQueue.addOperation {
+            block()
+        }
+    }
+
     private func mergeRemoteChange(_ notification: Notification) {
         historyQueue.addOperation { [weak self] in self?.fetch() }
     }

@@ -13,11 +13,15 @@ public class PersistentContainer {
 
     // MARK: - Properties
 
+    private let appBundle: Bundle
     let author: TransactionAuthor
 
     public var viewContext: NSManagedObjectContext {
         return _persistentContainer.value.viewContext
     }
+
+    public private(set) var isiCloudSyncEnabled: Bool
+    public let reloaded: PassthroughSubject<Void, Never> = .init()
 
     private let _persistentContainer: CurrentValueSubject<NSPersistentContainer, Never>
     var persistentContainer: AnyPublisher<NSPersistentContainer, Never> {
@@ -30,11 +34,16 @@ public class PersistentContainer {
 
     public init(appBundle: Bundle,
                 author: TransactionAuthor,
+                isiCloudSyncSettingEnabled: Bool,
                 notificationCenter: NotificationCenter = .default)
     {
+        self.appBundle = appBundle
         self.author = author
-        self._persistentContainer = .init(Self.makeContainer(forAppBundle: appBundle, author: author))
+        self.isiCloudSyncEnabled = (author == .app && isiCloudSyncSettingEnabled)
+        self._persistentContainer = .init(Self.makeContainer(forAppBundle: appBundle, author: author, isiCloudSyncEnabled: self.isiCloudSyncEnabled))
         self.historyTracker = PersistentHistoryTracker(self)
+
+        self.load()
     }
 
     // MARK: - Methods
@@ -49,9 +58,37 @@ public class PersistentContainer {
     }
 }
 
+public extension PersistentContainer {
+    func reload(isiCloudSyncSettingEnabled: Bool) {
+        historyTracker?.prepareForReplaceContainer { [weak self] in
+            guard let self = self else { return }
+
+            let isiCloudSyncEnabled = (self.author == .app && isiCloudSyncSettingEnabled)
+
+            let container = Self.makeContainer(forAppBundle: self.appBundle, author: self.author, isiCloudSyncEnabled: isiCloudSyncEnabled)
+            self._persistentContainer.send(container)
+            self.isiCloudSyncEnabled = isiCloudSyncEnabled
+
+            self.load()
+            self.reloaded.send(())
+        }
+    }
+}
+
 extension PersistentContainer {
+    private func load() {
+        _persistentContainer.value.loadPersistentStores { _, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
+        _persistentContainer.value.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        _persistentContainer.value.viewContext.automaticallyMergesChangesFromParent = true
+    }
+
     private static func makeContainer(forAppBundle appBundle: Bundle,
-                                      author: TransactionAuthor) -> NSPersistentContainer
+                                      author: TransactionAuthor,
+                                      isiCloudSyncEnabled: Bool) -> NSPersistentContainer
     {
         let container = loadContainer()
 
@@ -66,17 +103,9 @@ extension PersistentContainer {
         description.shouldMigrateStoreAutomatically = true
         description.shouldInferMappingModelAutomatically = true
 
-        if author == .shareExtension {
+        if !isiCloudSyncEnabled {
             description.cloudKitContainerOptions = nil
         }
-
-        container.loadPersistentStores(completionHandler: { _, error in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        container.viewContext.automaticallyMergesChangesFromParent = true
 
         return container
     }

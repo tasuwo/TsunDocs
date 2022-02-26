@@ -4,5 +4,5 @@
 
 public protocol PersistentStore {
     var isiCloudSyncEnabled: Bool { get }
-    func reload(isiCloudSyncEnabled: Bool)
+    func reload(isiCloudSyncSettingEnabled: Bool)
 }

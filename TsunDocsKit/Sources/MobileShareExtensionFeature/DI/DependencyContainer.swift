@@ -39,7 +39,9 @@ public class DependencyContainer: ObservableObject {
         _sharedUrlLoader = SharedUrlLoader(context)
         _webPageMetaResolver = WebPageMetaResolver()
 
-        container = PersistentContainer(appBundle: appBundle, author: .shareExtension)
+        container = PersistentContainer(appBundle: appBundle,
+                                        author: .shareExtension,
+                                        isiCloudSyncSettingEnabled: false)
         commandContext = container.newBackgroundContext(on: commandQueue)
 
         _tagQueryService = TagQueryService(container.viewContext)

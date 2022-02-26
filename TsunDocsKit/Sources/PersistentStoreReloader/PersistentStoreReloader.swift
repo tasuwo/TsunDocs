@@ -63,7 +63,7 @@ public class PersistentStoreReloader {
     @discardableResult
     private func reloadPersistentStoreIfNeeded(isiCloudSyncEnabled: Bool) -> Bool {
         guard isiCloudSyncEnabled != persistentStore.isiCloudSyncEnabled else { return false }
-        persistentStore.reload(isiCloudSyncEnabled: isiCloudSyncEnabled)
+        persistentStore.reload(isiCloudSyncSettingEnabled: isiCloudSyncEnabled)
         return true
     }
 }
