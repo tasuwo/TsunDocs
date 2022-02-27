@@ -118,14 +118,14 @@ public struct TsundocEditThumbnail: View {
             }
 
             if visibleEmojiLoadButton {
-                makeBadge(systemName: "face.smiling", backgroundColor: .cyan)
+                makeBadge(systemName: "face.smiling", backgroundColor: .accentColor)
                     .offset(x: (Self.thumbnailSize / 2) - 6,
                             y: (Self.thumbnailSize / 2) - 6)
                     .onTapGesture {
                         isSelectingEmoji = true
                     }
             } else if !visibleDeleteButton {
-                makeBadge(systemName: "plus", backgroundColor: .cyan)
+                makeBadge(systemName: "plus", backgroundColor: .accentColor)
                     .offset(x: (Self.thumbnailSize / 2) - 6,
                             y: (Self.thumbnailSize / 2) - 6)
                     .onTapGesture {

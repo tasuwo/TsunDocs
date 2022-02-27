@@ -98,7 +98,7 @@ public struct TsundocEditView: View {
                 Spacer()
 
                 Image(systemName: "plus")
-                    .foregroundColor(.cyan)
+                    .foregroundColor(.accentColor)
                     .font(.system(size: 24))
                     .onTapGesture {
                         isTagEditSheetPresenting = true

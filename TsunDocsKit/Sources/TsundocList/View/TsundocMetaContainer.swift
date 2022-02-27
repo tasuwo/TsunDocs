@@ -53,7 +53,7 @@ public struct TsundocMetaContainer: View {
                     }
 
                     Image(systemName: "pencil.circle.fill")
-                        .foregroundColor(.cyan)
+                        .foregroundColor(.accentColor)
                         .font(.system(size: 24))
                 }
                 .onTapGesture {

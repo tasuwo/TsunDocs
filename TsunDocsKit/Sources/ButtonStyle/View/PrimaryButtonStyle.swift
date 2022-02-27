@@ -16,9 +16,7 @@ public struct PrimaryButtonStyle: ButtonStyle {
                 .padding([.leading, .trailing], 16)
                 .padding([.top, .bottom], 8)
                 .background(GeometryReader { geometry in
-                    LinearGradient(gradient: Gradient(colors: [Color.cyan, Color.blue]),
-                                   startPoint: .leading,
-                                   endPoint: .trailing)
+                    Color.accentColor
                         .clipShape(RoundedRectangle(cornerRadius: geometry.size.height / 2,
                                                     style: .continuous))
                         .opacity(isEnabled ? 1 : 0.6)
