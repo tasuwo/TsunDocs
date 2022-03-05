@@ -4,6 +4,7 @@
 
 import CoreDataCloudKitSupport
 import Domain
+import Environment
 import UIKit
 
 extension SceneDependencyContainer: HasPasteboard {

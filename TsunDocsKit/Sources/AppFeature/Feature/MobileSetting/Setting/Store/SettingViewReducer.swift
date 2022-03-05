@@ -6,6 +6,7 @@ import Combine
 import CompositeKit
 import CoreDataCloudKitSupport
 import Domain
+import Environment
 import SwiftUI
 
 protocol HasCloudKitAvailabilityObserver {

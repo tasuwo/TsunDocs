@@ -4,6 +4,7 @@
 
 import CoreData
 import Domain
+import Environment
 import Foundation
 import MobileShareExtensionUIKit
 import Persistence

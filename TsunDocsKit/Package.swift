@@ -152,6 +152,7 @@ let package = Package(
                 "TextEditAlert",
                 "SearchKit",
                 "Domain",
+                "Environment",
                 "PreviewContent"
             ]
         ),

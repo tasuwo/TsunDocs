@@ -8,16 +8,6 @@ import Domain
 import Foundation
 import Kanna
 
-public class HasPasteboardMock: HasPasteboard {
-    public init() { }
-    public init(pasteboard: Pasteboard = PasteboardMock()) {
-        self.pasteboard = pasteboard
-    }
-
-    public private(set) var pasteboardSetCallCount = 0
-    public var pasteboard: Pasteboard = PasteboardMock() { didSet { pasteboardSetCallCount += 1 } }
-}
-
 public class PasteboardMock: Pasteboard {
     public init() { }
 
@@ -386,82 +376,4 @@ public class SharedUrlLoadableMock: SharedUrlLoadable {
             loadHandler(completion)
         }
     }
-}
-
-public class HasTsundocQueryServiceMock: HasTsundocQueryService {
-    public init() { }
-    public init(tsundocQueryService: TsundocQueryService = TsundocQueryServiceMock()) {
-        self.tsundocQueryService = tsundocQueryService
-    }
-
-    public private(set) var tsundocQueryServiceSetCallCount = 0
-    public var tsundocQueryService: TsundocQueryService = TsundocQueryServiceMock() { didSet { tsundocQueryServiceSetCallCount += 1 } }
-}
-
-public class HasTagQueryServiceMock: HasTagQueryService {
-    public init() { }
-    public init(tagQueryService: TagQueryService = TagQueryServiceMock()) {
-        self.tagQueryService = tagQueryService
-    }
-
-    public private(set) var tagQueryServiceSetCallCount = 0
-    public var tagQueryService: TagQueryService = TagQueryServiceMock() { didSet { tagQueryServiceSetCallCount += 1 } }
-}
-
-public class HasTsundocCommandServiceMock: HasTsundocCommandService {
-    public init() { }
-    public init(tsundocCommandService: TsundocCommandService = TsundocCommandServiceMock()) {
-        self.tsundocCommandService = tsundocCommandService
-    }
-
-    public private(set) var tsundocCommandServiceSetCallCount = 0
-    public var tsundocCommandService: TsundocCommandService = TsundocCommandServiceMock() { didSet { tsundocCommandServiceSetCallCount += 1 } }
-}
-
-public class HasTagCommandServiceMock: HasTagCommandService {
-    public init() { }
-    public init(tagCommandService: TagCommandService = TagCommandServiceMock()) {
-        self.tagCommandService = tagCommandService
-    }
-
-    public private(set) var tagCommandServiceSetCallCount = 0
-    public var tagCommandService: TagCommandService = TagCommandServiceMock() { didSet { tagCommandServiceSetCallCount += 1 } }
-}
-
-public class HasSharedUrlLoaderMock: HasSharedUrlLoader {
-    public init() { }
-    public init(sharedUrlLoader: SharedUrlLoadable = SharedUrlLoadableMock()) {
-        self.sharedUrlLoader = sharedUrlLoader
-    }
-
-    public private(set) var sharedUrlLoaderSetCallCount = 0
-    public var sharedUrlLoader: SharedUrlLoadable = SharedUrlLoadableMock() { didSet { sharedUrlLoaderSetCallCount += 1 } }
-}
-
-public class HasWebPageMetaResolverMock: HasWebPageMetaResolver {
-    public init() { }
-    public init(webPageMetaResolver: WebPageMetaResolvable = WebPageMetaResolvableMock()) {
-        self.webPageMetaResolver = webPageMetaResolver
-    }
-
-    public private(set) var webPageMetaResolverSetCallCount = 0
-    public var webPageMetaResolver: WebPageMetaResolvable = WebPageMetaResolvableMock() { didSet { webPageMetaResolverSetCallCount += 1 } }
-}
-
-public class HasUserSettingStorageMock: HasUserSettingStorage {
-    public init() { }
-    public init(userSettingStorage: UserSettingStorage) {
-        self._userSettingStorage = userSettingStorage
-    }
-
-    public private(set) var userSettingStorageSetCallCount = 0
-    private var _userSettingStorage: UserSettingStorage! { didSet { userSettingStorageSetCallCount += 1 } }
-    public var userSettingStorage: UserSettingStorage {
-        get { return _userSettingStorage }
-        set { _userSettingStorage = newValue }
-    }
-}
-
-public class HasNopMock: HasNop {
-    public init() { }
 }
