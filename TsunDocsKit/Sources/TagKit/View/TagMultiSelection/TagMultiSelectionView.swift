@@ -33,7 +33,7 @@ public struct TagMultiSelectionView: View {
     {
         _selectedIds = selectedIds
         let store = CompositeKit.Store(initialState: .init(items: []),
-                                       dependency: Nop(),
+                                       dependency: (),
                                        reducer: SearchableFilterReducer<Tag>())
             .connect(connection)
             .eraseToAnyStoring()

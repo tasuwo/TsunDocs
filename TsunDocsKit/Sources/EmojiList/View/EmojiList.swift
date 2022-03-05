@@ -41,7 +41,7 @@ public struct EmojiList<BackgroundColor>: View where BackgroundColor: PickColor,
         let emojis = allEmojis
         _emojis = State(wrappedValue: emojis)
         let store = Store(initialState: .init(items: emojis),
-                          dependency: Nop(),
+                          dependency: (),
                           reducer: SearchableFilterReducer<Emoji>())
         _filterStore = StateObject(wrappedValue: ViewStore(store: store))
     }

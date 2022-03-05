@@ -35,7 +35,7 @@ struct TagList: View {
         _store = StateObject(wrappedValue: store)
 
         let filterStore = CompositeKit.Store(initialState: SearchableFilterState<Tag>(items: []),
-                                             dependency: Nop(),
+                                             dependency: (),
                                              reducer: SearchableFilterReducer<Tag>())
             .connect(store.connection(at: \.tags, { SearchableFilterAction.updateItems($0) }))
             .eraseToAnyStoring()

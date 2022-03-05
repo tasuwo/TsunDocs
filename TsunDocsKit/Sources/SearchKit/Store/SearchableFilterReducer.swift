@@ -4,7 +4,7 @@
 
 import CompositeKit
 
-public typealias SearchableFilterDepenency = HasNop
+public typealias SearchableFilterDepenency = Void
 
 public struct SearchableFilterReducer<Item: Searchable>: Reducer {
     public typealias Dependency = SearchableFilterDepenency
