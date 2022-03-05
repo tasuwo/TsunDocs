@@ -1,0 +1,5 @@
+# vim: syntax=ruby
+
+automatic_release(false)
+overwrite_screenshots(true)
+
