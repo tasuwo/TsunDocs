@@ -4,21 +4,29 @@
 
 import CompositeKit
 import Domain
+import Environment
 import SwiftUI
 
 #if os(iOS)
 
-public struct RootView: View {
+public typealias SceneContainer = TsundocListBuildable
+    & TagListBuildable
+    & TagMultiSelectionSheetBuildable
+    & TsundocInfoViewBuildable
+    & SettingViewBuilder
+    & ObservableObject
+
+public struct RootView<Container>: View where Container: SceneContainer {
     // MARK: - Properties
 
     @AppStorage(StorageKey.userInterfaceStyle.rawValue) var userInterfaceStyle = UserInterfaceStyle.unspecified
-    @StateObject var container: SceneDependencyContainer
+    @StateObject var container: Container
 
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
     // MARK: - Initializers
 
-    public init(container: SceneDependencyContainer) {
+    public init(container: Container) {
         _container = StateObject(wrappedValue: container)
     }
 
