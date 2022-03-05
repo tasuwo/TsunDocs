@@ -9,22 +9,33 @@ import Environment
 import SwiftUI
 import TagKit
 
-struct TsundocList: View {
+public struct TsundocList: View {
+    public typealias Store = ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
+
     // MARK: - Properties
 
     let title: String
     let emptyTitle: String
     let emptyMessage: String?
 
-    @StateObject var store: ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
+    @StateObject var store: Store
 
     @Environment(\.openURL) var openURL
     @Environment(\.tagMultiSelectionSheetBuilder) var tagMultiSelectionSheetBuilder
     @Environment(\.tsundocInfoViewBuilder) var tsundocInfoViewBuilder
 
+    // MARK: - Initializers
+
+    public init(title: String, emptyTitle: String, emptyMessage: String?, store: Store) {
+        self.title = title
+        self.emptyTitle = emptyTitle
+        self.emptyMessage = emptyMessage
+        _store = .init(wrappedValue: store)
+    }
+
     // MARK: - View
 
-    var body: some View {
+    public var body: some View {
         ZStack {
             if store.state.filteredTsundocs.isEmpty {
                 if store.state.isTsundocFilterActive {

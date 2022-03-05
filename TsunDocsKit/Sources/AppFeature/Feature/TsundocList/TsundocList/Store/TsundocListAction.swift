@@ -7,8 +7,8 @@ import Domain
 import Foundation
 import TsundocList
 
-enum TsundocListAction {
-    enum MenuItem {
+public enum TsundocListAction {
+    public enum MenuItem {
         case editInfo
         case addTag
         case addEmoji
@@ -16,13 +16,13 @@ enum TsundocListAction {
         case delete
     }
 
-    enum AlertAction {
+    public enum AlertAction {
         case confirmedToDelete(Tsundoc.ID)
         case dismissed
     }
 
-    enum NavigationAction {
-        enum Destination {
+    public enum NavigationAction {
+        public enum Destination {
             case edit
             case browse
             case browseAndEdit

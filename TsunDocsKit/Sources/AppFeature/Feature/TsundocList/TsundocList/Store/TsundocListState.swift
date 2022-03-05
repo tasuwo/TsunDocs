@@ -5,7 +5,7 @@
 import CompositeKit
 import Domain
 
-struct TsundocListState: Equatable {
+public struct TsundocListState: Equatable {
     enum Alert: Equatable {
         enum Confirmation: Equatable {
             case delete(Tsundoc.ID)
@@ -37,10 +37,10 @@ struct TsundocListState: Equatable {
     var modal: Modal?
     var alert: Alert?
     var navigation: Navigation?
-}
 
-extension TsundocListState {
-    init(query: TsundocListQuery, tsundocs: [Tsundoc] = []) {
+    // MARK: - Initializers
+
+    public init(query: TsundocListQuery, tsundocs: [Tsundoc] = []) {
         self.query = query
         self.tsundocs = tsundocs
     }

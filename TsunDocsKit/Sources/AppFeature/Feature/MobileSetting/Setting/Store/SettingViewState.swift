@@ -4,7 +4,7 @@
 
 import CoreDataCloudKitSupport
 
-struct SettingViewState: Equatable {
+public struct SettingViewState: Equatable {
     enum Alert: Equatable {
         case iCloudSettingForceTurnOnConfirmation
         case iCloudSettingForceTurnOffConfirmation
@@ -29,6 +29,10 @@ struct SettingViewState: Equatable {
     var alert: Alert?
     var cloudKitAvailability: CloudKitAvailability?
     var appVersion: String?
+
+    // MARK: - Initializers
+
+    public init() {}
 }
 
 extension SettingViewState {

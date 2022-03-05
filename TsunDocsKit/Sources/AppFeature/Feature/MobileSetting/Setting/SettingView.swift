@@ -7,16 +7,22 @@ import Domain
 import Foundation
 import SwiftUI
 
-struct SettingView: View {
-    typealias Store = ViewStore<SettingViewState, SettingViewAction, SettingViewDependency>
+public struct SettingView: View {
+    public typealias Store = ViewStore<SettingViewState, SettingViewAction, SettingViewDependency>
 
     @StateObject var store: Store
 
     @AppStorage(StorageKey.userInterfaceStyle.rawValue) var userInterfaceStyle = UserInterfaceStyle.unspecified
 
+    // MARK: - Initializers
+
+    public init(store: Store) {
+        self._store = .init(wrappedValue: store)
+    }
+
     // MARK: - View
 
-    var body: some View {
+    public var body: some View {
         List {
             Section(header: Text("setting_view.section.appearance.title", bundle: Bundle.module)) {
                 NavigationLink(destination: UserInterfaceStyleSettingView()) {

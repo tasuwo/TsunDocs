@@ -9,8 +9,8 @@ import SwiftUI
 import TagKit
 import TsundocList
 
-struct TsundocInfoView: View {
-    typealias Store = ViewStore<
+public struct TsundocInfoView: View {
+    public typealias Store = ViewStore<
         TsundocInfoViewState,
         TsundocInfoViewAction,
         TsundocInfoViewDependency
@@ -24,9 +24,15 @@ struct TsundocInfoView: View {
 
     @Environment(\.tagMultiSelectionSheetBuilder) var tagMultiSelectionSheetBuilder
 
+    // MARK: - Initializers
+
+    public init(store: Store) {
+        _store = .init(wrappedValue: store)
+    }
+
     // MARK: - View
 
-    var body: some View {
+    public var body: some View {
         VStack {
             TsundocMetaContainer(url: store.state.tsundoc.url,
                                  imageUrl: store.state.tsundoc.imageUrl,

@@ -7,18 +7,22 @@ import CompositeKit
 import Domain
 import Environment
 
-typealias TsundocInfoViewDependency = HasTsundocCommandService
+public typealias TsundocInfoViewDependency = HasTsundocCommandService
     & HasTsundocQueryService
     & HasTagQueryService
 
-struct TsundocInfoViewReducer: Reducer {
-    typealias Dependency = TsundocInfoViewDependency
-    typealias State = TsundocInfoViewState
-    typealias Action = TsundocInfoViewAction
+public struct TsundocInfoViewReducer: Reducer {
+    public typealias Dependency = TsundocInfoViewDependency
+    public typealias State = TsundocInfoViewState
+    public typealias Action = TsundocInfoViewAction
+
+    // MARK: - Initializers
+
+    public init() {}
 
     // MARK: - Reducer
 
-    func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
+    public func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
         var nextState = state
 
         switch action {

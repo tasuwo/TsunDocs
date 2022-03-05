@@ -5,7 +5,7 @@
 import CompositeKit
 import CoreDataCloudKitSupport
 
-enum SettingViewAction: Action {
+public enum SettingViewAction: Action {
     // MARK: View Life-Cycle
 
     case onAppear

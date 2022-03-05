@@ -8,13 +8,13 @@ import SearchKit
 import SwiftUI
 import TagKit
 
-struct TagList: View {
-    typealias Store = ViewStore<
+public struct TagList: View {
+    public typealias Store = ViewStore<
         TagControlState,
         TagControlAction,
         TagControlDependency
     >
-    typealias FilterStore = ViewStore<
+    public typealias FilterStore = ViewStore<
         SearchableFilterState<Tag>,
         SearchableFilterAction<Tag>,
         SearchableFilterDepenency
@@ -29,9 +29,16 @@ struct TagList: View {
 
     @Environment(\.tsundocListBuilder) var tsundocListBuilder
 
+    // MARK: - Initializers
+
+    public init(store: Store, filterStore: FilterStore) {
+        _store = .init(wrappedValue: store)
+        _filterStore = .init(wrappedValue: filterStore)
+    }
+
     // MARK: - View
 
-    var body: some View {
+    public var body: some View {
         TagGrid(tags: filterStore.state.filteredItems,
                 selectedIds: .init(),
                 configuration: .init(.default, size: .normal, isEnabledMenu: true)) { action in

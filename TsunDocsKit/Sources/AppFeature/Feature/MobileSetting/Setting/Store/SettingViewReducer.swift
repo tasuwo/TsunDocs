@@ -9,21 +9,25 @@ import Domain
 import Environment
 import SwiftUI
 
-protocol HasCloudKitAvailabilityObserver {
+public protocol HasCloudKitAvailabilityObserver {
     var cloudKitAvailabilityObserver: CloudKitAvailabilityObservable { get }
 }
 
-typealias SettingViewDependency = HasCloudKitAvailabilityObserver
+public typealias SettingViewDependency = HasCloudKitAvailabilityObserver
     & HasUserSettingStorage
 
-struct SettingViewReducer: Reducer {
-    typealias Dependency = SettingViewDependency
-    typealias State = SettingViewState
-    typealias Action = SettingViewAction
+public struct SettingViewReducer: Reducer {
+    public typealias Dependency = SettingViewDependency
+    public typealias State = SettingViewState
+    public typealias Action = SettingViewAction
+
+    // MARK: - Initializers
+
+    public init() {}
 
     // MARK: - Reducer
 
-    func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
+    public func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
         var nextState = state
 
         switch action {

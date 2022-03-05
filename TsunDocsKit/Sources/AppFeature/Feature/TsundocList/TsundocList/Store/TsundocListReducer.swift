@@ -8,19 +8,23 @@ import Domain
 import Environment
 import Foundation
 
-typealias TsundocListDependency = HasTsundocQueryService
+public typealias TsundocListDependency = HasTsundocQueryService
     & HasTsundocCommandService
     & HasTagQueryService
     & HasPasteboard
 
-struct TsundocListReducer: Reducer {
-    typealias Dependency = TsundocListDependency
-    typealias State = TsundocListState
-    typealias Action = TsundocListAction
+public struct TsundocListReducer: Reducer {
+    public typealias Dependency = TsundocListDependency
+    public typealias State = TsundocListState
+    public typealias Action = TsundocListAction
+
+    // MARK: - Initializers
+
+    public init() {}
 
     // MARK: - Reducer
 
-    func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
+    public func execute(action: Action, state: State, dependency: Dependency) -> (State, [Effect<Action>]?) {
         var nextState = state
 
         switch action {

@@ -6,7 +6,7 @@ import CompositeKit
 import Domain
 import TsundocList
 
-enum TsundocInfoViewAction: Action {
+public enum TsundocInfoViewAction: Action {
     case onAppear
 
     case updateTsundoc(Tsundoc)

@@ -5,7 +5,7 @@
 import Foundation
 import SwiftUI
 
-struct BrowseView: View {
+public struct BrowseView: View {
     // MARK: - Properties
 
     private let baseUrl: URL
@@ -30,10 +30,10 @@ struct BrowseView: View {
 
     // MARK: - Initializers
 
-    init(baseUrl: URL,
-         onEdit: @escaping () -> Void,
-         onBack: (() -> Void)? = nil,
-         onClose: (() -> Void)? = nil)
+    public init(baseUrl: URL,
+                onEdit: @escaping () -> Void,
+                onBack: (() -> Void)? = nil,
+                onClose: (() -> Void)? = nil)
     {
         self.baseUrl = baseUrl
         self.onEdit = onEdit
@@ -43,7 +43,7 @@ struct BrowseView: View {
 
     // MARK: - View
 
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 0) {
             if !scrollState.isNavigationBarHidden {
                 BrowseNavigationBar(title: title ?? NSLocalizedString("browse_view_title_loading", bundle: Bundle.module, comment: "loading")) {
