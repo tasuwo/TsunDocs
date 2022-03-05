@@ -5,9 +5,9 @@
       location = "group:TsunDocsKit">
    </FileRef>
    <FileRef
-      location = "group:App/Production.xcodeproj">
+      location = "group:App/Production/Production.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:App/Development.xcodeproj">
+      location = "group:App/Development/Development.xcodeproj">
    </FileRef>
 </Workspace>

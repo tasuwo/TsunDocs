@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */; };
-		2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C24DA2C27CA144C004AA2CD /* Localizable.strings */; };
+		2C24DA3027CA14D9004AA2CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C24DA3227CA14D9004AA2CD /* Localizable.strings */; };
+		2CADB7D227D3AD43004D7614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CADB7D127D3AD43004D7614 /* Assets.xcassets */; };
 		2CC25E7827C669E100E29112 /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */; };
 		2CC25E7A27C669EA00E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7927C669EA00E29112 /* AppFeature */; };
 		2CC25E7C27C669F200E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7B27C669F200E29112 /* AppFeature */; };
 		2CC25E7E27C66D9200E29112 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC25E7D27C66D9200E29112 /* CloudKit.framework */; };
-		2CC25E8227C677B400E29112 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CC25E8127C677B400E29112 /* Assets.xcassets */; };
 		3E538E9CD8862D261E823035 /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */; };
 		74AB4123849FA9A821D5BD93 /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */; };
-		8B895EE687FB3A23F943755A /* MobileShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8B895EE687FB3A23F943755A /* MobileShareExtensionDev.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF241AF60C49740BA6F08F55 /* MobileShareExtensionDev.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				8B895EE687FB3A23F943755A /* MobileShareExtension.appex in Embed App Extensions */,
+				8B895EE687FB3A23F943755A /* MobileShareExtensionDev.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,23 +44,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2C24DA2B27CA144C004AA2CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2C24DA2D27CA144E004AA2CD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2C414B9F27C7BB9800550078 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Production/Info.plist; sourceTree = "<group>"; };
-		2C414BA027C7BBA300550078 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Production/Info.plist; sourceTree = "<group>"; };
-		2C414BA627C7BC3800550078 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Production/Info.plist; sourceTree = "<group>"; };
-		2CA4E78E27C6698A006EA194 /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TsunDocsKit; path = ../TsunDocsKit; sourceTree = "<group>"; };
-		2CAE400727C67CC100576F49 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = macOS.entitlements; path = Production/macOS.entitlements; sourceTree = "<group>"; };
-		2CAE400827C67CD700576F49 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = iOS.entitlements; path = Production/iOS.entitlements; sourceTree = "<group>"; };
-		2CAE400C27C67D6200576F49 /* MobileShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = MobileShareExtension.entitlements; path = Production/MobileShareExtension.entitlements; sourceTree = "<group>"; };
+		2C24DA3127CA14D9004AA2CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2C24DA3327CA14DA004AA2CD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2CADB7CF27D3AD3C004D7614 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CADB7D127D3AD43004D7614 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2CADB7D327D3AD4F004D7614 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
+		2CADB7D427D3AD5C004D7614 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CADB7D627D3AD64004D7614 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		2CADB7D727D3AD6F004D7614 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CADB7D927D3AD7B004D7614 /* MobileShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileShareExtension.entitlements; sourceTree = "<group>"; };
+		2CADB7DB27D3AE2F004D7614 /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TsunDocsKit; path = ../../TsunDocsKit; sourceTree = "<group>"; };
 		2CC25E7D27C66D9200E29112 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
-		2CC25E8127C677B400E29112 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Production/Assets.xcassets; sourceTree = "<group>"; };
 		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEDCBB975AFA4545C1216463 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
 		C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
 		D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootViewController.swift; sourceTree = "<group>"; };
-		FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MobileShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF241AF60C49740BA6F08F55 /* MobileShareExtensionDev.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MobileShareExtensionDev.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +103,11 @@
 		7925802F255C1D710E794AC1 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				2C414BA027C7BBA300550078 /* Info.plist */,
+				2CADB7CF27D3AD3C004D7614 /* Info.plist */,
+				2CADB7D327D3AD4F004D7614 /* iOS.entitlements */,
+				2CADB7D127D3AD43004D7614 /* Assets.xcassets */,
 				C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */,
-				2CAE400827C67CD700576F49 /* iOS.entitlements */,
-				2CC25E8127C677B400E29112 /* Assets.xcassets */,
-				2C24DA2C27CA144C004AA2CD /* Localizable.strings */,
+				2C24DA3227CA14D9004AA2CD /* Localizable.strings */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -115,9 +115,9 @@
 		7AF567AB1C3C0AEB22B5BDA2 /* MobileShareExtension */ = {
 			isa = PBXGroup;
 			children = (
-				2C414B9F27C7BB9800550078 /* Info.plist */,
+				2CADB7D727D3AD6F004D7614 /* Info.plist */,
+				2CADB7D927D3AD7B004D7614 /* MobileShareExtension.entitlements */,
 				D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */,
-				2CAE400C27C67D6200576F49 /* MobileShareExtension.entitlements */,
 			);
 			path = MobileShareExtension;
 			sourceTree = "<group>";
@@ -125,7 +125,7 @@
 		A63A92AA7FA214F31FEC1306 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				2CA4E78E27C6698A006EA194 /* TsunDocsKit */,
+				2CADB7DB27D3AE2F004D7614 /* TsunDocsKit */,
 			);
 			name = Packages;
 			sourceTree = SOURCE_ROOT;
@@ -133,9 +133,9 @@
 		A974C887BE0808533E6C7F49 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				2C414BA627C7BC3800550078 /* Info.plist */,
-				2CAE400727C67CC100576F49 /* macOS.entitlements */,
+				2CADB7D427D3AD5C004D7614 /* Info.plist */,
 				C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */,
+				2CADB7D627D3AD64004D7614 /* macOS.entitlements */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -143,7 +143,7 @@
 		DAE688497F8FD91FBA8897BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */,
+				FF241AF60C49740BA6F08F55 /* MobileShareExtensionDev.appex */,
 				3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */,
 				BEDCBB975AFA4545C1216463 /* TsunDocs.app */,
 			);
@@ -165,9 +165,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		31CD9A7FB8B73B41C35ADB91 /* TsunDocs (iOS) */ = {
+		31CD9A7FB8B73B41C35ADB91 /* TsunDocsDev (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocs (iOS)" */;
+			buildConfigurationList = 2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocsDev (iOS)" */;
 			buildPhases = (
 				D3138B57806C2FA5B19BA173 /* SwiftLint */,
 				CE0AD2747B613D920FA6F9C5 /* Sources */,
@@ -180,7 +180,7 @@
 			dependencies = (
 				4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */,
 			);
-			name = "TsunDocs (iOS)";
+			name = "TsunDocsDev (iOS)";
 			packageProductDependencies = (
 				2CC25E7927C669EA00E29112 /* AppFeature */,
 			);
@@ -188,9 +188,9 @@
 			productReference = 3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8AF84C32444B977765B9493A /* MobileShareExtension */ = {
+		8AF84C32444B977765B9493A /* MobileShareExtensionDev */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A87E2CCF52BE6D9609BCF89 /* Build configuration list for PBXNativeTarget "MobileShareExtension" */;
+			buildConfigurationList = 3A87E2CCF52BE6D9609BCF89 /* Build configuration list for PBXNativeTarget "MobileShareExtensionDev" */;
 			buildPhases = (
 				87CC4EAA7C77ADEBD12FDFB2 /* Sources */,
 				E88D405D2AB467B45B66F4FD /* Frameworks */,
@@ -199,17 +199,17 @@
 			);
 			dependencies = (
 			);
-			name = MobileShareExtension;
+			name = MobileShareExtensionDev;
 			packageProductDependencies = (
 				2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */,
 			);
 			productName = MobileShareExtension;
-			productReference = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */;
+			productReference = FF241AF60C49740BA6F08F55 /* MobileShareExtensionDev.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		B1DDE034988CEB952208D99D /* TsunDocs (macOS) */ = {
+		B1DDE034988CEB952208D99D /* TsunDocsDev (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 809BF37F55504DFB6306E786 /* Build configuration list for PBXNativeTarget "TsunDocs (macOS)" */;
+			buildConfigurationList = 809BF37F55504DFB6306E786 /* Build configuration list for PBXNativeTarget "TsunDocsDev (macOS)" */;
 			buildPhases = (
 				2C9D5D63BB7A0F59CDA10E4D /* SwiftLint */,
 				C08696BAF5978BBC2261100C /* Sources */,
@@ -219,7 +219,7 @@
 			);
 			dependencies = (
 			);
-			name = "TsunDocs (macOS)";
+			name = "TsunDocsDev (macOS)";
 			packageProductDependencies = (
 				2CC25E7B27C669F200E29112 /* AppFeature */,
 			);
@@ -248,22 +248,22 @@
 					};
 				};
 			};
-			buildConfigurationList = E4CC035522DB4841DEA1C06A /* Build configuration list for PBXProject "Production" */;
+			buildConfigurationList = E4CC035522DB4841DEA1C06A /* Build configuration list for PBXProject "Development" */;
 			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				Base,
 				en,
 				ja,
+				Base,
 			);
 			mainGroup = EB5136094B07B8560319AE2D;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8AF84C32444B977765B9493A /* MobileShareExtension */,
-				31CD9A7FB8B73B41C35ADB91 /* TsunDocs (iOS) */,
-				B1DDE034988CEB952208D99D /* TsunDocs (macOS) */,
+				8AF84C32444B977765B9493A /* MobileShareExtensionDev */,
+				31CD9A7FB8B73B41C35ADB91 /* TsunDocsDev (iOS) */,
+				B1DDE034988CEB952208D99D /* TsunDocsDev (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -273,8 +273,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CC25E8227C677B400E29112 /* Assets.xcassets in Resources */,
-				2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */,
+				2CADB7D227D3AD43004D7614 /* Assets.xcassets in Resources */,
+				2C24DA3027CA14D9004AA2CD /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,17 +349,17 @@
 /* Begin PBXTargetDependency section */
 		4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8AF84C32444B977765B9493A /* MobileShareExtension */;
+			target = 8AF84C32444B977765B9493A /* MobileShareExtensionDev */;
 			targetProxy = 85BC566019A7B020FD907CFF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2C24DA2C27CA144C004AA2CD /* Localizable.strings */ = {
+		2C24DA3227CA14D9004AA2CD /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2C24DA2B27CA144C004AA2CD /* en */,
-				2C24DA2D27CA144E004AA2CD /* ja */,
+				2C24DA3127CA14D9004AA2CD /* en */,
+				2C24DA3327CA14DA004AA2CD /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -367,7 +367,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		003468CAD7D857E59A2EB4AA /* Release */ = {
+		003468CAD7D857E59A2EB4AA /* ReleaseDev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -421,124 +421,125 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
-			name = Release;
+			name = ReleaseDev;
 		};
-		0CE4D1363BA544664DA60F78 /* Release */ = {
+		0CE4D1363BA544664DA60F78 /* ReleaseDev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = MobileShareExtension/Production/MobileShareExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MobileShareExtension/MobileShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_TEAM = RY2377PP7S;
-				INFOPLIST_FILE = MobileShareExtension/Production/Info.plist;
+				INFOPLIST_FILE = MobileShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "net.tasuwo.tsundocs.ext-mobile-share";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.tasuwo.tsundocs.ext-mobile-share";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.tasuwo.tsundocs.dev.ext-mobile-share";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.tasuwo.tsundocs.dev.ext-mobile-share";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = ReleaseDev;
 		};
-		5F26F2532E8CABCAD48F10A1 /* Release */ = {
+		5F26F2532E8CABCAD48F10A1 /* ReleaseDev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/Production/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Production/Info.plist;
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs.dev;
 				PRODUCT_NAME = TsunDocs;
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.tasuwo.tsundocs macos";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.tasuwo.tsundocs.dev macos";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
-			name = Release;
+			name = ReleaseDev;
 		};
-		623CCCC6AC933EA774A01D3F /* Release */ = {
+		623CCCC6AC933EA774A01D3F /* ReleaseDev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = iOS/Production/iOS.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = iOS/Production/Info.plist;
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs.dev;
 				PRODUCT_NAME = TsunDocs;
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.tasuwo.tsundocs";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.tasuwo.tsundocs.dev";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = ReleaseDev;
 		};
-		8A3700D2F6B888A7FA09E133 /* Debug */ = {
+		8A3700D2F6B888A7FA09E133 /* DebugDev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = MobileShareExtension/Production/MobileShareExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MobileShareExtension/MobileShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = RY2377PP7S;
-				INFOPLIST_FILE = MobileShareExtension/Production/Info.plist;
+				INFOPLIST_FILE = MobileShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "net.tasuwo.tsundocs.ext-mobile-share";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development net.tasuwo.tsundocs.ext-mobile-share";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.tasuwo.tsundocs.dev.ext-mobile-share";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development net.tasuwo.tsundocs.dev.ext-mobile-share";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = DebugDev;
 		};
-		B1A2F20E6139F4F2D8CDEB15 /* Debug */ = {
+		B1A2F20E6139F4F2D8CDEB15 /* DebugDev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = iOS/Production/iOS.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = iOS/Production/Info.plist;
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs.dev;
 				PRODUCT_NAME = TsunDocs;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development net.tasuwo.tsundocs";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development net.tasuwo.tsundocs.dev";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = DebugDev;
 		};
-		D5AA687459EE26DCA5311561 /* Debug */ = {
+		D5AA687459EE26DCA5311561 /* DebugDev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -599,71 +600,71 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
-			name = Debug;
+			name = DebugDev;
 		};
-		DB897823B44E32F953E7F64B /* Debug */ = {
+		DB897823B44E32F953E7F64B /* DebugDev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/Production/macOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Production/Info.plist;
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs.dev;
 				PRODUCT_NAME = TsunDocs;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development net.tasuwo.tsundocs macos";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development net.tasuwo.tsundocs.dev macos";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
-			name = Debug;
+			name = DebugDev;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocs (iOS)" */ = {
+		2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocsDev (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B1A2F20E6139F4F2D8CDEB15 /* Debug */,
-				623CCCC6AC933EA774A01D3F /* Release */,
+				B1A2F20E6139F4F2D8CDEB15 /* DebugDev */,
+				623CCCC6AC933EA774A01D3F /* ReleaseDev */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = ReleaseDev;
 		};
-		3A87E2CCF52BE6D9609BCF89 /* Build configuration list for PBXNativeTarget "MobileShareExtension" */ = {
+		3A87E2CCF52BE6D9609BCF89 /* Build configuration list for PBXNativeTarget "MobileShareExtensionDev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8A3700D2F6B888A7FA09E133 /* Debug */,
-				0CE4D1363BA544664DA60F78 /* Release */,
+				8A3700D2F6B888A7FA09E133 /* DebugDev */,
+				0CE4D1363BA544664DA60F78 /* ReleaseDev */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = ReleaseDev;
 		};
-		809BF37F55504DFB6306E786 /* Build configuration list for PBXNativeTarget "TsunDocs (macOS)" */ = {
+		809BF37F55504DFB6306E786 /* Build configuration list for PBXNativeTarget "TsunDocsDev (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DB897823B44E32F953E7F64B /* Debug */,
-				5F26F2532E8CABCAD48F10A1 /* Release */,
+				DB897823B44E32F953E7F64B /* DebugDev */,
+				5F26F2532E8CABCAD48F10A1 /* ReleaseDev */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = ReleaseDev;
 		};
-		E4CC035522DB4841DEA1C06A /* Build configuration list for PBXProject "Production" */ = {
+		E4CC035522DB4841DEA1C06A /* Build configuration list for PBXProject "Development" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D5AA687459EE26DCA5311561 /* Debug */,
-				003468CAD7D857E59A2EB4AA /* Release */,
+				D5AA687459EE26DCA5311561 /* DebugDev */,
+				003468CAD7D857E59A2EB4AA /* ReleaseDev */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = ReleaseDev;
 		};
 /* End XCConfigurationList section */
 
