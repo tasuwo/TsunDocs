@@ -27,6 +27,22 @@ for_platform :ios do
 
     type("appstore")
   end
+
+  for_lane :release do
+    app_identifier([
+      "net.tasuwo.tsundocs",
+      "net.tasuwo.tsundocs.ext-mobile-share",
+    ])
+    type("appstore")
+  end
+
+  for_lane :release_build_only do
+    app_identifier([
+      "net.tasuwo.tsundocs",
+      "net.tasuwo.tsundocs.ext-mobile-share",
+    ])
+    type("appstore")
+  end
 end
 
 for_platform :mac do

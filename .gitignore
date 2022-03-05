@@ -29,17 +29,15 @@ profile
 Pods/
 
 # Fastlane
-fastlane/report.xml
-
-# Mockolo
-!lib_InternalSwiftSyntaxParser.dylib
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/test_output
+build
+.env.secret
+*.p8
 
 # Sourcery
 templates/*
 !templates/.gitkeep
 !templates/AutoDefaultValue.extension.swifttemplate
 
-# Carthage
-Carthage/*.xcconfig
-Carthage/Checkouts
-Carthage/Build/
