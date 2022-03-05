@@ -21,6 +21,10 @@ let package = Package(
             targets: ["Domain"]
         ),
         .library(
+            name: "Environment",
+            targets: ["Environment"]
+        ),
+        .library(
             name: "Persistence",
             targets: ["Persistence"]
         ),
@@ -117,6 +121,13 @@ let package = Package(
                 .product(name: "Kanna", package: "Kanna"),
                 .product(name: "Smile", package: "Smile"),
                 "SearchKit"
+            ]
+        ),
+        .target(
+            name: "Environment",
+            dependencies: [
+                "CompositeKit",
+                "Domain"
             ]
         ),
         .target(
