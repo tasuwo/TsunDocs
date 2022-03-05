@@ -4,6 +4,7 @@
 
 import CompositeKit
 import Domain
+import Environment
 import SwiftUI
 import TagKit
 import TsundocList
@@ -21,7 +22,7 @@ struct TsundocInfoView: View {
 
     @State private var isTagEditSheetPresenting = false
 
-    @Environment(\.tagMultiSelectionStoreBuilder) var tagMultiSelectionStoreBuilder
+    @Environment(\.tagMultiSelectionSheetBuilder) var tagMultiSelectionSheetBuilder
 
     // MARK: - View
 
@@ -39,7 +40,7 @@ struct TsundocInfoView: View {
             Spacer()
         }
         .sheet(isPresented: $isTagEditSheetPresenting) {
-            TagMultiSelectionSheet(store: tagMultiSelectionStoreBuilder.buildTagMultiSelectionStore(selectedIds: Set(store.state.tags.map(\.id)))) {
+            tagMultiSelectionSheetBuilder.buildTagMultiSelectionSheet(selectedIds: Set(store.state.tags.map(\.id))) {
                 isTagEditSheetPresenting = false
                 store.execute(.editTags($0))
             }
@@ -212,11 +213,7 @@ struct TsundocInfoView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        let store = Store(initialState: TsundocInfoViewState(tsundoc: .makeDefault(),
-                                                             tags: [.makeDefault()]),
-                          dependency: Dependency(),
-                          reducer: TsundocInfoViewReducer())
-        TsundocInfoView(store: ViewStore(store: store))
-            .environment(\.tagMultiSelectionStoreBuilder, TagMultiSelectionStoreBuilderMock())
+        // TODO:
+        EmptyView()
     }
 }

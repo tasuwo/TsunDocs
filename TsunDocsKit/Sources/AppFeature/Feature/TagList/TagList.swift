@@ -27,20 +27,7 @@ struct TagList: View {
     @State private var isAdditionDialogPresenting = false
     @State private var isTsundocListPresenting: Tag.ID? = nil
 
-    @Environment(\.tsundocListStoreBuilder) var tsundocListSotreBuilder
-
-    // MARK: - Initializers
-
-    init(store: Store) {
-        _store = StateObject(wrappedValue: store)
-
-        let filterStore = CompositeKit.Store(initialState: SearchableFilterState<Tag>(items: []),
-                                             dependency: (),
-                                             reducer: SearchableFilterReducer<Tag>())
-            .connect(store.connection(at: \.tags, { SearchableFilterAction.updateItems($0) }))
-            .eraseToAnyStoring()
-        _filterStore = StateObject(wrappedValue: ViewStore(store: filterStore))
-    }
+    @Environment(\.tsundocListBuilder) var tsundocListBuilder
 
     // MARK: - View
 
@@ -113,11 +100,10 @@ struct TagList: View {
         if let tagId = isTsundocListPresenting,
            let tag = store.state.tags.first(where: { $0.id == tagId })
         {
-            let store = tsundocListSotreBuilder.buildTsundocListStore(query: .tagged(tagId))
-            TsundocList(title: tag.name,
-                        emptyTitle: L10n.tsundocListEmptyMessageTagMessage(tag.name),
-                        emptyMessage: nil,
-                        store: store)
+            tsundocListBuilder.buildTsundocList(title: tag.name,
+                                                emptyTile: L10n.tsundocListEmptyMessageTagMessage(tag.name),
+                                                emptyMessage: nil,
+                                                query: .tagged(tagId))
         } else {
             EmptyView()
         }
@@ -129,10 +115,7 @@ struct TagList: View {
 @MainActor
 struct TagList_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            NavigationView {
-                TagList(store: TagControlViewStoreBuilderMock().buildTagControlViewStore())
-            }
-        }
+        // TODO:
+        EmptyView()
     }
 }

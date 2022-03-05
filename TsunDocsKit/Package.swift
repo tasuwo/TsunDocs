@@ -91,6 +91,7 @@ let package = Package(
                 "ButtonStyle",
                 "CompositeKit",
                 "Domain",
+                "Environment",
                 "EmojiList",
                 "Persistence",
                 "SearchKit",
@@ -102,6 +103,7 @@ let package = Package(
         .target(
             name: "MobileShareExtensionFeature",
             dependencies: [
+                "Environment",
                 "Persistence",
                 "MobileShareExtensionUIKit",
             ]

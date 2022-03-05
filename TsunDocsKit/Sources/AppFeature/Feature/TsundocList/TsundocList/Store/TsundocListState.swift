@@ -6,11 +6,6 @@ import CompositeKit
 import Domain
 
 struct TsundocListState: Equatable {
-    enum Query: Equatable {
-        case all
-        case tagged(Tag.ID)
-    }
-
     enum Alert: Equatable {
         enum Confirmation: Equatable {
             case delete(Tsundoc.ID)
@@ -35,7 +30,7 @@ struct TsundocListState: Equatable {
         case browse(Tsundoc, isEditing: Bool)
     }
 
-    let query: Query
+    let query: TsundocListQuery
     var tsundocFilter: TsundocFilter = .default
     var isTsundocFilterActive: Bool = false
     var tsundocs: [Tsundoc]
@@ -45,7 +40,7 @@ struct TsundocListState: Equatable {
 }
 
 extension TsundocListState {
-    init(query: Query, tsundocs: [Tsundoc] = []) {
+    init(query: TsundocListQuery, tsundocs: [Tsundoc] = []) {
         self.query = query
         self.tsundocs = tsundocs
     }

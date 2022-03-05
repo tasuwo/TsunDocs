@@ -6,6 +6,7 @@ import ButtonStyle
 import struct Domain.Emoji
 import struct Domain.Tag
 import EmojiList
+import Environment
 import SwiftUI
 import TagKit
 
@@ -23,7 +24,7 @@ public struct TsundocEditView: View {
 
     @State private var isTagEditSheetPresenting = false
 
-    @Environment(\.tagMultiSelectionStoreBuilder) private var storeBuilder: TagMultiSelectionStoreBuildable
+    @Environment(\.tagMultiSelectionSheetBuilder) private var sheetBuilder
 
     // MARK: - Initializers
 
@@ -82,7 +83,7 @@ public struct TsundocEditView: View {
         }
         .padding(8)
         .sheet(isPresented: $isTagEditSheetPresenting) {
-            TagMultiSelectionSheet(store: storeBuilder.buildTagMultiSelectionStore(selectedIds: Set(selectedTags.map(\.id)))) {
+            sheetBuilder.buildTagMultiSelectionSheet(selectedIds: Set(selectedTags.map(\.id))) {
                 isTagEditSheetPresenting = false
                 selectedTags = $0
             }

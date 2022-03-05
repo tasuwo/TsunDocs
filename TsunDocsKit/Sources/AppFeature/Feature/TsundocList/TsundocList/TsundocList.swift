@@ -5,6 +5,7 @@
 import CompositeKit
 import Domain
 import EmojiList
+import Environment
 import SwiftUI
 import TagKit
 
@@ -18,8 +19,8 @@ struct TsundocList: View {
     @StateObject var store: ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
 
     @Environment(\.openURL) var openURL
-    @Environment(\.tagMultiSelectionStoreBuilder) var tagMultiSelectionStoreBuilder
-    @Environment(\.tsundocInfoViewStoreBuilder) var tsundocInfoViewStoreBuilder
+    @Environment(\.tagMultiSelectionSheetBuilder) var tagMultiSelectionSheetBuilder
+    @Environment(\.tsundocInfoViewBuilder) var tsundocInfoViewBuilder
 
     // MARK: - View
 
@@ -55,7 +56,7 @@ struct TsundocList: View {
         .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .dismissModal })) {
             switch store.state.modal {
             case let .tagAdditionView(tsundocId, tagIds):
-                TagMultiSelectionSheet(store: tagMultiSelectionStoreBuilder.buildTagMultiSelectionStore(selectedIds: tagIds)) {
+                tagMultiSelectionSheetBuilder.buildTagMultiSelectionSheet(selectedIds: tagIds) {
                     store.execute(.selectTags(Set($0.map(\.id)), tsundocId))
                 }
 
@@ -262,8 +263,7 @@ struct TsundocList: View {
         switch store.state.navigation {
         case let .edit(tsundoc),
              .browse(let tsundoc, isEditing: true):
-            let store = tsundocInfoViewStoreBuilder.buildTsundocInfoViewStore(tsundoc: tsundoc)
-            TsundocInfoView(store: store)
+            tsundocInfoViewBuilder.buildTsundocInfoView(tsundoc: tsundoc)
                 .navigationBarTitleDisplayMode(.inline)
 
         default:

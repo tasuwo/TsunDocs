@@ -21,8 +21,7 @@ public class RootViewController: UIViewController {
                           dependency: dependencyContainer,
                           reducer: SharedUrlEditViewReducer())
         let rootView = SharedUrlEditView(ViewStore(store: store))
-            .environment(\.tagControlViewStoreBuilder, dependencyContainer)
-            .environment(\.tagMultiSelectionStoreBuilder, dependencyContainer)
+            .environment(\.tagMultiSelectionSheetBuilder, dependencyContainer)
 
         let viewController = UIHostingController(rootView: rootView)
         addChild(viewController)

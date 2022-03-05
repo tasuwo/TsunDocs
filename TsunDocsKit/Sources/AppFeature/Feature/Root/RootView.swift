@@ -26,10 +26,10 @@ public struct RootView: View {
 
     public var body: some View {
         content()
-            .environment(\.tsundocListStoreBuilder, container)
-            .environment(\.tagControlViewStoreBuilder, container)
-            .environment(\.tagMultiSelectionStoreBuilder, container)
-            .environment(\.tsundocInfoViewStoreBuilder, container)
+            .environment(\.tsundocListBuilder, container)
+            .environment(\.tagListBuilder, container)
+            .environment(\.tagMultiSelectionSheetBuilder, container)
+            .environment(\.tsundocInfoViewBuilder, container)
             .preferredColorScheme(userInterfaceStyle.colorScheme)
     }
 
@@ -80,20 +80,20 @@ public struct RootView: View {
 
     @ViewBuilder
     func tsundocList() -> some View {
-        TsundocList(title: L10n.tsundocListTitle,
-                    emptyTitle: L10n.tsundocListEmptyMessageDefaultTitle,
-                    emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
-                    store: container.buildTsundocListStore(query: .all))
+        container.buildTsundocList(title: L10n.tsundocListTitle,
+                                   emptyTile: L10n.tsundocListEmptyMessageDefaultTitle,
+                                   emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
+                                   query: .all)
     }
 
     @ViewBuilder
     func tagList() -> some View {
-        TagList(store: container.buildTagControlViewStore())
+        container.buildTagList()
     }
 
     @ViewBuilder
     func settingView() -> some View {
-        SettingView(store: container.buildSettingViewStore())
+        container.buildSettingView()
     }
 }
 

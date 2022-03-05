@@ -4,26 +4,17 @@
 
 import CompositeKit
 import Domain
+import Environment
+import SwiftUI
 import TagKit
 
-extension DependencyContainer: TagControlViewStoreBuildable {
-    // MARK: - TagControlViewStoreBuildable
+extension DependencyContainer: TagMultiSelectionSheetBuildable {
+    // MARK: - TagMultiSelectionSheetBuildable
 
-    public func buildTagControlViewStore() -> ViewStore<TagControlState, TagControlAction, TagControlDependency> {
-        let store = Store(initialState: TagControlState(),
-                          dependency: self,
-                          reducer: TagControlReducer())
-        return ViewStore(store: store)
-    }
-}
-
-extension DependencyContainer: TagMultiSelectionStoreBuildable {
-    // MARK: - TagMultiSelectionStoreBuildable
-
-    public func buildTagMultiSelectionStore(selectedIds: Set<Tag.ID>) -> ViewStore<TagMultiSelectionState, TagMultiSelectionAction, TagMultiSelectionDependency> {
+    public func buildTagMultiSelectionSheet(selectedIds: Set<Tag.ID>, onDone: @escaping ([Tag]) -> Void) -> AnyView {
         let store = Store(initialState: TagMultiSelectionState(selectedIds: selectedIds),
                           dependency: self,
                           reducer: TagMultiSelectionReducer())
-        return ViewStore(store: store)
+        return AnyView(TagMultiSelectionSheet(store: ViewStore(store: store), onDone: onDone))
     }
 }
