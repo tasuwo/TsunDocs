@@ -13,7 +13,7 @@ if [[ ! -f "./templates/AutoDefaultValue.extension.swifttemplate" ]]; then
 fi
 
 ./Pods/Sourcery/bin/sourcery \
-    --sources ./Domain \
+    --sources ./TsunDocsKit/Sources/Domain \
     --templates ./templates \
-    --output ./PreviewContent/Sources/PreviewContent/Struct/Domain.AutoDefaultValue.generated.swift \
+    --output ./TsunDocsKit/Sources/PreviewContent/Struct/Domain.AutoDefaultValue.generated.swift \
     --args import="Domain;Foundation"

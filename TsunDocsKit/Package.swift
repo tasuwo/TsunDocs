@@ -191,7 +191,11 @@ let package = Package(
         ),
         .target(
             name: "PreviewContent",
-            dependencies: ["Domain", "CompositeKit"]
+            dependencies: [
+                "CompositeKit",
+                "Domain",
+                "Environment"
+            ]
         ),
     ]
 )

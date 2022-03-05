@@ -36,16 +36,17 @@ sourcery_generate: init_pod ## Sourceryによるモック自動生成を行う
 
 .PHONY: mockolo_generate
 mockolo_generate: ## mockoloによるモック自動生成を行う
-	# TODO:
-	# cd BuildTools; \
-	./mockolo \
-		--sourcedirs ../Shared \
-		--destination ../PreviewContent/Sources/PreviewContent/Mocks/Protocol/Shared.ProtocolMocks.swift
 	cd BuildTools; \
 	./mockolo \
 		--sourcedirs ../TsunDocsKit/Sources/Domain \
 		--destination ../TsunDocsKit/Sources/PreviewContent/Protocol/Domain.ProtocolMocks.swift \
 		--custom-imports Domain
+	cd BuildTools; \
+	./mockolo \
+		--sourcedirs ../TsunDocsKit/Sources/Environment \
+		--destination ../TsunDocsKit/Sources/PreviewContent/Protocol/Environment.ProtocolMocks.swift \
+		--custom-imports Domain \
+		--custom-imports Environment
 
 .PHONY: help
 help: ## ヘルプを表示する
