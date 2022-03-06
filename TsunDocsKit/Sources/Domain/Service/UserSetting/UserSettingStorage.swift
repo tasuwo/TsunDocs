@@ -4,6 +4,7 @@
 
 import Combine
 
+/// @mockable
 public protocol UserSettingStorage {
     var isiCloudSyncEnabled: AnyPublisher<Bool, Never> { get }
     var isiCloudSyncEnabledValue: Bool { get }

@@ -351,6 +351,33 @@ public class ObservedEntityMock: ObservedEntity {
     }
 }
 
+public class UserSettingStorageMock: UserSettingStorage {
+    public init() { }
+    public init(isiCloudSyncEnabled: AnyPublisher<Bool, Never>, isiCloudSyncEnabledValue: Bool = false) {
+        self._isiCloudSyncEnabled = isiCloudSyncEnabled
+        self.isiCloudSyncEnabledValue = isiCloudSyncEnabledValue
+    }
+
+    public private(set) var isiCloudSyncEnabledSetCallCount = 0
+    private var _isiCloudSyncEnabled: AnyPublisher<Bool, Never>! { didSet { isiCloudSyncEnabledSetCallCount += 1 } }
+    public var isiCloudSyncEnabled: AnyPublisher<Bool, Never> {
+        get { return _isiCloudSyncEnabled }
+        set { _isiCloudSyncEnabled = newValue }
+    }
+
+    public private(set) var isiCloudSyncEnabledValueSetCallCount = 0
+    public var isiCloudSyncEnabledValue: Bool = false { didSet { isiCloudSyncEnabledValueSetCallCount += 1 } }
+
+    public private(set) var setCallCount = 0
+    public var setHandler: ((Bool) -> Void)?
+    public func set(isiCloudSyncEnabled: Bool) {
+        setCallCount += 1
+        if let setHandler = setHandler {
+            setHandler(isiCloudSyncEnabled)
+        }
+    }
+}
+
 public class WebPageMetaResolvableMock: WebPageMetaResolvable {
     public init() { }
 

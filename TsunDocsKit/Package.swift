@@ -193,6 +193,7 @@ let package = Package(
             name: "PreviewContent",
             dependencies: [
                 "CompositeKit",
+                "CoreDataCloudKitSupport",
                 "Domain",
                 "Environment"
             ]
