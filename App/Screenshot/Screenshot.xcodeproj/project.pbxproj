@@ -1,0 +1,697 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */; };
+		2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C24DA2C27CA144C004AA2CD /* Localizable.strings */; };
+		2C4DEFBA27D462F300EA94C5 /* DummyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4DEFB927D462F300EA94C5 /* DummyContainer.swift */; };
+		2CADB7E027D3AEC0004D7614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CADB7DF27D3AEC0004D7614 /* Assets.xcassets */; };
+		2CC25E7827C669E100E29112 /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */; };
+		2CC25E7A27C669EA00E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7927C669EA00E29112 /* AppFeature */; };
+		2CC25E7C27C669F200E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7B27C669F200E29112 /* AppFeature */; };
+		2CC25E7E27C66D9200E29112 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC25E7D27C66D9200E29112 /* CloudKit.framework */; };
+		2CD8D18227D3B6410020D96C /* PreviewContent in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD8D18127D3B6410020D96C /* PreviewContent */; };
+		3E538E9CD8862D261E823035 /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */; };
+		74AB4123849FA9A821D5BD93 /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */; };
+		8B895EE687FB3A23F943755A /* MobileShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		85BC566019A7B020FD907CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B10FD681F47AC2A4820934BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8AF84C32444B977765B9493A;
+			remoteInfo = MobileShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		53006B1A1B1698EC1A6B3DF4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8B895EE687FB3A23F943755A /* MobileShareExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2C24DA2B27CA144C004AA2CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2C24DA2D27CA144E004AA2CD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2C4DEFB927D462F300EA94C5 /* DummyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyContainer.swift; sourceTree = "<group>"; };
+		2CADB7DC27D3AEAE004D7614 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CADB7DE27D3AEB6004D7614 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
+		2CADB7DF27D3AEC0004D7614 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2CADB7E127D3AEC8004D7614 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CADB7E327D3AED0004D7614 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		2CADB7E427D3AED7004D7614 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CADB7E527D3AEDE004D7614 /* MobileShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileShareExtension.entitlements; sourceTree = "<group>"; };
+		2CADB7E627D3AEF1004D7614 /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TsunDocsKit; path = ../../TsunDocsKit; sourceTree = "<group>"; };
+		2CC25E7D27C66D9200E29112 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEDCBB975AFA4545C1216463 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
+		C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TsunDocsApp.swift; sourceTree = "<group>"; };
+		D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootViewController.swift; sourceTree = "<group>"; };
+		FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MobileShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		26CBBCDC2AAD7C4A199E2BC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CC25E7A27C669EA00E29112 /* AppFeature in Frameworks */,
+				2CC25E7E27C66D9200E29112 /* CloudKit.framework in Frameworks */,
+				2CD8D18227D3B6410020D96C /* PreviewContent in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85E7B983E892C2FCC3953ACE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CC25E7C27C669F200E29112 /* AppFeature in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E88D405D2AB467B45B66F4FD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CC25E7827C669E100E29112 /* MobileShareExtensionFeature in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2C63F1D227C661FA00AF839D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2CC25E7D27C66D9200E29112 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7925802F255C1D710E794AC1 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2CADB7DC27D3AEAE004D7614 /* Info.plist */,
+				2C4DEFB927D462F300EA94C5 /* DummyContainer.swift */,
+				C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */,
+				2CADB7DE27D3AEB6004D7614 /* iOS.entitlements */,
+				2CADB7DF27D3AEC0004D7614 /* Assets.xcassets */,
+				2C24DA2C27CA144C004AA2CD /* Localizable.strings */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		7AF567AB1C3C0AEB22B5BDA2 /* MobileShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2CADB7E427D3AED7004D7614 /* Info.plist */,
+				D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */,
+				2CADB7E527D3AEDE004D7614 /* MobileShareExtension.entitlements */,
+			);
+			path = MobileShareExtension;
+			sourceTree = "<group>";
+		};
+		A63A92AA7FA214F31FEC1306 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				2CADB7E627D3AEF1004D7614 /* TsunDocsKit */,
+			);
+			name = Packages;
+			sourceTree = SOURCE_ROOT;
+		};
+		A974C887BE0808533E6C7F49 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				2CADB7E127D3AEC8004D7614 /* Info.plist */,
+				2CADB7E327D3AED0004D7614 /* macOS.entitlements */,
+				C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		DAE688497F8FD91FBA8897BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */,
+				3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */,
+				BEDCBB975AFA4545C1216463 /* TsunDocs.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB5136094B07B8560319AE2D = {
+			isa = PBXGroup;
+			children = (
+				7925802F255C1D710E794AC1 /* iOS */,
+				A974C887BE0808533E6C7F49 /* macOS */,
+				7AF567AB1C3C0AEB22B5BDA2 /* MobileShareExtension */,
+				A63A92AA7FA214F31FEC1306 /* Packages */,
+				DAE688497F8FD91FBA8897BF /* Products */,
+				2C63F1D227C661FA00AF839D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		31CD9A7FB8B73B41C35ADB91 /* TsunDocs (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocs (iOS)" */;
+			buildPhases = (
+				D3138B57806C2FA5B19BA173 /* SwiftLint */,
+				CE0AD2747B613D920FA6F9C5 /* Sources */,
+				2CC9301627C62FDC00663CA5 /* Resources */,
+				26CBBCDC2AAD7C4A199E2BC3 /* Frameworks */,
+				53006B1A1B1698EC1A6B3DF4 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */,
+			);
+			name = "TsunDocs (iOS)";
+			packageProductDependencies = (
+				2CC25E7927C669EA00E29112 /* AppFeature */,
+				2CD8D18127D3B6410020D96C /* PreviewContent */,
+			);
+			productName = "TsunDocs (iOS)";
+			productReference = 3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8AF84C32444B977765B9493A /* MobileShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A87E2CCF52BE6D9609BCF89 /* Build configuration list for PBXNativeTarget "MobileShareExtension" */;
+			buildPhases = (
+				87CC4EAA7C77ADEBD12FDFB2 /* Sources */,
+				E88D405D2AB467B45B66F4FD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MobileShareExtension;
+			packageProductDependencies = (
+				2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */,
+			);
+			productName = MobileShareExtension;
+			productReference = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		B1DDE034988CEB952208D99D /* TsunDocs (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 809BF37F55504DFB6306E786 /* Build configuration list for PBXNativeTarget "TsunDocs (macOS)" */;
+			buildPhases = (
+				2C9D5D63BB7A0F59CDA10E4D /* SwiftLint */,
+				C08696BAF5978BBC2261100C /* Sources */,
+				85E7B983E892C2FCC3953ACE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TsunDocs (macOS)";
+			packageProductDependencies = (
+				2CC25E7B27C669F200E29112 /* AppFeature */,
+			);
+			productName = "TsunDocs (macOS)";
+			productReference = BEDCBB975AFA4545C1216463 /* TsunDocs.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B10FD681F47AC2A4820934BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1200;
+				ORGANIZATIONNAME = "Tasuku Tozawa";
+				TargetAttributes = {
+					31CD9A7FB8B73B41C35ADB91 = {
+						DevelopmentTeam = RY2377PP7S;
+					};
+					8AF84C32444B977765B9493A = {
+						DevelopmentTeam = RY2377PP7S;
+					};
+					B1DDE034988CEB952208D99D = {
+						DevelopmentTeam = RY2377PP7S;
+					};
+				};
+			};
+			buildConfigurationList = E4CC035522DB4841DEA1C06A /* Build configuration list for PBXProject "Screenshot" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				ja,
+			);
+			mainGroup = EB5136094B07B8560319AE2D;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8AF84C32444B977765B9493A /* MobileShareExtension */,
+				31CD9A7FB8B73B41C35ADB91 /* TsunDocs (iOS) */,
+				B1DDE034988CEB952208D99D /* TsunDocs (macOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2CC9301627C62FDC00663CA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */,
+				2CADB7E027D3AEC0004D7614 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C9D5D63BB7A0F59CDA10E4D /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nif [[ ${CONFIGURATION} == \"Debug\" ]]; then\n  if [[ -f \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\" ]]; then\n    \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\"\n  else\n    echo \"warning: SwiftLint is not installed. Run 'bundle exec pod install --repo-update' to install it.\"\n  fi\nfi\n";
+		};
+		D3138B57806C2FA5B19BA173 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nif [[ ${CONFIGURATION} == \"Debug\" ]]; then\n  if [[ -f \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\" ]]; then\n    \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\"\n  else\n    echo \"warning: SwiftLint is not installed. Run 'bundle exec pod install --repo-update' to install it.\"\n  fi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		87CC4EAA7C77ADEBD12FDFB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C08696BAF5978BBC2261100C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74AB4123849FA9A821D5BD93 /* TsunDocsApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE0AD2747B613D920FA6F9C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C4DEFBA27D462F300EA94C5 /* DummyContainer.swift in Sources */,
+				3E538E9CD8862D261E823035 /* TsunDocsApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8AF84C32444B977765B9493A /* MobileShareExtension */;
+			targetProxy = 85BC566019A7B020FD907CFF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2C24DA2C27CA144C004AA2CD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C24DA2B27CA144C004AA2CD /* en */,
+				2C24DA2D27CA144E004AA2CD /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		003468CAD7D857E59A2EB4AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_GROUP = group.net.tasuwo.tsundocs;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		0CE4D1363BA544664DA60F78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MobileShareExtension/MobileShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				DEVELOPMENT_TEAM = RY2377PP7S;
+				INFOPLIST_FILE = MobileShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.tasuwo.tsundocs.ext-mobile-share";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.tasuwo.tsundocs.ext-mobile-share";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5F26F2532E8CABCAD48F10A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RY2377PP7S;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
+				PRODUCT_NAME = TsunDocs;
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.tasuwo.tsundocs macos";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		623CCCC6AC933EA774A01D3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				DEVELOPMENT_TEAM = RY2377PP7S;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
+				PRODUCT_NAME = TsunDocs;
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore net.tasuwo.tsundocs";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8A3700D2F6B888A7FA09E133 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MobileShareExtension/MobileShareExtension.entitlements;
+				DEVELOPMENT_TEAM = RY2377PP7S;
+				INFOPLIST_FILE = MobileShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.tasuwo.tsundocs.ext-mobile-share";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development net.tasuwo.tsundocs.ext-mobile-share";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B1A2F20E6139F4F2D8CDEB15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				DEVELOPMENT_TEAM = RY2377PP7S;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
+				PRODUCT_NAME = TsunDocs;
+				PROVISIONING_PROFILE_SPECIFIER = "match Development net.tasuwo.tsundocs";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D5AA687459EE26DCA5311561 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_GROUP = group.net.tasuwo.tsundocs;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DB897823B44E32F953E7F64B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RY2377PP7S;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tasuwo.tsundocs;
+				PRODUCT_NAME = TsunDocs;
+				PROVISIONING_PROFILE_SPECIFIER = "match Development net.tasuwo.tsundocs macos";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocs (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1A2F20E6139F4F2D8CDEB15 /* Debug */,
+				623CCCC6AC933EA774A01D3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3A87E2CCF52BE6D9609BCF89 /* Build configuration list for PBXNativeTarget "MobileShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A3700D2F6B888A7FA09E133 /* Debug */,
+				0CE4D1363BA544664DA60F78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		809BF37F55504DFB6306E786 /* Build configuration list for PBXNativeTarget "TsunDocs (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB897823B44E32F953E7F64B /* Debug */,
+				5F26F2532E8CABCAD48F10A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E4CC035522DB4841DEA1C06A /* Build configuration list for PBXProject "Screenshot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5AA687459EE26DCA5311561 /* Debug */,
+				003468CAD7D857E59A2EB4AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MobileShareExtensionFeature;
+		};
+		2CC25E7927C669EA00E29112 /* AppFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppFeature;
+		};
+		2CC25E7B27C669F200E29112 /* AppFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppFeature;
+		};
+		2CD8D18127D3B6410020D96C /* PreviewContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PreviewContent;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B10FD681F47AC2A4820934BC /* Project object */;
+}
