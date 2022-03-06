@@ -32,6 +32,7 @@ Pods/
 **/fastlane/report.xml
 **/fastlane/Preview.html
 **/fastlane/test_output
+**/fastlane/screenshots/*
 build
 .env.secret
 *.p8
