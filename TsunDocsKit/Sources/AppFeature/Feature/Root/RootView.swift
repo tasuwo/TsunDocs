@@ -120,6 +120,42 @@ private extension UserInterfaceStyle {
     }
 }
 
+struct RootView_Previews: PreviewProvider {
+    private class DummyContainer: ObservableObject,
+        TsundocListBuildable,
+        TagListBuildable,
+        TagMultiSelectionSheetBuildable,
+        TsundocInfoViewBuildable,
+        SettingViewBuilder
+    {
+        func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, query: TsundocListQuery) -> AnyView {
+            AnyView(Color.red)
+        }
+
+        func buildTagList() -> AnyView {
+            AnyView(Color.blue)
+        }
+
+        func buildTagMultiSelectionSheet(selectedIds: Set<Tag.ID>, onDone: @escaping ([Tag]) -> Void) -> AnyView {
+            AnyView(Color.green)
+        }
+
+        func buildTsundocInfoView(tsundoc: Tsundoc) -> AnyView {
+            AnyView(Color.yellow)
+        }
+
+        func buildSettingView() -> AnyView {
+            AnyView(Color.black)
+        }
+    }
+
+    static var previews: some View {
+        Group {
+            RootView(container: DummyContainer())
+        }
+    }
+}
+
 #elseif os(macOS)
 
 struct RootView: View {
