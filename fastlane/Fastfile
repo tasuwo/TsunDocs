@@ -3,6 +3,20 @@ default_platform(:ios)
 platform :ios do
   lane :take_snapshots do
     snapshot
+
+    sh("cp '/System/Library/Fonts/SFNSRounded.ttf' ./screenshots/fonts/English.ttf")
+    sh("cp '/System/Library/Fonts/ヒラギノ丸ゴ ProN W4.ttc' ./screenshots/fonts/Japanese.ttc")
+
+    frame_screenshots(
+      path: "./fastlane/screenshots",
+      force_orientation_block: proc do |filename|
+        if filename.include? "iPad"
+          :landscape_right
+        else
+          :portrait
+        end
+      end
+    )
   end
 
   lane :update_development_pp do

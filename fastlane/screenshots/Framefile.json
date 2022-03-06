@@ -1,0 +1,60 @@
+{
+  "device_frame_version": "latest",
+  "default": {
+    "keyword": {
+      "text": ""
+    },
+    "title": {
+      "fonts": [
+        {
+          "font": "fonts/English.ttf",
+          "supported": ["en-US"]
+        },
+        {
+          "font": "fonts/Japanese.ttc",
+          "supported": ["ja"]
+        }
+      ],
+      "font_size": 72,
+      "color": "#FFFFFF"
+    },
+    "background": "./background.jpg",
+    "padding": 40,
+    "show_complete_frame": true,
+    "use_platform": "IOS"
+  },
+  "data": [
+    {
+      "filter": "Mylist",
+      "title": {
+        "text": "mylist"
+      }
+    },
+    {
+      "filter": "Info",
+      "title": {
+        "text": "info"
+      }
+    },
+    {
+      "filter": "Tags",
+      "title": {
+        "text": "tags"
+      }
+    },
+    {
+      "filter": "Emoji",
+      "title": {
+        "text": "emoji"
+      }
+    },
+    {
+      "filter": "iPad",
+      "title_min_height" : "20%"
+    },
+    {
+      "filter" : "iPhone",
+      "title_min_height" : "30%"
+    }
+  ]
+}
