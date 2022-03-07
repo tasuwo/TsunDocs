@@ -21,11 +21,9 @@ struct ActionDispatcher<Action: CompositeKit.Action> {
     // MARK: - Methods
 
     func dispatch(_ block: @escaping (Action) -> Void) {
-        Task {
-            await MainActor.run {
-                withContext {
-                    block(action)
-                }
+        Task { @MainActor in
+            withContext {
+                block(action)
             }
         }
     }
