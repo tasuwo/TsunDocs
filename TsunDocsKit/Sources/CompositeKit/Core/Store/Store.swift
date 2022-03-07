@@ -7,6 +7,11 @@ import Foundation
 
 @MainActor
 public class Store<State: Equatable, Action: CompositeKit.Action, Dependency>: Storing {
+    private struct EffectContainer {
+        let effect: Effect<Action>
+        var cancellable: AnyCancellable?
+    }
+
     public var stateValue: State { _state.value }
     public var state: AnyPublisher<State, Never> { _state.eraseToAnyPublisher() }
 
@@ -16,7 +21,7 @@ public class Store<State: Equatable, Action: CompositeKit.Action, Dependency>: S
 
     private var isStateUpdating = false
     private let effectsLock = NSRecursiveLock()
-    private var effects: [UUID: (Effect<Action>, Cancellable)] = [:]
+    private var effects: [UUID: EffectContainer] = [:]
     private var subscriptions: Set<AnyCancellable> = .init()
 
     // MARK: - Initializers
@@ -54,10 +59,12 @@ public class Store<State: Equatable, Action: CompositeKit.Action, Dependency>: S
 
         let id = effect.id
 
-        if let (_, cancellable) = effects[id] {
-            cancellable.cancel()
+        if let container = effects[id] {
+            container.cancellable?.cancel()
             effects.removeValue(forKey: id)
         }
+
+        effects[id] = .init(effect: effect)
 
         let cancellable = effect.upstream
             .subscribe(on: DispatchQueue.global())
@@ -77,6 +84,6 @@ public class Store<State: Equatable, Action: CompositeKit.Action, Dependency>: S
                 dispatcher?.dispatchAndWait { self?.execute($0) }
             }
 
-        effects[id] = (effect, cancellable)
+        effects[id]?.cancellable = cancellable
     }
 }
