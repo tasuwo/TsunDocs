@@ -147,15 +147,15 @@ public class HasTagCommandServiceMock: HasTagCommandService {
     }
 }
 
-public class HasSharedUrlLoaderMock: HasSharedUrlLoader {
+public class HasSharedUrlLoaderMock: HasUrlLoader {
     public init() { }
-    public init(sharedUrlLoader: SharedUrlLoadable) {
+    public init(sharedUrlLoader: URLLoadable) {
         self._sharedUrlLoader = sharedUrlLoader
     }
 
     public private(set) var sharedUrlLoaderSetCallCount = 0
-    private var _sharedUrlLoader: SharedUrlLoadable! { didSet { sharedUrlLoaderSetCallCount += 1 } }
-    public var sharedUrlLoader: SharedUrlLoadable {
+    private var _sharedUrlLoader: URLLoadable! { didSet { sharedUrlLoaderSetCallCount += 1 } }
+    public var urlLoader: URLLoadable {
         get { return _sharedUrlLoader }
         set { _sharedUrlLoader = newValue }
     }

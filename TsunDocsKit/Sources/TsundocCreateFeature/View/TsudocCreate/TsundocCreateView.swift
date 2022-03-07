@@ -80,7 +80,7 @@ import TagKit
 @MainActor
 struct TsundocCreateView_Previews: PreviewProvider {
     class Dependency: TsundocCreateViewDependency {
-        var sharedUrlLoader: SharedUrlLoadable { _sharedUrlLoader }
+        var urlLoader: URLLoadable { _sharedUrlLoader }
         var webPageMetaResolver: WebPageMetaResolvable { _webPageMetaResolver }
         var tsundocCommandService: TsundocCommandService { _tsundocCommandService }
 

@@ -8,7 +8,7 @@ import Domain
 import Environment
 import Foundation
 
-public typealias TsundocCreateViewDependency = HasSharedUrlLoader
+public typealias TsundocCreateViewDependency = HasUrlLoader
     & HasWebPageMetaResolver
     & HasTsundocCommandService
 
@@ -99,7 +99,7 @@ extension TsundocCreateViewReducer {
         let stream = Deferred {
             Future<Action?, Never> { promise in
                 DispatchQueue.global().async {
-                    dependency.sharedUrlLoader.load { url in
+                    dependency.urlLoader.load { url in
                         guard let url = url else {
                             promise(.success(.onFailedToLoadUrl))
                             return

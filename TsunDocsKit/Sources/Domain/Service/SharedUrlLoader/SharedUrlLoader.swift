@@ -6,7 +6,7 @@ import Combine
 import Foundation
 
 /// @mockable
-public protocol SharedUrlLoadable {
+public protocol URLLoadable {
     func load(_ completion: @escaping (URL?) -> Void)
 }
 
@@ -27,8 +27,8 @@ public class SharedUrlLoader {
     }
 }
 
-extension SharedUrlLoader: SharedUrlLoadable {
-    // MARK: - SharedUrlLoadable
+extension SharedUrlLoader: URLLoadable {
+    // MARK: - URLLoadable
 
     public func load(_ completion: @escaping (URL?) -> Void) {
         cancellable = context

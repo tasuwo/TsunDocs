@@ -30,8 +30,8 @@ public protocol HasTagCommandService {
 }
 
 /// @mockable
-public protocol HasSharedUrlLoader {
-    var sharedUrlLoader: SharedUrlLoadable { get }
+public protocol HasUrlLoader {
+    var urlLoader: URLLoadable { get }
 }
 
 /// @mockable

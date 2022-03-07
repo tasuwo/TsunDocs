@@ -51,8 +51,8 @@ public class DependencyContainer: ObservableObject {
     }
 }
 
-extension DependencyContainer: HasSharedUrlLoader {
-    public var sharedUrlLoader: SharedUrlLoadable { _sharedUrlLoader }
+extension DependencyContainer: HasUrlLoader {
+    public var urlLoader: URLLoadable { _sharedUrlLoader }
 }
 
 extension DependencyContainer: HasWebPageMetaResolver {
