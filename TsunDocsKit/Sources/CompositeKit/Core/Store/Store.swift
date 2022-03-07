@@ -67,8 +67,10 @@ public class Store<State: Equatable, Action: CompositeKit.Action, Dependency>: S
         effects[id] = .init(effect: effect)
 
         let cancellable = effect.upstream
+            // バックグラウンドスレッドで実行させる
             .subscribe(on: DispatchQueue.global())
-            .receive(on: DispatchQueue.global())
+            // 早くとも次の RunLoop で実行させる
+            .receive(on: RunLoop.main)
             .sink { [weak self, weak effect] _ in
                 guard let self = self else { return }
 
@@ -76,12 +78,12 @@ public class Store<State: Equatable, Action: CompositeKit.Action, Dependency>: S
                 defer { self.effectsLock.unlock() }
 
                 if let dispatcher = effect?.actionAtCompleted {
-                    dispatcher.dispatchAndWait { self.execute($0) }
+                    dispatcher.dispatch { self.execute($0) }
                 }
 
                 self.effects.removeValue(forKey: id)
             } receiveValue: { [weak self] dispatcher in
-                dispatcher?.dispatchAndWait { self?.execute($0) }
+                dispatcher?.dispatch { self?.execute($0) }
             }
 
         effects[id]?.cancellable = cancellable
