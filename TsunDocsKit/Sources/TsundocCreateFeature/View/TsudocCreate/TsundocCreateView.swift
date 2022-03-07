@@ -9,7 +9,7 @@ import TsundocList
 
 public struct TsundocCreateView: View {
     public typealias Store = ViewStore<
-        TsudocCreateViewState,
+        TsundocCreateViewState,
         TsundocCreateViewAction,
         TsundocCreateViewDependency
     >

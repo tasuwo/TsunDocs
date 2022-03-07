@@ -14,7 +14,7 @@ public typealias TsundocCreateViewDependency = HasSharedUrlLoader
 
 public struct TsundocCreateViewReducer: Reducer {
     public typealias Dependency = TsundocCreateViewDependency
-    public typealias State = TsudocCreateViewState
+    public typealias State = TsundocCreateViewState
     public typealias Action = TsundocCreateViewAction
 
     // MARK: - Initializers

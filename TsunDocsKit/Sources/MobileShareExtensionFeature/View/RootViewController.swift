@@ -18,7 +18,7 @@ public class RootViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        let store = Store(initialState: TsudocCreateViewState(),
+        let store = Store(initialState: TsundocCreateViewState(),
                           dependency: dependencyContainer,
                           reducer: TsundocCreateViewReducer())
         let rootView = TsundocCreateView(ViewStore(store: store))
