@@ -4,7 +4,7 @@
 
 import Combine
 import CompositeKit
-import MobileShareExtensionUIKit
+import SaveUrlFeature
 import SwiftUI
 
 public class RootViewController: UIViewController {

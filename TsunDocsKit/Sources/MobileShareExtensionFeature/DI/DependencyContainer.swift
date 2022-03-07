@@ -6,8 +6,8 @@ import CoreData
 import Domain
 import Environment
 import Foundation
-import MobileShareExtensionUIKit
 import Persistence
+import SaveUrlFeature
 import UIKit
 
 public class DependencyContainer: ObservableObject {

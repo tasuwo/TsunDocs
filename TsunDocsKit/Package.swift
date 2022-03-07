@@ -33,8 +33,8 @@ let package = Package(
             targets: ["MobileShareExtensionFeature"]
         ),
         .library(
-            name: "MobileShareExtensionUIKit",
-            targets: ["MobileShareExtensionUIKit"]
+            name: "SaveUrlFeature",
+            targets: ["SaveUrlFeature"]
         ),
         .library(
             name: "TsundocList",
@@ -105,11 +105,11 @@ let package = Package(
             dependencies: [
                 "Environment",
                 "Persistence",
-                "MobileShareExtensionUIKit",
+                "SaveUrlFeature",
             ]
         ),
         .target(
-            name: "MobileShareExtensionUIKit",
+            name: "SaveUrlFeature",
             dependencies: [
                 "Domain",
                 "CompositeKit",

@@ -7,7 +7,7 @@ import Foundation
 private class BundleFinder {}
 
 extension Foundation.Bundle {
-    static let moduleName = "MobileShareExtensionUIKit"
+    static let moduleName = "SaveUrlFeature"
 
     static var this: Bundle = {
         let bundleName = "TsunDocs_\(moduleName)"
