@@ -7,11 +7,11 @@ import Domain
 import SwiftUI
 import TsundocList
 
-public struct SharedUrlEditView: View {
+public struct TsundocCreateView: View {
     public typealias Store = ViewStore<
-        SharedUrlEditViewState,
-        SharedUrlEditViewAction,
-        SharedUrlEditViewDependency
+        TsudocCreateViewState,
+        TsundocCreateViewAction,
+        TsundocCreateViewDependency
     >
 
     // MARK: - Properties
@@ -78,8 +78,8 @@ import TagKit
 #endif
 
 @MainActor
-struct SharedUrlEditView_Previews: PreviewProvider {
-    class Dependency: SharedUrlEditViewDependency {
+struct TsundocCreateView_Previews: PreviewProvider {
+    class Dependency: TsundocCreateViewDependency {
         var sharedUrlLoader: SharedUrlLoadable { _sharedUrlLoader }
         var webPageMetaResolver: WebPageMetaResolvable { _webPageMetaResolver }
         var tsundocCommandService: TsundocCommandService { _tsundocCommandService }
@@ -95,7 +95,7 @@ struct SharedUrlEditView_Previews: PreviewProvider {
                                               title: "My Title",
                                               description: "Web Page Description",
                                               imageUrl: URL(string: "https://localhost"))
-            SharedUrlEditView(makeStore(dependency: dependency01))
+            TsundocCreateView(makeStore(dependency: dependency01))
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
 
@@ -103,7 +103,7 @@ struct SharedUrlEditView_Previews: PreviewProvider {
                                               title: nil,
                                               description: nil,
                                               imageUrl: nil)
-            SharedUrlEditView(makeStore(dependency: dependency02))
+            TsundocCreateView(makeStore(dependency: dependency02))
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
 
@@ -111,16 +111,16 @@ struct SharedUrlEditView_Previews: PreviewProvider {
                                               title: String(repeating: "Title ", count: 100),
                                               description: String(repeating: "Description ", count: 100),
                                               imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))"))
-            SharedUrlEditView(makeStore(dependency: dependency03))
+            TsundocCreateView(makeStore(dependency: dependency03))
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
         }
     }
 
-    static func makeStore(dependency: Dependency) -> SharedUrlEditView.Store {
+    static func makeStore(dependency: Dependency) -> TsundocCreateView.Store {
         let store = Store(initialState: .init(),
                           dependency: dependency,
-                          reducer: SharedUrlEditViewReducer())
+                          reducer: TsundocCreateViewReducer())
         let viewStore = ViewStore(store: store)
         return viewStore
     }

@@ -8,14 +8,14 @@ import Domain
 import Environment
 import Foundation
 
-public typealias SharedUrlEditViewDependency = HasSharedUrlLoader
+public typealias TsundocCreateViewDependency = HasSharedUrlLoader
     & HasWebPageMetaResolver
     & HasTsundocCommandService
 
-public struct SharedUrlEditViewReducer: Reducer {
-    public typealias Dependency = SharedUrlEditViewDependency
-    public typealias State = SharedUrlEditViewState
-    public typealias Action = SharedUrlEditViewAction
+public struct TsundocCreateViewReducer: Reducer {
+    public typealias Dependency = TsundocCreateViewDependency
+    public typealias State = TsudocCreateViewState
+    public typealias Action = TsundocCreateViewAction
 
     // MARK: - Initializers
 
@@ -94,7 +94,7 @@ public struct SharedUrlEditViewReducer: Reducer {
     }
 }
 
-extension SharedUrlEditViewReducer {
+extension TsundocCreateViewReducer {
     private static func loadUrl(state: State, dependency: Dependency) -> (State, [Effect<Action>]) {
         let stream = Deferred {
             Future<Action?, Never> { promise in

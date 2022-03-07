@@ -6,7 +6,7 @@ import Domain
 import Foundation
 import TsundocList
 
-public struct SharedUrlEditViewState: Equatable {
+public struct TsudocCreateViewState: Equatable {
     public enum SaveResult {
         case succeeded
         case failed
@@ -34,12 +34,12 @@ public struct SharedUrlEditViewState: Equatable {
     public init() {}
 }
 
-extension SharedUrlEditViewState {
+extension TsudocCreateViewState {
     var title: String { sharedUrlTitle ?? "" }
     var isAlertPresenting: Bool { alert != nil }
 }
 
-extension SharedUrlEditViewState {
+extension TsudocCreateViewState {
     func command() -> TsundocCommand? {
         guard let url = sharedUrl else { return nil }
         return TsundocCommand(title: sharedUrlTitle ?? "",

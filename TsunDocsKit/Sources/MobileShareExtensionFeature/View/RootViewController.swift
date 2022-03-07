@@ -4,8 +4,8 @@
 
 import Combine
 import CompositeKit
-import SaveUrlFeature
 import SwiftUI
+import TsundocCreateFeature
 
 public class RootViewController: UIViewController {
     // MARK: - Properties
@@ -18,10 +18,10 @@ public class RootViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        let store = Store(initialState: SharedUrlEditViewState(),
+        let store = Store(initialState: TsudocCreateViewState(),
                           dependency: dependencyContainer,
-                          reducer: SharedUrlEditViewReducer())
-        let rootView = SharedUrlEditView(ViewStore(store: store))
+                          reducer: TsundocCreateViewReducer())
+        let rootView = TsundocCreateView(ViewStore(store: store))
             .environment(\.tagMultiSelectionSheetBuilder, dependencyContainer)
 
         store.state

@@ -7,7 +7,7 @@ import Domain
 import Foundation
 import TsundocList
 
-public enum SharedUrlEditViewAction: Action {
+public enum TsundocCreateViewAction: Action {
     case onAppear
     case onLoad(URL, WebPageMeta?)
     case onTapSaveButton
