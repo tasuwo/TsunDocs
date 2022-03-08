@@ -14,6 +14,7 @@ public typealias SceneContainer = TsundocListBuildable
     & TagMultiSelectionSheetBuildable
     & TsundocInfoViewBuildable
     & SettingViewBuilder
+    & TsundocCreateViewBuildable
     & ObservableObject
 
 public struct RootView<Container>: View where Container: SceneContainer {
@@ -38,6 +39,7 @@ public struct RootView<Container>: View where Container: SceneContainer {
             .environment(\.tagListBuilder, container)
             .environment(\.tagMultiSelectionSheetBuilder, container)
             .environment(\.tsundocInfoViewBuilder, container)
+            .environment(\.tsundocCreateViewBuilder, container)
             .preferredColorScheme(userInterfaceStyle.colorScheme)
     }
 
@@ -126,7 +128,8 @@ struct RootView_Previews: PreviewProvider {
         TagListBuildable,
         TagMultiSelectionSheetBuildable,
         TsundocInfoViewBuildable,
-        SettingViewBuilder
+        SettingViewBuilder,
+        TsundocCreateViewBuildable
     {
         func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, query: TsundocListQuery) -> AnyView {
             AnyView(Color.red)
@@ -146,6 +149,10 @@ struct RootView_Previews: PreviewProvider {
 
         func buildSettingView() -> AnyView {
             AnyView(Color.black)
+        }
+
+        func buildTsundocCreateView(url: URL) -> AnyView {
+            AnyView(Color.pink)
         }
     }
 

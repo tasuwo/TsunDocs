@@ -97,6 +97,7 @@ let package = Package(
                 "SearchKit",
                 "TagKit",
                 "TsundocList",
+                "TsundocCreateFeature",
                 "CoreDataCloudKitSupport"
             ]
         ),

@@ -49,4 +49,10 @@ extension SceneDependencyContainer: HasCloudKitAvailabilityObserver {
     public var cloudKitAvailabilityObserver: CloudKitAvailabilityObservable { appDependencyContainer.cloudKitAvailabilityObserver }
 }
 
+extension SceneDependencyContainer: HasWebPageMetaResolver {
+    // MARK: - HasWebPageMetaResolver
+
+    public var webPageMetaResolver: WebPageMetaResolvable { appDependencyContainer.webPageMetaResolver }
+}
+
 extension SceneDependencyContainer: HasNop {}

@@ -33,6 +33,10 @@ public class AppDependencyContainer: ObservableObject {
 
     let userSettingStorage: Domain.UserSettingStorage
 
+    // MARK: Others
+
+    let webPageMetaResolver: WebPageMetaResolver
+
     // MARK: Subscription
 
     private var subscriptions: Set<AnyCancellable> = .init()
@@ -59,6 +63,8 @@ public class AppDependencyContainer: ObservableObject {
 
         tsundocCommandService = TsundocCommandService(commandContext)
         tagCommandService = TagCommandService(commandContext)
+
+        webPageMetaResolver = WebPageMetaResolver()
 
         containerMonitor.startMonitoring()
         persistentContainerReloader.startObserve()

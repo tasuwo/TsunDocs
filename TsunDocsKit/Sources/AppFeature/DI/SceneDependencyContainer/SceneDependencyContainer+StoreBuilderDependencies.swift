@@ -8,6 +8,7 @@ import Environment
 import SearchKit
 import SwiftUI
 import TagKit
+import TsundocCreateFeature
 
 extension SceneDependencyContainer: TsundocListBuildable {
     // MARK: - TsundocListBuildable
@@ -72,5 +73,16 @@ extension SceneDependencyContainer: SettingViewBuilder {
                           dependency: self,
                           reducer: SettingViewReducer())
         return AnyView(SettingView(store: ViewStore(store: store)))
+    }
+}
+
+extension SceneDependencyContainer: TsundocCreateViewBuildable {
+    // MARK: - TsundocCreateViewBuildable
+
+    public func buildTsundocCreateView(url: URL) -> AnyView {
+        let store = Store(initialState: TsundocCreateViewState(url: url),
+                          dependency: self,
+                          reducer: TsundocCreateViewReducer())
+        return AnyView(TsundocCreateView(ViewStore(store: store)))
     }
 }

@@ -12,6 +12,7 @@ import PreviewContent
 import SearchKit
 import SwiftUI
 import TagKit
+import TsundocCreateFeature
 
 class DummyContainer: ObservableObject {
     let cloudKitAvailabilityObserver: CloudKitAvailabilityObservable
@@ -146,6 +147,12 @@ extension DummyContainer: TsundocInfoViewBuildable {
 
 extension DummyContainer: SettingViewBuilder {
     func buildSettingView() -> AnyView {
+        AnyView(EmptyView())
+    }
+}
+
+extension DummyContainer: TsundocCreateViewBuildable {
+    func buildTsundocCreateView(url: URL) -> AnyView {
         AnyView(EmptyView())
     }
 }
