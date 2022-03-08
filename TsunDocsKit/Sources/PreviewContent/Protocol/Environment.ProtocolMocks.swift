@@ -95,11 +95,11 @@ public class TsundocListBuildableMock: TsundocListBuildable {
     public init() { }
 
     public private(set) var buildTsundocListCallCount = 0
-    public var buildTsundocListHandler: ((String, String, String?, TsundocListQuery) -> (AnyView))?
-    public func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, query: TsundocListQuery) -> AnyView {
+    public var buildTsundocListHandler: ((String, String, String?, Bool, TsundocListQuery) -> (AnyView))?
+    public func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, query: TsundocListQuery) -> AnyView {
         buildTsundocListCallCount += 1
         if let buildTsundocListHandler = buildTsundocListHandler {
-            return buildTsundocListHandler(title, emptyTile, emptyMessage, query)
+            return buildTsundocListHandler(title, emptyTile, emptyMessage, isTsundocCreationEnabled, query)
         }
         fatalError("buildTsundocListHandler returns can't have a default value thus its handler must be set")
     }

@@ -102,13 +102,14 @@ extension DummyContainer: HasCloudKitAvailabilityObserver {}
 extension DummyContainer: HasNop {}
 
 extension DummyContainer: TsundocListBuildable {
-    func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, query: TsundocListQuery) -> AnyView {
+    func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, query: TsundocListQuery, isTsundocCreationEnabled: Bool) -> AnyView {
         let store = Store(initialState: TsundocListState(query: .all),
                           dependency: self,
                           reducer: TsundocListReducer())
         return AnyView(TsundocList(title: title,
                                    emptyTitle: emptyTile,
                                    emptyMessage: emptyMessage,
+                                   isTsundocCreationEnabled: isTsundocCreationEnabled,
                                    store: ViewStore(store: store)))
     }
 }

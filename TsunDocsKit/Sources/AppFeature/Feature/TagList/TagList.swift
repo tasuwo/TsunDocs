@@ -110,6 +110,7 @@ public struct TagList: View {
             tsundocListBuilder.buildTsundocList(title: tag.name,
                                                 emptyTile: L10n.tsundocListEmptyMessageTagMessage(tag.name),
                                                 emptyMessage: nil,
+                                                isTsundocCreationEnabled: false,
                                                 query: .tagged(tagId))
         } else {
             EmptyView()

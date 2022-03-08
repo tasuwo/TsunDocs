@@ -8,7 +8,7 @@ import SwiftUI
 
 private struct TsundocListBuilderKey: EnvironmentKey {
     private struct DefaultBuilder: TsundocListBuildable {
-        func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, query: TsundocListQuery) -> AnyView {
+        func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, query: TsundocListQuery) -> AnyView {
             assertionFailure("Not Implemented")
             return AnyView(EmptyView())
         }

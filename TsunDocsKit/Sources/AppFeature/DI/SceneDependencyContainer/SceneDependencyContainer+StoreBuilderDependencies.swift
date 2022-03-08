@@ -13,13 +13,14 @@ import TsundocCreateFeature
 extension SceneDependencyContainer: TsundocListBuildable {
     // MARK: - TsundocListBuildable
 
-    public func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, query: TsundocListQuery) -> AnyView {
+    public func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, query: TsundocListQuery) -> AnyView {
         let store = Store(initialState: TsundocListState(query: query),
                           dependency: self,
                           reducer: TsundocListReducer())
         return AnyView(TsundocList(title: title,
                                    emptyTitle: emptyTile,
                                    emptyMessage: emptyMessage,
+                                   isTsundocCreationEnabled: isTsundocCreationEnabled,
                                    store: ViewStore(store: store)))
     }
 }

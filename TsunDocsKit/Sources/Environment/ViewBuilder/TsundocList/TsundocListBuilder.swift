@@ -13,5 +13,6 @@ public protocol TsundocListBuildable {
     func buildTsundocList(title: String,
                           emptyTile: String,
                           emptyMessage: String?,
+                          isTsundocCreationEnabled: Bool,
                           query: TsundocListQuery) -> AnyView
 }

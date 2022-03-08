@@ -18,6 +18,7 @@ public struct TsundocList: View {
     let title: String
     let emptyTitle: String
     let emptyMessage: String?
+    let isTsundocCreationEnabled: Bool
 
     @StateObject var store: Store
 
@@ -28,10 +29,11 @@ public struct TsundocList: View {
 
     // MARK: - Initializers
 
-    public init(title: String, emptyTitle: String, emptyMessage: String?, store: Store) {
+    public init(title: String, emptyTitle: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, store: Store) {
         self.title = title
         self.emptyTitle = emptyTitle
         self.emptyMessage = emptyMessage
+        self.isTsundocCreationEnabled = isTsundocCreationEnabled
         _store = .init(wrappedValue: store)
     }
 
@@ -115,6 +117,7 @@ public struct TsundocList: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 addButton()
+                    .opacity(isTsundocCreationEnabled ? 1 : 0)
             }
 
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -366,6 +369,7 @@ struct TsundocList_Previews: PreviewProvider {
             TsundocList(title: L10n.tsundocListTitle,
                         emptyTitle: L10n.tsundocListEmptyMessageDefaultTitle,
                         emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
+                        isTsundocCreationEnabled: true,
                         store: viewStore)
         }
     }

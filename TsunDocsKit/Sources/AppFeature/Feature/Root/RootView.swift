@@ -93,6 +93,7 @@ public struct RootView<Container>: View where Container: SceneContainer {
         container.buildTsundocList(title: L10n.tsundocListTitle,
                                    emptyTile: L10n.tsundocListEmptyMessageDefaultTitle,
                                    emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
+                                   isTsundocCreationEnabled: true,
                                    query: .all)
     }
 
@@ -131,7 +132,7 @@ struct RootView_Previews: PreviewProvider {
         SettingViewBuilder,
         TsundocCreateViewBuildable
     {
-        func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, query: TsundocListQuery) -> AnyView {
+        func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, query: TsundocListQuery) -> AnyView {
             AnyView(Color.red)
         }
 
