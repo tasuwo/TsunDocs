@@ -28,22 +28,17 @@ public struct TsundocCreateView: View {
 
     public var body: some View {
         VStack {
-            if let url = store.state.sharedUrl {
-                TsundocEditView(url: url,
-                                imageUrl: store.state.sharedUrlImageUrl,
-                                title: store.bind(\.title,
-                                                  action: { .onSaveTitle($0) }),
-                                selectedEmojiInfo: store.bind(\.selectedEmojiInfo,
-                                                              action: { .onSelectedEmojiInfo($0) }),
-                                selectedTags: store.bind(\.selectedTags,
-                                                         action: { .onSelectedTags($0) }),
-                                isUnread: store.bind(\.isUnread,
-                                                     action: { .onToggleUnread($0) })) {
-                    store.execute(.onTapSaveButton)
-                }
-            } else {
-                ProgressView()
-                    .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
+            TsundocEditView(url: store.state.url,
+                            imageUrl: store.state.sharedUrlImageUrl,
+                            title: store.bind(\.title,
+                                              action: { .onSaveTitle($0) }),
+                            selectedEmojiInfo: store.bind(\.selectedEmojiInfo,
+                                                          action: { .onSelectedEmojiInfo($0) }),
+                            selectedTags: store.bind(\.selectedTags,
+                                                     action: { .onSelectedTags($0) }),
+                            isUnread: store.bind(\.isUnread,
+                                                 action: { .onToggleUnread($0) })) {
+                store.execute(.onTapSaveButton)
             }
         }
         .onAppear {
@@ -52,11 +47,6 @@ public struct TsundocCreateView: View {
         .alert(isPresented: store.bind(\.isAlertPresenting,
                                        action: { _ in .alertDismissed }), content: {
                 switch store.state.alert {
-                case .failedToLoadUrl:
-                    return Alert(title: Text(""),
-                                 message: Text("shared_url_edit_view_error_title_load_url", bundle: Bundle.this),
-                                 dismissButton: .default(Text("alert_close", bundle: Bundle.this), action: { store.execute(.errorConfirmed) }))
-
                 case .failedToSaveSharedUrl:
                     return Alert(title: Text(""),
                                  message: Text("shared_url_edit_view_error_title_save_url", bundle: Bundle.this),
@@ -118,7 +108,7 @@ struct TsundocCreateView_Previews: PreviewProvider {
     }
 
     static func makeStore(dependency: Dependency) -> TsundocCreateView.Store {
-        let store = Store(initialState: .init(),
+        let store = Store(initialState: .init(url: URL(string: "https://localhost")!),
                           dependency: dependency,
                           reducer: TsundocCreateViewReducer())
         let viewStore = ViewStore(store: store)

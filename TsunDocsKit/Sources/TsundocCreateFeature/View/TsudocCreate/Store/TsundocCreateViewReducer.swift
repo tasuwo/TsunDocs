@@ -8,8 +8,7 @@ import Domain
 import Environment
 import Foundation
 
-public typealias TsundocCreateViewDependency = HasUrlLoader
-    & HasWebPageMetaResolver
+public typealias TsundocCreateViewDependency = HasWebPageMetaResolver
     & HasTsundocCommandService
 
 public struct TsundocCreateViewReducer: Reducer {
@@ -30,8 +29,7 @@ public struct TsundocCreateViewReducer: Reducer {
         case .onAppear:
             return Self.loadUrl(state: state, dependency: dependency)
 
-        case let .onLoad(url, meta):
-            nextState.sharedUrl = url
+        case let .onLoad(meta):
             nextState.sharedUrlTitle = meta?.title
             nextState.sharedUrlDescription = meta?.description
             nextState.sharedUrlImageUrl = meta?.imageUrl
@@ -61,10 +59,6 @@ public struct TsundocCreateViewReducer: Reducer {
 
         case let .onSaveTitle(title):
             nextState.sharedUrlTitle = title
-            return (nextState, .none)
-
-        case .onFailedToLoadUrl:
-            nextState.alert = .failedToLoadUrl
             return (nextState, .none)
 
         case let .onSelectedEmojiInfo(emojiInfo):
@@ -98,17 +92,8 @@ extension TsundocCreateViewReducer {
     private static func loadUrl(state: State, dependency: Dependency) -> (State, [Effect<Action>]) {
         let stream = Deferred {
             Future<Action?, Never> { promise in
-                DispatchQueue.global().async {
-                    dependency.urlLoader.load { url in
-                        guard let url = url else {
-                            promise(.success(.onFailedToLoadUrl))
-                            return
-                        }
-
-                        let meta = try? dependency.webPageMetaResolver.resolve(from: url)
-                        promise(.success(.onLoad(url, meta)))
-                    }
-                }
+                let meta = try? dependency.webPageMetaResolver.resolve(from: state.url)
+                promise(.success(.onLoad(meta)))
             }
         }
         let effect = Effect(stream)

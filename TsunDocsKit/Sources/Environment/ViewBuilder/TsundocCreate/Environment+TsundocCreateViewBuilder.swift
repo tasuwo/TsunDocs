@@ -8,7 +8,7 @@ import SwiftUI
 
 private struct TsundocCreateViewBuilderKey: EnvironmentKey {
     private struct DefaultBuilder: TsundocCreateViewBuildable {
-        func buildTsundocCreateView() -> AnyView {
+        func buildTsundocCreateView(url: URL) -> AnyView {
             assertionFailure("Not Implemented")
             return AnyView(EmptyView())
         }

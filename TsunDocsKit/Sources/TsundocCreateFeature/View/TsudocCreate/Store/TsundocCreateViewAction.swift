@@ -9,12 +9,11 @@ import TsundocList
 
 public enum TsundocCreateViewAction: Action {
     case onAppear
-    case onLoad(URL, WebPageMeta?)
+    case onLoad(WebPageMeta?)
     case onTapSaveButton
     case succeededToSave
     case failedToSave
     case onSaveTitle(String)
-    case onFailedToLoadUrl
     case onSelectedEmojiInfo(EmojiInfo?)
     case onSelectedTags([Tag])
     case onDeleteTag(Tag.ID)

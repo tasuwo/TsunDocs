@@ -6,7 +6,5 @@
   Copyright © 2021 Tasuku Tozawa. All rights reserved.
 */
 
-"shared_url_edit_view_error_title_load_url" = "URLの読み取りに失敗しました";
 "shared_url_edit_view_error_title_save_url" = "URLの保存に失敗しました";
-
 "alert_close" = "閉じる";

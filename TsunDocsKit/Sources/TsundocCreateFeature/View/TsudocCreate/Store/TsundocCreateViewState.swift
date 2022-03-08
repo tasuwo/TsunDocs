@@ -13,11 +13,11 @@ public struct TsundocCreateViewState: Equatable {
     }
 
     public enum Alert: Equatable {
-        case failedToLoadUrl
         case failedToSaveSharedUrl
     }
 
-    var sharedUrl: URL?
+    let url: URL
+
     var sharedUrlTitle: String?
     var sharedUrlDescription: String?
     var sharedUrlImageUrl: URL?
@@ -31,7 +31,11 @@ public struct TsundocCreateViewState: Equatable {
 
     public internal(set) var saveResult: SaveResult?
 
-    public init() {}
+    // MARK: - Initializers
+
+    public init(url: URL) {
+        self.url = url
+    }
 }
 
 extension TsundocCreateViewState {
@@ -41,7 +45,6 @@ extension TsundocCreateViewState {
 
 extension TsundocCreateViewState {
     func command() -> TsundocCommand? {
-        guard let url = sharedUrl else { return nil }
         return TsundocCommand(title: sharedUrlTitle ?? "",
                               description: sharedUrlDescription,
                               url: url,
