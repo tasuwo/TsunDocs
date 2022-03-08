@@ -151,7 +151,7 @@ struct RootView_Previews: PreviewProvider {
             AnyView(Color.black)
         }
 
-        func buildTsundocCreateView(url: URL) -> AnyView {
+        func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> AnyView {
             AnyView(Color.pink)
         }
     }

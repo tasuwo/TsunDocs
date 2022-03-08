@@ -50,7 +50,7 @@ public struct TsundocCreateViewReducer: Reducer {
             return (nextState, [effect])
 
         case .succeededToSave:
-            nextState.saveResult = .succeeded
+            nextState.isSucceeded = true
             return (nextState, .none)
 
         case .failedToSave:
@@ -78,7 +78,7 @@ public struct TsundocCreateViewReducer: Reducer {
             return (nextState, .none)
 
         case .errorConfirmed:
-            nextState.saveResult = .failed
+            nextState.isSucceeded = false
             return (nextState, .none)
 
         case .alertDismissed:

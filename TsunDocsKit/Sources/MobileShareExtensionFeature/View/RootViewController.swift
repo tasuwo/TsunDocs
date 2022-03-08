@@ -11,8 +11,6 @@ public class RootViewController: UIViewController {
     // MARK: - Properties
 
     public var dependencyContainer: DependencyContainer!
-    private var cancellables: Set<AnyCancellable> = .init([])
-
     private let indicatorView = UIActivityIndicatorView()
 
     // MARK: - View Life-Cycle Methods
@@ -42,24 +40,15 @@ extension RootViewController {
         let store = Store(initialState: TsundocCreateViewState(url: url),
                           dependency: dependencyContainer,
                           reducer: TsundocCreateViewReducer())
-        let rootView = TsundocCreateView(ViewStore(store: store))
-            .environment(\.tagMultiSelectionSheetBuilder, dependencyContainer)
-
-        store.state
-            .compactMap(\.saveResult)
-            .removeDuplicates()
-            .receive(on: DispatchQueue.main)
-            .sink { [dependencyContainer] result in
-                switch result {
-                case .succeeded:
-                    dependencyContainer?.context.completeRequest(returningItems: nil, completionHandler: nil)
-
-                case .failed:
-                    let error = NSError(domain: "net.tasuwo.tsundocs", code: 0)
-                    dependencyContainer?.context.cancelRequest(withError: error)
-                }
+        let rootView = TsundocCreateView(ViewStore(store: store)) { [dependencyContainer] isSucceeded in
+            if isSucceeded {
+                dependencyContainer?.context.completeRequest(returningItems: nil, completionHandler: nil)
+            } else {
+                let error = NSError(domain: "net.tasuwo.tsundocs", code: 0)
+                dependencyContainer?.context.cancelRequest(withError: error)
             }
-            .store(in: &cancellables)
+        }
+        .environment(\.tagMultiSelectionSheetBuilder, dependencyContainer)
 
         let viewController = UIHostingController(rootView: rootView)
         addChild(viewController)

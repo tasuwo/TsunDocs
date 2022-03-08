@@ -17,11 +17,13 @@ public struct TsundocCreateView: View {
     // MARK: - Properties
 
     @StateObject var store: Store
+    private let onDone: (Bool) -> Void
 
     // MARK: - Initializers
 
-    public init(_ store: Store) {
+    public init(_ store: Store, onDone: @escaping (Bool) -> Void) {
         self._store = StateObject(wrappedValue: store)
+        self.onDone = onDone
     }
 
     // MARK: - View
@@ -43,6 +45,10 @@ public struct TsundocCreateView: View {
         }
         .onAppear {
             store.execute(.onAppear)
+        }
+        .onChange(of: store.state.isSucceeded) { isSucceeded in
+            guard let result = isSucceeded else { return }
+            onDone(result)
         }
         .alert(isPresented: store.bind(\.isAlertPresenting,
                                        action: { _ in .alertDismissed }), content: {
@@ -85,7 +91,7 @@ struct TsundocCreateView_Previews: PreviewProvider {
                                               title: "My Title",
                                               description: "Web Page Description",
                                               imageUrl: URL(string: "https://localhost"))
-            TsundocCreateView(makeStore(dependency: dependency01))
+            TsundocCreateView(makeStore(dependency: dependency01), onDone: { _ in })
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
 
@@ -93,7 +99,7 @@ struct TsundocCreateView_Previews: PreviewProvider {
                                               title: nil,
                                               description: nil,
                                               imageUrl: nil)
-            TsundocCreateView(makeStore(dependency: dependency02))
+            TsundocCreateView(makeStore(dependency: dependency02), onDone: { _ in })
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
 
@@ -101,7 +107,7 @@ struct TsundocCreateView_Previews: PreviewProvider {
                                               title: String(repeating: "Title ", count: 100),
                                               description: String(repeating: "Description ", count: 100),
                                               imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))"))
-            TsundocCreateView(makeStore(dependency: dependency03))
+            TsundocCreateView(makeStore(dependency: dependency03), onDone: { _ in })
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
         }

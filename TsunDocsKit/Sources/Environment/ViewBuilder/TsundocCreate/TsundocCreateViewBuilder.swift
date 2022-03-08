@@ -8,5 +8,5 @@ import SwiftUI
 public protocol TsundocCreateViewBuildable {
     @MainActor
     @ViewBuilder
-    func buildTsundocCreateView(url: URL) -> AnyView
+    func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> AnyView
 }

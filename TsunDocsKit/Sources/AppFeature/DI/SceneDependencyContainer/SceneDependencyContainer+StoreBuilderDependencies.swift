@@ -79,10 +79,10 @@ extension SceneDependencyContainer: SettingViewBuilder {
 extension SceneDependencyContainer: TsundocCreateViewBuildable {
     // MARK: - TsundocCreateViewBuildable
 
-    public func buildTsundocCreateView(url: URL) -> AnyView {
+    public func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> AnyView {
         let store = Store(initialState: TsundocCreateViewState(url: url),
                           dependency: self,
                           reducer: TsundocCreateViewReducer())
-        return AnyView(TsundocCreateView(ViewStore(store: store)))
+        return AnyView(TsundocCreateView(ViewStore(store: store), onDone: onDone))
     }
 }

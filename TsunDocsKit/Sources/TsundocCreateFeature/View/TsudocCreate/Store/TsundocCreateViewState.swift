@@ -7,11 +7,6 @@ import Foundation
 import TsundocList
 
 public struct TsundocCreateViewState: Equatable {
-    public enum SaveResult {
-        case succeeded
-        case failed
-    }
-
     public enum Alert: Equatable {
         case failedToSaveSharedUrl
     }
@@ -29,7 +24,7 @@ public struct TsundocCreateViewState: Equatable {
 
     var alert: Alert?
 
-    public internal(set) var saveResult: SaveResult?
+    public internal(set) var isSucceeded: Bool?
 
     // MARK: - Initializers
 
