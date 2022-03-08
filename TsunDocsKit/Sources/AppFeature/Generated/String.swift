@@ -178,6 +178,17 @@ internal enum L10n {
         }
     }
 
+    internal enum TsundocList {
+        internal enum Alert {
+            internal enum TsundocUrl {
+                /// 作成したい記事のURLを入力してください
+                internal static let message = L10n.tr("Localizable", "tsundoc_list.alert.tsundoc_url.message")
+                /// 記事を作成
+                internal static let title = L10n.tr("Localizable", "tsundoc_list.alert.tsundoc_url.title")
+            }
+        }
+    }
+
     internal enum UserInterfaceStyleSettingView {
         /// テーマ
         internal static let title = L10n.tr("Localizable", "user_interface_style_setting_view.title")

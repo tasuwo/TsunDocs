@@ -4,6 +4,7 @@
 
 import CompositeKit
 import Domain
+import Foundation
 
 public struct TsundocListState: Equatable {
     enum Alert: Equatable {
@@ -16,13 +17,19 @@ public struct TsundocListState: Equatable {
             case failedToUpdate
         }
 
+        enum TextEdit {
+            case createTsundoc
+        }
+
         case plain(Plain)
         case confirmation(Confirmation)
+        case textEdit(TextEdit)
     }
 
     enum Modal: Equatable {
         case tagAdditionView(Tsundoc.ID, Set<Tag.ID>)
         case emojiSelection(Tsundoc.ID)
+        case createTsundoc(URL)
     }
 
     enum Navigation: Equatable {
@@ -51,6 +58,11 @@ extension TsundocListState {
 
     var isAlertPresenting: Bool {
         guard case .plain = alert else { return false }
+        return true
+    }
+
+    var isTsundocUrlEditAlertPresenting: Bool {
+        guard case .textEdit(.createTsundoc) = alert else { return false }
         return true
     }
 

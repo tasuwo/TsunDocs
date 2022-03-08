@@ -12,8 +12,6 @@ import Foundation
 internal enum L10n {
     /// 閉じる
     internal static let alertClose = L10n.tr("Localizable", "alert_close")
-    /// URLの読み取りに失敗しました
-    internal static let sharedUrlEditViewErrorTitleLoadUrl = L10n.tr("Localizable", "shared_url_edit_view_error_title_load_url")
     /// URLの保存に失敗しました
     internal static let sharedUrlEditViewErrorTitleSaveUrl = L10n.tr("Localizable", "shared_url_edit_view_error_title_save_url")
 }

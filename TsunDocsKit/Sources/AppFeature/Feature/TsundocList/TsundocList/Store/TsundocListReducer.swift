@@ -88,6 +88,10 @@ public struct TsundocListReducer: Reducer {
             }
             return (nextState, nil)
 
+        case .createTsundoc:
+            nextState.alert = .textEdit(.createTsundoc)
+            return (nextState, nil)
+
         case let .tap(tsundocId, .addTag):
             let tags = dependency.tagQueryService.fetchTags(taggedToTsundocHaving: tsundocId)
                 .successValue?
@@ -143,6 +147,11 @@ public struct TsundocListReducer: Reducer {
                 }
             }
             return (nextState, [effect])
+
+        case let .alert(.createTsundoc(url)):
+            nextState.alert = nil
+            nextState.modal = .createTsundoc(url)
+            return (nextState, nil)
 
         case .alert(.dismissed):
             nextState.alert = nil

@@ -80,7 +80,7 @@ struct TsundocCreateView_Previews: PreviewProvider {
         var webPageMetaResolver: WebPageMetaResolvable { _webPageMetaResolver }
         var tsundocCommandService: TsundocCommandService { _tsundocCommandService }
 
-        var _sharedUrlLoader = SharedUrlLoadableMock()
+        var _sharedUrlLoader = URLLoadableMock()
         var _webPageMetaResolver = WebPageMetaResolvableMock()
         var _tsundocCommandService = TsundocCommandServiceMock()
     }

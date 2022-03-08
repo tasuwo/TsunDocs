@@ -18,6 +18,7 @@ public enum TsundocListAction {
 
     public enum AlertAction {
         case confirmedToDelete(Tsundoc.ID)
+        case createTsundoc(URL)
         case dismissed
     }
 
@@ -39,6 +40,7 @@ public enum TsundocListAction {
     case select(Tsundoc)
     case selectTags(Set<Tag.ID>, Tsundoc.ID)
     case tap(Tsundoc.ID, MenuItem)
+    case createTsundoc
     case activateTsundocFilter(TsundocFilter)
     case deactivateTsundocFilter
     case failedToDeleteTsundoc(CommandServiceError?)

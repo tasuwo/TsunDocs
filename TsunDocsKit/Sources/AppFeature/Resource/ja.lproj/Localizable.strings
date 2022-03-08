@@ -37,6 +37,9 @@
 "tsundoc_list_alert_delete_tsundoc_message" = "このアイテムを削除しますか？";
 "tsundoc_list_alert_delete_tsundoc_action" = "アイテムを削除";
 
+"tsundoc_list.alert.tsundoc_url.title" = "記事を作成";
+"tsundoc_list.alert.tsundoc_url.message" = "作成したい記事のURLを入力してください";
+
 "tsundoc_info_view_tag" = "タグ";
 
 "setting_view.title" = "設定";

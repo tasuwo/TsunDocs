@@ -21,6 +21,20 @@ public class HasPasteboardMock: HasPasteboard {
     }
 }
 
+public class TsundocCreateViewBuildableMock: TsundocCreateViewBuildable {
+    public init() { }
+
+    public private(set) var buildTsundocCreateViewCallCount = 0
+    public var buildTsundocCreateViewHandler: ((URL, @escaping (Bool) -> Void) -> (AnyView))?
+    public func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> AnyView {
+        buildTsundocCreateViewCallCount += 1
+        if let buildTsundocCreateViewHandler = buildTsundocCreateViewHandler {
+            return buildTsundocCreateViewHandler(url, onDone)
+        }
+        fatalError("buildTsundocCreateViewHandler returns can't have a default value thus its handler must be set")
+    }
+}
+
 public class SettingViewBuilderMock: SettingViewBuilder {
     public init() { }
 
@@ -147,17 +161,17 @@ public class HasTagCommandServiceMock: HasTagCommandService {
     }
 }
 
-public class HasSharedUrlLoaderMock: HasUrlLoader {
+public class HasUrlLoaderMock: HasUrlLoader {
     public init() { }
-    public init(sharedUrlLoader: URLLoadable) {
-        self._sharedUrlLoader = sharedUrlLoader
+    public init(urlLoader: URLLoadable) {
+        self._urlLoader = urlLoader
     }
 
-    public private(set) var sharedUrlLoaderSetCallCount = 0
-    private var _sharedUrlLoader: URLLoadable! { didSet { sharedUrlLoaderSetCallCount += 1 } }
+    public private(set) var urlLoaderSetCallCount = 0
+    private var _urlLoader: URLLoadable! { didSet { urlLoaderSetCallCount += 1 } }
     public var urlLoader: URLLoadable {
-        get { return _sharedUrlLoader }
-        set { _sharedUrlLoader = newValue }
+        get { return _urlLoader }
+        set { _urlLoader = newValue }
     }
 }
 

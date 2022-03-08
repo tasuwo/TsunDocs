@@ -5,10 +5,10 @@ strings:
         - templateName: structured-swift5
           output: TsunDocsKit/Sources/AppFeature/Generated/String.swift
     - inputs:
-        - TsunDocsKit/Sources/MobileShareExtensionUIKit/Resources/ja.lproj/Localizable.strings
+        - TsunDocsKit/Sources/TsundocCreateFeature/Resources/ja.lproj/Localizable.strings
       outputs:
         - templateName: structured-swift5
-          output: TsunDocsKit/Sources/MobileShareExtensionUIKit/Generated/String.swift
+          output: TsunDocsKit/Sources/TsundocCreateFeature/Generated/String.swift
 xcassets:
     - inputs:
         - TsunDocsKit/Sources/Domain/Resources/Assets.xcassets

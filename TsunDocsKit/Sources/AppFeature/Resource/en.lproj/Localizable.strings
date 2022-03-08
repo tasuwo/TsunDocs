@@ -37,6 +37,9 @@
 "tsundoc_list_alert_delete_tsundoc_message" = "Are you sure you want to delete this item?";
 "tsundoc_list_alert_delete_tsundoc_action" = "Delete Item";
 
+"tsundoc_list.alert.tsundoc_url.title" = "Create New Article";
+"tsundoc_list.alert.tsundoc_url.message" = "Enter a url of arcitle";
+
 "tsundoc_info_view_tag" = "Tag";
 
 "setting_view.title" = "Settings";

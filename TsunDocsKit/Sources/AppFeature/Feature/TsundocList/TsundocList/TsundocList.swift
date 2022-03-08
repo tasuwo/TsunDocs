@@ -8,6 +8,7 @@ import EmojiList
 import Environment
 import SwiftUI
 import TagKit
+import TextEditAlert
 
 public struct TsundocList: View {
     public typealias Store = ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
@@ -23,6 +24,7 @@ public struct TsundocList: View {
     @Environment(\.openURL) var openURL
     @Environment(\.tagMultiSelectionSheetBuilder) var tagMultiSelectionSheetBuilder
     @Environment(\.tsundocInfoViewBuilder) var tsundocInfoViewBuilder
+    @Environment(\.tsundocCreateViewBuilder) var tsundocCreateViewBuilder
 
     // MARK: - Initializers
 
@@ -78,6 +80,11 @@ public struct TsundocList: View {
                     }
                 }
 
+            case let .createTsundoc(url):
+                tsundocCreateViewBuilder.buildTsundocCreateView(url: url) { _ in
+                    store.execute(.dismissModal)
+                }
+
             case .none:
                 EmptyView()
             }
@@ -90,11 +97,26 @@ public struct TsundocList: View {
             case .plain(.failedToUpdate):
                 return Alert(title: Text(L10n.tsundocListErrorTitleUpdate))
 
-            case .confirmation, .none:
+            default:
                 fatalError("Invalid Alert")
             }
         }
+        .alert(isPresenting: store.bind(\.isTsundocUrlEditAlertPresenting, action: { _ in .alert(.dismissed) }),
+               text: "",
+               config: .init(title: L10n.TsundocList.Alert.TsundocUrl.title,
+                             message: L10n.TsundocList.Alert.TsundocUrl.message,
+                             placeholder: "https://...",
+                             validator: {
+                                 guard let string = $0 else { return false }
+                                 return URL(string: string) != nil
+                             },
+                             saveAction: { store.execute(.alert(.createTsundoc(URL(string: $0)!))) },
+                             cancelAction: { store.execute(.alert(.dismissed)) }))
         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                addButton()
+            }
+
             ToolbarItem(placement: .navigationBarTrailing) {
                 filterButton()
             }
@@ -208,6 +230,15 @@ public struct TsundocList: View {
             } icon: {
                 Image(systemName: "trash")
             }
+        }
+    }
+
+    @ViewBuilder
+    private func addButton() -> some View {
+        Button {
+            store.execute(.createTsundoc)
+        } label: {
+            Image(systemName: "plus")
         }
     }
 

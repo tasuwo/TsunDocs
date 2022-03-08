@@ -392,7 +392,7 @@ public class WebPageMetaResolvableMock: WebPageMetaResolvable {
     }
 }
 
-public class SharedUrlLoadableMock: URLLoadable {
+public class URLLoadableMock: URLLoadable {
     public init() { }
 
     public private(set) var loadCallCount = 0
