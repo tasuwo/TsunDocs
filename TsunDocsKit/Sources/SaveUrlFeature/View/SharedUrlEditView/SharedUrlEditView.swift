@@ -80,20 +80,13 @@ import TagKit
 @MainActor
 struct SharedUrlEditView_Previews: PreviewProvider {
     class Dependency: SharedUrlEditViewDependency {
-        class Complete: Completable {
-            func complete() {}
-            func cancel(with: Error) {}
-        }
-
         var sharedUrlLoader: SharedUrlLoadable { _sharedUrlLoader }
         var webPageMetaResolver: WebPageMetaResolvable { _webPageMetaResolver }
         var tsundocCommandService: TsundocCommandService { _tsundocCommandService }
-        var completable: Completable { _completable }
 
         var _sharedUrlLoader = SharedUrlLoadableMock()
         var _webPageMetaResolver = WebPageMetaResolvableMock()
         var _tsundocCommandService = TsundocCommandServiceMock()
-        var _completable = Complete()
     }
 
     static var previews: some View {

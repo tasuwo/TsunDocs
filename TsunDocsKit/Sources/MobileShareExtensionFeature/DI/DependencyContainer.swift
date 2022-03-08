@@ -71,10 +71,6 @@ extension DependencyContainer: HasTagCommandService {
     public var tagCommandService: Domain.TagCommandService { _tagCommandService }
 }
 
-extension DependencyContainer: HasCompletable {
-    public var completable: Completable { context }
-}
-
 extension DependencyContainer: HasPasteboard {
     public var pasteboard: Pasteboard { UIPasteboard.general }
 }

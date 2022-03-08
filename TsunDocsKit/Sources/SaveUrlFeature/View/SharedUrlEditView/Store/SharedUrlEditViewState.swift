@@ -7,6 +7,11 @@ import Foundation
 import TsundocList
 
 public struct SharedUrlEditViewState: Equatable {
+    public enum SaveResult {
+        case succeeded
+        case failed
+    }
+
     public enum Alert: Equatable {
         case failedToLoadUrl
         case failedToSaveSharedUrl
@@ -23,6 +28,8 @@ public struct SharedUrlEditViewState: Equatable {
     var isUnread: Bool = true
 
     var alert: Alert?
+
+    public internal(set) var saveResult: SaveResult?
 
     public init() {}
 }

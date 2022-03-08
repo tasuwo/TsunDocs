@@ -11,6 +11,7 @@ public class RootViewController: UIViewController {
     // MARK: - Properties
 
     public var dependencyContainer: DependencyContainer!
+    private var cancellables: Set<AnyCancellable> = .init([])
 
     // MARK: - View Life-Cycle Methods
 
@@ -22,6 +23,22 @@ public class RootViewController: UIViewController {
                           reducer: SharedUrlEditViewReducer())
         let rootView = SharedUrlEditView(ViewStore(store: store))
             .environment(\.tagMultiSelectionSheetBuilder, dependencyContainer)
+
+        store.state
+            .compactMap(\.saveResult)
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [dependencyContainer] result in
+                switch result {
+                case .succeeded:
+                    dependencyContainer?.context.completeRequest(returningItems: nil, completionHandler: nil)
+
+                case .failed:
+                    let error = NSError(domain: "net.tasuwo.tsundocs", code: 0)
+                    dependencyContainer?.context.cancelRequest(withError: error)
+                }
+            }
+            .store(in: &cancellables)
 
         let viewController = UIHostingController(rootView: rootView)
         addChild(viewController)

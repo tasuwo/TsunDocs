@@ -11,7 +11,6 @@ import Foundation
 public typealias SharedUrlEditViewDependency = HasSharedUrlLoader
     & HasWebPageMetaResolver
     & HasTsundocCommandService
-    & HasCompletable
 
 public struct SharedUrlEditViewReducer: Reducer {
     public typealias Dependency = SharedUrlEditViewDependency
@@ -53,7 +52,7 @@ public struct SharedUrlEditViewReducer: Reducer {
             return (nextState, [effect])
 
         case .succeededToSave:
-            dependency.completable.complete()
+            nextState.saveResult = .succeeded
             return (nextState, .none)
 
         case .failedToSave:
@@ -85,7 +84,7 @@ public struct SharedUrlEditViewReducer: Reducer {
             return (nextState, .none)
 
         case .errorConfirmed:
-            dependency.completable.cancel(with: NSError()) // TODO:
+            nextState.saveResult = .failed
             return (nextState, .none)
 
         case .alertDismissed:
