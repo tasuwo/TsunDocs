@@ -1,7 +1,6 @@
 # vim: syntax=ruby
 
-scheme("TsunDocs")
-sdk("iphoneos")
+project("./App/Production/Production.xcodeproj")
 output_directory("./build")
 include_bitcode(false)
 clean(true)

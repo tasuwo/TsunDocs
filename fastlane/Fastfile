@@ -30,7 +30,7 @@ platform :ios do
   lane :release do
     app_store_connect_api_key
     match
-    gym
+    gym(scheme: "TsunDocs (iOS)", sdk: "iphoneos")
     github_release
     deliver
     clean_build_artifacts
@@ -39,7 +39,7 @@ platform :ios do
   lane :release_build_only do
     app_store_connect_api_key
     match
-    gym
+    gym(scheme: "TsunDocs (iOS)", sdk: "iphoneos")
     pilot
     clean_build_artifacts
   end
