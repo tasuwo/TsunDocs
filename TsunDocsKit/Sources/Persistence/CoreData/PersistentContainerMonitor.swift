@@ -4,6 +4,7 @@
 
 import Combine
 import CoreData
+import os.log
 
 public class PersistentContainerMonitor {
     private var disposableBag = Set<AnyCancellable>()
@@ -21,27 +22,23 @@ public class PersistentContainerMonitor {
                     return
                 }
 
+                let logger = Logger(LogHandler.persistentCloudKitContainer)
                 switch event.type {
                 case .setup:
-                    print("Setup \(event.isStarted ? "started" : "ended")")
+                    logger.log(level: .debug, "Setup \(event.isStarted ? "started" : "ended", privacy: .public)")
 
                 case .import:
-                    print("Import \(event.isStarted ? "started" : "ended")")
+                    logger.log(level: .debug, "Import \(event.isStarted ? "started" : "ended", privacy: .public)")
 
                 case .export:
-                    print("Export \(event.isStarted ? "started" : "ended")")
+                    logger.log(level: .debug, "Export \(event.isStarted ? "started" : "ended", privacy: .public)")
 
                 @unknown default:
                     assertionFailure("Unknown NSPersistentCloudKitContainer.Event")
                 }
 
                 if let error = event.error {
-                    print("""
-                    Filed to iCloud sync. \(error.localizedDescription)
-                    - type: \(event.type)
-                    - startDate: \(event.startDate)
-                    - endDate: \(String(describing: event.endDate))
-                    """)
+                    logger.log(level: .error, "Failed to iCloud Sync: \(error.localizedDescription)")
                 }
             }
             .store(in: &self.disposableBag)
