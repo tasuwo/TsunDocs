@@ -153,7 +153,6 @@ public struct TsundocEditThumbnail: View {
 
 // MARK: - Preview
 
-@MainActor
 struct SharedUrlThumbnailView_Previews: PreviewProvider {
     struct Container: View {
         @State var selectedEmojiInfo: EmojiInfo?

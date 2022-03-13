@@ -103,7 +103,6 @@ public struct TagMultiSelectionView: View {
 import Combine
 #endif
 
-@MainActor
 struct TagMultiSelectionView_Previews: PreviewProvider {
     struct ContentView: View {
         // MARK: - Properties

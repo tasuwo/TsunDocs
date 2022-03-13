@@ -55,7 +55,6 @@ public struct TagMultiSelectionSheet: View {
 
 // MARK: - Preview
 
-@MainActor
 struct TagSelectionView_Previews: PreviewProvider {
     struct Container: View {
         @State var isPresenting = false

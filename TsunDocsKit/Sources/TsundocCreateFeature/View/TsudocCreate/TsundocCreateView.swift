@@ -73,7 +73,6 @@ import PreviewContent
 import TagKit
 #endif
 
-@MainActor
 struct TsundocCreateView_Previews: PreviewProvider {
     class Dependency: TsundocCreateViewDependency {
         var urlLoader: URLLoadable { _sharedUrlLoader }

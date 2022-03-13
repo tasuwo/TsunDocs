@@ -120,7 +120,6 @@ public struct TagList: View {
 
 // MARK: - Preview
 
-@MainActor
 struct TagList_Previews: PreviewProvider {
     static var previews: some View {
         // TODO:
