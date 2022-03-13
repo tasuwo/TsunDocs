@@ -102,7 +102,7 @@ extension DummyContainer: HasCloudKitAvailabilityObserver {}
 extension DummyContainer: HasNop {}
 
 extension DummyContainer: TsundocListBuildable {
-    func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, query: TsundocListQuery, isTsundocCreationEnabled: Bool) -> AnyView {
+    func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, query: TsundocListQuery) -> AnyView {
         let store = Store(initialState: TsundocListState(query: .all),
                           dependency: self,
                           reducer: TsundocListReducer())
@@ -153,7 +153,7 @@ extension DummyContainer: SettingViewBuilder {
 }
 
 extension DummyContainer: TsundocCreateViewBuildable {
-    func buildTsundocCreateView(url: URL) -> AnyView {
+    func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> AnyView {
         AnyView(EmptyView())
     }
 }
