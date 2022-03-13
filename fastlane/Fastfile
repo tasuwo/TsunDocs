@@ -40,6 +40,14 @@ platform :ios do
     clean_build_artifacts
   end
 
+  lane :release_deliver_only do
+    app_store_connect_api_key
+    match
+    gym(scheme: "TsunDocs (iOS)", sdk: "iphoneos")
+    deliver
+    clean_build_artifacts
+  end
+
   lane :release_build_only do
     app_store_connect_api_key
     match

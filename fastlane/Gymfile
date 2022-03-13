@@ -16,6 +16,14 @@ for_lane :release do
   output_name("tsundocs.ipa")
 end
 
+for_lane :release_deliver_only do
+  configuration("Release")
+  export_method("app-store")
+  include_bitcode(true)
+
+  output_name("tsundocs.ipa")
+end
+
 for_lane :release_build_only do
   configuration("Release")
   export_method("app-store")
