@@ -69,7 +69,6 @@ struct TsundocCell: View {
 
 #if DEBUG
 import PreviewContent
-#endif
 
 struct TsundocCell_Previews: PreviewProvider {
     static let longString = """
@@ -142,3 +141,5 @@ struct TsundocCell_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

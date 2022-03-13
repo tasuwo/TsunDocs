@@ -100,8 +100,8 @@ public struct TagMultiSelectionView: View {
 // MARK: - Preview
 
 #if DEBUG
+
 import Combine
-#endif
 
 struct TagMultiSelectionView_Previews: PreviewProvider {
     struct ContentView: View {
@@ -188,3 +188,5 @@ struct TagMultiSelectionView_Previews: PreviewProvider {
         ContentView(tags: tags)
     }
 }
+
+#endif

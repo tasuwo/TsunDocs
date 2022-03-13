@@ -53,6 +53,8 @@ public struct TagMultiSelectionSheet: View {
     }
 }
 
+#if DEBUG
+
 // MARK: - Preview
 
 struct TagSelectionView_Previews: PreviewProvider {
@@ -82,3 +84,5 @@ struct TagSelectionView_Previews: PreviewProvider {
         Container()
     }
 }
+
+#endif

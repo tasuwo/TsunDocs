@@ -151,6 +151,8 @@ public struct TsundocEditThumbnail: View {
     }
 }
 
+#if DEBUG
+
 // MARK: - Preview
 
 struct SharedUrlThumbnailView_Previews: PreviewProvider {
@@ -183,3 +185,5 @@ struct SharedUrlThumbnailView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

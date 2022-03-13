@@ -80,6 +80,8 @@ public struct TsundocMetaContainer: View {
     }
 }
 
+#if DEBUG
+
 // MARK: - Preview
 
 struct TsundocMetaContainer_Previews: PreviewProvider {
@@ -133,3 +135,5 @@ struct TsundocMetaContainer_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

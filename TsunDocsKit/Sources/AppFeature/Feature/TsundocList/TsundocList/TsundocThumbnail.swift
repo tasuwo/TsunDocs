@@ -76,7 +76,6 @@ struct TsundocThumbnail: View {
 
 #if DEBUG
 import PreviewContent
-#endif
 
 struct TsundocThumbnailView_Previews: PreviewProvider {
     static var previews: some View {
@@ -103,3 +102,5 @@ struct TsundocThumbnailView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

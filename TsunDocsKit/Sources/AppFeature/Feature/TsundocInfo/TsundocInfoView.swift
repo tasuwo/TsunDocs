@@ -120,7 +120,6 @@ extension ViewStore where Action == TsundocInfoViewAction, State == TsundocInfoV
 
 #if DEBUG
 import PreviewContent
-#endif
 
 struct TsundocInfoView_Previews: PreviewProvider {
     class Dependency: TsundocInfoViewDependency {
@@ -223,3 +222,5 @@ struct TsundocInfoView_Previews: PreviewProvider {
         EmptyView()
     }
 }
+
+#endif

@@ -321,7 +321,6 @@ public struct TsundocList: View {
 
 #if DEBUG
 import PreviewContent
-#endif
 
 struct TsundocList_Previews: PreviewProvider {
     class DummyDependency: TsundocListDependency {
@@ -374,3 +373,5 @@ struct TsundocList_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

@@ -128,6 +128,8 @@ public struct TsundocEditView: View {
     }
 }
 
+#if DEBUG
+
 // MARK: - Preview
 
 struct TsundocEditView_Previews: PreviewProvider {
@@ -156,3 +158,5 @@ struct TsundocEditView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+#endif

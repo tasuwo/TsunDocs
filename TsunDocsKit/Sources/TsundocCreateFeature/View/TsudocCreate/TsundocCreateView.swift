@@ -71,7 +71,6 @@ public struct TsundocCreateView: View {
 import ImageLoader
 import PreviewContent
 import TagKit
-#endif
 
 struct TsundocCreateView_Previews: PreviewProvider {
     class Dependency: TsundocCreateViewDependency {
@@ -138,3 +137,5 @@ struct TsundocCreateView_Previews: PreviewProvider {
         return dependency
     }
 }
+
+#endif
