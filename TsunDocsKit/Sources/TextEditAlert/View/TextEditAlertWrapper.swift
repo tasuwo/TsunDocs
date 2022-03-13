@@ -17,19 +17,19 @@ struct TextEditAlertWrapper<Content: View>: View {
     // MARK: - View
 
     var body: some View {
-        ZStack {
-            if isPresenting {
-                TextEditAlert(text: text, config: config) {
-                    isPresenting = false
+        content
+            // content 上の AnyView が再描画されるのを避けるため、ZStack は利用しない
+            .overlay {
+                if isPresenting {
+                    TextEditAlert(text: text, config: config) {
+                        isPresenting = false
+                    }
+                    // HACK: alert表示先のViewサイズに影響を与えないよう、サイズ0で固定する
+                    .frame(width: 0, height: 0)
+                    .fixedSize()
+                } else {
+                    EmptyView()
                 }
-                // HACK: alert表示先のViewサイズに影響を与えないよう、サイズ0で固定する
-                .frame(width: 0, height: 0)
-                .fixedSize()
-            } else {
-                EmptyView()
             }
-
-            content
-        }
     }
 }
