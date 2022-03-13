@@ -101,6 +101,8 @@ class TextEditAlertViewController: UIViewController {
         let alert = UIAlertController(title: store.stateValue.title,
                                       message: store.stateValue.message,
                                       preferredStyle: .alert)
+        // HACK: AccentColor が引き継がれないケースがあるため、明示的に tintColor を再設定する
+        alert.view.tintColor = self.view.tintColor
 
         store.execute(.textChanged(text: text))
 
