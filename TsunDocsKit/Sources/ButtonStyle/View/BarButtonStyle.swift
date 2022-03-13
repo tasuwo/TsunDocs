@@ -12,6 +12,7 @@ public struct BarButtonStyle: ButtonStyle {
 
         var body: some View {
             configuration.label
+                .font(.title3)
                 .foregroundColor(.accentColor)
                 .frame(minWidth: 44, minHeight: 44)
         }
