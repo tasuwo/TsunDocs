@@ -9,7 +9,6 @@ import SwiftUI
 /// @mockable
 public protocol TsundocListBuildable {
     @MainActor
-    @ViewBuilder
     func buildTsundocList(title: String,
                           emptyTile: String,
                           emptyMessage: String?,

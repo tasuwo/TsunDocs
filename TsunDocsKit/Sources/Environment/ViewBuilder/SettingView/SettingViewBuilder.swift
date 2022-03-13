@@ -9,6 +9,5 @@ import SwiftUI
 /// @mockable
 public protocol SettingViewBuilder {
     @MainActor
-    @ViewBuilder
     func buildSettingView() -> AnyView
 }

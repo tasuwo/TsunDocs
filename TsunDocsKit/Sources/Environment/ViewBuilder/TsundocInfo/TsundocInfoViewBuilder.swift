@@ -9,6 +9,5 @@ import SwiftUI
 /// @mockable
 public protocol TsundocInfoViewBuildable {
     @MainActor
-    @ViewBuilder
     func buildTsundocInfoView(tsundoc: Tsundoc) -> AnyView
 }

@@ -9,6 +9,5 @@ import SwiftUI
 /// @mockable
 public protocol TagMultiSelectionSheetBuildable {
     @MainActor
-    @ViewBuilder
     func buildTagMultiSelectionSheet(selectedIds: Set<Tag.ID>, onDone: @escaping ([Tag]) -> Void) -> AnyView
 }

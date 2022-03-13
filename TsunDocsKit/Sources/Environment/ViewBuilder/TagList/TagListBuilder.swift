@@ -9,6 +9,5 @@ import SwiftUI
 /// @mockable
 public protocol TagListBuildable {
     @MainActor
-    @ViewBuilder
     func buildTagList() -> AnyView
 }
