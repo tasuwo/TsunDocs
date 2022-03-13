@@ -19,4 +19,5 @@
 --wrapcollections beforefirst
 --exclude Pods,Carthage
 --ifdef no-indent
+--exclude SourcePackages
 

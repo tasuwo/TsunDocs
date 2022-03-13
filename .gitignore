@@ -37,6 +37,7 @@ Pods/
 **/fastlane/screenshots/**/*.ttc
 **/fastlane/screenshots/**/*.html
 build
+SourcePackages
 .env.secret
 *.p8
 
