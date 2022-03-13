@@ -1,3 +1,7 @@
+fastlane_require "dotenv"
+
+Dotenv.load(".env.secret")
+
 default_platform(:ios)
 
 platform :ios do
