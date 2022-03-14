@@ -11,6 +11,9 @@ public class UserSettingStorage {
 
     public init(userDefaults: UserDefaults) {
         self.userDefaults = userDefaults
+        self.userDefaults.register(defaults: [
+            StorageKey.isiCloudSyncEnabled.rawValue: true
+        ])
     }
 }
 
