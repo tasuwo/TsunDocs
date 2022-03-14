@@ -66,6 +66,13 @@ public extension PersistentContainer {
             let isiCloudSyncEnabled = (self.author == .app && isiCloudSyncSettingEnabled)
 
             let container = Self.makeContainer(forAppBundle: self.appBundle, author: self.author, isiCloudSyncEnabled: isiCloudSyncEnabled)
+
+            // iCloud同期中のStoreが残っていると新たなiCloud同期Storeをロードしようとした際に失敗してしまうので、
+            // このタイミングで明示的に削除する
+            self._persistentContainer.value.persistentStoreCoordinator.persistentStores.forEach {
+                try? self._persistentContainer.value.persistentStoreCoordinator.remove($0)
+            }
+
             self._persistentContainer.send(container)
             self.isiCloudSyncEnabled = isiCloudSyncEnabled
 
