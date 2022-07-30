@@ -2,9 +2,9 @@
 //  Copyright ©︎ 2022 Tasuku Tozawa. All rights reserved.
 //
 
-import ButtonStyle
 import Foundation
 import SwiftUI
+import UIComponent
 
 struct BrowseToolBar<Content>: View where Content: View {
     private let preferredHeight: CGFloat = 48

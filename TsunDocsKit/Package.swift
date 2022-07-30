@@ -61,16 +61,16 @@ let package = Package(
             targets: ["TextEditAlert"]
         ),
         .library(
+            name: "UIComponent",
+            targets: ["UIComponent"]
+        ),
+        .library(
             name: "SearchKit",
             targets: ["SearchKit"]
         ),
         .library(
             name: "ImageLoader",
             targets: ["ImageLoader"]
-        ),
-        .library(
-            name: "ButtonStyle",
-            targets: ["ButtonStyle"]
         ),
         .library(
             name: "CoreDataCloudKitSupport",
@@ -96,7 +96,6 @@ let package = Package(
         .target(
             name: "AppFeature",
             dependencies: [
-                "ButtonStyle",
                 "CompositeKit",
                 "Domain",
                 "Environment",
@@ -107,13 +106,14 @@ let package = Package(
                 "TsundocList",
                 "TsundocListFeature",
                 "TsundocCreateFeature",
+                "UIComponent",
                 "CoreDataCloudKitSupport"
             ]
         ),
         .target(
             name: "BrowseView",
             dependencies: [
-                "ButtonStyle",
+                "UIComponent",
             ]
         ),
         .target(
@@ -137,11 +137,11 @@ let package = Package(
             name: "TsundocListFeature",
             dependencies: [
                 "BrowseView",
-                "ButtonStyle",
                 "CompositeKit",
                 "Domain",
                 "Environment",
                 "TsundocList",
+                "UIComponent",
                 "ImageLoader",
             ]
         ),
@@ -171,7 +171,7 @@ let package = Package(
                 "EmojiList",
                 "ImageLoader",
                 "TextEditAlert",
-                "ButtonStyle"
+                "UIComponent"
             ]
         ),
         .target(
@@ -183,6 +183,10 @@ let package = Package(
                 "Environment",
                 "PreviewContent"
             ]
+        ),
+        .target(
+            name: "UIComponent",
+            dependencies: []
         ),
         .target(
             name: "EmojiList",
@@ -204,10 +208,6 @@ let package = Package(
             dependencies: [
                 .product(name: "Nuke", package: "Nuke"),
             ]
-        ),
-        .target(
-            name: "ButtonStyle",
-            dependencies: []
         ),
         .target(
             name: "CompositeKit",

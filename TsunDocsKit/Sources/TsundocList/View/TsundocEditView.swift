@@ -2,13 +2,13 @@
 //  Copyright ©︎ 2021 Tasuku Tozawa. All rights reserved.
 //
 
-import ButtonStyle
 import struct Domain.Emoji
 import struct Domain.Tag
 import EmojiList
 import Environment
 import SwiftUI
 import TagKit
+import UIComponent
 
 public struct TsundocEditView: View {
     // MARK: - Properties

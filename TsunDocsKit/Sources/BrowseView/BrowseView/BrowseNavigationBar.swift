@@ -2,9 +2,9 @@
 //  Copyright ©︎ 2022 Tasuku Tozawa. All rights reserved.
 //
 
-import ButtonStyle
 import Foundation
 import SwiftUI
+import UIComponent
 import UIKit
 
 struct BrowseNavigationBar<LeadingContent, TrailingContent>: View where LeadingContent: View, TrailingContent: View {
