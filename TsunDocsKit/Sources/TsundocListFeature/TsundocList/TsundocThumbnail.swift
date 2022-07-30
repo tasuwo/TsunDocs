@@ -3,9 +3,9 @@
 //
 
 import Domain
-import EmojiList
 import ImageLoader
 import SwiftUI
+import UIComponent
 
 struct TsundocThumbnail: View {
     // MARK: - Properties

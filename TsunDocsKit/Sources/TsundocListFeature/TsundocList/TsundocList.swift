@@ -5,7 +5,6 @@
 import BrowseView
 import CompositeKit
 import Domain
-import EmojiList
 import Environment
 import SwiftUI
 import UIComponent

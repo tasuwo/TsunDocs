@@ -4,7 +4,6 @@
 
 import struct Domain.Emoji
 import struct Domain.Tag
-import EmojiList
 import SwiftUI
 import UIComponent
 

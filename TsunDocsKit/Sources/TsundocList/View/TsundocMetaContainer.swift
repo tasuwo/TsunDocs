@@ -3,7 +3,6 @@
 //
 
 import struct Domain.Emoji
-import EmojiList
 import ImageLoader
 import SwiftUI
 import UIComponent

@@ -6,6 +6,8 @@
   
 */
 
+"emoji_list_title" = "Select Emoji";
+
 "tag_grid_menu_copy" = "Copy";
 "tag_grid_menu_rename" = "Rename";
 "tag_grid_menu_delete" = "Delete";

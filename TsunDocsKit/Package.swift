@@ -53,10 +53,6 @@ let package = Package(
             targets: ["TagMultiSelectionFeature"]
         ),
         .library(
-            name: "EmojiList",
-            targets: ["EmojiList"]
-        ),
-        .library(
             name: "UIComponent",
             targets: ["UIComponent"]
         ),
@@ -95,7 +91,6 @@ let package = Package(
                 "CompositeKit",
                 "Domain",
                 "Environment",
-                "EmojiList",
                 "Persistence",
                 "SearchKit",
                 "TagMultiSelectionFeature",
@@ -117,6 +112,7 @@ let package = Package(
             dependencies: [
                 "Environment",
                 "Persistence",
+                "TagMultiSelectionFeature",
                 "TsundocCreateFeature",
             ]
         ),
@@ -140,6 +136,7 @@ let package = Package(
                 "TsundocList",
                 "UIComponent",
                 "ImageLoader",
+                "PreviewContent"
             ]
         ),
         .target(
@@ -164,7 +161,6 @@ let package = Package(
         .target(
             name: "TsundocList",
             dependencies: [
-                "EmojiList",
                 "ImageLoader",
                 "UIComponent"
             ]
@@ -183,14 +179,8 @@ let package = Package(
             name: "UIComponent",
             dependencies: [
                 "CompositeKit",
-                "Domain"
-            ]
-        ),
-        .target(
-            name: "EmojiList",
-            dependencies: [
                 "SearchKit",
-                "Domain"
+                "Domain",
             ]
         ),
         .target(
