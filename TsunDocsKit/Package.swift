@@ -77,23 +77,19 @@ let package = Package(
                  .upToNextMajor(from: "10.7.1"))
     ],
     targets: [
+        /// App
+
         .target(
             name: "AppFeature",
             dependencies: [
                 "CompositeKit",
+                "CoreDataCloudKitSupport",
                 "Domain",
                 "Environment",
                 "Persistence",
                 "TagMultiSelectionFeature",
                 "TsundocListFeature",
                 "TsundocCreateFeature",
-                "UIComponent",
-                "CoreDataCloudKitSupport"
-            ]
-        ),
-        .target(
-            name: "BrowseView",
-            dependencies: [
                 "UIComponent",
             ]
         ),
@@ -106,14 +102,17 @@ let package = Package(
                 "TsundocCreateFeature",
             ]
         ),
+
+        /// Feature
+
         .target(
             name: "TsundocCreateFeature",
             dependencies: [
+                "CompositeKit",
                 "Domain",
                 "Environment",
-                "CompositeKit",
+                "PreviewContent",
                 "UIComponent",
-                "PreviewContent"
             ]
         ),
         .target(
@@ -123,11 +122,24 @@ let package = Package(
                 "CompositeKit",
                 "Domain",
                 "Environment",
+                "PreviewContent",
                 "UIComponent",
                 "ImageLoader",
-                "PreviewContent"
             ]
         ),
+        .target(
+            name: "TagMultiSelectionFeature",
+            dependencies: [
+                "CompositeKit",
+                "Domain",
+                "Environment",
+                "PreviewContent",
+                "UIComponent"
+            ]
+        ),
+
+        /// Core
+
         .target(
             name: "Domain",
             dependencies: [
@@ -143,17 +155,20 @@ let package = Package(
                 "Domain"
             ]
         ),
+
+        /// Presistence
+
         .target(
             name: "Persistence",
             dependencies: ["Domain"]
         ),
+
+        /// UI
+
         .target(
-            name: "TagMultiSelectionFeature",
+            name: "BrowseView",
             dependencies: [
-                "Domain",
-                "Environment",
-                "PreviewContent",
-                "UIComponent"
+                "UIComponent",
             ]
         ),
         .target(
@@ -164,20 +179,15 @@ let package = Package(
                 "ImageLoader",
             ]
         ),
+
+        /// Helper
+
         .target(
             name: "ImageLoader",
-            dependencies: [
-                .product(name: "Nuke", package: "Nuke"),
-            ]
+            dependencies: [.product(name: "Nuke", package: "Nuke")]
         ),
-        .target(
-            name: "CompositeKit",
-            dependencies: []
-        ),
-        .target(
-            name: "CoreDataCloudKitSupport",
-            dependencies: []
-        ),
+        .target(name: "CompositeKit"),
+        .target(name: "CoreDataCloudKitSupport"),
         .target(
             name: "PreviewContent",
             dependencies: [
