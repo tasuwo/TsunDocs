@@ -4,6 +4,7 @@
 
 import CompositeKit
 import Domain
+import Environment
 import SwiftUI
 import TsundocList
 
@@ -18,6 +19,8 @@ public struct TsundocCreateView: View {
 
     @StateObject var store: Store
     private let onDone: (Bool) -> Void
+
+    @Environment(\.tagMultiSelectionSheetBuilder) private var sheetBuilder
 
     // MARK: - Initializers
 
@@ -41,6 +44,8 @@ public struct TsundocCreateView: View {
                             isUnread: store.bind(\.isUnread,
                                                  action: { .onToggleUnread($0) })) {
                 store.execute(.onTapSaveButton)
+            } tagMultiSelectionSheetBuilder: {
+                sheetBuilder.buildTagMultiSelectionSheet(selectedIds: $0, onDone: $1)
             }
         }
         .onAppear {
@@ -70,7 +75,6 @@ public struct TsundocCreateView: View {
 #if DEBUG
 import ImageLoader
 import PreviewContent
-import TagMultiSelectionFeature
 
 struct TsundocCreateView_Previews: PreviewProvider {
     class Dependency: TsundocCreateViewDependency {
@@ -91,7 +95,6 @@ struct TsundocCreateView_Previews: PreviewProvider {
                                               imageUrl: URL(string: "https://localhost"))
             TsundocCreateView(makeStore(dependency: dependency01), onDone: { _ in })
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
-                .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
 
             let dependency02 = makeDependency(sharedUrl: URL(string: "https://apple.com/"),
                                               title: nil,
@@ -99,7 +102,6 @@ struct TsundocCreateView_Previews: PreviewProvider {
                                               imageUrl: nil)
             TsundocCreateView(makeStore(dependency: dependency02), onDone: { _ in })
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
-                .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
 
             let dependency03 = makeDependency(sharedUrl: URL(string: "https://apple.com/\(String(repeating: "long/", count: 100))"),
                                               title: String(repeating: "Title ", count: 100),
@@ -107,7 +109,6 @@ struct TsundocCreateView_Previews: PreviewProvider {
                                               imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))"))
             TsundocCreateView(makeStore(dependency: dependency03), onDone: { _ in })
                 .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
-                .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
         }
     }
 

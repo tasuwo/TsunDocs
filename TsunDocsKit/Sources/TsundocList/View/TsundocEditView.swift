@@ -5,7 +5,6 @@
 import struct Domain.Emoji
 import struct Domain.Tag
 import EmojiList
-import Environment
 import SwiftUI
 import UIComponent
 
@@ -15,6 +14,7 @@ public struct TsundocEditView: View {
     private let url: URL
     private let imageUrl: URL?
     private let onTapSaveButton: () -> Void
+    private let tagMultiSelectionSheetBuilder: (Set<Tag.ID>, @escaping ([Tag]) -> Void) -> AnyView
 
     @Binding private var title: String
     @Binding private var selectedEmojiInfo: EmojiInfo?
@@ -22,8 +22,6 @@ public struct TsundocEditView: View {
     @Binding private var isUnread: Bool
 
     @State private var isTagEditSheetPresenting = false
-
-    @Environment(\.tagMultiSelectionSheetBuilder) private var sheetBuilder
 
     // MARK: - Initializers
 
@@ -33,7 +31,8 @@ public struct TsundocEditView: View {
                 selectedEmojiInfo: Binding<EmojiInfo?>,
                 selectedTags: Binding<[Tag]>,
                 isUnread: Binding<Bool>,
-                onTapSaveButton: @escaping () -> Void)
+                onTapSaveButton: @escaping () -> Void,
+                @ViewBuilder tagMultiSelectionSheetBuilder: @escaping (Set<Tag.ID>, @escaping ([Tag]) -> Void) -> AnyView)
     {
         self.url = url
         self.imageUrl = imageUrl
@@ -42,6 +41,7 @@ public struct TsundocEditView: View {
         _selectedTags = selectedTags
         _isUnread = isUnread
         self.onTapSaveButton = onTapSaveButton
+        self.tagMultiSelectionSheetBuilder = tagMultiSelectionSheetBuilder
     }
 
     // MARK: - View
@@ -82,7 +82,7 @@ public struct TsundocEditView: View {
         }
         .padding(8)
         .sheet(isPresented: $isTagEditSheetPresenting) {
-            sheetBuilder.buildTagMultiSelectionSheet(selectedIds: Set(selectedTags.map(\.id))) {
+            self.tagMultiSelectionSheetBuilder(Set(selectedTags.map(\.id))) {
                 isTagEditSheetPresenting = false
                 selectedTags = $0
             }
@@ -128,7 +128,6 @@ public struct TsundocEditView: View {
 }
 
 #if DEBUG
-import TagMultiSelectionFeature
 
 // MARK: - Preview
 
@@ -149,8 +148,9 @@ struct TsundocEditView_Previews: PreviewProvider {
                             selectedTags: $selectedTags,
                             isUnread: $isUnread) {
                 // NOP
+            } tagMultiSelectionSheetBuilder: { _, _ in
+                AnyView(EmptyView())
             }
-            .environment(\.tagControlViewStoreBuilder, TagControlViewStoreBuilderMock())
         }
     }
 

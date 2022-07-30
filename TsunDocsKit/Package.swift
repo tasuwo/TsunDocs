@@ -124,6 +124,7 @@ let package = Package(
             name: "TsundocCreateFeature",
             dependencies: [
                 "Domain",
+                "Environment",
                 "CompositeKit",
                 "TsundocList",
                 "PreviewContent"
