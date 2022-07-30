@@ -6,8 +6,8 @@ import CompositeKit
 import Domain
 import Environment
 import SwiftUI
-import TagKit
 import TsundocList
+import UIComponent
 
 public struct TsundocInfoView: View {
     public typealias Store = ViewStore<

@@ -7,6 +7,7 @@ import Domain
 import SearchKit
 import SwiftUI
 import TagKit
+import UIComponent
 
 public struct TagList: View {
     public typealias Store = ViewStore<

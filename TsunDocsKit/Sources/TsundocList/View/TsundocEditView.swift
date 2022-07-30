@@ -7,7 +7,6 @@ import struct Domain.Tag
 import EmojiList
 import Environment
 import SwiftUI
-import TagKit
 import UIComponent
 
 public struct TsundocEditView: View {
@@ -129,6 +128,7 @@ public struct TsundocEditView: View {
 }
 
 #if DEBUG
+import TagKit
 
 // MARK: - Preview
 

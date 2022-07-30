@@ -163,7 +163,6 @@ let package = Package(
         .target(
             name: "TsundocList",
             dependencies: [
-                "TagKit",
                 "EmojiList",
                 "ImageLoader",
                 "UIComponent"
@@ -182,7 +181,8 @@ let package = Package(
         .target(
             name: "UIComponent",
             dependencies: [
-                "CompositeKit"
+                "CompositeKit",
+                "Domain"
             ]
         ),
         .target(

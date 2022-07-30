@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Tasuku Tozawa on 2022/07/31.
+  
+*/
+
+"tag_grid_menu_copy" = "コピー";
+"tag_grid_menu_rename" = "名前の変更";
+"tag_grid_menu_delete" = "削除";
+
+"tag_grid_alert_delete_tag_message %@" = "タグ「%@」を削除しますか？";
+"tag_grid_alert_delete_tag_action" = "タグを削除";
+
+"tag_grid_alert_rename_tag_placeholder" = "タグ名";
+"tag_grid_alert_rename_tag_title" = "タグ名の変更";
+"tag_grid_alert_rename_tag_message" = "このタグの新しい名前を入力してください";
+
+"save" = "保存";
+"cancel" = "キャンセル";
