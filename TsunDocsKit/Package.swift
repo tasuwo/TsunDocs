@@ -57,10 +57,6 @@ let package = Package(
             targets: ["EmojiList"]
         ),
         .library(
-            name: "TextEditAlert",
-            targets: ["TextEditAlert"]
-        ),
-        .library(
             name: "UIComponent",
             targets: ["UIComponent"]
         ),
@@ -170,23 +166,24 @@ let package = Package(
                 "TagKit",
                 "EmojiList",
                 "ImageLoader",
-                "TextEditAlert",
                 "UIComponent"
             ]
         ),
         .target(
             name: "TagKit",
             dependencies: [
-                "TextEditAlert",
                 "SearchKit",
                 "Domain",
                 "Environment",
-                "PreviewContent"
+                "PreviewContent",
+                "UIComponent"
             ]
         ),
         .target(
             name: "UIComponent",
-            dependencies: []
+            dependencies: [
+                "CompositeKit"
+            ]
         ),
         .target(
             name: "EmojiList",
@@ -194,10 +191,6 @@ let package = Package(
                 "SearchKit",
                 "Domain"
             ]
-        ),
-        .target(
-            name: "TextEditAlert",
-            dependencies: ["CompositeKit"]
         ),
         .target(
             name: "SearchKit",

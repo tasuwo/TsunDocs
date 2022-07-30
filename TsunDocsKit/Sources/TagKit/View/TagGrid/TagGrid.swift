@@ -4,7 +4,7 @@
 
 import struct Domain.Tag
 import SwiftUI
-import TextEditAlert
+import UIComponent
 
 public struct TagGrid: View {
     // MARK: - Properties

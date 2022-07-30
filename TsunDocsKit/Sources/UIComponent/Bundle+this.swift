@@ -7,7 +7,7 @@ import Foundation
 private class BundleFinder {}
 
 extension Foundation.Bundle {
-    static let moduleName = "TextEditAlert"
+    static let moduleName = "UIComponent"
 
     static var this: Bundle = {
         let bundleName = "TsunDocs_\(moduleName)"

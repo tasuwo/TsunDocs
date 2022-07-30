@@ -8,7 +8,7 @@ import Domain
 import EmojiList
 import Environment
 import SwiftUI
-import TextEditAlert
+import UIComponent
 
 public struct TsundocList: View {
     public typealias Store = ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>

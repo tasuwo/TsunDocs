@@ -6,7 +6,7 @@ import CompositeKit
 import struct Domain.Tag
 import SearchKit
 import SwiftUI
-import TextEditAlert
+import UIComponent
 
 public struct TagMultiSelectionView: View {
     public typealias Store = ViewStore<
