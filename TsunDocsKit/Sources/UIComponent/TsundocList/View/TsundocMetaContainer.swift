@@ -5,7 +5,6 @@
 import struct Domain.Emoji
 import ImageLoader
 import SwiftUI
-import UIComponent
 
 public struct TsundocMetaContainer: View {
     // MARK: - Properties

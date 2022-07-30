@@ -6,7 +6,6 @@ import struct Domain.Emoji
 import enum Domain.EmojiBackgroundColor
 import ImageLoader
 import SwiftUI
-import UIComponent
 
 public struct TsundocEditThumbnail: View {
     // MARK: - Properties

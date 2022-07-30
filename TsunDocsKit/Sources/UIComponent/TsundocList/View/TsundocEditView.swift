@@ -5,15 +5,14 @@
 import struct Domain.Emoji
 import struct Domain.Tag
 import SwiftUI
-import UIComponent
 
-public struct TsundocEditView: View {
+public struct TsundocEditView<TagMultiSelectionSheet: View>: View {
     // MARK: - Properties
 
     private let url: URL
     private let imageUrl: URL?
     private let onTapSaveButton: () -> Void
-    private let tagMultiSelectionSheetBuilder: (Set<Tag.ID>, @escaping ([Tag]) -> Void) -> AnyView
+    private let tagMultiSelectionSheetBuilder: (Set<Tag.ID>, @escaping ([Tag]) -> Void) -> TagMultiSelectionSheet
 
     @Binding private var title: String
     @Binding private var selectedEmojiInfo: EmojiInfo?
@@ -31,7 +30,7 @@ public struct TsundocEditView: View {
                 selectedTags: Binding<[Tag]>,
                 isUnread: Binding<Bool>,
                 onTapSaveButton: @escaping () -> Void,
-                @ViewBuilder tagMultiSelectionSheetBuilder: @escaping (Set<Tag.ID>, @escaping ([Tag]) -> Void) -> AnyView)
+                tagMultiSelectionSheetBuilder: @escaping (Set<Tag.ID>, @escaping ([Tag]) -> Void) -> TagMultiSelectionSheet)
     {
         self.url = url
         self.imageUrl = imageUrl
@@ -148,7 +147,7 @@ struct TsundocEditView_Previews: PreviewProvider {
                             isUnread: $isUnread) {
                 // NOP
             } tagMultiSelectionSheetBuilder: { _, _ in
-                AnyView(EmptyView())
+                EmptyView()
             }
         }
     }
