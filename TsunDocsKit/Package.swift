@@ -49,8 +49,8 @@ let package = Package(
             targets: ["TsundocListFeature"]
         ),
         .library(
-            name: "TagKit",
-            targets: ["TagKit"]
+            name: "TagMultiSelectionFeature",
+            targets: ["TagMultiSelectionFeature"]
         ),
         .library(
             name: "EmojiList",
@@ -98,7 +98,7 @@ let package = Package(
                 "EmojiList",
                 "Persistence",
                 "SearchKit",
-                "TagKit",
+                "TagMultiSelectionFeature",
                 "TsundocList",
                 "TsundocListFeature",
                 "TsundocCreateFeature",
@@ -169,7 +169,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "TagKit",
+            name: "TagMultiSelectionFeature",
             dependencies: [
                 "SearchKit",
                 "Domain",

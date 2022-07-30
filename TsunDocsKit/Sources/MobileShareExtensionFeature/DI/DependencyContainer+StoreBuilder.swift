@@ -6,7 +6,7 @@ import CompositeKit
 import Domain
 import Environment
 import SwiftUI
-import TagKit
+import TagMultiSelectionFeature
 
 extension DependencyContainer: TagMultiSelectionSheetBuildable {
     // MARK: - TagMultiSelectionSheetBuildable

@@ -6,7 +6,7 @@ import CompositeKit
 import Domain
 import SearchKit
 import SwiftUI
-import TagKit
+import TagMultiSelectionFeature
 import UIComponent
 
 public struct TagList: View {

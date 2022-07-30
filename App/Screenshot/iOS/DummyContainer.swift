@@ -11,7 +11,7 @@ import Environment
 import PreviewContent
 import SearchKit
 import SwiftUI
-import TagKit
+import TagMultiSelectionFeature
 import TsundocCreateFeature
 
 class DummyContainer: ObservableObject {

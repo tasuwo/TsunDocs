@@ -7,7 +7,7 @@ import Domain
 import Environment
 import SearchKit
 import SwiftUI
-import TagKit
+import TagMultiSelectionFeature
 import TsundocCreateFeature
 import TsundocListFeature
 

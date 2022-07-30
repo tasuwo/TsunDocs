@@ -4,7 +4,7 @@
 
 import struct Domain.Tag
 
-public extension TagMultiSelectionView {
+extension TagMultiSelectionView {
     enum Action {
         case done
         case addNewTag(name: String)

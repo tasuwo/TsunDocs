@@ -128,7 +128,7 @@ public struct TsundocEditView: View {
 }
 
 #if DEBUG
-import TagKit
+import TagMultiSelectionFeature
 
 // MARK: - Preview
 

@@ -8,8 +8,8 @@ import SearchKit
 import SwiftUI
 import UIComponent
 
-public struct TagMultiSelectionView: View {
-    public typealias Store = ViewStore<
+struct TagMultiSelectionView: View {
+    typealias Store = ViewStore<
         SearchableFilterState<Tag>,
         SearchableFilterAction<Tag>,
         SearchableFilterDepenency
@@ -27,9 +27,9 @@ public struct TagMultiSelectionView: View {
 
     // MARK: - Initializers
 
-    public init(selectedIds: Binding<Set<Tag.ID>>,
-                connection: Connection<SearchableFilterAction<Tag>>,
-                onPerform: @escaping (Action) -> Void)
+    init(selectedIds: Binding<Set<Tag.ID>>,
+         connection: Connection<SearchableFilterAction<Tag>>,
+         onPerform: @escaping (Action) -> Void)
     {
         _selectedIds = selectedIds
         let store = CompositeKit.Store(initialState: .init(items: []),
@@ -43,7 +43,7 @@ public struct TagMultiSelectionView: View {
 
     // MARK: - View
 
-    public var body: some View {
+    var body: some View {
         TagGrid(tags: store.state.filteredItems,
                 selectedIds: selectedIds,
                 configuration: .init(.selectable(.multiple),

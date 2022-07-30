@@ -7,7 +7,7 @@ import Foundation
 private class BundleFinder {}
 
 extension Foundation.Bundle {
-    static let moduleName = "TagKit"
+    static let moduleName = "TagMultiSelectionFeature"
 
     static var this: Bundle = {
         let bundleName = "TsunDocs_\(moduleName)"

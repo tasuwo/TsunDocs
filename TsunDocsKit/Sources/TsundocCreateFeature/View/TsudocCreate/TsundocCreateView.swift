@@ -70,7 +70,7 @@ public struct TsundocCreateView: View {
 #if DEBUG
 import ImageLoader
 import PreviewContent
-import TagKit
+import TagMultiSelectionFeature
 
 struct TsundocCreateView_Previews: PreviewProvider {
     class Dependency: TsundocCreateViewDependency {
