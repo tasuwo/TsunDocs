@@ -5,6 +5,16 @@ strings:
         - templateName: structured-swift5
           output: TsunDocsKit/Sources/AppFeature/Generated/String.swift
     - inputs:
+        - TsunDocsKit/Sources/TsundocListFeature/Resource/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: TsunDocsKit/Sources/TsundocListFeature/Generated/String.swift
+    - inputs:
+        - TsunDocsKit/Sources/BrowseView/Resource/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: TsunDocsKit/Sources/BrowseView/Generated/String.swift
+    - inputs:
         - TsunDocsKit/Sources/TsundocCreateFeature/Resources/ja.lproj/Localizable.strings
       outputs:
         - templateName: structured-swift5

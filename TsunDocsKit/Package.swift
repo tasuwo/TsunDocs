@@ -13,6 +13,10 @@ let package = Package(
             targets: ["AppFeature"]
         ),
         .library(
+            name: "BrowseView",
+            targets: ["BrowseView"]
+        ),
+        .library(
             name: "CompositeKit",
             targets: ["CompositeKit"]
         ),
@@ -39,6 +43,10 @@ let package = Package(
         .library(
             name: "TsundocList",
             targets: ["TsundocList"]
+        ),
+        .library(
+            name: "TsundocListFeature",
+            targets: ["TsundocListFeature"]
         ),
         .library(
             name: "TagKit",
@@ -97,8 +105,15 @@ let package = Package(
                 "SearchKit",
                 "TagKit",
                 "TsundocList",
+                "TsundocListFeature",
                 "TsundocCreateFeature",
                 "CoreDataCloudKitSupport"
+            ]
+        ),
+        .target(
+            name: "BrowseView",
+            dependencies: [
+                "ButtonStyle",
             ]
         ),
         .target(
@@ -116,6 +131,18 @@ let package = Package(
                 "CompositeKit",
                 "TsundocList",
                 "PreviewContent"
+            ]
+        ),
+        .target(
+            name: "TsundocListFeature",
+            dependencies: [
+                "BrowseView",
+                "ButtonStyle",
+                "CompositeKit",
+                "Domain",
+                "Environment",
+                "TsundocList",
+                "ImageLoader",
             ]
         ),
         .target(

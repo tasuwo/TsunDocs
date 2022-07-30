@@ -12,33 +12,9 @@
 "tab_item_title_settings" = "設定";
 
 "tsundoc_list_title" = "マイリスト";
-"tsundoc_list_error_title_delete" = "削除に失敗しました";
-"tsundoc_list_error_title_update" = "更新に失敗しました";
-
-"tsundoc_list_swipe_action_toggle_unread_read" = "既読";
-"tsundoc_list_swipe_action_toggle_unread_unread" = "未読";
-"tsundoc_list_swipe_action_delete" = "削除";
-
 "tsundoc_list_empty_message_default_title" = "アイテムがありません";
 "tsundoc_list_empty_message_default_message" = "他のアプリの「共有」から、追加したいサイトの URL をシェアしましょう";
 "tsundoc_list_empty_message_tag_message" = "タグ「%@」が付与されたアイテムはありません";
-"tsundoc_list_empty_message_filtered" = "条件に合致するアイテムがありません";
-
-"tsundoc_list_menu_add_tag" = "タグを追加する";
-"tsundoc_list_menu_add_emoji" = "絵文字を追加する";
-"tsundoc_list_menu_copy_url" = "URLをコピー";
-"tsundoc_list_menu_open_safari" = "Safariで開く";
-"tsundoc_list_menu_delete" = "削除する";
-"tsundoc_list_menu_info" = "情報の編集";
-
-"tsundoc_list_filter_menu_read" = "既読";
-"tsundoc_list_filter_menu_unread" = "未読";
-
-"tsundoc_list_alert_delete_tsundoc_message" = "このアイテムを削除しますか？";
-"tsundoc_list_alert_delete_tsundoc_action" = "アイテムを削除";
-
-"tsundoc_list.alert.tsundoc_url.title" = "記事を作成";
-"tsundoc_list.alert.tsundoc_url.message" = "作成したい記事のURLを入力してください";
 
 "tsundoc_info_view_tag" = "タグ";
 
@@ -63,11 +39,6 @@
 "user_interface_style_setting_view.row.dark" = "ダーク";
 "user_interface_style_setting_view.row.light" = "ライト";
 "user_interface_style_setting_view.row.unspecified" = "端末に合わせる";
-
-"browse_view_title_loading" = "読み込み中...";
-"browse_view_button_close" = "閉じる";
-"browse_view_button_edit" = "情報の編集";
-"browse_view_button_safari" = "Safariで開く";
 
 "tag_list_title" = "タグ";
 

@@ -9,6 +9,7 @@ import SearchKit
 import SwiftUI
 import TagKit
 import TsundocCreateFeature
+import TsundocListFeature
 
 extension SceneDependencyContainer: TsundocListBuildable {
     // MARK: - TsundocListBuildable
