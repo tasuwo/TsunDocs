@@ -41,10 +41,6 @@ let package = Package(
             targets: ["TsundocCreateFeature"]
         ),
         .library(
-            name: "TsundocList",
-            targets: ["TsundocList"]
-        ),
-        .library(
             name: "TsundocListFeature",
             targets: ["TsundocListFeature"]
         ),
@@ -94,7 +90,6 @@ let package = Package(
                 "Persistence",
                 "SearchKit",
                 "TagMultiSelectionFeature",
-                "TsundocList",
                 "TsundocListFeature",
                 "TsundocCreateFeature",
                 "UIComponent",
@@ -122,7 +117,7 @@ let package = Package(
                 "Domain",
                 "Environment",
                 "CompositeKit",
-                "TsundocList",
+                "UIComponent",
                 "PreviewContent"
             ]
         ),
@@ -133,7 +128,6 @@ let package = Package(
                 "CompositeKit",
                 "Domain",
                 "Environment",
-                "TsundocList",
                 "UIComponent",
                 "ImageLoader",
                 "PreviewContent"
@@ -159,13 +153,6 @@ let package = Package(
             dependencies: ["Domain"]
         ),
         .target(
-            name: "TsundocList",
-            dependencies: [
-                "ImageLoader",
-                "UIComponent"
-            ]
-        ),
-        .target(
             name: "TagMultiSelectionFeature",
             dependencies: [
                 "SearchKit",
@@ -179,8 +166,9 @@ let package = Package(
             name: "UIComponent",
             dependencies: [
                 "CompositeKit",
-                "SearchKit",
                 "Domain",
+                "ImageLoader",
+                "SearchKit",
             ]
         ),
         .target(

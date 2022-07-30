@@ -5,7 +5,7 @@
 import CompositeKit
 import Domain
 import Foundation
-import TsundocList
+import UIComponent
 
 public enum TsundocCreateViewAction: Action {
     case onAppear

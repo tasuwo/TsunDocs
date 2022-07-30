@@ -4,7 +4,7 @@
 
 import CompositeKit
 import Domain
-import TsundocList
+import UIComponent
 
 public enum TsundocInfoViewAction: Action {
     case onAppear

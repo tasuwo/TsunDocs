@@ -4,7 +4,7 @@
 
 import Domain
 import Foundation
-import TsundocList
+import UIComponent
 
 public struct TsundocCreateViewState: Equatable {
     public enum Alert: Equatable {
