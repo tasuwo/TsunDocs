@@ -2,8 +2,8 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import Domain
 import Foundation
-import SearchKit
 
 // sourcery: AutoDefaultValuePublic
 public struct Tag: Searchable, Equatable {

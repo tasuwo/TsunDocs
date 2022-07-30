@@ -3,8 +3,7 @@
 //
 
 import CompositeKit
-import struct Domain.Emoji
-import SearchKit
+import Domain
 import SwiftUI
 
 public struct EmojiList<BackgroundColor>: View where BackgroundColor: PickColor, BackgroundColor.RawValue: Hashable {

@@ -5,7 +5,6 @@
 import CompositeKit
 import Domain
 import Environment
-import SearchKit
 import SwiftUI
 import TagMultiSelectionFeature
 import TsundocCreateFeature

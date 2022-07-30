@@ -53,10 +53,6 @@ let package = Package(
             targets: ["UIComponent"]
         ),
         .library(
-            name: "SearchKit",
-            targets: ["SearchKit"]
-        ),
-        .library(
             name: "ImageLoader",
             targets: ["ImageLoader"]
         ),
@@ -88,7 +84,6 @@ let package = Package(
                 "Domain",
                 "Environment",
                 "Persistence",
-                "SearchKit",
                 "TagMultiSelectionFeature",
                 "TsundocListFeature",
                 "TsundocCreateFeature",
@@ -136,9 +131,9 @@ let package = Package(
         .target(
             name: "Domain",
             dependencies: [
+                "CompositeKit",
                 .product(name: "Kanna", package: "Kanna"),
                 .product(name: "Smile", package: "Smile"),
-                "SearchKit"
             ]
         ),
         .target(
@@ -155,7 +150,6 @@ let package = Package(
         .target(
             name: "TagMultiSelectionFeature",
             dependencies: [
-                "SearchKit",
                 "Domain",
                 "Environment",
                 "PreviewContent",
@@ -168,12 +162,7 @@ let package = Package(
                 "CompositeKit",
                 "Domain",
                 "ImageLoader",
-                "SearchKit",
             ]
-        ),
-        .target(
-            name: "SearchKit",
-            dependencies: ["CompositeKit"]
         ),
         .target(
             name: "ImageLoader",

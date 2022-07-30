@@ -4,7 +4,6 @@
 
 import CompositeKit
 import Domain
-import SearchKit
 import SwiftUI
 import TagMultiSelectionFeature
 import UIComponent

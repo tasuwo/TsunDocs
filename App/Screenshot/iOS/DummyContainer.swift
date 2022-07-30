@@ -9,7 +9,6 @@ import CoreDataCloudKitSupport
 import Domain
 import Environment
 import PreviewContent
-import SearchKit
 import SwiftUI
 import TagMultiSelectionFeature
 import TsundocCreateFeature
