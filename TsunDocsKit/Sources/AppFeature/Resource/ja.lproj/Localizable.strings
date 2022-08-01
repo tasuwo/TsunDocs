@@ -16,8 +16,6 @@
 "tsundoc_list_empty_message_default_message" = "他のアプリの「共有」から、追加したいサイトの URL をシェアしましょう";
 "tsundoc_list_empty_message_tag_message" = "タグ「%@」が付与されたアイテムはありません";
 
-"tsundoc_info_view_tag" = "タグ";
-
 "setting_view.title" = "設定";
 "setting_view.section.appearance.title" = "表示設定";
 "setting_view.row.user_interface_style.title" = "テーマ";

@@ -41,6 +41,10 @@ let package = Package(
             targets: ["TsundocCreateFeature"]
         ),
         .library(
+            name: "TsundocInfoFeature",
+            targets: ["TsundocInfoFeature"]
+        ),
+        .library(
             name: "TsundocListFeature",
             targets: ["TsundocListFeature"]
         ),
@@ -89,6 +93,7 @@ let package = Package(
                 "Persistence",
                 "TagMultiSelectionFeature",
                 "TsundocListFeature",
+                "TsundocInfoFeature",
                 "TsundocCreateFeature",
                 "UIComponent",
             ]
@@ -108,6 +113,17 @@ let package = Package(
         .target(
             name: "TsundocCreateFeature",
             dependencies: [
+                "CompositeKit",
+                "Domain",
+                "Environment",
+                "PreviewContent",
+                "UIComponent",
+            ]
+        ),
+        .target(
+            name: "TsundocInfoFeature",
+            dependencies: [
+                "BrowseView",
                 "CompositeKit",
                 "Domain",
                 "Environment",

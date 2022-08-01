@@ -8,6 +8,7 @@ import Environment
 import SwiftUI
 import TagMultiSelectionFeature
 import TsundocCreateFeature
+import TsundocInfoFeature
 import TsundocListFeature
 
 extension SceneDependencyContainer: TsundocListBuildable {

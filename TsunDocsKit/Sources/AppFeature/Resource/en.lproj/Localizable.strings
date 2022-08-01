@@ -16,8 +16,6 @@
 "tsundoc_list_empty_message_default_message" = "Share the url of the web site using other apps.";
 "tsundoc_list_empty_message_tag_message" = "No items categorized with Tag \"%@\"";
 
-"tsundoc_info_view_tag" = "Tag";
-
 "setting_view.title" = "Settings";
 "setting_view.section.appearance.title" = "Appearance";
 "setting_view.row.user_interface_style.title" = "Theme";

@@ -51,8 +51,6 @@ internal enum L10n {
     internal static let tagListAlertUpdateTagNameTitle = L10n.tr("Localizable", "tag_list_alert_update_tag_name_title")
     /// タグ
     internal static let tagListTitle = L10n.tr("Localizable", "tag_list_title")
-    /// タグ
-    internal static let tsundocInfoViewTag = L10n.tr("Localizable", "tsundoc_info_view_tag")
     /// 他のアプリの「共有」から、追加したいサイトの URL をシェアしましょう
     internal static let tsundocListEmptyMessageDefaultMessage = L10n.tr("Localizable", "tsundoc_list_empty_message_default_message")
     /// アイテムがありません
