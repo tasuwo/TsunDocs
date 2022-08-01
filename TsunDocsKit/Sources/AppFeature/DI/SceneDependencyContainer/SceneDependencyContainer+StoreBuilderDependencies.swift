@@ -7,6 +7,7 @@ import Domain
 import Environment
 import MobileSettingFeature
 import SwiftUI
+import TagListFeature
 import TagMultiSelectionFeature
 import TsundocCreateFeature
 import TsundocInfoFeature

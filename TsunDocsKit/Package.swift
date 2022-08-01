@@ -91,6 +91,7 @@ let package = Package(
                 "Domain",
                 "Environment",
                 "Persistence",
+                "TagListFeature",
                 "TagMultiSelectionFeature",
                 "TsundocListFeature",
                 "TsundocInfoFeature",
@@ -142,6 +143,16 @@ let package = Package(
                 "PreviewContent",
                 "UIComponent",
                 "ImageLoader",
+            ]
+        ),
+        .target(
+            name: "TagListFeature",
+            dependencies: [
+                "CompositeKit",
+                "Domain",
+                "Environment",
+                "PreviewContent",
+                "UIComponent"
             ]
         ),
         .target(

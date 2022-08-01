@@ -16,26 +16,6 @@
 "tsundoc_list_empty_message_default_message" = "他のアプリの「共有」から、追加したいサイトの URL をシェアしましょう";
 "tsundoc_list_empty_message_tag_message" = "タグ「%@」が付与されたアイテムはありません";
 
-"tag_list_title" = "タグ";
-
-"tag_list_alert_placeholder" = "タグ名";
-
-"tag_list_alert_new_tag_title" = "新規タグ";
-"tag_list_alert_new_tag_message" = "このタグの名前を入力してください";
-
-"tag_list_alert_update_tag_name_title" = "タグ名の変更";
-"tag_list_alert_update_tag_name_message" = "このタグの新しい名前を入力してください";
-
-"tag_list_alert_delete_tag_message" = "タグ「%@」を削除しますか？";
-"tag_list_alert_delete_tag_action" = "タグを削除";
-
-"error_tag_read" = "タグの読み込みに失敗しました";
-"error_tag_add_default" = "タグの追加に失敗しました";
-"error_tag_add_duplicated" = "同名のタグを追加することはできません";
-"error_tag_delete" = "タグの削除に失敗しました";
-"error_tag_rename_duplicated" = "同じ名前のタグが既に存在します";
-"error_tag_update" = "タグの更新に失敗しました";
-
 "cancel" = "キャンセル";
 
 "alert.action.ok" = "OK";

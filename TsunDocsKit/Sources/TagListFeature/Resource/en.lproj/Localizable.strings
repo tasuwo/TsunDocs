@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Tasuku Tozawa on 2022/08/01.
+  
+*/
+
+"tag_list_title" = "Tags";
+
+"tag_list_alert_placeholder" = "Tag Name";
+
+"tag_list_alert_new_tag_title" = "New Tag";
+"tag_list_alert_new_tag_message" = "Enter a name for this tag.";
+
+"tag_list_alert_update_tag_name_title" = "Rename Tag";
+"tag_list_alert_update_tag_name_message" = "Enter a new name for this tag.";
+
+"tag_list_alert_delete_tag_message" = "Are you sure you want to delete tag \"%@\"?";
+"tag_list_alert_delete_tag_action" = "Delete Tag";
+
+"error_tag_read" = "Failed to read tags";
+"error_tag_add_default" = "Failed to add tag.";
+"error_tag_add_duplicated" = "Duplicated tag name.";
+"error_tag_delete" = "Failed to delete tag";
+"error_tag_rename_duplicated" = "Duplicated tag name.";
+"error_tag_update" = "Failed to update tag";
+
+"tsundoc_list_empty_message_tag_message" = "No items categorized with Tag \"%@\"";

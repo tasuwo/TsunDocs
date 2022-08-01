@@ -25,10 +25,15 @@ strings:
         - templateName: structured-swift5
           output: TsunDocsKit/Sources/TsundocInfoFeature/Generated/String.swift
     - inputs:
-        - TsunDocsKit/Sources/MobileSettingView/Resource/ja.lproj/Localizable.strings
+        - TsunDocsKit/Sources/MobileSettingFeature/Resource/ja.lproj/Localizable.strings
       outputs:
         - templateName: structured-swift5
-          output: TsunDocsKit/Sources/MobileSettingView/Generated/String.swift
+          output: TsunDocsKit/Sources/MobileSettingFeature/Generated/String.swift
+    - inputs:
+        - TsunDocsKit/Sources/TagListFeature/Resource/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: TsunDocsKit/Sources/TagListFeature/Generated/String.swift
 xcassets:
     - inputs:
         - TsunDocsKit/Sources/Domain/Resources/Assets.xcassets
