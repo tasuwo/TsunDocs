@@ -6,6 +6,7 @@ import Combine
 import CoreData
 import CoreDataCloudKitHelper
 import Domain
+import MobileSettingFeature
 import Persistence
 
 public class AppDependencyContainer: ObservableObject {

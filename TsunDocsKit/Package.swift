@@ -95,6 +95,7 @@ let package = Package(
                 "TsundocListFeature",
                 "TsundocInfoFeature",
                 "TsundocCreateFeature",
+                "MobileSettingFeature",
                 "UIComponent",
             ]
         ),
@@ -151,6 +152,17 @@ let package = Package(
                 "Environment",
                 "PreviewContent",
                 "UIComponent"
+            ]
+        ),
+        .target(
+            name: "MobileSettingFeature",
+            dependencies: [
+                "CompositeKit",
+                "Domain",
+                "Environment",
+                "PreviewContent",
+                "UIComponent",
+                "CoreDataCloudKitHelper"
             ]
         ),
 

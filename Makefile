@@ -49,9 +49,9 @@ mockolo_generate: ## mockoloによるモック自動生成を行う
 		--custom-imports Environment
 	cd BuildTools; \
 	./mockolo \
-		--sourcedirs ../TsunDocsKit/Sources/CoreDataCloudKitSupport \
-		--destination ../TsunDocsKit/Sources/PreviewContent/Protocol/CoreDataCloudKitSupport.ProtocolMocks.swift \
-		--custom-imports CoreDataCloudKitSupport
+		--sourcedirs ../TsunDocsKit/Sources/CoreDataCloudKitHelper \
+		--destination ../TsunDocsKit/Sources/PreviewContent/Protocol/CoreDataCloudKitHelper.ProtocolMocks.swift \
+		--custom-imports CoreDataCloudKitHelper
 
 .PHONY: help
 help: ## ヘルプを表示する

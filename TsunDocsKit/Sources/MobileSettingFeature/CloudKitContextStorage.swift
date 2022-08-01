@@ -6,7 +6,7 @@ import CoreDataCloudKitHelper
 import Domain
 import Foundation
 
-class CloudKitContextStorage {
+public class CloudKitContextStorage {
     // MARK: - Properties
 
     private let userDefaults: UserDefaults
@@ -27,11 +27,11 @@ extension UserDefaults {
 extension CloudKitContextStorage: CKAccountIdStorage {
     // MARK: - CKAccountIdStorage
 
-    var lastLoggedInCKAccountId: String? {
+    public var lastLoggedInCKAccountId: String? {
         return userDefaults.lastLoggedInCKAccountId
     }
 
-    func set(lastLoggedInCKAccountId: String?) {
+    public func set(lastLoggedInCKAccountId: String?) {
         userDefaults.set(lastLoggedInCKAccountId, forKey: StorageKey.lastLoggedInCKAccountId.rawValue)
     }
 }

@@ -24,6 +24,11 @@ strings:
       outputs:
         - templateName: structured-swift5
           output: TsunDocsKit/Sources/TsundocInfoFeature/Generated/String.swift
+    - inputs:
+        - TsunDocsKit/Sources/MobileSettingView/Resource/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: TsunDocsKit/Sources/MobileSettingView/Generated/String.swift
 xcassets:
     - inputs:
         - TsunDocsKit/Sources/Domain/Resources/Assets.xcassets
