@@ -4,7 +4,7 @@
 
 import Combine
 import CompositeKit
-import CoreDataCloudKitSupport
+import CoreDataCloudKitHelper
 import Domain
 import Environment
 import SwiftUI

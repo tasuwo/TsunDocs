@@ -61,8 +61,8 @@ let package = Package(
             targets: ["ImageLoader"]
         ),
         .library(
-            name: "CoreDataCloudKitSupport",
-            targets: ["CoreDataCloudKitSupport"]
+            name: "CoreDataCloudKitHelper",
+            targets: ["CoreDataCloudKitHelper"]
         ),
         .library(
             name: "PreviewContent",
@@ -87,7 +87,7 @@ let package = Package(
             name: "AppFeature",
             dependencies: [
                 "CompositeKit",
-                "CoreDataCloudKitSupport",
+                "CoreDataCloudKitHelper",
                 "Domain",
                 "Environment",
                 "Persistence",
@@ -203,12 +203,12 @@ let package = Package(
             dependencies: [.product(name: "Nuke", package: "Nuke")]
         ),
         .target(name: "CompositeKit"),
-        .target(name: "CoreDataCloudKitSupport"),
+        .target(name: "CoreDataCloudKitHelper"),
         .target(
             name: "PreviewContent",
             dependencies: [
                 "CompositeKit",
-                "CoreDataCloudKitSupport",
+                "CoreDataCloudKitHelper",
                 "Domain",
                 "Environment"
             ]

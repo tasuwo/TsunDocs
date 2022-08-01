@@ -4,7 +4,7 @@
 
 import CloudKit
 import Combine
-import CoreDataCloudKitSupport
+import CoreDataCloudKitHelper
 
 public class CloudKitAvailabilityObservableMock: CloudKitAvailabilityObservable {
     public init() { }

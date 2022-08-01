@@ -4,7 +4,7 @@
 
 import Combine
 import CoreData
-import CoreDataCloudKitSupport
+import CoreDataCloudKitHelper
 import Domain
 import Persistence
 
@@ -96,4 +96,4 @@ extension AppDependencyContainer {
 
 extension Persistence.UserSettingStorage: ICloudSyncSettingStorage {}
 
-extension Persistence.PersistentContainer: CoreDataCloudKitSupport.PersistentContainer {}
+extension Persistence.PersistentContainer: CoreDataCloudKitHelper.PersistentContainer {}
