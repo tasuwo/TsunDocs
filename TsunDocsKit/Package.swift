@@ -1,11 +1,11 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.6
 import PackageDescription
 
 let package = Package(
     name: "TsunDocs",
     defaultLocalization: "ja",
     platforms: [
-        .iOS(.v15), .macOS(.v12)
+        .iOS("16"), .macOS(.v12)
     ],
     products: [
         .library(
@@ -70,15 +70,9 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(name: "Kanna",
-                 url: "https://github.com/tid-kijyun/Kanna",
-                 .upToNextMajor(from: "5.2.7")),
-        .package(name: "Smile",
-                 url: "https://github.com/onmyway133/Smile",
-                 .upToNextMajor(from: "2.1.0")),
-        .package(name: "Nuke",
-                 url: "https://github.com/kean/Nuke",
-                 .upToNextMajor(from: "10.7.1"))
+        .package(url: "https://github.com/tid-kijyun/Kanna", .upToNextMajor(from: "5.2.7")),
+        .package(url: "https://github.com/onmyway133/Smile", .upToNextMajor(from: "2.1.0")),
+        .package(url: "https://github.com/kean/Nuke", .upToNextMajor(from: "10.7.1"))
     ],
     targets: [
         /// App
