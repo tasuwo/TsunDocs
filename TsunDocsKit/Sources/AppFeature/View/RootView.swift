@@ -22,6 +22,8 @@ public struct RootView<Container>: View where Container: SceneContainer {
     @StateObject var tagListStack: NavigationStackDependencyContainer
     @StateObject var settingTabStack: NavigationStackDependencyContainer
 
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
     // MARK: - Initializers
@@ -41,7 +43,7 @@ public struct RootView<Container>: View where Container: SceneContainer {
 
     @ViewBuilder
     func content() -> some View {
-        if idiom == .pad {
+        if idiom == .pad, horizontalSizeClass == .regular {
             NavigationSplitView {
                 List(TabItem.allCases, id: \.self, selection: $menuSelection) { item in
                     item.label
@@ -65,21 +67,24 @@ public struct RootView<Container>: View where Container: SceneContainer {
                 }
             }
         } else {
-            TabView {
+            TabView(selection: Binding(get: { menuSelection ?? .tsundocList }, set: { menuSelection = $0 })) {
                 NavigationStack(path: $tsundocListTabStack.stackRouter.stack) {
                     tsundocList()
                 }
                 .tabItem { TabItem.tsundocList.view }
+                .tag(TabItem.tsundocList)
 
                 NavigationStack(path: $tagListStack.stackRouter.stack) {
                     tagList()
                 }
                 .tabItem { TabItem.tags.view }
+                .tag(TabItem.tags)
 
                 NavigationStack(path: $settingTabStack.stackRouter.stack) {
                     settingView()
                 }
                 .tabItem { TabItem.settings.view }
+                .tag(TabItem.settings)
             }
         }
     }
