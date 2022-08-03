@@ -430,7 +430,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				INFOPLIST_FILE = MobileShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -500,7 +500,7 @@
 				CODE_SIGN_ENTITLEMENTS = MobileShareExtension/MobileShareExtension.entitlements;
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				INFOPLIST_FILE = MobileShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
