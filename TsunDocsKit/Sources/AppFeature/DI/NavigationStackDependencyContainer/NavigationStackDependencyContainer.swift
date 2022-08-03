@@ -6,13 +6,17 @@ import Environment
 import Foundation
 
 public class NavigationStackDependencyContainer: ObservableObject {
-    @Published var router: StackRouter
+    @Published public var stackRouter: StackRouter
     let container: DependencyContainer
 
     // MARK: - Initializers
 
     public init(router: StackRouter, container: DependencyContainer) {
-        self.router = router
+        self.stackRouter = router
         self.container = container
     }
+}
+
+extension NavigationStackDependencyContainer: HasRouter {
+    public var router: Router { stackRouter }
 }
