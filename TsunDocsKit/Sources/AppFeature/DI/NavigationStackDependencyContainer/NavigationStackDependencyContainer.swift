@@ -2,17 +2,17 @@
 //  Copyright ©︎ 2022 Tasuku Tozawa. All rights reserved.
 //
 
-import Foundation
 import Environment
+import Foundation
 
 public class NavigationStackDependencyContainer: ObservableObject {
     @Published var router: StackRouter
-    let sceneDependencyContainer: SceneDependencyContainer
+    let container: DependencyContainer
 
     // MARK: - Initializers
 
-    public init(router: StackRouter, container: SceneDependencyContainer) {
+    public init(router: StackRouter, container: DependencyContainer) {
         self.router = router
-        sceneDependencyContainer = container
+        self.container = container
     }
 }
