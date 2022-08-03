@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-enum TabItem: CaseIterable {
+enum TabItem: String, CaseIterable {
     case tsundocList
     case tags
     case settings

@@ -13,7 +13,7 @@ import TsundocCreateFeature
 import TsundocInfoFeature
 import TsundocListFeature
 
-extension SceneDependencyContainer: TsundocListBuildable {
+extension NavigationStackDependencyContainer: TsundocListBuildable {
     // MARK: - TsundocListBuildable
 
     public func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, query: TsundocListQuery) -> AnyView {
@@ -28,7 +28,7 @@ extension SceneDependencyContainer: TsundocListBuildable {
     }
 }
 
-extension SceneDependencyContainer: TagListBuildable {
+extension NavigationStackDependencyContainer: TagListBuildable {
     // MARK: - TagListBuildable
 
     public func buildTagList() -> AnyView {
@@ -47,7 +47,7 @@ extension SceneDependencyContainer: TagListBuildable {
     }
 }
 
-extension SceneDependencyContainer: TagMultiSelectionSheetBuildable {
+extension NavigationStackDependencyContainer: TagMultiSelectionSheetBuildable {
     // MARK: - TagMultiSelectionSheetBuildable
 
     public func buildTagMultiSelectionSheet(selectedIds: Set<Tag.ID>, onDone: @escaping ([Tag]) -> Void) -> AnyView {
@@ -58,7 +58,7 @@ extension SceneDependencyContainer: TagMultiSelectionSheetBuildable {
     }
 }
 
-extension SceneDependencyContainer: TsundocInfoViewBuildable {
+extension NavigationStackDependencyContainer: TsundocInfoViewBuildable {
     // MARK: - TsundocInfoViewBuildable
 
     public func buildTsundocInfoView(tsundoc: Tsundoc) -> AnyView {
@@ -69,7 +69,7 @@ extension SceneDependencyContainer: TsundocInfoViewBuildable {
     }
 }
 
-extension SceneDependencyContainer: SettingViewBuilder {
+extension NavigationStackDependencyContainer: SettingViewBuilder {
     // MARK: - SettingViewBuilder
 
     public func buildSettingView() -> AnyView {
@@ -80,7 +80,7 @@ extension SceneDependencyContainer: SettingViewBuilder {
     }
 }
 
-extension SceneDependencyContainer: TsundocCreateViewBuildable {
+extension NavigationStackDependencyContainer: TsundocCreateViewBuildable {
     // MARK: - TsundocCreateViewBuildable
 
     public func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> AnyView {

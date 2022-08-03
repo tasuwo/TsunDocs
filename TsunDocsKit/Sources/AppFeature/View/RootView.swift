@@ -9,80 +9,76 @@ import SwiftUI
 
 #if os(iOS)
 
-public typealias SceneContainer = TsundocListBuildable
-    & TagListBuildable
-    & TagMultiSelectionSheetBuildable
-    & TsundocInfoViewBuildable
-    & SettingViewBuilder
-    & TsundocCreateViewBuildable
-    & ObservableObject
+public typealias SceneContainer = DependencyContainer & ObservableObject
 
 public struct RootView<Container>: View where Container: SceneContainer {
     // MARK: - Properties
 
     @AppStorage(StorageKey.userInterfaceStyle.rawValue) var userInterfaceStyle = UserInterfaceStyle.unspecified
-    @StateObject var container: Container
+
+    @State var menuSelection: TabItem? = .tsundocList
+
+    @StateObject var tsundocListTabStack: NavigationStackDependencyContainer
+    @StateObject var tagListStack: NavigationStackDependencyContainer
+    @StateObject var settingTabStack: NavigationStackDependencyContainer
 
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
     // MARK: - Initializers
 
     public init(container: Container) {
-        _container = StateObject(wrappedValue: container)
+        _tsundocListTabStack = StateObject(wrappedValue: NavigationStackDependencyContainer(router: .init(), container: container))
+        _tagListStack = StateObject(wrappedValue: NavigationStackDependencyContainer(router: .init(), container: container))
+        _settingTabStack = StateObject(wrappedValue: NavigationStackDependencyContainer(router: .init(), container: container))
     }
 
     // MARK: - View
 
     public var body: some View {
         content()
-            .environment(\.tsundocListBuilder, container)
-            .environment(\.tagListBuilder, container)
-            .environment(\.tagMultiSelectionSheetBuilder, container)
-            .environment(\.tsundocInfoViewBuilder, container)
-            .environment(\.tsundocCreateViewBuilder, container)
             .preferredColorScheme(userInterfaceStyle.colorScheme)
     }
 
     @ViewBuilder
     func content() -> some View {
         if idiom == .pad {
-            NavigationView {
-                List {
-                    NavigationLink(destination: tsundocList()) {
-                        TabItem.tsundocList.label
+            NavigationSplitView {
+                List(TabItem.allCases, id: \.self, selection: $menuSelection) { item in
+                    item.label
+                }
+            } detail: {
+                switch menuSelection {
+                case .tsundocList, .none:
+                    NavigationStack(path: $tsundocListTabStack.stackRouter.stack) {
+                        tsundocList()
                     }
 
-                    NavigationLink(destination: tagList()) {
-                        TabItem.tags.label
+                case .tags:
+                    NavigationStack(path: $tagListStack.stackRouter.stack) {
+                        tagList()
                     }
 
-                    NavigationLink(destination: settingView()) {
-                        TabItem.settings.label
+                case .settings:
+                    NavigationStack(path: $settingTabStack.stackRouter.stack) {
+                        settingView()
                     }
                 }
-                .navigationTitle(NSLocalizedString("app_name", bundle: .module, comment: ""))
-                .listStyle(SidebarListStyle())
-
-                tsundocList()
             }
         } else {
             TabView {
-                NavigationView {
+                NavigationStack(path: $tsundocListTabStack.stackRouter.stack) {
                     tsundocList()
                 }
-                .navigationViewStyle(.stack)
                 .tabItem { TabItem.tsundocList.view }
 
-                NavigationView {
+                NavigationStack(path: $tagListStack.stackRouter.stack) {
                     tagList()
                 }
-                .navigationViewStyle(.stack)
                 .tabItem { TabItem.tags.view }
 
-                NavigationView {
+                NavigationStack(path: $settingTabStack.stackRouter.stack) {
                     settingView()
                 }
-                .navigationViewStyle(.stack)
                 .tabItem { TabItem.settings.view }
             }
         }
@@ -90,21 +86,36 @@ public struct RootView<Container>: View where Container: SceneContainer {
 
     @ViewBuilder
     func tsundocList() -> some View {
-        container.buildTsundocList(title: L10n.tsundocListTitle,
-                                   emptyTile: L10n.tsundocListEmptyMessageDefaultTitle,
-                                   emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
-                                   isTsundocCreationEnabled: true,
-                                   query: .all)
+        tsundocListTabStack.buildTsundocList(title: L10n.tsundocListTitle,
+                                             emptyTile: L10n.tsundocListEmptyMessageDefaultTitle,
+                                             emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
+                                             isTsundocCreationEnabled: true,
+                                             query: .all)
+            .environment(\.tsundocListBuilder, tsundocListTabStack)
+            .environment(\.tagListBuilder, tsundocListTabStack)
+            .environment(\.tagMultiSelectionSheetBuilder, tsundocListTabStack)
+            .environment(\.tsundocInfoViewBuilder, tsundocListTabStack)
+            .environment(\.tsundocCreateViewBuilder, tsundocListTabStack)
     }
 
     @ViewBuilder
     func tagList() -> some View {
-        container.buildTagList()
+        tagListStack.buildTagList()
+            .environment(\.tsundocListBuilder, tagListStack)
+            .environment(\.tagListBuilder, tagListStack)
+            .environment(\.tagMultiSelectionSheetBuilder, tagListStack)
+            .environment(\.tsundocInfoViewBuilder, tagListStack)
+            .environment(\.tsundocCreateViewBuilder, tagListStack)
     }
 
     @ViewBuilder
     func settingView() -> some View {
-        container.buildSettingView()
+        settingTabStack.buildSettingView()
+            .environment(\.tsundocListBuilder, settingTabStack)
+            .environment(\.tagListBuilder, settingTabStack)
+            .environment(\.tagMultiSelectionSheetBuilder, settingTabStack)
+            .environment(\.tsundocInfoViewBuilder, settingTabStack)
+            .environment(\.tsundocCreateViewBuilder, settingTabStack)
     }
 }
 
@@ -159,7 +170,9 @@ struct RootView_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            RootView(container: DummyContainer())
+            // TODO:
+            EmptyView()
+            // RootView(container: DummyContainer())
         }
     }
 }
