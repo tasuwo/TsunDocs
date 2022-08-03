@@ -5,7 +5,7 @@
 import SwiftUI
 
 public class StackRouter: ObservableObject {
-    @Published var stack: NavigationPath = .init()
+    @Published public var stack: NavigationPath = .init()
 
     // MARK: - Initializers
 
