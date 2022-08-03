@@ -3,13 +3,16 @@
 //
 
 import Foundation
+import Environment
 
 public class NavigationStackDependencyContainer: ObservableObject {
+    @Published var router: StackRouter
     let sceneDependencyContainer: SceneDependencyContainer
 
     // MARK: - Initializers
 
-    public init(_ container: SceneDependencyContainer) {
+    public init(router: StackRouter, container: SceneDependencyContainer) {
+        self.router = router
         sceneDependencyContainer = container
     }
 }
