@@ -6,7 +6,7 @@ import Foundation
 import Smile
 
 // sourcery: AutoDefaultValuePublic
-public struct Tsundoc {
+public struct Tsundoc: Hashable {
     // MARK: - Properties
 
     public let id: UUID
