@@ -4,6 +4,7 @@
 
 import CompositeKit
 import Domain
+import Environment
 import Foundation
 import SwiftUI
 
@@ -25,7 +26,7 @@ public struct SettingView: View {
     public var body: some View {
         List {
             Section(header: Text("setting_view.section.appearance.title", bundle: Bundle.module)) {
-                NavigationLink(destination: UserInterfaceStyleSettingView()) {
+                NavigationLink(value: AppRoute.UserInterfaceStyleSetting()) {
                     HStack {
                         Text("setting_view.row.user_interface_style.title", bundle: Bundle.module)
                         Spacer()
@@ -102,6 +103,9 @@ public struct SettingView: View {
             }
         } message: {
             Text("setting_view.alert.icloud_unavailable.message", bundle: Bundle.module)
+        }
+        .navigationDestination(for: AppRoute.UserInterfaceStyleSetting.self) { _ in
+            UserInterfaceStyleSettingView()
         }
     }
 }
