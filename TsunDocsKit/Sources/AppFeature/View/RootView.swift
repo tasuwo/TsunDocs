@@ -18,9 +18,13 @@ public struct RootView<Container>: View where Container: SceneContainer {
 
     @State var menuSelection: TabItem? = .tsundocList
 
-    @StateObject var tsundocListTabStack: NavigationStackDependencyContainer
-    @StateObject var tagListStack: NavigationStackDependencyContainer
-    @StateObject var settingTabStack: NavigationStackDependencyContainer
+    @StateObject var tsundocListTabStackContainer: NavigationStackDependencyContainer
+    @StateObject var tagListStackContainer: NavigationStackDependencyContainer
+    @StateObject var settingTabStackContainer: NavigationStackDependencyContainer
+
+    @StateObject var tsundocListTabStack: StackRouter
+    @StateObject var tagListTabStack: StackRouter
+    @StateObject var settingTabStack: StackRouter
 
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
@@ -29,9 +33,15 @@ public struct RootView<Container>: View where Container: SceneContainer {
     // MARK: - Initializers
 
     public init(container: Container) {
-        _tsundocListTabStack = StateObject(wrappedValue: NavigationStackDependencyContainer(router: .init(), container: container))
-        _tagListStack = StateObject(wrappedValue: NavigationStackDependencyContainer(router: .init(), container: container))
-        _settingTabStack = StateObject(wrappedValue: NavigationStackDependencyContainer(router: .init(), container: container))
+        let tsundocListTabStackContainer = NavigationStackDependencyContainer(router: .init(), container: container)
+        let tagListStackContainer = NavigationStackDependencyContainer(router: .init(), container: container)
+        let settingTabStackContainer = NavigationStackDependencyContainer(router: .init(), container: container)
+        _tsundocListTabStackContainer = StateObject(wrappedValue: tsundocListTabStackContainer)
+        _tagListStackContainer = StateObject(wrappedValue: tagListStackContainer)
+        _settingTabStackContainer = StateObject(wrappedValue: settingTabStackContainer)
+        _tsundocListTabStack = StateObject(wrappedValue: tagListStackContainer.stackRouter)
+        _tagListTabStack = StateObject(wrappedValue: tagListStackContainer.stackRouter)
+        _settingTabStack = StateObject(wrappedValue: settingTabStackContainer.stackRouter)
     }
 
     // MARK: - View
@@ -51,36 +61,36 @@ public struct RootView<Container>: View where Container: SceneContainer {
             } detail: {
                 switch menuSelection {
                 case .tsundocList, .none:
-                    NavigationStack(path: $tsundocListTabStack.stackRouter.stack) {
+                    NavigationStack(path: $tsundocListTabStack.stack) {
                         tsundocList()
                     }
 
                 case .tags:
-                    NavigationStack(path: $tagListStack.stackRouter.stack) {
+                    NavigationStack(path: $tagListTabStack.stack) {
                         tagList()
                     }
 
                 case .settings:
-                    NavigationStack(path: $settingTabStack.stackRouter.stack) {
+                    NavigationStack(path: $settingTabStack.stack) {
                         settingView()
                     }
                 }
             }
         } else {
             TabView(selection: Binding(get: { menuSelection ?? .tsundocList }, set: { menuSelection = $0 })) {
-                NavigationStack(path: $tsundocListTabStack.stackRouter.stack) {
+                NavigationStack(path: $tsundocListTabStack.stack) {
                     tsundocList()
                 }
                 .tabItem { TabItem.tsundocList.view }
                 .tag(TabItem.tsundocList)
 
-                NavigationStack(path: $tagListStack.stackRouter.stack) {
+                NavigationStack(path: $tagListTabStack.stack) {
                     tagList()
                 }
                 .tabItem { TabItem.tags.view }
                 .tag(TabItem.tags)
 
-                NavigationStack(path: $settingTabStack.stackRouter.stack) {
+                NavigationStack(path: $settingTabStack.stack) {
                     settingView()
                 }
                 .tabItem { TabItem.settings.view }
@@ -91,36 +101,36 @@ public struct RootView<Container>: View where Container: SceneContainer {
 
     @ViewBuilder
     func tsundocList() -> some View {
-        tsundocListTabStack.buildTsundocList(title: L10n.tsundocListTitle,
-                                             emptyTile: L10n.tsundocListEmptyMessageDefaultTitle,
-                                             emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
-                                             isTsundocCreationEnabled: true,
-                                             query: .all)
-            .environment(\.tsundocListBuilder, tsundocListTabStack)
-            .environment(\.tagListBuilder, tsundocListTabStack)
-            .environment(\.tagMultiSelectionSheetBuilder, tsundocListTabStack)
-            .environment(\.tsundocInfoViewBuilder, tsundocListTabStack)
-            .environment(\.tsundocCreateViewBuilder, tsundocListTabStack)
+        tsundocListTabStackContainer.buildTsundocList(title: L10n.tsundocListTitle,
+                                                      emptyTile: L10n.tsundocListEmptyMessageDefaultTitle,
+                                                      emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
+                                                      isTsundocCreationEnabled: true,
+                                                      query: .all)
+            .environment(\.tsundocListBuilder, tsundocListTabStackContainer)
+            .environment(\.tagListBuilder, tsundocListTabStackContainer)
+            .environment(\.tagMultiSelectionSheetBuilder, tsundocListTabStackContainer)
+            .environment(\.tsundocInfoViewBuilder, tsundocListTabStackContainer)
+            .environment(\.tsundocCreateViewBuilder, tsundocListTabStackContainer)
     }
 
     @ViewBuilder
     func tagList() -> some View {
-        tagListStack.buildTagList()
-            .environment(\.tsundocListBuilder, tagListStack)
-            .environment(\.tagListBuilder, tagListStack)
-            .environment(\.tagMultiSelectionSheetBuilder, tagListStack)
-            .environment(\.tsundocInfoViewBuilder, tagListStack)
-            .environment(\.tsundocCreateViewBuilder, tagListStack)
+        tagListStackContainer.buildTagList()
+            .environment(\.tsundocListBuilder, tagListStackContainer)
+            .environment(\.tagListBuilder, tagListStackContainer)
+            .environment(\.tagMultiSelectionSheetBuilder, tagListStackContainer)
+            .environment(\.tsundocInfoViewBuilder, tagListStackContainer)
+            .environment(\.tsundocCreateViewBuilder, tagListStackContainer)
     }
 
     @ViewBuilder
     func settingView() -> some View {
-        settingTabStack.buildSettingView()
-            .environment(\.tsundocListBuilder, settingTabStack)
-            .environment(\.tagListBuilder, settingTabStack)
-            .environment(\.tagMultiSelectionSheetBuilder, settingTabStack)
-            .environment(\.tsundocInfoViewBuilder, settingTabStack)
-            .environment(\.tsundocCreateViewBuilder, settingTabStack)
+        settingTabStackContainer.buildSettingView()
+            .environment(\.tsundocListBuilder, settingTabStackContainer)
+            .environment(\.tagListBuilder, settingTabStackContainer)
+            .environment(\.tagMultiSelectionSheetBuilder, settingTabStackContainer)
+            .environment(\.tsundocInfoViewBuilder, settingTabStackContainer)
+            .environment(\.tsundocCreateViewBuilder, settingTabStackContainer)
     }
 }
 

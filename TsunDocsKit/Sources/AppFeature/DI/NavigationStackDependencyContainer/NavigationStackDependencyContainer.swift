@@ -6,7 +6,7 @@ import Environment
 import Foundation
 
 public class NavigationStackDependencyContainer: ObservableObject {
-    @Published public var stackRouter: StackRouter
+    let stackRouter: StackRouter
     let container: DependencyContainer
 
     // MARK: - Initializers
