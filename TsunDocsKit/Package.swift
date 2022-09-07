@@ -142,6 +142,7 @@ let package = Package(
         .target(
             name: "TagListFeature",
             dependencies: [
+                "TagMultiSelectionFeature",
                 "CompositeKit",
                 "Domain",
                 "Environment",
