@@ -46,7 +46,7 @@ public struct RootView<Container>: View where Container: SceneContainer {
 
     @ViewBuilder
     func content() -> some View {
-        if idiom == .pad, horizontalSizeClass == .regular {
+        if idiom == .pad {
             NavigationSplitView {
                 List(TabItem.allCases, id: \.self, selection: $menuSelection) { item in
                     item.label
