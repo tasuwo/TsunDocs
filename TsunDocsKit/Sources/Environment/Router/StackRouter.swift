@@ -18,4 +18,8 @@ extension StackRouter: Router {
     public func push(_ route: any Route) {
         stack.append(route)
     }
+
+    public func pop() {
+        stack.removeLast()
+    }
 }

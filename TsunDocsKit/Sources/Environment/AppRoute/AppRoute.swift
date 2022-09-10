@@ -3,6 +3,7 @@
 //
 
 import Domain
+import Foundation
 
 public enum AppRoute {}
 
@@ -24,6 +25,20 @@ public extension AppRoute {
 
 public extension Route where Self == AppRoute.TagList {
     static func tagList() -> Self { .init() }
+}
+
+// MARK: - TagMultiSelection
+
+public extension AppRoute {
+    struct TagMultiSelection: Route {
+        public let selectedIds: Set<Tag.ID>
+    }
+}
+
+public extension Route where Self == AppRoute.TagMultiSelection {
+    static func tagMultiSelection(selectedIds: Set<Tag.ID>) -> Self {
+        .init(selectedIds: selectedIds)
+    }
 }
 
 // MARK: - TsundocInfo
@@ -63,4 +78,28 @@ public extension Route where Self == AppRoute.TsundocList {
               isTsundocCreationEnabled: isTsundocCreationEnabled,
               query: query)
     }
+}
+
+// MARK: - TsundocCreate
+
+public extension AppRoute {
+    struct TsundocCreate: Route {
+        public let url: URL
+    }
+}
+
+public extension Route where Self == AppRoute.TsundocCreate {
+    static func tsundocCreate(_ url: URL) -> Self { .init(url: url) }
+}
+
+// MARK: - Browse
+
+public extension AppRoute {
+    struct Browse: Route {
+        public let tsundoc: Tsundoc
+    }
+}
+
+public extension Route where Self == AppRoute.Browse {
+    static func browse(_ tsundoc: Tsundoc) -> Self { .init(tsundoc: tsundoc) }
 }

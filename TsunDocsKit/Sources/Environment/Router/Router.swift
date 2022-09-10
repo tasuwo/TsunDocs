@@ -4,4 +4,5 @@
 
 public protocol Router {
     func push(_ route: any Route)
+    func pop()
 }
