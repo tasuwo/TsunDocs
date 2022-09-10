@@ -23,7 +23,6 @@ public struct TsundocList: View {
 
     @Environment(\.openURL) var openURL
     @Environment(\.tagMultiSelectionSheetBuilder) var tagMultiSelectionSheetBuilder
-    @Environment(\.tsundocInfoViewBuilder) var tsundocInfoViewBuilder
     @Environment(\.tsundocCreateViewBuilder) var tsundocCreateViewBuilder
 
     // MARK: - Initializers
@@ -52,20 +51,6 @@ public struct TsundocList: View {
                 }
             }
         }
-        .background(
-            NavigationLink(destination: browseView(),
-                           isActive: store.bind(\.isBrowseActive,
-                                                action: { _ in .navigation(.deactivated(.browse)) })) {
-                EmptyView()
-            }
-        )
-        .background(
-            NavigationLink(destination: infoView(),
-                           isActive: store.bind(\.isEditActive,
-                                                action: { _ in .navigation(.deactivated(.edit)) })) {
-                EmptyView()
-            }
-        )
         .navigationTitle(title)
         .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .dismissModal })) {
             switch store.state.modal {
@@ -125,6 +110,13 @@ public struct TsundocList: View {
         }
         .onAppear {
             store.execute(.onAppear)
+        }
+        .navigationDestination(for: AppRoute.Browse.self) { route in
+            BrowseView(baseUrl: route.tsundoc.url) {
+                store.execute(.tap(route.tsundoc.id, .editInfo))
+            } onBack: {
+                store.execute(.tapBackButton)
+            }
         }
     }
 
@@ -281,39 +273,6 @@ public struct TsundocList: View {
             store.execute(.alert(.dismissed))
         }
     }
-
-    @ViewBuilder
-    private func browseView() -> some View {
-        if case let .browse(tsundoc, isEditing: _) = store.state.navigation {
-            BrowseView(baseUrl: tsundoc.url) {
-                store.execute(.tap(tsundoc.id, .editInfo))
-            } onBack: {
-                store.execute(.navigation(.deactivated(.browse)))
-            }
-            .background(
-                NavigationLink(destination: infoView(),
-                               isActive: store.bind(\.isBrowseAndEditActive,
-                                                    action: { _ in .navigation(.deactivated(.browseAndEdit)) })) {
-                    EmptyView()
-                }
-            )
-        } else {
-            EmptyView()
-        }
-    }
-
-    @ViewBuilder
-    private func infoView() -> some View {
-        switch store.state.navigation {
-        case let .edit(tsundoc),
-             .browse(let tsundoc, isEditing: true):
-            tsundocInfoViewBuilder.buildTsundocInfoView(tsundoc: tsundoc)
-                .navigationBarTitleDisplayMode(.inline)
-
-        default:
-            EmptyView()
-        }
-    }
 }
 
 // MARK: - Preview
@@ -355,6 +314,10 @@ struct TsundocList_Previews: PreviewProvider {
                 return .success(entities)
             }
             return service
+        }
+
+        var router: Router {
+            StackRouter()
         }
     }
 

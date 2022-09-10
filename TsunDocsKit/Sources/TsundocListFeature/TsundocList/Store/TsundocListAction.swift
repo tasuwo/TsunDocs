@@ -22,16 +22,6 @@ public enum TsundocListAction {
         case dismissed
     }
 
-    public enum NavigationAction {
-        public enum Destination {
-            case edit
-            case browse
-            case browseAndEdit
-        }
-
-        case deactivated(Destination)
-    }
-
     case onAppear
     case updateTsundocs([Tsundoc])
     case updateEmojiInfo(EmojiInfo, Tsundoc.ID)
@@ -40,6 +30,7 @@ public enum TsundocListAction {
     case select(Tsundoc)
     case selectTags(Set<Tag.ID>, Tsundoc.ID)
     case tap(Tsundoc.ID, MenuItem)
+    case tapBackButton
     case createTsundoc
     case activateTsundocFilter(TsundocFilter)
     case deactivateTsundocFilter
@@ -47,7 +38,6 @@ public enum TsundocListAction {
     case failedToUpdateTsundoc(CommandServiceError?)
     case dismissModal
     case alert(AlertAction)
-    case navigation(NavigationAction)
 }
 
 extension TsundocListAction: Action {}

@@ -12,6 +12,7 @@ public typealias TsundocListDependency = HasTsundocQueryService
     & HasTsundocCommandService
     & HasTagQueryService
     & HasPasteboard
+    & HasRouter
 
 public struct TsundocListReducer: Reducer {
     public typealias Dependency = TsundocListDependency
@@ -58,7 +59,7 @@ public struct TsundocListReducer: Reducer {
             return (nextState, nil)
 
         case let .select(tsundoc):
-            nextState.navigation = .browse(tsundoc, isEditing: false)
+            dependency.router.push(.browse(tsundoc))
             return (nextState, nil)
 
         case let .selectTags(tagIds, tsundocId):
@@ -79,13 +80,11 @@ public struct TsundocListReducer: Reducer {
             guard let tsundoc = state.tsundocs.first(where: { $0.id == tsundocId }) else {
                 return (nextState, nil)
             }
-            switch state.navigation {
-            case let .browse(tsundoc, isEditing: _) where tsundoc.id == tsundocId:
-                nextState.navigation = .browse(tsundoc, isEditing: true)
+            dependency.router.push(.tsundocInfo(tsundoc))
+            return (nextState, nil)
 
-            default:
-                nextState.navigation = .edit(tsundoc)
-            }
+        case .tapBackButton:
+            dependency.router.pop()
             return (nextState, nil)
 
         case .createTsundoc:
@@ -155,22 +154,6 @@ public struct TsundocListReducer: Reducer {
 
         case .alert(.dismissed):
             nextState.alert = nil
-            return (nextState, nil)
-
-        case let .navigation(.deactivated(destination)):
-            switch destination {
-            case .edit, .browse:
-                nextState.navigation = nil
-
-            case .browseAndEdit:
-                switch state.navigation {
-                case let .browse(tsundoc, isEditing: _):
-                    nextState.navigation = .browse(tsundoc, isEditing: false)
-
-                default:
-                    nextState.navigation = nil
-                }
-            }
             return (nextState, nil)
         }
     }

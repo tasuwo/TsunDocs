@@ -56,6 +56,9 @@ public struct RootView<Container>: View where Container: SceneContainer {
                 case .tsundocList, .none:
                     NavigationStack(path: $tsundocListTabStackContainer.stackRouter.stack) {
                         tsundocList()
+                            .navigationDestination(for: AppRoute.TsundocInfo.self) { route in
+                                tsundocListTabStackContainer.buildTsundocInfoView(tsundoc: route.tsundoc)
+                            }
                     }
 
                 case .tags:
@@ -67,6 +70,9 @@ public struct RootView<Container>: View where Container: SceneContainer {
                                                                        emptyMessage: tsundocList.emptyMessage,
                                                                        isTsundocCreationEnabled: tsundocList.isTsundocCreationEnabled,
                                                                        query: tsundocList.query)
+                            }
+                            .navigationDestination(for: AppRoute.TsundocInfo.self) { route in
+                                tsundocListTabStackContainer.buildTsundocInfoView(tsundoc: route.tsundoc)
                             }
                     }
 
@@ -80,6 +86,9 @@ public struct RootView<Container>: View where Container: SceneContainer {
             TabView(selection: Binding(get: { menuSelection ?? .tsundocList }, set: { menuSelection = $0 })) {
                 NavigationStack(path: $tsundocListTabStackContainer.stackRouter.stack) {
                     tsundocList()
+                        .navigationDestination(for: AppRoute.TsundocInfo.self) { route in
+                            tsundocListTabStackContainer.buildTsundocInfoView(tsundoc: route.tsundoc)
+                        }
                 }
                 .tabItem { TabItem.tsundocList.view }
                 .tag(TabItem.tsundocList)
@@ -92,6 +101,9 @@ public struct RootView<Container>: View where Container: SceneContainer {
                                                                    emptyMessage: tsundocList.emptyMessage,
                                                                    isTsundocCreationEnabled: tsundocList.isTsundocCreationEnabled,
                                                                    query: tsundocList.query)
+                        }
+                        .navigationDestination(for: AppRoute.TsundocInfo.self) { route in
+                            tsundocListTabStackContainer.buildTsundocInfoView(tsundoc: route.tsundoc)
                         }
                 }
                 .tabItem { TabItem.tags.view }

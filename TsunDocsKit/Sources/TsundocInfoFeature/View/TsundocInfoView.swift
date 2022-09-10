@@ -53,6 +53,7 @@ public struct TsundocInfoView: View {
         .onAppear {
             store.execute(.onAppear)
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     @MainActor
