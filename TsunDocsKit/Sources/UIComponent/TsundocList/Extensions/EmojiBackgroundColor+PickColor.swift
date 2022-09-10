@@ -3,6 +3,5 @@
 //
 
 import Domain
-import UIComponent
 
 extension EmojiBackgroundColor: PickColor {}

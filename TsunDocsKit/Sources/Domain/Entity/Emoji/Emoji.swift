@@ -2,7 +2,6 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
-import Domain
 import Smile
 
 public struct Emoji: Searchable {
