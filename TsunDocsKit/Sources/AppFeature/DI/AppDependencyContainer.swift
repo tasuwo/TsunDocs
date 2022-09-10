@@ -9,7 +9,7 @@ import Domain
 import MobileSettingFeature
 import Persistence
 
-public class AppDependencyContainer: ObservableObject {
+public class AppDependencyContainer {
     // MARK: CoreData
 
     private let container: Persistence.PersistentContainer

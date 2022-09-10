@@ -7,13 +7,13 @@ import SwiftUI
 
 @main
 struct TsunDocsApp: App {
-    @StateObject var container = AppDependencyContainer(appBundle: Bundle.main)
+    static let container = AppDependencyContainer(appBundle: Bundle.main)
 
     // MARK: - View
 
     var body: some Scene {
         WindowGroup {
-            RootView(container: SceneDependencyContainer(container))
+            RootView(container: SceneDependencyContainer(Self.container))
         }
     }
 }
