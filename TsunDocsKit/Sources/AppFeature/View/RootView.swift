@@ -22,10 +22,6 @@ public struct RootView<Container>: View where Container: SceneContainer {
     @StateObject var tagListStackContainer: NavigationStackDependencyContainer
     @StateObject var settingTabStackContainer: NavigationStackDependencyContainer
 
-    @StateObject var tsundocListTabStack: StackRouter
-    @StateObject var tagListTabStack: StackRouter
-    @StateObject var settingTabStack: StackRouter
-
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
@@ -39,9 +35,6 @@ public struct RootView<Container>: View where Container: SceneContainer {
         _tsundocListTabStackContainer = StateObject(wrappedValue: tsundocListTabStackContainer)
         _tagListStackContainer = StateObject(wrappedValue: tagListStackContainer)
         _settingTabStackContainer = StateObject(wrappedValue: settingTabStackContainer)
-        _tsundocListTabStack = StateObject(wrappedValue: tagListStackContainer.stackRouter)
-        _tagListTabStack = StateObject(wrappedValue: tagListStackContainer.stackRouter)
-        _settingTabStack = StateObject(wrappedValue: settingTabStackContainer.stackRouter)
     }
 
     // MARK: - View
@@ -61,36 +54,36 @@ public struct RootView<Container>: View where Container: SceneContainer {
             } detail: {
                 switch menuSelection {
                 case .tsundocList, .none:
-                    NavigationStack(path: $tsundocListTabStack.stack) {
+                    NavigationStack(path: $tsundocListTabStackContainer.stackRouter.stack) {
                         tsundocList()
                     }
 
                 case .tags:
-                    NavigationStack(path: $tagListTabStack.stack) {
+                    NavigationStack(path: $tagListStackContainer.stackRouter.stack) {
                         tagList()
                     }
 
                 case .settings:
-                    NavigationStack(path: $settingTabStack.stack) {
+                    NavigationStack(path: $settingTabStackContainer.stackRouter.stack) {
                         settingView()
                     }
                 }
             }
         } else {
             TabView(selection: Binding(get: { menuSelection ?? .tsundocList }, set: { menuSelection = $0 })) {
-                NavigationStack(path: $tsundocListTabStack.stack) {
+                NavigationStack(path: $tsundocListTabStackContainer.stackRouter.stack) {
                     tsundocList()
                 }
                 .tabItem { TabItem.tsundocList.view }
                 .tag(TabItem.tsundocList)
 
-                NavigationStack(path: $tagListTabStack.stack) {
+                NavigationStack(path: $tagListStackContainer.stackRouter.stack) {
                     tagList()
                 }
                 .tabItem { TabItem.tags.view }
                 .tag(TabItem.tags)
 
-                NavigationStack(path: $settingTabStack.stack) {
+                NavigationStack(path: $settingTabStackContainer.stackRouter.stack) {
                     settingView()
                 }
                 .tabItem { TabItem.settings.view }
