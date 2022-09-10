@@ -25,5 +25,3 @@
 "error_tag_delete" = "Failed to delete tag";
 "error_tag_rename_duplicated" = "Duplicated tag name.";
 "error_tag_update" = "Failed to update tag";
-
-"tsundoc_list_empty_message_tag_message" = "No items categorized with Tag \"%@\"";

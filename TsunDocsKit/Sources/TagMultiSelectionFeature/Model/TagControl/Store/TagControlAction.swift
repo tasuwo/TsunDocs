@@ -7,6 +7,7 @@ import Domain
 
 public enum TagControlAction: Action {
     case onAppear
+    case selectTag(Tag.ID)
     case updatedTags([Tag])
     case createNewTag(String)
     case deleteTag(Tag.ID)

@@ -10,6 +10,7 @@ import Environment
 public typealias TagControlDependency = HasTagCommandService
     & HasTagQueryService
     & HasPasteboard
+    & HasRouter
 
 public struct TagControlReducer: Reducer {
     public typealias Dependency = TagControlDependency
@@ -27,6 +28,15 @@ public struct TagControlReducer: Reducer {
         switch action {
         case .onAppear:
             return Self.prepareQueryEffects(nextState, dependency)
+
+        case let .selectTag(tagId):
+            guard let tag = state.tags.first(where: { $0.id == tagId }) else { return (nextState, .none) }
+            dependency.router.push(.tsundocList(title: tag.name,
+                                                emptyTile: L10n.tsundocListEmptyMessage(tag.name),
+                                                emptyMessage: nil,
+                                                isTsundocCreationEnabled: false,
+                                                query: .tagged(tagId)))
+            return (nextState, .none)
 
         case let .updatedTags(tags):
             nextState.tags = tags
@@ -204,6 +214,10 @@ public class TagControlDependencyMock: TagControlDependency {
 
     public var pasteboard: Pasteboard {
         return PasteboardMock()
+    }
+
+    public var router: Router {
+        return StackRouter()
     }
 
     public init() {}

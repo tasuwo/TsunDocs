@@ -41,10 +41,6 @@ internal enum L10n {
     internal static let tagListAlertUpdateTagNameTitle = L10n.tr("Localizable", "tag_list_alert_update_tag_name_title")
     /// タグ
     internal static let tagListTitle = L10n.tr("Localizable", "tag_list_title")
-    /// タグ「%@」が付与されたアイテムはありません
-    internal static func tsundocListEmptyMessageTagMessage(_ p1: Any) -> String {
-        return L10n.tr("Localizable", "tsundoc_list_empty_message_tag_message", String(describing: p1))
-    }
 }
 
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

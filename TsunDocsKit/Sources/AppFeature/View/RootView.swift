@@ -61,6 +61,13 @@ public struct RootView<Container>: View where Container: SceneContainer {
                 case .tags:
                     NavigationStack(path: $tagListStackContainer.stackRouter.stack) {
                         tagList()
+                            .navigationDestination(for: AppRoute.TsundocList.self) { tsundocList in
+                                tagListStackContainer.buildTsundocList(title: tsundocList.title,
+                                                                       emptyTile: tsundocList.emptyTitle,
+                                                                       emptyMessage: tsundocList.emptyMessage,
+                                                                       isTsundocCreationEnabled: tsundocList.isTsundocCreationEnabled,
+                                                                       query: tsundocList.query)
+                            }
                     }
 
                 case .settings:
@@ -79,6 +86,13 @@ public struct RootView<Container>: View where Container: SceneContainer {
 
                 NavigationStack(path: $tagListStackContainer.stackRouter.stack) {
                     tagList()
+                        .navigationDestination(for: AppRoute.TsundocList.self) { tsundocList in
+                            tagListStackContainer.buildTsundocList(title: tsundocList.title,
+                                                                   emptyTile: tsundocList.emptyTitle,
+                                                                   emptyMessage: tsundocList.emptyMessage,
+                                                                   isTsundocCreationEnabled: tsundocList.isTsundocCreationEnabled,
+                                                                   query: tsundocList.query)
+                        }
                 }
                 .tabItem { TabItem.tags.view }
                 .tag(TabItem.tags)

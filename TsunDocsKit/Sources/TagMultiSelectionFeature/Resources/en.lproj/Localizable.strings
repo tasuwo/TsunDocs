@@ -14,4 +14,6 @@
 
 "tag_multi_selection_sheet_alert_failed_to_create_tag_title" = "Failed to create tag.";
 
+"tsundoc_list_empty_message" = "No items categorized with Tag \"%@\"";
+
 "close" = "Close";

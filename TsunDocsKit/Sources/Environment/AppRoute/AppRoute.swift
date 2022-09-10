@@ -66,7 +66,7 @@ public extension AppRoute {
 }
 
 public extension Route where Self == AppRoute.TsundocList {
-    static func tsundocInfo(title: String,
+    static func tsundocList(title: String,
                             emptyTile: String,
                             emptyMessage: String?,
                             isTsundocCreationEnabled: Bool,

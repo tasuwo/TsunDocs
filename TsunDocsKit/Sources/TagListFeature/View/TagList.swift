@@ -25,9 +25,6 @@ public struct TagList: View {
     @StateObject var engine: TextEngine = .init(debounceFor: 0.3)
 
     @State private var isAdditionDialogPresenting = false
-    @State private var isTsundocListPresenting: Tag.ID? = nil
-
-    @Environment(\.tsundocListBuilder) var tsundocListBuilder
 
     // MARK: - Initializers
 
@@ -53,7 +50,7 @@ public struct TagList: View {
                 store.execute(.renameTag(tagId, name: name), animation: .default)
 
             case let .select(tagId: tagId):
-                isTsundocListPresenting = tagId
+                store.execute(.selectTag(tagId))
             }
         }
         .searchable(text: $engine.input)
@@ -73,13 +70,6 @@ public struct TagList: View {
                 }
             }
         }
-        .background(
-            NavigationLink(destination: tsundocList(),
-                           isActive: Binding<Bool>(get: { isTsundocListPresenting != nil },
-                                                   set: { if !$0 { isTsundocListPresenting = nil } })) {
-                EmptyView()
-            }
-        )
         .alert(isPresented: store.bind(\.isFailedToCreateTagAlertPresenting,
                                        action: { _ in .alertDismissed })) {
             return Alert(title: Text(L10n.errorTagAddDefault))
@@ -100,21 +90,6 @@ public struct TagList: View {
                              validator: { $0?.count ?? 0 > 0 },
                              saveAction: { store.execute(.createNewTag($0)) },
                              cancelAction: nil))
-    }
-
-    @ViewBuilder
-    private func tsundocList() -> some View {
-        if let tagId = isTsundocListPresenting,
-           let tag = store.state.tags.first(where: { $0.id == tagId })
-        {
-            tsundocListBuilder.buildTsundocList(title: tag.name,
-                                                emptyTile: L10n.tsundocListEmptyMessageTagMessage(tag.name),
-                                                emptyMessage: nil,
-                                                isTsundocCreationEnabled: false,
-                                                query: .tagged(tagId))
-        } else {
-            EmptyView()
-        }
     }
 }
 

@@ -34,6 +34,11 @@ strings:
       outputs:
         - templateName: structured-swift5
           output: TsunDocsKit/Sources/TagListFeature/Generated/String.swift
+    - inputs:
+        - TsunDocsKit/Sources/TagMultiSelectionFeature/Resources/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: TsunDocsKit/Sources/TagMultiSelectionFeature/Generated/String.swift
 xcassets:
     - inputs:
         - TsunDocsKit/Sources/Domain/Resources/Assets.xcassets

@@ -14,4 +14,6 @@
 
 "tag_multi_selection_sheet_alert_failed_to_create_tag_title" = "タグの作成に失敗しました";
 
+"tsundoc_list_empty_message" = "タグ「%@」が付与されたアイテムはありません";
+
 "close" = "閉じる";
