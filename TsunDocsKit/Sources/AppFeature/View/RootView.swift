@@ -132,7 +132,6 @@ public struct RootView<Container>: View where Container: SceneContainer {
     @ViewBuilder
     func settingView() -> some View {
         settingTabStackContainer.buildSettingView()
-        settingTabStackContainer.buildSettingView()
             .environment(\.tagMultiSelectionSheetBuilder, settingTabStackContainer)
             .environment(\.tsundocCreateViewBuilder, settingTabStackContainer)
     }
