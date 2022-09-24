@@ -11,7 +11,7 @@ import UIKit
 extension NavigationStackDependencyContainer: DependencyContainer {
     // MARK: - DependencyContainer
 
-    public var pasteboard: Pasteboard { UIPasteboard.general }
+    public var pasteboard: Pasteboard { container.pasteboard }
     public var tsundocQueryService: TsundocQueryService { container.tsundocQueryService }
     public var tagQueryService: TagQueryService { container.tagQueryService }
     public var tsundocCommandService: TsundocCommandService { container.tsundocCommandService }

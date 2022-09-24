@@ -9,9 +9,7 @@ import SwiftUI
 
 #if os(iOS)
 
-public typealias SceneContainer = DependencyContainer & ObservableObject
-
-public struct RootView<Container>: View where Container: SceneContainer {
+public struct RootView<Container>: View where Container: DependencyContainer {
     // MARK: - Properties
 
     @AppStorage(StorageKey.userInterfaceStyle.rawValue) var userInterfaceStyle = UserInterfaceStyle.unspecified

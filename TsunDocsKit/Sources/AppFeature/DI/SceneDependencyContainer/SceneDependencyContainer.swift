@@ -2,9 +2,7 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
-import Foundation
-
-public class SceneDependencyContainer: ObservableObject {
+public class SceneDependencyContainer {
     let appDependencyContainer: AppDependencyContainer
 
     // MARK: - Initializers
