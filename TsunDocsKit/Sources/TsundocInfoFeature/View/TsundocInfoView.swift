@@ -218,8 +218,10 @@ struct TsundocInfoView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        // TODO:
-        EmptyView()
+        let store = Store(initialState: TsundocInfoViewState(tsundoc: .makeDefault(), tags: []),
+                          dependency: Dependency(),
+                          reducer: TsundocInfoViewReducer())
+        TsundocInfoView(store: ViewStore(store: store))
     }
 }
 
