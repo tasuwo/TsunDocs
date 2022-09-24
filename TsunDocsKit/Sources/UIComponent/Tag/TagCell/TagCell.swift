@@ -95,12 +95,14 @@ public struct TagCell: View {
                 .padding([.top, .bottom], padding)
                 .overlay(GeometryReader { geometry in
                     if status.isDeletable {
-                        Divider()
-                            .background(Color("tag_background", bundle: Bundle.this))
-                            .offset(x: geometry.size.width)
-                            .padding([.top, .bottom], padding)
+                        HStack {
+                            Divider()
+                                .background(Color("tag_background", bundle: Bundle.this))
+                                .offset(x: geometry.size.width)
+                                .padding([.top, .bottom], padding)
+                        }
                     } else {
-                        Color.clear
+                        EmptyView()
                     }
                 })
 
@@ -117,14 +119,10 @@ public struct TagCell: View {
                                             style: .continuous))
         })
         .overlay(GeometryReader { geometry in
-            if status.isSelected {
-                Color.clear
-            } else {
-                RoundedRectangle(cornerRadius: geometry.size.height / 2,
-                                 style: .continuous)
-                    .stroke(lineWidth: 0.5)
-                    .foregroundColor(Color("tag_separator", bundle: Bundle.this))
-            }
+            RoundedRectangle(cornerRadius: geometry.size.height / 2,
+                             style: .continuous)
+                .stroke(lineWidth: 0.5)
+                .foregroundColor(status.isSelected ? .clear : Color("tag_separator", bundle: Bundle.this))
         })
         .onChangeFrame {
             cornerRadius = $0.height / 2
