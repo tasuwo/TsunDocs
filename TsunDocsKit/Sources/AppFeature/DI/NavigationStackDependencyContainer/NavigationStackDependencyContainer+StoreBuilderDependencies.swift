@@ -72,8 +72,10 @@ extension NavigationStackDependencyContainer: TsundocInfoViewBuildable {
 extension NavigationStackDependencyContainer: SettingViewBuilder {
     // MARK: - SettingViewBuilder
 
-    public func buildSettingView() -> AnyView {
-        let store = Store(initialState: SettingViewState(),
+    public func buildSettingView(appVersion: String) -> AnyView {
+        // swiftlint:disable:next force_cast force_unwrapping
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        let store = Store(initialState: SettingViewState(appVersion: appVersion),
                           dependency: self,
                           reducer: SettingViewReducer())
         return AnyView(SettingView(store: ViewStore(store: store)))

@@ -39,11 +39,11 @@ public class SettingViewBuilderMock: SettingViewBuilder {
     public init() { }
 
     public private(set) var buildSettingViewCallCount = 0
-    public var buildSettingViewHandler: (() -> (AnyView))?
-    public func buildSettingView() -> AnyView {
+    public var buildSettingViewHandler: ((String) -> (AnyView))?
+    public func buildSettingView(appVersion: String) -> AnyView {
         buildSettingViewCallCount += 1
         if let buildSettingViewHandler = buildSettingViewHandler {
-            return buildSettingViewHandler()
+            return buildSettingViewHandler(appVersion)
         }
         fatalError("buildSettingViewHandler returns can't have a default value thus its handler must be set")
     }

@@ -27,3 +27,8 @@
 "user_interface_style_setting_view.row.dark" = "Dark";
 "user_interface_style_setting_view.row.light" = "Light";
 "user_interface_style_setting_view.row.unspecified" = "Unspecified";
+
+"cancel" = "Cancel";
+
+"alert.action.ok" = "OK";
+"alert.action.cancel" = "Cancel";

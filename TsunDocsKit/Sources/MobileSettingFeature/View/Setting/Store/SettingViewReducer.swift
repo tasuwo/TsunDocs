@@ -116,9 +116,6 @@ extension SettingViewReducer {
         var nextState = state
         nextState.isiCloudSyncInternalSettingEnabled = dependency.userSettingStorage.isiCloudSyncEnabledValue
 
-        // swiftlint:disable:next force_cast force_unwrapping
-        nextState.appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String?
-
         return (nextState, [iCloudSyncSettingEffect, cloudKitAvailabilityEffect])
     }
 }

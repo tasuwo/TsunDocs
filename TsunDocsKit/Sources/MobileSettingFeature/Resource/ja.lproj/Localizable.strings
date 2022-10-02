@@ -28,3 +28,7 @@
 "user_interface_style_setting_view.row.light" = "ライト";
 "user_interface_style_setting_view.row.unspecified" = "端末に合わせる";
 
+"cancel" = "キャンセル";
+
+"alert.action.ok" = "OK";
+"alert.action.cancel" = "キャンセル";

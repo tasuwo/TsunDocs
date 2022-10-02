@@ -25,14 +25,16 @@ public struct SettingViewState: Equatable {
         }
     }
 
+    let appVersion: String
     var isiCloudSyncInternalSettingEnabled: Bool = false
     var alert: Alert?
     var cloudKitAvailability: CloudKitAvailability?
-    var appVersion: String?
 
     // MARK: - Initializers
 
-    public init() {}
+    public init(appVersion: String) {
+        self.appVersion = appVersion
+    }
 }
 
 extension SettingViewState {

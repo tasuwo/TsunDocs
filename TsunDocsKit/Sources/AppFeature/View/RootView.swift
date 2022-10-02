@@ -175,7 +175,7 @@ struct RootView_Previews: PreviewProvider {
             AnyView(Color.yellow)
         }
 
-        func buildSettingView() -> AnyView {
+        func buildSettingView(appVersion: String) -> AnyView {
             AnyView(Color.black)
         }
 

@@ -50,7 +50,7 @@ public struct SettingView: View {
                 HStack {
                     Text("setting_view.row.app_version.title", bundle: Bundle.module)
                     Spacer()
-                    Text(store.state.appVersion ?? "")
+                    Text(store.state.appVersion)
                         .foregroundColor(.secondary)
                 }
             }
@@ -110,10 +110,65 @@ public struct SettingView: View {
     }
 }
 
+#if DEBUG
+import Combine
+import CoreDataCloudKitHelper
+import PreviewContent
+
 struct SettingView_Previews: PreviewProvider {
+    class Dependency: SettingViewDependency {
+        private var availability: CurrentValueSubject<CloudKitAvailability?, Never>
+        private var isiCloudSyncEnabled: CurrentValueSubject<Bool, Never> = .init(false)
+
+        private var cancellables: Set<AnyCancellable> = .init()
+
+        var cloudKitAvailabilityObserver: CloudKitAvailabilityObservable
+        var userSettingStorage: UserSettingStorage
+
+        init(cloudKitAvailability: CloudKitAvailability?) {
+            let storage = UserSettingStorageMock()
+            storage.isiCloudSyncEnabled = isiCloudSyncEnabled.eraseToAnyPublisher()
+            storage.isiCloudSyncEnabledValue = false
+            userSettingStorage = storage
+
+            availability = .init(cloudKitAvailability)
+            let observer = CloudKitAvailabilityObservableMock()
+            observer.availability = availability.mapError({ _ in NSError() }).eraseToAnyPublisher()
+            observer.fetchAvailabilityHandler = { .unavailable }
+            cloudKitAvailabilityObserver = observer
+
+            isiCloudSyncEnabled
+                .assign(to: \.isiCloudSyncEnabledValue, on: storage)
+                .store(in: &cancellables)
+        }
+    }
+
+    struct ContentView: View {
+        @StateObject var store: ViewStore<SettingViewState, SettingViewAction, SettingViewDependency>
+        @StateObject var router: StackRouter = .init()
+
+        public init(cloudKitAvailability: CloudKitAvailability?) {
+            let store = Store(initialState: SettingViewState(appVersion: "1.0"),
+                              dependency: Dependency(cloudKitAvailability: cloudKitAvailability),
+                              reducer: SettingViewReducer())
+            let viewStore = ViewStore(store: store)
+            self._store = .init(wrappedValue: viewStore)
+        }
+
+        var body: some View {
+            NavigationStack(path: $router.stack) {
+                SettingView(store: store)
+            }
+        }
+    }
+
     static var previews: some View {
-        NavigationView {
-            // SettingView()
+        Group {
+            ContentView(cloudKitAvailability: nil)
+            ContentView(cloudKitAvailability: .unavailable)
+            ContentView(cloudKitAvailability: .available(accountId: "id"))
         }
     }
 }
+
+#endif

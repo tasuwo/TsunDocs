@@ -53,6 +53,10 @@ let package = Package(
             targets: ["TagMultiSelectionFeature"]
         ),
         .library(
+            name: "MobileSettingFeature",
+            targets: ["MobileSettingFeature"]
+        ),
+        .library(
             name: "UIComponent",
             targets: ["UIComponent"]
         ),
