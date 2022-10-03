@@ -27,23 +27,25 @@ struct TsundocCell: View {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     Text(tsundoc.title)
-                        .lineLimit(2)
+                        .font(.headline)
+                        .lineLimit(3)
                         .foregroundColor(.primary)
                         .padding(.top, 4.0)
 
                     Spacer()
-                        .frame(height: 4.0)
+                        .frame(height: 8.0)
 
                     if let description = tsundoc.description {
                         Text(description)
-                            .font(.caption)
-                            .lineLimit(2)
+                            .font(.subheadline)
+                            .lineLimit(3)
                             .foregroundColor(.secondary)
                     }
                 }
 
                 Spacer(minLength: 0)
             }
+            .padding(.top, 4)
 
             Spacer()
 
@@ -62,6 +64,7 @@ struct TsundocCell: View {
                 Spacer()
             }
         }
+        .listRowInsets(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
     }
 }
 
@@ -104,6 +107,7 @@ struct TsundocCell_Previews: PreviewProvider {
                                                       isUnread: true))
                         .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 }
+                .listStyle(GroupedListStyle())
                 .navigationTitle("TsundocCell")
             }
             .preferredColorScheme(.light)
@@ -135,6 +139,7 @@ struct TsundocCell_Previews: PreviewProvider {
                                                       isUnread: true))
                         .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(FailureMock.self)) })
                 }
+                .listStyle(GroupedListStyle())
                 .navigationTitle("TsundocCell")
             }
             .preferredColorScheme(.dark)

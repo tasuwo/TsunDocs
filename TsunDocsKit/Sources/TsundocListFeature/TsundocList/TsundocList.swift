@@ -49,6 +49,7 @@ public struct TsundocList: View {
                 List(store.state.filteredTsundocs) {
                     cell($0)
                 }
+                .listStyle(GroupedListStyle())
             }
         }
         .navigationTitle(title)
