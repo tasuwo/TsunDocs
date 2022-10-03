@@ -316,22 +316,41 @@ struct TsundocList_Previews: PreviewProvider {
             return service
         }
 
-        var router: Router {
-            StackRouter()
+        var router: Router
+
+        init(router: Router) {
+            self.router = router
+        }
+    }
+
+    struct ContentView: View {
+        @StateObject var store: ViewStore<TsundocListState, TsundocListAction, TsundocListDependency>
+        @StateObject var router: StackRouter
+
+        init() {
+            let router = StackRouter()
+            let store = Store(initialState: TsundocListState(query: .all),
+                              dependency: DummyDependency(router: router),
+                              reducer: TsundocListReducer())
+            let viewStore = ViewStore(store: store)
+            self._store = .init(wrappedValue: viewStore)
+            self._router = .init(wrappedValue: router)
+        }
+
+        var body: some View {
+            NavigationStack(path: $router.stack) {
+                TsundocList(title: L10n.tsundocListTitle,
+                            emptyTitle: L10n.tsundocListEmptyMessageDefaultTitle,
+                            emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
+                            isTsundocCreationEnabled: true,
+                            store: store)
+            }
         }
     }
 
     static var previews: some View {
-        let store = Store(initialState: TsundocListState(query: .all),
-                          dependency: DummyDependency(),
-                          reducer: TsundocListReducer())
-        let viewStore = ViewStore(store: store)
-        NavigationView {
-            TsundocList(title: L10n.tsundocListTitle,
-                        emptyTitle: L10n.tsundocListEmptyMessageDefaultTitle,
-                        emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
-                        isTsundocCreationEnabled: true,
-                        store: viewStore)
+        Group {
+            ContentView()
         }
     }
 }
