@@ -95,9 +95,47 @@ public struct TagList: View {
 
 // MARK: - Preview
 
+#if DEBUG
+
+import Environment
+import PreviewContent
+
 struct TagList_Previews: PreviewProvider {
+    struct ContentView: View {
+        @StateObject var store: TagList.Store
+        @StateObject var filterStore: TagList.FilterStore
+        @StateObject var router: StackRouter
+
+        init() {
+            let router = StackRouter()
+            let tagControlStore = CompositeKit.Store(initialState: TagControlState(),
+                                                     dependency: TagControlDependencyMock(router: router),
+                                                     reducer: TagControlReducer())
+
+            let filterStore = CompositeKit.Store(initialState: SearchableFilterState<Tag>(items: []),
+                                                 dependency: (),
+                                                 reducer: SearchableFilterReducer<Tag>())
+                .connect(tagControlStore.connection(at: \.tags, { SearchableFilterAction.updateItems($0) }))
+                .eraseToAnyStoring()
+
+            self._store = .init(wrappedValue: ViewStore(store: tagControlStore))
+            self._filterStore = .init(wrappedValue: ViewStore(store: filterStore))
+            self._router = .init(wrappedValue: router)
+        }
+
+        var body: some View {
+            NavigationStack(path: $router.stack) {
+                TagList(store: store, filterStore: filterStore)
+                    .navigationDestination(for: AppRoute.TsundocList.self) { tsundocList in
+                        Text("Tsundoc List")
+                    }
+            }
+        }
+    }
+
     static var previews: some View {
-        // TODO:
-        EmptyView()
+        ContentView()
     }
 }
+
+#endif

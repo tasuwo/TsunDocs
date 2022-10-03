@@ -49,6 +49,10 @@ let package = Package(
             targets: ["TsundocListFeature"]
         ),
         .library(
+            name: "TagListFeature",
+            targets: ["TagListFeature"]
+        ),
+        .library(
             name: "TagMultiSelectionFeature",
             targets: ["TagMultiSelectionFeature"]
         ),

@@ -216,11 +216,11 @@ public class TagControlDependencyMock: TagControlDependency {
         return PasteboardMock()
     }
 
-    public var router: Router {
-        return StackRouter()
-    }
+    public var router: Router
 
-    public init() {}
+    public init(router: Router) {
+        self.router = router
+    }
 }
 
 #endif
