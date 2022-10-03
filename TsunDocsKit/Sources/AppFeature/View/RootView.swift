@@ -129,7 +129,8 @@ public struct RootView<Container>: View where Container: DependencyContainer {
 
     @ViewBuilder
     func settingView() -> some View {
-        settingTabStackContainer.buildSettingView()
+        // swiftlint:disable:next force_cast force_unwrapping
+        settingTabStackContainer.buildSettingView(appVersion: Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)
             .environment(\.tagMultiSelectionSheetBuilder, settingTabStackContainer)
             .environment(\.tsundocCreateViewBuilder, settingTabStackContainer)
     }
