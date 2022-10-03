@@ -1,1 +1,2 @@
-First release of this app!
+- Fix minor bugs.
+- Support only iOS 16+
