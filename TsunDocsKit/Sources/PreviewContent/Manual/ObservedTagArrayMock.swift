@@ -2,6 +2,8 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+#if DEBUG
+
 import Combine
 import Domain
 
@@ -19,3 +21,5 @@ public class ObservedTagArrayMock: ObservedEntityArray {
         set { _values = newValue }
     }
 }
+
+#endif
