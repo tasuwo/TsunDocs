@@ -90,9 +90,12 @@ public struct TsundocEditThumbnail: View {
         }
         .sheet(isPresented: $isSelectingEmoji) {
             NavigationView {
-                EmojiList(backgroundColors: EmojiBackgroundColor.self) { emoji, backgrounColor in
+                EmojiList(currentEmoji: selectedEmojiInfo?.emoji,
+                          backgroundColors: EmojiBackgroundColor.self) { emoji, backgrounColor in
                     isSelectingEmoji = false
                     selectedEmojiInfo = .init(emoji: emoji, backgroundColor: backgrounColor)
+                } onCancel: {
+                    isSelectingEmoji = false
                 }
             }
         }

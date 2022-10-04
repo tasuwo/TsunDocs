@@ -60,10 +60,12 @@ public struct TsundocList: View {
                     store.execute(.selectTags(Set($0.map(\.id)), tsundocId))
                 }
 
-            case let .emojiSelection(tsundocId):
+            case let .emojiSelection(tsundocId, emoji):
                 NavigationView {
-                    EmojiList(backgroundColors: EmojiBackgroundColor.self) { emoji, backgrounColor in
+                    EmojiList(currentEmoji: emoji, backgroundColors: EmojiBackgroundColor.self) { emoji, backgrounColor in
                         store.execute(.updateEmojiInfo(.init(emoji: emoji, backgroundColor: backgrounColor), tsundocId))
+                    } onCancel: {
+                        store.execute(.dismissModal)
                     }
                 }
 

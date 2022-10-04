@@ -20,6 +20,7 @@ public struct EmojiList<BackgroundColor>: View where BackgroundColor: PickColor,
 
     let backgroundColors: BackgroundColor.Type
 
+    @State var currentEmoji: Emoji?
     @State var emojis: [Emoji]
     @State var backgroundColorRawValue: BackgroundColor.RawValue = BackgroundColor.default.rawValue
 
@@ -29,13 +30,20 @@ public struct EmojiList<BackgroundColor>: View where BackgroundColor: PickColor,
     @Environment(\.horizontalSizeClass) var sizeClass
     @Environment(\.presentationMode) var presentationMode
 
-    private let onSelected: (Emoji, BackgroundColor) -> Void
+    private let onSave: (Emoji, BackgroundColor) -> Void
+    private let onCancel: () -> Void
 
     // MARK: - Initializers
 
-    public init(backgroundColors: BackgroundColor.Type, onSelected: @escaping (Emoji, BackgroundColor) -> Void) {
+    public init(currentEmoji: Emoji?,
+                backgroundColors: BackgroundColor.Type,
+                onSave: @escaping (Emoji, BackgroundColor) -> Void,
+                onCancel: @escaping () -> Void)
+    {
+        _currentEmoji = .init(wrappedValue: currentEmoji)
         self.backgroundColors = backgroundColors
-        self.onSelected = onSelected
+        self.onSave = onSave
+        self.onCancel = onCancel
 
         let emojis = allEmojis
         _emojis = State(wrappedValue: emojis)
@@ -59,9 +67,15 @@ public struct EmojiList<BackgroundColor>: View where BackgroundColor: PickColor,
                         pinnedViews: []
                     ) {
                         ForEach(filterStore.state.filteredItems) { emoji in
-                            EmojiCell(emoji: emoji, backgroundColor: backgroundColors.init(rawValue: backgroundColorRawValue)!.swiftUIColor)
+                            EmojiCell(emoji: emoji,
+                                      backgroundColor: backgroundColors.init(rawValue: backgroundColorRawValue)!.swiftUIColor,
+                                      isSelected: emoji == currentEmoji)
                                 .onTapGesture {
-                                    onSelected(emoji, backgroundColors.init(rawValue: backgroundColorRawValue)!)
+                                    if emoji == currentEmoji {
+                                        currentEmoji = nil
+                                    } else {
+                                        currentEmoji = emoji
+                                    }
                                 }
                         }
                     }
@@ -72,7 +86,11 @@ public struct EmojiList<BackgroundColor>: View where BackgroundColor: PickColor,
                     .hidden()
             }
             .searchable(text: $engine.input, placement: .navigationBarDrawer(displayMode: .always))
-            .navigationTitle(Text("emoji_list_title", bundle: Bundle.this))
+            .navigationTitle(
+                currentEmoji == nil
+                    ? L10n.EmojiList.title
+                    : L10n.EmojiList.selectedTitle(currentEmoji!.emoji)
+            )
             .navigationBarTitleDisplayMode(.inline)
             .onChange(of: engine.output) { query in
                 filterStore.execute(.updateQuery(query), animation: .default)
@@ -84,6 +102,24 @@ public struct EmojiList<BackgroundColor>: View where BackgroundColor: PickColor,
             VStack {
                 Spacer()
                 colorPicker()
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    onSave(currentEmoji!, backgroundColors.init(rawValue: backgroundColorRawValue)!)
+                } label: {
+                    Text(L10n.save)
+                }
+                .disabled(currentEmoji == nil)
+            }
+
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    onCancel()
+                } label: {
+                    Text(L10n.cancel)
+                }
             }
         }
     }
@@ -146,10 +182,13 @@ struct EmojiList_Previews: PreviewProvider {
             }
             .sheet(isPresented: $isPresenting) {
                 NavigationView {
-                    EmojiList(backgroundColors: DefaultPickColor.self) {
+                    EmojiList(currentEmoji: nil,
+                              backgroundColors: DefaultPickColor.self) {
                         selectedEmoji = $0
                         selectedBackgroundColor = $1
                         withAnimation { isPresenting = false }
+                    } onCancel: {
+                        isPresenting = false
                     }
                 }
             }

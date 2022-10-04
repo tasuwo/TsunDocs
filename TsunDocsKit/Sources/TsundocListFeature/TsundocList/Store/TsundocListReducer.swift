@@ -106,7 +106,10 @@ public struct TsundocListReducer: Reducer {
             return (nextState, nil)
 
         case let .tap(tsundocId, .addEmoji):
-            nextState.modal = .emojiSelection(tsundocId)
+            guard let tsundoc = state.tsundocs.first(where: { $0.id == tsundocId }) else {
+                return (nextState, nil)
+            }
+            nextState.modal = .emojiSelection(tsundocId, tsundoc.emoji)
             return (nextState, nil)
 
         case let .tap(tsundocId, .delete):
