@@ -20,7 +20,8 @@ public struct TagGrid: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
     private let configuration: Configuration
-    private let spacing: CGFloat
+    private let vspacing: CGFloat
+    private let hspacing: CGFloat
     private let inset: CGFloat
     private let onPerform: ((Action) -> Void)?
 
@@ -29,14 +30,16 @@ public struct TagGrid: View {
     public init(tags: [Tag],
                 selectedIds: Set<Tag.ID>,
                 configuration: Configuration = .init(.default),
-                spacing: CGFloat = 8,
+                vspacing: CGFloat = 10,
+                hspacing: CGFloat = 8,
                 inset: CGFloat = 8,
                 onPerform: ((Action) -> Void)? = nil)
     {
         self.tags = tags
         self.selectedIds = selectedIds
         self.configuration = configuration
-        self.spacing = spacing
+        self.vspacing = vspacing
+        self.hspacing = hspacing
         self.inset = inset
         self.onPerform = onPerform
     }
@@ -45,9 +48,9 @@ public struct TagGrid: View {
 
     public var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: spacing) {
+            VStack(alignment: .leading, spacing: vspacing) {
                 ForEach(calcRows(), id: \.self) { tags in
-                    HStack(spacing: spacing) {
+                    HStack(spacing: hspacing) {
                         ForEach(tags) {
                             cell($0)
                         }
@@ -192,10 +195,10 @@ public struct TagGrid: View {
                 rows[currentRow].append(tag)
 
                 remainingWidth -= cellSize.width
-            } else if remainingWidth - (cellSize.width + spacing) >= 0 {
+            } else if remainingWidth - (cellSize.width + hspacing) >= 0 {
                 rows[currentRow].append(tag)
 
-                remainingWidth -= (cellSize.width + spacing)
+                remainingWidth -= (cellSize.width + hspacing)
             } else {
                 currentRow += 1
                 rows.append([tag])
