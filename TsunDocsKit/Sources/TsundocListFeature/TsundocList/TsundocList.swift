@@ -118,6 +118,7 @@ public struct TsundocList: View {
             } onBack: {
                 store.execute(.tapBackButton)
             }
+            .toolbar(.hidden, for: .tabBar)
         }
     }
 
