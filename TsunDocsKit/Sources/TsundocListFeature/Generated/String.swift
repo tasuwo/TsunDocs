@@ -51,6 +51,13 @@ internal enum L10n {
     /// マイリスト
     internal static let tsundocListTitle = L10n.tr("Localizable", "tsundoc_list_title")
 
+    internal enum BrowserMenuItem {
+        internal enum Title {
+            /// 情報の編集
+            internal static let edit = L10n.tr("Localizable", "browser_menu_item.title.edit")
+        }
+    }
+
     internal enum TsundocList {
         internal enum Alert {
             internal enum TsundocUrl {

@@ -81,7 +81,7 @@ struct BrowseToolBar_Previews: PreviewProvider {
                         // NOP
                     } label: {
                         Label {
-                            Text(L10n.browseViewButtonEdit)
+                            Text("Edit Info")
                         } icon: {
                             Image(systemName: "pencil")
                         }

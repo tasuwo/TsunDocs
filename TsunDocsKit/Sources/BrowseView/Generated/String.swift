@@ -12,8 +12,6 @@ import Foundation
 internal enum L10n {
     /// 閉じる
     internal static let browseViewButtonClose = L10n.tr("Localizable", "browse_view_button_close")
-    /// 情報の編集
-    internal static let browseViewButtonEdit = L10n.tr("Localizable", "browse_view_button_edit")
     /// Safariで開く
     internal static let browseViewButtonSafari = L10n.tr("Localizable", "browse_view_button_safari")
     /// 読み込み中...

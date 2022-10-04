@@ -114,7 +114,15 @@ public struct TsundocList: View {
         }
         .navigationDestination(for: AppRoute.Browse.self) { route in
             BrowseView(baseUrl: route.tsundoc.url) {
-                store.execute(.tap(route.tsundoc.id, .editInfo))
+                Button {
+                    store.execute(.tap(route.tsundoc.id, .editInfo))
+                } label: {
+                    Label {
+                        Text(L10n.BrowserMenuItem.Title.edit)
+                    } icon: {
+                        Image(systemName: "pencil")
+                    }
+                }
             } onBack: {
                 store.execute(.tapBackButton)
             }

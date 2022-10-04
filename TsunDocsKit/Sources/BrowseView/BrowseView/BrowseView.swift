@@ -5,13 +5,15 @@
 import Foundation
 import SwiftUI
 
-public struct BrowseView: View {
+public struct BrowseView<MenuContent: View>: View {
     // MARK: - Properties
 
     private let baseUrl: URL
-    private let onEdit: () -> Void
     private let onBack: (() -> Void)?
     private let onClose: (() -> Void)?
+
+    @ViewBuilder
+    private let menuBuilder: () -> MenuContent
 
     @State private var action: WebView.Action?
 
@@ -31,12 +33,12 @@ public struct BrowseView: View {
     // MARK: - Initializers
 
     public init(baseUrl: URL,
-                onEdit: @escaping () -> Void,
+                @ViewBuilder menu: @escaping () -> MenuContent,
                 onBack: (() -> Void)? = nil,
                 onClose: (() -> Void)? = nil)
     {
         self.baseUrl = baseUrl
-        self.onEdit = onEdit
+        self.menuBuilder = menu
         self.onBack = onBack
         self.onClose = onClose
     }
@@ -182,15 +184,7 @@ public struct BrowseView: View {
             }
             .disabled(currentUrl == nil)
 
-            Button {
-                onEdit()
-            } label: {
-                Label {
-                    Text(L10n.browseViewButtonEdit)
-                } icon: {
-                    Image(systemName: "pencil")
-                }
-            }
+            menuBuilder()
         } label: {
             Image(systemName: "ellipsis")
                 .padding([.top, .bottom])
@@ -212,7 +206,15 @@ struct BrowseView_Previews: PreviewProvider {
                 NavigationView {
                     // swiftlint:disable:next force_unwrapping
                     BrowseView(baseUrl: URL(string: "https://www.apple.com")!) {
-                        // NOP
+                        Button {
+                            // NOP
+                        } label: {
+                            Label {
+                                Text("Edit Info")
+                            } icon: {
+                                Image(systemName: "pencil")
+                            }
+                        }
                     } onClose: {
                         isPresenting = false
                     }
