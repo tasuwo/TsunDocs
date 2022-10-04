@@ -54,7 +54,9 @@ internal enum L10n {
     internal enum BrowserMenuItem {
         internal enum Title {
             /// 情報の編集
-            internal static let edit = L10n.tr("Localizable", "browser_menu_item.title.edit")
+            internal static let editInfo = L10n.tr("Localizable", "browser_menu_item.title.edit_info")
+            /// タグの編集
+            internal static let editTag = L10n.tr("Localizable", "browser_menu_item.title.edit_tag")
         }
     }
 

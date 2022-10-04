@@ -34,6 +34,7 @@
 "tsundoc_list.alert.tsundoc_url.title" = "Create New Article";
 "tsundoc_list.alert.tsundoc_url.message" = "Enter a url of arcitle";
 
-"browser_menu_item.title.edit" = "Edit Info";
+"browser_menu_item.title.edit_info" = "Edit Info";
+"browser_menu_item.title.edit_tag" = "Edit Tag";
 
 "cancel" = "Cancel";

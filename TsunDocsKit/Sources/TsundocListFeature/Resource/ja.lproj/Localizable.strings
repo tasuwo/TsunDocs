@@ -34,6 +34,7 @@
 "tsundoc_list.alert.tsundoc_url.title" = "記事を作成";
 "tsundoc_list.alert.tsundoc_url.message" = "作成したい記事のURLを入力してください";
 
-"browser_menu_item.title.edit" = "情報の編集";
+"browser_menu_item.title.edit_info" = "情報の編集";
+"browser_menu_item.title.edit_tag" = "タグの編集";
 
 "cancel" = "キャンセル";
