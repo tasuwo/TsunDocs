@@ -6,6 +6,8 @@ import Foundation
 import SwiftUI
 
 public struct BrowseView<MenuContent: View>: View {
+    let minSize: CGFloat = 44
+
     // MARK: - Properties
 
     private let baseUrl: URL
@@ -54,6 +56,7 @@ public struct BrowseView<MenuContent: View>: View {
                             onBack()
                         } label: {
                             Image(systemName: "chevron.backward")
+                                .frame(minWidth: minSize, minHeight: minSize)
                         }
                     }
 
@@ -62,6 +65,7 @@ public struct BrowseView<MenuContent: View>: View {
                             onClose()
                         } label: {
                             Text("browse_view_button_close", bundle: Bundle.module)
+                                .frame(minWidth: minSize, minHeight: minSize)
                         }
                     }
 
@@ -82,12 +86,14 @@ public struct BrowseView<MenuContent: View>: View {
                             action = .stopLoading
                         } label: {
                             Image(systemName: "xmark")
+                                .frame(minWidth: minSize, minHeight: minSize)
                         }
                     } else {
                         Button {
                             action = .reload
                         } label: {
                             Image(systemName: "arrow.clockwise")
+                                .frame(minWidth: minSize, minHeight: minSize)
                         }
                     }
                 }
@@ -145,6 +151,7 @@ public struct BrowseView<MenuContent: View>: View {
             action = .goBack
         } label: {
             Image(systemName: "chevron.left")
+                .frame(minWidth: minSize, minHeight: minSize)
         }
         .disabled(!canGoBack)
     }
@@ -155,6 +162,7 @@ public struct BrowseView<MenuContent: View>: View {
             action = .goForward
         } label: {
             Image(systemName: "chevron.right")
+                .frame(minWidth: minSize, minHeight: minSize)
         }
         .disabled(!canGoForward)
     }
@@ -165,6 +173,7 @@ public struct BrowseView<MenuContent: View>: View {
             isPresentShareSheet = true
         } label: {
             Image(systemName: "square.and.arrow.up")
+                .frame(minWidth: minSize, minHeight: minSize)
         }
         .disabled(currentUrl == nil)
     }
@@ -187,7 +196,7 @@ public struct BrowseView<MenuContent: View>: View {
             menuBuilder()
         } label: {
             Image(systemName: "ellipsis")
-                .padding([.top, .bottom])
+                .frame(minWidth: minSize, minHeight: minSize)
         }
     }
 }
