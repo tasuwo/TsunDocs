@@ -11,6 +11,7 @@ public struct TsundocMetaContainer: View {
 
     private let url: URL
     private let imageUrl: URL?
+    private let isPreparing: Bool
 
     @Binding var title: String
     @Binding var selectedEmojiInfo: EmojiInfo?
@@ -21,11 +22,13 @@ public struct TsundocMetaContainer: View {
 
     public init(url: URL,
                 imageUrl: URL?,
+                isPreparing: Bool,
                 title: Binding<String>,
                 selectedEmojiInfo: Binding<EmojiInfo?>)
     {
         self.url = url
         self.imageUrl = imageUrl
+        self.isPreparing = isPreparing
         _title = title
         _selectedEmojiInfo = selectedEmojiInfo
     }
@@ -35,28 +38,35 @@ public struct TsundocMetaContainer: View {
     public var body: some View {
         HStack(alignment: .top) {
             VStack {
-                TsundocEditThumbnail(imageUrl: imageUrl, selectedEmojiInfo: $selectedEmojiInfo)
+                TsundocEditThumbnail(imageUrl: imageUrl,
+                                     isPreparing: isPreparing,
+                                     selectedEmojiInfo: $selectedEmojiInfo)
             }
 
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    if !title.isEmpty {
+                    if isPreparing {
+                        Text("tsundoc_edit_view_preparing_title", bundle: Bundle.this)
+                            .foregroundColor(.gray)
+                            .font(.body)
+                    } else if !title.isEmpty {
                         Text(title)
                             .lineLimit(4)
                             .font(.body)
                     } else {
                         Text("tsundoc_edit_view_no_title", bundle: Bundle.this)
                             .foregroundColor(.gray)
-                            .font(.title3)
+                            .font(.body)
                     }
 
                     Image(systemName: "pencil.circle.fill")
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(isPreparing ? .gray.opacity(0.6) : .accentColor)
                         .font(.system(size: 24))
                 }
                 .onTapGesture {
                     isTitleEditAlertPresenting = true
                 }
+                .allowsHitTesting(!isPreparing)
 
                 Text(url.absoluteString)
                     .lineLimit(2)
@@ -88,12 +98,20 @@ struct TsundocMetaContainer_Previews: PreviewProvider {
         let imageUrl: URL?
         @State var title: String
         @State var selectedEmojiInfo: EmojiInfo?
+        @State var isPreparing: Bool = false
 
         var body: some View {
-            TsundocMetaContainer(url: url,
-                                 imageUrl: imageUrl,
-                                 title: $title,
-                                 selectedEmojiInfo: $selectedEmojiInfo)
+            VStack {
+                TsundocMetaContainer(url: url,
+                                     imageUrl: imageUrl,
+                                     isPreparing: isPreparing,
+                                     title: $title,
+                                     selectedEmojiInfo: $selectedEmojiInfo)
+
+                Toggle(isOn: $isPreparing) {
+                    Text("isPreparing")
+                }
+            }
         }
     }
 

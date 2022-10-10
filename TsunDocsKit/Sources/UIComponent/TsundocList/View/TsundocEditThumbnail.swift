@@ -14,6 +14,7 @@ public struct TsundocEditThumbnail: View {
     public static let padding: CGFloat = 32 / 2 - 6
 
     private let imageUrl: URL?
+    private let isPreparing: Bool
 
     @Binding private var selectedEmojiInfo: EmojiInfo?
 
@@ -27,9 +28,11 @@ public struct TsundocEditThumbnail: View {
     // MARK: - Initializers
 
     public init(imageUrl: URL?,
+                isPreparing: Bool,
                 selectedEmojiInfo: Binding<EmojiInfo?>)
     {
         self.imageUrl = imageUrl
+        self.isPreparing = isPreparing
         _selectedEmojiInfo = selectedEmojiInfo
     }
 
@@ -37,7 +40,10 @@ public struct TsundocEditThumbnail: View {
 
     private var thumbnail: some View {
         ZStack {
-            if let emojiInfo = selectedEmojiInfo {
+            if isPreparing {
+                Color.gray.opacity(0.4)
+                    .overlay(ProgressView())
+            } else if let emojiInfo = selectedEmojiInfo {
                 Button {
                     isSelectingEmoji = true
                 } label: {
@@ -114,6 +120,7 @@ public struct TsundocEditThumbnail: View {
                 }
                 .offset(x: -1 * (Self.thumbnailSize / 2) + 5,
                         y: -1 * (Self.thumbnailSize / 2) + 5)
+                .disabled(isPreparing)
             }
 
             if visibleEmojiLoadButton {
@@ -122,12 +129,14 @@ public struct TsundocEditThumbnail: View {
                 }
                 .offset(x: (Self.thumbnailSize / 2) - 6,
                         y: (Self.thumbnailSize / 2) - 6)
+                .disabled(isPreparing)
             } else if !visibleDeleteButton {
                 Badge(image: Image(systemName: "plus")) {
                     isSelectingEmoji = true
                 }
                 .offset(x: (Self.thumbnailSize / 2) - 6,
                         y: (Self.thumbnailSize / 2) - 6)
+                .disabled(isPreparing)
             }
         }
     }
@@ -139,14 +148,24 @@ public struct TsundocEditThumbnail: View {
 
 struct SharedUrlThumbnailView_Previews: PreviewProvider {
     struct Container: View {
+        @State var isPreparing: Bool = false
         @State var selectedEmojiInfo: EmojiInfo?
 
         let imageUrl: URL?
         let imageLoaderFactory: Factory<ImageLoader>
 
         var body: some View {
-            TsundocEditThumbnail(imageUrl: imageUrl, selectedEmojiInfo: $selectedEmojiInfo)
-                .environment(\.imageLoaderFactory, imageLoaderFactory)
+            HStack {
+                TsundocEditThumbnail(imageUrl: imageUrl,
+                                     isPreparing: isPreparing,
+                                     selectedEmojiInfo: $selectedEmojiInfo)
+                VStack {
+                    Toggle(isOn: $isPreparing) {
+                        Text("isPreparing")
+                    }
+                }
+            }
+            .environment(\.imageLoaderFactory, imageLoaderFactory)
         }
     }
 

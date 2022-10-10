@@ -21,6 +21,7 @@ public struct TsundocCreateViewState: Equatable {
     var selectedTags: [Tag] = []
 
     var isUnread: Bool = true
+    var isPreparing: Bool = true
 
     var alert: Alert?
 

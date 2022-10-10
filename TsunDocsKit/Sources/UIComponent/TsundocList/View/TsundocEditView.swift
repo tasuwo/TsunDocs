@@ -11,6 +11,7 @@ public struct TsundocEditView<TagMultiSelectionSheet: View>: View {
 
     private let url: URL
     private let imageUrl: URL?
+    private let isPreparing: Bool
     private let onTapSaveButton: () -> Void
     private let tagMultiSelectionSheetBuilder: (Set<Tag.ID>, @escaping ([Tag]) -> Void) -> TagMultiSelectionSheet
 
@@ -25,6 +26,7 @@ public struct TsundocEditView<TagMultiSelectionSheet: View>: View {
 
     public init(url: URL,
                 imageUrl: URL?,
+                isPreparing: Bool,
                 title: Binding<String>,
                 selectedEmojiInfo: Binding<EmojiInfo?>,
                 selectedTags: Binding<[Tag]>,
@@ -34,6 +36,7 @@ public struct TsundocEditView<TagMultiSelectionSheet: View>: View {
     {
         self.url = url
         self.imageUrl = imageUrl
+        self.isPreparing = isPreparing
         _title = title
         _selectedEmojiInfo = selectedEmojiInfo
         _selectedTags = selectedTags
@@ -47,7 +50,11 @@ public struct TsundocEditView<TagMultiSelectionSheet: View>: View {
     @MainActor
     public var body: some View {
         VStack {
-            TsundocMetaContainer(url: url, imageUrl: imageUrl, title: $title, selectedEmojiInfo: $selectedEmojiInfo)
+            TsundocMetaContainer(url: url,
+                                 imageUrl: imageUrl,
+                                 isPreparing: isPreparing,
+                                 title: $title,
+                                 selectedEmojiInfo: $selectedEmojiInfo)
 
             Divider()
 
@@ -56,6 +63,7 @@ public struct TsundocEditView<TagMultiSelectionSheet: View>: View {
                     Text("tsundoc_edit_view_unread_toggle", bundle: Bundle.this)
                 }
                 .toggleStyle(.switch)
+                .disabled(isPreparing)
             }
             .padding([.leading, .trailing], TsundocEditThumbnail.padding)
 
@@ -76,6 +84,7 @@ public struct TsundocEditView<TagMultiSelectionSheet: View>: View {
                 }
             }
             .buttonStyle(PrimaryButtonStyle())
+            .disabled(isPreparing)
             .padding()
         }
         .padding(8)
@@ -96,14 +105,15 @@ public struct TsundocEditView<TagMultiSelectionSheet: View>: View {
                 Spacer()
 
                 Image(systemName: "plus")
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(isPreparing ? .gray.opacity(0.6) : .accentColor)
                     .font(.system(size: 24))
                     .onTapGesture {
                         isTagEditSheetPresenting = true
                     }
+                    .allowsHitTesting(!isPreparing)
             }
 
-            if !selectedTags.isEmpty {
+            if !selectedTags.isEmpty, !isPreparing {
                 TagGrid(tags: selectedTags, selectedIds: .init(), configuration: .init(.deletable), inset: 0) { action in
                     switch action {
                     case let .delete(tagId: tagId):
@@ -131,6 +141,7 @@ public struct TsundocEditView<TagMultiSelectionSheet: View>: View {
 
 struct TsundocEditView_Previews: PreviewProvider {
     struct ContentView: View {
+        @State private var isPreparing: Bool = false
         @State private var title: String = "My Title"
         @State private var selectedEmojiInfo: EmojiInfo? = nil
         @State private var selectedTags: [Tag] = []
@@ -139,15 +150,24 @@ struct TsundocEditView_Previews: PreviewProvider {
         init() {}
 
         var body: some View {
-            TsundocEditView(url: URL(string: "https://localhost")!,
-                            imageUrl: nil,
-                            title: $title,
-                            selectedEmojiInfo: $selectedEmojiInfo,
-                            selectedTags: $selectedTags,
-                            isUnread: $isUnread) {
-                // NOP
-            } tagMultiSelectionSheetBuilder: { _, _ in
-                EmptyView()
+            VStack {
+                TsundocEditView(url: URL(string: "https://localhost")!,
+                                imageUrl: nil,
+                                isPreparing: isPreparing,
+                                title: $title,
+                                selectedEmojiInfo: $selectedEmojiInfo,
+                                selectedTags: $selectedTags,
+                                isUnread: $isUnread) {
+                    // NOP
+                } tagMultiSelectionSheetBuilder: { _, _ in
+                    EmptyView()
+                }
+
+                Divider()
+
+                Toggle(isOn: $isPreparing) {
+                    Text("isPreparing")
+                }
             }
         }
     }

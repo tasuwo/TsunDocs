@@ -33,6 +33,7 @@ public struct TsundocCreateViewReducer: Reducer {
             nextState.sharedUrlTitle = meta?.title
             nextState.sharedUrlDescription = meta?.description
             nextState.sharedUrlImageUrl = meta?.imageUrl
+            nextState.isPreparing = false
             return (nextState, .none)
 
         case .onTapSaveButton:

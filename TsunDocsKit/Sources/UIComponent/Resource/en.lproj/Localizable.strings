@@ -20,7 +20,8 @@
 "tag_grid_alert_rename_tag_title" = "Rename Tag";
 "tag_grid_alert_rename_tag_message" = "Enter a new name for this tag.";
 
-"tsundoc_edit_view_no_title" = "No Ttile";
+"tsundoc_edit_view_no_title" = "No Title";
+"tsundoc_edit_view_preparing_title" = "Loading...";
 "tsundoc_edit_view_title_edit_title" = "Edit Title";
 "tsundoc_edit_view_title_edit_message" = "Enter a title for this web site.";
 "tsundoc_edit_view_title_edit_placeholder" = "Title";

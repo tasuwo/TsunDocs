@@ -35,6 +35,8 @@ internal enum L10n {
     internal static let tagGridMenuRename = L10n.tr("Localizable", "tag_grid_menu_rename")
     /// タイトルなし
     internal static let tsundocEditViewNoTitle = L10n.tr("Localizable", "tsundoc_edit_view_no_title")
+    /// 読み込み中...
+    internal static let tsundocEditViewPreparingTitle = L10n.tr("Localizable", "tsundoc_edit_view_preparing_title")
     /// 保存
     internal static let tsundocEditViewSaveButton = L10n.tr("Localizable", "tsundoc_edit_view_save_button")
     /// タグ

@@ -35,6 +35,7 @@ public struct TsundocInfoView: View {
         VStack {
             TsundocMetaContainer(url: store.state.tsundoc.url,
                                  imageUrl: store.state.tsundoc.imageUrl,
+                                 isPreparing: false,
                                  title: store.bindTitle(),
                                  selectedEmojiInfo: store.bindEmojiInfo())
 

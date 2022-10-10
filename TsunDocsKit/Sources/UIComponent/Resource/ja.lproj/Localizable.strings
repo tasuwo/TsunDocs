@@ -21,6 +21,7 @@
 "tag_grid_alert_rename_tag_message" = "このタグの新しい名前を入力してください";
 
 "tsundoc_edit_view_no_title" = "タイトルなし";
+"tsundoc_edit_view_preparing_title" = "読み込み中...";
 "tsundoc_edit_view_title_edit_title" = "タイトルの編集";
 "tsundoc_edit_view_title_edit_message" = "このWebページのタイトルを入力してください";
 "tsundoc_edit_view_title_edit_placeholder" = "タイトル";

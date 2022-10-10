@@ -35,6 +35,7 @@ public struct TsundocCreateView: View {
         VStack {
             TsundocEditView(url: store.state.url,
                             imageUrl: store.state.sharedUrlImageUrl,
+                            isPreparing: store.state.isPreparing,
                             title: store.bind(\.title,
                                               action: { .onSaveTitle($0) }),
                             selectedEmojiInfo: store.bind(\.selectedEmojiInfo,
