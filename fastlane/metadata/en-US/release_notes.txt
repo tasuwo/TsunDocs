@@ -1,2 +1,2 @@
-- Fix minor bugs.
-- Support only iOS 16+
+- UI improvements have been made
+
