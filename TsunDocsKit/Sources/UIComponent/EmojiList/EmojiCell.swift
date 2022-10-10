@@ -26,12 +26,6 @@ struct EmojiCell: View {
                             RoundedRectangle(cornerRadius: 18, style: .continuous)
                                 .stroke(Color.accentColor, lineWidth: proxy.size.width / 16)
                                 .shadow(radius: proxy.size.width / 16)
-                            /*
-                                .shadow(color: .black.opacity(1),
-                                        radius: proxy.size.width / 32,
-                                        x: proxy.size.width / 32,
-                                        y: proxy.size.width / 32)
-                             */
                         }
                     }
                 )
