@@ -11,8 +11,6 @@ public struct TsundocEditThumbnail: View {
     // MARK: - Properties
 
     public static let thumbnailSize: CGFloat = 88
-    public static let badgeSize: CGFloat = 32
-    public static let badgeSymbolSize: CGFloat = 18
     public static let padding: CGFloat = 32 / 2 - 6
 
     private let imageUrl: URL?
@@ -40,14 +38,14 @@ public struct TsundocEditThumbnail: View {
     private var thumbnail: some View {
         ZStack {
             if let emojiInfo = selectedEmojiInfo {
-                emojiInfo.backgroundColor.swiftUIColor
-                    .overlay(
-                        Text(emojiInfo.emoji.emoji)
-                            .font(.system(size: 40))
-                    )
-                    .onTapGesture {
-                        isSelectingEmoji = true
-                    }
+                Button {
+                    isSelectingEmoji = true
+                } label: {
+                    Text(emojiInfo.emoji.emoji)
+                        .font(.system(size: 40))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .background(emojiInfo.backgroundColor.swiftUIColor)
             } else {
                 if let imageUrl = imageUrl {
                     AsyncImage(url: imageUrl,
@@ -76,15 +74,15 @@ public struct TsundocEditThumbnail: View {
                         }
                     }
                 } else {
-                    Color.gray.opacity(0.4)
-                        .overlay(
-                            Image(systemName: "face.dashed")
-                                .font(.system(size: 24))
-                                .foregroundColor(Color.gray)
-                        )
-                        .onTapGesture {
-                            isSelectingEmoji = true
-                        }
+                    Button {
+                        isSelectingEmoji = true
+                    } label: {
+                        Image(systemName: "face.dashed")
+                            .font(.system(size: 24))
+                            .foregroundColor(Color.gray)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color.gray.opacity(0.4))
+                    }
                 }
             }
         }
@@ -111,45 +109,27 @@ public struct TsundocEditThumbnail: View {
                 .padding(.all, Self.padding)
 
             if visibleDeleteButton {
-                makeBadge(systemName: "xmark", backgroundColor: .gray)
-                    .offset(x: -1 * (Self.thumbnailSize / 2) + 5,
-                            y: -1 * (Self.thumbnailSize / 2) + 5)
-                    .onTapGesture {
-                        selectedEmojiInfo = nil
-                    }
+                Badge(image: Image(systemName: "xmark"), backgroundColor: .gray) {
+                    selectedEmojiInfo = nil
+                }
+                .offset(x: -1 * (Self.thumbnailSize / 2) + 5,
+                        y: -1 * (Self.thumbnailSize / 2) + 5)
             }
 
             if visibleEmojiLoadButton {
-                makeBadge(systemName: "face.smiling", backgroundColor: .accentColor)
-                    .offset(x: (Self.thumbnailSize / 2) - 6,
-                            y: (Self.thumbnailSize / 2) - 6)
-                    .onTapGesture {
-                        isSelectingEmoji = true
-                    }
+                Badge(image: Image(systemName: "face.smiling")) {
+                    isSelectingEmoji = true
+                }
+                .offset(x: (Self.thumbnailSize / 2) - 6,
+                        y: (Self.thumbnailSize / 2) - 6)
             } else if !visibleDeleteButton {
-                makeBadge(systemName: "plus", backgroundColor: .accentColor)
-                    .offset(x: (Self.thumbnailSize / 2) - 6,
-                            y: (Self.thumbnailSize / 2) - 6)
-                    .onTapGesture {
-                        isSelectingEmoji = true
-                    }
+                Badge(image: Image(systemName: "plus")) {
+                    isSelectingEmoji = true
+                }
+                .offset(x: (Self.thumbnailSize / 2) - 6,
+                        y: (Self.thumbnailSize / 2) - 6)
             }
         }
-    }
-
-    // MARK: - Methods
-
-    private func makeBadge(systemName: String, backgroundColor: Color) -> some View {
-        Image(systemName: systemName)
-            .font(.system(size: Self.badgeSymbolSize).bold())
-            .foregroundColor(Color(uiColor: UIColor.systemBackground))
-            .frame(width: Self.badgeSize, height: Self.badgeSize)
-            .background(backgroundColor)
-            .clipShape(RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous))
-            .overlay(
-                RoundedRectangle(cornerRadius: Self.badgeSize / 2, style: .continuous)
-                    .stroke(Color(uiColor: UIColor.systemBackground), lineWidth: 3)
-            )
     }
 }
 
