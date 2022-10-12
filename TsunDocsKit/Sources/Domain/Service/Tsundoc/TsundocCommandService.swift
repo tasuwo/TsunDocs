@@ -34,7 +34,7 @@ public extension TsundocCommandService {
     }
 
     func updateTsundoc(having id: Tsundoc.ID, title: String) async throws {
-        try await perform { () -> Void in
+        try await perform { () in
             do {
                 try begin()
 
@@ -49,7 +49,7 @@ public extension TsundocCommandService {
     }
 
     func updateTsundoc(having id: Tsundoc.ID, emojiAlias: String?, emojiBackgroundColor: EmojiBackgroundColor?) async throws {
-        try await perform { () -> Void in
+        try await perform { () in
             do {
                 try begin()
 
@@ -64,7 +64,7 @@ public extension TsundocCommandService {
     }
 
     func updateTsundoc(having id: Tsundoc.ID, isUnread: Bool) async throws {
-        try await perform { () -> Void in
+        try await perform { () in
             do {
                 try begin()
 
@@ -79,7 +79,7 @@ public extension TsundocCommandService {
     }
 
     func updateTsundoc(having id: Tsundoc.ID, byAddingTagHaving tagId: Tag.ID) async throws {
-        try await perform { () -> Void in
+        try await perform { () in
             do {
                 try begin()
 
@@ -94,7 +94,7 @@ public extension TsundocCommandService {
     }
 
     func updateTsundoc(having id: Tsundoc.ID, byRemovingTagHaving tagId: Tag.ID) async throws {
-        try await perform { () -> Void in
+        try await perform { () in
             do {
                 try begin()
 
@@ -109,7 +109,7 @@ public extension TsundocCommandService {
     }
 
     func updateTsundoc(having id: Tsundoc.ID, byReplacingTagsHaving tagIds: Set<Tag.ID>) async throws {
-        try await perform { () -> Void in
+        try await perform { () in
             do {
                 try begin()
 
@@ -124,7 +124,7 @@ public extension TsundocCommandService {
     }
 
     func deleteTsundoc(having id: Tsundoc.ID) async throws {
-        try await perform { () -> Void in
+        try await perform { () in
             do {
                 try begin()
 
@@ -139,7 +139,7 @@ public extension TsundocCommandService {
     }
 
     func deleteTsundocs(having ids: Set<Tsundoc.ID>) async throws {
-        try await perform { () -> Void in
+        try await perform { () in
             do {
                 try begin()
 
