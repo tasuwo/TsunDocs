@@ -110,6 +110,7 @@ public struct EmojiList<BackgroundColor>: View where BackgroundColor: PickColor,
                     onSave(currentEmoji!, backgroundColors.init(rawValue: backgroundColorRawValue)!)
                 } label: {
                     Text(L10n.save)
+                        .font(.body.weight(.bold))
                 }
                 .disabled(currentEmoji == nil)
             }
@@ -119,6 +120,7 @@ public struct EmojiList<BackgroundColor>: View where BackgroundColor: PickColor,
                     onCancel()
                 } label: {
                     Text(L10n.cancel)
+                        .font(.body.weight(.bold))
                 }
             }
         }

@@ -73,6 +73,7 @@ struct TagMultiSelectionView: View {
                     isAdditionDialogPresenting = true
                 } label: {
                     Image(systemName: "plus")
+                        .font(.body.weight(.bold))
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -80,6 +81,7 @@ struct TagMultiSelectionView: View {
                     onPerform(.done)
                 } label: {
                     Text("tag_multi_selection_view_done_button", bundle: Bundle.this)
+                        .font(.body.weight(.bold))
                 }
             }
         }

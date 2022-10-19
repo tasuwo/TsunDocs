@@ -56,6 +56,7 @@ public struct BrowseView<MenuContent: View>: View {
                             onBack()
                         } label: {
                             Image(systemName: "chevron.backward")
+                                .font(.body.weight(.bold))
                                 .frame(minWidth: minSize, minHeight: minSize)
                         }
                     }
@@ -65,6 +66,7 @@ public struct BrowseView<MenuContent: View>: View {
                             onClose()
                         } label: {
                             Text("browse_view_button_close", bundle: Bundle.module)
+                                .font(.body.weight(.bold))
                                 .frame(minWidth: minSize, minHeight: minSize)
                         }
                     }
@@ -86,6 +88,7 @@ public struct BrowseView<MenuContent: View>: View {
                             action = .stopLoading
                         } label: {
                             Image(systemName: "xmark")
+                                .font(.body.weight(.bold))
                                 .frame(minWidth: minSize, minHeight: minSize)
                         }
                     } else {
@@ -93,6 +96,7 @@ public struct BrowseView<MenuContent: View>: View {
                             action = .reload
                         } label: {
                             Image(systemName: "arrow.clockwise")
+                                .font(.body.weight(.bold))
                                 .frame(minWidth: minSize, minHeight: minSize)
                         }
                     }
@@ -151,6 +155,7 @@ public struct BrowseView<MenuContent: View>: View {
             action = .goBack
         } label: {
             Image(systemName: "chevron.left")
+                .font(.body.weight(.bold))
                 .frame(minWidth: minSize, minHeight: minSize)
         }
         .disabled(!canGoBack)
@@ -162,6 +167,7 @@ public struct BrowseView<MenuContent: View>: View {
             action = .goForward
         } label: {
             Image(systemName: "chevron.right")
+                .font(.body.weight(.bold))
                 .frame(minWidth: minSize, minHeight: minSize)
         }
         .disabled(!canGoForward)
@@ -173,6 +179,7 @@ public struct BrowseView<MenuContent: View>: View {
             isPresentShareSheet = true
         } label: {
             Image(systemName: "square.and.arrow.up")
+                .font(.body.weight(.bold))
                 .frame(minWidth: minSize, minHeight: minSize)
         }
         .disabled(currentUrl == nil)
@@ -196,6 +203,7 @@ public struct BrowseView<MenuContent: View>: View {
             menuBuilder()
         } label: {
             Image(systemName: "ellipsis")
+                .font(.body.weight(.bold))
                 .frame(minWidth: minSize, minHeight: minSize)
         }
     }

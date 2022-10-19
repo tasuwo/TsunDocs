@@ -67,6 +67,7 @@ public struct TagList: View {
                     isAdditionDialogPresenting = true
                 } label: {
                     Image(systemName: "plus")
+                        .font(.body.weight(.bold))
                 }
             }
         }

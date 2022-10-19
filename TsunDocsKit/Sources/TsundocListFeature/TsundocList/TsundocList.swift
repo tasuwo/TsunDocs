@@ -103,12 +103,41 @@ public struct TsundocList: View {
                              cancelAction: { store.execute(.alert(.dismissed)) }))
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                addButton()
-                    .opacity(isTsundocCreationEnabled ? 1 : 0)
+                Button {
+                    store.execute(.createTsundoc)
+                } label: {
+                    Image(systemName: "plus")
+                        .font(.body.weight(.bold))
+                }
+                .opacity(isTsundocCreationEnabled ? 1 : 0)
             }
 
             ToolbarItem(placement: .navigationBarTrailing) {
-                filterButton()
+                if store.state.isTsundocFilterActive {
+                    Button {
+                        store.execute(.deactivateTsundocFilter, animation: .default)
+                    } label: {
+                        Image(systemName: "line.3.horizontal.decrease.circle.fill")
+                            .font(.body.weight(.bold))
+                    }
+                } else {
+                    Menu {
+                        Button {
+                            store.execute(.activateTsundocFilter(.unread), animation: .default)
+                        } label: {
+                            Label(L10n.tsundocListSwipeActionToggleUnreadUnread, systemImage: "envelope.badge")
+                        }
+
+                        Button {
+                            store.execute(.activateTsundocFilter(.read), animation: .default)
+                        } label: {
+                            Label(L10n.tsundocListFilterMenuRead, systemImage: "envelope.open")
+                        }
+                    } label: {
+                        Image(systemName: "line.3.horizontal.decrease.circle")
+                            .font(.body.weight(.bold))
+                    }
+                }
             }
         }
         .onAppear {
@@ -245,42 +274,6 @@ public struct TsundocList: View {
                 Text(L10n.tsundocListMenuDelete)
             } icon: {
                 Image(systemName: "trash")
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func addButton() -> some View {
-        Button {
-            store.execute(.createTsundoc)
-        } label: {
-            Image(systemName: "plus")
-        }
-    }
-
-    @ViewBuilder
-    private func filterButton() -> some View {
-        if store.state.isTsundocFilterActive {
-            Button {
-                store.execute(.deactivateTsundocFilter, animation: .default)
-            } label: {
-                Image(systemName: "line.3.horizontal.decrease.circle.fill")
-            }
-        } else {
-            Menu {
-                Button {
-                    store.execute(.activateTsundocFilter(.unread), animation: .default)
-                } label: {
-                    Label(L10n.tsundocListSwipeActionToggleUnreadUnread, systemImage: "envelope.badge")
-                }
-
-                Button {
-                    store.execute(.activateTsundocFilter(.read), animation: .default)
-                } label: {
-                    Label(L10n.tsundocListFilterMenuRead, systemImage: "envelope.open")
-                }
-            } label: {
-                Image(systemName: "line.3.horizontal.decrease.circle")
             }
         }
     }

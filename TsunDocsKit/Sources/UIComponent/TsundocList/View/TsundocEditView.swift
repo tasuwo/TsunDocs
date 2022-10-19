@@ -106,7 +106,7 @@ public struct TsundocEditView<TagMultiSelectionSheet: View>: View {
 
                 Image(systemName: "plus")
                     .foregroundColor(isPreparing ? .gray.opacity(0.6) : .accentColor)
-                    .font(.system(size: 24))
+                    .font(.body.weight(.bold))
                     .onTapGesture {
                         isTagEditSheetPresenting = true
                     }

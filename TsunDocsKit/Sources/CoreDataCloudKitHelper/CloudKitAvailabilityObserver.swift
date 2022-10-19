@@ -8,7 +8,7 @@ import Combine
 /// @mockable
 public protocol CloudKitAvailabilityObservable {
     var availability: AnyPublisher<CloudKitAvailability?, Error> { get }
-    func fetchAvailability() async throws -> CloudKitAvailability
+    // func fetchAvailability() async throws -> CloudKitAvailability
 }
 
 public class CloudKitAvailabilityObserver {
@@ -65,8 +65,11 @@ extension CloudKitAvailabilityObserver: CloudKitAvailabilityObservable {
     }
 
     public func fetchAvailability() async throws -> CloudKitAvailability {
-        let status = try await ckAccountStatusObserver.accountStatus()
-        let id = await Self.resolveAccountId(byStatus: status)
-        return self.resolveCloudAvailability(byAccountId: id)
+        fatalError()
+        /*
+         let status = try await ckAccountStatusObserver.accountStatus()
+         let id = await Self.resolveAccountId(byStatus: status)
+         return self.resolveCloudAvailability(byAccountId: id)
+          */
     }
 }

@@ -7,7 +7,7 @@ import Combine
 
 public protocol CKAccountStatusObservable {
     var accountStatus: AnyPublisher<CKAccountStatus?, Error> { get }
-    func accountStatus() async throws -> CKAccountStatus
+    // func accountStatus() async throws -> CKAccountStatus
 }
 
 public class CKAccountStatusObserver {
