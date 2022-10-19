@@ -10,7 +10,11 @@ struct UserInterfaceStyleSettingView: View {
 
     var body: some View {
         List(UserInterfaceStyle.allCases, id: \.self) { style in
-            HStack(spacing: 0) {
+            HStack(spacing: 12) {
+                style.image
+                    .font(.body.bold())
+                    .foregroundColor(.accentColor)
+
                 style.text
 
                 Spacer()
@@ -18,6 +22,7 @@ struct UserInterfaceStyleSettingView: View {
                 if style == userInterfaceStyle {
                     Image(systemName: "checkmark")
                         .foregroundColor(.accentColor)
+                        .font(.body.bold())
                 }
             }
             .contentShape(Rectangle())
@@ -31,6 +36,19 @@ struct UserInterfaceStyleSettingView: View {
 }
 
 extension UserInterfaceStyle {
+    var image: Image {
+        switch self {
+        case .dark:
+            return Image(systemName: "moon.fill")
+
+        case .light:
+            return Image(systemName: "sun.max.fill")
+
+        case .unspecified:
+            return Image(systemName: "iphone")
+        }
+    }
+
     var text: Text {
         switch self {
         case .dark:

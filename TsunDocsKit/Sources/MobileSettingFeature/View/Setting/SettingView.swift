@@ -27,7 +27,9 @@ public struct SettingView: View {
         List {
             Section(header: Text("setting_view.section.appearance.title", bundle: Bundle.module)) {
                 NavigationLink(value: AppRoute.UserInterfaceStyleSetting()) {
-                    HStack {
+                    HStack(spacing: 12) {
+                        Image(systemName: "square.lefthalf.filled")
+                            .foregroundColor(.gray)
                         Text("setting_view.row.user_interface_style.title", bundle: Bundle.module)
                         Spacer()
                         userInterfaceStyle.text
@@ -38,7 +40,9 @@ public struct SettingView: View {
 
             Section(header: Text("setting_view.section.sync.title", bundle: Bundle.module),
                     footer: Text("setting_view.section.sync.footer.title", bundle: Bundle.module)) {
-                HStack {
+                HStack(spacing: 12) {
+                    Image(systemName: "arrow.clockwise.icloud.fill")
+                        .foregroundColor(Color.cyan)
                     Toggle(isOn: store.bind(\.iCloudSyncToggleState.isOn, action: { .iCloudSyncAvailabilityChanged(isEnabled: $0) })) {
                         Text("setting_view.row.icloud_sync.title", bundle: Bundle.module)
                     }
@@ -47,7 +51,9 @@ public struct SettingView: View {
             }
 
             Section(header: Text("setting_view.section.this_app.title", bundle: Bundle.module)) {
-                HStack {
+                HStack(spacing: 12) {
+                    Image(systemName: "info.circle.fill")
+                        .foregroundColor(.orange)
                     Text("setting_view.row.app_version.title", bundle: Bundle.module)
                     Spacer()
                     Text(store.state.appVersion)
