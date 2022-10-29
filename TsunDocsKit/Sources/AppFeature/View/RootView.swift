@@ -99,7 +99,7 @@ public struct RootView<Container>: View where Container: DependencyContainer {
                                                       query: .all)
             .environment(\.tagMultiSelectionSheetBuilder, tsundocListTabStackContainer)
             .environment(\.tsundocCreateViewBuilder, tsundocListTabStackContainer)
-            .navigationDestination(for: AppRoute.TsundocInfo.self) { route in
+            .navigationDestination(for: AppRoute.TsundocInfo.self) { [tsundocListTabStackContainer] route in
                 tsundocListTabStackContainer.buildTsundocInfoView(tsundoc: route.tsundoc)
                     .environment(\.tagMultiSelectionSheetBuilder, tsundocListTabStackContainer)
                     .environment(\.tsundocCreateViewBuilder, tsundocListTabStackContainer)
@@ -111,7 +111,7 @@ public struct RootView<Container>: View where Container: DependencyContainer {
         tagListStackContainer.buildTagList()
             .environment(\.tagMultiSelectionSheetBuilder, tagListStackContainer)
             .environment(\.tsundocCreateViewBuilder, tagListStackContainer)
-            .navigationDestination(for: AppRoute.TsundocList.self) { tsundocList in
+            .navigationDestination(for: AppRoute.TsundocList.self) { [tagListStackContainer] tsundocList in
                 tagListStackContainer.buildTsundocList(title: tsundocList.title,
                                                        emptyTile: tsundocList.emptyTitle,
                                                        emptyMessage: tsundocList.emptyMessage,
@@ -120,7 +120,7 @@ public struct RootView<Container>: View where Container: DependencyContainer {
                     .environment(\.tagMultiSelectionSheetBuilder, tagListStackContainer)
                     .environment(\.tsundocCreateViewBuilder, tagListStackContainer)
             }
-            .navigationDestination(for: AppRoute.TsundocInfo.self) { route in
+            .navigationDestination(for: AppRoute.TsundocInfo.self) { [tagListStackContainer] route in
                 tagListStackContainer.buildTsundocInfoView(tsundoc: route.tsundoc)
                     .environment(\.tagMultiSelectionSheetBuilder, tagListStackContainer)
                     .environment(\.tsundocCreateViewBuilder, tagListStackContainer)

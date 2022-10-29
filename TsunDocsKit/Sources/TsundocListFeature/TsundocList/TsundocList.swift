@@ -143,7 +143,7 @@ public struct TsundocList: View {
         .onAppear {
             store.execute(.onAppear)
         }
-        .navigationDestination(for: AppRoute.Browse.self) { route in
+        .navigationDestination(for: AppRoute.Browse.self) { [store] route in
             BrowseView(baseUrl: route.tsundoc.url) {
                 Button {
                     store.execute(.tap(route.tsundoc.id, .addEmoji))
