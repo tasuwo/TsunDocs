@@ -1,2 +1,8 @@
-- UI improvements have been made
+New Features
+- Add menu button to article on mylist.
+- Add icons on settings.
+
+Bug Fixes
+- Opening mylist makes heavy the app.
+
 
