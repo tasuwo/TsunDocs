@@ -173,7 +173,7 @@ public struct TsundocList: View {
 
     @ViewBuilder
     private func cell(_ tsundoc: Tsundoc) -> some View {
-        TsundocCell(tsundoc: tsundoc)
+        TsundocCell(tsundoc: tsundoc) { menu(tsundoc) }
             .contentShape(Rectangle())
             .onTapGesture {
                 store.execute(.select(tsundoc))
