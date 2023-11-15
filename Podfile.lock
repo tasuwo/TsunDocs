@@ -2,29 +2,21 @@ PODS:
   - Sourcery (1.9.0):
     - Sourcery/CLI-Only (= 1.9.0)
   - Sourcery/CLI-Only (1.9.0)
-  - SwiftFormat/CLI (0.50.1)
   - SwiftGen (6.6.2)
-  - SwiftLint (0.49.1)
 
 DEPENDENCIES:
   - Sourcery (~> 1.9)
-  - SwiftFormat/CLI (~> 0.50)
   - SwiftGen (~> 6.6)
-  - SwiftLint (~> 0.49)
 
 SPEC REPOS:
   trunk:
     - Sourcery
-    - SwiftFormat
     - SwiftGen
-    - SwiftLint
 
 SPEC CHECKSUMS:
   Sourcery: d7c59d100e55bf59123c8ae7d65a24cf30748979
-  SwiftFormat: e73212c71908404e333da34e303772b9e516ac9b
   SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
-  SwiftLint: 32ee33ded0636d0905ef6911b2b67bbaeeedafa5
 
-PODFILE CHECKSUM: ec5a2deb326e65ce30567764962df1bdf009b95a
+PODFILE CHECKSUM: 9bef244464950eeedf8eec35e8e026b2b706ae26
 
 COCOAPODS: 1.11.3
