@@ -2,6 +2,7 @@
 //  Copyright © 2021 Tasuku Tozawa. All rights reserved.
 //
 
+import SplitView
 import SwiftUI
 
 enum TabItem: String, CaseIterable {
@@ -9,50 +10,51 @@ enum TabItem: String, CaseIterable {
     case tags
     case settings
 
+    var name: String {
+        switch self {
+        case .tsundocList:
+            String(localized: "tab_item_title_tsundoc_list", bundle: .module)
+
+        case .tags:
+            String(localized: "tab_item_title_tags", bundle: .module)
+
+        case .settings:
+            String(localized: "tab_item_title_settings", bundle: .module)
+        }
+    }
+
+    var iconName: String {
+        switch self {
+        case .tsundocList:
+            "list.bullet"
+
+        case .tags:
+            "tag"
+
+        case .settings:
+            "gear"
+        }
+    }
+
     var label: some View {
-        switch self {
-        case .tsundocList:
-            return Label {
-                Text("tab_item_title_tsundoc_list", bundle: .module)
-            } icon: {
-                Image(systemName: "list.bullet")
-            }
-
-        case .tags:
-            return Label {
-                Text("tab_item_title_tags", bundle: .module)
-            } icon: {
-                Image(systemName: "tag")
-            }
-
-        case .settings:
-            return Label {
-                Text("tab_item_title_settings", bundle: .module)
-            } icon: {
-                Image(systemName: "gear")
-            }
+        Label {
+            Text(name)
+        } icon: {
+            Image(systemName: iconName)
         }
     }
 
-    var view: some View {
-        switch self {
-        case .tsundocList:
-            return VStack {
-                Image(systemName: "list.bullet")
-                Text("tab_item_title_tsundoc_list", bundle: .module)
-            }
-
-        case .tags:
-            return VStack {
-                Image(systemName: "tag")
-                Text("tab_item_title_tags", bundle: .module)
-            }
-
-        case .settings:
-            return VStack {
-                Image(systemName: "gear")
-                Text("tab_item_title_settings", bundle: .module)
-            }
+    var tabIcon: some View {
+        VStack {
+            Image(systemName: iconName)
+            Text(name)
         }
     }
+}
+
+extension TabItem: SidebarItem {
+    static var order: [TabItem] = allCases
+
+    var text: String { name }
+    var image: UIImage { return UIImage(systemName: iconName)! }
 }
