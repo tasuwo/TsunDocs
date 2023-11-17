@@ -4,21 +4,24 @@
 
 import Combine
 import CoreData
-import CoreDataCloudKitHelper
 import Domain
 import MobileSettingFeature
 import Persistence
+import PersistentStack
 
 public class AppDependencyContainer {
     // MARK: CoreData
 
-    private let container: Persistence.PersistentContainer
-    private let containerMonitor: PersistentContainerMonitor
+    private let persistentStack: PersistentStack
+    private let persistentStackMonitor: PersistentStackMonitor
+    private let persistentStackLoader: PersistentStackLoader
+    private var persistentStackLoading: Task<Void, Never>?
+    private var persistentStackReloading: AnyCancellable?
+
     private var commandContext: NSManagedObjectContext
     private let commandQueue = DispatchQueue(label: "net.tasuwo.tsundocs.DependencyContainer.commandQueue")
 
-    let cloudKitAvailabilityObserver: CloudKitAvailabilityObserver
-    private let persistentContainerReloader: PersistentContainerReloader
+    var cloudKitAvailabilityObserver: CloudKitAvailabilityObservable { persistentStackLoader }
 
     // MARK: Query
 
@@ -48,53 +51,73 @@ public class AppDependencyContainer {
         let userSettingStorage = Persistence.UserSettingStorage(userDefaults: .standard)
         self.userSettingStorage = userSettingStorage
 
-        container = PersistentContainer(appBundle: appBundle,
-                                        author: .app,
-                                        isiCloudSyncSettingEnabled: userSettingStorage.isiCloudSyncEnabledValue)
-        containerMonitor = PersistentContainerMonitor()
-        commandContext = container.newBackgroundContext(on: commandQueue)
-        cloudKitAvailabilityObserver = CloudKitAvailabilityObserver(ckAccountStatusObserver: CKAccountStatusObserver())
-        persistentContainerReloader = PersistentContainerReloader(persistentContainer: container,
-                                                                  settingStorage: userSettingStorage,
-                                                                  cloudKitAvailabilityObserver: cloudKitAvailabilityObserver,
-                                                                  ckAccountIdStorage: CloudKitContextStorage(userDefaults: .standard))
+        var persistentStackConf = PersistentStack.Configuration(author: "app",
+                                                                persistentContainerName: "Model",
+                                                                managedObjectModelUrl: .managedObjectModelUrl)
+        persistentStackConf.persistentContainerUrl = FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: "group.\(appBundle.bundleIdentifier!)")!
+            .appendingPathComponent("tsundocs.sqlite")
+        persistentStackConf.persistentHistoryTokenSaveDirectory = NSPersistentContainer
+            .defaultDirectoryURL()
+            .appendingPathComponent("TsunDocs", isDirectory: true)
+        persistentStackConf.persistentHistoryTokenFileName = "app-token.data"
+        persistentStack = PersistentStack(configuration: persistentStackConf,
+                                          isCloudKitEnabled: userSettingStorage.isiCloudSyncEnabledValue)
+        persistentStackLoader = PersistentStackLoader(persistentStack: persistentStack,
+                                                      availabilityProvider: AppICloudSyncAvailabilityProvider(userSettingsStorage: userSettingStorage))
+        persistentStackMonitor = PersistentStackMonitor()
 
-        tsundocQueryService = TsundocQueryService(container.viewContext)
-        tagQueryService = TagQueryService(container.viewContext)
+        commandContext = persistentStack.newBackgroundContext(on: commandQueue)
+
+        tsundocQueryService = TsundocQueryService(persistentStack.viewContext)
+        tagQueryService = TagQueryService(persistentStack.viewContext)
 
         tsundocCommandService = TsundocCommandService(commandContext)
         tagCommandService = TagCommandService(commandContext)
 
         webPageMetaResolver = WebPageMetaResolver()
 
-        containerMonitor.startMonitoring()
-        persistentContainerReloader.startObserve()
-
-        bind()
-    }
-}
-
-extension AppDependencyContainer {
-    func bind() {
-        container.reloaded
+        persistentStackReloading = persistentStack
+            .reloaded
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
 
-                let newCommandContext = self.container.newBackgroundContext(on: self.commandQueue)
+                let newCommandContext = self.persistentStack.newBackgroundContext(on: self.commandQueue)
                 self.commandContext = newCommandContext
 
-                self.tsundocQueryService.context = self.container.viewContext
-                self.tagQueryService.context = self.container.viewContext
+                self.tsundocQueryService.context = self.persistentStack.viewContext
+                self.tagQueryService.context = self.persistentStack.viewContext
 
                 self.commandQueue.sync {
                     self.tsundocCommandService.context = newCommandContext
                     self.tagCommandService.context = newCommandContext
                 }
             }
-            .store(in: &subscriptions)
+
+        persistentStackMonitor.startMonitoring()
+        persistentStackLoading = persistentStackLoader.run()
     }
 }
 
-extension Persistence.UserSettingStorage: ICloudSyncSettingStorage {}
+extension Persistence.UserSettingStorage: CloudKitSyncAvailabilityProviding {
+    public var isCloudKitSyncAvailable: AsyncStream<Bool> {
+        AsyncStream { [isiCloudSyncEnabled] continuation in
+            let cancellable = isiCloudSyncEnabled
+                .sink { continuation.yield($0) }
+            continuation.onTermination = { _ in
+                cancellable.cancel()
+            }
+        }
+    }
+}
 
-extension Persistence.PersistentContainer: CoreDataCloudKitHelper.PersistentContainer {}
+extension PersistentStackLoader: CloudKitAvailabilityObservable {
+    public var cloudKitAccountAvailability: AnyPublisher<Bool?, Never> {
+        return self.$isCKAccountAvailable.eraseToAnyPublisher()
+    }
+
+    public var isCloudKitAccountAvaialbe: Bool? {
+        isCKAccountAvailable
+    }
+}

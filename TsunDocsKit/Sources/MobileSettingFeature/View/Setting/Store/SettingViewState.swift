@@ -2,8 +2,6 @@
 //  Copyright ©︎ 2022 Tasuku Tozawa. All rights reserved.
 //
 
-import CoreDataCloudKitHelper
-
 public struct SettingViewState: Equatable {
     enum Alert: Equatable {
         case iCloudSettingForceTurnOnConfirmation
@@ -28,7 +26,7 @@ public struct SettingViewState: Equatable {
     let appVersion: String
     var isiCloudSyncInternalSettingEnabled: Bool = false
     var alert: Alert?
-    var cloudKitAvailability: CloudKitAvailability?
+    var isCloudKitAvailable: Bool?
 
     // MARK: - Initializers
 
@@ -40,8 +38,8 @@ public struct SettingViewState: Equatable {
 extension SettingViewState {
     var iCloudSyncToggleState: ToggleState {
         if isSettingiCloudSync { return .loading }
-        guard let availability = cloudKitAvailability else { return .loading }
-        if isiCloudSyncInternalSettingEnabled, availability.isAvailable {
+        guard let isCloudKitAvailable else { return .loading }
+        if isiCloudSyncInternalSettingEnabled, isCloudKitAvailable {
             return .on
         } else {
             return .off

@@ -7,6 +7,7 @@ import Domain
 import Environment
 import Foundation
 import Persistence
+import PersistentStack
 import TsundocCreateFeature
 import UIKit
 
@@ -22,8 +23,8 @@ public class DependencyContainer: ObservableObject {
 
     // MARK: CoreData
 
-    private let container: PersistentContainer
-    private let commandContext: NSManagedObjectContext
+    private let persistentStack: PersistentStack
+    private var commandContext: NSManagedObjectContext
     private let commandQueue = DispatchQueue(label: "net.tasuwo.tsundocs.DependencyContainer.commandQueue")
 
     // MARK: Command
@@ -40,14 +41,26 @@ public class DependencyContainer: ObservableObject {
         _sharedUrlLoader = SharedUrlLoader(context)
         _webPageMetaResolver = WebPageMetaResolver()
 
-        container = PersistentContainer(appBundle: appBundle,
-                                        author: .shareExtension,
-                                        isiCloudSyncSettingEnabled: false)
-        commandContext = container.newBackgroundContext(on: commandQueue)
+        var persistentStackConf = PersistentStack.Configuration(author: "shareExtension",
+                                                                persistentContainerName: "Model",
+                                                                managedObjectModelUrl: .managedObjectModelUrl)
+        persistentStackConf.persistentContainerUrl = FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: "group.\(appBundle.bundleIdentifier!)")!
+            .appendingPathComponent("tsundocs.sqlite")
+        persistentStackConf.persistentHistoryTokenSaveDirectory = NSPersistentContainer
+            .defaultDirectoryURL()
+            .appendingPathComponent("TsunDocs", isDirectory: true)
+        persistentStackConf.persistentHistoryTokenFileName = "shareExtension-token.data"
+        persistentStack = PersistentStack(configuration: persistentStackConf,
+                                          isCloudKitEnabled: false)
 
-        _tagQueryService = TagQueryService(container.viewContext)
+        commandContext = persistentStack.newBackgroundContext(on: commandQueue)
+
+        _tagQueryService = TagQueryService(persistentStack.viewContext)
         _tsundocCommandService = TsundocCommandService(commandContext)
         _tagCommandService = TagCommandService(commandContext)
+
+        persistentStack.reconfigureIfNeeded(isCloudKitEnabled: false)
     }
 }
 

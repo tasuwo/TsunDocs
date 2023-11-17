@@ -351,6 +351,24 @@ public class ObservedEntityMock: ObservedEntity {
     }
 }
 
+public class CloudKitAvailabilityObservableMock: CloudKitAvailabilityObservable {
+    public init() { }
+    public init(cloudKitAccountAvailability: AnyPublisher<Bool?, Never>, isCloudKitAccountAvaialbe: Bool? = nil) {
+        self._cloudKitAccountAvailability = cloudKitAccountAvailability
+        self.isCloudKitAccountAvaialbe = isCloudKitAccountAvaialbe
+    }
+
+    public private(set) var cloudKitAccountAvailabilitySetCallCount = 0
+    private var _cloudKitAccountAvailability: AnyPublisher<Bool?, Never>! { didSet { cloudKitAccountAvailabilitySetCallCount += 1 } }
+    public var cloudKitAccountAvailability: AnyPublisher<Bool?, Never> {
+        get { return _cloudKitAccountAvailability }
+        set { _cloudKitAccountAvailability = newValue }
+    }
+
+    public private(set) var isCloudKitAccountAvaialbeSetCallCount = 0
+    public var isCloudKitAccountAvaialbe: Bool? { didSet { isCloudKitAccountAvaialbeSetCallCount += 1 } }
+}
+
 public class UserSettingStorageMock: UserSettingStorage {
     public init() { }
     public init(isiCloudSyncEnabled: AnyPublisher<Bool, Never>, isiCloudSyncEnabledValue: Bool = false) {

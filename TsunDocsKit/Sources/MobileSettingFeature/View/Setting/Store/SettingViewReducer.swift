@@ -4,7 +4,6 @@
 
 import Combine
 import CompositeKit
-import CoreDataCloudKitHelper
 import Domain
 import Environment
 import SwiftUI
@@ -42,19 +41,19 @@ public struct SettingViewReducer: Reducer {
             nextState.isiCloudSyncInternalSettingEnabled = isEnabled
             return (nextState, .none)
 
-        case let .cloudKitAvailabilityUpdated(availability: availability):
-            nextState.cloudKitAvailability = availability
+        case let .cloudKitAvailabilityUpdated(isAvailable: isAvaialable):
+            nextState.isCloudKitAvailable = isAvaialable
             return (nextState, .none)
 
         // MARK: Control
 
         case let .iCloudSyncAvailabilityChanged(isEnabled: isEnabled):
-            guard let availability = state.cloudKitAvailability else {
+            guard let isCloudKitAvailable = state.isCloudKitAvailable else {
                 return (nextState, .none)
             }
 
             // iCloudが利用不可な場合は、内部状態を書き換えるか確認する
-            if isEnabled, availability == .unavailable {
+            if isEnabled, !isCloudKitAvailable {
                 if state.isiCloudSyncInternalSettingEnabled {
                     nextState.alert = .iCloudSettingForceTurnOffConfirmation
                 } else {
@@ -108,9 +107,8 @@ extension SettingViewReducer {
         let iCloudSyncSettingEffect = Effect(iCloudSyncSettingStream)
 
         let cloudKitAvailabilityStream = dependency.cloudKitAvailabilityObserver
-            .availability
-            .catch { _ in Just(.unavailable) }
-            .map { Action.cloudKitAvailabilityUpdated(availability: $0) as Action? }
+            .cloudKitAccountAvailability
+            .map { Action.cloudKitAvailabilityUpdated(isAvailable: $0) as Action? }
         let cloudKitAvailabilityEffect = Effect(cloudKitAvailabilityStream)
 
         var nextState = state

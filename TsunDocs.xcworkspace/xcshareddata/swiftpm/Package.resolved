@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "persistentstack",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tasuwo/PersistentStack",
+      "state" : {
+        "revision" : "d2be5017acf9227c4db1ba3d8d9fd0fa5416d16c",
+        "version" : "0.6.0"
+      }
+    },
+    {
       "identity" : "smile",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onmyway133/Smile",
@@ -43,6 +52,24 @@
       "state" : {
         "revision" : "8f4d2753f0e4778c76d5f05ad16c74f707390531",
         "version" : "1.2.3"
+      }
+    },
+    {
+      "identity" : "swift-async-algorithms",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-async-algorithms",
+      "state" : {
+        "revision" : "aed5422380244498344a036b8d94e27f370d9a22",
+        "version" : "0.0.4"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections.git",
+      "state" : {
+        "revision" : "a902f1823a7ff3c9ab2fba0f992396b948eda307",
+        "version" : "1.0.5"
       }
     }
   ],

@@ -3,7 +3,6 @@
 //
 
 import CompositeKit
-import CoreDataCloudKitHelper
 
 public enum SettingViewAction: Action {
     // MARK: View Life-Cycle
@@ -13,7 +12,7 @@ public enum SettingViewAction: Action {
     // MARK: State Observation
 
     case iCloudSyncSettingUpdated(isEnabled: Bool)
-    case cloudKitAvailabilityUpdated(availability: CloudKitAvailability?)
+    case cloudKitAvailabilityUpdated(isAvailable: Bool?)
 
     // MARK: Control
 

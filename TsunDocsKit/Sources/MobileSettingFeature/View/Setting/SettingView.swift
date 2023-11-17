@@ -118,12 +118,11 @@ public struct SettingView: View {
 
 #if DEBUG
 import Combine
-import CoreDataCloudKitHelper
 import PreviewContent
 
 struct SettingView_Previews: PreviewProvider {
     class Dependency: SettingViewDependency {
-        private var availability: CurrentValueSubject<CloudKitAvailability?, Never>
+        private var isCloudKitAvailable: CurrentValueSubject<Bool?, Never>
         private var isiCloudSyncEnabled: CurrentValueSubject<Bool, Never> = .init(false)
 
         private var cancellables: Set<AnyCancellable> = .init()
@@ -131,16 +130,15 @@ struct SettingView_Previews: PreviewProvider {
         var cloudKitAvailabilityObserver: CloudKitAvailabilityObservable
         var userSettingStorage: UserSettingStorage
 
-        init(cloudKitAvailability: CloudKitAvailability?) {
+        init(isCloudKitAvailable: Bool?) {
             let storage = UserSettingStorageMock()
             storage.isiCloudSyncEnabled = isiCloudSyncEnabled.eraseToAnyPublisher()
             storage.isiCloudSyncEnabledValue = false
             userSettingStorage = storage
 
-            availability = .init(cloudKitAvailability)
+            self.isCloudKitAvailable = .init(isCloudKitAvailable)
             let observer = CloudKitAvailabilityObservableMock()
-            observer.availability = availability.mapError({ _ in NSError() }).eraseToAnyPublisher()
-            observer.fetchAvailabilityHandler = { .unavailable }
+            observer.cloudKitAccountAvailability = self.isCloudKitAvailable.eraseToAnyPublisher()
             cloudKitAvailabilityObserver = observer
 
             isiCloudSyncEnabled
@@ -153,9 +151,9 @@ struct SettingView_Previews: PreviewProvider {
         @StateObject var store: ViewStore<SettingViewState, SettingViewAction, SettingViewDependency>
         @StateObject var router: StackRouter = .init()
 
-        public init(cloudKitAvailability: CloudKitAvailability?) {
+        public init(isCloudKitAvailable: Bool?) {
             let store = Store(initialState: SettingViewState(appVersion: "1.0"),
-                              dependency: Dependency(cloudKitAvailability: cloudKitAvailability),
+                              dependency: Dependency(isCloudKitAvailable: isCloudKitAvailable),
                               reducer: SettingViewReducer())
             let viewStore = ViewStore(store: store)
             self._store = .init(wrappedValue: viewStore)
@@ -170,9 +168,9 @@ struct SettingView_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            ContentView(cloudKitAvailability: nil)
-            ContentView(cloudKitAvailability: .unavailable)
-            ContentView(cloudKitAvailability: .available(accountId: "id"))
+            ContentView(isCloudKitAvailable: nil)
+            ContentView(isCloudKitAvailable: false)
+            ContentView(isCloudKitAvailable: true)
         }
     }
 }
