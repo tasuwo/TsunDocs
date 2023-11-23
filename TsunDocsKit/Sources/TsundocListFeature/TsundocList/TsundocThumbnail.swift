@@ -43,7 +43,6 @@ struct TsundocThumbnail: View {
 
                     case .empty:
                         Color.gray.opacity(0.4)
-                            .overlay(ProgressView())
                     }
                 }
 
