@@ -48,8 +48,8 @@ public struct BrowseView<MenuContent: View>: View {
     // MARK: - View
 
     public var body: some View {
-        VStack(spacing: 0) {
-            if !scrollState.isNavigationBarHidden {
+        ZStack {
+            VStack(spacing: 0) {
                 BrowseNavigationBar(title: title ?? NSLocalizedString("browse_view_title_loading", bundle: Bundle.module, comment: "loading")) {
                     if let onBack = onBack {
                         Button {
@@ -101,51 +101,56 @@ public struct BrowseView<MenuContent: View>: View {
                         }
                     }
                 }
+
+                Divider()
+
+                WebView(url: baseUrl,
+                        action: $action,
+                        title: $title,
+                        currentUrl: $currentUrl,
+                        canGoBack: $canGoBack,
+                        canGoForward: $canGoForward,
+                        isLoading: $isLoading,
+                        estimatedProgress: $estimatedProgress,
+                        scrollState: scrollState)
+                    .edgesIgnoringSafeArea([.leading, .trailing])
+
+                Divider()
+
+                if verticalSizeClass != .compact {
+                    BrowseToolBar {
+                        browserBackButton()
+                        Spacer()
+                        browserForwardButton()
+                        Spacer()
+                        shareButton()
+                        Spacer()
+                        menuButton()
+                    }
+                }
+            }
+            .navigationBarHidden(true)
+            .sheet(isPresented: $isPresentShareSheet) {
+                let url: URL = {
+                    if let currentUrl = currentUrl {
+                        return currentUrl
+                    } else {
+                        return baseUrl
+                    }
+                }()
+                ShareSheet(activityItems: [url])
+                    .ignoresSafeArea()
             }
 
             if isLoading {
-                ProgressView(value: estimatedProgress, total: 1.0)
-                    .progressViewStyle(LinearProgressViewStyle(tint: Color.blue))
-            }
+                VStack {
+                    LinearProgressView(value: estimatedProgress, total: 1.0)
+                        .frame(height: 2)
+                        .padding([.top], 48 - 2)
 
-            Divider()
-
-            WebView(url: baseUrl,
-                    action: $action,
-                    title: $title,
-                    currentUrl: $currentUrl,
-                    canGoBack: $canGoBack,
-                    canGoForward: $canGoForward,
-                    isLoading: $isLoading,
-                    estimatedProgress: $estimatedProgress,
-                    scrollState: scrollState)
-                .edgesIgnoringSafeArea([.leading, .trailing])
-
-            Divider()
-
-            if verticalSizeClass != .compact, !scrollState.isToolbarHidden {
-                BrowseToolBar {
-                    browserBackButton()
                     Spacer()
-                    browserForwardButton()
-                    Spacer()
-                    shareButton()
-                    Spacer()
-                    menuButton()
                 }
             }
-        }
-        .navigationBarHidden(true)
-        .sheet(isPresented: $isPresentShareSheet) {
-            let url: URL = {
-                if let currentUrl = currentUrl {
-                    return currentUrl
-                } else {
-                    return baseUrl
-                }
-            }()
-            ShareSheet(activityItems: [url])
-                .ignoresSafeArea()
         }
     }
 
