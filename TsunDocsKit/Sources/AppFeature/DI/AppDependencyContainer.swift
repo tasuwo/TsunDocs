@@ -8,6 +8,7 @@ import Domain
 import MobileSettingFeature
 import Persistence
 import PersistentStack
+import UIKit
 
 public class AppDependencyContainer {
     // MARK: CoreData
@@ -21,25 +22,25 @@ public class AppDependencyContainer {
     private var commandContext: NSManagedObjectContext
     private let commandQueue = DispatchQueue(label: "net.tasuwo.tsundocs.DependencyContainer.commandQueue")
 
-    var cloudKitAvailabilityObserver: CloudKitAvailabilityObservable { persistentStackLoader }
+    public var cloudKitAvailabilityObserver: CloudKitAvailabilityObservable { persistentStackLoader }
 
     // MARK: Query
 
-    let tsundocQueryService: Persistence.TsundocQueryService
-    let tagQueryService: Persistence.TagQueryService
+    let _tsundocQueryService: Persistence.TsundocQueryService
+    let _tagQueryService: Persistence.TagQueryService
 
     // MARK: Command
 
-    let tsundocCommandService: Persistence.TsundocCommandService
-    let tagCommandService: Persistence.TagCommandService
+    let _tsundocCommandService: Persistence.TsundocCommandService
+    let _tagCommandService: Persistence.TagCommandService
 
     // MARK: Storage
 
-    let userSettingStorage: Domain.UserSettingStorage
+    let _userSettingStorage: Domain.UserSettingStorage
 
     // MARK: Others
 
-    let webPageMetaResolver: WebPageMetaResolver
+    let _webPageMetaResolver: WebPageMetaResolver
 
     // MARK: Subscription
 
@@ -49,7 +50,7 @@ public class AppDependencyContainer {
 
     public init(appBundle: Bundle) {
         let userSettingStorage = Persistence.UserSettingStorage(userDefaults: .standard)
-        self.userSettingStorage = userSettingStorage
+        self._userSettingStorage = userSettingStorage
 
         var persistentStackConf = PersistentStack.Configuration(author: "app",
                                                                 persistentContainerName: "Model",
@@ -69,13 +70,13 @@ public class AppDependencyContainer {
 
         commandContext = persistentStack.newBackgroundContext(on: commandQueue)
 
-        tsundocQueryService = TsundocQueryService(persistentStack.viewContext)
-        tagQueryService = TagQueryService(persistentStack.viewContext)
+        _tsundocQueryService = TsundocQueryService(persistentStack.viewContext)
+        _tagQueryService = TagQueryService(persistentStack.viewContext)
 
-        tsundocCommandService = TsundocCommandService(commandContext)
-        tagCommandService = TagCommandService(commandContext)
+        _tsundocCommandService = TsundocCommandService(commandContext)
+        _tagCommandService = TagCommandService(commandContext)
 
-        webPageMetaResolver = WebPageMetaResolver()
+        _webPageMetaResolver = WebPageMetaResolver()
 
         persistentStackReloading = persistentStack
             .reloaded
@@ -86,12 +87,12 @@ public class AppDependencyContainer {
                 let newCommandContext = self.persistentStack.newBackgroundContext(on: self.commandQueue)
                 self.commandContext = newCommandContext
 
-                self.tsundocQueryService.context = self.persistentStack.viewContext
-                self.tagQueryService.context = self.persistentStack.viewContext
+                self._tsundocQueryService.context = self.persistentStack.viewContext
+                self._tagQueryService.context = self.persistentStack.viewContext
 
                 self.commandQueue.sync {
-                    self.tsundocCommandService.context = newCommandContext
-                    self.tagCommandService.context = newCommandContext
+                    self._tsundocCommandService.context = newCommandContext
+                    self._tagCommandService.context = newCommandContext
                 }
             }
 
@@ -120,4 +121,14 @@ extension PersistentStackLoader: CloudKitAvailabilityObservable {
     public var isCloudKitAccountAvaialbe: Bool? {
         isCKAccountAvailable
     }
+}
+
+extension AppDependencyContainer: DependencyContainer {
+    public var pasteboard: Pasteboard { UIPasteboard.general }
+    public var tsundocQueryService: Domain.TsundocQueryService { _tsundocQueryService }
+    public var tagQueryService: Domain.TagQueryService { _tagQueryService }
+    public var tsundocCommandService: Domain.TsundocCommandService { _tsundocCommandService }
+    public var tagCommandService: Domain.TagCommandService { _tagCommandService }
+    public var userSettingStorage: Domain.UserSettingStorage { _userSettingStorage }
+    public var webPageMetaResolver: Domain.WebPageMetaResolvable { _webPageMetaResolver }
 }
