@@ -19,7 +19,7 @@ struct WebView {
     // MARK: - Properties
 
     let url: URL
-    let internalWebView = WKWebView()
+    let internalWebView: WKWebView
 
     @Binding var action: Action?
 
@@ -51,6 +51,13 @@ struct WebView {
         _isLoading = isLoading
         _estimatedProgress = estimatedProgress
         self.scrollState = scrollState
+
+        let config = WKWebViewConfiguration()
+        let preference = WKWebpagePreferences()
+        preference.allowsContentJavaScript = true
+        config.defaultWebpagePreferences = preference
+        config.allowsInlineMediaPlayback = true
+        self.internalWebView = WKWebView(frame: .zero, configuration: config)
 
         internalWebView.scrollView.delegate = scrollState
     }

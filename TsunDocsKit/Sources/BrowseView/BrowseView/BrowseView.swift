@@ -53,7 +53,6 @@ public struct BrowseView<MenuContent: View>: View {
                         isLoading: $isLoading,
                         estimatedProgress: $estimatedProgress,
                         scrollState: scrollState)
-                    .edgesIgnoringSafeArea([.leading, .trailing])
 
                 Divider()
 
