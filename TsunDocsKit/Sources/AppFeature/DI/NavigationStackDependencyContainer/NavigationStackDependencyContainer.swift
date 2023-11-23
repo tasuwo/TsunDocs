@@ -5,24 +5,32 @@
 import Combine
 import Environment
 import Foundation
+import SwiftUI
 
 public class NavigationStackDependencyContainer: ObservableObject {
-    @Published var stackRouter: StackRouter
+    @Published public var stack: NavigationPath = .init()
     let container: DependencyContainer
-    var cancellables: Set<AnyCancellable> = .init()
+    private var cancellables: Set<AnyCancellable> = .init()
 
     // MARK: - Initializers
 
-    public init(router: StackRouter, container: DependencyContainer) {
-        self.stackRouter = router
+    public init(container: DependencyContainer) {
         self.container = container
-
-        router.objectWillChange
-            .sink { [weak self] _ in self?.objectWillChange.send() }
-            .store(in: &cancellables)
     }
 }
 
 extension NavigationStackDependencyContainer: HasRouter {
-    public var router: Router { stackRouter }
+    public var router: Router { self }
+}
+
+extension NavigationStackDependencyContainer: Router {
+    // MARK: - Router
+
+    public func push(_ route: any Route) {
+        stack.append(route)
+    }
+
+    public func pop() {
+        stack.removeLast()
+    }
 }

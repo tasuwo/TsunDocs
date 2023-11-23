@@ -24,9 +24,9 @@ public struct AppView<Container>: View where Container: DependencyContainer {
     // MARK: - Initializers
 
     public init(container: Container) {
-        let tsundocListTabStackContainer = NavigationStackDependencyContainer(router: .init(), container: container)
-        let tagListStackContainer = NavigationStackDependencyContainer(router: .init(), container: container)
-        let settingTabStackContainer = NavigationStackDependencyContainer(router: .init(), container: container)
+        let tsundocListTabStackContainer = NavigationStackDependencyContainer(container: container)
+        let tagListStackContainer = NavigationStackDependencyContainer(container: container)
+        let settingTabStackContainer = NavigationStackDependencyContainer(container: container)
         _tsundocListTabStackContainer = StateObject(wrappedValue: tsundocListTabStackContainer)
         _tagListStackContainer = StateObject(wrappedValue: tagListStackContainer)
         _settingTabStackContainer = StateObject(wrappedValue: settingTabStackContainer)
@@ -42,7 +42,7 @@ public struct AppView<Container>: View where Container: DependencyContainer {
     @ViewBuilder
     func content() -> some View {
         RootView(tsundocList: {
-            NavigationStack(path: $tsundocListTabStackContainer.stackRouter.stack) {
+            NavigationStack(path: $tsundocListTabStackContainer.stack) {
                 tsundocListTabStackContainer.buildTsundocList(title: L10n.tsundocListTitle,
                                                               emptyTile: L10n.tsundocListEmptyMessageDefaultTitle,
                                                               emptyMessage: L10n.tsundocListEmptyMessageDefaultMessage,
@@ -57,7 +57,7 @@ public struct AppView<Container>: View where Container: DependencyContainer {
             .environment(\.tagMultiSelectionSheetBuilder, tsundocListTabStackContainer)
             .environment(\.tsundocCreateViewBuilder, tsundocListTabStackContainer)
         }, tags: {
-            NavigationStack(path: $tagListStackContainer.stackRouter.stack) {
+            NavigationStack(path: $tagListStackContainer.stack) {
                 tagListStackContainer.buildTagList()
                     .navigationDestination(for: AppRoute.TsundocList.self) { [tagListStackContainer] tsundocList in
                         tagListStackContainer.buildTsundocList(title: tsundocList.title,
@@ -77,7 +77,7 @@ public struct AppView<Container>: View where Container: DependencyContainer {
             .environment(\.tagMultiSelectionSheetBuilder, tagListStackContainer)
             .environment(\.tsundocCreateViewBuilder, tagListStackContainer)
         }, settings: {
-            NavigationStack(path: $settingTabStackContainer.stackRouter.stack) {
+            NavigationStack(path: $settingTabStackContainer.stack) {
                 // swiftlint:disable:next force_cast force_unwrapping
                 settingTabStackContainer.buildSettingView(appVersion: Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)
             }
