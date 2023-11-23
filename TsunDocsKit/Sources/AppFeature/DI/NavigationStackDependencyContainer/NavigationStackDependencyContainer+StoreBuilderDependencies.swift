@@ -83,8 +83,6 @@ extension NavigationStackDependencyContainer: SettingViewBuilder {
     public typealias SettingView = MobileSettingFeature.SettingView
 
     public func buildSettingView(appVersion: String) -> SettingView {
-        // swiftlint:disable:next force_cast force_unwrapping
-        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         let store = Store(initialState: SettingViewState(appVersion: appVersion),
                           dependency: self,
                           reducer: SettingViewReducer())
