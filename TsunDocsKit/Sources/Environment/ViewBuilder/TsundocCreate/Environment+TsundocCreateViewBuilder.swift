@@ -14,11 +14,11 @@ private struct TsundocCreateViewBuilderKey: EnvironmentKey {
         }
     }
 
-    static let defaultValue: TsundocCreateViewBuildable = DefaultBuilder()
+    static let defaultValue: any TsundocCreateViewBuildable = DefaultBuilder()
 }
 
 public extension EnvironmentValues {
-    var tsundocCreateViewBuilder: TsundocCreateViewBuildable {
+    var tsundocCreateViewBuilder: any TsundocCreateViewBuildable {
         get { self[TsundocCreateViewBuilderKey.self] }
         set { self[TsundocCreateViewBuilderKey.self] = newValue }
     }

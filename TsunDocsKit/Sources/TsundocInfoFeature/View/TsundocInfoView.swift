@@ -46,10 +46,10 @@ public struct TsundocInfoView: View {
             Spacer()
         }
         .sheet(isPresented: $isTagEditSheetPresenting) {
-            tagMultiSelectionSheetBuilder.buildTagMultiSelectionSheet(selectedIds: Set(store.state.tags.map(\.id))) {
+            AnyView(tagMultiSelectionSheetBuilder.buildTagMultiSelectionSheet(selectedIds: Set(store.state.tags.map(\.id))) {
                 isTagEditSheetPresenting = false
                 store.execute(.editTags($0))
-            }
+            })
         }
         .onAppear {
             store.execute(.onAppear)

@@ -8,6 +8,8 @@ import SwiftUI
 
 /// @mockable
 public protocol TagListBuildable {
+    associatedtype TagList: View
+
     @MainActor
-    func buildTagList() -> AnyView
+    func buildTagList() -> TagList
 }

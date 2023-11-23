@@ -8,6 +8,8 @@ import SwiftUI
 
 /// @mockable
 public protocol TsundocInfoViewBuildable {
+    associatedtype TsundocInfoView: View
+
     @MainActor
-    func buildTsundocInfoView(tsundoc: Tsundoc) -> AnyView
+    func buildTsundocInfoView(tsundoc: Tsundoc) -> TsundocInfoView
 }

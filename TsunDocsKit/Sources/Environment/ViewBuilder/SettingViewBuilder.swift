@@ -8,6 +8,8 @@ import SwiftUI
 
 /// @mockable
 public protocol SettingViewBuilder {
+    associatedtype SettingView: View
+
     @MainActor
-    func buildSettingView(appVersion: String) -> AnyView
+    func buildSettingView(appVersion: String) -> SettingView
 }

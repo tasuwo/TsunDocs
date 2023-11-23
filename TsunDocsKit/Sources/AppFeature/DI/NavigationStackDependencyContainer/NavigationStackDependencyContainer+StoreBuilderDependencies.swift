@@ -16,22 +16,26 @@ import TsundocListFeature
 extension NavigationStackDependencyContainer: TsundocListBuildable {
     // MARK: - TsundocListBuildable
 
-    public func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, query: TsundocListQuery) -> AnyView {
+    public typealias TsundocList = TsundocListFeature.TsundocList
+
+    public func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, query: TsundocListQuery) -> TsundocList {
         let store = Store(initialState: TsundocListState(query: query),
                           dependency: self,
                           reducer: TsundocListReducer())
-        return AnyView(TsundocList(title: title,
-                                   emptyTitle: emptyTile,
-                                   emptyMessage: emptyMessage,
-                                   isTsundocCreationEnabled: isTsundocCreationEnabled,
-                                   store: ViewStore(store: store)))
+        return TsundocList(title: title,
+                           emptyTitle: emptyTile,
+                           emptyMessage: emptyMessage,
+                           isTsundocCreationEnabled: isTsundocCreationEnabled,
+                           store: ViewStore(store: store))
     }
 }
 
 extension NavigationStackDependencyContainer: TagListBuildable {
     // MARK: - TagListBuildable
 
-    public func buildTagList() -> AnyView {
+    public typealias TagList = TagListFeature.TagList
+
+    public func buildTagList() -> TagList {
         let tagControlStore = Store(initialState: TagControlState(),
                                     dependency: self,
                                     reducer: TagControlReducer())
@@ -42,53 +46,61 @@ extension NavigationStackDependencyContainer: TagListBuildable {
             .connect(tagControlStore.connection(at: \.tags, { SearchableFilterAction.updateItems($0) }))
             .eraseToAnyStoring()
 
-        return AnyView(TagList(store: ViewStore(store: tagControlStore),
-                               filterStore: ViewStore(store: filterStore)))
+        return TagList(store: ViewStore(store: tagControlStore),
+                       filterStore: ViewStore(store: filterStore))
     }
 }
 
 extension NavigationStackDependencyContainer: TagMultiSelectionSheetBuildable {
     // MARK: - TagMultiSelectionSheetBuildable
 
-    public func buildTagMultiSelectionSheet(selectedIds: Set<Tag.ID>, onDone: @escaping ([Tag]) -> Void) -> AnyView {
+    public typealias TagMultiSelectionSheet = TagMultiSelectionFeature.TagMultiSelectionSheet
+
+    public func buildTagMultiSelectionSheet(selectedIds: Set<Tag.ID>, onDone: @escaping ([Tag]) -> Void) -> TagMultiSelectionSheet {
         let store = Store(initialState: TagMultiSelectionState(selectedIds: selectedIds),
                           dependency: self,
                           reducer: TagMultiSelectionReducer())
-        return AnyView(TagMultiSelectionSheet(store: ViewStore(store: store), onDone: onDone))
+        return TagMultiSelectionSheet(store: ViewStore(store: store), onDone: onDone)
     }
 }
 
 extension NavigationStackDependencyContainer: TsundocInfoViewBuildable {
     // MARK: - TsundocInfoViewBuildable
 
-    public func buildTsundocInfoView(tsundoc: Tsundoc) -> AnyView {
+    public typealias TsundocInfoView = TsundocInfoFeature.TsundocInfoView
+
+    public func buildTsundocInfoView(tsundoc: Tsundoc) -> TsundocInfoView {
         let store = Store(initialState: TsundocInfoViewState(tsundoc: tsundoc, tags: []),
                           dependency: self,
                           reducer: TsundocInfoViewReducer())
-        return AnyView(TsundocInfoView(store: ViewStore(store: store)))
+        return TsundocInfoView(store: ViewStore(store: store))
     }
 }
 
 extension NavigationStackDependencyContainer: SettingViewBuilder {
     // MARK: - SettingViewBuilder
 
-    public func buildSettingView(appVersion: String) -> AnyView {
+    public typealias SettingView = MobileSettingFeature.SettingView
+
+    public func buildSettingView(appVersion: String) -> SettingView {
         // swiftlint:disable:next force_cast force_unwrapping
         let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         let store = Store(initialState: SettingViewState(appVersion: appVersion),
                           dependency: self,
                           reducer: SettingViewReducer())
-        return AnyView(SettingView(store: ViewStore(store: store)))
+        return SettingView(store: ViewStore(store: store))
     }
 }
 
 extension NavigationStackDependencyContainer: TsundocCreateViewBuildable {
     // MARK: - TsundocCreateViewBuildable
 
-    public func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> AnyView {
+    public typealias TsundocCreateView = TsundocCreateFeature.TsundocCreateView
+
+    public func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> TsundocCreateView {
         let store = Store(initialState: TsundocCreateViewState(url: url),
                           dependency: self,
                           reducer: TsundocCreateViewReducer())
-        return AnyView(TsundocCreateView(ViewStore(store: store), onDone: onDone))
+        return TsundocCreateView(ViewStore(store: store), onDone: onDone)
     }
 }

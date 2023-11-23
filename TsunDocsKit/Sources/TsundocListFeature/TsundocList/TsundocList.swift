@@ -56,9 +56,9 @@ public struct TsundocList: View {
         .sheet(isPresented: store.bind(\.isModalPresenting, action: { _ in .dismissModal })) {
             switch store.state.modal {
             case let .tagAdditionView(tsundocId, tagIds):
-                tagMultiSelectionSheetBuilder.buildTagMultiSelectionSheet(selectedIds: tagIds) {
+                AnyView(tagMultiSelectionSheetBuilder.buildTagMultiSelectionSheet(selectedIds: tagIds) {
                     store.execute(.selectTags(Set($0.map(\.id)), tsundocId))
-                }
+                })
 
             case let .emojiSelection(tsundocId, emoji):
                 NavigationView {
@@ -70,9 +70,9 @@ public struct TsundocList: View {
                 }
 
             case let .createTsundoc(url):
-                tsundocCreateViewBuilder.buildTsundocCreateView(url: url) { _ in
+                AnyView(tsundocCreateViewBuilder.buildTsundocCreateView(url: url) { _ in
                     store.execute(.dismissModal)
-                }
+                })
 
             case .none:
                 EmptyView()

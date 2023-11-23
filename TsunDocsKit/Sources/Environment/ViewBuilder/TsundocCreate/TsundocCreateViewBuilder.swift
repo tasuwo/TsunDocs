@@ -6,6 +6,8 @@ import SwiftUI
 
 /// @mockable
 public protocol TsundocCreateViewBuildable {
+    associatedtype TsundocCreateView: View
+
     @MainActor
-    func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> AnyView
+    func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> TsundocCreateView
 }

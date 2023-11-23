@@ -14,11 +14,11 @@ private struct TagMultiSelectionSheetBuilderKey: EnvironmentKey {
         }
     }
 
-    static let defaultValue: TagMultiSelectionSheetBuildable = Builder()
+    static let defaultValue: any TagMultiSelectionSheetBuildable = Builder()
 }
 
 public extension EnvironmentValues {
-    var tagMultiSelectionSheetBuilder: TagMultiSelectionSheetBuildable {
+    var tagMultiSelectionSheetBuilder: any TagMultiSelectionSheetBuildable {
         get { self[TagMultiSelectionSheetBuilderKey.self] }
         set { self[TagMultiSelectionSheetBuilderKey.self] = newValue }
     }

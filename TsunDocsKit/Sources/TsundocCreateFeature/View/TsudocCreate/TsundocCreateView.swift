@@ -46,7 +46,7 @@ public struct TsundocCreateView: View {
                                                  action: { .onToggleUnread($0) })) {
                 store.execute(.onTapSaveButton)
             } tagMultiSelectionSheetBuilder: {
-                sheetBuilder.buildTagMultiSelectionSheet(selectedIds: $0, onDone: $1)
+                AnyView(sheetBuilder.buildTagMultiSelectionSheet(selectedIds: $0, onDone: $1))
             }
         }
         .onAppear {

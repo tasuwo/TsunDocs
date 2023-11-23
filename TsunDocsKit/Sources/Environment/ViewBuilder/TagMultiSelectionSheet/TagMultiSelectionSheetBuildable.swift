@@ -8,6 +8,8 @@ import SwiftUI
 
 /// @mockable
 public protocol TagMultiSelectionSheetBuildable {
+    associatedtype TagMultiSelectionSheet: View
+
     @MainActor
-    func buildTagMultiSelectionSheet(selectedIds: Set<Tag.ID>, onDone: @escaping ([Tag]) -> Void) -> AnyView
+    func buildTagMultiSelectionSheet(selectedIds: Set<Tag.ID>, onDone: @escaping ([Tag]) -> Void) -> TagMultiSelectionSheet
 }
