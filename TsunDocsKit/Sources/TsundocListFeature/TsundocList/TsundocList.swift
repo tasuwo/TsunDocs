@@ -164,8 +164,6 @@ public struct TsundocList: View {
                         Image(systemName: "tag")
                     }
                 }
-            } onBack: {
-                store.execute(.tapBackButton)
             }
             .toolbar(.hidden, for: .tabBar)
         }

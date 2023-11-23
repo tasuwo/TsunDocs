@@ -11,8 +11,6 @@ public struct BrowseView<MenuContent: View>: View {
     // MARK: - Properties
 
     private let baseUrl: URL
-    private let onBack: (() -> Void)?
-    private let onClose: (() -> Void)?
 
     @ViewBuilder
     private let menuBuilder: () -> MenuContent
@@ -35,14 +33,10 @@ public struct BrowseView<MenuContent: View>: View {
     // MARK: - Initializers
 
     public init(baseUrl: URL,
-                @ViewBuilder menu: @escaping () -> MenuContent,
-                onBack: (() -> Void)? = nil,
-                onClose: (() -> Void)? = nil)
+                @ViewBuilder menu: @escaping () -> MenuContent)
     {
         self.baseUrl = baseUrl
         self.menuBuilder = menu
-        self.onBack = onBack
-        self.onClose = onClose
     }
 
     // MARK: - View
@@ -50,60 +44,6 @@ public struct BrowseView<MenuContent: View>: View {
     public var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                BrowseNavigationBar(title: title ?? NSLocalizedString("browse_view_title_loading", bundle: Bundle.module, comment: "loading")) {
-                    if let onBack = onBack {
-                        Button {
-                            onBack()
-                        } label: {
-                            Image(systemName: "chevron.backward")
-                                .font(.body.weight(.bold))
-                                .frame(minWidth: minSize, minHeight: minSize)
-                        }
-                    }
-
-                    if let onClose = onClose {
-                        Button {
-                            onClose()
-                        } label: {
-                            Text("browse_view_button_close", bundle: Bundle.module)
-                                .font(.body.weight(.bold))
-                                .frame(minWidth: minSize, minHeight: minSize)
-                        }
-                    }
-
-                    if verticalSizeClass == .compact {
-                        browserBackButton()
-                        browserForwardButton()
-                    }
-
-                    EmptyView()
-                } trailing: {
-                    if verticalSizeClass == .compact {
-                        shareButton()
-                        menuButton()
-                    }
-
-                    if isLoading {
-                        Button {
-                            action = .stopLoading
-                        } label: {
-                            Image(systemName: "xmark")
-                                .font(.body.weight(.bold))
-                                .frame(minWidth: minSize, minHeight: minSize)
-                        }
-                    } else {
-                        Button {
-                            action = .reload
-                        } label: {
-                            Image(systemName: "arrow.clockwise")
-                                .font(.body.weight(.bold))
-                                .frame(minWidth: minSize, minHeight: minSize)
-                        }
-                    }
-                }
-
-                Divider()
-
                 WebView(url: baseUrl,
                         action: $action,
                         title: $title,
@@ -129,7 +69,47 @@ public struct BrowseView<MenuContent: View>: View {
                     }
                 }
             }
-            .navigationBarHidden(true)
+            .navigationTitle(title ?? NSLocalizedString("browse_view_title_loading", bundle: Bundle.module, comment: "loading"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                if verticalSizeClass == .compact {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        browserBackButton()
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        browserForwardButton()
+                    }
+                }
+
+                if verticalSizeClass == .compact {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        shareButton()
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        menuButton()
+                    }
+                }
+
+                ToolbarItem(placement: .topBarTrailing) {
+                    if isLoading {
+                        Button {
+                            action = .stopLoading
+                        } label: {
+                            Image(systemName: "xmark")
+                                .font(.body.weight(.bold))
+                                .frame(minWidth: minSize, minHeight: minSize)
+                        }
+                    } else {
+                        Button {
+                            action = .reload
+                        } label: {
+                            Image(systemName: "arrow.clockwise")
+                                .font(.body.weight(.bold))
+                                .frame(minWidth: minSize, minHeight: minSize)
+                        }
+                    }
+                }
+            }
             .sheet(isPresented: $isPresentShareSheet) {
                 let url: URL = {
                     if let currentUrl = currentUrl {
@@ -146,7 +126,7 @@ public struct BrowseView<MenuContent: View>: View {
                 VStack {
                     LinearProgressView(value: estimatedProgress, total: 1.0)
                         .frame(height: 2)
-                        .padding([.top], 48 - 2)
+                        .padding([.top], 0)
 
                     Spacer()
                 }
@@ -237,8 +217,6 @@ struct BrowseView_Previews: PreviewProvider {
                                 Image(systemName: "pencil")
                             }
                         }
-                    } onClose: {
-                        isPresenting = false
                     }
                 }
             }

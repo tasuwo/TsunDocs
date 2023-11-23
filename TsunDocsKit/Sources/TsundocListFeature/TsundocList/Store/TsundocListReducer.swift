@@ -83,10 +83,6 @@ public struct TsundocListReducer: Reducer {
             dependency.router.push(.tsundocInfo(tsundoc))
             return (nextState, nil)
 
-        case .tapBackButton:
-            dependency.router.pop()
-            return (nextState, nil)
-
         case .createTsundoc:
             nextState.alert = .textEdit(.createTsundoc)
             return (nextState, nil)

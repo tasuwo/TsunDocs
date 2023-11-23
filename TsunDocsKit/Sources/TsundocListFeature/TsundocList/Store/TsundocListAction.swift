@@ -30,7 +30,6 @@ public enum TsundocListAction {
     case select(Tsundoc)
     case selectTags(Set<Tag.ID>, Tsundoc.ID)
     case tap(Tsundoc.ID, MenuItem)
-    case tapBackButton
     case createTsundoc
     case activateTsundocFilter(TsundocFilter)
     case deactivateTsundocFilter
