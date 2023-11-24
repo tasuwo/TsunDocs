@@ -50,6 +50,13 @@ internal enum L10n {
             }
         }
 
+        internal enum Raw {
+            internal enum MarkAsReadAutomatically {
+                /// 記事を開いたら自動で既読にする
+                internal static let title = L10n.tr("Localizable", "setting_view.raw.mark_as_read_automatically.title", fallback: "記事を開いたら自動で既読にする")
+            }
+        }
+
         internal enum Row {
             internal enum AppVersion {
                 /// バージョン
@@ -71,6 +78,11 @@ internal enum L10n {
             internal enum Appearance {
                 /// 表示設定
                 internal static let title = L10n.tr("Localizable", "setting_view.section.appearance.title", fallback: "表示設定")
+            }
+
+            internal enum Read {
+                /// 既読設定
+                internal static let title = L10n.tr("Localizable", "setting_view.section.read.title", fallback: "既読設定")
             }
 
             internal enum Sync {

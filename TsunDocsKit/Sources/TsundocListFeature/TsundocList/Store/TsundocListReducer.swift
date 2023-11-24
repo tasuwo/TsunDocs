@@ -13,6 +13,7 @@ public typealias TsundocListDependency = HasTsundocQueryService
     & HasTagQueryService
     & HasPasteboard
     & HasRouter
+    & HasUserSettingStorage
 
 public struct TsundocListReducer: Reducer {
     public typealias Dependency = TsundocListDependency
@@ -59,8 +60,17 @@ public struct TsundocListReducer: Reducer {
             return (nextState, nil)
 
         case let .select(tsundoc):
-            dependency.router.push(.browse(tsundoc))
-            return (nextState, nil)
+            if tsundoc.isUnread, dependency.userSettingStorage.markAsReadAutomaticallyValue {
+                let effect = Effect<Action> {
+                    try? await dependency.tsundocCommandService.updateTsundoc(having: tsundoc.id, isUnread: false)
+                    return .none
+                }
+                dependency.router.push(.browse(tsundoc))
+                return (nextState, [effect])
+            } else {
+                dependency.router.push(.browse(tsundoc))
+                return (nextState, nil)
+            }
 
         case let .selectTags(tagIds, tsundocId):
             let effect = Effect<Action> {

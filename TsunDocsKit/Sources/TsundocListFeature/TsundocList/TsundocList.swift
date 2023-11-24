@@ -329,6 +329,10 @@ struct TsundocList_Previews: PreviewProvider {
             return service
         }
 
+        var userSettingStorage: UserSettingStorage {
+            return UserSettingStorageMock()
+        }
+
         var router: Router
 
         init(router: Router) {

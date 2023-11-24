@@ -25,6 +25,7 @@ public struct SettingViewState: Equatable {
 
     let appVersion: String
     var isiCloudSyncInternalSettingEnabled: Bool = false
+    var markAsReadAutomatically: Bool = true
     var alert: Alert?
     var isCloudKitAvailable: Bool?
 

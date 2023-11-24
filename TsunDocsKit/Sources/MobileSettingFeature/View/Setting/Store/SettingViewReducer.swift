@@ -45,6 +45,10 @@ public struct SettingViewReducer: Reducer {
             nextState.isCloudKitAvailable = isAvaialable
             return (nextState, .none)
 
+        case let .markAsReadAutomatically(isEnabled: isEnabled):
+            nextState.markAsReadAutomatically = isEnabled
+            return (nextState, .none)
+
         // MARK: Control
 
         case let .iCloudSyncAvailabilityChanged(isEnabled: isEnabled):
@@ -69,6 +73,10 @@ public struct SettingViewReducer: Reducer {
                 nextState.alert = .iCloudTurnOffConfirmation
             }
 
+            return (nextState, .none)
+
+        case let .markAsReadAutomaticallyChanged(isEnabled: isEnabled):
+            dependency.userSettingStorage.set(markAsReadAutomatically: isEnabled)
             return (nextState, .none)
 
         // MARK: Alert Completion
@@ -111,9 +119,14 @@ extension SettingViewReducer {
             .map { Action.cloudKitAvailabilityUpdated(isAvailable: $0) as Action? }
         let cloudKitAvailabilityEffect = Effect(cloudKitAvailabilityStream)
 
+        let markAsReadAutomaticallyStream = dependency.userSettingStorage.markAsReadAutomatically
+            .map { Action.markAsReadAutomatically(isEnabled: $0) as Action? }
+        let markAsReadAutomaticallyEffect = Effect(markAsReadAutomaticallyStream)
+
         var nextState = state
         nextState.isiCloudSyncInternalSettingEnabled = dependency.userSettingStorage.isiCloudSyncEnabledValue
+        nextState.markAsReadAutomatically = dependency.userSettingStorage.markAsReadAutomaticallyValue
 
-        return (nextState, [iCloudSyncSettingEffect, cloudKitAvailabilityEffect])
+        return (nextState, [iCloudSyncSettingEffect, cloudKitAvailabilityEffect, markAsReadAutomaticallyEffect])
     }
 }

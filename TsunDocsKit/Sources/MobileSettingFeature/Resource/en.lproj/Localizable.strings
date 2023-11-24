@@ -9,6 +9,8 @@
 "setting_view.title" = "Settings";
 "setting_view.section.appearance.title" = "Appearance";
 "setting_view.row.user_interface_style.title" = "Theme";
+"setting_view.section.read.title" = "Read/Unread";
+"setting_view.raw.mark_as_read_automatically.title" = "Mark articles as read after open";
 "setting_view.section.this_app.title" = "Abount This App";
 "setting_view.row.app_version.title" = "Version";
 "setting_view.section.sync.title" = "Sync";

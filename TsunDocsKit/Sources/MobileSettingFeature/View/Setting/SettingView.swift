@@ -38,6 +38,16 @@ public struct SettingView: View {
                 }
             }
 
+            Section(header: Text("setting_view.section.read.title", bundle: Bundle.module)) {
+                HStack(spacing: 12) {
+                    Image(systemName: "envelope.open.fill")
+                        .foregroundColor(Color.green)
+                    Toggle(isOn: store.bind(\.markAsReadAutomatically, action: { .markAsReadAutomaticallyChanged(isEnabled: $0) })) {
+                        Text("setting_view.raw.mark_as_read_automatically.title", bundle: Bundle.module)
+                    }
+                }
+            }
+
             Section(header: Text("setting_view.section.sync.title", bundle: Bundle.module),
                     footer: Text("setting_view.section.sync.footer.title", bundle: Bundle.module)) {
                 HStack(spacing: 12) {
@@ -124,6 +134,7 @@ struct SettingView_Previews: PreviewProvider {
     class Dependency: SettingViewDependency {
         private var isCloudKitAvailable: CurrentValueSubject<Bool?, Never>
         private var isiCloudSyncEnabled: CurrentValueSubject<Bool, Never> = .init(false)
+        private var markAsReadAutomatically: CurrentValueSubject<Bool, Never> = .init(true)
 
         private var cancellables: Set<AnyCancellable> = .init()
 
@@ -134,6 +145,8 @@ struct SettingView_Previews: PreviewProvider {
             let storage = UserSettingStorageMock()
             storage.isiCloudSyncEnabled = isiCloudSyncEnabled.eraseToAnyPublisher()
             storage.isiCloudSyncEnabledValue = false
+            storage.markAsReadAutomatically = markAsReadAutomatically.eraseToAnyPublisher()
+            storage.markAsReadAutomaticallyValue = true
             userSettingStorage = storage
 
             self.isCloudKitAvailable = .init(isCloudKitAvailable)

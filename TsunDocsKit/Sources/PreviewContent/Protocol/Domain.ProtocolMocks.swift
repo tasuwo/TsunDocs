@@ -371,9 +371,11 @@ public class CloudKitAvailabilityObservableMock: CloudKitAvailabilityObservable 
 
 public class UserSettingStorageMock: UserSettingStorage {
     public init() { }
-    public init(isiCloudSyncEnabled: AnyPublisher<Bool, Never>, isiCloudSyncEnabledValue: Bool = false) {
+    public init(isiCloudSyncEnabled: AnyPublisher<Bool, Never>, markAsReadAutomatically: AnyPublisher<Bool, Never>, isiCloudSyncEnabledValue: Bool = false, markAsReadAutomaticallyValue: Bool = false) {
         self._isiCloudSyncEnabled = isiCloudSyncEnabled
+        self._markAsReadAutomatically = markAsReadAutomatically
         self.isiCloudSyncEnabledValue = isiCloudSyncEnabledValue
+        self.markAsReadAutomaticallyValue = markAsReadAutomaticallyValue
     }
 
     public private(set) var isiCloudSyncEnabledSetCallCount = 0
@@ -383,8 +385,18 @@ public class UserSettingStorageMock: UserSettingStorage {
         set { _isiCloudSyncEnabled = newValue }
     }
 
+    public private(set) var markAsReadAutomaticallySetCallCount = 0
+    private var _markAsReadAutomatically: AnyPublisher<Bool, Never>! { didSet { markAsReadAutomaticallySetCallCount += 1 } }
+    public var markAsReadAutomatically: AnyPublisher<Bool, Never> {
+        get { return _markAsReadAutomatically }
+        set { _markAsReadAutomatically = newValue }
+    }
+
     public private(set) var isiCloudSyncEnabledValueSetCallCount = 0
     public var isiCloudSyncEnabledValue: Bool = false { didSet { isiCloudSyncEnabledValueSetCallCount += 1 } }
+
+    public private(set) var markAsReadAutomaticallyValueSetCallCount = 0
+    public var markAsReadAutomaticallyValue: Bool = false { didSet { markAsReadAutomaticallyValueSetCallCount += 1 } }
 
     public private(set) var setCallCount = 0
     public var setHandler: ((Bool) -> Void)?
@@ -392,6 +404,15 @@ public class UserSettingStorageMock: UserSettingStorage {
         setCallCount += 1
         if let setHandler = setHandler {
             setHandler(isiCloudSyncEnabled)
+        }
+    }
+
+    public private(set) var setMarkAsReadAutomaticallyCallCount = 0
+    public var setMarkAsReadAutomaticallyHandler: ((Bool) -> Void)?
+    public func set(markAsReadAutomatically: Bool) {
+        setMarkAsReadAutomaticallyCallCount += 1
+        if let setMarkAsReadAutomaticallyHandler = setMarkAsReadAutomaticallyHandler {
+            setMarkAsReadAutomaticallyHandler(markAsReadAutomatically)
         }
     }
 }

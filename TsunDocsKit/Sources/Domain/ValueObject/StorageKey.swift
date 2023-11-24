@@ -5,5 +5,6 @@
 public enum StorageKey: String {
     case userInterfaceStyle
     case isiCloudSyncEnabled
-    case lastLoggedInCKAccountId
+    // case lastLoggedInCKAccountId
+    case markAsReadAutomatically
 }

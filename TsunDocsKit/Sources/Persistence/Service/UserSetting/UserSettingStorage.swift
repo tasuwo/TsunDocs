@@ -12,7 +12,8 @@ public class UserSettingStorage {
     public init(userDefaults: UserDefaults) {
         self.userDefaults = userDefaults
         self.userDefaults.register(defaults: [
-            StorageKey.isiCloudSyncEnabled.rawValue: true
+            StorageKey.isiCloudSyncEnabled.rawValue: true,
+            StorageKey.markAsReadAutomatically.rawValue: true
         ])
     }
 }
@@ -20,6 +21,10 @@ public class UserSettingStorage {
 extension UserDefaults {
     @objc dynamic var isiCloudSyncEnabled: Bool {
         return bool(forKey: StorageKey.isiCloudSyncEnabled.rawValue)
+    }
+
+    @objc dynamic var markAsReadAutomatically: Bool {
+        return bool(forKey: StorageKey.markAsReadAutomatically.rawValue)
     }
 }
 
@@ -32,11 +37,25 @@ extension UserSettingStorage: Domain.UserSettingStorage {
             .eraseToAnyPublisher()
     }
 
+    public var markAsReadAutomatically: AnyPublisher<Bool, Never> {
+        return userDefaults
+            .publisher(for: \.markAsReadAutomatically)
+            .eraseToAnyPublisher()
+    }
+
     public var isiCloudSyncEnabledValue: Bool {
         return userDefaults.isiCloudSyncEnabled
     }
 
+    public var markAsReadAutomaticallyValue: Bool {
+        return userDefaults.markAsReadAutomatically
+    }
+
     public func set(isiCloudSyncEnabled: Bool) {
         userDefaults.set(isiCloudSyncEnabled, forKey: StorageKey.isiCloudSyncEnabled.rawValue)
+    }
+
+    public func set(markAsReadAutomatically: Bool) {
+        userDefaults.set(markAsReadAutomatically, forKey: StorageKey.markAsReadAutomatically.rawValue)
     }
 }
