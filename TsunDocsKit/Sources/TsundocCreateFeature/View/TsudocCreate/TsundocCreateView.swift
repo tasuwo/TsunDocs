@@ -74,7 +74,6 @@ public struct TsundocCreateView: View {
 // MARK: - Preview
 
 #if DEBUG
-import ImageLoader
 import PreviewContent
 
 struct TsundocCreateView_Previews: PreviewProvider {
@@ -95,21 +94,18 @@ struct TsundocCreateView_Previews: PreviewProvider {
                                               description: "Web Page Description",
                                               imageUrl: URL(string: "https://localhost"))
             TsundocCreateView(makeStore(dependency: dependency01), onDone: { _ in })
-                .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
             let dependency02 = makeDependency(sharedUrl: URL(string: "https://apple.com/"),
                                               title: nil,
                                               description: nil,
                                               imageUrl: nil)
             TsundocCreateView(makeStore(dependency: dependency02), onDone: { _ in })
-                .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
             let dependency03 = makeDependency(sharedUrl: URL(string: "https://apple.com/\(String(repeating: "long/", count: 100))"),
                                               title: String(repeating: "Title ", count: 100),
                                               description: String(repeating: "Description ", count: 100),
                                               imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))"))
             TsundocCreateView(makeStore(dependency: dependency03), onDone: { _ in })
-                .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
         }
     }
 

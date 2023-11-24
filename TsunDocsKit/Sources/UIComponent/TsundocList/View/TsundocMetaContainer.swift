@@ -3,7 +3,6 @@
 //
 
 import struct Domain.Emoji
-import ImageLoader
 import SwiftUI
 
 public struct TsundocMetaContainer: View {
@@ -116,10 +115,6 @@ struct TsundocMetaContainer_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        let imageLoaderFactory = Factory<ImageLoader> {
-            .init(urlSession: .makeMock(SuccessMock.self))
-        }
-
         VStack {
             Divider()
 
@@ -128,7 +123,6 @@ struct TsundocMetaContainer_Previews: PreviewProvider {
                       // swiftlint:disable:next force_unwrapping
                       imageUrl: URL(string: "https://localhost")!,
                       title: "My Title")
-                .environment(\.imageLoaderFactory, imageLoaderFactory)
 
             Divider()
 
@@ -136,7 +130,6 @@ struct TsundocMetaContainer_Previews: PreviewProvider {
             Container(url: URL(string: "https://apple.com")!,
                       imageUrl: nil,
                       title: "")
-                .environment(\.imageLoaderFactory, imageLoaderFactory)
 
             Divider()
 
@@ -145,7 +138,6 @@ struct TsundocMetaContainer_Previews: PreviewProvider {
                       // swiftlint:disable:next force_unwrapping
                       imageUrl: URL(string: "https://localhost/\(String(repeating: "long/", count: 100))")!,
                       title: String(repeating: "Title ", count: 100))
-                .environment(\.imageLoaderFactory, imageLoaderFactory)
 
             Divider()
         }

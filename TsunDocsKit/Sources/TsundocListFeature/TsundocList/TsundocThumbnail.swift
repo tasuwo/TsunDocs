@@ -3,35 +3,28 @@
 //
 
 import Domain
-import ImageLoader
+import NukeUI
 import SwiftUI
 import UIComponent
 
 struct TsundocThumbnail: View {
     // MARK: - Properties
 
-    @Environment(\.imageLoaderFactory) var imageLoaderFactory
-
     let source: TsundocThumbnailSource?
 
     // MARK: - View
 
+    @MainActor
     private var content: some View {
         Group {
             switch source {
             case let .imageUrl(url):
-                AsyncImage(url: url,
-                           size: .init(width: 80 * 2,
-                                       height: 80 * 2),
-                           contentMode: .fill,
-                           factory: imageLoaderFactory) {
-                    switch $0 {
-                    case let .loaded(image):
+                LazyImage(url: url) { state in
+                    if let image = state.image {
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-
-                    case .failed, .cancelled:
+                    } else if state.error != nil {
                         ZStack {
                             Color.gray.opacity(0.4)
 
@@ -40,8 +33,7 @@ struct TsundocThumbnail: View {
                                 .frame(width: 16, height: 16, alignment: .center)
                                 .foregroundColor(.gray.opacity(0.7))
                         }
-
-                    case .empty:
+                    } else {
                         Color.gray.opacity(0.4)
                     }
                 }
@@ -82,20 +74,16 @@ struct TsundocThumbnailView_Previews: PreviewProvider {
             VStack {
                 HStack {
                     TsundocThumbnail(source: nil)
-                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
                     TsundocThumbnail(source: .emoji(emoji: "👍", backgroundColor: .white))
-                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 }
 
                 HStack {
                     // swiftlint:disable:next force_unwrapping
                     TsundocThumbnail(source: .imageUrl(URL(string: "https://localhost")!))
-                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
                     // swiftlint:disable:next force_unwrapping
                     TsundocThumbnail(source: .imageUrl(URL(string: "https://localhost")!))
-                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(FailureMock.self)) })
                 }
             }
         }

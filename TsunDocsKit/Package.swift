@@ -65,10 +65,6 @@ let package = Package(
             targets: ["UIComponent"]
         ),
         .library(
-            name: "ImageLoader",
-            targets: ["ImageLoader"]
-        ),
-        .library(
             name: "PreviewContent",
             targets: ["PreviewContent"]
         ),
@@ -77,7 +73,7 @@ let package = Package(
         .package(url: "https://github.com/tasuwo/swift", .upToNextMajor(from: "0.6.0")),
         .package(url: "https://github.com/tid-kijyun/Kanna", .upToNextMajor(from: "5.2.7")),
         .package(url: "https://github.com/onmyway133/Smile", .upToNextMajor(from: "2.1.0")),
-        .package(url: "https://github.com/kean/Nuke", .upToNextMajor(from: "10.7.1")),
+        .package(url: "https://github.com/kean/Nuke", .upToNextMajor(from: "12.2.0")),
         .package(url: "https://github.com/tasuwo/PersistentStack", .upToNextMajor(from: "0.6.0")),
         .package(url: "https://github.com/tasuwo/SplitView", .upToNextMinor(from: "0.1.0"))
     ],
@@ -145,7 +141,7 @@ let package = Package(
                 "Environment",
                 "PreviewContent",
                 "UIComponent",
-                "ImageLoader",
+                .product(name: "NukeUI", package: "Nuke"),
             ]
         ),
         .target(
@@ -218,16 +214,12 @@ let package = Package(
             dependencies: [
                 "CompositeKit",
                 "Domain",
-                "ImageLoader",
+                .product(name: "NukeUI", package: "Nuke"),
             ]
         ),
 
         /// Helper
 
-        .target(
-            name: "ImageLoader",
-            dependencies: [.product(name: "Nuke", package: "Nuke")]
-        ),
         .target(name: "CompositeKit"),
         .target(
             name: "PreviewContent",

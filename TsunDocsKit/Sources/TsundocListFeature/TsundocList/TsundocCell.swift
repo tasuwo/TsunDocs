@@ -3,14 +3,11 @@
 //
 
 import Domain
-import ImageLoader
 import Smile
 import SwiftUI
 
 struct TsundocCell<MenuContent>: View where MenuContent: View {
     // MARK: - Properties
-
-    @Environment(\.imageLoaderFactory) var imageLoaderFactory
 
     let tsundoc: Tsundoc
     @ViewBuilder
@@ -104,28 +101,22 @@ struct TsundocCell_Previews: PreviewProvider {
                 List {
                     TsundocCell(tsundoc: .makeDefault(title: "Title only",
                                                       isUnread: true)) { EmptyView() }
-                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
                     TsundocCell(tsundoc: .makeDefault(title: "Title with description",
                                                       description: "This is description of website.")) { EmptyView() }
-                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
                     TsundocCell(tsundoc: .makeDefault(title: "Emoji thumbnail", emojiAlias: "smile")) { EmptyView() }
-                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
                     TsundocCell(tsundoc: .makeDefault(title: "Success image thumbnail",
                                                       imageUrl: URL(string: "http://localhost"))) { EmptyView() }
-                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
 
                     TsundocCell(tsundoc: .makeDefault(title: "Failure image thumbnail",
                                                       imageUrl: URL(string: "http://localhost"))) { EmptyView() }
-                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(FailureMock.self)) })
 
                     TsundocCell(tsundoc: .makeDefault(title: longString,
                                                       description: longString,
                                                       emojiAlias: "ghost",
                                                       isUnread: true)) { EmptyView() }
-                        .environment(\.imageLoaderFactory, .init { .init(urlSession: .makeMock(SuccessMock.self)) })
                 }
                 .listStyle(GroupedListStyle())
                 .navigationTitle("TsundocCell")

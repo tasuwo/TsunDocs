@@ -4,7 +4,7 @@
 
 import struct Domain.Emoji
 import enum Domain.EmojiBackgroundColor
-import ImageLoader
+import NukeUI
 import SwiftUI
 
 public struct TsundocEditThumbnail: View {
@@ -23,8 +23,6 @@ public struct TsundocEditThumbnail: View {
     private var visibleDeleteButton: Bool { selectedEmojiInfo != nil }
     private var visibleEmojiLoadButton: Bool { imageUrl != nil && selectedEmojiInfo == nil }
 
-    @Environment(\.imageLoaderFactory) var imageLoaderFactory
-
     // MARK: - Initializers
 
     public init(imageUrl: URL?,
@@ -38,6 +36,7 @@ public struct TsundocEditThumbnail: View {
 
     // MARK: - View
 
+    @MainActor
     private var thumbnail: some View {
         ZStack {
             if isPreparing {
@@ -54,18 +53,12 @@ public struct TsundocEditThumbnail: View {
                 .background(emojiInfo.backgroundColor.swiftUIColor)
             } else {
                 if let imageUrl = imageUrl {
-                    AsyncImage(url: imageUrl,
-                               size: .init(width: Self.thumbnailSize * 2,
-                                           height: Self.thumbnailSize * 2),
-                               contentMode: .fill,
-                               factory: imageLoaderFactory) {
-                        switch $0 {
-                        case let .loaded(image):
+                    LazyImage(url: imageUrl) { state in
+                        if let image = state.image {
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-
-                        case .failed, .cancelled:
+                        } else if state.error != nil {
                             ZStack {
                                 Color.gray.opacity(0.4)
 
@@ -73,10 +66,8 @@ public struct TsundocEditThumbnail: View {
                                     .font(.system(size: 24))
                                     .foregroundColor(.gray.opacity(0.7))
                             }
-
-                        case .empty:
+                        } else {
                             Color.gray.opacity(0.4)
-                                .overlay(ProgressView())
                         }
                     }
                 } else {
@@ -152,7 +143,6 @@ struct SharedUrlThumbnailView_Previews: PreviewProvider {
         @State var selectedEmojiInfo: EmojiInfo?
 
         let imageUrl: URL?
-        let imageLoaderFactory: Factory<ImageLoader>
 
         var body: some View {
             HStack {
@@ -165,23 +155,19 @@ struct SharedUrlThumbnailView_Previews: PreviewProvider {
                     }
                 }
             }
-            .environment(\.imageLoaderFactory, imageLoaderFactory)
         }
     }
 
     static var previews: some View {
         Group {
             VStack {
-                Container(imageUrl: nil,
-                          imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
+                Container(imageUrl: nil)
 
                 // swiftlint:disable:next force_unwrapping
-                Container(imageUrl: URL(string: "https://localhost")!,
-                          imageLoaderFactory: .init { .init(urlSession: .makeMock(SuccessMock.self)) })
+                Container(imageUrl: URL(string: "https://localhost")!)
 
                 // swiftlint:disable:next force_unwrapping
-                Container(imageUrl: URL(string: "https://localhost")!,
-                          imageLoaderFactory: .init { .init(urlSession: .makeMock(FailureMock.self)) })
+                Container(imageUrl: URL(string: "https://localhost")!)
             }
         }
     }
