@@ -16,7 +16,7 @@
 		2CC25E7E27C66D9200E29112 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC25E7D27C66D9200E29112 /* CloudKit.framework */; };
 		3E538E9CD8862D261E823035 /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */; };
 		74AB4123849FA9A821D5BD93 /* TsunDocsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1050BC9CDF0B53FBDB51C /* TsunDocsApp.swift */; };
-		8B895EE687FB3A23F943755A /* MobileShareExtensionDev.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF241AF60C49740BA6F08F55 /* MobileShareExtensionDev.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8B895EE687FB3A23F943755A /* MobileShareExtensionDev.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FF241AF60C49740BA6F08F55 /* MobileShareExtensionDev.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,15 +30,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		53006B1A1B1698EC1A6B3DF4 /* Embed App Extensions */ = {
+		53006B1A1B1698EC1A6B3DF4 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				8B895EE687FB3A23F943755A /* MobileShareExtensionDev.appex in Embed App Extensions */,
+				8B895EE687FB3A23F943755A /* MobileShareExtensionDev.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -172,7 +172,7 @@
 				CE0AD2747B613D920FA6F9C5 /* Sources */,
 				2CC9301627C62FDC00663CA5 /* Resources */,
 				26CBBCDC2AAD7C4A199E2BC3 /* Frameworks */,
-				53006B1A1B1698EC1A6B3DF4 /* Embed App Extensions */,
+				53006B1A1B1698EC1A6B3DF4 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -231,8 +231,9 @@
 		B10FD681F47AC2A4820934BC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = "Tasuku Tozawa";
 				TargetAttributes = {
 					31CD9A7FB8B73B41C35ADB91 = {
@@ -362,9 +363,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -411,6 +414,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -534,9 +538,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -569,6 +575,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = RY2377PP7S;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
