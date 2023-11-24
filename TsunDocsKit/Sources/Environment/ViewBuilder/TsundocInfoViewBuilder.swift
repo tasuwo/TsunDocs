@@ -6,7 +6,7 @@ import CompositeKit
 import Domain
 import SwiftUI
 
-/// @mockable
+/// @mockable(typealias: TsundocInfoView = SampleView)
 public protocol TsundocInfoViewBuildable {
     associatedtype TsundocInfoView: View
 

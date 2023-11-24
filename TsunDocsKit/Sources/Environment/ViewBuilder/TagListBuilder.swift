@@ -6,7 +6,7 @@ import CompositeKit
 import Domain
 import SwiftUI
 
-/// @mockable
+/// @mockable(typealias: TagList = SampleView)
 public protocol TagListBuildable {
     associatedtype TagList: View
 

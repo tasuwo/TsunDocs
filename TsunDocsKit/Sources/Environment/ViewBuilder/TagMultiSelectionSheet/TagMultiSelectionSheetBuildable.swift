@@ -6,7 +6,7 @@ import CompositeKit
 import Domain
 import SwiftUI
 
-/// @mockable
+/// @mockable(typealias: TagMultiSelectionSheet = SampleView)
 public protocol TagMultiSelectionSheetBuildable {
     associatedtype TagMultiSelectionSheet: View
 

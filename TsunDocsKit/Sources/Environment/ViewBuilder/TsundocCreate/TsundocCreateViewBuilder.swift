@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-/// @mockable
+/// @mockable(typealias: TsundocCreateView = SampleView)
 public protocol TsundocCreateViewBuildable {
     associatedtype TsundocCreateView: View
 

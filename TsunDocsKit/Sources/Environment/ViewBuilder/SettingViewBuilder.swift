@@ -6,7 +6,7 @@ import CompositeKit
 import Domain
 import SwiftUI
 
-/// @mockable
+/// @mockable(typealias: SettingView = SampleView)
 public protocol SettingViewBuilder {
     associatedtype SettingView: View
 

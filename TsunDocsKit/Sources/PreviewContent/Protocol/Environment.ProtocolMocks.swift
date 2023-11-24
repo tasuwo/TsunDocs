@@ -24,9 +24,11 @@ public class HasPasteboardMock: HasPasteboard {
 public class TsundocCreateViewBuildableMock: TsundocCreateViewBuildable {
     public init() { }
 
+    public typealias TsundocCreateView = SampleView
+
     public private(set) var buildTsundocCreateViewCallCount = 0
-    public var buildTsundocCreateViewHandler: ((URL, @escaping (Bool) -> Void) -> (AnyView))?
-    public func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> AnyView {
+    public var buildTsundocCreateViewHandler: ((URL, @escaping (Bool) -> Void) -> (TsundocCreateView))?
+    public func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> TsundocCreateView {
         buildTsundocCreateViewCallCount += 1
         if let buildTsundocCreateViewHandler = buildTsundocCreateViewHandler {
             return buildTsundocCreateViewHandler(url, onDone)
@@ -38,9 +40,11 @@ public class TsundocCreateViewBuildableMock: TsundocCreateViewBuildable {
 public class SettingViewBuilderMock: SettingViewBuilder {
     public init() { }
 
+    public typealias SettingView = SampleView
+
     public private(set) var buildSettingViewCallCount = 0
-    public var buildSettingViewHandler: ((String) -> (AnyView))?
-    public func buildSettingView(appVersion: String) -> AnyView {
+    public var buildSettingViewHandler: ((String) -> (SettingView))?
+    public func buildSettingView(appVersion: String) -> SettingView {
         buildSettingViewCallCount += 1
         if let buildSettingViewHandler = buildSettingViewHandler {
             return buildSettingViewHandler(appVersion)
@@ -52,9 +56,11 @@ public class SettingViewBuilderMock: SettingViewBuilder {
 public class TagListBuildableMock: TagListBuildable {
     public init() { }
 
+    public typealias TagList = SampleView
+
     public private(set) var buildTagListCallCount = 0
-    public var buildTagListHandler: (() -> (AnyView))?
-    public func buildTagList() -> AnyView {
+    public var buildTagListHandler: (() -> (TagList))?
+    public func buildTagList() -> TagList {
         buildTagListCallCount += 1
         if let buildTagListHandler = buildTagListHandler {
             return buildTagListHandler()
@@ -66,9 +72,11 @@ public class TagListBuildableMock: TagListBuildable {
 public class TagMultiSelectionSheetBuildableMock: TagMultiSelectionSheetBuildable {
     public init() { }
 
+    public typealias TagMultiSelectionSheet = SampleView
+
     public private(set) var buildTagMultiSelectionSheetCallCount = 0
-    public var buildTagMultiSelectionSheetHandler: ((Set<Tag.ID>, @escaping ([Tag]) -> Void) -> (AnyView))?
-    public func buildTagMultiSelectionSheet(selectedIds: Set<Tag.ID>, onDone: @escaping ([Tag]) -> Void) -> AnyView {
+    public var buildTagMultiSelectionSheetHandler: ((Set<Tag.ID>, @escaping ([Tag]) -> Void) -> (TagMultiSelectionSheet))?
+    public func buildTagMultiSelectionSheet(selectedIds: Set<Tag.ID>, onDone: @escaping ([Tag]) -> Void) -> TagMultiSelectionSheet {
         buildTagMultiSelectionSheetCallCount += 1
         if let buildTagMultiSelectionSheetHandler = buildTagMultiSelectionSheetHandler {
             return buildTagMultiSelectionSheetHandler(selectedIds, onDone)
@@ -80,9 +88,11 @@ public class TagMultiSelectionSheetBuildableMock: TagMultiSelectionSheetBuildabl
 public class TsundocInfoViewBuildableMock: TsundocInfoViewBuildable {
     public init() { }
 
+    public typealias TsundocInfoView = SampleView
+
     public private(set) var buildTsundocInfoViewCallCount = 0
-    public var buildTsundocInfoViewHandler: ((Tsundoc) -> (AnyView))?
-    public func buildTsundocInfoView(tsundoc: Tsundoc) -> AnyView {
+    public var buildTsundocInfoViewHandler: ((Tsundoc) -> (TsundocInfoView))?
+    public func buildTsundocInfoView(tsundoc: Tsundoc) -> TsundocInfoView {
         buildTsundocInfoViewCallCount += 1
         if let buildTsundocInfoViewHandler = buildTsundocInfoViewHandler {
             return buildTsundocInfoViewHandler(tsundoc)
@@ -94,9 +104,11 @@ public class TsundocInfoViewBuildableMock: TsundocInfoViewBuildable {
 public class TsundocListBuildableMock: TsundocListBuildable {
     public init() { }
 
+    public typealias TsundocList = SampleView
+
     public private(set) var buildTsundocListCallCount = 0
-    public var buildTsundocListHandler: ((String, String, String?, Bool, TsundocListQuery) -> (AnyView))?
-    public func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, query: TsundocListQuery) -> AnyView {
+    public var buildTsundocListHandler: ((String, String, String?, Bool, TsundocListQuery) -> (TsundocList))?
+    public func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, query: TsundocListQuery) -> TsundocList {
         buildTsundocListCallCount += 1
         if let buildTsundocListHandler = buildTsundocListHandler {
             return buildTsundocListHandler(title, emptyTile, emptyMessage, isTsundocCreationEnabled, query)
