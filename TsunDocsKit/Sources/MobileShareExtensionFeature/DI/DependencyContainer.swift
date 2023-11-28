@@ -33,6 +33,10 @@ public class DependencyContainer: ObservableObject {
     private let _tsundocCommandService: Domain.TsundocCommandService
     private let _tagCommandService: Domain.TagCommandService
 
+    // MARK: Storage
+
+    let _sharedUserSettingStorage: Domain.SharedUserSettingStorage
+
     // MARK: - Initializers
 
     public init(appBundle: Bundle, context: NSExtensionContext) {
@@ -59,6 +63,8 @@ public class DependencyContainer: ObservableObject {
         _tagQueryService = TagQueryService(persistentStack.viewContext)
         _tsundocCommandService = TsundocCommandService(commandContext)
         _tagCommandService = TagCommandService(commandContext)
+
+        _sharedUserSettingStorage = Persistence.SharedUserSettingStorage(userDefaults: .init(suiteName: "group.\(appBundle.bundleIdentifier!)")!)
 
         persistentStack.reconfigureIfNeeded(isCloudKitEnabled: false)
     }
@@ -89,3 +95,7 @@ extension DependencyContainer: HasPasteboard {
 }
 
 extension DependencyContainer: HasNop {}
+
+extension DependencyContainer: HasSharedUserSettingStorage {
+    public var sharedUserSettingStorage: Domain.SharedUserSettingStorage { _sharedUserSettingStorage }
+}

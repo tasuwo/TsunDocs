@@ -7,4 +7,5 @@ public enum StorageKey: String {
     case isiCloudSyncEnabled
     // case lastLoggedInCKAccountId
     case markAsReadAutomatically
+    case markAsReadAtCreate
 }

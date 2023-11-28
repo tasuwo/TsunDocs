@@ -14,6 +14,7 @@ public protocol HasCloudKitAvailabilityObserver {
 
 public typealias SettingViewDependency = HasCloudKitAvailabilityObserver
     & HasUserSettingStorage
+    & HasSharedUserSettingStorage
 
 public struct SettingViewReducer: Reducer {
     public typealias Dependency = SettingViewDependency
@@ -49,6 +50,10 @@ public struct SettingViewReducer: Reducer {
             nextState.markAsReadAutomatically = isEnabled
             return (nextState, .none)
 
+        case let .markAsReadAtCreate(isEnabled: isEnabled):
+            nextState.markAsReadAtCreate = isEnabled
+            return (nextState, .none)
+
         // MARK: Control
 
         case let .iCloudSyncAvailabilityChanged(isEnabled: isEnabled):
@@ -77,6 +82,10 @@ public struct SettingViewReducer: Reducer {
 
         case let .markAsReadAutomaticallyChanged(isEnabled: isEnabled):
             dependency.userSettingStorage.set(markAsReadAutomatically: isEnabled)
+            return (nextState, .none)
+
+        case let .markAsReadAtCreateChanged(isEnabled: isEnabled):
+            dependency.sharedUserSettingStorage.set(markAsReadAtCreate: isEnabled)
             return (nextState, .none)
 
         // MARK: Alert Completion
@@ -123,10 +132,15 @@ extension SettingViewReducer {
             .map { Action.markAsReadAutomatically(isEnabled: $0) as Action? }
         let markAsReadAutomaticallyEffect = Effect(markAsReadAutomaticallyStream)
 
+        let markAsReadAtCreateStream = dependency.sharedUserSettingStorage.markAsReadAtCreate
+            .map { Action.markAsReadAtCreate(isEnabled: $0) as Action? }
+        let markAsReadAtCreateEffect = Effect(markAsReadAtCreateStream)
+
         var nextState = state
         nextState.isiCloudSyncInternalSettingEnabled = dependency.userSettingStorage.isiCloudSyncEnabledValue
         nextState.markAsReadAutomatically = dependency.userSettingStorage.markAsReadAutomaticallyValue
+        nextState.markAsReadAtCreate = dependency.sharedUserSettingStorage.markAsReadAtCreateValue
 
-        return (nextState, [iCloudSyncSettingEffect, cloudKitAvailabilityEffect, markAsReadAutomaticallyEffect])
+        return (nextState, [iCloudSyncSettingEffect, cloudKitAvailabilityEffect, markAsReadAutomaticallyEffect, markAsReadAtCreateEffect])
     }
 }

@@ -45,4 +45,9 @@ public protocol HasUserSettingStorage {
 }
 
 /// @mockable
+public protocol HasSharedUserSettingStorage {
+    var sharedUserSettingStorage: SharedUserSettingStorage { get }
+}
+
+/// @mockable
 public protocol HasNop {}

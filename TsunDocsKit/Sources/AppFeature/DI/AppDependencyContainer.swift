@@ -37,6 +37,7 @@ public class AppDependencyContainer {
     // MARK: Storage
 
     let _userSettingStorage: Domain.UserSettingStorage
+    let _sharedUserSettingStorage: Domain.SharedUserSettingStorage
 
     // MARK: Others
 
@@ -50,7 +51,8 @@ public class AppDependencyContainer {
 
     public init(appBundle: Bundle) {
         let userSettingStorage = Persistence.UserSettingStorage(userDefaults: .standard)
-        self._userSettingStorage = userSettingStorage
+        _userSettingStorage = userSettingStorage
+        _sharedUserSettingStorage = Persistence.SharedUserSettingStorage(userDefaults: .init(suiteName: "group.\(appBundle.bundleIdentifier!)")!)
 
         var persistentStackConf = PersistentStack.Configuration(author: "app",
                                                                 persistentContainerName: "Model",
@@ -131,4 +133,5 @@ extension AppDependencyContainer: DependencyContainer {
     public var tagCommandService: Domain.TagCommandService { _tagCommandService }
     public var userSettingStorage: Domain.UserSettingStorage { _userSettingStorage }
     public var webPageMetaResolver: Domain.WebPageMetaResolvable { _webPageMetaResolver }
+    public var sharedUserSettingStorage: Domain.SharedUserSettingStorage { _sharedUserSettingStorage }
 }

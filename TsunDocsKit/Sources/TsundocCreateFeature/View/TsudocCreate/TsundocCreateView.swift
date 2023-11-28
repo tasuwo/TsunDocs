@@ -81,10 +81,12 @@ struct TsundocCreateView_Previews: PreviewProvider {
         var urlLoader: URLLoadable { _sharedUrlLoader }
         var webPageMetaResolver: WebPageMetaResolvable { _webPageMetaResolver }
         var tsundocCommandService: TsundocCommandService { _tsundocCommandService }
+        var sharedUserSettingStorage: SharedUserSettingStorage { _sharedUserSettingStorage }
 
         var _sharedUrlLoader = URLLoadableMock()
         var _webPageMetaResolver = WebPageMetaResolvableMock()
         var _tsundocCommandService = TsundocCommandServiceMock()
+        var _sharedUserSettingStorage = SharedUserSettingStorageMock()
     }
 
     static var previews: some View {

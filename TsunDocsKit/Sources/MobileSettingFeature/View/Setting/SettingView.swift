@@ -40,10 +40,28 @@ public struct SettingView: View {
 
             Section(header: Text("setting_view.section.read.title", bundle: Bundle.module)) {
                 HStack(spacing: 12) {
-                    Image(systemName: "envelope.open.fill")
-                        .foregroundColor(Color.green)
+                    if store.state.markAsReadAutomatically {
+                        Image(systemName: "envelope.open.fill")
+                            .foregroundColor(Color.green)
+                    } else {
+                        Image(systemName: "envelope.fill")
+                            .foregroundColor(Color.green)
+                    }
                     Toggle(isOn: store.bind(\.markAsReadAutomatically, action: { .markAsReadAutomaticallyChanged(isEnabled: $0) })) {
                         Text("setting_view.raw.mark_as_read_automatically.title", bundle: Bundle.module)
+                    }
+                }
+
+                HStack(spacing: 12) {
+                    if store.state.markAsReadAtCreate {
+                        Image(systemName: "envelope.open.fill")
+                            .foregroundColor(Color.green)
+                    } else {
+                        Image(systemName: "envelope.fill")
+                            .foregroundColor(Color.green)
+                    }
+                    Toggle(isOn: store.bind(\.markAsReadAtCreate, action: { .markAsReadAtCreateChanged(isEnabled: $0) })) {
+                        Text("setting_view.raw.mark_as_read_at_create.title", bundle: Bundle.module)
                     }
                 }
             }
@@ -135,11 +153,13 @@ struct SettingView_Previews: PreviewProvider {
         private var isCloudKitAvailable: CurrentValueSubject<Bool?, Never>
         private var isiCloudSyncEnabled: CurrentValueSubject<Bool, Never> = .init(false)
         private var markAsReadAutomatically: CurrentValueSubject<Bool, Never> = .init(true)
+        private var markAsReadAtCreate: CurrentValueSubject<Bool, Never> = .init(true)
 
         private var cancellables: Set<AnyCancellable> = .init()
 
         var cloudKitAvailabilityObserver: CloudKitAvailabilityObservable
         var userSettingStorage: UserSettingStorage
+        var sharedUserSettingStorage: SharedUserSettingStorage
 
         init(isCloudKitAvailable: Bool?) {
             let storage = UserSettingStorageMock()
@@ -148,6 +168,11 @@ struct SettingView_Previews: PreviewProvider {
             storage.markAsReadAutomatically = markAsReadAutomatically.eraseToAnyPublisher()
             storage.markAsReadAutomaticallyValue = true
             userSettingStorage = storage
+
+            let sharedUserSettingStorage = SharedUserSettingStorageMock()
+            sharedUserSettingStorage.markAsReadAtCreate = markAsReadAtCreate.eraseToAnyPublisher()
+            sharedUserSettingStorage.markAsReadAtCreateValue = false
+            self.sharedUserSettingStorage = sharedUserSettingStorage
 
             self.isCloudKitAvailable = .init(isCloudKitAvailable)
             let observer = CloudKitAvailabilityObservableMock()

@@ -10,6 +10,7 @@ import Foundation
 
 public typealias TsundocCreateViewDependency = HasWebPageMetaResolver
     & HasTsundocCommandService
+    & HasSharedUserSettingStorage
 
 public struct TsundocCreateViewReducer: Reducer {
     public typealias Dependency = TsundocCreateViewDependency
@@ -27,7 +28,7 @@ public struct TsundocCreateViewReducer: Reducer {
 
         switch action {
         case .onAppear:
-            return Self.loadUrl(state: state, dependency: dependency)
+            return Self.prepare(state: state, dependency: dependency)
 
         case let .onLoad(meta):
             nextState.sharedUrlTitle = meta?.title
@@ -90,7 +91,9 @@ public struct TsundocCreateViewReducer: Reducer {
 }
 
 extension TsundocCreateViewReducer {
-    private static func loadUrl(state: State, dependency: Dependency) -> (State, [Effect<Action>]) {
+    private static func prepare(state: State, dependency: Dependency) -> (State, [Effect<Action>]) {
+        var nextState = state
+
         let stream = Deferred {
             Future<Action?, Never> { promise in
                 let meta = try? dependency.webPageMetaResolver.resolve(from: state.url)
@@ -99,6 +102,8 @@ extension TsundocCreateViewReducer {
         }
         let effect = Effect(stream)
 
-        return (state, [effect])
+        nextState.isUnread = !dependency.sharedUserSettingStorage.markAsReadAtCreateValue
+
+        return (nextState, [effect])
     }
 }

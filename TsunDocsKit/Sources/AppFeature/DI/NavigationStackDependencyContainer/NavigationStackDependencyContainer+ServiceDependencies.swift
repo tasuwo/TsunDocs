@@ -18,4 +18,5 @@ extension NavigationStackDependencyContainer: DependencyContainer {
     public var userSettingStorage: UserSettingStorage { container.userSettingStorage }
     public var cloudKitAvailabilityObserver: CloudKitAvailabilityObservable { container.cloudKitAvailabilityObserver }
     public var webPageMetaResolver: WebPageMetaResolvable { container.webPageMetaResolver }
+    public var sharedUserSettingStorage: SharedUserSettingStorage { container.sharedUserSettingStorage }
 }

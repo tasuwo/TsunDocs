@@ -14,11 +14,13 @@ public enum SettingViewAction: Action {
     case iCloudSyncSettingUpdated(isEnabled: Bool)
     case cloudKitAvailabilityUpdated(isAvailable: Bool?)
     case markAsReadAutomatically(isEnabled: Bool)
+    case markAsReadAtCreate(isEnabled: Bool)
 
     // MARK: Control
 
     case iCloudSyncAvailabilityChanged(isEnabled: Bool)
     case markAsReadAutomaticallyChanged(isEnabled: Bool)
+    case markAsReadAtCreateChanged(isEnabled: Bool)
 
     // MARK: Alert Completion
 

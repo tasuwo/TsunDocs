@@ -16,3 +16,4 @@ public typealias DependencyContainer = HasPasteboard
     & HasCloudKitAvailabilityObserver
     & HasWebPageMetaResolver
     & HasNop
+    & HasSharedUserSettingStorage

@@ -10,7 +10,8 @@
 "setting_view.section.appearance.title" = "表示設定";
 "setting_view.row.user_interface_style.title" = "テーマ";
 "setting_view.section.read.title" = "既読設定";
-"setting_view.raw.mark_as_read_automatically.title" = "記事を開いたら自動で既読にする";
+"setting_view.raw.mark_as_read_automatically.title" = "記事を開いたら既読にする";
+"setting_view.raw.mark_as_read_at_create.title" = "新規作成時は既読にする";
 "setting_view.section.this_app.title" = "このアプリについて";
 "setting_view.row.app_version.title" = "バージョン";
 "setting_view.section.sync.title" = "同期";
