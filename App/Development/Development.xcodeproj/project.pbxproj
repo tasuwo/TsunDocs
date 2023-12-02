@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */; };
 		2C24DA3027CA14D9004AA2CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C24DA3227CA14D9004AA2CD /* Localizable.strings */; };
+		2C6FCBC32B1B90FF00186399 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C6FCBC22B1B90FF00186399 /* Settings.bundle */; };
 		2CADB7D227D3AD43004D7614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CADB7D127D3AD43004D7614 /* Assets.xcassets */; };
 		2CC25E7827C669E100E29112 /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */; };
 		2CC25E7A27C669EA00E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7927C669EA00E29112 /* AppFeature */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		2C24DA3127CA14D9004AA2CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C24DA3327CA14DA004AA2CD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2C6FCBC22B1B90FF00186399 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../../Shared/Settings.bundle; sourceTree = "<group>"; };
 		2CADB7CF27D3AD3C004D7614 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CADB7D127D3AD43004D7614 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CADB7D327D3AD4F004D7614 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				2CADB7D127D3AD43004D7614 /* Assets.xcassets */,
 				C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */,
 				2C24DA3227CA14D9004AA2CD /* Localizable.strings */,
+				2C6FCBC22B1B90FF00186399 /* Settings.bundle */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -169,6 +172,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocsDev (iOS)" */;
 			buildPhases = (
+				2C6FCBBD2B1B8FA300186399 /* Set Licenses to Settings.bundle */,
+				2C6FCBC62B1B932700186399 /* Set App Version to Settings.bundle */,
 				CE0AD2747B613D920FA6F9C5 /* Sources */,
 				2CC9301627C62FDC00663CA5 /* Resources */,
 				26CBBCDC2AAD7C4A199E2BC3 /* Frameworks */,
@@ -273,11 +278,53 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CADB7D227D3AD43004D7614 /* Assets.xcassets in Resources */,
+				2C6FCBC32B1B90FF00186399 /* Settings.bundle in Resources */,
 				2C24DA3027CA14D9004AA2CD /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C6FCBBD2B1B8FA300186399 /* Set Licenses to Settings.bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Licenses to Settings.bundle";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/homebrew/bin/license-plist \\\n  --output-path ${SRCROOT}/../Shared/Settings.bundle \\\n  --xcworkspace-path ${SRCROOT}/../../TsunDocs.xcworkspace \\\n  --config-path ${SRCROOT}/../../license_plist.yml\n";
+		};
+		2C6FCBC62B1B932700186399 /* Set App Version to Settings.bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set App Version to Settings.bundle";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue ${MARKETING_VERSION}\" \"${SRCROOT}/../Shared/Settings.bundle/Root.plist\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		87CC4EAA7C77ADEBD12FDFB2 /* Sources */ = {
@@ -376,6 +423,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -557,6 +605,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

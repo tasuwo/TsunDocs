@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */; };
 		2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C24DA2C27CA144C004AA2CD /* Localizable.strings */; };
+		2C6FCBC52B1B910A00186399 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C6FCBC42B1B910A00186399 /* Settings.bundle */; };
 		2CADB7E027D3AEC0004D7614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CADB7DF27D3AEC0004D7614 /* Assets.xcassets */; };
 		2CC25E7827C669E100E29112 /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */; };
 		2CC25E7A27C669EA00E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7927C669EA00E29112 /* AppFeature */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		2C24DA2B27CA144C004AA2CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C24DA2D27CA144E004AA2CD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2C6FCBC42B1B910A00186399 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../../Shared/Settings.bundle; sourceTree = "<group>"; };
 		2CADB7DC27D3AEAE004D7614 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CADB7DE27D3AEB6004D7614 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 		2CADB7DF27D3AEC0004D7614 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				2CADB7DE27D3AEB6004D7614 /* iOS.entitlements */,
 				2CADB7DF27D3AEC0004D7614 /* Assets.xcassets */,
 				2C24DA2C27CA144C004AA2CD /* Localizable.strings */,
+				2C6FCBC42B1B910A00186399 /* Settings.bundle */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */,
+				2C6FCBC52B1B910A00186399 /* Settings.bundle in Resources */,
 				2CADB7E027D3AEC0004D7614 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -550,6 +555,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 1.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
