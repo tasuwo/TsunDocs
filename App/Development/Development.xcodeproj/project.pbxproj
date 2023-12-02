@@ -307,7 +307,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/opt/homebrew/bin/license-plist \\\n  --output-path ${SRCROOT}/../Shared/Settings.bundle \\\n  --xcworkspace-path ${SRCROOT}/../../TsunDocs.xcworkspace \\\n  --config-path ${SRCROOT}/../../license_plist.yml\n";
+			shellScript = "if [[ -f \"/opt/homebrew/bin/license-plist\" ]]; then\n    /opt/homebrew/bin/license-plist \\\n        --output-path ${SRCROOT}/../Shared/Settings.bundle \\\n        --xcworkspace-path ${SRCROOT}/../../TsunDocs.xcworkspace \\\n        --config-path ${SRCROOT}/../../license_plist.yml\nelse\n  echo \"warning: LicensePlist is not installed. Run 'brew install license-plist' to install it.\"\nfi\n";
 		};
 		2C6FCBC62B1B932700186399 /* Set App Version to Settings.bundle */ = {
 			isa = PBXShellScriptBuildPhase;
