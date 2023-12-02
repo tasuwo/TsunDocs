@@ -10,6 +10,7 @@
 		0080233F018EFD51BCA31A27 /* ShareRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AE52CBE4359D59F4CC005C /* ShareRootViewController.swift */; };
 		2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C24DA2C27CA144C004AA2CD /* Localizable.strings */; };
 		2C6FCBC52B1B910A00186399 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C6FCBC42B1B910A00186399 /* Settings.bundle */; };
+		2C6FCBCC2B1B96F600186399 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2C6FCBCB2B1B96F600186399 /* Config.xcconfig */; };
 		2CADB7E027D3AEC0004D7614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CADB7DF27D3AEC0004D7614 /* Assets.xcassets */; };
 		2CC25E7827C669E100E29112 /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */; };
 		2CC25E7A27C669EA00E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7927C669EA00E29112 /* AppFeature */; };
@@ -48,6 +49,7 @@
 		2C24DA2B27CA144C004AA2CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C24DA2D27CA144E004AA2CD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C6FCBC42B1B910A00186399 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../../Shared/Settings.bundle; sourceTree = "<group>"; };
+		2C6FCBCB2B1B96F600186399 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = ../../Shared/Config.xcconfig; sourceTree = "<group>"; };
 		2CADB7DC27D3AEAE004D7614 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CADB7DE27D3AEB6004D7614 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 		2CADB7DF27D3AEC0004D7614 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				C3043BCF99CE7B865A3E51C4 /* TsunDocsApp.swift */,
 				2CADB7DE27D3AEB6004D7614 /* iOS.entitlements */,
 				2CADB7DF27D3AEC0004D7614 /* Assets.xcassets */,
+				2C6FCBCB2B1B96F600186399 /* Config.xcconfig */,
 				2C24DA2C27CA144C004AA2CD /* Localizable.strings */,
 				2C6FCBC42B1B910A00186399 /* Settings.bundle */,
 			);
@@ -274,6 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6FCBCC2B1B96F600186399 /* Config.xcconfig in Resources */,
 				2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */,
 				2C6FCBC52B1B910A00186399 /* Settings.bundle in Resources */,
 				2CADB7E027D3AEC0004D7614 /* Assets.xcassets in Resources */,
@@ -332,6 +336,7 @@
 /* Begin XCBuildConfiguration section */
 		003468CAD7D857E59A2EB4AA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C6FCBCB2B1B96F600186399 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_GROUP = group.net.tasuwo.tsundocs;
@@ -377,7 +382,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MARKETING_VERSION = 1.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -504,6 +508,7 @@
 		};
 		D5AA687459EE26DCA5311561 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C6FCBCB2B1B96F600186399 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_GROUP = group.net.tasuwo.tsundocs;
@@ -555,7 +560,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MARKETING_VERSION = 1.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
