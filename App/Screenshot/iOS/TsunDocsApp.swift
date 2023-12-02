@@ -11,7 +11,7 @@ struct TsunDocsApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView(container: DummyContainer())
+            AppView(container: DummyContainer())
         }
     }
 }

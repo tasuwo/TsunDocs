@@ -2,16 +2,13 @@
 //  Copyright © 2022 Tasuku Tozawa. All rights reserved.
 //
 
-import AppFeature
 import Combine
-import CompositeKit
-import CoreDataCloudKitHelper
 import Domain
 import Environment
+import Foundation
+import MobileSettingFeature
 import PreviewContent
-import SwiftUI
-import TagMultiSelectionFeature
-import TsundocCreateFeature
+import UIKit
 
 class DummyContainer: ObservableObject {
     let cloudKitAvailabilityObserver: CloudKitAvailabilityObservable
@@ -20,11 +17,13 @@ class DummyContainer: ObservableObject {
     let tsundocCommandService: TsundocCommandService
     let tagCommandService: TagCommandService
     let userSettingStorage: UserSettingStorage
+    let webPageMetaResolver: WebPageMetaResolvable
+    let sharedUserSettingStorage: SharedUserSettingStorage
 
     init() {
         let cloudKitAvailabilityObserverMock = CloudKitAvailabilityObservableMock()
-        cloudKitAvailabilityObserverMock.availability = CurrentValueSubject(nil).eraseToAnyPublisher()
-        cloudKitAvailabilityObserverMock.fetchAvailabilityHandler = { return .unavailable }
+        cloudKitAvailabilityObserverMock.cloudKitAccountAvailability = CurrentValueSubject(nil).eraseToAnyPublisher()
+        cloudKitAvailabilityObserverMock.isCloudKitAccountAvaialbe = nil
         cloudKitAvailabilityObserver = cloudKitAvailabilityObserverMock
 
         let dummyTsundocs: [Tsundoc] = [
@@ -85,6 +84,12 @@ class DummyContainer: ObservableObject {
         userSettingStorageMock.isiCloudSyncEnabled = CurrentValueSubject(false).eraseToAnyPublisher()
         userSettingStorageMock.isiCloudSyncEnabledValue = false
         userSettingStorage = userSettingStorageMock
+
+        let webPageMetaResolverMock = WebPageMetaResolvableMock()
+        webPageMetaResolver = webPageMetaResolverMock
+
+        let sharedUserSettingStorageMock = SharedUserSettingStorageMock()
+        sharedUserSettingStorage = sharedUserSettingStorageMock
     }
 }
 
@@ -98,61 +103,6 @@ extension DummyContainer: HasTsundocCommandService {}
 extension DummyContainer: HasTagCommandService {}
 extension DummyContainer: HasUserSettingStorage {}
 extension DummyContainer: HasCloudKitAvailabilityObserver {}
+extension DummyContainer: HasWebPageMetaResolver {}
 extension DummyContainer: HasNop {}
-
-extension DummyContainer: TsundocListBuildable {
-    func buildTsundocList(title: String, emptyTile: String, emptyMessage: String?, isTsundocCreationEnabled: Bool, query: TsundocListQuery) -> AnyView {
-        let store = Store(initialState: TsundocListState(query: .all),
-                          dependency: self,
-                          reducer: TsundocListReducer())
-        return AnyView(TsundocList(title: title,
-                                   emptyTitle: emptyTile,
-                                   emptyMessage: emptyMessage,
-                                   isTsundocCreationEnabled: isTsundocCreationEnabled,
-                                   store: ViewStore(store: store)))
-    }
-}
-
-extension DummyContainer: TagListBuildable {
-    func buildTagList() -> AnyView {
-        let tagControlStore = Store(initialState: TagControlState(),
-                                    dependency: self,
-                                    reducer: TagControlReducer())
-
-        let filterStore = CompositeKit.Store(initialState: SearchableFilterState<Tag>(items: []),
-                                             dependency: (),
-                                             reducer: SearchableFilterReducer<Tag>())
-            .connect(tagControlStore.connection(at: \.tags, { SearchableFilterAction.updateItems($0) }))
-            .eraseToAnyStoring()
-
-        return AnyView(TagList(store: ViewStore(store: tagControlStore),
-                               filterStore: ViewStore(store: filterStore)))
-    }
-}
-
-extension DummyContainer: TagMultiSelectionSheetBuildable {
-    func buildTagMultiSelectionSheet(selectedIds: Set<Tag.ID>, onDone: @escaping ([Tag]) -> Void) -> AnyView {
-        AnyView(EmptyView())
-    }
-}
-
-extension DummyContainer: TsundocInfoViewBuildable {
-    func buildTsundocInfoView(tsundoc: Tsundoc) -> AnyView {
-        let store = Store(initialState: TsundocInfoViewState(tsundoc: tsundoc, tags: []),
-                          dependency: self,
-                          reducer: TsundocInfoViewReducer())
-        return AnyView(TsundocInfoView(store: ViewStore(store: store)))
-    }
-}
-
-extension DummyContainer: SettingViewBuilder {
-    func buildSettingView() -> AnyView {
-        AnyView(EmptyView())
-    }
-}
-
-extension DummyContainer: TsundocCreateViewBuildable {
-    func buildTsundocCreateView(url: URL, onDone: @escaping (Bool) -> Void) -> AnyView {
-        AnyView(EmptyView())
-    }
-}
+extension DummyContainer: HasSharedUserSettingStorage {}
