@@ -1,2 +1,3 @@
 exclude:
   - name: swift
+  - name: swift-argument-parser
