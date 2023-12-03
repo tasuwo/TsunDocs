@@ -43,7 +43,8 @@ public struct TsundocCreateView: View {
                             selectedTags: store.bind(\.selectedTags,
                                                      action: { .onSelectedTags($0) }),
                             isUnread: store.bind(\.isUnread,
-                                                 action: { .onToggleUnread($0) })) {
+                                                 action: { .onToggleUnread($0) }))
+            {
                 store.execute(.onTapSaveButton)
             } tagMultiSelectionSheetBuilder: {
                 AnyView(sheetBuilder.buildTagMultiSelectionSheet(selectedIds: $0, onDone: $1))

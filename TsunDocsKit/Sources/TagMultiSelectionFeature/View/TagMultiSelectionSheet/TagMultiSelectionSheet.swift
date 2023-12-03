@@ -33,7 +33,8 @@ public struct TagMultiSelectionSheet: View {
     public var body: some View {
         NavigationView {
             TagMultiSelectionView(selectedIds: store.bind(\.selectedIds, action: { .updatedSelectedTags($0) }),
-                                  connection: store.connection(at: \.tags, { .updateItems($0) })) { action in
+                                  connection: store.connection(at: \.tags, { .updateItems($0) }))
+            { action in
                 switch action {
                 case let .addNewTag(name: name):
                     store.execute(.createNewTag(name), animation: .default)
@@ -47,7 +48,8 @@ public struct TagMultiSelectionSheet: View {
             store.execute(.onAppear)
         }
         .alert(isPresented: store.bind(\.isFailedToCreateTagAlertPresenting,
-                                       action: { _ in .alertDismissed })) {
+                                       action: { _ in .alertDismissed }))
+        {
             Alert(title: Text("tag_multi_selection_sheet_alert_failed_to_create_tag_title", bundle: Bundle.this))
         }
     }

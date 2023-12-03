@@ -171,7 +171,8 @@ struct TagCell_Previews: PreviewProvider {
                     TagCell(id: UUID(),
                             name: "タグ",
                             count: 5,
-                            status: .default) {
+                            status: .default)
+                    {
                         switch $0 {
                         case let .select(tagId):
                             selected = tagId
@@ -182,7 +183,8 @@ struct TagCell_Previews: PreviewProvider {
                     TagCell(id: UUID(),
                             name: "my tag",
                             count: 5,
-                            status: .selected) {
+                            status: .selected)
+                    {
                         switch $0 {
                         case let .select(tagId):
                             selected = tagId
@@ -193,7 +195,8 @@ struct TagCell_Previews: PreviewProvider {
                     TagCell(id: UUID(),
                             name: "😁",
                             count: 5,
-                            status: .deletable) {
+                            status: .deletable)
+                    {
                         switch $0 {
                         case let .select(tagId):
                             selected = tagId
@@ -209,7 +212,8 @@ struct TagCell_Previews: PreviewProvider {
                             name: "タグ",
                             count: 5,
                             status: .default,
-                            size: .small) {
+                            size: .small)
+                    {
                         switch $0 {
                         case let .select(tagId):
                             selected = tagId
@@ -221,7 +225,8 @@ struct TagCell_Previews: PreviewProvider {
                             name: "my tag",
                             count: 5,
                             status: .selected,
-                            size: .small) {
+                            size: .small)
+                    {
                         switch $0 {
                         case let .select(tagId):
                             selected = tagId
@@ -233,7 +238,8 @@ struct TagCell_Previews: PreviewProvider {
                             name: "😁",
                             count: 5,
                             status: .deletable,
-                            size: .small) {
+                            size: .small)
+                    {
                         switch $0 {
                         case let .select(tagId):
                             selected = tagId

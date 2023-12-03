@@ -67,7 +67,7 @@ public class Effect<Action: CompositeKit.Action> {
         let stream: AnyPublisher<ActionDispatcher?, Never> = Deferred {
             Future { promise in
                 Task {
-                    promise(.success(await block()))
+                    await promise(.success(block()))
                 }
             }
         }

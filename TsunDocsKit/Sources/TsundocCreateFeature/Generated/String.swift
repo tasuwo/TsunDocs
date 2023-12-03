@@ -9,15 +9,15 @@ import Foundation
 
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
-internal enum L10n {
+enum L10n {
     /// 閉じる
-    internal static let alertClose = L10n.tr("Localizable", "alert_close", fallback: "閉じる")
+    static let alertClose = L10n.tr("Localizable", "alert_close", fallback: "閉じる")
     /// Localizable.strings
     ///   TsunDocs
     ///
     ///   Created by Tasuku Tozawa on 2021/06/27.
     ///   Copyright © 2021 Tasuku Tozawa. All rights reserved.
-    internal static let sharedUrlEditViewErrorTitleSaveUrl = L10n.tr("Localizable", "shared_url_edit_view_error_title_save_url", fallback: "URLの保存に失敗しました")
+    static let sharedUrlEditViewErrorTitleSaveUrl = L10n.tr("Localizable", "shared_url_edit_view_error_title_save_url", fallback: "URLの保存に失敗しました")
 }
 
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

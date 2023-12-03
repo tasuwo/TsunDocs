@@ -67,7 +67,8 @@ public struct SettingView: View {
             }
 
             Section(header: Text("setting_view.section.sync.title", bundle: Bundle.module),
-                    footer: Text("setting_view.section.sync.footer.title", bundle: Bundle.module)) {
+                    footer: Text("setting_view.section.sync.footer.title", bundle: Bundle.module))
+            {
                 HStack(spacing: 12) {
                     Image(systemName: "arrow.clockwise.icloud.fill")
                         .foregroundColor(Color.cyan)
@@ -95,7 +96,8 @@ public struct SettingView: View {
             store.execute(.onAppear)
         }
         .alert(Text("setting_view.alert.turn_off_confirmation.title", bundle: Bundle.module),
-               isPresented: store.bind(\.isiCloudTurnOffConfirmationPresenting, action: { _ in .alertDismissed })) {
+               isPresented: store.bind(\.isiCloudTurnOffConfirmationPresenting, action: { _ in .alertDismissed }))
+        {
             Button {
                 store.execute(.iCloudTurnOffConfirmed, animation: .default)
             } label: {
@@ -110,7 +112,8 @@ public struct SettingView: View {
             Text("setting_view.alert.turn_off_confirmation.message", bundle: Bundle.module)
         }
         .alert(Text("setting_view.alert.icloud_unavailable.title", bundle: Bundle.module),
-               isPresented: store.bind(\.isiCloudSettingForceTurnOffConfirmationPresenting, action: { _ in .alertDismissed })) {
+               isPresented: store.bind(\.isiCloudSettingForceTurnOffConfirmationPresenting, action: { _ in .alertDismissed }))
+        {
             Button {
                 store.execute(.alertDismissed, animation: .default)
             } label: {

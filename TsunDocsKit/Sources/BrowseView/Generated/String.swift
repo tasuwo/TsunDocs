@@ -9,16 +9,16 @@ import Foundation
 
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
-internal enum L10n {
+enum L10n {
     /// 閉じる
-    internal static let browseViewButtonClose = L10n.tr("Localizable", "browse_view_button_close", fallback: "閉じる")
+    static let browseViewButtonClose = L10n.tr("Localizable", "browse_view_button_close", fallback: "閉じる")
     /// Safariで開く
-    internal static let browseViewButtonSafari = L10n.tr("Localizable", "browse_view_button_safari", fallback: "Safariで開く")
+    static let browseViewButtonSafari = L10n.tr("Localizable", "browse_view_button_safari", fallback: "Safariで開く")
     /// Localizable.strings
     ///
     ///
     ///   Created by Tasuku Tozawa on 2022/07/31.
-    internal static let browseViewTitleLoading = L10n.tr("Localizable", "browse_view_title_loading", fallback: "読み込み中...")
+    static let browseViewTitleLoading = L10n.tr("Localizable", "browse_view_title_loading", fallback: "読み込み中...")
 }
 
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

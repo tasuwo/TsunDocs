@@ -2,21 +2,17 @@ PODS:
   - Sourcery (1.9.0):
     - Sourcery/CLI-Only (= 1.9.0)
   - Sourcery/CLI-Only (1.9.0)
-  - SwiftGen (6.6.2)
 
 DEPENDENCIES:
   - Sourcery (~> 1.9)
-  - SwiftGen (~> 6.6)
 
 SPEC REPOS:
   trunk:
     - Sourcery
-    - SwiftGen
 
 SPEC CHECKSUMS:
   Sourcery: d7c59d100e55bf59123c8ae7d65a24cf30748979
-  SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
 
-PODFILE CHECKSUM: 9bef244464950eeedf8eec35e8e026b2b706ae26
+PODFILE CHECKSUM: ca5ad83e395b6897f213ed10590f30282d8346da
 
 COCOAPODS: 1.11.3

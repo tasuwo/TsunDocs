@@ -1,0 +1,52 @@
+strings:
+    - inputs:
+        - Sources/AppFeature/Resource/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: Sources/AppFeature/Generated/String.swift
+    - inputs:
+        - Sources/TsundocListFeature/Resource/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: Sources/TsundocListFeature/Generated/String.swift
+    - inputs:
+        - Sources/BrowseView/Resource/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: Sources/BrowseView/Generated/String.swift
+    - inputs:
+        - Sources/TsundocCreateFeature/Resources/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: Sources/TsundocCreateFeature/Generated/String.swift
+    - inputs:
+        - Sources/TsundocInfoFeature/Resources/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: Sources/TsundocInfoFeature/Generated/String.swift
+    - inputs:
+        - Sources/MobileSettingFeature/Resource/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: Sources/MobileSettingFeature/Generated/String.swift
+    - inputs:
+        - Sources/TagListFeature/Resource/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: Sources/TagListFeature/Generated/String.swift
+    - inputs:
+        - Sources/TagMultiSelectionFeature/Resources/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: Sources/TagMultiSelectionFeature/Generated/String.swift
+    - inputs:
+        - Sources/UIComponent/Resource/ja.lproj/Localizable.strings
+      outputs:
+        - templateName: structured-swift5
+          output: Sources/UIComponent/Generated/String.swift
+xcassets:
+    - inputs:
+        - Sources/Domain/Resources/Assets.xcassets
+      outputs:
+        - templateName: swift5
+          output: Sources/Domain/Generated/Asset.swift

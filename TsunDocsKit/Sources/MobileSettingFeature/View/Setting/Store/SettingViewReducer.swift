@@ -13,8 +13,8 @@ public protocol HasCloudKitAvailabilityObserver {
 }
 
 public typealias SettingViewDependency = HasCloudKitAvailabilityObserver
-    & HasUserSettingStorage
     & HasSharedUserSettingStorage
+    & HasUserSettingStorage
 
 public struct SettingViewReducer: Reducer {
     public typealias Dependency = SettingViewDependency

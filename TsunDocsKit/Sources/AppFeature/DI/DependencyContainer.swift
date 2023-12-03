@@ -7,13 +7,13 @@ import Environment
 import MobileSettingFeature
 import UIKit
 
-public typealias DependencyContainer = HasPasteboard
-    & HasTsundocQueryService
+public typealias DependencyContainer = HasCloudKitAvailabilityObserver
+    & HasNop
+    & HasPasteboard
+    & HasSharedUserSettingStorage
+    & HasTagCommandService
     & HasTagQueryService
     & HasTsundocCommandService
-    & HasTagCommandService
+    & HasTsundocQueryService
     & HasUserSettingStorage
-    & HasCloudKitAvailabilityObserver
     & HasWebPageMetaResolver
-    & HasNop
-    & HasSharedUserSettingStorage

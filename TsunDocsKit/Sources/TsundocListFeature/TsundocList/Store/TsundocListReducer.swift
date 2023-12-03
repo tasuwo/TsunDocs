@@ -8,11 +8,11 @@ import Domain
 import Environment
 import Foundation
 
-public typealias TsundocListDependency = HasTsundocQueryService
-    & HasTsundocCommandService
-    & HasTagQueryService
-    & HasPasteboard
+public typealias TsundocListDependency = HasPasteboard
     & HasRouter
+    & HasTagQueryService
+    & HasTsundocCommandService
+    & HasTsundocQueryService
     & HasUserSettingStorage
 
 public struct TsundocListReducer: Reducer {

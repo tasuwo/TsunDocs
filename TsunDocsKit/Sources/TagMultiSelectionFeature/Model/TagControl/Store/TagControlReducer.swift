@@ -7,10 +7,10 @@ import CompositeKit
 import Domain
 import Environment
 
-public typealias TagControlDependency = HasTagCommandService
-    & HasTagQueryService
-    & HasPasteboard
+public typealias TagControlDependency = HasPasteboard
     & HasRouter
+    & HasTagCommandService
+    & HasTagQueryService
 
 public struct TagControlReducer: Reducer {
     public typealias Dependency = TagControlDependency

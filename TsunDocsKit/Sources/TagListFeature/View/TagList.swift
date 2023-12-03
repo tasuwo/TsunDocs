@@ -38,7 +38,8 @@ public struct TagList: View {
     public var body: some View {
         TagGrid(tags: filterStore.state.filteredItems,
                 selectedIds: .init(),
-                configuration: .init(.default, size: .normal, isEnabledMenu: true)) { action in
+                configuration: .init(.default, size: .normal, isEnabledMenu: true))
+        { action in
             switch action {
             case let .delete(tagId: tagId):
                 store.execute(.deleteTag(tagId), animation: .default)
@@ -72,15 +73,18 @@ public struct TagList: View {
             }
         }
         .alert(isPresented: store.bind(\.isFailedToCreateTagAlertPresenting,
-                                       action: { _ in .alertDismissed })) {
+                                       action: { _ in .alertDismissed }))
+        {
             return Alert(title: Text(L10n.errorTagAddDefault))
         }
         .alert(isPresented: store.bind(\.isFailedToDeleteTagAlertPresenting,
-                                       action: { _ in .alertDismissed })) {
+                                       action: { _ in .alertDismissed }))
+        {
             return Alert(title: Text(L10n.errorTagDelete))
         }
         .alert(isPresented: store.bind(\.isFailedToRenameTagAlertPresenting,
-                                       action: { _ in .alertDismissed })) {
+                                       action: { _ in .alertDismissed }))
+        {
             return Alert(title: Text(L10n.errorTagUpdate))
         }
         .alert(isPresenting: $isAdditionDialogPresenting,

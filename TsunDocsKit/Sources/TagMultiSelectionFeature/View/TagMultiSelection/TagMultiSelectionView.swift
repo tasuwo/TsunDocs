@@ -47,7 +47,8 @@ struct TagMultiSelectionView: View {
                 selectedIds: selectedIds,
                 configuration: .init(.selectable(.multiple),
                                      size: .normal,
-                                     isEnabledMenu: false)) { action in
+                                     isEnabledMenu: false))
+        { action in
             switch action {
             case let .select(tagId):
                 if selectedIds.contains(tagId) {

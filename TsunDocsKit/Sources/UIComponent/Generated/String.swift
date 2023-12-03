@@ -9,49 +9,49 @@ import Foundation
 
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
-internal enum L10n {
+enum L10n {
     /// キャンセル
-    internal static let cancel = L10n.tr("Localizable", "cancel", fallback: "キャンセル")
+    static let cancel = L10n.tr("Localizable", "cancel", fallback: "キャンセル")
     /// 保存
-    internal static let save = L10n.tr("Localizable", "save", fallback: "保存")
+    static let save = L10n.tr("Localizable", "save", fallback: "保存")
     /// タグを削除
-    internal static let tagGridAlertDeleteTagAction = L10n.tr("Localizable", "tag_grid_alert_delete_tag_action", fallback: "タグを削除")
+    static let tagGridAlertDeleteTagAction = L10n.tr("Localizable", "tag_grid_alert_delete_tag_action", fallback: "タグを削除")
     /// タグ「%@」を削除しますか？
-    internal static func tagGridAlertDeleteTagMessage(_ p1: Any) -> String {
+    static func tagGridAlertDeleteTagMessage(_ p1: Any) -> String {
         return L10n.tr("Localizable", "tag_grid_alert_delete_tag_message %@", String(describing: p1), fallback: "タグ「%@」を削除しますか？")
     }
 
     /// このタグの新しい名前を入力してください
-    internal static let tagGridAlertRenameTagMessage = L10n.tr("Localizable", "tag_grid_alert_rename_tag_message", fallback: "このタグの新しい名前を入力してください")
+    static let tagGridAlertRenameTagMessage = L10n.tr("Localizable", "tag_grid_alert_rename_tag_message", fallback: "このタグの新しい名前を入力してください")
     /// タグ名
-    internal static let tagGridAlertRenameTagPlaceholder = L10n.tr("Localizable", "tag_grid_alert_rename_tag_placeholder", fallback: "タグ名")
+    static let tagGridAlertRenameTagPlaceholder = L10n.tr("Localizable", "tag_grid_alert_rename_tag_placeholder", fallback: "タグ名")
     /// タグ名の変更
-    internal static let tagGridAlertRenameTagTitle = L10n.tr("Localizable", "tag_grid_alert_rename_tag_title", fallback: "タグ名の変更")
+    static let tagGridAlertRenameTagTitle = L10n.tr("Localizable", "tag_grid_alert_rename_tag_title", fallback: "タグ名の変更")
     /// コピー
-    internal static let tagGridMenuCopy = L10n.tr("Localizable", "tag_grid_menu_copy", fallback: "コピー")
+    static let tagGridMenuCopy = L10n.tr("Localizable", "tag_grid_menu_copy", fallback: "コピー")
     /// 削除
-    internal static let tagGridMenuDelete = L10n.tr("Localizable", "tag_grid_menu_delete", fallback: "削除")
+    static let tagGridMenuDelete = L10n.tr("Localizable", "tag_grid_menu_delete", fallback: "削除")
     /// 名前の変更
-    internal static let tagGridMenuRename = L10n.tr("Localizable", "tag_grid_menu_rename", fallback: "名前の変更")
+    static let tagGridMenuRename = L10n.tr("Localizable", "tag_grid_menu_rename", fallback: "名前の変更")
     /// タイトルなし
-    internal static let tsundocEditViewNoTitle = L10n.tr("Localizable", "tsundoc_edit_view_no_title", fallback: "タイトルなし")
+    static let tsundocEditViewNoTitle = L10n.tr("Localizable", "tsundoc_edit_view_no_title", fallback: "タイトルなし")
     /// 読み込み中...
-    internal static let tsundocEditViewPreparingTitle = L10n.tr("Localizable", "tsundoc_edit_view_preparing_title", fallback: "読み込み中...")
+    static let tsundocEditViewPreparingTitle = L10n.tr("Localizable", "tsundoc_edit_view_preparing_title", fallback: "読み込み中...")
     /// 保存
-    internal static let tsundocEditViewSaveButton = L10n.tr("Localizable", "tsundoc_edit_view_save_button", fallback: "保存")
+    static let tsundocEditViewSaveButton = L10n.tr("Localizable", "tsundoc_edit_view_save_button", fallback: "保存")
     /// タグ
-    internal static let tsundocEditViewTagsTitle = L10n.tr("Localizable", "tsundoc_edit_view_tags_title", fallback: "タグ")
+    static let tsundocEditViewTagsTitle = L10n.tr("Localizable", "tsundoc_edit_view_tags_title", fallback: "タグ")
     /// このWebページのタイトルを入力してください
-    internal static let tsundocEditViewTitleEditMessage = L10n.tr("Localizable", "tsundoc_edit_view_title_edit_message", fallback: "このWebページのタイトルを入力してください")
+    static let tsundocEditViewTitleEditMessage = L10n.tr("Localizable", "tsundoc_edit_view_title_edit_message", fallback: "このWebページのタイトルを入力してください")
     /// タイトル
-    internal static let tsundocEditViewTitleEditPlaceholder = L10n.tr("Localizable", "tsundoc_edit_view_title_edit_placeholder", fallback: "タイトル")
+    static let tsundocEditViewTitleEditPlaceholder = L10n.tr("Localizable", "tsundoc_edit_view_title_edit_placeholder", fallback: "タイトル")
     /// タイトルの編集
-    internal static let tsundocEditViewTitleEditTitle = L10n.tr("Localizable", "tsundoc_edit_view_title_edit_title", fallback: "タイトルの編集")
+    static let tsundocEditViewTitleEditTitle = L10n.tr("Localizable", "tsundoc_edit_view_title_edit_title", fallback: "タイトルの編集")
     /// 未読
-    internal static let tsundocEditViewUnreadToggle = L10n.tr("Localizable", "tsundoc_edit_view_unread_toggle", fallback: "未読")
-    internal enum EmojiList {
+    static let tsundocEditViewUnreadToggle = L10n.tr("Localizable", "tsundoc_edit_view_unread_toggle", fallback: "未読")
+    enum EmojiList {
         /// %@を選択中
-        internal static func selectedTitle(_ p1: Any) -> String {
+        static func selectedTitle(_ p1: Any) -> String {
             return L10n.tr("Localizable", "emoji_list.selected_title", String(describing: p1), fallback: "%@を選択中")
         }
 
@@ -59,7 +59,7 @@ internal enum L10n {
         ///
         ///
         ///   Created by Tasuku Tozawa on 2022/07/31.
-        internal static let title = L10n.tr("Localizable", "emoji_list.title", fallback: "絵文字を選択")
+        static let title = L10n.tr("Localizable", "emoji_list.title", fallback: "絵文字を選択")
     }
 }
 

@@ -7,9 +7,9 @@ import CompositeKit
 import Domain
 import Environment
 
-public typealias TsundocInfoViewDependency = HasTsundocCommandService
+public typealias TsundocInfoViewDependency = HasTagQueryService
+    & HasTsundocCommandService
     & HasTsundocQueryService
-    & HasTagQueryService
 
 public struct TsundocInfoViewReducer: Reducer {
     public typealias Dependency = TsundocInfoViewDependency

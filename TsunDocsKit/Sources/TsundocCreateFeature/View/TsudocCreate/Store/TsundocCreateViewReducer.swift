@@ -8,9 +8,9 @@ import Domain
 import Environment
 import Foundation
 
-public typealias TsundocCreateViewDependency = HasWebPageMetaResolver
+public typealias TsundocCreateViewDependency = HasSharedUserSettingStorage
     & HasTsundocCommandService
-    & HasSharedUserSettingStorage
+    & HasWebPageMetaResolver
 
 public struct TsundocCreateViewReducer: Reducer {
     public typealias Dependency = TsundocCreateViewDependency

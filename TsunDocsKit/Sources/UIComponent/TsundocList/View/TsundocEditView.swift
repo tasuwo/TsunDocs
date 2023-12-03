@@ -157,7 +157,8 @@ struct TsundocEditView_Previews: PreviewProvider {
                                 title: $title,
                                 selectedEmojiInfo: $selectedEmojiInfo,
                                 selectedTags: $selectedTags,
-                                isUnread: $isUnread) {
+                                isUnread: $isUnread)
+                {
                     // NOP
                 } tagMultiSelectionSheetBuilder: { _, _ in
                     EmptyView()

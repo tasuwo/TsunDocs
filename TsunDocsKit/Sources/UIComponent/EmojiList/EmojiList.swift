@@ -129,7 +129,8 @@ public struct EmojiList<BackgroundColor>: View where BackgroundColor: PickColor,
     @ViewBuilder
     private func colorPicker() -> some View {
         ColorPicker(color: backgroundColors.self,
-                    selected: $backgroundColorRawValue) {
+                    selected: $backgroundColorRawValue)
+        {
             backgroundColorRawValue = $0
         }
         .frame(maxWidth: 320)
@@ -185,7 +186,8 @@ struct EmojiList_Previews: PreviewProvider {
             .sheet(isPresented: $isPresenting) {
                 NavigationView {
                     EmojiList(currentEmoji: nil,
-                              backgroundColors: DefaultPickColor.self) {
+                              backgroundColors: DefaultPickColor.self)
+                    {
                         selectedEmoji = $0
                         selectedBackgroundColor = $1
                         withAnimation { isPresenting = false }

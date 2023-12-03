@@ -86,7 +86,8 @@ public struct TsundocEditThumbnail: View {
         .sheet(isPresented: $isSelectingEmoji) {
             NavigationView {
                 EmojiList(currentEmoji: selectedEmojiInfo?.emoji,
-                          backgroundColors: EmojiBackgroundColor.self) { emoji, backgrounColor in
+                          backgroundColors: EmojiBackgroundColor.self)
+                { emoji, backgrounColor in
                     isSelectingEmoji = false
                     selectedEmojiInfo = .init(emoji: emoji, backgroundColor: backgrounColor)
                 } onCancel: {

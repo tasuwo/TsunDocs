@@ -250,7 +250,8 @@ struct TagGrid_Previews: PreviewProvider {
             VStack {
                 TagGrid(tags: tags,
                         selectedIds: selectedIds,
-                        configuration: .init(.selectable(.multiple), isEnabledMenu: true)) { action in
+                        configuration: .init(.selectable(.multiple), isEnabledMenu: true))
+                { action in
                     switch action {
                     case let .select(tagId):
                         if selectedIds.contains(tagId) {
