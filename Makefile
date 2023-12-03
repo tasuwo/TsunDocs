@@ -6,25 +6,11 @@ init_pod: ## CocoaPodsライブラリを準備する
 	bundle exec pod install
 
 .PHONY: generate
-generate: sourcery_generate swiftgen_generate mockolo_generate format ## 各種コード自動生成を実行する
+generate: sourcery_generate swiftgen_generate mockolo_generate ## 各種コード自動生成を実行する
 
 .PHONY: swiftgen_generate
 swiftgen_generate: init_pod ## SwiftGenによるコード自動生成を実行する
 	./Pods/SwiftGen/bin/swiftgen
-
-.PHONY: lint
-lint: swiftlint_lint ## 各種Linterを実行する
-
-.PHONY: swiftlint_lint
-swiftlint_lint: init_pod ## SwiftLintによるリントを実行する
-	Pods/SwiftLint/swiftlint
-
-.PHONY: format
-format: swiftformat_format ## 各種フォーマッターを実行する
-
-.PHONY: swiftformat_format
-swiftformat_format: init_pod ## SwiftFormatによるフォーマットを実行する
-	Pods/SwiftFormat/CommandLineTool/swiftformat --config ./.swiftformat ./
 
 .PHONY: sourcery_generate
 sourcery_generate: init_pod ## Sourceryによるモック自動生成を行う

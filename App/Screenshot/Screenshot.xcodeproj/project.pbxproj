@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -231,6 +231,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2C157FF52B1C03AB00B96EBB /* PBXTargetDependency */,
 				4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */,
 			);
 			name = "TsunDocs (iOS)";
@@ -252,6 +253,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2C157FF32B1C03A500B96EBB /* PBXTargetDependency */,
 			);
 			name = MobileShareExtension;
 			packageProductDependencies = (
@@ -316,6 +318,9 @@
 				ja,
 			);
 			mainGroup = EB5136094B07B8560319AE2D;
+			packageReferences = (
+				2C157FF12B1C039800B96EBB /* XCRemoteSwiftPackageReference "swift" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -423,6 +428,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2C157FF32B1C03A500B96EBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2C157FF22B1C03A500B96EBB /* LintSwift */;
+		};
+		2C157FF52B1C03AB00B96EBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2C157FF42B1C03AB00B96EBB /* LintSwift */;
+		};
 		2C4DEFC727D46F4600EA94C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 31CD9A7FB8B73B41C35ADB91 /* TsunDocs (iOS) */;
@@ -800,7 +813,28 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		2C157FF12B1C039800B96EBB /* XCRemoteSwiftPackageReference "swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tasuwo/swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		2C157FF22B1C03A500B96EBB /* LintSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C157FF12B1C039800B96EBB /* XCRemoteSwiftPackageReference "swift" */;
+			productName = "plugin:LintSwift";
+		};
+		2C157FF42B1C03AB00B96EBB /* LintSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C157FF12B1C039800B96EBB /* XCRemoteSwiftPackageReference "swift" */;
+			productName = "plugin:LintSwift";
+		};
 		2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MobileShareExtensionFeature;

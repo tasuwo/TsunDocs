@@ -183,6 +183,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2C157FE72B1C027B00B96EBB /* PBXTargetDependency */,
 				4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */,
 			);
 			name = "TsunDocs (iOS)";
@@ -203,6 +204,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2C157FE92B1C028000B96EBB /* PBXTargetDependency */,
 			);
 			name = MobileShareExtension;
 			packageProductDependencies = (
@@ -262,6 +264,9 @@
 				ja,
 			);
 			mainGroup = EB5136094B07B8560319AE2D;
+			packageReferences = (
+				2C157FE52B1C026C00B96EBB /* XCRemoteSwiftPackageReference "swift" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -314,6 +319,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2C157FE72B1C027B00B96EBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2C157FE62B1C027B00B96EBB /* LintSwift */;
+		};
+		2C157FE92B1C028000B96EBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2C157FE82B1C028000B96EBB /* LintSwift */;
+		};
 		4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8AF84C32444B977765B9493A /* MobileShareExtension */;
@@ -636,7 +649,28 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		2C157FE52B1C026C00B96EBB /* XCRemoteSwiftPackageReference "swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tasuwo/swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		2C157FE62B1C027B00B96EBB /* LintSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C157FE52B1C026C00B96EBB /* XCRemoteSwiftPackageReference "swift" */;
+			productName = "plugin:LintSwift";
+		};
+		2C157FE82B1C028000B96EBB /* LintSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C157FE52B1C026C00B96EBB /* XCRemoteSwiftPackageReference "swift" */;
+			productName = "plugin:LintSwift";
+		};
 		2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MobileShareExtensionFeature;

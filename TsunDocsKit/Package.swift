@@ -96,6 +96,9 @@ let package = Package(
                 "UIComponent",
                 .product(name: "PersistentStack", package: "PersistentStack"),
                 .product(name: "SplitView", package: "SplitView")
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
         .target(
@@ -106,6 +109,9 @@ let package = Package(
                 "TagMultiSelectionFeature",
                 "TsundocCreateFeature",
                 .product(name: "PersistentStack", package: "PersistentStack")
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
 
@@ -119,6 +125,9 @@ let package = Package(
                 "Environment",
                 "PreviewContent",
                 "UIComponent",
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
         .target(
@@ -130,6 +139,9 @@ let package = Package(
                 "Environment",
                 "PreviewContent",
                 "UIComponent",
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
         .target(
@@ -142,6 +154,9 @@ let package = Package(
                 "PreviewContent",
                 "UIComponent",
                 .product(name: "NukeUI", package: "Nuke"),
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
         .target(
@@ -153,6 +168,9 @@ let package = Package(
                 "Environment",
                 "PreviewContent",
                 "UIComponent"
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
         .target(
@@ -163,6 +181,9 @@ let package = Package(
                 "Environment",
                 "PreviewContent",
                 "UIComponent"
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
         .target(
@@ -173,6 +194,9 @@ let package = Package(
                 "Environment",
                 "PreviewContent",
                 "UIComponent",
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
 
@@ -184,6 +208,9 @@ let package = Package(
                 "CompositeKit",
                 .product(name: "Kanna", package: "Kanna"),
                 .product(name: "Smile", package: "Smile"),
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
         .target(
@@ -191,6 +218,9 @@ let package = Package(
             dependencies: [
                 "CompositeKit",
                 "Domain"
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
 
@@ -198,7 +228,10 @@ let package = Package(
 
         .target(
             name: "Persistence",
-            dependencies: ["Domain"]
+            dependencies: ["Domain"],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
+            ]
         ),
 
         /// UI
@@ -207,6 +240,9 @@ let package = Package(
             name: "BrowseView",
             dependencies: [
                 "UIComponent",
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
         .target(
@@ -215,12 +251,20 @@ let package = Package(
                 "CompositeKit",
                 "Domain",
                 .product(name: "NukeUI", package: "Nuke"),
+            ],
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
             ]
         ),
 
         /// Helper
 
-        .target(name: "CompositeKit"),
+        .target(
+            name: "CompositeKit",
+            plugins: [
+                .plugin(name: "LintSwift", package: "swift")
+            ]
+        ),
         .target(
             name: "PreviewContent",
             dependencies: [
