@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tasuwo/SplitView",
       "state" : {
-        "revision" : "4631677e6a19183f106094bf2487ef0c628bb2ea",
-        "version" : "0.1.0"
+        "revision" : "357b675518bf08c697008ccc213fc5c1f57ec5ca",
+        "version" : "0.1.1"
       }
     },
     {

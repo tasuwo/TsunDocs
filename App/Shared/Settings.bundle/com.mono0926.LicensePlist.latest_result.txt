@@ -6,7 +6,7 @@ name: PersistentStack, nameSpecified: PersistentStack, owner: tasuwo, version: 0
 
 name: Smile, nameSpecified: Smile, owner: onmyway133, version: 2.1.0, source: https://github.com/onmyway133/Smile
 
-name: SplitView, nameSpecified: SplitView, owner: tasuwo, version: 0.1.0, source: https://github.com/tasuwo/SplitView
+name: SplitView, nameSpecified: SplitView, owner: tasuwo, version: 0.1.1, source: https://github.com/tasuwo/SplitView
 
 name: swift-async-algorithms, nameSpecified: AsyncAlgorithms, owner: apple, version: 0.0.4, source: https://github.com/apple/swift-async-algorithms
 
