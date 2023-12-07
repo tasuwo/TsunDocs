@@ -8,66 +8,21 @@ let package = Package(
         .iOS("16"), .macOS(.v13)
     ],
     products: [
-        .library(
-            name: "AppFeature",
-            targets: ["AppFeature"]
-        ),
-        .library(
-            name: "BrowseView",
-            targets: ["BrowseView"]
-        ),
-        .library(
-            name: "CompositeKit",
-            targets: ["CompositeKit"]
-        ),
-        .library(
-            name: "Domain",
-            targets: ["Domain"]
-        ),
-        .library(
-            name: "Environment",
-            targets: ["Environment"]
-        ),
-        .library(
-            name: "Persistence",
-            targets: ["Persistence"]
-        ),
-        .library(
-            name: "MobileShareExtensionFeature",
-            targets: ["MobileShareExtensionFeature"]
-        ),
-        .library(
-            name: "TsundocCreateFeature",
-            targets: ["TsundocCreateFeature"]
-        ),
-        .library(
-            name: "TsundocInfoFeature",
-            targets: ["TsundocInfoFeature"]
-        ),
-        .library(
-            name: "TsundocListFeature",
-            targets: ["TsundocListFeature"]
-        ),
-        .library(
-            name: "TagListFeature",
-            targets: ["TagListFeature"]
-        ),
-        .library(
-            name: "TagMultiSelectionFeature",
-            targets: ["TagMultiSelectionFeature"]
-        ),
-        .library(
-            name: "MobileSettingFeature",
-            targets: ["MobileSettingFeature"]
-        ),
-        .library(
-            name: "UIComponent",
-            targets: ["UIComponent"]
-        ),
-        .library(
-            name: "PreviewContent",
-            targets: ["PreviewContent"]
-        ),
+        .library(name: "AppFeature", targets: ["AppFeature"]),
+        .library(name: "BrowseView", targets: ["BrowseView"]),
+        .library(name: "CompositeKit", targets: ["CompositeKit"]),
+        .library(name: "Domain",targets: ["Domain"]),
+        .library(name: "Environment", targets: ["Environment"]),
+        .library(name: "Persistence",targets: ["Persistence"]),
+        .library(name: "MobileShareExtensionFeature", targets: ["MobileShareExtensionFeature"]),
+        .library(name: "TsundocCreateFeature", targets: ["TsundocCreateFeature"]),
+        .library(name: "TsundocInfoFeature", targets: ["TsundocInfoFeature"]),
+        .library(name: "TsundocListFeature", targets: ["TsundocListFeature"]),
+        .library(name: "TagListFeature", targets: ["TagListFeature"]),
+        .library(name: "TagMultiSelectionFeature", targets: ["TagMultiSelectionFeature"]),
+        .library(name: "MobileSettingFeature", targets: ["MobileSettingFeature"]),
+        .library(name: "UIComponent", targets: ["UIComponent"]),
+        .library(name: "PreviewContent", targets: ["PreviewContent"]),
     ],
     dependencies: [
         .package(url: "https://github.com/tasuwo/swift", .upToNextMajor(from: "0.8.0")),
