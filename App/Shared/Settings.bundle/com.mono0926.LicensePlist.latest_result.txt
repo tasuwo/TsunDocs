@@ -1,3 +1,9 @@
+name: Sourcery, nameSpecified: 
+body: MIT License
+
+Copyrig…
+version: 1.9.0
+
 name: Kanna, nameSpecified: Kanna, owner: tid-kijyun, version: 5.2.7, source: https://github.com/tid-kijyun/Kanna
 
 name: Nuke, nameSpecified: Nuke, owner: kean, version: 12.2.0, source: https://github.com/kean/Nuke

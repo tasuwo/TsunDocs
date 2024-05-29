@@ -1,3 +1,7 @@
+options:
+  outputPath: App/Shared/Settings.bundle
+  xcworkspacePath: TsunDocs.xcworkspace
+  addVersionNumbers: false
 exclude:
   - name: swift
   - name: swift-argument-parser
