@@ -11,6 +11,7 @@
 		2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C24DA2C27CA144C004AA2CD /* Localizable.strings */; };
 		2C6FCBC52B1B910A00186399 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C6FCBC42B1B910A00186399 /* Settings.bundle */; };
 		2CADB7E027D3AEC0004D7614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CADB7DF27D3AEC0004D7614 /* Assets.xcassets */; };
+		2CC089F82C073E0E009BB9EC /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 2CC089F72C073E0E009BB9EC /* PrivacyInfo.xcprivacy */; };
 		2CC25E7827C669E100E29112 /* MobileShareExtensionFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7727C669E100E29112 /* MobileShareExtensionFeature */; };
 		2CC25E7A27C669EA00E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7927C669EA00E29112 /* AppFeature */; };
 		2CC25E7C27C669F200E29112 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC25E7B27C669F200E29112 /* AppFeature */; };
@@ -57,6 +58,7 @@
 		2CADB7E427D3AED7004D7614 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CADB7E527D3AEDE004D7614 /* MobileShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileShareExtension.entitlements; sourceTree = "<group>"; };
 		2CADB7E627D3AEF1004D7614 /* TsunDocsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TsunDocsKit; path = ../../TsunDocsKit; sourceTree = "<group>"; };
+		2CC089F72C073E0E009BB9EC /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		2CC25E7D27C66D9200E29112 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		3714AF07DC39BE2BB4DDC2B3 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEDCBB975AFA4545C1216463 /* TsunDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TsunDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +115,7 @@
 				2C6FCBCB2B1B96F600186399 /* Config.xcconfig */,
 				2C24DA2C27CA144C004AA2CD /* Localizable.strings */,
 				2C6FCBC42B1B910A00186399 /* Settings.bundle */,
+				2CC089F72C073E0E009BB9EC /* PrivacyInfo.xcprivacy */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			files = (
 				2C24DA2A27CA144C004AA2CD /* Localizable.strings in Resources */,
 				2C6FCBC52B1B910A00186399 /* Settings.bundle in Resources */,
+				2CC089F82C073E0E009BB9EC /* PrivacyInfo.xcprivacy in Resources */,
 				2CADB7E027D3AEC0004D7614 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
