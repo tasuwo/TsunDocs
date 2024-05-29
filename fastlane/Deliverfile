@@ -1,6 +1,13 @@
 # vim: syntax=ruby
 
+submit_for_review(false)
 automatic_release(false)
+
+skip_binary_upload(true)
+skip_metadata(false)
+skip_screenshots(true)
+skip_app_version_update(false)
+
 overwrite_screenshots(true)
 
 # AppStoreConnectAPI非対応項目を設定

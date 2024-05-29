@@ -47,14 +47,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
-### ios release_deliver_only
-
-```sh
-[bundle exec] fastlane ios release_deliver_only
-```
-
-
-
 ### ios release_build_only
 
 ```sh
