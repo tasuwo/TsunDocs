@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "31CD9A7FB8B73B41C35ADB91"
+               BlueprintIdentifier = "B1DDE034988CEB952208D99D"
                BuildableName = "TsunDocs.app"
-               BlueprintName = "TsunDocs (iOS)"
+               BlueprintName = "TsunDocs (macOS Snapshot)"
                ReferencedContainer = "container:Screenshot.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,16 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C4DEFBF27D46F4600EA94C5"
-               BuildableName = "SnapshotHelper.xctest"
-               BlueprintName = "SnapshotHelper"
-               ReferencedContainer = "container:Screenshot.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -54,22 +44,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "31CD9A7FB8B73B41C35ADB91"
+            BlueprintIdentifier = "B1DDE034988CEB952208D99D"
             BuildableName = "TsunDocs.app"
-            BlueprintName = "TsunDocs (iOS)"
+            BlueprintName = "TsunDocs (macOS Snapshot)"
             ReferencedContainer = "container:Screenshot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-com.apple.CoreData.CloudKitDebug 0"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-com.apple.CoreData.Logging.stderr 0"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -80,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "31CD9A7FB8B73B41C35ADB91"
+            BlueprintIdentifier = "B1DDE034988CEB952208D99D"
             BuildableName = "TsunDocs.app"
-            BlueprintName = "TsunDocs (iOS)"
+            BlueprintName = "TsunDocs (macOS Snapshot)"
             ReferencedContainer = "container:Screenshot.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

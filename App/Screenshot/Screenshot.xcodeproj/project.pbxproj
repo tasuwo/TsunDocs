@@ -218,9 +218,9 @@
 			productReference = 2C4DEFC027D46F4600EA94C5 /* SnapshotHelper.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		31CD9A7FB8B73B41C35ADB91 /* TsunDocs (iOS) */ = {
+		31CD9A7FB8B73B41C35ADB91 /* TsunDocs (iOS Snapshot) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocs (iOS)" */;
+			buildConfigurationList = 2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocs (iOS Snapshot)" */;
 			buildPhases = (
 				D3138B57806C2FA5B19BA173 /* SwiftLint */,
 				CE0AD2747B613D920FA6F9C5 /* Sources */,
@@ -234,7 +234,7 @@
 				2C157FF52B1C03AB00B96EBB /* PBXTargetDependency */,
 				4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */,
 			);
-			name = "TsunDocs (iOS)";
+			name = "TsunDocs (iOS Snapshot)";
 			packageProductDependencies = (
 				2CC25E7927C669EA00E29112 /* AppFeature */,
 				2CD8D18127D3B6410020D96C /* PreviewContent */,
@@ -263,9 +263,9 @@
 			productReference = FF241AF60C49740BA6F08F55 /* MobileShareExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		B1DDE034988CEB952208D99D /* TsunDocs (macOS) */ = {
+		B1DDE034988CEB952208D99D /* TsunDocs (macOS Snapshot) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 809BF37F55504DFB6306E786 /* Build configuration list for PBXNativeTarget "TsunDocs (macOS)" */;
+			buildConfigurationList = 809BF37F55504DFB6306E786 /* Build configuration list for PBXNativeTarget "TsunDocs (macOS Snapshot)" */;
 			buildPhases = (
 				2C9D5D63BB7A0F59CDA10E4D /* SwiftLint */,
 				C08696BAF5978BBC2261100C /* Sources */,
@@ -275,7 +275,7 @@
 			);
 			dependencies = (
 			);
-			name = "TsunDocs (macOS)";
+			name = "TsunDocs (macOS Snapshot)";
 			packageProductDependencies = (
 				2CC25E7B27C669F200E29112 /* AppFeature */,
 			);
@@ -326,8 +326,8 @@
 			projectRoot = "";
 			targets = (
 				8AF84C32444B977765B9493A /* MobileShareExtension */,
-				31CD9A7FB8B73B41C35ADB91 /* TsunDocs (iOS) */,
-				B1DDE034988CEB952208D99D /* TsunDocs (macOS) */,
+				31CD9A7FB8B73B41C35ADB91 /* TsunDocs (iOS Snapshot) */,
+				B1DDE034988CEB952208D99D /* TsunDocs (macOS Snapshot) */,
 				2C4DEFBF27D46F4600EA94C5 /* SnapshotHelper */,
 			);
 		};
@@ -439,7 +439,7 @@
 		};
 		2C4DEFC727D46F4600EA94C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 31CD9A7FB8B73B41C35ADB91 /* TsunDocs (iOS) */;
+			target = 31CD9A7FB8B73B41C35ADB91 /* TsunDocs (iOS Snapshot) */;
 			targetProxy = 2C4DEFC627D46F4600EA94C5 /* PBXContainerItemProxy */;
 		};
 		4DE618AA208C0A547D73FBF8 /* PBXTargetDependency */ = {
@@ -782,7 +782,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocs (iOS)" */ = {
+		2FEF768569663BE0063035BC /* Build configuration list for PBXNativeTarget "TsunDocs (iOS Snapshot)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B1A2F20E6139F4F2D8CDEB15 /* Debug */,
@@ -800,7 +800,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		809BF37F55504DFB6306E786 /* Build configuration list for PBXNativeTarget "TsunDocs (macOS)" */ = {
+		809BF37F55504DFB6306E786 /* Build configuration list for PBXNativeTarget "TsunDocs (macOS Snapshot)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DB897823B44E32F953E7F64B /* Debug */,

@@ -40,7 +40,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "31CD9A7FB8B73B41C35ADB91"
             BuildableName = "TsunDocs.app"
-            BlueprintName = "TsunDocs (iOS)"
+            BlueprintName = "TsunDocs (iOS Snapshot)"
             ReferencedContainer = "container:Screenshot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -56,7 +56,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "31CD9A7FB8B73B41C35ADB91"
             BuildableName = "TsunDocs.app"
-            BlueprintName = "TsunDocs (iOS)"
+            BlueprintName = "TsunDocs (iOS Snapshot)"
             ReferencedContainer = "container:Screenshot.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
