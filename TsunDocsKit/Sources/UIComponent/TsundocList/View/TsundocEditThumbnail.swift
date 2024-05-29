@@ -53,7 +53,8 @@ public struct TsundocEditThumbnail: View {
                 .background(emojiInfo.backgroundColor.swiftUIColor)
             } else {
                 if let imageUrl = imageUrl {
-                    LazyImage(url: imageUrl) { state in
+                    let request = ImageRequest(url: imageUrl, userInfo: [.thumbnailKey: ImageRequest.ThumbnailOptions(size: CGSize(width: Self.thumbnailSize, height: Self.thumbnailSize))])
+                    LazyImage(request: request) { state in
                         if let image = state.image {
                             image
                                 .resizable()

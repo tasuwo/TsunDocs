@@ -19,7 +19,8 @@ struct TsundocThumbnail: View {
         Group {
             switch source {
             case let .imageUrl(url):
-                LazyImage(url: url) { state in
+                let request = ImageRequest(url: url, userInfo: [.thumbnailKey: ImageRequest.ThumbnailOptions(size: CGSize(width: 80, height: 80))])
+                LazyImage(request: request) { state in
                     if let image = state.image {
                         image
                             .resizable()
