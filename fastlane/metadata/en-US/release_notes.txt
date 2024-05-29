@@ -1,7 +1,2 @@
-New Features
-- Add settings for read management.
-
-Bug Fixes
-- Opening web page makes freeze the app.
-
+- Minor improvements and fixes.
 
